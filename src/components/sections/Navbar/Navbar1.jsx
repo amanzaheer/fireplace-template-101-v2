@@ -85,7 +85,7 @@ export default function Navbar1({ content }) {
           <Logo logo={logo} imagePath={imagePath} />
         </div>
 
-        <div className="hidden lg:flex items-center text-[26px] font-barlow font-semibold justify-center gap-4 bg-red-600 ">
+        <div className="hidden lg:flex items-center text-[26px] font-barlow font-semibold justify-center gap-4  ">
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
@@ -246,7 +246,7 @@ export default function Navbar1({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]"
+      className="shadow-sm w-full sticky top-0 z-20 bg-primary1 py-2 h-[82px] md:h-[112px]"
     >
       <Container>{headerContent}</Container>
 
