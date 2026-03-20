@@ -11,6 +11,8 @@ module.exports = {
       colors: {
         primary: "#01306E",
         secondary: "#01306E",
+
+
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)", "Montserrat", ...defaultTheme.fontFamily.sans],

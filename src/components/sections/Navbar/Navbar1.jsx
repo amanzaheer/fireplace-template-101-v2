@@ -14,7 +14,9 @@ import { resolveRefArray } from "@/lib/content-helpers";
 const SCROLL_OFFSET = 80;
 
 function isDropdownItem(item) {
-  return item?.link === "#" && (item?.childrenRef || Array.isArray(item?.services));
+  return (
+    item?.link === "#" && (item?.childrenRef || Array.isArray(item?.services))
+  );
 }
 
 function getChildHref(child) {
@@ -28,7 +30,7 @@ export default function Navbar1({ content }) {
   const imagePath = content?.navbar?.imagePath ?? IMAGE_BASE;
   const menuItemsArray = useMemo(
     () => (Array.isArray(menu_items) ? menu_items : []),
-    [menu_items]
+    [menu_items],
   );
 
   const [isOpen, setIsOpen] = useState(false);
@@ -40,7 +42,7 @@ export default function Navbar1({ content }) {
 
   const getDropdownChildren = useCallback(
     (item) => resolveRefArray(content, item, "children"),
-    [content]
+    [content],
   );
 
   useEffect(() => {
@@ -50,7 +52,8 @@ export default function Navbar1({ content }) {
 
   const scrollToSection = useCallback((element) => {
     if (!element) return;
-    const top = element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
     window.scrollTo({ top, behavior: "smooth" });
   }, []);
 
@@ -67,7 +70,7 @@ export default function Navbar1({ content }) {
         }, 500);
       }
     },
-    [router, scrollToSection]
+    [router, scrollToSection],
   );
 
   const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
@@ -82,7 +85,7 @@ export default function Navbar1({ content }) {
           <Logo logo={logo} imagePath={imagePath} />
         </div>
 
-        <div className="hidden lg:flex items-center text-[26px] font-barlow font-semibold justify-center gap-4">
+        <div className="hidden lg:flex items-center text-[26px] font-barlow font-semibold justify-center gap-4 bg-red-600 ">
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
@@ -99,7 +102,7 @@ export default function Navbar1({ content }) {
                     type="button"
                     className={cn(
                       "flex items-center h-full gap-1",
-                      isOpen ? "text-[#002B5B]" : "text-black"
+                      isOpen ? "text-[#002B5B]" : "text-black",
                     )}
                   >
                     {item.title}
@@ -110,13 +113,14 @@ export default function Navbar1({ content }) {
                       "absolute top-full left-0 w-auto min-w-[300px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-all duration-300 ease-in-out flex flex-col",
                       isOpen
                         ? "opacity-100 visible transform translate-y-0"
-                        : "opacity-0 invisible transform -translate-y-2"
+                        : "opacity-0 invisible transform -translate-y-2",
                     )}
                   >
                     <div className="flex-grow dropdown-services-container scrollbar-hide">
                       {children.map((child, index) => {
                         const href = getChildHref(child);
-                        const isActive = pathname === href || pathname === (child?.path ?? "");
+                        const isActive =
+                          pathname === href || pathname === (child?.path ?? "");
                         return (
                           <Link
                             key={child?.title ?? child?.path ?? index}
@@ -126,7 +130,7 @@ export default function Navbar1({ content }) {
                               "text-xl py-1 font-semibold px-4 cursor-pointer transition-all duration-100 block",
                               isActive
                                 ? "bg-[#002B5B] text-white"
-                                : `text-black hover:bg-primary hover:text-white`
+                                : `text-black hover:bg-primary hover:text-white`,
                             )}
                           >
                             {child?.title}
@@ -185,14 +189,18 @@ export default function Navbar1({ content }) {
             onClick={mounted ? toggleMenu : undefined}
             role="button"
             tabIndex={0}
-            onKeyDown={(e) => mounted && (e.key === "Enter" || e.key === " ") && toggleMenu()}
+            onKeyDown={(e) =>
+              mounted && (e.key === "Enter" || e.key === " ") && toggleMenu()
+            }
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            <div
-              className="pt-1.5 rounded-[3px] p-0.5 bg-primary"
-            >
-              {isOpen ? <X className="w-7 h-6" /> : <Menu className="w-7 h-6" />}
+            <div className="pt-1.5 rounded-[3px] p-0.5 bg-primary">
+              {isOpen ? (
+                <X className="w-7 h-6" />
+              ) : (
+                <Menu className="w-7 h-6" />
+              )}
             </div>
           </div>
         </div>
@@ -236,17 +244,18 @@ export default function Navbar1({ content }) {
   }
 
   return (
-    <FullContainer id="navbar" className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]">
-      <Container>
-        {headerContent}
-      </Container>
+    <FullContainer
+      id="navbar"
+      className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]"
+    >
+      <Container>{headerContent}</Container>
 
       <div
         className={cn(
           "lg:hidden py-2 bg-white absolute top-[75px] left-0 right-0 w-full transition-all duration-300",
           isOpen
             ? "h-fit opacity-100 visible"
-            : "h-0 opacity-0 invisible overflow-hidden"
+            : "h-0 opacity-0 invisible overflow-hidden",
         )}
       >
         <div className="flex flex-col font-barlow font-semibold text-[18px]">
@@ -262,11 +271,11 @@ export default function Navbar1({ content }) {
                       "px-4 py-1 flex items-center cursor-pointer",
                       children.some((c) => pathname === getChildHref(c))
                         ? "bg-primary text-white"
-                        : "text-black bg-transparent"
+                        : "text-black bg-transparent",
                     )}
                     onClick={() =>
                       setOpenDropdownRef((prev) =>
-                        prev === dropdownKey ? null : dropdownKey
+                        prev === dropdownKey ? null : dropdownKey,
                       )
                     }
                     role="button"
@@ -274,7 +283,7 @@ export default function Navbar1({ content }) {
                     onKeyDown={(e) =>
                       (e.key === "Enter" || e.key === " ") &&
                       setOpenDropdownRef((prev) =>
-                        prev === dropdownKey ? null : dropdownKey
+                        prev === dropdownKey ? null : dropdownKey,
                       )
                     }
                   >
@@ -285,7 +294,8 @@ export default function Navbar1({ content }) {
                     <div className="mt-2 flex flex-col max-h-[300px] overflow-y-auto gap-2">
                       {children.map((child, index) => {
                         const href = getChildHref(child);
-                        const isActive = pathname === href || pathname === (child?.path ?? "");
+                        const isActive =
+                          pathname === href || pathname === (child?.path ?? "");
                         return (
                           <Link
                             key={child?.title ?? child?.path ?? index}
@@ -293,7 +303,9 @@ export default function Navbar1({ content }) {
                             href={href}
                             className={cn(
                               "py-1 pl-7 px-4 text-lg",
-                              isActive ? "bg-primary text-white" : "text-black hover:text-primary"
+                              isActive
+                                ? "bg-primary text-white"
+                                : "text-black hover:text-primary",
                             )}
                             onClick={closeMenu}
                           >
@@ -316,7 +328,9 @@ export default function Navbar1({ content }) {
                   href={item.link}
                   className={cn(
                     "px-4 py-1",
-                    isActive ? "bg-primary text-white" : "text-black bg-transparent"
+                    isActive
+                      ? "bg-primary text-white"
+                      : "text-black bg-transparent",
                   )}
                   onClick={closeMenu}
                 >
@@ -330,7 +344,9 @@ export default function Navbar1({ content }) {
                 type="button"
                 className={cn(
                   "px-4 py-1 cursor-pointer text-left",
-                  pathname.includes(item.link) ? "bg-primary text-white" : "text-black bg-transparent"
+                  pathname.includes(item.link)
+                    ? "bg-primary text-white"
+                    : "text-black bg-transparent",
                 )}
                 onClick={() => {
                   handleNavigation(item.link);

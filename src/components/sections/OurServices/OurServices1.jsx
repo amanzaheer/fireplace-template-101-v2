@@ -63,7 +63,7 @@ export default function OurServices1({ content }) {
 
   const displayServices = useMemo(
     () => (Array.isArray(services) ? services.slice(0, MAX_DISPLAY) : []),
-    [services]
+    [services],
   );
 
   if (!displayServices.length) return null;
@@ -109,10 +109,7 @@ export default function OurServices1({ content }) {
                 <div className="flex flex-col flex-1 p-3 md:p-6 pb-4">
                   <h3 className="md:text-2xl font-bold text-blue-900 mb-2 text-center">
                     {service.path && service.path !== "#" ? (
-                      <Link
-                        href={service.path}
-                        className="hover:underline"
-                      >
+                      <Link href={service.path} className="hover:underline">
                         {service.title}
                       </Link>
                     ) : (
@@ -122,7 +119,9 @@ export default function OurServices1({ content }) {
                   {service.description ? (
                     <div
                       className="prose prose-sm text-gray-800 font-medium text-center mb-3 md:min-h-[48px] max-w-none prose-p:my-0 prose-headings:my-1"
-                      dangerouslySetInnerHTML={{ __html: markdownPreview(service.description) }}
+                      dangerouslySetInnerHTML={{
+                        __html: markdownPreview(service.description),
+                      }}
                     />
                   ) : (
                     <p className="text-gray-800 text-sm md:text-base font-medium text-center mb-3 md:min-h-[48px]">
