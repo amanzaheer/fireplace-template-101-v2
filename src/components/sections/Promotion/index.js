@@ -3,9 +3,11 @@
  * variant comes from domain config (SectionLayout).
  */
 import Promotion1 from "./Promotion1";
+import Promotion2 from "./Promotion2";
 
 const variants = {
   Promotion1,
+  Promotion2,
 };
 
 export default function Promotion({ variant, content }) {
@@ -13,4 +15,4 @@ export default function Promotion({ variant, content }) {
   const Component = variants[name] ?? Promotion1;
   return <Component content={content} />;
 }
-export { Promotion1, variants };
+export { Promotion1, Promotion2,variants };

@@ -2,7 +2,6 @@
 
 import React, { useMemo } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
@@ -68,31 +67,40 @@ export default function OurServices2({ content }) {
 
   if (!displayServices.length) return null;
 
-  const title = ourServices?.title ?? "Services Provided";
+  const title = ourServices?.title ?? "We Offers Best Plumbing Services";
 
   return (
-    <FullContainer id="our_services" className="bg-gray-700">
+    <FullContainer id="our_services" className="bg-[#efefef] py-12 md:py-16">
       <Container>
-        <h2 className="text-4xl font-extrabold text-center text-[#002B5B] mb-8 tracking-tight">
-          {title}
-        </h2>
-        <div className="grid grid-cols-2 md:gap-8 gap-4">
-          {displayServices.map((service, index) => {
+        <div className="mb-8 flex items-start justify-between gap-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-ink tracking-tight">
+            {title}
+          </h2>
+          <a
+            href={`tel:${phone}`}
+            className="hidden md:inline-flex items-center gap-2 text-[#c53030] uppercase text-sm font-bold tracking-wide hover:text-[#a52828] transition-colors duration-200"
+          >
+            Get A Quotation
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          {displayServices.map((service) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
               : null;
             return (
               <div
                 key={service.id}
-                className="bg-white border border-blue-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col"
+                className="bg-white rounded-[24px] p-6 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col"
               >
-                <div className="w-full h-48 md:h-80 bg-gray-100 flex items-center justify-center overflow-hidden relative">
+                <div className="relative w-full h-28 md:h-32 bg-gray-100 rounded-4xl overflow-hidden">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
                       alt={service.title || "Service"}
                       fill
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="(max-width: 1024px) 50vw, 33vw"
                       className="object-cover"
                       loading="lazy"
                       placeholder="blur"
@@ -106,33 +114,28 @@ export default function OurServices2({ content }) {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col flex-1 p-3 md:p-6 pb-4">
-                  {/* <h3 className="md:text-2xl font-bold text-blue-900 mb-2 text-center">
-                    {service.path && service.path !== "#" ? (
-                      <Link href={service.path} className="hover:underline">
-                        {service.title}
-                      </Link>
-                    ) : (
-                      service.title
-                    )}
-                  </h3> */}
+                <div className="flex flex-col flex-1 pt-6">
+                  <h3 className="text-[30px] leading-tight font-extrabold text-ink mb-3">
+                    {service.title}
+                  </h3>
                   {service.description ? (
                     <div
-                      className="prose prose-sm text-gray-800 font-medium text-center mb-3 md:min-h-[48px] max-w-none prose-p:my-0 prose-headings:my-1"
+                      className="prose prose-sm text-[#4b5563] mb-5 max-w-none prose-p:my-0 prose-headings:my-1"
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
                     />
                   ) : (
-                    <p className="text-gray-800 text-sm md:text-base font-medium text-center mb-3 md:min-h-[48px]">
+                    <p className="text-[#4b5563] text-sm md:text-base mb-5">
                       No description provided.
                     </p>
                   )}
                   <a
                     href={`tel:${phone}`}
-                    className="mt-auto w-fit bg-blue-950 text-white font-bold py-1 md:py-2 px-4 md:px-8 mx-auto text-center text-sm md:text-lg hover:bg-blue-900 transition-colors duration-200 rounded"
+                    className="mt-auto inline-flex w-fit items-center gap-2 bg-[#d62828] text-white uppercase tracking-wide font-bold py-3 px-7 text-sm rounded-full hover:bg-[#bf1f1f] transition-colors duration-200"
                   >
                     Call Us Today
+                    <span aria-hidden="true">→</span>
                   </a>
                 </div>
               </div>
@@ -141,11 +144,11 @@ export default function OurServices2({ content }) {
         </div>
         {services.length > MAX_DISPLAY && (
           <div className="mt-6 text-center">
-            <p className="text-[#002B5B] text-lg font-semibold">
+            <p className="text-ink text-lg font-semibold">
               {services.length - MAX_DISPLAY} more services available –{" "}
               <a
                 href={`tel:${phone}`}
-                className="underline hover:text-blue-700"
+                className="underline hover:text-[#d62828]"
               >
                 Call for details
               </a>

@@ -2,9 +2,10 @@
  * ServiceDescription section: multiple designs, one export.
  */
 import ServiceDescription1 from "./ServiceDescription1";
-
+import ServiceDescription2 from "./ServiceDescription2";
 const variants = {
   ServiceDescription1,
+  ServiceDescription2,
 };
 
 export default function ServiceDescription({ variant, content }) {
@@ -13,5 +14,5 @@ export default function ServiceDescription({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { ServiceDescription1, variants };
+export { ServiceDescription1, ServiceDescription2, variants };
 
