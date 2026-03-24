@@ -11,8 +11,8 @@ module.exports = {
       colors: {
         primary: "#01306E",
         secondary: "#01306E",
-
-
+        /** Main body / heading text (not link red, not brand blue) */
+        ink: "#212020",
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)", "Montserrat", ...defaultTheme.fontFamily.sans],

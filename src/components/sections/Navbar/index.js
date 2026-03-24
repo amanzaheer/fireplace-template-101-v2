@@ -3,9 +3,13 @@
  * variant comes from domain config (SectionLayout); fallback for standalone use.
  */
 import Navbar1 from './Navbar1';
+import Navbar2 from './Navbar2';
+import Navbar3 from './Navbar3';
 
 const variants = {
   Navbar1,
+  Navbar2,
+  Navbar3,
 };
 
 export default function Navbar({ variant, content }) {
@@ -13,4 +17,4 @@ export default function Navbar({ variant, content }) {
   const Component = variants[name] ?? Navbar1;
   return <Component content={content} />;
 }
-export { Navbar1, variants };
+export { Navbar1, Navbar2, Navbar3, variants };

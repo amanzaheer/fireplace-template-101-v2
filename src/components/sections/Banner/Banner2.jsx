@@ -19,7 +19,7 @@ import {
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 
-const QuoteForm = dynamic(() => import("@/components/common/QuoteForm"), {
+const QuoteForm2 = dynamic(() => import("@/components/sections/Banner/QuoteForm/QuoteForm2"), {
   loading: () => (
     <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
   ),
@@ -73,8 +73,11 @@ export default function Banner1({ content }) {
     "";
 
   return (
-    <FullContainer id="banner" className="relative bg-white overflow-hidden w-full md:!h-[790px] lg:!h-auto">
-      <div className="absolute inset-0 w-full h-[600px] md:minh-[790px] overflow-hidden">
+    <FullContainer
+      id="banner"
+      className="relative bg-white overflow-hidden w-full min-h-[520px] md:min-h-[600px] lg:min-h-[640px]"
+    >
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Image
           src={image}
           title={data?.imageTitle || data?.title || "Banner"}
@@ -87,36 +90,38 @@ export default function Banner1({ content }) {
             objectPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-black/30"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/55 to-black/20" />
       </div>
 
-      <Container className="py-12 md:pb-24 font-barlow relative z-10">
-        <div className="w-full flex flex-col md:flex-row gap-16 md:mx-auto md:w-fit md:gap-[66px] text-white content-center">
-          <div className="relative flex w-full md:w-fit items-center md:items-end flex-col justify-center">
-            <div className="w-fit flex flex-col items-center md:items-start justify-center">
-              <div className="font-[900] max-w-[500px] w-fit inline-block uppercase text-4xl lg:text-[54px] px-4 md:px-0 md:text-6xl leading-tight text-center md:text-start lg:text-left text-shadow-lg">
+      <Container className="relative z-10 font-barlow py-10 md:py-14 lg:py-16">
+        <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-10 text-white">
+          <div className="relative w-full max-w-[640px]">
+            <div className="w-full flex flex-col items-start justify-center">
+              <div className="font-black max-w-[560px] inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-left text-shadow-lg">
                 {data?.heading || data?.title}
               </div>
               {data?.tagline ? (
-                <h2 className="text-[28px] md:px-0 md:text-2xl uppercase font-[900] leading-tight text-[#90D4E1] text-center md:text-start lg:text-left mt-2">
+                <h2 className="text-xl md:text-2xl uppercase font-extrabold leading-tight text-[#A8E6F3] text-left mt-2">
                   {data?.tagline}
                 </h2>
               ) : null}
 
-              <p className="text-[16px] md:text-3xl text-center md:text-start lg:text-left mt-4 mb-1">
+              <p className="text-base md:text-lg text-left mt-3 mb-2 text-white/90 max-w-[520px]">
                 {data?.description}
               </p>
               {features?.length > 0 ? (
-                <ul className="mb-6 w-fit space-y-1 md:space-y-2">
+                <ul className="mb-6 w-fit space-y-1 md:space-y-1.5">
                   {features?.map((feature, idx) => {
                     const IconComponent = ICON_MAP[feature.icon];
                     return (
                       <li
                         key={idx}
-                        className="flex items-center gap-3 text-white font-medium text-base md:text-[17px]"
+                        className="flex items-center gap-2.5 text-white font-medium text-lg md:text-2xl"
                       >
-                        {IconComponent && (
-                          <IconComponent className="w-5 h-5 text-white" />
+                        {IconComponent ? (
+                          <IconComponent className="w-5 h-5 text-[#c92028] shrink-0" />
+                        ) : (
+                          <CheckCircle className="w-5 h-5 text-[#c92028] shrink-0" />
                         )}
                         {feature.text}
                       </li>
@@ -126,23 +131,31 @@ export default function Banner1({ content }) {
               ) : null}
 
               <div className="w-fit">
-                <a
-                  href={phone ? `tel:${phone}` : "#"}
-                  className="flex items-center gap-3 bg-accent2 text-white px-6 py-3 rounded-2xl text-3xl font-semibold"
-                >
-                  <Phone className="w-6 h-6" />
-                  {phone}
-                </a>
+              <div className="flex flex-col gap-0.5 md:gap-1 justify-center items-center">
+            <div className="text-xs">
+              <a
+                href={phone ? `tel:${phone}` : "#"}
+                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all bg-[#c92028]"
+              >
+                <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
+                {phone}
+              </a>
+            </div>
+          </div>
               </div>
             </div>
           </div>
 
-          <div className="w-full md:w-fit">
-            <QuoteForm
-              data={data}
-              form_head={form_head}
-              showArrowInButton={false}
-            />
+          <div className="w-full md:w-fit max-w-[380px]">
+            <div className="rounded-[18px] shadow-[0_16px_40px_rgba(0,0,0,0.32)] overflow-hidden">
+              <div className="bg-white px-0 pb-0">
+                <QuoteForm2
+                  data={data}
+                  form_head={form_head}
+                  showArrowInButton={false}
+                />
+              </div>
+            </div>
           </div>
         </div>
       </Container>

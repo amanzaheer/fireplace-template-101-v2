@@ -31,7 +31,7 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-export default function OurServices2({ content }) {
+export default function OurServices3({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const ourServices = content?.our_services;
   const servicesFromNav = content?.services ?? [];
@@ -71,28 +71,35 @@ export default function OurServices2({ content }) {
   const title = ourServices?.title ?? "Services Provided";
 
   return (
-    <FullContainer id="our_services" className="bg-gray-700">
+    <FullContainer id="our_services" className="bg-[#efefef] py-10 md:py-14">
       <Container>
-        <h2 className="text-4xl font-extrabold text-center text-[#002B5B] mb-8 tracking-tight">
+        <h2 className="text-3xl md:text-5xl font-extrabold text-center text-[#212020] mb-8 md:mb-10 tracking-tight">
           {title}
         </h2>
-        <div className="grid grid-cols-2 md:gap-8 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
           {displayServices.map((service, index) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
               : null;
+            const row = Math.floor(index / 2);
+            const col = index % 2;
+            const isAccent = (row + col) % 2 === 1;
             return (
               <div
                 key={service.id}
-                className="bg-white border border-blue-900 rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-shadow duration-200 flex flex-col"
+                className={`rounded-[24px] p-3 md:p-4 shadow-sm overflow-hidden border flex flex-row gap-3 md:gap-4 transition-colors duration-200 ${
+                  isAccent
+                    ? "bg-[#f3a008] border-[#e29a00]"
+                    : "bg-white border-[#e7e7e7]"
+                }`}
               >
-                <div className="w-full h-48 md:h-80 bg-gray-100 flex items-center justify-center overflow-hidden relative">
+                <div className="relative w-[52%] min-h-[170px] md:min-h-[190px] rounded-[18px] overflow-hidden bg-gray-100 shrink-0">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
                       alt={service.title || "Service"}
                       fill
-                      sizes="(max-width: 768px) 50vw, 25vw"
+                      sizes="(max-width: 768px) 100vw, 26vw"
                       className="object-cover"
                       loading="lazy"
                       placeholder="blur"
@@ -106,33 +113,53 @@ export default function OurServices2({ content }) {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col flex-1 p-3 md:p-6 pb-4">
-                  {/* <h3 className="md:text-2xl font-bold text-blue-900 mb-2 text-center">
+                <div className="flex flex-col flex-1 min-w-0">
+                  <h3
+                    className={`text-xl md:text-3xl font-extrabold leading-tight mb-1 ${
+                      isAccent ? "text-white" : "text-[#212020]"
+                    }`}
+                  >
                     {service.path && service.path !== "#" ? (
-                      <Link href={service.path} className="hover:underline">
+                      <Link
+                        href={service.path}
+                        className={`hover:underline ${isAccent ? "text-white" : "text-[#212020]"}`}
+                      >
                         {service.title}
                       </Link>
                     ) : (
                       service.title
                     )}
-                  </h3> */}
+                  </h3>
                   {service.description ? (
                     <div
-                      className="prose prose-sm text-gray-800 font-medium text-center mb-3 md:min-h-[48px] max-w-none prose-p:my-0 prose-headings:my-1"
+                      className={`prose prose-sm mb-3 max-w-none prose-p:my-0 prose-headings:my-1 ${
+                        isAccent
+                          ? "text-white prose-p:text-white prose-strong:text-white"
+                          : "text-[#515151] prose-p:text-[#515151] prose-strong:text-[#212020]"
+                      }`}
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
                     />
                   ) : (
-                    <p className="text-gray-800 text-sm md:text-base font-medium text-center mb-3 md:min-h-[48px]">
+                    <p
+                      className={`text-sm md:text-base mb-3 ${
+                        isAccent ? "text-white" : "text-[#515151]"
+                      }`}
+                    >
                       No description provided.
                     </p>
                   )}
                   <a
                     href={`tel:${phone}`}
-                    className="mt-auto w-fit bg-blue-950 text-white font-bold py-1 md:py-2 px-4 md:px-8 mx-auto text-center text-sm md:text-lg hover:bg-blue-900 transition-colors duration-200 rounded"
+                    className={`mt-auto inline-flex w-fit items-center gap-2 rounded-full font-extrabold uppercase tracking-wide px-4 md:px-5 py-2 text-xs md:text-sm transition-colors duration-200 ${
+                      isAccent
+                        ? "bg-white text-[#d39b3e] hover:bg-[#f7f7f7]"
+                        : "bg-[#f3a008] text-white hover:bg-[#e39a00]"
+                    }`}
                   >
                     Call Us Today
+                    <span aria-hidden="true">→</span>
                   </a>
                 </div>
               </div>
@@ -141,11 +168,11 @@ export default function OurServices2({ content }) {
         </div>
         {services.length > MAX_DISPLAY && (
           <div className="mt-6 text-center">
-            <p className="text-[#002B5B] text-lg font-semibold">
+            <p className="text-[#212020] text-lg font-semibold">
               {services.length - MAX_DISPLAY} more services available –{" "}
               <a
                 href={`tel:${phone}`}
-                className="underline hover:text-blue-700"
+                className="underline hover:text-[#d62828]"
               >
                 Call for details
               </a>

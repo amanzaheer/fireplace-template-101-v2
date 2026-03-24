@@ -1,17 +1,20 @@
 /**
  * ServiceDescription2 section: multiple designs, one export.
  */
+import ServiceDescription1 from "./ServiceDescription1";
 import ServiceDescription2 from "./ServiceDescription2";
-
-const variants = {
+import ServiceDescription3 from "./ServiceDescription3";
+export const variants = {
+  ServiceDescription1,
   ServiceDescription2,
+  ServiceDescription3,
 };
 
 export default function ServiceDescription2Section({ variant, content }) {
-  const name = variant ?? "ServiceDescription2";
-  const Component = variants[name] ?? ServiceDescription2;
+  const name = variant ?? "ServiceDescription1";
+  const Component = variants[name] ?? ServiceDescription1;
   return <Component content={content} />;
 }
 
-export { ServiceDescription2, variants };
+export { ServiceDescription1, ServiceDescription2, ServiceDescription3, variants };
 
