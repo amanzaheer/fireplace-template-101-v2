@@ -263,7 +263,7 @@ export default function QuoteForm2({
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-[#6B9FE4] hover:bg-[#5B88C4] text-black py-2 px-6 rounded-md font-medium transition-colors duration-200"
+            className="bg-[#cf1f21] hover:bg-red-700 text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
           >
             OK Thanks
           </button>
@@ -377,7 +377,7 @@ export default function QuoteForm2({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#c92028] text-lg md:text-xl hover:bg-[#c92028]/90 cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+            className="w-full bg-[#cf1f21] text-lg md:text-xl hover:bg-[#c92028]/90 cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>

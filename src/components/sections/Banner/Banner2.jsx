@@ -90,7 +90,7 @@ export default function Banner1({ content }) {
             objectPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-linear-to-r from-black/80 via-black/55 to-black/20" />
+        <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.62)_45%,rgba(0,0,0,0)_55%)]"/>
       </div>
 
       <Container className="relative z-10 font-barlow py-10 md:py-14 lg:py-16">
@@ -135,7 +135,7 @@ export default function Banner1({ content }) {
             <div className="text-xs">
               <a
                 href={phone ? `tel:${phone}` : "#"}
-                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all bg-[#c92028]"
+                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all border-2 border-white bg-[#c92028]"
               >
                 <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
                 {phone}
