@@ -43,7 +43,7 @@ const PromotionCard = ({
       }`}
     >
       {isMainCard && (
-        <div className="bg-[#D91F27] rounded-t-lg  py-2">
+        <div className="bg-[#d91f27] rounded-t-lg  py-2">
           <MaybeMarkdown as="h3" className="text-[38px]  md:text-[40px] font-normal leading-[1.05] text-white text-center">
             {heading}
           </MaybeMarkdown>
@@ -76,13 +76,13 @@ const PromotionCard = ({
         {(Array.isArray(features) ? features : [])?.map((feature, index) => (
           <div
             key={index}
-            className={`flex items-start gap-2 text-[16px] leading-tight ${
+            className={`flex items-start  text-[16px] leading-tight ${
               isMainCard ? "text-white/95 font-medium" : "text-[#1c1c1c] font-medium"
             }`}
           >
             <ShieldCheckIcon
               strokeWidth={1.6}
-              className={`w-5 h-5 mt-0.5 shrink-0 ${
+              className={`w-6 h-6 mt-0.5 shrink-0 ${
                 isMainCard ? "text-[#d3272f]" : "text-[#c92028]"
               }`}
             />
@@ -124,7 +124,7 @@ export default function Promotion2({ content }) {
     "";
 
   return (
-    <FullContainer id="promo" className="bg-[#f4f4f4]">
+    <FullContainer id="promo" className="bg-[#ffffff]">
       <Container>
         <div className="w-full py-10 md:py-14">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 w-full max-w-[1160px] mx-auto items-stretch">

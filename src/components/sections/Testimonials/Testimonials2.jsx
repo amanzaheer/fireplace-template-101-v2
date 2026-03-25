@@ -81,7 +81,7 @@ export default function Testimonials2({ content }) {
   if (!testimonials.length) return null;
 
   return (
-    <FullContainer className="bg-[#f3f3f3] py-12 md:py-16" id="testimonials">
+    <FullContainer className="bg-[#ffffff] py-12 md:py-16" id="testimonials">
       <Container className="mx-auto">
         <div className="text-center mb-8 md:mb-10">
           <h2 className="text-4xl md:text-5xl font-medium text-[#151515] mb-1">
@@ -137,7 +137,7 @@ export default function Testimonials2({ content }) {
                   className="shrink-0 px-3"
                   style={{ width: `${100 / visibleSlides}%` }}
                 >
-                  <article className="h-full rounded-[26px] border border-[#3a3a3a] bg-[#f3f3f3] px-8 py-8 md:py-9 text-center">
+                  <article className="h-full rounded-[26px] border border-[#3a3a3a] bg-[#ffffff] px-8 py-8 md:py-9 text-center">
                     <div className="flex justify-center gap-1 text-[#E5A326] mb-4">
                       {[1, 2, 3, 4, 5].map((star) => (
                         <span key={star} className="text-2xl leading-none">★</span>

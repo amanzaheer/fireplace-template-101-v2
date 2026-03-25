@@ -30,8 +30,8 @@ export default function WhyChoose2({ content }) {
     if (features.length === 0) return null;
 
     return (
-        <FullContainer id="whychooseus" className="py-8 md:py-12 ">
-            <div className=" w-screen mx-auto">
+        <FullContainer id="whychooseus" className="pt-0 pb-8 md:pb-12">
+            <div className=" w-full mx-auto">
                 <div className="relative min-h-[380px] w-full  md:min-h-[600px] overflow-hidden rounded-none">
                     {imageSrc ? (
                         <Image

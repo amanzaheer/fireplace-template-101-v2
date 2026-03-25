@@ -22,17 +22,17 @@ export default function ServiceCities2({ content }) {
   if (cities.length === 0) return null;
 
   return (
-    <FullContainer className="py-10 md:py-14 bg-white" id="locations">
+    <FullContainer className="py-10 md:py-14 bg-[#ffffff]" id="locations">
       <Container>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-center text-4xl md:text-5xl font-bold text-[#212020] tracking-tight mb-8 md:mb-10">
+          <h2 className="text-center text-4xl md:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-8 md:mb-10">
             {title}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 md:gap-x-5 gap-y-3">
             {cities.map((city, index) => (
               <div
                 key={index}
-                className="inline-flex items-center gap-1.5 w-fit bg-[#f8f8f8] border h-fit border-[#ececec] rounded-[3px] px-2.5 py-1 shadow-[0_1px_2px_rgba(0,0,0,0.08)]"
+                className="inline-flex items-center  gap-1.5 w-fit bg-[#f2f2f2]  h-fit  rounded-[3px] px-2.5 py-1 shadow-[0_1px_1px_rgba(0,0,0,0.04)]"
               >
                 <MapPin className="w-4 h-4 text-[#cf2027] fill-[#cf2027] shrink-0" />
                 <span className="text-ink text-sm md:text-base font-medium leading-none ">
