@@ -4,12 +4,13 @@
 import Gallery1 from "./Gallery1";
 import Gallery2 from "./Gallery2";
 import Gallery3 from "./Gallery3";
+import Gallery4 from "./Gallery4";
 import Gallery6 from "./Gallery6";
-
 const variants = {
   Gallery1,
   Gallery2,
   Gallery3,
+  Gallery4,
   Gallery6,
 };
 
@@ -19,5 +20,4 @@ export default function Gallery({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { Gallery1, Gallery2, Gallery3, Gallery6, variants };
-
+export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery6, variants };
