@@ -5,11 +5,13 @@
 import About1 from "./About1";
 import About2 from "./About2";
 import About3 from "./About3";
+import About4 from "./About4";
 
 const variants = {
   About1,
   About2,
   About3,
+  About4,
 };
 
 export default function About({ variant, content }) {
@@ -17,4 +19,4 @@ export default function About({ variant, content }) {
   const Component = variants[name] ?? About1;
   return <Component content={content} />;
 }
-export { About1, About2, About3, variants };
+export { About1, About2, About3, About4, variants };

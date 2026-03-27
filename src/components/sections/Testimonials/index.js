@@ -1,10 +1,12 @@
 import Testimonials1 from "./Testimonials1";
 import Testimonials2 from "./Testimonials2";
 import Testimonials3 from "./Testimonials3";
+import Testimonials4 from "./Testimonials4";
 const variants = {
   Testimonials1,
   Testimonials2,
   Testimonials3,
+  Testimonials4,
 };
 
 export default function Testimonials({ variant, content }) {
@@ -13,5 +15,5 @@ export default function Testimonials({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { Testimonials1, Testimonials2, Testimonials3, variants };
+export { Testimonials1, Testimonials2, Testimonials3, Testimonials4, variants };
 
