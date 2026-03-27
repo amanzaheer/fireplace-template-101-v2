@@ -234,12 +234,17 @@ export default function QuoteForm6({
   };
 
   const fieldBase =
-    "w-full px-4 py-3 rounded-lg bg-black/45 border text-white placeholder:text-white/55 outline-none transition-colors focus:ring-2 focus:ring-[#FF6611]/35 focus:border-white/40";
+    "w-full px-4 py-2.5 rounded-xl bg-black/45 border border-white/90 bg-transparent text-white placeholder:text-white/55 outline-none transition-colors focus:ring-2 focus:ring-[#FF6611]/35 focus:border-white";
 
   return (
-    <div className="relative w-full max-w-md rounded-xl border-2 border-[#FF6611] bg-zinc-950/85 backdrop-blur-md shadow-2xl font-barlow h-fit">
+    <div
+      className="rounded-[16px] border-4 border-[#FF6611]/50"
+    >
+      <div
+        className="relative w-full max-w-sm rounded-[12px] to-10% bg-zinc-950/75 opacity-90 backdrop-blur-md shadow-2xl font-barlow h-fit"
+      >
       {!formSubmitted && (
-        <div className="px-6 pt-6 pb-2 md:px-8 md:pt-8">
+        <div className="px-4 pt-4 pb-2 md:px-5 md:pt-5">
           <h3 className="font-montserrat font-bold text-white text-center uppercase tracking-wide text-lg md:text-xl leading-tight">
             {form_head?.title}
           </h3>
@@ -271,8 +276,10 @@ export default function QuoteForm6({
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="space-y-3 text-base md:text-lg px-6 pb-6 pt-2 md:px-8 md:pb-8"
+          className="space-y-3 text-base md:text-lg px-4 py-4 pt-2 md:px-4"
         >
+          <div className="grid grid-cols-2 gap-2">
+
           <div>
             <label htmlFor="firstName" className="sr-only">
               First name
@@ -313,6 +320,8 @@ export default function QuoteForm6({
               <div className="text-red-300 text-sm font-medium mt-1">{fieldErrors.lastName}</div>
             )}
           </div>
+          </div>
+
 
           <label htmlFor="phone" className="sr-only">
             Phone number
@@ -362,7 +371,7 @@ export default function QuoteForm6({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={5}
-            className={`${fieldBase} min-h-[130px] resize-y ${fieldErrors.message ? "border-red-400" : "border-white/35"}`}
+            className={`${fieldBase} min-h-[50px] max-h-[70px] resize-y ${fieldErrors.message ? "border-red-400" : "border-white/35"}`}
             placeholder="Message"
             required
             aria-invalid={!!fieldErrors.message}
@@ -374,7 +383,7 @@ export default function QuoteForm6({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-2 bg-[#FF6611] hover:bg-[#FF6611]/90 disabled:opacity-70 text-base md:text-lg cursor-pointer rounded-lg py-3.5 px-6 text-white font-montserrat font-bold uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2"
+            className="w-full mt-0 bg-[#FF6611] hover:bg-[#FF6611]/90 disabled:opacity-70 text-lg md:text-xl font-thin cursor-pointer rounded-lg py-3.5 px-6 text-white font-montserrat uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>
@@ -392,6 +401,7 @@ export default function QuoteForm6({
           </button>
         </form>
       )}
+    </div>
     </div>
   );
 }

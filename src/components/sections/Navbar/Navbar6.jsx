@@ -5,13 +5,28 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { Phone, ChevronDown, Menu, X } from "lucide-react";
 import Container from "../../common/Container";
-import FullContainer from "../../common/FullContainer";
 import Logo from "@/components/common/Logo";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import { FullContainer } from "@/components/common";
 
 const SCROLL_OFFSET = 80;
+/** Past this scroll position the navbar uses a solid background */
+const NAV_SCROLL_SOLID_THRESHOLD = 8;
+
+function getDocumentScrollY() {
+  if (typeof window === "undefined") return 0;
+  const se = document.scrollingElement ?? document.documentElement;
+  return (
+    window.scrollY ??
+    window.pageYOffset ??
+    se?.scrollTop ??
+    document.documentElement?.scrollTop ??
+    document.body?.scrollTop ??
+    0
+  );
+}
 
 function isDropdownItem(item) {
   return (
@@ -36,6 +51,7 @@ export default function Navbar1({ content }) {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownRef, setOpenDropdownRef] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
 
   const pathname = usePathname() ?? "";
   const router = useRouter();
@@ -49,6 +65,38 @@ export default function Navbar1({ content }) {
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
   }, []);
+
+  useEffect(() => {
+    let ticking = false;
+    const update = () => {
+      ticking = false;
+      setIsScrolled(getDocumentScrollY() > NAV_SCROLL_SOLID_THRESHOLD);
+    };
+    const onScroll = () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(update);
+      }
+    };
+    update();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", update, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", update);
+    };
+  }, [pathname]);
+
+  const navBarClass = cn(
+    "fixed top-0 left-0 right-0 z-50 flex w-full flex-col items-stretch py-2",
+    "transition-[background-color,box-shadow,color] duration-300",
+    isScrolled ? "bg-white shadow-sm text-black" : "bg-transparent text-white",
+  );
+
+  const navLinkIdle = isScrolled
+    ? "text-black hover:text-[#FF6611]"
+    : "text-white hover:text-white/90";
+  const navLinkActiveOpen = `text-[#FF6611]`;
 
   const scrollToSection = useCallback((element) => {
     if (!element) return;
@@ -81,7 +129,12 @@ export default function Navbar1({ content }) {
   const headerContent = (
     <div>
       <div className="flex flex-row justify-between h-full items-center w-full md:pr-8">
-        <div className="h-full flex items-center justify-center">
+        <div
+          className={cn(
+            "h-full flex items-center justify-center transition-colors",
+            isScrolled ? "text-black" : "text-white",
+          )}
+        >
           <Logo logo={logo} imagePath={imagePath} />
         </div>
 
@@ -101,8 +154,8 @@ export default function Navbar1({ content }) {
                   <button
                     type="button"
                     className={cn(
-                      "flex items-center h-full gap-1",
-                      isOpen ? "text-[#002B5B]" : "text-black",
+                      "flex items-center h-full gap-1 transition-colors",
+                      isOpen ? navLinkActiveOpen : navLinkIdle,
                     )}
                   >
                     {item.title}
@@ -129,8 +182,8 @@ export default function Navbar1({ content }) {
                             className={cn(
                               "text-xl py-1 font-semibold px-4 cursor-pointer transition-all duration-100 block",
                               isActive
-                                ? "bg-[#002B5B] text-white"
-                                : `text-black hover:bg-primary hover:text-white`,
+                                ? "bg-[#FF6611] text-white"
+                                : "text-black hover:bg-[#FF6611] hover:text-white",
                             )}
                           >
                             {child?.title}
@@ -149,7 +202,7 @@ export default function Navbar1({ content }) {
                 <Link
                   key={item.link ?? item.title}
                   href={item.link}
-                  className="cursor-pointer text-black hover:text-[#002B5B] transition-colors"
+                  className={cn("cursor-pointer transition-colors", navLinkIdle)}
                 >
                   {item.title}
                 </Link>
@@ -160,7 +213,7 @@ export default function Navbar1({ content }) {
                 key={item.link ?? item.title}
                 type="button"
                 onClick={() => handleNavigation(item.link)}
-                className="cursor-pointer text-black hover:text-[#002B5B] transition-colors"
+                className={cn("cursor-pointer transition-colors", navLinkIdle)}
               >
                 {item.title}
               </button>
@@ -173,19 +226,27 @@ export default function Navbar1({ content }) {
             <div className="text-xs">
               <a
                 href={phoneLink}
-                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-full text-white font-semibold text-sm lg:text-lg shadow hover:opacity-90 transition-all bg-primary"
+                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-full text-white font-semibold text-sm lg:text-lg shadow hover:opacity-90 transition-all bg-[#FF6611]"
               >
                 <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
                 {phone}
               </a>
             </div>
-            <h2 className="text-primary font-bold lg:text-lg md:text-[25px] font-barlow leading-none">
+            <h2
+              className={cn(
+                "font-bold lg:text-lg md:text-[25px] font-barlow leading-none transition-colors",
+                isScrolled ? "text-[#FF6611]" : "text-white",
+              )}
+            >
               Call Us Today
             </h2>
           </div>
 
           <div
-            className="lg:hidden text-white pl-5 cursor-pointer"
+            className={cn(
+              "lg:hidden pl-5 cursor-pointer transition-colors",
+              isScrolled ? "text-black" : "text-white",
+            )}
             onClick={mounted ? toggleMenu : undefined}
             role="button"
             tabIndex={0}
@@ -195,7 +256,7 @@ export default function Navbar1({ content }) {
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            <div className="pt-1.5 rounded-[3px] p-0.5 bg-primary">
+            <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#FF6611] text-white">
               {isOpen ? (
                 <X className="w-7 h-6" />
               ) : (
@@ -210,10 +271,16 @@ export default function Navbar1({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]">
+      <header id="navbar" className={cn(navBarClass, "h-[82px] md:h-[112px]")}>
+       <FullContainer>
         <Container>
           <div className="flex flex-row justify-between h-full items-center w-full md:pr-8">
-            <div className="h-full flex items-center justify-center">
+            <div
+              className={cn(
+                "h-full flex items-center justify-center transition-colors",
+                isScrolled ? "text-black" : "text-white",
+              )}
+            >
               <Logo logo={logo} imagePath={imagePath} />
             </div>
             <div className="flex items-center justify-end flex-row">
@@ -221,38 +288,47 @@ export default function Navbar1({ content }) {
                 <div className="text-xs">
                   <a
                     href={phoneLink}
-                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 rounded-full text-white font-semibold text-lg shadow hover:opacity-90 transition-all bg-primary"
+                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 rounded-full text-white font-semibold text-lg hover:opacity-90 transition-all bg-[#FF6611]"
                   >
                     <Phone className="w-5 h-5" />
                     {phone}
                   </a>
                 </div>
-                <h2 className="text-primary font-bold lg:text-lg md:text-[25px] font-barlow leading-none">
+                <h2
+                  className={cn(
+                    "font-bold lg:text-lg md:text-[25px] font-barlow leading-none transition-colors",
+                    isScrolled ? "text-[#FF6611]" : "text-white",
+                  )}
+                >
                   Call Us Today
                 </h2>
               </div>
-              <div className="lg:hidden text-white pl-5">
-                <div className="pt-1.5 rounded-[3px] p-0.5 bg-primary">
+              <div
+                className={cn(
+                  "lg:hidden pl-5 transition-colors",
+                  isScrolled ? "text-black" : "text-white",
+                )}
+              >
+                <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#FF6611] text-white">
                   <Menu className="w-7 h-6" />
                 </div>
               </div>
             </div>
           </div>
         </Container>
-      </FullContainer>
+        </FullContainer>
+      </header>
     );
   }
 
   return (
-    <FullContainer
-      id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]"
-    >
+    <header id="navbar" className={navBarClass}>
+      <FullContainer>
       <Container>{headerContent}</Container>
 
       <div
         className={cn(
-          "lg:hidden py-2 bg-white absolute top-[75px] left-0 right-0 w-full transition-all duration-300",
+          "lg:hidden py-2 bg-white border-t border-black/5 sticky left-0 right-0 w-full transition-all duration-300",
           isOpen
             ? "h-fit opacity-100 visible"
             : "h-0 opacity-0 invisible overflow-hidden",
@@ -270,7 +346,7 @@ export default function Navbar1({ content }) {
                     className={cn(
                       "px-4 py-1 flex items-center cursor-pointer",
                       children.some((c) => pathname === getChildHref(c))
-                        ? "bg-primary text-white"
+                        ? "bg-[#FF6611] text-white"
                         : "text-black bg-transparent",
                     )}
                     onClick={() =>
@@ -304,8 +380,8 @@ export default function Navbar1({ content }) {
                             className={cn(
                               "py-1 pl-7 px-4 text-lg",
                               isActive
-                                ? "bg-primary text-white"
-                                : "text-black hover:text-primary",
+                                ? "bg-[#FF6611] text-white"
+                                : "text-black hover:text-[#FF6611]",
                             )}
                             onClick={closeMenu}
                           >
@@ -329,7 +405,7 @@ export default function Navbar1({ content }) {
                   className={cn(
                     "px-4 py-1",
                     isActive
-                      ? "bg-primary text-white"
+                      ? "bg-[#FF6611] text-white"
                       : "text-black bg-transparent",
                   )}
                   onClick={closeMenu}
@@ -345,7 +421,7 @@ export default function Navbar1({ content }) {
                 className={cn(
                   "px-4 py-1 cursor-pointer text-left",
                   pathname.includes(item.link)
-                    ? "bg-primary text-white"
+                    ? "bg-[#FF6611] text-white"
                     : "text-black bg-transparent",
                 )}
                 onClick={() => {
@@ -359,6 +435,7 @@ export default function Navbar1({ content }) {
           })}
         </div>
       </div>
-    </FullContainer>
+      </FullContainer>
+    </header>
   );
 }
