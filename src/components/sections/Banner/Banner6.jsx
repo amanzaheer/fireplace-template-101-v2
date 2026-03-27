@@ -112,7 +112,7 @@ export default function Banner6({ content }) {
   const headingText = data?.heading || data?.title || "";
 
   return (
-    <FullContainer
+    <FullContainer 
       id="banner"
       className="relative overflow-hidden w-full md:min-h-[640px]! lg:min-h-[720px]!"
     >
