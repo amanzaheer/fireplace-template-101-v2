@@ -79,7 +79,7 @@ export default function Navbar1({ content }) {
   const phoneLink = phone ? `tel:${phone}` : "#";
 
   const headerContent = (
-    <>
+    <div>
       <div className="flex flex-row justify-between h-full items-center w-full md:pr-8">
         <div className="h-full flex items-center justify-center">
           <Logo logo={logo} imagePath={imagePath} />
@@ -116,7 +116,7 @@ export default function Navbar1({ content }) {
                         : "opacity-0 invisible transform -translate-y-2",
                     )}
                   >
-                    <div className="flex-grow dropdown-services-container scrollbar-hide">
+                    <div className="grow dropdown-services-container scrollbar-hide">
                       {children.map((child, index) => {
                         const href = getChildHref(child);
                         const isActive =
@@ -205,7 +205,7 @@ export default function Navbar1({ content }) {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 
   if (!mounted) {
@@ -246,7 +246,7 @@ export default function Navbar1({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-primary1 py-2 h-[82px] md:h-[112px]"
+      className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]"
     >
       <Container>{headerContent}</Container>
 
