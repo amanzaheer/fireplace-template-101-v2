@@ -51,10 +51,14 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
+const headingH1Class =
+  "font-montserrat font-bold uppercase tracking-tight text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] leading-[1.1] text-center md:text-left";
+
 /**
- * Renders hero heading with alternating white / accent segments.
- * Use pipe-separated heading in CMS, e.g. "TRUSTED|EXPERTS IN|CHIMNEY|SERVICES"
- * (white, accent, accent, white). Otherwise falls back to a single-line title.
+ * Renders hero heading with white / accent segments.
+ * - Four pipe-separated parts: "A|B|C|D" → line1: white A + accent B; line2: accent C + white D.
+ * - Two pipe-separated parts: "A|B" → line1 white A, line2 accent B.
+ * - Plain text (no pipes): first half of words white, second half accent (two lines).
  */
 function HeroHeading({ text }) {
   if (!text || typeof text !== "string") return null;
@@ -62,9 +66,10 @@ function HeroHeading({ text }) {
     .split("|")
     .map((s) => s.trim())
     .filter(Boolean);
+
   if (parts.length === 4) {
     return (
-      <h1 className="font-montserrat font-bold uppercase tracking-tight text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] leading-[1.1] text-center md:text-left">
+      <h1 className={headingH1Class}>
         <span className="block">
           <span className="text-white">{parts[0]}</span>{" "}
           <span style={{ color: ACCENT }}>{parts[1]}</span>
@@ -76,9 +81,58 @@ function HeroHeading({ text }) {
       </h1>
     );
   }
+
+  if (parts.length === 2) {
+    return (
+      <h1 className={headingH1Class}>
+        <span className="block">
+          <span className="text-white">{parts[0]}</span>
+        </span>
+        <span className="block mt-1">
+          <span style={{ color: ACCENT }}>{parts[1]}</span>
+        </span>
+      </h1>
+    );
+  }
+
+  if (parts.length === 3) {
+    return (
+      <h1 className={headingH1Class}>
+        <span className="block">
+          <span className="text-white">
+            {parts[0]} {parts[1]}
+          </span>
+        </span>
+        <span className="block mt-1">
+          <span style={{ color: ACCENT }}>{parts[2]}</span>
+        </span>
+      </h1>
+    );
+  }
+
+  const single = parts[0] ?? text.trim();
+  const words = single.split(/\s+/).filter(Boolean);
+  if (words.length >= 2) {
+    const mid = Math.ceil(words.length / 2);
+    const lineWhite = words.slice(0, mid).join(" ");
+    const lineAccent = words.slice(mid).join(" ");
+    return (
+      <h1 className={headingH1Class}>
+        <span className="block">
+          <span className="text-white">{lineWhite}</span>
+        </span>
+        <span className="block mt-1">
+          <span style={{ color: ACCENT }}>{lineAccent}</span>
+        </span>
+      </h1>
+    );
+  }
+
   return (
-    <h1 className="font-montserrat font-bold uppercase tracking-tight text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] leading-tight text-white text-center md:text-left">
-      {text}
+    <h1
+      className={`font-montserrat font-bold uppercase tracking-tight text-4xl sm:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] leading-tight text-white text-center md:text-left`}
+    >
+      {single}
     </h1>
   );
 }
@@ -114,7 +168,7 @@ export default function Banner6({ content }) {
   return (
     <FullContainer 
       id="banner"
-      className="relative overflow-hidden w-full md:min-h-[640px]! lg:min-h-[720px]!"
+      className=" relative overflow-hidden w-full md:min-h-[640px]! lg:min-h-[600px]! max-h-[680px]!"
     >
       <div className="absolute inset-0 min-h-[560px] md:min-h-full">
         <Image
@@ -131,14 +185,13 @@ export default function Banner6({ content }) {
         />
         <div className="absolute inset-0 bg-black/55" aria-hidden />
       </div>
-
-      <Container className="relative z-10 py-12 md:py-16 lg:py-20">
-        <div className="flex flex-col lg:flex-row lg:items-stretch lg:justify-between gap-12 lg:gap-14 xl:gap-20">
-          <div className="flex flex-col justify-center w-full lg:max-w-xl xl:max-w-2xl">
-            <HeroHeading text={headingText} />
+      <Container className="relative z-10 py-12 md:py-16 lg:py-20 pt-40 ">
+        <div className="flex flex-col lg:flex-row lg:items-stretch  pt-10 lg:justify-between gap-12 lg:gap-14 xl:gap-20">
+          <div className="flex flex-col justify-center w-full lg:max-w-xl xl:max-w-2xl ">
+            <HeroHeading text={headingText}/>
 
             <div
-              className="mt-5 h-px w-full max-w-md mx-auto md:mx-0 rounded-full overflow-hidden"
+              className="mt-5 h-[3px] w-full max-w-md mx-auto md:mx-0 rounded-full overflow-hidden"
               aria-hidden
             >
               <div
@@ -171,12 +224,12 @@ export default function Banner6({ content }) {
                       className="flex items-center gap-3 text-white font-medium text-sm sm:text-base"
                     >
                       <span
-                        className="flex shrink-0 w-9 h-9 rounded-md items-center justify-center"
+                        className="flex shrink-0 w-7 h-7 rounded-md items-center justify-center"
                         style={{ backgroundColor: `${ACCENT}33` }}
                         aria-hidden
                       >
                         <IconComponent
-                          className="w-5 h-5"
+                          className="w-4 h-4"
                           style={{ color: ACCENT }}
                           strokeWidth={2.25}
                         />
@@ -192,10 +245,9 @@ export default function Banner6({ content }) {
               <div className="mt-10 flex justify-center md:justify-start">
                 <a
                   href={`tel:${phone}`}
-                  className="inline-flex items-center gap-3 pl-2 pr-6 py-2 rounded-r-full rounded-l-md font-montserrat font-bold text-white text-lg sm:text-xl shadow-lg transition-opacity hover:opacity-95"
-                  style={{ backgroundColor: ACCENT }}
+                  className="inline-flex items-center bg-gradient-to-l from-[#FF6611] to-transparent gap-3 pl-2 pr-6 py-1 rounded-md font-montserrat font-bold text-white text-lg sm:text-xl shadow-lg transition-opacity hover:opacity-95"
                 >
-                  <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-white/95 text-black">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/95 text-black">
                     <Phone className="w-5 h-5" style={{ color: ACCENT }} aria-hidden />
                   </span>
                   {phone}
