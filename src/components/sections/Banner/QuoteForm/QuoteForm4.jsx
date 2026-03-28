@@ -243,7 +243,7 @@ export default function QuoteForm4({
       {!formSubmitted && (
         <>
         <div className="px-4 md:px-6 pt-2 md:pt-3 pb-2">
-          <h3 className="text-[32px] md:text-[40px] text-[#0f2962] leading-[0.98] font-extrabold text-start mb-1 uppercase tracking-tight">
+          <h3 className="text-[30px] md:text-[38px] text-[#0f2962] leading-[0.98] font-extrabold text-start mb-1 uppercase tracking-tight">
             {form_head?.title}
           </h3>
         </div>

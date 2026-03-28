@@ -44,7 +44,7 @@ export default function Footer4({ content }) {
         <Container className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 w-full items-start">
             <div className="max-w-[560px]">
-              <h3 className="text-white text-[28px] md:text-[30px] font-extrabold mb-5 leading-none">
+              <h3 className="text-white text-[26px] md:text-[28px] font-extrabold mb-5 leading-none">
                 Information
               </h3>
               <div className="flex gap-2 mb-4 flex-wrap">
@@ -67,14 +67,14 @@ export default function Footer4({ content }) {
                 )}
               </div>
               {statement ? (
-                <p className="text-white/95 text-[20px] md:text-[22px] leading-relaxed max-w-[620px]">
+                <p className="text-white/95 text-[16px] md:text-[18px] leading-relaxed max-w-[620px]">
                   {statement}
                 </p>
               ) : null}
             </div>
 
             <div className="w-full md:pl-10 lg:pl-20">
-              <h3 className="text-white text-[28px] md:text-[30px] font-extrabold mb-5 leading-none">
+              <h3 className="text-white text-[26px] md:text-[28px] font-extrabold mb-5 leading-none">
                 Stay Tuned With Us
               </h3>
               <ul className="space-y-4 md:space-y-5">

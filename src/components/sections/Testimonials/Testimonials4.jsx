@@ -198,7 +198,7 @@ export default function Testimonials4({ content }) {
   if (!testimonials.length) return null;
 
   return (
-    <FullContainer className="py-10 md:py-14 bg-[#172b60] " id="testimonials">
+    <FullContainer className="py-10 md:py-14  bg-[#172b60] " id="testimonials">
       <Container className="mx-auto px-4">
         <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
           <div className="w-full lg:w-[240px] shrink-0 text-white">
@@ -246,7 +246,7 @@ export default function Testimonials4({ content }) {
                 >
                   {testimonialsWithAvatars.map((testimonial, index) => (
                     <div key={index} className="testimonial-slide">
-                      <div className="bg-[#efefef] border border-[#d7d7d7] p-5 md:p-7 min-h-[240px] md:min-h-[255px] flex flex-col">
+                      <div className="bg-[#ffffff] border border-[#d7d7d7] p-5 md:p-7 min-h-[240px] md:min-h-[255px] flex flex-col">
                         <div className="flex items-center gap-1 mb-4">
                           {[1, 2, 3, 4, 5].map((star) => (
                             <span key={star} className="text-[#f59a00] text-xl">
@@ -280,7 +280,7 @@ export default function Testimonials4({ content }) {
                               </p>
                             </div>
                           </div>
-
+                           
                           <div className="flex items-center gap-3">
                             <button
                               type="button"
