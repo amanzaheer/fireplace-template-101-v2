@@ -14,7 +14,7 @@ function getLocationsList(content, block) {
   return [];
 }
 
-export default function ServiceCities2({ content }) {
+export default function ServiceCities4({ content }) {
   const block = content?.locations ?? {};
   const cities = useMemo(() => getLocationsList(content, block), [content, block]);
   const title = block?.title ?? block?.value?.title ?? "Areas We Serve";
@@ -22,7 +22,7 @@ export default function ServiceCities2({ content }) {
   if (cities.length === 0) return null;
 
   return (
-    <FullContainer className="py-10 md:py-14 bg-[#ffffff]" id="locations">
+    <FullContainer className="py-10 md:py-14 bg-white" id="locations">
       <Container>
         <div className="max-w-6xl mx-auto">
           <h2 className="text-center text-4xl md:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-8 md:mb-10">
@@ -32,10 +32,10 @@ export default function ServiceCities2({ content }) {
             {cities.map((city, index) => (
               <div
                 key={index}
-                className="inline-flex items-center  gap-1.5 w-fit bg-[#f2f2f2]  h-fit  rounded-[3px] px-2.5 py-1 shadow-[0_1px_1px_rgba(0,0,0,0.04)]"
+                className="inline-flex items-center gap-0 w-fit h-fit px-2.5 py-1"
               >
-                <MapPin className="w-4 h-4 text-[#cf2027] fill-[#cf2027] shrink-0" />
-                <span className="text-ink text-sm md:text-base font-medium leading-none ">
+                <MapPin className="w-7 h-7 text-white fill-[#d98200] shrink-0" />
+                <span className="text-ink text-sm md:text-base font-medium leading-none drop-shadow-sm">
                   {typeof city === "string" ? city : city?.name ?? city?.title ?? String(city)}
                 </span>
               </div>

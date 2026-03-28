@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, Loader, FileText, ArrowRight } from "lucide-react";
+import { CheckCircle, Loader, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   validateEmail,
@@ -10,7 +10,7 @@ import {
   validateMessage,
 } from "@/lib/validators";
 
-export default function QuoteForm2({
+export default function QuoteForm4({
   data,
   form_head,
   showArrowInButton = false,
@@ -145,7 +145,11 @@ export default function QuoteForm2({
       }
     }
 
-    setFormData((prev) => ({ ...prev, [name]: formattedValue }));
+    setFormData((prev) => ({
+      ...prev,
+      [name]: formattedValue,
+      ...(name === "firstName" ? { lastName: formattedValue } : {}),
+    }));
 
     if (fieldErrors[name]) {
       const newErrors = { ...fieldErrors };
@@ -154,6 +158,7 @@ export default function QuoteForm2({
         case "lastName":
           if (formattedValue.trim() && validateName(formattedValue)) {
             delete newErrors[name];
+            if (name === "firstName") delete newErrors.lastName;
           }
           break;
         case "email":
@@ -234,17 +239,16 @@ export default function QuoteForm2({
   };
 
   return (
-    <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)] relative font-barlow rounded-[15px] h-fit ">
+    <div className="relative font-barlow h-fit">
       {!formSubmitted && (
         <>
-        <div className="px-2 md:px-2.5 py-3 bg-[#c92028]">
-          <h3 className="text-3xl md:text-[36px] text-white leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2">
+        <div className="px-4 md:px-6 pt-2 md:pt-3 pb-2">
+          <h3 className="text-[30px] md:text-[38px] text-[#0f2962] leading-[0.98] font-extrabold text-start mb-1 uppercase tracking-tight">
             {form_head?.title}
           </h3>
-          
         </div>
-        <div>
-        <h4 className="text-lg md:text-2xl font-medium pt-2 text-center text-ink">
+        <div className="hidden">
+        <h4 className="text-lg md:text-2xl font-medium pt-2 text-start text-[#212020]">
             {form_head?.sub_title}
           </h4>
         </div>
@@ -252,27 +256,30 @@ export default function QuoteForm2({
       )}
 
       {formSubmitted ? (
-        <div className="flex flex-col items-center justify-center text-center py-6  px-4 md:px-7 ">
+        <div className="flex flex-col items-center justify-center text-center py-6 px-4 md:px-7">
           <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
-          <p className="text-gray-600 max-w-md mb-6">
+          <h3 className="text-xl font-bold text-[#212020] mb-2">Thank You!</h3>
+          <p className="text-[#212020] max-w-md mb-6 bg-white">
             Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
           </p>
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-[#cf1f21] hover:bg-red-700 text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
+            className="bg-[#0f1115] hover:bg-black text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
           >
             OK Thanks
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-2.5 text-black  text-base md:text-lg px-2 md:px-2.5 py-2 md:py-3">
-          <div className="grid grid-cols-2 gap-[8px]">
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 text-black px-4 md:px-6 pb-4 md:pb-5"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4">
             <div>
-              <label htmlFor="firstName" className="sr-only">First name</label>
+              <label htmlFor="firstName" className="sr-only">Name</label>
               <input
                 type="text"
                 id="firstName"
@@ -280,80 +287,64 @@ export default function QuoteForm2({
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-                  fieldErrors.firstName ? "border-red-500" : "border-[#bdbdbd]"
+                className={`w-full h-[50px] md:h-[50px] px-3 md:px-4 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none ${
+                  fieldErrors.firstName ? "border-red-500" : "border-[#efefef]"
                 }`}
-                placeholder="First name"
+                placeholder="Name"
                 required
                 aria-invalid={!!fieldErrors.firstName}
               />
               {fieldErrors.firstName && (
-                <div className="text-red-500 text-sm font-medium mt-1">
+                <div className="text-red-600 text-sm font-medium mt-1">
                   {fieldErrors.firstName}
                 </div>
               )}
             </div>
             <div>
-              <label htmlFor="lastName" className="sr-only">Last name</label>
+              <label htmlFor="phone" className="sr-only">Phone number</label>
               <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-                  fieldErrors.lastName ? "border-red-500" : "border-[#bdbdbd]"
+                className={`w-full h-[50px] md:h-[50px] px-3 md:px-4 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none ${
+                  fieldErrors.phone ? "border-red-500" : "border-[#efefef]"
                 }`}
-                placeholder="Last name"
+                placeholder="Phone"
                 required
-                aria-invalid={!!fieldErrors.lastName}
+                aria-invalid={!!fieldErrors.phone}
               />
-              {fieldErrors.lastName && (
-                <div className="text-red-500 text-sm font-medium mt-1">
-                  {fieldErrors.lastName}
+              {fieldErrors.phone && (
+                <div className="text-red-600 text-sm font-medium mt-1">
+                  {fieldErrors.phone}
                 </div>
+              )}
+            </div>
+            <div>
+              <label htmlFor="email" className="sr-only">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={handleFirstInteraction}
+                className={`w-full h-[50px] md:h-[50px] px-3 md:px-4 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none ${
+                  fieldErrors.email ? "border-red-500" : "border-[#efefef]"
+                }`}
+                placeholder="Email"
+                required
+                aria-invalid={!!fieldErrors.email}
+              />
+              {fieldErrors.email && (
+                <div className="text-red-600 text-sm font-medium mt-1">{fieldErrors.email}</div>
               )}
             </div>
           </div>
 
-          <label htmlFor="phone" className="sr-only">Phone number</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.phone ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
-            placeholder="(123) 456-7890"
-            required
-            aria-invalid={!!fieldErrors.phone}
-          />
-          {fieldErrors.phone && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
-          )}
-
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.email ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
-            placeholder="your@email.com"
-            required
-            aria-invalid={!!fieldErrors.email}
-          />
-          {fieldErrors.email && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
-          )}
+          <input type="hidden" name="lastName" value={formData.lastName} readOnly />
 
           <label htmlFor="message" className="sr-only">Message</label>
           <textarea
@@ -362,22 +353,22 @@ export default function QuoteForm2({
             value={formData.message}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            rows={3}
-            className={`w-full pl-3 py-3 max-h-[75px] bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.message ? "border-red-500" : "border-[#bdbdbd]"
+            rows={5}
+            className={`w-full min-h-[120px] md:min-h-[150px] px-3 md:px-4 py-3 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none resize-none ${
+              fieldErrors.message ? "border-red-500" : "border-[#efefef]"
             }`}
             placeholder="Message"
             required
             aria-invalid={!!fieldErrors.message}
           />
           {fieldErrors.message && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.message}</div>
+            <div className="text-red-600 text-sm font-medium">{fieldErrors.message}</div>
           )}
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#cf1f21] text-lg md:text-xl hover:bg-[#c92028]/90 cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+            className="bg-[#f5b328] text-black text-xl md:text-2xl hover:bg-[#e5a81f] cursor-pointer py-2 md:py-2.5 px-5 md:px-6 font-medium transition-colors duration-200 inline-flex items-center justify-center gap-2 uppercase"
           >
             {isSubmitting ? (
               <>
