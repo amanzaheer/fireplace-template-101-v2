@@ -91,18 +91,18 @@ export default function Banner4({ content }) {
                 href={phone ? `tel:${phone}` : "#"}
                 className="inline-flex items-center gap-2 text-[12px] md:text-sm font-semibold uppercase tracking-wide text-[#0f2962]"
               >
-                <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-[#f59402] text-[#0f2962]">
-                  <Phone className="w-3.5 h-3.5" />
+                <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#f59402] text-black ">
+                  <Phone className="w-5 h-5" />
                 </span>
                 Contact
               </a>
               <a
                 href={phone ? `tel:${phone}` : "#"}
-                className="mt-1 text-[40px] md:text-[56px] font-extrabold leading-none text-[#0f2962]"
+                className="mt-1 text-[28px] md:text-[40px] font-bold leading-none text-[#0f2962]"
               >
                 {phone}
               </a>
-              <div className="mt-8 font-black max-w-[620px] inline-block uppercase text-[34px] sm:text-[42px] md:text-[62px] leading-[0.96] text-left text-shadow-lg">
+              <div className="mt-8 font-black max-w-[400px] inline-block uppercase text-[26px] sm:text-[32px] md:text-[48px] leading-tight text-shadow-lg">
                 <span className="text-[#0f2962]">
                   {String(data?.heading || data?.title || "").split(" ").slice(0, 1).join(" ")}{" "}
                 </span>
@@ -116,7 +116,7 @@ export default function Banner4({ content }) {
                 </h2>
               ) : null}
 
-              <p className="text-sm md:text-base text-left mt-3 mb-1 text-white/90 max-w-[560px]">
+              <p className="text-sm md:text-base text-left mt-3 mb-1 text-white/80 max-w-[560px]">
                 {data?.description}
               </p>
               {features?.length > 0 ? (
@@ -125,7 +125,7 @@ export default function Banner4({ content }) {
                     return (
                       <li
                         key={idx}
-                        className="flex items-center gap-2.5 leading-none text-white font-medium text-[22px] md:text-[26px]"
+                        className="flex items-center gap-2.5 leading-none text-white/75 font-medium text-[22px] md:text-[26px]"
                       >
                         <ShieldCheck className="w-5 h-5 text-[#f2a51f] shrink-0" />
                         {feature.text}
