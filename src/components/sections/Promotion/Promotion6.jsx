@@ -1,8 +1,13 @@
 "use client";
 
+import Link from "next/link";
+import { Check } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import md from "@/lib/markdown";
+
+/** Burnt orange / rust accent for checks and CTA (matches promo reference) */
+const ACCENT = "#c2410c";
 
 /**
  * Renders a string as plain text (preserving existing styles) when it contains
@@ -26,113 +31,127 @@ function MaybeMarkdown({ as: Tag = "span", className, children }) {
   );
 }
 
-const CheckIcon = ({ filled }) => (
-  <span
-    className={`inline-flex items-center justify-center w-5 h-5 rounded border-2 border-blue-900 mt-1.5 ${
-      filled ? "bg-blue-900" : "bg-white"
-    }`}
-  >
-    <svg
-      className={`w-4 h-4 ${filled ? "text-white" : "text-blue-900"}`}
-      fill="none"
-      stroke="currentColor"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="3"
-        d="M5 13l4 4L19 7"
-      />
-    </svg>
-  </span>
-);
-
-const PromotionCard = ({
-  heading,
-  subheading,
-  features,
-  isMainCard = false,
-}) => {
+function CheckIcon() {
   return (
-    <div
-      className={`relative flex flex-col h-full border-2 border-dashed border-blue-950 rounded-md p-6 transition-all duration-200 ${
-        isMainCard
-          ? "bg-blue-950 text-white shadow-xl z-10 scale-105"
-          : "bg-white text-blue-950"
-      }`}
+    <span
+      className="inline-flex shrink-0 items-center justify-center w-7 h-7 rounded-full mt-0.5"
+      style={{ backgroundColor: ACCENT }}
+      aria-hidden
     >
-      {heading && (
-        <div className="mb-3 text-center">
-          <MaybeMarkdown as="h3" className="text-2xl font-semibold tracking-tight mb-2 uppercase">
-            {heading}
-          </MaybeMarkdown>
-          {subheading && (
-            <MaybeMarkdown as="p" className="text-2xl font-bold mb-2">
-              {subheading}
+      <Check className="w-4 h-4 text-white" strokeWidth={3} />
+    </span>
+  );
+}
+
+const PromotionCard = ({ overline, title, description, features, phoneHref }) => {
+  return (
+    <div className="relative flex flex-col h-full bg-black text-white text-center p-8 md:p-10 shadow-lg">
+      {(overline || title) && (
+        <div className="space-y-3 mb-6">
+          {overline ? (
+            <MaybeMarkdown
+              as="p"
+              className="text-sm md:text-base font-normal text-white/90 uppercase tracking-wide"
+            >
+              {overline}
             </MaybeMarkdown>
-          )}
-          <div
-            className={`border-b border-dotted w-3/4 mx-auto my-4 ${isMainCard ? "border-white/60" : "border-blue-950"}`}
-          />
+          ) : null}
+          {title ? (
+            <MaybeMarkdown
+              as="h3"
+              className="text-2xl md:text-3xl lg:text-4xl font-bold text-white leading-tight"
+            >
+              {title}
+            </MaybeMarkdown>
+          ) : null}
         </div>
       )}
 
-      <div className="space-y-3 flex-1">
-        {(Array.isArray(features) ? features : [])?.map((feature, index) => (
-          <div
-            key={index}
-            className={`flex items-start gap-2 text-sm font-medium ${
-              isMainCard ? "" : "text-black"
-            }`}
-          >
-            <CheckIcon filled={!isMainCard} />
-            <MaybeMarkdown as="span" className="pt-0.5">{feature}</MaybeMarkdown>
-          </div>
-        ))}
+      {description ? (
+        <MaybeMarkdown
+          as="p"
+          className="text-sm md:text-base text-white/85 leading-relaxed max-w-md mx-auto mb-8"
+        >
+          {description}
+        </MaybeMarkdown>
+      ) : null}
+
+      <div className="space-y-3 flex-1 flex flex-col items-center">
+        <ul className="w-full max-w-sm mx-auto space-y-3 text-left">
+          {(Array.isArray(features) ? features : []).map((feature, index) => (
+            <li key={index} className="flex items-start gap-3 text-sm md:text-base font-medium text-white">
+              <CheckIcon />
+              <MaybeMarkdown as="span" className="pt-0.5 leading-snug">
+                {feature}
+              </MaybeMarkdown>
+            </li>
+          ))}
+        </ul>
       </div>
 
-      <button
-        className={`w-full mt-6 py-2 rounded font-bold text-xl tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 ${
-          isMainCard
-            ? "bg-white text-blue-950 hover:bg-blue-100"
-            : "bg-blue-950 text-white hover:bg-blue-800"
-        }`}
+      <Link
+        href={phoneHref}
+        className="w-full max-w-sm mx-auto mt-8 py-3.5 px-6 font-bold text-sm md:text-base uppercase tracking-wider text-white transition-opacity hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-black focus:ring-white/40"
+        style={{ backgroundColor: ACCENT }}
       >
-        Call For Redeem
-      </button>
+        Call Us Today
+      </Link>
     </div>
   );
 };
 
 export default function Promotion6({ content }) {
   const promotion = content?.promotion ?? {};
-  const title = promotion?.title ?? "Monthly Promotion";
+  const title = promotion?.title ?? "Monthly Promotions";
   const description = promotion?.description;
   const details = Array.isArray(promotion?.details) ? promotion.details : [];
+  const phone =
+    content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
+  const phoneHref = phone ? `tel:${phone.replace(/\s/g, "")}` : "#";
 
   return (
-    <FullContainer id="promo">
+    <FullContainer id="promo" className="bg-white">
       <Container>
-        <div className="w-full pb-12 pt-8">
-          <MaybeMarkdown as="h2" className="text-4xl font-extrabold text-center text-blue-950 mb-8 tracking-tight">
+        <div className="w-full pb-12 md:pb-16 pt-10 md:pt-14">
+          <MaybeMarkdown
+            as="h2"
+            className="text-3xl md:text-4xl font-extrabold text-center text-neutral-900 mb-4 md:mb-6 tracking-tight"
+          >
             {title}
           </MaybeMarkdown>
-          {description && (
-            <MaybeMarkdown as="p" className="text-center text-gray-700 mb-8 max-w-2xl mx-auto">
+          {description ? (
+            <MaybeMarkdown
+              as="p"
+              className="text-center text-neutral-300 max-w-3xl mx-auto mb-10 md:mb-12 text-base md:text-lg "
+            >
               {description}
             </MaybeMarkdown>
-          )}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 w-full">
-            {details.map((item, index) => (
-              <PromotionCard
-                key={index}
-                heading={item.heading}
-                subheading={item.subheading}
-                features={item.features}
-                isMainCard={index === 1}
-              />
-            ))}
+          ) : null}
+          <div className="flex flex-nowrap gap-6 md:gap-8 w-full max-w-7xl mx-auto overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth [scrollbar-gutter:stable]">
+            {details.map((item, index) => {
+              const hasSubheading = Boolean(item.subheading);
+              const overline =
+                item.overline ?? (hasSubheading ? item.heading : "") ?? "";
+              const cardTitle =
+                item.title ??
+                (hasSubheading ? item.subheading : item.heading) ??
+                "";
+              const cardDescription = item.description ?? item.body ?? "";
+              return (
+                <div
+                  key={index}
+                  className="min-w-[min(100%,280px)] flex-1 basis-0 shrink-0 md:min-w-0 md:shrink"
+                >
+                  <PromotionCard
+                    overline={overline}
+                    title={cardTitle}
+                    description={cardDescription}
+                    features={item.features}
+                    phoneHref={phoneHref}
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </Container>
