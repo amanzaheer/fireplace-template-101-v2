@@ -26,6 +26,8 @@ export default function About4({ content }) {
 
   return (
     <FullContainer className="py-10 md:py-14 bg-white mt-12" id="about">
+      
+
       <Container className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1.04fr_1fr] gap-8 md:gap-10 lg:gap-12 items-start">
           <div className="relative order-2 lg:order-1 lg:-mt-4">
