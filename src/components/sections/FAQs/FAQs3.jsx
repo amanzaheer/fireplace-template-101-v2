@@ -4,6 +4,12 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Rubik } from "next/font/google";
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function FAQs3({ content }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -14,7 +20,7 @@ export default function FAQs3({ content }) {
   const faqTitle = faqsBlock?.title ?? "FAQs";
   const faqSubTitle =
     faqsBlock?.description ??
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.";
+    "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquams.";
 
   if (!Array.isArray(faqItems) || faqItems.length === 0) return null;
 
@@ -22,10 +28,10 @@ export default function FAQs3({ content }) {
     <FullContainer className="py-10 md:py-14 bg-[#efefef]" id="faqs">
       <Container className="px-4">
         <div className="mx-auto max-w-5xl text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#212020] tracking-tight">
+          <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-[#212020] tracking-tight`}>
             {faqTitle}
           </h2>
-          <p className="mt-3 mb-8 md:mb-10 text-[#6b7280] text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className={`${rubik.className} mt-3 mb-8 md:mb-10 text-[#6b7280] text-sm md:text-base max-w-2xl mx-auto leading-relaxed`}>
             {faqSubTitle}
           </p>
 
