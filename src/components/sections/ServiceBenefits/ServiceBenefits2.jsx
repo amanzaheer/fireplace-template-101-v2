@@ -95,7 +95,7 @@ export default function ServiceBenefits2({ content }) {
               <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <a
                   href={`tel:${phone}`}
-                  className={`${rubik.className} inline-flex items-center justify-center gap-2 rounded-full bg-black text-white uppercase tracking-wide font-bold px-8 py-3 text-sm hover:bg-[#111827] transition-colors duration-200`}
+                  className={`${rubik.className} inline-flex items-center w-fit justify-center gap-2 rounded-full bg-black text-white uppercase tracking-wide font-bold px-7 md:px-8 py-2 md:py-3 text-sm hover:bg-[#111827] transition-colors duration-200`}
                 >
                   Call Us Today
                   <span aria-hidden="true">→</span>
