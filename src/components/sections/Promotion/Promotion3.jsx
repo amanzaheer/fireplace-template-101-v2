@@ -1,10 +1,25 @@
 "use client";
 
-import { Phone, ShieldCheck } from "lucide-react";
+import { Phone } from "lucide-react";
+import Icon from "@mdi/react";
+import { mdiShieldCheckOutline } from "@mdi/js";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import md from "@/lib/markdown";
+import { Poppins, Inter, Rubik } from "next/font/google"; 
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 /**
  * Renders a string as plain text (preserving existing styles) when it contains
  * no markdown, or as HTML when markdown syntax is detected.
@@ -28,8 +43,11 @@ function MaybeMarkdown({ as: Tag = "span", className, children }) {
 }
 
 const CheckIcon = ({ isMainCard }) => (
-  <ShieldCheck
-    className={`w-5 h-5 mt-0.5 shrink-0 ${isMainCard ? "text-white" : "text-[#f3a008]"}`}
+  <Icon
+    path={mdiShieldCheckOutline}
+    size={1.2}
+    color={isMainCard ? "#ffffff" : "#f3a008"}
+    className="mt-0.5 shrink-0"
   />
 );
 
@@ -44,7 +62,7 @@ const PromotionCard = ({
     <div
       className={`relative flex flex-col h-full rounded-[22px] p-6 md:p-7 border shadow-sm ${
         isMainCard
-          ? "bg-[#f3a008] text-white border-[#e39a00] md:scale-[1.02]"
+          ? "bg-[#f59403] text-white border-[#f59403] md:scale-[1.02]"
           : "bg-white text-[#121212] border-[#e7e7e7]"
       }`}
     >
@@ -52,8 +70,8 @@ const PromotionCard = ({
         <div className="mb-2">
           <MaybeMarkdown
             as="h3"
-            className={`font-extrabold tracking-tight leading-tight ${
-              isMainCard ? "text-[39px]" : "text-[42px]"
+            className={`${poppins.className} font-extrabold tracking-tight leading-tight ${
+              isMainCard ? "text-[22px] md:text-[27px]" : "text-[28px] md:text-[32px]"
             }`}
           >
             {heading}
@@ -61,7 +79,7 @@ const PromotionCard = ({
           {subheading && (
             <MaybeMarkdown
               as="p"
-              className={`font-bold leading-tight mb-2 ${isMainCard ? "text-[37px]" : "text-[38px]"}`}
+              className={`${rubik.className} font-normal leading-tight mb-2 ${isMainCard ? "text-[22px] md:text-[27px]" : "text-[24px] md:text-[28px]"}`}
             >
               {subheading}
             </MaybeMarkdown>
@@ -73,12 +91,12 @@ const PromotionCard = ({
         {(Array.isArray(features) ? features : [])?.map((feature, index) => (
           <div
             key={index}
-            className={`flex items-start gap-2.5 text-[30px] leading-snug ${
+            className={`flex items-center gap-1.5 text-[30px] leading-snug ${
               isMainCard ? "text-white/95" : "text-[#212020]"
             }`}
           >
             <CheckIcon isMainCard={isMainCard} />
-            <MaybeMarkdown as="span" className="pt-0.5">
+            <MaybeMarkdown as="span" className={`${inter.className}  text-[14px] md:text-[16px]`}>
               {feature}
             </MaybeMarkdown>
           </div>
@@ -88,15 +106,15 @@ const PromotionCard = ({
       {isMainCard ? (
         <a
           href={phone ? `tel:${phone}` : "#"}
-          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white text-[#f3a008] font-extrabold px-5 py-2.5 text-[36px] leading-none"
+          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white text-[#f3a008] font-semibold px-5 py-2.5 text-[28px] leading-none"
         >
-          <Phone className="w-4 h-4" />
+          <Phone className="w-4 h-4 md:w-5 md:h-5" />
           {phone || "(888)-249-0566"}
         </a>
       ) : (
         <a
           href={phone ? `tel:${phone}` : "#"}
-          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#f3a008] text-white font-extrabold uppercase px-6 py-2.5 text-[18px] md:text-[16px] leading-none"
+          className={`${rubik.className} mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-[#f59403] text-white font-semibold uppercase px-6 py-3 md:px-7 md:py-4 text-[12px] md:text-[14px] leading-none`}
         >
           Call Us Today
           <span aria-hidden="true">→</span>
@@ -119,7 +137,7 @@ export default function Promotion3({ content }) {
         <div className="w-full">
           <MaybeMarkdown
             as="h2"
-            className="text-3xl md:text-5xl font-extrabold text-center text-[#212020] mb-8 md:mb-10 tracking-tight"
+            className={`${rubik.className} text-4xl md:text-[44px] font-bold text-center text-[#212020] mb-8 md:mb-10 tracking-tight`}
           >
             {title}
           </MaybeMarkdown>

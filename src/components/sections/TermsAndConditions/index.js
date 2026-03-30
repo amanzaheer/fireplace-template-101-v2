@@ -4,10 +4,12 @@
  */
 import TermsAndConditions1 from "./terms-and-conditions1";
 import TermsAndConditions2 from "./terms-and-conditions2";
+import TermsAndConditions3 from "./terms-and-conditions3";
 
 const variants = {
   "terms-and-conditions1": TermsAndConditions1,
   "terms-and-conditions2": TermsAndConditions2,
+  "terms-and-conditions3": TermsAndConditions3,
 };
 
 export default function TermsAndConditions({ variant, content }) {
@@ -16,5 +18,5 @@ export default function TermsAndConditions({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { TermsAndConditions1, TermsAndConditions2, variants };
+export { TermsAndConditions1, TermsAndConditions2, TermsAndConditions3, variants };
 

@@ -7,7 +7,20 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import md from "@/lib/markdown";
-
+import { Poppins, Rubik, Archivo  } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const archivo = Archivo({
+  subsets: ["latin", "italian"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 /** Replace [service] token with the item's own title. */
 function resolveServiceTag(str, title) {
   if (!str || !title) return str ?? "";
@@ -73,7 +86,7 @@ export default function OurServices3({ content }) {
   return (
     <FullContainer id="our_services" className="bg-[#efefef] py-10 md:py-14">
       <Container>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-center text-[#212020] mb-8 md:mb-10 tracking-tight">
+        <h2 className={`${rubik.className} text-3xl md:text-[44px] font-bold text-center text-[#212020] mb-8 md:mb-10 tracking-tight`}>
           {title}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
@@ -89,7 +102,7 @@ export default function OurServices3({ content }) {
                 key={service.id}
                 className={`rounded-[24px] p-3 md:p-4 shadow-sm overflow-hidden border flex flex-row gap-3 md:gap-4 transition-colors duration-200 ${
                   isAccent
-                    ? "bg-[#f3a008] border-[#e29a00]"
+                    ? "bg-[#f59403] border-[#e29a00]"
                     : "bg-white border-[#e7e7e7]"
                 }`}
               >
@@ -113,16 +126,16 @@ export default function OurServices3({ content }) {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-col flex-1 min-w-0">
+                <div className="flex flex-col flex-1 min-w-0 py-10">
                   <h3
-                    className={`text-xl md:text-3xl font-extrabold leading-tight mb-1 ${
+                    className={`${rubik.className} text-[16px] md:text-[20px] leading-tight font-medium mb-1 ${
                       isAccent ? "text-white" : "text-[#212020]"
                     }`}
                   >
                     {service.path && service.path !== "#" ? (
                       <Link
                         href={service.path}
-                        className={`hover:underline ${isAccent ? "text-white" : "text-[#212020]"}`}
+                        className={`${rubik.className} hover:underline ${isAccent ? "text-white" : "text-[#212020]"}`}
                       >
                         {service.title}
                       </Link>
@@ -132,10 +145,10 @@ export default function OurServices3({ content }) {
                   </h3>
                   {service.description ? (
                     <div
-                      className={`prose prose-sm mb-3 max-w-none prose-p:my-0 prose-headings:my-1 ${
+                      className={`${rubik.className} text-[14px] md:text-[16px] leading-relaxed mb-3 max-w-none prose-p:my-0 prose-headings:my-1 ${
                         isAccent
                           ? "text-white prose-p:text-white prose-strong:text-white"
-                          : "text-[#515151] prose-p:text-[#515151] prose-strong:text-[#212020]"
+                          : "text-[#6e6e6e] prose-p:text-[#6e6e6e] prose-strong:text-[#6e6e6e]"
                       }`}
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
@@ -143,8 +156,8 @@ export default function OurServices3({ content }) {
                     />
                   ) : (
                     <p
-                      className={`text-sm md:text-base mb-3 ${
-                        isAccent ? "text-white" : "text-[#515151]"
+                      className={`${rubik.className} text-[14px] md:text-[16px] leading-relaxed mb-3 ${
+                        isAccent ? "text-white" : "text-[#6e6e6e]"
                       }`}
                     >
                       No description provided.
@@ -152,10 +165,10 @@ export default function OurServices3({ content }) {
                   )}
                   <a
                     href={`tel:${phone}`}
-                    className={`mt-auto inline-flex w-fit items-center gap-2 rounded-full font-extrabold uppercase tracking-wide px-4 md:px-5 py-2 text-xs md:text-sm transition-colors duration-200 ${
+                    className={`${archivo.className} mt-auto text-xs md:text-sm inline-flex w-fit items-center gap-2 rounded-full font-bold uppercase tracking-wide px-4 md:px-8 py-3 transition-colors duration-200 ${
                       isAccent
-                        ? "bg-white text-[#d39b3e] hover:bg-[#f7f7f7]"
-                        : "bg-[#f3a008] text-white hover:bg-[#e39a00]"
+                        ? "bg-white text-[#f59403] hover:bg-[#f7f7f7]"
+                        : "bg-[#f59403] text-white hover:bg-[#e39a00]"
                     }`}
                   >
                     Call Us Today
@@ -168,11 +181,11 @@ export default function OurServices3({ content }) {
         </div>
         {services.length > MAX_DISPLAY && (
           <div className="mt-6 text-center">
-            <p className="text-[#212020] text-lg font-semibold">
+            <p className={`${rubik.className} text-[14px] md:text-[16px] leading-relaxed text-[#6e6e6e] font-medium`}>
               {services.length - MAX_DISPLAY} more services available –{" "}
               <a
                 href={`tel:${phone}`}
-                className="underline hover:text-[#d62828]"
+                className={`${archivo.className} text-[12px] md:text-[14px] underline hover:text-[#d62828]`}
               >
                 Call for details
               </a>

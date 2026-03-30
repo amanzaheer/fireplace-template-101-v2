@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
@@ -44,6 +44,8 @@ export default function Navbar2({ content }) {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownRef, setOpenDropdownRef] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const pathname = usePathname() ?? "";
   const router = useRouter();
@@ -56,6 +58,20 @@ export default function Navbar2({ content }) {
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10 || currentScrollY < lastScrollY.current) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setIsVisible(false);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = useCallback((element) => {
@@ -254,7 +270,10 @@ export default function Navbar2({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[84px]"
+      className={cn(
+        "shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[84px] transition-transform duration-300",
+        !isVisible && "-translate-y-full",
+      )}
     >
       <Container>{headerContent}</Container>
 
