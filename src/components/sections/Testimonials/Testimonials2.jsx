@@ -5,6 +5,20 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import {Rubik, Archivo} from "next/font/google";
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
 
 export default function Testimonials2({ content }) {
   const logo = content?.navbar?.logo ?? {};
@@ -84,15 +98,13 @@ export default function Testimonials2({ content }) {
     <FullContainer className="bg-[#ffffff] py-12 md:py-16" id="testimonials">
       <Container className="mx-auto">
         <div className="text-center mb-8 md:mb-10">
-          <h2 className="text-4xl md:text-5xl font-medium text-[#151515] mb-1">
+          <h2 className={`${rubik.className} font-regular text-4xl md:text-[44px] font-normal text-[#151515] mb-1`}>
             {sectionTitle}
           </h2>
-          <p className="text-2xl md:text-3xl text-[#1f1f1f]">{companyName}</p>
+          <p className={`${rubik.className} text-[20px] md:text-[26px] font-normal text-[#1f1f1f]`}>{companyName}</p>
           <div className="mt-2 flex items-center justify-center gap-3">
             <div className="flex items-center gap-1 text-[#E5A326]">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span key={star} className="text-lg leading-none">★</span>
-              ))}
+              <Image src="/st-icons/Temp2/fiveStar.png" alt="Google" width={150} height={150} className="h-auto w-[150px] md:w-[160px]" />
             </div>
             <span className="rounded-lg bg-white border border-[#d9d9d9] px-3 py-1 text-sm text-[#555]">
               {reviewCount} Google Reviews
@@ -137,14 +149,10 @@ export default function Testimonials2({ content }) {
                   className="shrink-0 px-3"
                   style={{ width: `${100 / visibleSlides}%` }}
                 >
-                  <article className="h-full rounded-[26px] border border-[#3a3a3a] bg-[#ffffff] px-8 py-8 md:py-9 text-center">
-                    <div className="flex justify-center gap-1 text-[#E5A326] mb-4">
-                      {[1, 2, 3, 4, 5].map((star) => (
-                        <span key={star} className="text-2xl leading-none">★</span>
-                      ))}
-                    </div>
+                  <article className="h-full rounded-[26px] border  border-gray-500 bg-[#ffffff] px-8 py-8 md:py-9 lg:py-14 text-center">
+                    <Image src="/st-icons/Temp2/fiveStar.png" alt="Google" width={150} height={150} className="h-auto w-[150px] md:w-[160px] mx-auto mb-4" />
 
-                    <p className="text-xl md:text-[22px] leading-[1.28] italic text-[#5b5b5b] max-w-[520px] mx-auto">
+                    <p className={`${rubik.className} text-[16px] md:text-[20px] leading-[1.28] italic text-[#5b5b5b] max-w-[520px] mx-auto`}>
                       &ldquo; {testimonial.quote || testimonial.text} &rdquo;
                     </p>
 
@@ -160,10 +168,10 @@ export default function Testimonials2({ content }) {
                         />
                       </div>
                     </div>
-                    <h3 className="mt-3 text-2xl md:text-[20px] font-semibold text-[#212121]">
+                    <h3 className={`${archivo.className} mt-3 text-[18px] md:text-[20px] font-semibold text-[#212121]`}>
                       {testimonial.name || "Client"}
                     </h3>
-                    <p className="mt-1 text-sm md:text-base uppercase tracking-wide text-[#7cc4d6] font-semibold">
+                    <p className={`${rubik.className} mt-1 text-sm md:text-base uppercase tracking-wide text-[#7cc4d6] font-semibold`}>
                       {testimonial.role}
                     </p>
                   </article>

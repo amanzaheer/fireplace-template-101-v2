@@ -18,7 +18,20 @@ import {
 } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
-
+import {Poppins, Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["regular"],
+  weight: ["400", "500", "600", "700"],
+});
 const QuoteForm2 = dynamic(() => import("@/components/sections/Banner/QuoteForm/QuoteForm2"), {
   loading: () => (
     <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
@@ -75,7 +88,7 @@ export default function Banner1({ content }) {
   return (
     <FullContainer
       id="banner"
-      className="relative bg-white overflow-hidden w-full min-h-[520px] md:min-h-[600px] lg:min-h-[640px]"
+      className="relative bg-white overflow-hidden w-full min-h-[200px]"
     >
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Image
@@ -93,12 +106,12 @@ export default function Banner1({ content }) {
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.72)_0%,rgba(0,0,0,0.62)_45%,rgba(0,0,0,0)_55%)]"/>
       </div>
 
-      <Container className="relative z-10 font-barlow py-10 md:py-14 lg:py-16">
+      <Container className="relative z-10 font-barlow py-10 md:py-14 lg:py-12">
         <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-10 text-white">
           <div className="relative w-full max-w-[640px]">
             <div className="w-full flex flex-col items-start justify-center">
-              <div className="font-black max-w-[560px] inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-left text-shadow-lg">
-                {data?.heading || data?.title}
+              <div className={`${poppins.className} font-black max-w-[560px] inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-left text-shadow-lg`}>
+                {data?.heading || data?.title}kk
               </div>
               {data?.tagline ? (
                 <h2 className="text-xl md:text-2xl uppercase font-extrabold leading-tight text-[#A8E6F3] text-left mt-2">
@@ -116,7 +129,7 @@ export default function Banner1({ content }) {
                     return (
                       <li
                         key={idx}
-                        className="flex items-center gap-2.5 text-white font-medium text-lg md:text-2xl"
+                        className={`${inter.className} flex items-center gap-2.5 text-white font-normal text-lg md:text-2xl`}
                       >
                         {IconComponent ? (
                           <IconComponent className="w-5 h-5 text-[#c92028] shrink-0" />
@@ -137,8 +150,8 @@ export default function Banner1({ content }) {
                 href={phone ? `tel:${phone}` : "#"}
                 className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all border-2 border-white bg-[#c92028]"
               >
-                <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
-                {phone}
+                <Image src="/st-icons/Temp2/call2.png" alt="Phone" width={16} height={16} className="w-auto h-5 lg:w-5.5 lg:h-5.5" />
+                <span className={`${rubik.className} text-white text-sm lg:text-base font-normal`}>{phone}</span>
               </a>
             </div>
           </div>
@@ -146,9 +159,9 @@ export default function Banner1({ content }) {
             </div>
           </div>
 
-          <div className="w-full md:w-fit max-w-[380px]">
+          <div className="w-full md:w-fit max-w-[400px]">
             <div className="rounded-[18px] shadow-[0_16px_40px_rgba(0,0,0,0.32)] overflow-hidden">
-              <div className="bg-white px-0 pb-0">
+              <div className="bg-transparent px-0 pb-0 lg:min-h-[483.5px]">
                 <QuoteForm2
                   data={data}
                   form_head={form_head}
