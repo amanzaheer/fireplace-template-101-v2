@@ -4,7 +4,25 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import {Poppins, Inter, Rubik} from "next/font/google";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 export default function FAQs2({ content }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const faqsBlock = content?.faqs ?? {};
@@ -22,10 +40,10 @@ export default function FAQs2({ content }) {
     <FullContainer className="py-8 md:py-14 bg-white" id="faqs">
       <Container className="px-4">
         <div className="text-center max-w-5xl mx-auto">
-        <h2 className="text-center text-4xl md:text-5xl font-bold text-ink tracking-tight mb-8 md:mb-10">
+        <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-ink tracking-tight mb-8 md:mb-10`}>
             {faqTitle}
           </h2>
-          <p className="mt-3 mb-8 md:mb-10 text-[#6b7280] text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className={`${rubik.className} mt-3 mb-8 md:mb-10 text-[14px] md:text-[16px] leading-relaxed text-[#000000] max-w-2xl mx-auto`}>
             {faqSubTitle}
           </p>
           <div className="mx-auto w-full max-w-3xl text-[16px]">
@@ -39,7 +57,7 @@ export default function FAQs2({ content }) {
                   aria-expanded={activeIndex === index}
                   aria-controls={`faq-content-${index}`}
                 >
-                  <span className="font-bold text-xl md:text-[22px] text-left">
+                  <span className={`${rubik.className} font-bold text-[16px] md:text-[20px] text-left`}>
                     {faq?.question ?? faq?.q ?? ""}
                   </span>
                   <ChevronDown
@@ -55,7 +73,7 @@ export default function FAQs2({ content }) {
                   }`}
                 >
                   <div className="bg-white px-6 py-4 border border-[#e5e7eb] rounded-2xl">
-                    <p className="text-[#4b5563] text-left text-sm md:text-base leading-relaxed">
+                    <p className={`${rubik.className} text-[14px] md:text-[16px] leading-relaxed text-[#000000] text-left`}>
                       {faq?.answer ?? faq?.a ?? ""}
                     </p>
                   </div>

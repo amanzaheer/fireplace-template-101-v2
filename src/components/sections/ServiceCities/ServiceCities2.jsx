@@ -1,10 +1,28 @@
 "use client";
 
 import React, { useMemo } from "react";
-import { MapPin } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import Image from "next/image";
+import {Poppins, Inter, Rubik} from "next/font/google";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 function getLocationsList(content, block) {
   const direct = block?.list ?? block?.value?.list;
   if (Array.isArray(direct)) return direct;
@@ -25,17 +43,17 @@ export default function ServiceCities2({ content }) {
     <FullContainer className="py-10 md:py-14 bg-[#ffffff]" id="locations">
       <Container>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-center text-4xl md:text-5xl font-bold text-[#2d2d2d] tracking-tight mb-8 md:mb-10">
+          <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-[#2d2d2d] tracking-tight mb-8 md:mb-10`}>
             {title}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 md:gap-x-5 gap-y-3">
             {cities.map((city, index) => (
               <div
                 key={index}
-                className="inline-flex items-center  gap-1.5 w-fit bg-[#f2f2f2]  h-fit  rounded-[3px] px-2.5 py-1 shadow-[0_1px_1px_rgba(0,0,0,0.04)]"
+                className="inline-flex items-center  gap-1.5 w-fit bg-[#f2f2f2]  h-fit  rounded-[3px] px-2.5 py-0.5 shadow-[0_2px_2px_0px_rgba(0,0,0,0.2)]"
               >
-                <MapPin className="w-4 h-4 text-[#cf2027] fill-[#cf2027] shrink-0" />
-                <span className="text-ink text-sm md:text-base font-medium leading-none ">
+                <Image src="/st-icons/Temp2/map-pin.png" alt="Map Pin" width={16} height={16} className="w-auto h-5" />
+                <span className={`${inter.className} text-[14px] md:text-[16px] font-normal leading-tight text-[#000000]`}>
                   {typeof city === "string" ? city : city?.name ?? city?.title ?? String(city)}
                 </span>
               </div>

@@ -5,6 +5,7 @@ import { CheckCircle, Loader } from "lucide-react";
 import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import {Poppins, Inter, Rubik} from "next/font/google";
 import {
     validateEmail,
     validatePhone,
@@ -12,6 +13,24 @@ import {
     validateMessage,
     validateZipcode,
 } from "@/lib/validators";
+
+const poppins = Poppins({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
 
 const NameInput = memo(({ value, onChange, error }) => (
     <div>
@@ -228,8 +247,8 @@ export default function Contact2({ content }) {
         <FullContainer id="contact-us" className="pb-4 relative mt-9">
             <Container className="relative z-10">
                 <div id="quote-form-section">
-                    <div className="bg-[#212020] gap-0 rounded-[12px] overflow-hidden mb-5 shadow-lg">
-                        <div className="p-5 md:p-8 lg:p-10 text-white">
+                    <div className="bg-[#212020] gap-0 rounded-[12px] overflow-hidden mb-5  shadow-lg">
+                        <div className="p-5 md:p-12 lg:p-16 text-white">
                             {formSubmitted ? (
                                 <div className="h-full flex flex-col items-center justify-center text-center py-12">
                                     <div className="h-24 w-24 bg-green-100 rounded-full flex items-center justify-center mb-8">
@@ -249,14 +268,14 @@ export default function Contact2({ content }) {
                                 </div>
                             ) : (
                                 <>
-                                    <h2 className="text-center text-4xl md:text-[52px] font-bold text-white tracking-tight">
-                                        {title}
+                                    <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-white tracking-tight`}>
+                                        {title}kk
                                     </h2>
-                                    <h3 className="text-4xl md:text-[52px] font-bold mb-6 md:mb-8 text-white text-center leading-tight">
+                                    <h3 className={`${poppins.className} text-center text-3xl md:text-[44px] font-bold mb-6 md:mb-8 text-white text-center leading-tight`}>
                                         {subTitle}
                                     </h3>
                                     <form onSubmit={handleSubmit} className="space-y-2 md:space-y-2" noValidate>
-                                        <div className="grid md:grid-cols-2 gap-2">
+                                        <div className={`${poppins.className} grid md:grid-cols-2 gap-2`}>
                                             <NameInput value={formData.name} onChange={handleChange} error={errors.name} />
                                             <EmailInput value={formData.email} onChange={handleChange} error={errors.email} />
                                             <PhoneInput value={formData.phone} onChange={handleChange} error={errors.phone} />
@@ -267,7 +286,7 @@ export default function Contact2({ content }) {
                                             <button
                                                 type="submit"
                                                 disabled={isSubmitting}
-                                                className="w-full bg-[#d62828] text-white py-3.5 px-8 rounded-full transition-all duration-300 font-medium text-xl flex items-center justify-center hover:bg-[#bf1f1f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 focus:ring-offset-[#1f2226] disabled:opacity-70"
+                                                className={`${rubik.className} w-full bg-[#d62828] text-white py-3.5 px-8 rounded-full transition-all duration-300 font-normal  text-xl flex items-center justify-center hover:bg-[#bf1f1f] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 focus:ring-offset-[#1f2226] disabled:opacity-70`}
                                                 aria-busy={isSubmitting}
                                             >
                                                 {isSubmitting ? (

@@ -2,18 +2,52 @@
 
 import React from "react";
 import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  ChevronRight,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Mail,
-  MapPin,
-  Phone,
-  Twitter,
-} from "lucide-react";
+  faCaretRight,
+  faEnvelope,
+  faLocationDot,
+  faPhone,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faTwitter,
+} from "@fortawesome/free-brands-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import {Poppins, Inter, Rubik} from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+config.autoAddCss = false;
+
+const byPrefixAndName = {
+  fab: {
+    twitter: faTwitter,
+  },
+  fas: {
+    "caret-right": faCaretRight,
+  },
+};
 
 export default function Footer2({ content }) {
   const footer = content?.footer ?? {};
@@ -37,11 +71,14 @@ export default function Footer2({ content }) {
   ];
 
   const socialLinks = [
-    { href: "#", label: "Facebook", Icon: Facebook },
-    { href: "#", label: "Twitter", Icon: Twitter },
-    { href: "#", label: "Instagram", Icon: Instagram },
-    { href: "#", label: "LinkedIn", Icon: Linkedin },
+    { href: "#", label: "Facebook", icon: faFacebook },
+    { href: "#", label: "Twitter", icon: byPrefixAndName.fab["twitter"] },
+    { href: "#", label: "Instagram", icon: faInstagram },
+    { href: "#", label: "LinkedIn", icon: faLinkedin },
   ];
+
+  const iconClass = "w-5 h-5";
+  const iconAccent = "text-[#d62828]";
 
   return (
     <footer>
@@ -52,21 +89,21 @@ export default function Footer2({ content }) {
               <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">Information</h3>
               <p className="text-white/90 text-[17px] leading-relaxed max-w-[420px]">{statement}</p>
               <div className="mt-6 flex items-center gap-4">
-                {socialLinks.map(({ href, label, Icon }) => (
+                {socialLinks.map(({ href, label, icon }) => (
                   <Link
                     key={label}
                     href={href}
                     aria-label={label}
                     className="text-[#d62828] hover:text-[#ef4444] transition-colors duration-200"
                   >
-                    <Icon className="w-5 h-5" />
+                    <FontAwesomeIcon icon={icon} className={iconClass} />
                   </Link>
                 ))}
               </div>
             </div>
 
             <div>
-              <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">Quick Links</h3>
+              <h3 className={`${rubik.className} text-white text-2xl md:text-3xl font-bold mb-4`}>Quick Links</h3>
               <ul className="space-y-2">
                 {quickLinks.map((item) => (
                   <li key={item.href}>
@@ -74,7 +111,10 @@ export default function Footer2({ content }) {
                       href={item.href}
                       className="inline-flex items-center gap-2 text-white/95 text-sm md:text-lg hover:text-white transition-colors duration-200"
                     >
-                      <ChevronRight className="w-4 h-4 text-[#d62828]" />
+                      <FontAwesomeIcon
+                        icon={byPrefixAndName.fas["caret-right"]}
+                        className="w-4 h-4 text-[#d62828]"
+                      />
                       <span>{item.label}</span>
                     </Link>
                   </li>
@@ -83,14 +123,20 @@ export default function Footer2({ content }) {
             </div>
 
             <div>
-              <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">Stay Tuned With Us</h3>
+              <h3 className={`${rubik.className} text-white text-2xl md:text-3xl font-bold mb-4`}>Stay Tuned With Us</h3>
               <ul className="space-y-2">
                 <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 mt-0.5 text-[#d62828] shrink-0" />
+                  <FontAwesomeIcon
+                    icon={faLocationDot}
+                    className={`${iconClass} mt-0.5 ${iconAccent} shrink-0`}
+                  />
                   <span className="text-white/95 text-[17px] leading-relaxed">{address}</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-[#d62828] shrink-0" />
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className={`${iconClass} ${iconAccent} shrink-0`}
+                  />
                   <Link
                     href={`mailto:${email}`}
                     className="text-white/95 text-[17px] hover:text-white transition-colors duration-200"
@@ -99,7 +145,10 @@ export default function Footer2({ content }) {
                   </Link>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-[#d62828] shrink-0" />
+                  <FontAwesomeIcon
+                    icon={faPhone}
+                    className={`${iconClass} ${iconAccent} shrink-0`}
+                  />
                   <Link
                     href={`tel:${phone}`}
                     className="text-white/95 text-[17px] hover:text-white transition-colors duration-200"
