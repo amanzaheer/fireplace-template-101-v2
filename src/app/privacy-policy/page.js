@@ -1,21 +1,18 @@
 import { headers } from "next/headers";
-import md from "@/lib/markdown";
-import FullContainer from "@/components/common/FullContainer";
-import Container from "@/components/common/Container";
-import Breadcrumbs1 from "@/components/sections/Breadcrumbs/Breadcrumbs1";
 import SectionLayout from "@/components/SectionLayout";
 
 export const dynamic = 'force-dynamic';
 import MaintenancePage from "@/components/MaintenancePage";
-import { getPageData } from "@/lib/page-data";
+import { getPageConfig, getPageData } from "@/lib/page-data";
 
-const PAGE_CONFIG = {
+const FALLBACK_CONFIG = {
   sections: {
     Navbar: { visible: true, design: "Navbar1" },
-    Content: { visible: true },
+    Breadcrumbs: { visible: true, design: "Breadcrumbs1" },
+    PrivacyPolicy: { visible: true, design: "privacy-policy2" },
     Footer: { visible: true, design: "Footer1" },
   },
-  order: ["Navbar", "Content", "Footer"],
+  order: ["Navbar", "Breadcrumbs", "PrivacyPolicy", "Footer"],
 };
 
 export async function generateMetadata() {
@@ -42,26 +39,16 @@ export default async function PrivacyPolicyPage() {
 
   if (!homeData) return <MaintenancePage />;
 
-  const body = privacyData?.content?.body ?? "";
-  const html = body ? md.render(body) : "";
+  const domainConfig = await getPageConfig(host, "privacy");
+  const config = domainConfig ?? FALLBACK_CONFIG;
+
+  // Merge privacy content at the root so PrivacyPolicy components can read `content.body`.
+  const mergedContent = {
+    ...homeData.content,
+    ...(privacyData?.content ?? {}),
+  };
 
   return (
-    <SectionLayout domainConfig={PAGE_CONFIG} content={homeData.content}>
-      <FullContainer>
-        <Container>
-          <Breadcrumbs1 content={homeData.content} />
-          {html ? (
-            <div
-              className="prose prose-h2:text-start prose-p:text-lg text-primary max-w-full w-full my-8"
-              dangerouslySetInnerHTML={{ __html: html }}
-            />
-          ) : (
-            <p className="my-8 text-gray-500">
-              Privacy policy content coming soon.
-            </p>
-          )}
-        </Container>
-      </FullContainer>
-    </SectionLayout>
+    <SectionLayout domainConfig={config} content={mergedContent} />
   );
 }

@@ -1,13 +1,14 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCaretRight,
   faEnvelope,
-  faLocationDot,
-  faPhone,
+  faMapPin,
+  faSquarePhone,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   faFacebook,
@@ -46,12 +47,33 @@ const byPrefixAndName = {
   },
   fas: {
     "caret-right": faCaretRight,
+    "map-pin": faMapPin,
+    "square-phone": faSquarePhone,
   },
 };
 
 export default function Footer2({ content }) {
   const footer = content?.footer ?? {};
   const contactInfo = content?.contact_info ?? {};
+  const pathname = usePathname() ?? "";
+  const services = useMemo(
+    () => (Array.isArray(content?.services) ? content.services : []),
+    [content?.services],
+  );
+
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesWrapRef = useRef(null);
+
+  useEffect(() => {
+    if (!isServicesOpen) return;
+    const onMouseDown = (e) => {
+      const el = servicesWrapRef.current;
+      if (el && !el.contains(e.target)) setIsServicesOpen(false);
+    };
+    document.addEventListener("mousedown", onMouseDown);
+    return () => document.removeEventListener("mousedown", onMouseDown);
+  }, [isServicesOpen]);
+
   const statement =
     footer.value ??
     footer.statement ??
@@ -65,9 +87,10 @@ export default function Footer2({ content }) {
   const quickLinks = [
     { href: "/", label: "Home" },
     { href: "/locations", label: "Locations" },
-    { href: "/services", label: "Services" },
     { href: "/contact-us", label: "Contact Us" },
     { href: "/faq", label: "FAQ" },
+    { href: "/privacy-policy", label: "Privacy Policy" },
+    { href: "/terms-and-conditions", label: "Terms and Conditions" },
   ];
 
   const socialLinks = [
@@ -77,7 +100,9 @@ export default function Footer2({ content }) {
     { href: "#", label: "LinkedIn", icon: faLinkedin },
   ];
 
-  const iconClass = "w-5 h-5";
+  // FontAwesomeIcon SVGs default to `1em` sizing, so `text-*` works reliably
+  // (instead of `w-* h-*`, which can be overridden by FontAwesome inline sizing).
+  const iconClass = "text-[16px] md:text-[20px]";
   const iconAccent = "text-[#d62828]";
 
   return (
@@ -113,26 +138,84 @@ export default function Footer2({ content }) {
                     >
                       <FontAwesomeIcon
                         icon={byPrefixAndName.fas["caret-right"]}
-                        className="w-4 h-4 text-[#d62828]"
+                        className="text-[16px] text-[#d62828]"
                       />
                       <span>{item.label}</span>
                     </Link>
                   </li>
                 ))}
+
+                <li className="relative" ref={servicesWrapRef}>
+                  <button
+                    type="button"
+                    onClick={() => setIsServicesOpen((prev) => !prev)}
+                    aria-expanded={isServicesOpen}
+                    className="inline-flex items-center gap-2 text-white/95 text-sm md:text-lg hover:text-white transition-colors duration-200"
+                  >
+                    <FontAwesomeIcon
+                      icon={byPrefixAndName.fas["caret-right"]}
+                      className={`text-[16px] text-[#d62828] transition-transform duration-200 ${
+                        isServicesOpen ? "-rotate-90" : "rotate-90"
+                      }`}
+                    />
+                    <span>Services</span>
+                  </button>
+
+                  {services.length > 0 ? (
+                    <div
+                      role="menu"
+                      aria-hidden={!isServicesOpen}
+                      className={[
+                        "absolute bottom-full left-0 z-20",
+                        "w-auto min-w-[300px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]",
+                        "transition-all duration-300 ease-in-out flex flex-col",
+                        isServicesOpen
+                          ? "opacity-100 visible transform translate-y-0 pointer-events-auto"
+                          : "opacity-0 invisible transform -translate-y-2 pointer-events-none",
+                      ].join(" ")}
+                    >
+                      <div className="grow dropdown-services-container scrollbar-hide">
+                        {services.map((svc, idx) => {
+                          const href = svc?.path ?? "#";
+                          const label = svc?.title ?? svc?.name ?? `Service ${idx + 1}`;
+                          if (!href || href === "#") return null;
+
+                          const isActive = pathname === href;
+                          return (
+                            <Link
+                              key={href}
+                              href={href}
+                              role="menuitem"
+                              onClick={() => setIsServicesOpen(false)}
+                              className={[
+                                "text-sm font-normal py-1 px-4 cursor-pointer transition-all duration-100 block",
+                                isActive
+                                  ? "bg-[#c92028] text-white"
+                                  : "text-black hover:bg-[#c92028] hover:text-white",
+                              ].join(" ")}
+                            >
+                              {label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
+                </li>
               </ul>
             </div>
 
-            <div>
-              <h3 className={`${rubik.className} text-white text-2xl md:text-3xl font-bold mb-4`}>Stay Tuned With Us</h3>
-              <ul className="space-y-2">
-                <li className="flex items-start gap-3">
+            <div className=" text-white">
+              <h3 className={`${rubik.className} text-white  text-2xl md:text-3xl font-bold mb-4`}>Stay Tuned With Us</h3>
+              <div className="flex flex-col gap-2 md:gap-7">
+                <div className="flex items-start gap-3 ">
                   <FontAwesomeIcon
-                    icon={faLocationDot}
+                    icon={byPrefixAndName.fas["map-pin"]}
                     className={`${iconClass} mt-0.5 ${iconAccent} shrink-0`}
                   />
                   <span className="text-white/95 text-[17px] leading-relaxed">{address}</span>
-                </li>
-                <li className="flex items-center gap-3">
+                </div>
+                <div className="flex items-center gap-3">
                   <FontAwesomeIcon
                     icon={faEnvelope}
                     className={`${iconClass} ${iconAccent} shrink-0`}
@@ -143,11 +226,11 @@ export default function Footer2({ content }) {
                   >
                     {email}
                   </Link>
-                </li>
-                <li className="flex items-center gap-3">
+                </div>
+                <div className="flex items-center gap-3">
                   <FontAwesomeIcon
-                    icon={faPhone}
-                    className={`${iconClass} ${iconAccent} shrink-0`}
+                    icon={byPrefixAndName.fas["square-phone"]}
+                    className={`${iconClass} ${iconAccent} shrink-0 `}
                   />
                   <Link
                     href={`tel:${phone}`}
@@ -155,8 +238,8 @@ export default function Footer2({ content }) {
                   >
                     {phone}
                   </Link>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
           </div>
         </Container>

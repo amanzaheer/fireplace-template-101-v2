@@ -24,6 +24,10 @@ const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDe
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
+const PrivacyPolicy = dynamic(() => import("@/components/sections/PrivacyPolicy"));
+const TermsAndConditions = dynamic(
+  () => import("@/components/sections/TermsAndConditions"),
+);
 const sectionComponents = {
   Navbar,
   Banner,
@@ -46,6 +50,8 @@ const sectionComponents = {
   ServiceDescription1: ServiceDescription1Section,
   ServiceDescription2: ServiceDescription2Section,
   CallUsButton,
+  PrivacyPolicy,
+  TermsAndConditions,
 };
 
 const DEFAULT_THEME_COLOR = "#1A2956";
