@@ -21,8 +21,8 @@ const variants = {
 };
 
 export default function FAQs({ variant, content }) {
-  const name = variant ?? "FAQs1";
-  const Component = variants[name] ?? FAQs1;
+        const name = variant ?? "FAQs8";
+  const Component = variants[name] ?? FAQs8;
   return <Component content={content} />;
 }
 export { FAQs1, FAQs2, FAQs3, FAQs4,FAQs5,FAQs7,FAQs8,FAQs6, variants };
