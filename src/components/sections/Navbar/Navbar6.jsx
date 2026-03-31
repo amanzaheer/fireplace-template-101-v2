@@ -40,7 +40,7 @@ function getChildHref(child) {
   return slug ? `/${slug}` : "#";
 }
 
-export default function Navbar1({ content }) {
+export default function Navbar6({ content }) {
   const { logo, phone, menu_items = [] } = content?.navbar ?? {};
   const imagePath = content?.navbar?.imagePath ?? IMAGE_BASE;
   const menuItemsArray = useMemo(
@@ -138,7 +138,7 @@ export default function Navbar1({ content }) {
           <Logo logo={logo} imagePath={imagePath} />
         </div>
 
-        <div className="hidden lg:flex items-center text-[26px] font-barlow font-semibold justify-center gap-4  ">
+        <div className="hidden lg:flex items-center text-[26px] font-barlow font-bold justify-center gap-4">
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
@@ -180,7 +180,7 @@ export default function Navbar1({ content }) {
                             title={child?.title}
                             href={href}
                             className={cn(
-                              "text-xl py-1 font-semibold px-4 cursor-pointer transition-all duration-100 block",
+                              "text-xl py-1 font-bold px-4 cursor-pointer transition-all duration-100 block",
                               isActive
                                 ? "bg-[#FF6611] text-white"
                                 : "text-black hover:bg-[#FF6611] hover:text-white",
@@ -226,7 +226,7 @@ export default function Navbar1({ content }) {
             <div className="text-xs">
               <a
                 href={phoneLink}
-                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-full text-white font-semibold text-sm lg:text-lg shadow hover:opacity-90 transition-all bg-[#FF6611]"
+                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-full text-white font-bold text-sm lg:text-lg shadow hover:opacity-90 transition-all bg-[#FF6611]"
               >
                 <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
                 {phone}
@@ -288,7 +288,7 @@ export default function Navbar1({ content }) {
                 <div className="text-xs">
                   <a
                     href={phoneLink}
-                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 rounded-full text-white font-semibold text-lg hover:opacity-90 transition-all bg-[#FF6611]"
+                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 rounded-full text-white font-bold text-lg hover:opacity-90 transition-all bg-[#FF6611]"
                   >
                     <Phone className="w-5 h-5" />
                     {phone}
@@ -334,7 +334,7 @@ export default function Navbar1({ content }) {
             : "h-0 opacity-0 invisible overflow-hidden",
         )}
       >
-        <div className="flex flex-col font-barlow font-semibold text-[18px]">
+        <div className="flex flex-col font-barlow font-bold text-[18px]">
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);

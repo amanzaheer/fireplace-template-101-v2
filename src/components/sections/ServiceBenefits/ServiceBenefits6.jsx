@@ -28,9 +28,9 @@ export default function ServiceBenefits6({ content }) {
   if (list.length === 0) return null;
 
   return (
-    <FullContainer id="service_benefits" className="py-0 md:py-8 overflow-hidden">
+    <FullContainer id="service_benefits" className="py-0 md:py-8  overflow-hidden">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 border md:grid-cols-2 gap-4">
           <div className="md:w-[111%] rounded-md relative bg-blue-500 h-full overflow-hidden min-h-[200px] md:min-h-[320px]">
             {imageSrc ? (
               <Image

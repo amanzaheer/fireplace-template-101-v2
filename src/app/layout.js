@@ -45,10 +45,11 @@ export default async function RootLayout({ children }) {
   const themeColor = domainData?.theme_color ?? "#1A2956";
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${barlow.variable} ${montserrat.variable} ${barlow.className} antialiased`}
         style={{ ["--theme-color"]: themeColor }}
+        suppressHydrationWarning
       >
         {GTM_ID && (
           <>

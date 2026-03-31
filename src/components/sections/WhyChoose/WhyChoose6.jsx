@@ -45,22 +45,49 @@ export default function WhyChoose6({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const block = content?.why_choose ?? {};
   const features = resolveRefArray(content, block, "features");
-  const heading = block.heading ?? "Why Choose Us";
+  const heading = block.heading ?? "We Choose Us";
+  const subHeading =
+    block?.title ?? block?.sub_heading ?? "Professional Chimney for Home";
+  const description =
+    block?.description ??
+    "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow.";
   const filePath = block.file_name ?? "about/about.webp";
   const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
 
   if (features.length === 0) return null;
 
+  const leftFeatures = features.slice(0, 2);
+  const rightFeatures = features.slice(2);
+
   return (
-    <FullContainer id="whychooseus" className="py-8 md:py-12 bg-white mt-4">
-      <Container>
-        <div className="flex flex-col md:flex-row items-center gap-8 md:gap-12">
-          <div className="w-full md:w-5/12 flex flex-col items-start justify-center">
-            <h2 className="text-4xl font-extrabold text-[#1A2956] mb-4">
+    <FullContainer id="whychooseus" className="bg-white py-8 md:py-12 mt-4">
+  <Container className="px-4 sm:px-5 md:px-12">
+
+    
+    {(() => {
+      const firstFeatures = leftFeatures.slice(0, -2);
+      const lastFeatures = leftFeatures.slice(-2);
+
+      return (
+        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_1.2fr_1fr] lg:gap-6 xl:gap-8">
+
+          {/* LEFT SIDE */}
+          <div className="w-full">
+            <p className="text-3xl leading-tight font-semibold text-black md:text-4.5xl">
               {heading}
+            </p>
+
+            <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold text-black md:text-4.5xl">
+              {subHeading}
             </h2>
-            <ul className="mb-6 space-y-3">
-              {features.map((feature, idx) => {
+
+            <p className="mt-4 max-w-[420px] text-base leading-[1.35] text-black md:text-xl">
+              {description}
+            </p>
+
+            {/* FIRST FEATURES ONLY */}
+            <ul className="mt-4 space-y-2.5">
+              {firstFeatures.map((feature, idx) => {
                 const iconName =
                   typeof feature === "object" ? feature?.icon : null;
                 const text =
@@ -70,26 +97,28 @@ export default function WhyChoose6({ content }) {
                       ? feature
                       : "";
                 const IconComponent = iconName ? iconMap[iconName] : CheckCircle;
+
                 return (
                   <li
                     key={idx}
-                    className="flex items-center gap-3 text-[#1A2956] font-medium text-base md:text-[17px]"
+                    className="flex items-start gap-3text-lg leading-tight text-black md:text-2xl"
                   >
                     {IconComponent && (
-                      <IconComponent className="min-w-5 w-5 h-5 text-[#1A2956] shrink-0" />
+                      <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
                     )}
-                    {text}
+                    <span>{text}</span>
+                   
                   </li>
                 );
               })}
             </ul>
-            <div className="flex flex-col sm:flex-row gap-4 w-full mt-2">
-              <PrimaryPhone phone={phone} />
-              <QuoteButton phone={phone} />
-            </div>
+            <PrimaryPhone phone={phone} />
           </div>
-          <div className="w-full md:w-7/12 flex justify-center relative mt-6 md:mt-0">
-            <div className="rounded-lg overflow-hidden w-full h-[250px] sm:h-[280px] md:h-[320px] bg-gray-200 relative">
+      
+
+          
+          <div className="w-full">
+            <div className="relative h-[420px] w-full overflow-hidden rounded-xl bg-gray-200 sm:h-[480px] lg:h-[560px]">
               {imageSrc ? (
                 <Image
                   src={imageSrc}
@@ -100,14 +129,80 @@ export default function WhyChoose6({ content }) {
                   loading="lazy"
                 />
               ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-medium">
+                <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-large">
                   Why Choose Us
                 </div>
               )}
             </div>
           </div>
+
+        
+          <div className="w-full">
+            <ul className="space-y-4 lg:pt-2">
+
+              
+              {lastFeatures.map((feature, idx) => {
+                const iconName =
+                  typeof feature === "object" ? feature?.icon : null;
+                const text =
+                  typeof feature === "object"
+                    ? feature?.text
+                    : typeof feature === "string"
+                      ? feature
+                      : "";
+                const IconComponent = iconName ? iconMap[iconName] : CheckCircle;
+
+                return (
+                  <li
+                    key={`moved-${idx}`}
+                    className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                  >
+                    {IconComponent && (
+                      <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
+                    )}
+                    <span>{text}</span>
+                  </li>
+                );
+              })}
+
+              
+              {rightFeatures.map((feature, idx) => {
+                const iconName =
+                  typeof feature === "object" ? feature?.icon : null;
+                const text =
+                  typeof feature === "object"
+                    ? feature?.text
+                    : typeof feature === "string"
+                      ? feature
+                      : "";
+                const IconComponent = iconName ? iconMap[iconName] : CheckCircle;
+
+                return (
+                  <li
+                    key={`right-${idx}`}
+                    className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                  >
+                    {IconComponent && (
+                      <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
+                    )}
+                    <span>{text}</span>
+                  </li>
+                );
+              })}
+            </ul>
+
+           
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+              
+              <QuoteButton phone={phone} />
+            </div>
+          </div>
+
         </div>
-      </Container>
-    </FullContainer>
+      );
+    })()}
+
+  </Container>
+</FullContainer>
   );
 }
