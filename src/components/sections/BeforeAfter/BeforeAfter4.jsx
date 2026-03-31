@@ -10,6 +10,7 @@ import Image from "next/image";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -18,7 +19,7 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrowSrc }) {
+function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt }) {
   const [isHover, setIsHover] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isActive, setIsActive] = useState(false);
@@ -137,20 +138,9 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border-[3px] border-white shadow-md flex items-center justify-center">
-          <div className="flex items-center gap-2">
-            {arrowSrc ? (
-              <>
-                <Image src={arrowSrc} alt="" width={20} height={20} className="w-2.5 h-2.5" />
-                <Image src={arrowSrc} alt="" width={20} height={20} className="rotate-180 w-2.5 h-2.5" />
-              </>
-            ) : (
-              <>
-                <span className="text-white text-xs">◀</span>
-                <span className="text-white text-xs">▶</span>
-              </>
-            )}
-          </div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-14 h-14 rounded-full bg-white/95 border-[3px] border-white shadow-md flex items-center justify-center gap-0.5 pointer-events-none">
+          <ChevronLeft className="w-5 h-5 text-[#1f1f1f] shrink-0" aria-hidden />
+          <ChevronRight className="w-5 h-5 text-[#1f1f1f] shrink-0" aria-hidden />
         </div>
       </div>
     </div>
@@ -164,7 +154,6 @@ export default function BeforeAfter4({ content }) {
 
   const title = block.title ?? "Before And After Results";
   const imageBase = IMAGE_BASE;
-  const arrowSrc = buildImageSrc(imageBase, block.arrow_icon ?? "icons/arrowhead.webp");
 
   const items = rawItems.map((item) => ({
     before: buildImageSrc(imageBase, item.before),
@@ -188,7 +177,6 @@ export default function BeforeAfter4({ content }) {
               afterImage={item.after}
               beforeAlt={item.before_alt}
               afterAlt={item.after_alt}
-              arrowSrc={arrowSrc}
             />
           ))}
         </div>
@@ -200,7 +188,6 @@ export default function BeforeAfter4({ content }) {
               afterImage={item.after}
               beforeAlt={item.before_alt}
               afterAlt={item.after_alt}
-              arrowSrc={arrowSrc}
             />
           ))}
         </div>

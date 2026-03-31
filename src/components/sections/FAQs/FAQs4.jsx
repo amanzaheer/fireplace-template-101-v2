@@ -4,7 +4,27 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Poppins, Inter, Rubik,Archivo } from "next/font/google";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 export default function FAQs4({ content }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const faqsBlock = content?.faqs ?? {};
@@ -22,10 +42,10 @@ export default function FAQs4({ content }) {
     <FullContainer className="py-10 md:py-14 bg-[#efefef]" id="faqs">
       <Container className="px-4">
         <div className="mx-auto max-w-5xl text-center">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-[#212020] tracking-tight">
+          <h2 className={`${rubik.className} text-3xl md:text-[44px] font-extrabold text-[#212020] tracking-tight`}>
             {faqTitle}
           </h2>
-          <p className="mt-3 mb-8 md:mb-10 text-[#6b7280] text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+          <p className={`${inter.className} mt-3 mb-8 md:mb-10 text-[#6b7280] text-sm md:text-base max-w-2xl mx-auto leading-relaxed`}>
             {faqSubTitle}
           </p>
 
@@ -49,12 +69,12 @@ export default function FAQs4({ content }) {
                     aria-controls={`faq-content-${index}`}
                   >
                     <div className="pr-4">
-                      <span className="font-bold text-xl md:text-2xl block">
+                      <span className={`${archivo.className} font-bold text-base md:text-xl  block`}>
                         {faq?.question ?? faq?.q ?? ""}
                       </span>
                       {isOpen ? (
                         <div className="mt-3 pt-3 border-t border-white/70 text-start">
-                          <p className="text-[#212020] text-sm md:text-base leading-relaxed">
+                          <p className={`${archivo.className} text-[#212020] text-sm md:text-base leading-relaxed`}>
                             {faq?.answer ?? faq?.a ?? ""}
                           </p>
                         </div>

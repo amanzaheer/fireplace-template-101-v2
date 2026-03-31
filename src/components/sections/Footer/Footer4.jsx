@@ -3,10 +3,29 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { MapPin, Mail, Phone } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faEnvelope,
+  faMapPin,
+  faSquarePhone,
+} from "@fortawesome/free-solid-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+
+config.autoAddCss = false;
+
+const byPrefixAndName = {
+  fas: {
+    "map-pin": faMapPin,
+    "square-phone": faSquarePhone,
+  },
+};
+
+const iconClass = "text-[16px] md:text-[20px]";
+const iconAccent = "text-[#f3a008]";
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -79,14 +98,20 @@ export default function Footer4({ content }) {
               </h3>
               <ul className="space-y-4 md:space-y-5">
                 <li className="flex items-start gap-3.5">
-                  <MapPin className="w-5 h-5 text-[#d98200] mt-1 shrink-0" />
+                  <FontAwesomeIcon
+                    icon={byPrefixAndName.fas["map-pin"]}
+                    className={`${iconClass} mt-0.5 ${iconAccent} shrink-0`}
+                  />
                   <span className="text-white text-[18px] md:text-[22px] leading-snug">
                     {workingHours}
                   </span>
                 </li>
                 {email ? (
                   <li className="flex items-center gap-3.5">
-                    <Mail className="w-5 h-5 text-[#d98200] shrink-0" />
+                    <FontAwesomeIcon
+                      icon={faEnvelope}
+                      className={`${iconClass} ${iconAccent} shrink-0`}
+                    />
                     <Link
                       title="Email Button"
                       href={`mailto:${email}`}
@@ -97,7 +122,10 @@ export default function Footer4({ content }) {
                   </li>
                 ) : null}
                 <li className="flex items-center gap-3.5">
-                  <Phone className="w-5 h-5 text-[#d98200] shrink-0" />
+                  <FontAwesomeIcon
+                    icon={byPrefixAndName.fas["square-phone"]}
+                    className={`${iconClass} ${iconAccent} shrink-0`}
+                  />
                   <Link
                     title="Call Button"
                     href={phone ? `tel:${phone}` : "#"}
@@ -118,14 +146,14 @@ export default function Footer4({ content }) {
                   href="/privacy-policy"
                   className="text-white text-sm md:text-[15px]"
                 >
-                  {/* Privacy Policy */}
+                  Privacy Policy
                 </Link>
                 <Link
                   title="Terms and conditions"
                   href="/terms-and-conditions"
                   className="text-white text-sm md:text-[15px]"
                 >
-                  {/* Terms and conditions */}
+                  Terms and Conditions
                 </Link>
               </div>
             </div>
