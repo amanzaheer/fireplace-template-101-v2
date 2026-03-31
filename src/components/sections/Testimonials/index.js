@@ -4,6 +4,8 @@ import Testimonials3 from "./Testimonials3";
 import Testimonials4 from "./Testimonials4";
 import Testimonials6 from "./Testimonials6";
 import Testimonials8 from "./Testimonials8";
+import Testimonials5 from "./Testimonials5";
+
 const variants = {
   Testimonials1,
   Testimonials2,
@@ -11,15 +13,27 @@ const variants = {
   Testimonials4,
   Testimonials6,
   Testimonials8,
+  Testimonials5,
 };
 
+function pickVariant(name) {
+  const key = String(name ?? "").trim();
+  const C = variants[key] ?? Testimonials5;
+  return typeof C === "function" ? C : Testimonials5;
+}
+
 export default function Testimonials({ variant, content }) {
-  const name = variant ?? "Testimonials8";
-  const Component = variants[name] ?? Testimonials8;
-  const ForcedComponent = Testimonials8;
-  // Force Testimonials8 so UI remains consistent with latest design.
-  if (ForcedComponent) return <ForcedComponent content={content} />;
+  const Component = pickVariant(variant);
   return <Component content={content} />;
 }
 
-export { Testimonials1, Testimonials2, Testimonials3, Testimonials4, Testimonials6, Testimonials8, variants };
+export {
+  Testimonials1,
+  Testimonials2,
+  Testimonials3,
+  Testimonials4,
+  Testimonials6,
+  Testimonials8,
+  Testimonials5,
+  variants,
+};

@@ -7,6 +7,7 @@ import Contact3 from "./Contact3";
 import Contact4 from "./Contact4";
 import Contact6 from "./Contact6";
 import Contact8 from "./Contact8";
+import Contact5 from "./Contact5";
 
 const variants = {
   Contact1,
@@ -15,11 +16,12 @@ const variants = {
   Contact4,
   Contact6,
   Contact8,
+  Contact5,
 };
 
 export default function Contact({ variant, content }) {
-    const name = variant ?? "Contact8";
-  const Component = variants[name] ?? Contact8;
+  const name = String(variant ?? "").trim() || "Contact5";
+  const Component = variants[name] ?? Contact5;
   return <Component content={content} />;
 }
-export { Contact1, Contact2, Contact3, Contact4, Contact6, Contact8, variants };
+export { Contact1, Contact2, Contact3, Contact4, Contact6, Contact8, Contact5, variants };
