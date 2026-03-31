@@ -7,6 +7,7 @@ import ServiceBenefits3 from "./ServiceBenefits3";
 import ServiceBenefits4 from "./ServiceBenefits4";
 import ServiceBenefits6 from "./ServiceBenefits6";
 import ServiceBenefits8 from "./ServiceBenefits8";
+import ServiceBenefits5 from "./ServiceBenefits5";
 const variants = {
   ServiceBenefits1,
   ServiceBenefits2,
@@ -14,11 +15,12 @@ const variants = {
   ServiceBenefits4,
   ServiceBenefits6,          
   ServiceBenefits8,
+  ServiceBenefits5,
 };
 
 export default function ServiceBenefits({ variant, content }) {
-  const name = variant ?? "ServiceBenefits8";
-    const Component = variants[name] ?? ServiceBenefits8;
+  const name = String(variant ?? "").trim() || "ServiceBenefits5";
+  const Component = variants[name] ?? ServiceBenefits5;
   return <Component content={content} />;
 }
-export { ServiceBenefits1, ServiceBenefits2, ServiceBenefits3, ServiceBenefits4, ServiceBenefits6, ServiceBenefits8, variants };
+export { ServiceBenefits1, ServiceBenefits2, ServiceBenefits3, ServiceBenefits4, ServiceBenefits6, ServiceBenefits8, ServiceBenefits5, variants };

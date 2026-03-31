@@ -7,6 +7,7 @@ import OurServices3 from "./OurServices3";
 import OurServices4 from "./OurServices4";
 import OurServices6 from "./OurServices6";
 import OurServices8 from "./OurServices8";
+import OurServices5 from "./OurServices5";
 const variants = {
   OurServices1,
   OurServices2,
@@ -14,11 +15,12 @@ const variants = {
   OurServices4,
   OurServices6,
   OurServices8,
+  OurServices5,
 };
 
 export default function OurServices({ variant, content }) {
-          const name = variant ?? "OurServices8";
-  const Component = variants[name] ?? OurServices8;
+  const name = String(variant ?? "").trim() || "OurServices5";
+  const Component = variants[name] ?? OurServices5;
   return <Component content={content} />;
 }
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, variants };
+export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, variants };
