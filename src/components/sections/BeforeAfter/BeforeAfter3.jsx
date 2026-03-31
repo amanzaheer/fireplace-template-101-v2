@@ -167,22 +167,6 @@ function BeforeAfterCarousel({ items, arrowSrc }) {
 
   return (
     <div className="relative">
-      <button
-        type="button"
-        className="absolute left-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#e5e5e5] bg-white/95 shadow-md transition-colors hover:bg-white md:h-10 md:w-10 pointer-events-auto"
-        onClick={() => scrollByStep(-1)}
-        aria-label="Previous before and after photos"
-      >
-        <ChevronLeft className="h-5 w-5 text-[#1f1f1f]" />
-      </button>
-      <button
-        type="button"
-        className="absolute right-0 top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-[#e5e5e5] bg-white/95 shadow-md transition-colors hover:bg-white md:h-10 md:w-10 pointer-events-auto"
-        onClick={() => scrollByStep(1)}
-        aria-label="Next before and after photos"
-      >
-        <ChevronRight className="h-5 w-5 text-[#1f1f1f]" />
-      </button>
 
       <div
         ref={scrollRef}
@@ -228,7 +212,7 @@ export default function BeforeAfter3({ content }) {
     <FullContainer id="before_after">
       <Container className="pb-12 md:py-18">
         <h2 className={`${poppins.className} text-3xl md:text-[32px] font-bold text-center text-[#1f1f1f] white mb-6`}>
-          {title}
+          {title}kk
         </h2>
         <BeforeAfterCarousel items={items} arrowSrc={arrowSrc} />
       </Container>

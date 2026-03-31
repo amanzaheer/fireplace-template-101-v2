@@ -9,9 +9,44 @@ import React, {
 } from "react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import Logo from "@/components/common/Logo";
+import FiveStars from "@/components/common/FiveStars";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { Poppins, Inter, Rubik } from "next/font/google";
+import { Archivo } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const archivo = Archivo({
+  subsets: ["latin", "italian"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+function QuoteIcon({ className = "w-14 h-14 text-[#f59a00]" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1200"
+      height="1200"
+      viewBox="0 0 1200 1200"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M681.526 1094.657c212.643-14.942 518.306-48.892 518.474-465.344v-523.97H725.496v560.61h157.559c9.98 149.693-113.285 188.346-247.329 218.017zm-635.724 0c212.644-14.942 518.307-48.894 518.474-465.344v-523.97H89.77v560.61h157.559C257.311 815.647 134.044 854.3 0 883.971z" />
+    </svg>
+  );
+}
 
 export default function Testimonials4({ content }) {
   const logo = content?.navbar?.logo ?? {};
@@ -200,31 +235,25 @@ export default function Testimonials4({ content }) {
   return (
     <FullContainer className="py-10 md:py-14  bg-[#172b60] " id="testimonials">
       <Container className="mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-start gap-6 lg:gap-10">
-          <div className="w-full lg:w-[240px] shrink-0 text-white">
-            <p className="text-[56px] leading-none text-[#f59a00] font-black mb-2">
-              &ldquo;
-            </p>
-            <p className="font-extrabold text-[34px] leading-tight mb-3 capitalize">
+        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
+          <div className="w-full lg:w-[240px] h-full shrink-0 text-white">
+            <div className="mb-2">
+              <QuoteIcon className="w-14 h-14 text-[#f59a00] rotate-180" />
+            </div>
+            <p className={`${poppins.className} font-extrabold text-[34px] leading-tight mb-3 capitalize`}>
               {logo?.logoText}
             </p>
-            <div className="flex items-center gap-1 mb-2">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span key={star} className="text-[#f59a00] text-xl">
-                  ★
-                </span>
-              ))}
-            </div>
-            <p className="text-white font-extrabold text-[28px] leading-none">
+            <FiveStars className="mb-2" starClassName="text-[#f59a00]" />
+            <p className={`${archivo.className} text-white font-extrabold text-[28px] leading-none`}>
               {testimonialsWithAvatars[activeIndex]?.name}
             </p>
-            <p className="text-white/80 text-[14px] font-semibold uppercase tracking-[0.12em]">
+            <p className={`${archivo.className} text-white/80 text-[14px] font-semibold uppercase tracking-[0.12em]`}>
               Clients
             </p>
           </div>
 
           <div className="w-full flex-1">
-            <h2 className="text-[#ffffff] text-4xl md:text-5xl font-extrabold mb-4 md:mb-6 ml-22">
+            <h2 className={`${poppins.className} text-[#ffffff] text-4xl md:text-5xl font-extrabold mb-4 md:mb-6 ml-22`}>
               Our Happy Clients
             </h2>
 
@@ -247,15 +276,9 @@ export default function Testimonials4({ content }) {
                   {testimonialsWithAvatars.map((testimonial, index) => (
                     <div key={index} className="testimonial-slide">
                       <div className="bg-[#ffffff] border border-[#d7d7d7] p-5 md:p-7 min-h-[240px] md:min-h-[255px] flex flex-col">
-                        <div className="flex items-center gap-1 mb-4">
-                          {[1, 2, 3, 4, 5].map((star) => (
-                            <span key={star} className="text-[#f59a00] text-xl">
-                              ★
-                            </span>
-                          ))}
-                        </div>
+                        <FiveStars className="mb-4" starClassName="text-[#f59a00]" />
 
-                        <p className="text-[#545454] italic text-[24px] leading-[1.45] flex-1">
+                        <p className={`${archivo.className} text-[#545454] italic text-[24px] leading-[1.45] flex-1`}>
                           &ldquo;{testimonial.quote || testimonial.text}&rdquo;
                         </p>
 
@@ -272,10 +295,10 @@ export default function Testimonials4({ content }) {
                               />
                             </div>
                             <div>
-                              <h3 className="text-black font-extrabold text-[28px] leading-none">
+                              <h3 className={`${archivo.className} text-black font-extrabold text-[28px] leading-none`}>
                                 {testimonial.name}
                               </h3>
-                              <p className="text-black/70 text-[14px] font-semibold uppercase tracking-widest">
+                              <p className={`${archivo.className} text-black/70 text-[14px] font-semibold uppercase tracking-widest`}>
                                 Clients
                               </p>
                             </div>

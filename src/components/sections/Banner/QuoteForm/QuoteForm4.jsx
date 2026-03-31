@@ -9,7 +9,11 @@ import {
   validateName,
   validateMessage,
 } from "@/lib/validators";
-
+import { Poppins } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 export default function QuoteForm4({
   data,
   form_head,
@@ -287,7 +291,7 @@ export default function QuoteForm4({
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full h-[50px] md:h-[50px] px-3 md:px-4 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none ${
+                className={`w-full h-[40px] md:h-[45px] px-3 md:px-4 bg-[#ffffff] border outline-none text-[#000000] ${poppins.className} placeholder:text-[#8e8e8e] text-sm md:text-[17px] leading-none ${
                   fieldErrors.firstName ? "border-red-500" : "border-[#efefef]"
                 }`}
                 placeholder="Name"
@@ -309,8 +313,8 @@ export default function QuoteForm4({
                 value={formData.phone}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full h-[50px] md:h-[50px] px-3 md:px-4 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none ${
-                  fieldErrors.phone ? "border-red-500" : "border-[#efefef]"
+                className={`w-full h-[40px] md:h-[45px] px-3 md:px-4 bg-[#ffffff] border outline-none text-[#000000] ${poppins.className} placeholder:text-[#8e8e8e] text-sm md:text-[17px] leading-none ${
+                  fieldErrors.phone ? "border-red-500" : "border-[#ffffff]"
                 }`}
                 placeholder="Phone"
                 required
@@ -331,8 +335,8 @@ export default function QuoteForm4({
                 value={formData.email}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full h-[50px] md:h-[50px] px-3 md:px-4 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none ${
-                  fieldErrors.email ? "border-red-500" : "border-[#efefef]"
+                className={`w-full h-[40px] md:h-[45px] px-3 md:px-4 bg-[#ffffff] border outline-none text-[#000000] ${poppins.className} placeholder:text-[#8e8e8e] text-sm md:text-[17px] leading-none ${
+                  fieldErrors.email ? "border-red-500" : "border-[#ffffff]"
                 }`}
                 placeholder="Email"
                 required
@@ -354,8 +358,8 @@ export default function QuoteForm4({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={5}
-            className={`w-full min-h-[120px] md:min-h-[150px] px-3 md:px-4 py-3 bg-[#efefef] border outline-none text-[#222] placeholder:text-[#898989] text-xl md:text-3xl leading-none resize-none ${
-              fieldErrors.message ? "border-red-500" : "border-[#efefef]"
+            className={`w-full min-h-[100px] md:min-h-[130px] px-3 md:px-4 py-3 bg-[#ffffff] border outline-none text-[#000000] ${poppins.className} placeholder:text-[#8e8e8e] text-sm md:text-[17px] leading-none resize-none ${
+              fieldErrors.message ? "border-red-500" : "border-[#ffffff]"
             }`}
             placeholder="Message"
             required
@@ -368,15 +372,16 @@ export default function QuoteForm4({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-[#f5b328] text-black text-xl md:text-2xl hover:bg-[#e5a81f] cursor-pointer py-2 md:py-2.5 px-5 md:px-6 font-medium transition-colors duration-200 inline-flex items-center justify-center gap-2 uppercase"
-          >
+            className={` ${poppins.className} bg-[#efa536] text-black text-sm md:text-[17px] hover:bg-[#e5a81f] cursor-pointer p-2 md:p-2.5 font-medium transition-colors duration-200 inline-flex items-center justify-center gap-2 uppercase ${
+              isSubmitting ? "opacity-50 cursor-not-allowed" : "hover:bg-[#e5a81f]"
+            }`}  >
             {isSubmitting ? (
               <>
                 <Loader className="animate-spin mr-2 h-4 w-4" />
                 Submitting...
               </>
             ) : (
-              <div className="text-xl md:text-2xl">
+              <div className={`${poppins.className} text-sm md:text-[17px]`}>
                 Submit
                 {showArrowInButton && (
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

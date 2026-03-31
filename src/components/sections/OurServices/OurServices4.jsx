@@ -7,7 +7,24 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import md from "@/lib/markdown";
-
+import { Poppins, Inter, Rubik, Archivo } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const archivo = Archivo({
+  subsets: ["latin", "italian"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 function resolveServiceTag(str, title) {
   if (!str || !title) return str ?? "";
   return str.replace(/\[service\]/gi, title);
@@ -71,7 +88,7 @@ export default function OurServices4({ content }) {
   return (
     <FullContainer id="our_services" className="bg-[#efefef] py-10 md:py-14">
       <Container>
-        <h2 className="text-3xl md:text-5xl font-extrabold text-center text-[#2d2d2d] mb-8 md:mb-10 tracking-tight">
+        <h2 className={`${poppins.className} text-3xl md:text-[44px] font-extrabold text-center text-[#2d2d2d] mb-8 md:mb-10 tracking-tight`}>
           {title}
         </h2>
 
@@ -84,10 +101,10 @@ export default function OurServices4({ content }) {
             return (
               <div
                 key={service.id}
-                className="shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-[#e5e5e5] bg-white flex flex-row "
+                className=" transition-all duration-300   grid grid-cols-2 gap-2 "
               >
                 {/* Image */}
-                <div className="relative w-[50%] min-h-[200px] md:min-h-[220px] overflow-hidden bg-gray-100 shrink-0">
+                <div className="relative col-span-1 shadow-[0_2px-2px_10px_rgba(0,0,0,1)] w-full min-h-[200px] md:min-h-[220px] overflow-hidden bg-gray-100 shrink-0">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
@@ -109,8 +126,8 @@ export default function OurServices4({ content }) {
                 </div>
 
                 {/* Content */}
-                <div className="flex flex-col flex-1 min-w-0 p-4 md:p-5">
-                  <h3 className="text-xl md:text-2xl font-extrabold leading-tight mb-2 text-[#2d2d2d]">
+                <div className="flex flex-col  shadow-[0_2px-2px_10px_rgba(0,0,0,1)] flex-1 min-w-0 p-4 md:p-5 py-5 md:py-10  bg-white">
+                  <h3 className={`${poppins.className} text-xl md:text-[20px] font-semibold leading-tight mb-2 text-[#2d2d2d]`}>
                     {service.path && service.path !== "#" ? (
                       <Link
                         href={service.path}
@@ -125,20 +142,21 @@ export default function OurServices4({ content }) {
 
                   {service.description ? (
                     <div
-                      className="prose prose-sm mb-4 max-w-none prose-p:my-0 prose-headings:my-1 text-[#6b6b6b] prose-p:text-[#6b6b6b]"
+                      className={`${poppins.className}  mb-4 max-w-none font-normal tracking-normal text-[16px] leading-[21px] text-[#6e6e6e] prose-p:mt-0 prose-p:mb-3 prose-p:font-normal prose-p:tracking-normal prose-p:text-[16px] prose-p:leading-[21px] prose-p:text-[#6e6e6e] prose-headings:my-1`}
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
+                      
                     />
                   ) : (
-                    <p className="text-sm md:text-base mb-4 text-[#6b6b6b]">
+                    <p className={`${poppins.className} mb-4 font-normal tracking-normal text-[16px] leading-[21px] text-[#6e6e6e]`}>
                       No description provided.
                     </p>
                   )}
 
                   <a
                     href={`tel:${phone}`}
-                    className="mt-auto inline-flex w-fit items-center gap-2 font-extrabold uppercase tracking-wide px-5 md:px-6 py-2.5 md:py-3 text-xs md:text-sm bg-[#f59e0b] text-white hover:bg-[#e08a00] transition-colors duration-200"
+                    className={`${poppins.className} mt-4 inline-flex w-fit items-center gap-2 font-semibold uppercase tracking-wide px-5 md:px-6 py-2.5 md:py-3 text-xs md:text-sm bg-[#f59e0b] text-white hover:bg-[#e08a00] transition-colors duration-200`}
                   >
                     Call Us Today
                     <span aria-hidden="true">→</span>

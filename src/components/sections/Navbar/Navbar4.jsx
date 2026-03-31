@@ -227,15 +227,12 @@ export default function Navbar4({ content }) {
       <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white">
         {desktopTopBar}
         <Container>
-          <div className="flex flex-row justify-between h-[82px] md:h-[112px] items-center w-full md:pr-8">
+          <div className="flex flex-row justify-between h-[82px] md:h-[92px] items-center w-full md:pr-8">
             <div className="h-full flex items-center justify-center">
               <Logo logo={logo} imagePath={imagePath} />
             </div>
             <div className="flex items-center justify-end flex-row">
               <div className="hidden lg:flex flex-col items-end justify-center leading-none">
-                <span className="text-[9px] font-semibold text-[#434343] mb-1">
-                  Speak To A Chimney Specialist Today
-                </span>
                 <a
                   href={phoneLink}
                   className="text-[#253d70] font-extrabold text-[42px] leading-none hover:opacity-90 transition-all"
@@ -270,6 +267,7 @@ export default function Navbar4({ content }) {
   }
 
   return (
+    <>
     <FullContainer
       id="navbar"
       className="shadow-sm w-full sticky top-0 z-20 bg-white"
@@ -387,5 +385,7 @@ export default function Navbar4({ content }) {
         </div>
       </div>
     </FullContainer>
+
+    </>
   );
 }
