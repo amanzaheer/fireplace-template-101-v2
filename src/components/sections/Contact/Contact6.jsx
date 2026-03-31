@@ -428,7 +428,7 @@ export default function Contact6({ content }) {
                         aria-busy={isSubmitting}
                       >
                         {isSubmitting ? (
-                          <span className="flex items-center   justify-center gap-2">
+                          <span className="flex items-center justify-center gap-2">
                             <Loader className="h-5 w-5 animate-spin" />
                             Processing…
                           </span>

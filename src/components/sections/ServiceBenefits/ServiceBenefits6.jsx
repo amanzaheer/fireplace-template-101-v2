@@ -92,11 +92,11 @@ export default function ServiceBenefits6({ content }) {
 
   return (
     <FullContainer
-  id="service_benefits"
-  className="overflow-hidden bg-white py-10 md:py-14 lg:py-16"
->
-  <Container>
-    <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-10">
+      id="service_benefits"
+      className="overflow-hidden bg-white py-10 md:py-14 lg:py-16"
+    >
+      <Container>
+        <div className="grid grid-cols-1 items-center gap-6 lg:grid-cols-2 lg:gap-8 xl:gap-10">
       
       {/* Left: copy + benefits + CTAs */}
       <div className="flex flex-col pl-4 sm:pl-6 md:pl-10 lg:pl-12 max-w-[600px]">
