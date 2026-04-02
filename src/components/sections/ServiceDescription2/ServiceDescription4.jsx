@@ -49,7 +49,7 @@ function PhoneCallIcon({ className = "w-4 h-4" }) {
   );
 }
 
-export default function ServiceDescription3({ content }) {
+export default function ServiceDescription4({ content }) {
   const text = content?.service_description2?.description ?? "";
   const html = text ? md.render(text) : "";
   if (!html && !text) return null;
