@@ -23,6 +23,5 @@ export default function ServiceDescription1Section({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { ServiceDescription1, ServiceDescription2, ServiceDescription3,ServiceDescription4, ServiceDescription5, variants };
 export { ServiceDescription1, ServiceDescription2, ServiceDescription3,ServiceDescription4,ServiceDescription5,ServiceDescription7, variants };
 
