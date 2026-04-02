@@ -28,15 +28,4 @@ export default function Testimonials({ variant, content }) {
   const Component = pickVariant(variant);
   return <Component content={content} />;
 }
-
-export {
-  Testimonials1,
-  Testimonials2,
-  Testimonials3,
-  Testimonials4,
-  Testimonials6,
-  Testimonials8,
-  Testimonials5,
-  variants,
-};
 export { Testimonials1, Testimonials2, Testimonials3, Testimonials4, Testimonials6,Testimonials8, Testimonials5,Testimonials7, variants };
