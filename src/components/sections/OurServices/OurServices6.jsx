@@ -85,7 +85,7 @@ export default function OurServices6({ content }) {
   return (
     <FullContainer className="bg-white py-10 md:py-16" id="our_services">
       <Container className="px-5 sm:px-6 md:px-8 lg:px-10">
-        <div className="text-center mb-8 md:mb-12">
+        <div className="text-center  mb-8 md:mb-12">
           
           <h2 className="text-3xl md:text-4xl lg:text-[2.5rem] font-extrabold text-black tracking-tight leading-tight">
             {title}

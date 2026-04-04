@@ -193,8 +193,9 @@ export default function ServiceBenefits6({ content }) {
         </div>
       </div>
 
-    </div>
-  </Container>
-</FullContainer>
+        </div>
+      </Container>
+    </FullContainer>
   );
 }
+
