@@ -3,27 +3,83 @@
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
+import { Poppins, Inter } from "next/font/google";
 import { Phone, ChevronDown, Menu, X } from "lucide-react";
 import Container from "../../common/Container";
+import FullContainer from "../../common/FullContainer";
 import Logo from "@/components/common/Logo";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
-import { FullContainer } from "@/components/common";
+
+const poppinsNav = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  display: "swap",
+});
+
+const interNav = Inter({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+});
 
 const SCROLL_OFFSET = 80;
-const NAV_SCROLL_SOLID_THRESHOLD = 8;
 
-function getDocumentScrollY() {
-  if (typeof window === "undefined") return 0;
-  const se = document.scrollingElement ?? document.documentElement;
+/** Roomy line-height + vertical padding so labels (e.g. Services) are not clipped at the top. */
+const NAV_LABEL_SM =
+  "text-[14px] not-italic leading-[1.45] text-white py-2";
+
+function isHomeNavItem(item) {
+  const link = item?.link;
+  if (link === "/" || link === "") return true;
+  return String(item?.title ?? "").trim().toLowerCase() === "home";
+}
+
+function navTopLevelFontClass(item) {
+  return isHomeNavItem(item) ? poppinsNav.className : interNav.className;
+}
+
+function navTopLevelWeightClass(item) {
+  return isHomeNavItem(item) ? "font-bold" : "font-normal";
+}
+
+/** Matches Banner8 hero background (navy gradient + orange accents). */
+function NavbarBannerBackground() {
   return (
-    window.scrollY ??
-    window.pageYOffset ??
-    se?.scrollTop ??
-    document.documentElement?.scrollTop ??
-    document.body?.scrollTop ??
-    0
+    <div className="pointer-events-none absolute inset-0 z-0">
+      <div className="absolute inset-0 bg-gradient-to-r from-[#061f4a] via-[#072a62] to-[#072b5f]" />
+      <div className="absolute left-[-50px] top-0 h-[120px] w-[597px] bg-[#ff6a00] [clip-path:polygon(0_0,100%_0,0_100%)] sm:h-[180px] sm:w-[170px] md:h-[240px] md:w-[230px] lg:h-[300px] lg:w-[290px]" />
+      <div className="absolute bottom-[-10px] left-0 h-[100px] w-[597px] bg-[#ff6a00] [clip-path:polygon(0_0,100%_100%,0_100%)] sm:h-[140px] sm:w-[172px] md:h-[200px] md:w-[90px] lg:h-[250px] lg:w-[108px]" />
+    </div>
+  );
+}
+
+function NavbarPhoneCta({ href, phone, callLabel = "Call Us Today", className }) {
+  return (
+    <a
+      href={href}
+      className={cn(
+        poppinsNav.className,
+        "flex max-w-full items-center gap-2 rounded-none bg-[#ff6600] py-1.5 pl-1.5 pr-3 text-white shadow-sm transition-opacity hover:opacity-90 sm:gap-2.5 sm:py-2 sm:pl-2 sm:pr-4",
+        className,
+      )}
+    >
+      <span className="flex h-[22px] w-[22px] shrink-0 items-center justify-center self-center rounded-full bg-white sm:h-[26px] sm:w-[26px]">
+        <Phone className="h-3 w-3 text-[#ff6600] sm:h-3.5 sm:w-3.5" strokeWidth={2.25} aria-hidden />
+      </span>
+      <span className="flex min-w-0 flex-1 flex-col items-start justify-center gap-0.5">
+        <span className="font-barlow text-[10px] font-bold uppercase leading-none tracking-wide text-white sm:text-xs">
+          {callLabel}
+        </span>
+        <span
+          className="w-full truncate text-left text-[13px] font-medium leading-tight sm:text-[15px]"
+          style={{ color: "#FFF" }}
+        >
+          {phone}
+        </span>
+      </span>
+    </a>
   );
 }
 
@@ -46,10 +102,10 @@ export default function Navbar8({ content }) {
     () => (Array.isArray(menu_items) ? menu_items : []),
     [menu_items],
   );
+
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownRef, setOpenDropdownRef] = useState(null);
   const [mounted, setMounted] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
 
   const pathname = usePathname() ?? "";
   const router = useRouter();
@@ -64,38 +120,6 @@ export default function Navbar8({ content }) {
     return () => cancelAnimationFrame(id);
   }, []);
 
-  useEffect(() => {
-    let ticking = false;
-    const update = () => {
-      ticking = false;
-      setIsScrolled(getDocumentScrollY() > NAV_SCROLL_SOLID_THRESHOLD);
-    };
-    const onScroll = () => {
-      if (!ticking) {
-        ticking = true;
-        requestAnimationFrame(update);
-      }
-    };
-    update();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    window.addEventListener("resize", update, { passive: true });
-    return () => {
-      window.removeEventListener("scroll", onScroll);
-      window.removeEventListener("resize", update);
-    };
-  }, [pathname]);
-  const navBarClass = cn(
-    "fixed top-0 left-0 right-0 z-50 flex w-full flex-col items-stretch h-[76px]",
-    "transition-[background-color,box-shadow,color,border-color] duration-300 border-b",
-    isScrolled
-      ? "bg-white shadow-sm text-black border-black/10"
-      : "bg-transparent text-white border-white/20",
-  );
-
-  const navLinkIdle = isScrolled
-    ? "text-black hover:text-[#FF6611]"
-    : "text-white hover:text-white/90";
-  const navLinkActiveOpen = "text-[#FF6611]";
   const scrollToSection = useCallback((element) => {
     if (!element) return;
     const top =
@@ -118,50 +142,56 @@ export default function Navbar8({ content }) {
     },
     [router, scrollToSection],
   );
+
   const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
+
   const phoneLink = phone ? `tel:${phone}` : "#";
-//this is adjustment for header//
+  const callUsTodayLabel =
+    content?.navbar?.call_us_today ?? "Call Us Today";
+
   const headerContent = (
-    <div className="h-full">
-      <div className="flex h-[76px] w-full items-center justify-between gap-3">
-        <div className="h-full flex items-center shrink-0">
-          <div className="h-[76px] bg-[#FF6611] px-4 lg:px-6 flex items-center justify-between [clip-path:polygon(0_0,92%_0,100%_50%,92%_100%,0_100%)]">
-            <Logo logo={logo} imagePath={imagePath} />
-          </div>
+      <div className="flex w-full min-h-[48px] flex-row items-center justify-between gap-2 md:pr-8 md:min-h-[56px]">
+        <div className="flex h-full min-w-0 max-w-[min(100%,52%)] shrink items-center justify-start overflow-hidden pl-2 sm:pl-3 md:pl-4 lg:pl-5 sm:max-w-[min(100%,48%)] lg:max-w-[min(100%,380px)]">
+          <Logo logo={logo} imagePath={imagePath} useKoulenNavTypography />
         </div>
-        <div className="hidden lg:flex flex-1 items-center justify-center text-[20px] xl:text-[22px] font-barlow font-semibold gap-2.5 xl:gap-4">
+
+        <div className="hidden items-center justify-center gap-2 overflow-visible lg:flex lg:gap-4">
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
               const dropdownKey = item.childrenRef ?? item.title;
-              const isDropdownOpen = openDropdownRef === dropdownKey;
+              const isOpen = openDropdownRef === dropdownKey;
               return (
                 <div
                   key={dropdownKey}
-                  className="relative h-full flex items-center"
+                  className="relative flex items-center overflow-visible"
                   onMouseEnter={() => setOpenDropdownRef(dropdownKey)}
                   onMouseLeave={() => setOpenDropdownRef(null)}
                 >
                   <button
                     type="button"
                     className={cn(
-                      "flex items-center h-full gap-1 transition-colors",
-                      isDropdownOpen ? navLinkActiveOpen : navLinkIdle,
+                      navTopLevelFontClass(item),
+                      navTopLevelWeightClass(item),
+                      NAV_LABEL_SM,
+                      "inline-flex items-center gap-1 transition-colors",
+                      isOpen
+                        ? "text-[#ff9a40]"
+                        : "text-white hover:text-[#ff9a40]",
                     )}
                   >
                     {item.title}
-                    <ChevronDown className="w-4 h-4" />
+                    <ChevronDown className="h-4 w-4 shrink-0 self-center" />
                   </button>
                   <div
                     className={cn(
-                      "absolute top-full left-0 w-auto min-w-[200px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.35)] transition-all duration-300 ease-in-out flex flex-col",
-                      isDropdownOpen
-                        ? "opacity-100 visible transform translate-y-0"
-                        : "opacity-0 invisible transform -translate-y-2",
+                      "absolute left-0 top-full z-[110] flex max-h-[min(70vh,420px)] w-auto min-w-[300px] flex-col overflow-y-auto overflow-x-hidden border border-white/15 bg-[#061f4a] py-1 shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-all duration-300 ease-in-out dropdown-services-container scrollbar-hide",
+                      isOpen
+                        ? "visible translate-y-0 transform opacity-100"
+                        : "invisible -translate-y-2 transform opacity-0 pointer-events-none",
                     )}
                   >
-                    <div className="grow dropdown-services-container scrollbar-hide">
                       {children.map((child, index) => {
                         const href = getChildHref(child);
                         const isActive =
@@ -172,41 +202,51 @@ export default function Navbar8({ content }) {
                             title={child?.title}
                             href={href}
                             className={cn(
-                              "text-xl py-1 font-semibold px-4 cursor-pointer transition-all duration-100 block",
+                              interNav.className,
+                              "block cursor-pointer px-4 py-2.5 text-left text-[14px] font-normal not-italic leading-snug transition-all duration-100",
                               isActive
-                                ? "bg-[#FF6611] text-white"
-                                : "text-black hover:bg-[#FF6611] hover:text-white",
+                                ? "bg-[#ff4800] text-white"
+                                : "text-white/95 hover:bg-[#ff4800] hover:text-white",
                             )}
+                            style={{ color: "#FFF" }}
                           >
                             {child?.title}
                           </Link>
                         );
                       })}
-                    </div>
                   </div>
                 </div>
               );
             }
-
             const isLink = item.link?.startsWith("/");
+            const isActive = pathname === item.link;
             if (isLink) {
               return (
                 <Link
                   key={item.link ?? item.title}
                   href={item.link}
-                  className={cn("cursor-pointer transition-colors", navLinkIdle)}
+                  className={cn(
+                    navTopLevelFontClass(item),
+                    navTopLevelWeightClass(item),
+                    NAV_LABEL_SM,
+                    "cursor-pointer text-white transition-colors hover:text-[#ff9a40]",
+                  )}
                 >
                   {item.title}
                 </Link>
               );
             }
-
             return (
               <button
                 key={item.link ?? item.title}
                 type="button"
                 onClick={() => handleNavigation(item.link)}
-                className={cn("cursor-pointer transition-colors", navLinkIdle)}
+                className={cn(
+                  navTopLevelFontClass(item),
+                  navTopLevelWeightClass(item),
+                  NAV_LABEL_SM,
+                  "cursor-pointer text-white transition-colors hover:text-[#ff9a40]",
+                )}
               >
                 {item.title}
               </button>
@@ -214,22 +254,18 @@ export default function Navbar8({ content }) {
           })}
         </div>
 
-        <div className="flex items-center justify-end shrink-0">
-          <a
-            href={phoneLink}
-            className="hidden md:flex h-[54px] lg:h-[58px] items-center gap-2.5 px-4 lg:px-5 bg-[#FF6611] text-white font-semibold [clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)]"
-          >
-            <span className="w-8 h-8 rounded-full bg-white/20 border border-white/40 flex items-center justify-center flex-shrink-0">
-              <Phone className="w-4 h-4 text-white" />
-            </span>
-            <span className="leading-none text-[24px] lg:text-[28px]">{phone}</span>
-          </a>
+        <div className="flex items-center justify-end flex-row">
+          <div className="flex max-w-[min(100%,260px)] items-center sm:max-w-none">
+            <NavbarPhoneCta
+              href={phoneLink}
+              phone={phone}
+              callLabel={callUsTodayLabel}
+              className="w-full sm:w-auto"
+            />
+          </div>
 
           <div
-            className={cn(
-              "lg:hidden pl-3 cursor-pointer transition-colors",
-              isScrolled ? "text-black" : "text-white",
-            )}
+            className="lg:hidden cursor-pointer rounded-[3px] bg-[#ff4800] p-0.5 pl-5 pt-1.5 text-white"
             onClick={mounted ? toggleMenu : undefined}
             role="button"
             tabIndex={0}
@@ -239,173 +275,174 @@ export default function Navbar8({ content }) {
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            <div className="rounded-[3px] p-0.5 bg-[#FF6611] text-white">
               {isOpen ? (
                 <X className="w-7 h-6" />
               ) : (
                 <Menu className="w-7 h-6" />
               )}
-            </div>
           </div>
         </div>
       </div>
-    </div>
   );
 
   if (!mounted) {
     return (
-      <header id="navbar" className={navBarClass}>
-        <FullContainer>
-          <Container className="h-full">
-            <div className="h-full flex items-center justify-between">
-              <div className="h-full bg-[#FF6611] px-4 lg:px-6 flex items-center justify-center [clip-path:polygon(0_0,92%_0,100%_50%,92%_100%,0_100%)]">
-                <Logo logo={logo} imagePath={imagePath} />
-              </div>
-              <div className="flex items-center justify-end flex-row">
-                <a
+      <FullContainer className="relative flex h-[82px] w-full flex-col items-stretch justify-center overflow-visible bg-[#08285a] py-2 shadow-sm md:h-[112px]">
+        <NavbarBannerBackground />
+        <Container className="relative z-10 flex min-h-0 w-full flex-1 items-center">
+          <div className="flex w-full min-h-[48px] flex-row items-center justify-between gap-2 md:pr-8 md:min-h-[56px]">
+            <div className="flex h-full min-w-0 max-w-[min(100%,52%)] shrink items-center justify-start overflow-hidden pl-2 sm:pl-3 md:pl-4 lg:pl-5 sm:max-w-[min(100%,48%)] lg:max-w-[min(100%,380px)]">
+              <Logo logo={logo} imagePath={imagePath} useKoulenNavTypography />
+            </div>
+            <div className="flex items-center justify-end flex-row">
+              <div className="hidden md:flex items-center">
+                <NavbarPhoneCta
                   href={phoneLink}
-                  className="hidden md:flex h-[54px] items-center gap-2.5 px-4 bg-[#FF6611] text-white font-semibold [clip-path:polygon(15%_0,100%_0,100%_100%,0_100%)]"
-                >
-                  <span className="w-8 h-8 rounded-full bg-white/20 border border-white/40 flex items-center justify-center flex-shrink-0">
-                    <Phone className="w-4 h-4 text-white" />
-                  </span>
-                  <span className="leading-none text-[24px]">{phone}</span>
-                </a>
-                <div
-                  className={cn(
-                    "lg:hidden pl-3 transition-colors",
-                    isScrolled ? "text-black" : "text-white",
-                  )}
-                >
-                  <div className="rounded-[3px] p-0.5 bg-[#FF6611] text-white">
-                    <Menu className="w-7 h-6" />
-                  </div>
-                </div>
+                  phone={phone}
+                  callLabel={callUsTodayLabel}
+                />
+              </div>
+              <div className="rounded-[3px] bg-[#ff4800] p-0.5 pl-5 pt-1.5 text-white lg:hidden">
+                <Menu className="h-6 w-7" />
               </div>
             </div>
-          </Container>
-        </FullContainer>
-      </header>
+          </div>
+        </Container>
+      </FullContainer>
     );
   }
 
   return (
-    <header id="navbar" className={navBarClass}>
-      <FullContainer>
-        <Container className="h-full">{headerContent}</Container>
+    <FullContainer
+      id="navbar"
+      className="relative z-[100] flex h-[82px] w-full flex-col items-stretch justify-center overflow-visible bg-[#08285a] py-2 shadow-sm md:h-[112px]"
+    >
+      <NavbarBannerBackground />
+      <Container className="relative z-10 flex min-h-0 w-full flex-1 items-center">
+        {headerContent}
+      </Container>
 
-        <div
-          className={cn(
-            "lg:hidden py-2 bg-white border-t border-black/5 sticky left-0 right-0 w-full transition-all duration-300",
-            isOpen
-              ? "h-fit opacity-100 visible"
-              : "h-0 opacity-0 invisible overflow-hidden",
-          )}
-        >
-          <div className="flex flex-col font-barlow font-semibold text-[18px]">
-            {menuItemsArray.map((item) => {
-              if (isDropdownItem(item)) {
-                const children = getDropdownChildren(item);
-                const dropdownKey = item.childrenRef ?? item.title;
-                const isDropdownOpen = openDropdownRef === dropdownKey;
-                return (
-                  <div key={dropdownKey}>
-                    <div
-                      className={cn(
-                        "px-4 py-1 flex items-center cursor-pointer",
-                        children.some((c) => pathname === getChildHref(c))
-                          ? "bg-[#FF6611] text-white"
-                          : "text-black bg-transparent",
-                      )}
-                      onClick={() =>
-                        setOpenDropdownRef((prev) =>
-                          prev === dropdownKey ? null : dropdownKey,
-                        )
-                      }
-                      role="button"
-                      tabIndex={0}
-                      onKeyDown={(e) =>
-                        (e.key === "Enter" || e.key === " ") &&
-                        setOpenDropdownRef((prev) =>
-                          prev === dropdownKey ? null : dropdownKey,
-                        )
-                      }
-                    >
-                      {item.title}
-                      <ChevronDown className="w-4 h-4" />
-                    </div>
-                    {isDropdownOpen && children.length > 0 && (
-                      <div className="mt-2 flex flex-col max-h-[300px] overflow-y-auto gap-2">
-                        {children.map((child, index) => {
-                          const href = getChildHref(child);
-                          const isActive =
-                            pathname === href || pathname === (child?.path ?? "");
-                          return (
-                            <Link
-                              key={child?.title ?? child?.path ?? index}
-                              title={child?.title}
-                              href={href}
-                              className={cn(
-                                "py-1 pl-7 px-4 text-lg",
-                                isActive
-                                  ? "bg-[#FF6611] text-white"
-                                  : "text-black hover:text-[#FF6611]",
-                              )}
-                              onClick={closeMenu}
-                            >
-                              {child?.title}
-                            </Link>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              const isLink = item.link?.startsWith("/");
-              const isActive = pathname === item.link;
-              if (isLink) {
-                return (
-                  <Link
-                    key={item.link ?? item.title}
-                    title={item.title}
-                    href={item.link}
+      <div
+        className={cn(
+          "absolute left-0 right-0 top-full z-20 flex w-full flex-col border-t border-white/10 bg-[#061f4a] py-2 transition-all duration-300 lg:hidden",
+          isOpen
+            ? "h-fit opacity-100 visible"
+            : "h-0 opacity-0 invisible overflow-hidden",
+        )}
+      >
+          {menuItemsArray.map((item) => {
+            if (isDropdownItem(item)) {
+              const children = getDropdownChildren(item);
+              const dropdownKey = item.childrenRef ?? item.title;
+              const isDropdownOpen = openDropdownRef === dropdownKey;
+              return (
+                <div key={dropdownKey}>
+                  <div
                     className={cn(
-                      "px-4 py-1",
-                      isActive
-                        ? "bg-[#FF6611] text-white"
-                        : "text-black bg-transparent",
+                      navTopLevelFontClass(item),
+                      navTopLevelWeightClass(item),
+                      NAV_LABEL_SM,
+                      "flex cursor-pointer items-center px-4",
+                      children.some((c) => pathname === getChildHref(c))
+                        ? "bg-[#ff4800] text-white"
+                        : "bg-transparent text-white/95 hover:bg-white/10",
                     )}
-                    onClick={closeMenu}
+                    style={{ color: "#FFF" }}
+                    onClick={() =>
+                      setOpenDropdownRef((prev) =>
+                        prev === dropdownKey ? null : dropdownKey,
+                      )
+                    }
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) =>
+                      (e.key === "Enter" || e.key === " ") &&
+                      setOpenDropdownRef((prev) =>
+                        prev === dropdownKey ? null : dropdownKey,
+                      )
+                    }
                   >
                     {item.title}
-                  </Link>
-                );
-              }
-
-              return (
-                <button
-                  key={item.link ?? item.title}
-                  type="button"
-                  className={cn(
-                    "px-4 py-1 cursor-pointer text-left",
-                    pathname.includes(item.link)
-                      ? "bg-[#FF6611] text-white"
-                      : "text-black bg-transparent",
+                    <ChevronDown className="h-4 w-4 shrink-0" />
+                  </div>
+                  {isDropdownOpen && children.length > 0 && (
+                    <div className="mt-2 flex max-h-[300px] flex-col gap-2 overflow-y-auto">
+                      {children.map((child, index) => {
+                        const href = getChildHref(child);
+                        const isActive =
+                          pathname === href || pathname === (child?.path ?? "");
+                        return (
+                          <Link
+                            key={child?.title ?? child?.path ?? index}
+                            title={child?.title}
+                            href={href}
+                            className={cn(
+                              interNav.className,
+                              "px-4 py-1 pl-7 text-[14px] font-normal not-italic leading-normal",
+                              isActive
+                                ? "bg-[#ff4800] text-white"
+                                : "text-white/90 hover:bg-white/10 hover:text-white",
+                            )}
+                            style={{ color: "#FFF" }}
+                            onClick={closeMenu}
+                          >
+                            {child?.title}
+                          </Link>
+                        );
+                      })}
+                    </div>
                   )}
-                  onClick={() => {
-                    handleNavigation(item.link);
-                    closeMenu();
-                  }}
+                </div>
+              );
+            }
+            const isLink = item.link?.startsWith("/");
+            const isActive = pathname === item.link;
+            if (isLink) {
+              return (
+                <Link
+                  key={item.link ?? item.title}
+                  title={item.title}
+                  href={item.link}
+                  className={cn(
+                    navTopLevelFontClass(item),
+                    navTopLevelWeightClass(item),
+                    NAV_LABEL_SM,
+                    "px-4",
+                    isActive
+                      ? "bg-[#ff4800] text-white"
+                      : "bg-transparent text-white/95 hover:bg-white/10",
+                  )}
+                  style={{ color: "#FFF" }}
+                  onClick={closeMenu}
                 >
                   {item.title}
-                </button>
+                </Link>
               );
-            })}
-          </div>
-        </div>
-      </FullContainer>
-    </header>
+            }
+            return (
+              <button
+                key={item.link ?? item.title}
+                type="button"
+                className={cn(
+                  navTopLevelFontClass(item),
+                  navTopLevelWeightClass(item),
+                  NAV_LABEL_SM,
+                  "cursor-pointer px-4 text-left",
+                  pathname.includes(item.link)
+                    ? "bg-[#ff4800] text-white"
+                    : "bg-transparent text-white/95 hover:bg-white/10",
+                )}
+                style={{ color: "#FFF" }}
+                onClick={() => {
+                  handleNavigation(item.link);
+                  closeMenu();
+                }}
+              >
+                {item.title}
+              </button>
+            );
+          })}
+      </div>
+    </FullContainer>
   );
 }
