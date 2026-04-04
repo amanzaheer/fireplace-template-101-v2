@@ -9,18 +9,16 @@ import {
   faEnvelope,
   faMapPin,
   faSquarePhone,
+  faClock,
 } from "@fortawesome/free-solid-svg-icons";
-import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faTwitter,
-} from "@fortawesome/free-brands-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import {Poppins, Inter, Rubik} from "next/font/google";
+import { Poppins, Inter, Rubik } from "next/font/google";
+import { IMAGE_BASE } from "@/lib/constants";
+import Image from "next/image";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -52,9 +50,14 @@ const byPrefixAndName = {
   },
 };
 
+function buildImageSrc(base, filePath) {
+  if (!filePath || typeof filePath !== "string") return "";
+  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
+  const segment = filePath.replace(/^\//, "");
+  return `${basePath}/${segment}`;
+}
+
 export default function Footer2({ content }) {
-  const footer = content?.footer ?? {};
-  const contactInfo = content?.contact_info ?? {};
   const pathname = usePathname() ?? "";
   const services = useMemo(
     () => (Array.isArray(content?.services) ? content.services : []),
@@ -74,61 +77,64 @@ export default function Footer2({ content }) {
     return () => document.removeEventListener("mousedown", onMouseDown);
   }, [isServicesOpen]);
 
-  const statement =
-    footer.value ??
-    footer.statement ??
-    "Our goal is to give you services that are fast, effective, and affordable, and that go above and beyond what you expect.";
-  const address =
-    contactInfo.address ??
-    "Lumbung Hidup St. 425 East Java Madiun City 1234";
-  const email = contactInfo.email ?? "chimney@gmail.com";
-  const phone = contactInfo.phone ?? content?.navbar?.phone ?? "(+62) 123 456 789";
+  const footer = content?.footer ?? {};
+  const contactInfo = content?.contact_info ?? {};
+  const phone = contactInfo.phone ?? content?.navbar?.phone ?? "";
+  const email = contactInfo.email ?? "";
+  const workingHours =
+    contactInfo.working_hours ?? "Monday - Friday: 7AM - 8PM";
+  const statement = footer.value ?? footer.statement ?? "";
+  const companies = [1, 2, 3, 4, 5].map((n) =>
+    buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`),
+  );
 
   const quickLinks = [
-    { href: "/", label: "Home" },
-    { href: "/locations", label: "Locations" },
-    { href: "/contact-us", label: "Contact Us" },
-    { href: "/faq", label: "FAQ" },
     { href: "/privacy-policy", label: "Privacy Policy" },
     { href: "/terms-and-conditions", label: "Terms and Conditions" },
   ];
 
-  const socialLinks = [
-    { href: "#", label: "Facebook", icon: faFacebook },
-    { href: "#", label: "Twitter", icon: byPrefixAndName.fab["twitter"] },
-    { href: "#", label: "Instagram", icon: faInstagram },
-    { href: "#", label: "LinkedIn", icon: faLinkedin },
-  ];
-
-  // FontAwesomeIcon SVGs default to `1em` sizing, so `text-*` works reliably
-  // (instead of `w-* h-*`, which can be overridden by FontAwesome inline sizing).
   const iconClass = "text-[16px] md:text-[20px]";
   const iconAccent = "text-[#d62828]";
 
   return (
     <footer>
-      <FullContainer id="footer" className="bg-black py-12 md:py-16 mb-16 md:mb-0 relative">
+      <FullContainer
+        id="footer"
+        className="bg-black py-12 md:py-16 mb-16 md:mb-0 relative"
+      >
         <Container className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
             <div>
-              <h3 className="text-white text-2xl md:text-3xl font-bold mb-4">Information</h3>
-              <p className="text-white/90 text-[17px] leading-relaxed max-w-[420px]">{statement}</p>
-              <div className="mt-6 flex items-center gap-4">
-                {socialLinks.map(({ href, label, icon }) => (
-                  <Link
-                    key={label}
-                    href={href}
-                    aria-label={label}
-                    className="text-[#d62828] hover:text-[#ef4444] transition-colors duration-200"
-                  >
-                    <FontAwesomeIcon icon={icon} className={iconClass} />
-                  </Link>
-                ))}
+              <div className="flex gap-1 mb-2">
+                {companies.map((src, index) =>
+                  src ? (
+                    <div
+                      key={index}
+                      className="w-full h-full aspect-square flex items-center justify-center overflow-hidden bg-white rounded-full relative"
+                    >
+                      <Image
+                        title="Company logo"
+                        src={src}
+                        alt="Company Logo"
+                        width={60}
+                        height={60}
+                        className="h-[80%] w-[80%] object-contain"
+                      />
+                    </div>
+                  ) : null,
+                )}
               </div>
+              <p className="text-white/90 text-[17px] leading-relaxed max-w-[420px]">
+                {statement}
+              </p>
             </div>
 
             <div>
-              <h3 className={`${rubik.className} text-white text-2xl md:text-3xl font-bold mb-4`}>Quick Links</h3>
+              <h3
+                className={`${rubik.className} text-white text-2xl md:text-3xl font-bold mb-4`}
+              >
+                Quick Links
+              </h3>
               <ul className="space-y-2">
                 {quickLinks.map((item) => (
                   <li key={item.href}>
@@ -177,7 +183,8 @@ export default function Footer2({ content }) {
                       <div className="grow dropdown-services-container scrollbar-hide">
                         {services.map((svc, idx) => {
                           const href = svc?.path ?? "#";
-                          const label = svc?.title ?? svc?.name ?? `Service ${idx + 1}`;
+                          const label =
+                            svc?.title ?? svc?.name ?? `Service ${idx + 1}`;
                           if (!href || href === "#") return null;
 
                           const isActive = pathname === href;
@@ -206,14 +213,22 @@ export default function Footer2({ content }) {
             </div>
 
             <div className=" text-white">
-              <h3 className={`${rubik.className} text-white  text-2xl md:text-3xl font-bold mb-4`}>Stay Tuned With Us</h3>
+              <h3
+                className={`${rubik.className} text-white  text-2xl md:text-3xl font-bold mb-4`}
+              >
+                Stay Tuned With Us
+              </h3>
               <div className="flex flex-col gap-2 md:gap-7">
                 <div className="flex items-start gap-3 ">
-                  <FontAwesomeIcon
-                    icon={byPrefixAndName.fas["map-pin"]}
-                    className={`${iconClass} mt-0.5 ${iconAccent} shrink-0`}
-                  />
-                  <span className="text-white/95 text-[17px] leading-relaxed">{address}</span>
+                  <li className="flex items-center gap-1.5">
+                    <FontAwesomeIcon
+                      icon={faClock}
+                      className={`${iconClass} ${iconAccent} shrink-0`}
+                    />
+                    <span className="text-white text-sm md:text-[15px]">
+                      {workingHours}
+                    </span>
+                  </li>
                 </div>
                 <div className="flex items-center gap-3">
                   <FontAwesomeIcon
