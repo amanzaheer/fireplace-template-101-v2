@@ -2,6 +2,7 @@
  * Promotion section: multiple designs, one export.
  * variant comes from domain config (SectionLayout).
  */
+import { createElement } from "react";
 import Promotion1 from "./Promotion1";
 import Promotion2 from "./Promotion2";
 import Promotion3 from "./Promotion3";
@@ -36,8 +37,7 @@ function resolvePromotionComponent(variant) {
 }
 
 export default function Promotion({ variant, content }) {
-  const Component = resolvePromotionComponent(variant);
-  return <Component content={content} />;
+  return createElement(resolvePromotionComponent(variant), { content });
 }
 
 export {
