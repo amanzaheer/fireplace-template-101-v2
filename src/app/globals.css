@@ -79,6 +79,28 @@
     margin-top: 0;
     line-height: 1.5;
   }
+
+  /* Orange card prose — beats default navy .prose (headings, strong, body) */
+  .prose.prose-accent-d354 h1,
+  .prose.prose-accent-d354 h2,
+  .prose.prose-accent-d354 h3,
+  .prose.prose-accent-d354 h4 {
+    color: #d35400 !important;
+    text-align: left !important;
+  }
+
+  .prose.prose-accent-d354 strong {
+    color: #d35400 !important;
+  }
+
+  .prose.prose-accent-d354 p,
+  .prose.prose-accent-d354 li {
+    color: #4b5563 !important;
+  }
+
+  .prose.prose-accent-d354 a {
+    color: #d35400 !important;
+  }
 }
 
 /* Prose list styles — outside @layer so they beat the typography plugin reset */
