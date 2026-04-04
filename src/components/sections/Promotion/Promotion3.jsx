@@ -6,7 +6,7 @@ import { mdiShieldCheckOutline } from "@mdi/js";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import md from "@/lib/markdown";
-import { Poppins, Inter, Rubik } from "next/font/google"; 
+import { Poppins, Inter, Rubik } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -20,25 +20,14 @@ const rubik = Rubik({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-/**
- * Renders a string as plain text (preserving existing styles) when it contains
- * no markdown, or as HTML when markdown syntax is detected.
- * The wrapping element and className are passed through so styles stay intact.
- *
- * Uses md.render() (handles ## headings, **bold**, etc.) and strips the outer
- * <p>…</p> that markdown-it wraps plain paragraphs in, so the Tag's own
- * styles are not disrupted.
- */
 function MaybeMarkdown({ as: Tag = "span", className, children }) {
-  if (typeof children !== "string") return <Tag className={className}>{children}</Tag>;
+  if (typeof children !== "string")
+    return <Tag className={className}>{children}</Tag>;
   const hasMarkdown = /[*_`#\[\]~>]/.test(children);
   if (!hasMarkdown) return <Tag className={className}>{children}</Tag>;
   const html = md.render(children).replace(/^<p>([\s\S]*?)<\/p>\n?$/, "$1");
   return (
-    <Tag
-      className={className}
-      dangerouslySetInnerHTML={{ __html: html }}
-    />
+    <Tag className={className} dangerouslySetInnerHTML={{ __html: html }} />
   );
 }
 
@@ -60,7 +49,7 @@ const PromotionCard = ({
 }) => {
   return (
     <div
-      className={`relative flex flex-col h-full rounded-[22px] p-6 md:p-7 border shadow-sm ${
+      className={`relative flex flex-col h-full rounded-[22px] p-6 md:p-7 border shadow-sm mt-6 ${
         isMainCard
           ? "bg-[#f59403] text-white border-[#f59403] md:scale-[1.02]"
           : "bg-white text-[#121212] border-[#e7e7e7]"
@@ -71,7 +60,9 @@ const PromotionCard = ({
           <MaybeMarkdown
             as="h3"
             className={`${poppins.className} font-extrabold tracking-tight leading-tight ${
-              isMainCard ? "text-[22px] md:text-[27px]" : "text-[28px] md:text-[32px]"
+              isMainCard
+                ? "text-[22px] md:text-[27px]"
+                : "text-[28px] md:text-[32px]"
             }`}
           >
             {heading}
@@ -87,7 +78,7 @@ const PromotionCard = ({
         </div>
       )}
 
-      <div className="space-y-2.5 flex-1 mt-2">
+      <div className="space-y-2.5 flex-1 mt-4">
         {(Array.isArray(features) ? features : [])?.map((feature, index) => (
           <div
             key={index}
@@ -96,7 +87,10 @@ const PromotionCard = ({
             }`}
           >
             <CheckIcon isMainCard={isMainCard} />
-            <MaybeMarkdown as="span" className={`${inter.className}  text-[14px] md:text-[16px]`}>
+            <MaybeMarkdown
+              as="span"
+              className={`${inter.className}  text-[14px] md:text-[16px]`}
+            >
               {feature}
             </MaybeMarkdown>
           </div>
@@ -106,7 +100,7 @@ const PromotionCard = ({
       {isMainCard ? (
         <a
           href={phone ? `tel:${phone}` : "#"}
-          className="mt-6 inline-flex w-fit items-center gap-2 rounded-full bg-white text-[#f3a008] font-semibold px-5 py-2.5 text-[28px] leading-none"
+          className="mt-2 inline-flex w-fit mb-4 items-center gap-2 rounded-full bg-white text-[#f3a008] font-semibold px-5 py-2.5 text-[28px] leading-none"
         >
           <Phone className="w-4 h-4 md:w-5 md:h-5" />
           {phone || "(888)-249-0566"}

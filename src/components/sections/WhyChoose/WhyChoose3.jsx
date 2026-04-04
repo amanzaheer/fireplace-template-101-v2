@@ -2,10 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import {
-  Phone,
-  CheckCircle2,
-} from "lucide-react";
+import { Phone, CheckCircle2 } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
@@ -54,7 +51,7 @@ export default function WhyChoose3({ content }) {
             {heading}
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-7 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-2 items-start">
             <div>
               <ul className="space-y-2.5">
                 {features.map((feature, idx) => {
@@ -79,10 +76,10 @@ export default function WhyChoose3({ content }) {
 
               <a
                 href={`tel:${phone}`}
-                className="mt-5 inline-flex max-w-full items-center gap-2 rounded-full bg-white text-[#d39b3e] font-extrabold px-4 md:px-5 py-2.5 text-xl md:text-2xl leading-none"
+                className="mt-5 inline-flex max-w-full items-center gap-2 rounded-full bg-white text-[#d39b3e] px-4 md:px-5 py-2.5 text-xl md:text-2xl leading-none"
               >
-                <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-black text-white">
-                  <Phone className="w-4 h-4" />
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full  text-[#d39b3e]">
+                  <Phone className="w-6 h-6 text-[#d39b3e] font-extrabold" />
                 </span>
                 <span className="truncate">{phone || "(888)-249-0566"}</span>
               </a>
@@ -93,6 +90,7 @@ export default function WhyChoose3({ content }) {
                 {description}
               </p>
             </div>
+            <div></div>
           </div>
         </div>
       </div>
