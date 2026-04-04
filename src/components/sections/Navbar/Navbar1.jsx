@@ -246,7 +246,7 @@ export default function Navbar1({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-primary1 py-2 h-[82px] md:h-[112px]"
+      className="shadow-sm bg-white w-full sticky top-0 z-20 py-2 h-[82px] md:h-[112px]"
     >
       <Container>{headerContent}</Container>
 
