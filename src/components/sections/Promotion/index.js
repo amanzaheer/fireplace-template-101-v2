@@ -40,4 +40,14 @@ export default function Promotion({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion6, Promotion5, Promotion7, Promotion8, variants };
+export {
+  Promotion1,
+  Promotion2,
+  Promotion3,
+  Promotion4,
+  Promotion6,
+  Promotion5,
+  Promotion7,
+  Promotion8,
+  variants,
+};
