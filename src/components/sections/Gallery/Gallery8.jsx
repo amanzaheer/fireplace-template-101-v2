@@ -70,7 +70,7 @@ export default function Gallery8({ content }) {
                   <div className="p-4">
                     {phone ? (
                       <div className="flex justify-center">
-                        <PrimaryPhone phone={phone} />
+                        <PrimaryPhone phone={phone} variant="orange" />
                       </div>
                     ) : null}
                   </div>
