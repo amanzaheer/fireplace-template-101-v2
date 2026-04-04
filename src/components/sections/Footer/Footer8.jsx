@@ -30,7 +30,7 @@ export default function Footer8({ content }) {
     <footer>
       <FullContainer
         id="footer"
-        className="relative overflow-hidden bg-[#082752] py-10 md:py-12 mb-16 md:mb-0"
+        className="relative mb-12 min-h-0 w-full overflow-hidden bg-[#082752] py-6 sm:py-8 md:py-9 md:mb-0"
       >
         {bgSrc ? (
           <Image
@@ -43,17 +43,17 @@ export default function Footer8({ content }) {
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-b from-[#0b3d84]/30 to-[#051a3a]/80" />
         <Container className="relative z-10">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 justify-between w-full">
-            <div className="max-w-[560px]">
-              <h3 className="text-white text-[38px] md:text-[44px] leading-none font-bold mb-4">
+          <div className="grid w-full grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
+            <div className="w-full min-w-0 max-w-full lg:max-w-[min(100%,36rem)]">
+              <h3 className="mb-2 text-[clamp(1.5rem,4vw,2.75rem)] font-bold leading-tight text-white sm:mb-3 md:text-[2.75rem]">
                 Information
               </h3>
-              <div className="flex flex-wrap items-center gap-3 mb-5">
+              <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
                 {companies.map((src, index) =>
                   src ? (
                     <div
                       key={index}
-                      className="relative h-[40px] w-[70px] md:h-[46px] md:w-[82px] flex items-center justify-center"
+                      className="relative flex h-8 w-14 shrink-0 items-center justify-center sm:h-9 sm:w-16 md:h-10 md:w-[4.75rem] lg:h-[46px] lg:w-[82px]"
                     >
                       <Image
                         title="Company logo"
@@ -67,60 +67,60 @@ export default function Footer8({ content }) {
                 )}
               </div>
               {statement ? (
-                <p className="text-white/95 text-[24px] md:text-[28px] leading-[1.35] max-w-[980px]">
+                <p className="max-w-full text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem] lg:max-w-[61rem]">
                   {statement}
                 </p>
               ) : null}
             </div>
-            <div className="w-full lg:pl-16">
-              <h3 className="text-white text-[38px] md:text-[44px] leading-none font-bold mb-6">
+            <div className="w-full min-w-0 lg:pl-8 xl:pl-16">
+              <h3 className="mb-4 text-[clamp(1.5rem,4vw,2.75rem)] font-bold leading-tight text-white sm:mb-6 md:text-[2.75rem]">
                 Contact Info
               </h3>
-              <ul className="space-y-4">
+              <ul className="space-y-3 sm:space-y-4">
                 <li className="flex items-start gap-3">
-                  <Phone className="w-6 h-6 text-[#f7a11a] mt-1" />
+                  <Phone className="mt-1 h-5 w-5 shrink-0 text-[#f7a11a] sm:h-6 sm:w-6" />
                   <Link
                     title="Call Button"
                     href={phone ? `tel:${phone}` : "#"}
-                    className="text-white/95 text-[24px] md:text-[28px] leading-[1.35]"
+                    className="min-w-0 break-words text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem]"
                   >
                     {phone || "(656) 245-0412"}
                   </Link>
                 </li>
                 {email ? (
                   <li className="flex items-start gap-3">
-                    <Mail className="w-6 h-6 text-[#f7a11a] mt-1" />
+                    <Mail className="mt-1 h-5 w-5 shrink-0 text-[#f7a11a] sm:h-6 sm:w-6" />
                     <Link
                       title="Email Button"
                       href={`mailto:${email}`}
-                      className="text-white/95 text-[24px] md:text-[28px] leading-[1.35] break-all"
+                      className="min-w-0 break-all text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem]"
                     >
                       {email}
                     </Link>
                   </li>
                 ) : null}
                 <li className="flex items-start gap-3">
-                  <Clock4 className="w-6 h-6 text-[#f7a11a] mt-1" />
-                  <span className="text-white/95 text-[24px] md:text-[28px] leading-[1.35]">
+                  <Clock4 className="mt-1 h-5 w-5 shrink-0 text-[#f7a11a] sm:h-6 sm:w-6" />
+                  <span className="text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem]">
                     {workingHours}
                   </span>
                 </li>
               </ul>
             </div>
           </div>
-          <div className="mt-10 pt-4 border-t border-white/30">
-            <div className="flex flex-wrap gap-6">
+          <div className="mt-6 sm:mt-7">
+            <div className="inline-flex w-fit max-w-full flex-wrap gap-4 border-t border-white/30 pt-3 sm:gap-6 sm:pt-3.5">
               <Link
                 title="Privacy Policy"
                 href="/privacy-policy"
-                className="text-white/90 text-sm md:text-base"
+                className="text-sm text-white/90 md:text-base"
               >
                 Privacy Policy
               </Link>
               <Link
                 title="Terms and conditions"
                 href="/terms-and-conditions"
-                className="text-white/90 text-sm md:text-base"
+                className="text-sm text-white/90 md:text-base"
               >
                 Terms and conditions
               </Link>

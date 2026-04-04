@@ -8,6 +8,7 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import Heading from "@/components/common/Heading";
 import { IMAGE_BASE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -40,6 +41,10 @@ export default function ServiceBenefits8({ content }) {
   };
 
   if (list.length === 0) return null;
+
+  /** Same footprint for phone + quote (aligned pair); vivid orange like Navbar / promos. */
+  const ctaButtonClass =
+    "flex h-12 w-[205px] shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6600] px-3 text-sm font-semibold text-white shadow transition-colors hover:bg-[#e65c00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6600]";
 
   return (
     <FullContainer id="service_benefits" className="py-0 md:py-8 overflow-hidden">
@@ -77,22 +82,19 @@ export default function ServiceBenefits8({ content }) {
               </div>
             </div>
             <div className="w-full gap-2 justify-start hidden md:flex flex-col lg:flex-row items-start lg:items-center lg:gap-4">
-              <Link href={`tel:${phone}`}>
-                <button className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 min-w-[205px] rounded-full bg-orange-500 text-white font-semibold text-lg shadow hover:bg-orange-600 transition-all">
-                  <Phone className="w-5 h-5" />
-                  {phone}
+              <Link href={`tel:${phone}`} className="inline-flex">
+                <button type="button" className={ctaButtonClass}>
+                  <Phone className="h-5 w-5 shrink-0" strokeWidth={2} />
+                  <span className="min-w-0 truncate">{phone}</span>
                 </button>
               </Link>
               <button
+                type="button"
                 onClick={handleQuoteClick}
-                className="inline-flex min-w-[160px] bg-orange-500 rounded-full md:text-base font-barlow py-3 px-6 w-[205px] font-bold text-white transition-colors hover:bg-orange-600"
+                className={cn(ctaButtonClass, "uppercase tracking-wide")}
               >
-                <div className="flex items-center gap-2">
-                  <TextQuote className="w-6 h-6" />
-                  <h2 className="text-md font-thin md:text-xl tracking-widest md:tracking-normal ml-2">
-                    GET A QUOTE
-                  </h2>
-                </div>
+                <TextQuote className="h-5 w-5 shrink-0" strokeWidth={2} />
+                <span>Get a quote</span>
               </button>
             </div>
           </div>
