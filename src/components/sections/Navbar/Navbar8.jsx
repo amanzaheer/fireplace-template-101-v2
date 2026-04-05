@@ -11,6 +11,7 @@ import Logo from "@/components/common/Logo";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import Image from "next/image";
 
 const poppinsNav = Poppins({
   subsets: ["latin"],
@@ -49,8 +50,6 @@ function NavbarBannerBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0">
       <div className="absolute inset-0 bg-gradient-to-r from-[#061f4a] via-[#072a62] to-[#072b5f]" />
-      <div className="absolute left-[-50px] top-0 h-[120px] w-[597px] bg-[#ff6a00] [clip-path:polygon(0_0,100%_0,0_100%)] sm:h-[180px] sm:w-[170px] md:h-[240px] md:w-[230px] lg:h-[300px] lg:w-[290px]" />
-      <div className="absolute bottom-[-10px] left-0 h-[100px] w-[597px] bg-[#ff6a00] [clip-path:polygon(0_0,100%_100%,0_100%)] sm:h-[140px] sm:w-[172px] md:h-[200px] md:w-[90px] lg:h-[250px] lg:w-[108px]" />
     </div>
   );
 }
@@ -61,19 +60,19 @@ function NavbarPhoneCta({ href, phone, callLabel = "Call Us Today", className })
       href={href}
       className={cn(
         poppinsNav.className,
-        "flex max-w-full items-center gap-2 rounded-none bg-[#ff6600] py-1.5 pl-1.5 pr-3 text-white shadow-sm transition-opacity hover:opacity-90 sm:gap-2.5 sm:py-2 sm:pl-2 sm:pr-4",
+        "flex max-w-full items-center gap-2 rounded-none bg-transparent md:bg-[#fe5e00] px-4 md:px-6  text-white transition-opacity hover:opacity-90",
         className,
       )}
     >
-      <span className="flex h-[22px] w-[22px] shrink-0 items-center justify-center self-center rounded-full bg-white sm:h-[26px] sm:w-[26px]">
+      <span className="flex h-[22px] w-[22px] md:h-[55px] md:w-[55px] shrink-0 items-center justify-center self-center rounded-full bg-white sm:h-[26px] sm:w-[26px]">
         <Phone className="h-3 w-3 text-[#ff6600] sm:h-3.5 sm:w-3.5" strokeWidth={2.25} aria-hidden />
       </span>
       <span className="flex min-w-0 flex-1 flex-col items-start justify-center gap-0.5">
-        <span className="font-barlow text-[10px] font-bold uppercase leading-none tracking-wide text-white sm:text-xs">
+        {/* <span className="font-barlow text-[10px] font-bold uppercase leading-none tracking-wide text-white sm:text-xs">
           {callLabel}
-        </span>
+        </span> */}
         <span
-          className="w-full truncate text-left text-[13px] font-medium leading-tight sm:text-[15px]"
+          className="w-full truncate text-left text-[14px] font-bold md:text-[27px]"
           style={{ color: "#FFF" }}
         >
           {phone}
@@ -151,12 +150,13 @@ export default function Navbar8({ content }) {
     content?.navbar?.call_us_today ?? "Call Us Today";
 
   const headerContent = (
-      <div className="flex w-full min-h-[48px] flex-row items-center justify-between gap-2 md:pr-8 md:min-h-[56px]">
-        <div className="flex h-full min-w-0 max-w-[min(100%,52%)] shrink items-center justify-start overflow-hidden pl-2 sm:pl-3 md:pl-4 lg:pl-5 sm:max-w-[min(100%,48%)] lg:max-w-[min(100%,380px)]">
-          <Logo logo={logo} imagePath={imagePath} useKoulenNavTypography />
+      <div className="flex w-full min-h-[48px] flex-row items-center justify-between gap-2 md:min-h-[56px]">
+      
+        <div className="flex h-full min-w-0 max-w-[min(100%,52%)]  shrink items-center justify-start overflow-hidden pl-2 sm:pl-3 md:pl-4 lg:pl-5 sm:max-w-[min(100%,48%)] lg:max-w-[min(100%,380px)]">
+          <Logo logo={logo} imagePath={imagePath} useKoulenNavTypography className="text-white!"/>
         </div>
 
-        <div className="hidden items-center justify-center gap-2 overflow-visible lg:flex lg:gap-4">
+        <div className={` ${interNav.className} hidden items-center text-[14px] font-normal justify-center gap-2 overflow-visible lg:flex lg:gap-16`}>
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
@@ -254,7 +254,38 @@ export default function Navbar8({ content }) {
           })}
         </div>
 
-        <div className="flex items-center justify-end flex-row">
+        <div className="h-2 w-20 md:w-40 lg:w-55 ">
+
+        </div>
+
+        
+      </div>
+  );
+
+  if (!mounted) {
+    return (
+      <FullContainer
+      id="navbar"
+      className="fixed top-0 z-20 flex h-[60px] w-full flex-row items-center justify-center overflow-visible bg-[#00142c]  shadow-sm md:h-[90px]"
+    >
+      <div className="absolute top-0 left-0 w-full h-full">
+          <Image
+            src="/st-icons/Temp8/navbar.png"
+            alt="Logo"
+            height={1000}
+            width={1000}
+            className="w-auto h-full"
+          />
+        </div>
+      <Container className="relative z-10 flex min-h-0 w-full flex-1 items-center">
+
+      <div className="flex h-full min-w-0 max-w-[min(100%,52%)]  shrink items-center justify-start overflow-hidden pl-2 sm:pl-3 md:pl-4 lg:pl-5 sm:max-w-[min(100%,48%)] lg:max-w-[min(100%,380px)]">
+          <Logo logo={logo} imagePath={imagePath} useKoulenNavTypography className="text-white!"/>
+        </div>
+      </Container>
+
+     
+      <div className="pointer-events-auto absolute right-0 top-0 z-[110] flex h-full flex-row items-center justify-end bg-transparent md:bg-[#fe5e00]">
           <div className="flex max-w-[min(100%,260px)] items-center sm:max-w-none">
             <NavbarPhoneCta
               href={phoneLink}
@@ -265,7 +296,7 @@ export default function Navbar8({ content }) {
           </div>
 
           <div
-            className="lg:hidden cursor-pointer rounded-[3px] bg-[#ff4800] p-0.5 pl-5 pt-1.5 text-white"
+            className="flex cursor-pointer items-center justify-center rounded-[3px] bg-[#00142c] p-2 text-white md:bg-[#fe5e00] lg:hidden"
             onClick={mounted ? toggleMenu : undefined}
             role="button"
             tabIndex={0}
@@ -282,52 +313,36 @@ export default function Navbar8({ content }) {
               )}
           </div>
         </div>
-      </div>
-  );
 
-  if (!mounted) {
-    return (
-      <FullContainer className="relative flex h-[82px] w-full flex-col items-stretch justify-center overflow-visible bg-[#08285a] py-2 shadow-sm md:h-[112px]">
-        <NavbarBannerBackground />
-        <Container className="relative z-10 flex min-h-0 w-full flex-1 items-center">
-          <div className="flex w-full min-h-[48px] flex-row items-center justify-between gap-2 md:pr-8 md:min-h-[56px]">
-            <div className="flex h-full min-w-0 max-w-[min(100%,52%)] shrink items-center justify-start overflow-hidden pl-2 sm:pl-3 md:pl-4 lg:pl-5 sm:max-w-[min(100%,48%)] lg:max-w-[min(100%,380px)]">
-              <Logo logo={logo} imagePath={imagePath} useKoulenNavTypography />
-            </div>
-            <div className="flex items-center justify-end flex-row">
-              <div className="hidden md:flex items-center">
-                <NavbarPhoneCta
-                  href={phoneLink}
-                  phone={phone}
-                  callLabel={callUsTodayLabel}
-                />
-              </div>
-              <div className="rounded-[3px] bg-[#ff4800] p-0.5 pl-5 pt-1.5 text-white lg:hidden">
-                <Menu className="h-6 w-7" />
-              </div>
-            </div>
-          </div>
-        </Container>
-      </FullContainer>
+    </FullContainer>
     );
   }
 
   return (
     <FullContainer
       id="navbar"
-      className="relative z-[100] flex h-[82px] w-full flex-col items-stretch justify-center overflow-visible bg-[#08285a] py-2 shadow-sm md:h-[112px]"
+      className="fixed top-0 z-20 flex h-[60px] w-full flex-row items-center justify-center overflow-visible bg-[#00142c] py-2 shadow-sm md:h-[90px]"
     >
-      <NavbarBannerBackground />
-      <Container className="relative z-10 flex min-h-0 w-full flex-1 items-center">
+        <div className="absolute top-0 left-0 w-full h-full ">
+          <Image
+            src="/st-icons/Temp8/navbar.png"
+            alt="Logo"
+            height={1000}
+            width={1000}
+            className=" w-auto h-full"
+          />
+        </div>
+      <Container className="relative z-10 flex min-h-0 w-full flex-1 items-center ">
         {headerContent}
       </Container>
 
       <div
         className={cn(
-          "absolute left-0 right-0 top-full z-20 flex w-full flex-col border-t border-white/10 bg-[#061f4a] py-2 transition-all duration-300 lg:hidden",
+          interNav.className,
+          "absolute left-0 right-0 top-full z-[100] flex w-full flex-col border-t border-white/10 bg-[#061f4a] py-2 shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-[max-height,opacity] duration-300 ease-in-out lg:hidden",
           isOpen
-            ? "h-fit opacity-100 visible"
-            : "h-0 opacity-0 invisible overflow-hidden",
+            ? "max-h-[min(85vh,800px)] overflow-y-auto opacity-100 visible"
+            : "max-h-0 overflow-hidden opacity-0 invisible pointer-events-none",
         )}
       >
           {menuItemsArray.map((item) => {
@@ -443,6 +458,33 @@ export default function Navbar8({ content }) {
             );
           })}
       </div>
+      <div className="pointer-events-auto absolute right-0 top-0 z-[110] flex h-full flex-row items-center justify-end bg-transparent md:bg-[#fe5e00]">
+          <div className="flex max-w-[min(100%,260px)] items-center sm:max-w-none">
+            <NavbarPhoneCta
+              href={phoneLink}
+              phone={phone}
+              callLabel={callUsTodayLabel}
+              className="w-full sm:w-auto"
+            />
+          </div>
+          <div
+            className="flex cursor-pointer items-center justify-center rounded-[3px] bg-[#00142c] p-2 text-white md:bg-[#fe5e00] lg:hidden"
+            onClick={toggleMenu}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) =>
+              (e.key === "Enter" || e.key === " ") && toggleMenu()
+            }
+            aria-expanded={isOpen}
+            aria-label={isOpen ? "Close menu" : "Open menu"}
+          >
+              {isOpen ? (
+                <X className="w-7 h-6" />
+              ) : (
+                <Menu className="w-7 h-6" />
+              )}
+          </div>
+        </div>
     </FullContainer>
   );
 }
