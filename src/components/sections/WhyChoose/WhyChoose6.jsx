@@ -1,8 +1,8 @@
 "use client";
 
-import React from "react";
+import React, { useCallback } from "react";
 import Image from "next/image";
-import QuoteButton from "@/components/common/QuoteButton";
+import Link from "next/link";
 import {
   Clock,
   Star,
@@ -14,12 +14,17 @@ import {
   Phone,
   FileText,
   MessageSquare,
+  TextQuote,
 } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import PrimaryPhone from "@/components/common/PrimaryPhone";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+
+const ACCENT = "#D35400";
+
+const accentBtn =
+  "inline-flex min-h-[48px] min-w-[205px] items-center justify-center gap-2 rounded-full px-6 py-3 text-base font-semibold text-white shadow-md transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2";
 
 const iconMap = {
   Clock,
@@ -43,6 +48,22 @@ function buildImageSrc(base, filePath) {
 
 export default function WhyChoose6({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
+  const telHref = phone ? `tel:${String(phone).replace(/\s/g, "")}` : "";
+
+  const scrollToQuote = useCallback(() => {
+    const el =
+      document.getElementById("quote-form-section") ??
+      document.querySelector(
+        '.quote-form, [id*="quote"], [class*="quote-form"]',
+      );
+    if (el) {
+      const offset = 80;
+      window.scrollTo({
+        top: el.getBoundingClientRect().top + window.scrollY - offset,
+        behavior: "smooth",
+      });
+    }
+  }, []);
   const block = content?.why_choose ?? {};
   const features = resolveRefArray(content, block, "features");
   const heading = block.heading ?? "We Choose Us";
@@ -61,148 +82,165 @@ export default function WhyChoose6({ content }) {
 
   return (
     <FullContainer id="whychooseus" className="bg-white py-8 md:py-12 mt-4">
-  <Container className="px-4 sm:px-5 md:px-12">
+      <Container className="px-4 sm:px-5 md:px-12">
+        {(() => {
+          const firstFeatures = leftFeatures.slice(0, -2);
+          const lastFeatures = leftFeatures.slice(-2);
 
-    
-    {(() => {
-      const firstFeatures = leftFeatures.slice(0, -2);
-      const lastFeatures = leftFeatures.slice(-2);
+          return (
+            <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_1.2fr_1fr] lg:gap-6 xl:gap-8">
+              {/* LEFT SIDE */}
+              <div className="w-full">
+                <p className="text-3xl leading-tight font-semibold text-black md:text-4.5xl">
+                  {heading}
+                </p>
 
-      return (
-        <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_1.2fr_1fr] lg:gap-6 xl:gap-8">
+                <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold text-black md:text-4.5xl">
+                  {subHeading}
+                </h2>
 
-          {/* LEFT SIDE */}
-          <div className="w-full">
-            <p className="text-3xl leading-tight font-semibold text-black md:text-4.5xl">
-              {heading}
-            </p>
+                <p className="mt-4 max-w-[420px] text-base leading-[1.35] text-black md:text-xl">
+                  {description}
+                </p>
 
-            <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold text-black md:text-4.5xl">
-              {subHeading}
-            </h2>
+                {/* FIRST FEATURES ONLY */}
+                <ul className="mt-4 space-y-2.5">
+                  {firstFeatures.map((feature, idx) => {
+                    const iconName =
+                      typeof feature === "object" ? feature?.icon : null;
+                    const text =
+                      typeof feature === "object"
+                        ? feature?.text
+                        : typeof feature === "string"
+                          ? feature
+                          : "";
+                    const IconComponent = iconName
+                      ? iconMap[iconName]
+                      : CheckCircle;
 
-            <p className="mt-4 max-w-[420px] text-base leading-[1.35] text-black md:text-xl">
-              {description}
-            </p>
+                    return (
+                      <li
+                        key={idx}
+                        className="flex items-start gap-3 text-lg leading-tight text-black md:text-2xl"
+                      >
+                        {IconComponent && (
+                          <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
+                        )}
+                        <span>{text}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+                {phone ? (
+                  <div className="mt-5">
+                    <Link
+                      href={telHref}
+                      className={accentBtn}
+                      style={{
+                        backgroundColor: ACCENT,
+                        outlineColor: ACCENT,
+                      }}
+                    >
+                      <Phone className="h-5 w-5 shrink-0" aria-hidden />
+                      {phone}
+                    </Link>
+                  </div>
+                ) : null}
+              </div>
 
-            {/* FIRST FEATURES ONLY */}
-            <ul className="mt-4 space-y-2.5">
-              {firstFeatures.map((feature, idx) => {
-                const iconName =
-                  typeof feature === "object" ? feature?.icon : null;
-                const text =
-                  typeof feature === "object"
-                    ? feature?.text
-                    : typeof feature === "string"
-                      ? feature
-                      : "";
-                const IconComponent = iconName ? iconMap[iconName] : CheckCircle;
-
-                return (
-                  <li
-                    key={idx}
-                    className="flex items-start gap-3text-lg leading-tight text-black md:text-2xl"
-                  >
-                    {IconComponent && (
-                      <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
-                    )}
-                    <span>{text}</span>
-                   
-                  </li>
-                );
-              })}
-            </ul>
-            <PrimaryPhone phone={phone} />
-          </div>
-      
-
-          
-          <div className="w-full">
-            <div className="relative h-[420px] w-full overflow-hidden rounded-xl bg-gray-200 sm:h-[480px] lg:h-[560px]">
-              {imageSrc ? (
-                <Image
-                  src={imageSrc}
-                  alt="Why choose us"
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 58vw"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-large">
-                  Why Choose Us
+              <div className="w-full">
+                <div className="relative h-[420px] w-full overflow-hidden rounded-xl bg-gray-200 sm:h-[480px] lg:h-[560px]">
+                  {imageSrc ? (
+                    <Image
+                      src={imageSrc}
+                      alt="Why choose us"
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 58vw"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-large">
+                      Why Choose Us
+                    </div>
+                  )}
                 </div>
-              )}
-            </div>
-          </div>
+              </div>
 
-        
-          <div className="w-full">
-            <ul className="space-y-4 lg:pt-2">
+              <div className="w-full">
+                <ul className="space-y-4 lg:pt-2">
+                  {lastFeatures.map((feature, idx) => {
+                    const iconName =
+                      typeof feature === "object" ? feature?.icon : null;
+                    const text =
+                      typeof feature === "object"
+                        ? feature?.text
+                        : typeof feature === "string"
+                          ? feature
+                          : "";
+                    const IconComponent = iconName
+                      ? iconMap[iconName]
+                      : CheckCircle;
 
-              
-              {lastFeatures.map((feature, idx) => {
-                const iconName =
-                  typeof feature === "object" ? feature?.icon : null;
-                const text =
-                  typeof feature === "object"
-                    ? feature?.text
-                    : typeof feature === "string"
-                      ? feature
-                      : "";
-                const IconComponent = iconName ? iconMap[iconName] : CheckCircle;
+                    return (
+                      <li
+                        key={`moved-${idx}`}
+                        className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                      >
+                        {IconComponent && (
+                          <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
+                        )}
+                        <span>{text}</span>
+                      </li>
+                    );
+                  })}
 
-                return (
-                  <li
-                    key={`moved-${idx}`}
-                    className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                  {rightFeatures.map((feature, idx) => {
+                    const iconName =
+                      typeof feature === "object" ? feature?.icon : null;
+                    const text =
+                      typeof feature === "object"
+                        ? feature?.text
+                        : typeof feature === "string"
+                          ? feature
+                          : "";
+                    const IconComponent = iconName
+                      ? iconMap[iconName]
+                      : CheckCircle;
+
+                    return (
+                      <li
+                        key={`right-${idx}`}
+                        className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                      >
+                        {IconComponent && (
+                          <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
+                        )}
+                        <span>{text}</span>
+                      </li>
+                    );
+                  })}
+                </ul>
+
+                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <button
+                    type="button"
+                    onClick={scrollToQuote}
+                    className={`${accentBtn} font-barlow font-bold tracking-wide md:text-base`}
+                    style={{
+                      backgroundColor: ACCENT,
+                      outlineColor: ACCENT,
+                    }}
                   >
-                    {IconComponent && (
-                      <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
-                    )}
-                    <span>{text}</span>
-                  </li>
-                );
-              })}
-
-              
-              {rightFeatures.map((feature, idx) => {
-                const iconName =
-                  typeof feature === "object" ? feature?.icon : null;
-                const text =
-                  typeof feature === "object"
-                    ? feature?.text
-                    : typeof feature === "string"
-                      ? feature
-                      : "";
-                const IconComponent = iconName ? iconMap[iconName] : CheckCircle;
-
-                return (
-                  <li
-                    key={`right-${idx}`}
-                    className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
-                  >
-                    {IconComponent && (
-                      <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
-                    )}
-                    <span>{text}</span>
-                  </li>
-                );
-              })}
-            </ul>
-
-           
-            <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
-              
-              <QuoteButton phone={phone} />
+                    <TextQuote className="h-6 w-6 shrink-0" aria-hidden />
+                    GET A QUOTE
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-
-        </div>
-      );
-    })()}
-
-  </Container>
-</FullContainer>
+          );
+        })()}
+      </Container>
+    </FullContainer>
   );
 }

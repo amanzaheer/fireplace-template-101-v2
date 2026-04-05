@@ -101,6 +101,28 @@
   .prose.prose-accent-d354 a {
     color: #d35400 !important;
   }
+
+  /* Same as prose-accent-d354 but centered headings (service description cards) */
+  .prose.prose-accent-d354-center h1,
+  .prose.prose-accent-d354-center h2,
+  .prose.prose-accent-d354-center h3,
+  .prose.prose-accent-d354-center h4 {
+    color: #d35400 !important;
+    text-align: center !important;
+  }
+
+  .prose.prose-accent-d354-center strong {
+    color: #d35400 !important;
+  }
+
+  .prose.prose-accent-d354-center p,
+  .prose.prose-accent-d354-center li {
+    color: #4b5563 !important;
+  }
+
+  .prose.prose-accent-d354-center a {
+    color: #d35400 !important;
+  }
 }
 
 /* Prose list styles — outside @layer so they beat the typography plugin reset */
