@@ -96,7 +96,7 @@ export default function OurServices8({ content }) {
   return (
     <FullContainer
       id="our_services"
-      className="bg-gradient-to-b from-[#ff7a28] via-[#ff7320] to-[#ff6600] py-12 pb-16 md:py-16 md:pb-20"
+      className="w-full min-h-[1050px] bg-[linear-gradient(180deg,#f48842_0%,#dd6a22_42%,#ca4b00_100%)] pt-12 pb-8 md:pt-16 md:pb-10"
     >
       <Container className="px-4">
         <p className="mb-2 text-center text-lg font-medium text-white/95 md:text-xl">
@@ -124,7 +124,7 @@ export default function OurServices8({ content }) {
                 className="group relative mx-auto w-full max-w-[680px] overflow-visible pb-[72px] sm:pb-[76px] md:pb-[88px]"
               >
                 {/* IMAGE CARD */}
-                <div className="relative w-full h-[320px] sm:h-[350px] md:h-[380px] bg-gray-100 overflow-hidden rounded-2xl">
+                <div className="relative h-[320px] w-full overflow-hidden rounded-md bg-gray-100 sm:h-[350px] md:h-[380px]">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
