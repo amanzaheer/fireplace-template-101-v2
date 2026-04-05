@@ -7,12 +7,52 @@ import React, {
   useMemo,
   useCallback,
 } from "react";
+import { Montserrat, Poppins } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import Logo from "@/components/common/Logo";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+
+const testimonialsHeadingFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+});
+
+const chimneyFont = Poppins({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+});
+
+const testimonialsReviewFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["italic"],
+  display: "swap",
+});
+
+/** Decorative quote mark (brand asset, 49×41 viewBox, #F59402) */
+function TestimonialsQuoteIcon({ className }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={49}
+      height={41}
+      viewBox="0 0 49 41"
+      fill="none"
+      className={cn("shrink-0", className)}
+      aria-hidden
+    >
+      <path
+        d="M21.171 0C12.4881 0.610132 0.00686 1.99642 0 19.0015V40.3969H19.3756V17.5054H12.942C12.5344 11.3929 17.5677 9.81458 23.0412 8.60301L21.171 0ZM47.1297 0C38.4468 0.610132 25.9656 1.99646 25.9588 19.0015V40.3969H45.3344V17.5054H38.9008C38.4931 11.3929 43.5265 9.81458 49 8.60301L47.1297 0Z"
+        fill="#F59402"
+      />
+    </svg>
+  );
+}
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -22,10 +62,8 @@ function buildImageSrc(base, filePath) {
 }
 
 export default function Testimonials8({ content }) {
-  const logo = content?.navbar?.logo ?? {};
   const data = content?.testimonials ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];
-  const reviewCount = data.reviewCount ?? "150+";
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -226,20 +264,39 @@ export default function Testimonials8({ content }) {
         />
         <div className="absolute inset-0 bg-[#072755]/85" />
       </div>
-      <Container className="mx-auto px-4 relative z-10">
-        <div className="text-center mb-8 md:mb-10">
-          <h2 className="text-4xl md:text-6xl font-extrabold text-white mb-2">
+      <Container className="relative z-10 mx-auto max-w-[1274px] px-4">
+        <div className="mb-8 text-center md:mb-10">
+          <h2
+            className={cn(
+              testimonialsHeadingFont.className,
+              "mb-2 text-[44px] font-extrabold leading-tight tracking-tight text-[#FFFFFF]",
+            )}
+          >
             Our Happy Clients
           </h2>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.45fr] gap-6 md:gap-8 items-center">
           <div className="text-white px-2 md:px-4">
-            <div className="text-[#ffb13a] text-7xl font-bold leading-none">“</div>
-            <h3 className="text-5xl md:text-6xl font-extrabold leading-[0.95]">
+            <div className="mb-1 leading-none">
+              <TestimonialsQuoteIcon className="h-[41px] w-[49px]" />
+            </div>
+            <h3
+              className={cn(
+                chimneyFont.className,
+                "text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-[#FFFFFF] md:text-[64px]",
+              )}
+            >
               {leftTitle}
             </h3>
-            <p className="text-4xl md:text-5xl text-white/95">{leftSubtitle}</p>
+            <p
+              className={cn(
+                testimonialsHeadingFont.className,
+                "mt-1 text-[44px] font-bold leading-tight text-[#FFFFFF]",
+              )}
+            >
+              {leftSubtitle}
+            </p>
 
             <div className="flex items-center gap-1 mt-4">
               {[1, 2, 3, 4, 5].map((star) => (
@@ -262,7 +319,12 @@ export default function Testimonials8({ content }) {
                 </span>
               ))}
             </div>
-            <p className="text-[#5a5a5a] text-2xl md:text-3xl italic leading-[1.35] min-h-[84px]">
+            <p
+              className={cn(
+                testimonialsReviewFont.className,
+                "min-h-[84px] text-[20px] italic leading-[1.45] text-[#6E6E6E]",
+              )}
+            >
               &ldquo;{quoteText}&rdquo;
             </p>
 

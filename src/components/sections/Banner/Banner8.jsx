@@ -18,10 +18,25 @@ import {
 } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import { Poppins, Inter } from "next/font/google";
+import { Rubik } from "next/font/google";
+
+const poppin = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["regular"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const QuoteForm = dynamic(() => import("./QuoteForm/QuoteForm8"), {
   loading: () => (
-    <div className="bg-white shadow-lg rounded-md h-[400px] w-120px md:w-[360px] animate-pulse" />
+    <div className="bg-white shadow-lg h-[120px] w-[280px] animate-pulse" />
   ),
   ssr: false,
 });
@@ -44,6 +59,21 @@ function buildImageSrc(base, filePath) {
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
+}
+
+function normText(s) {
+  return String(s ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+/** Remove "#1 ", "1# ", etc. from CMS banner titles so the hero does not show a rank/hash prefix. */
+function stripBannerRankPrefix(raw) {
+  const original = String(raw ?? "").trim();
+  let t = original.replace(/^#+\s*\d+\s*/i, "").trim();
+  t = t.replace(/^\d+\s*#+\s*/i, "").trim();
+  return t.length ? t : original;
 }
 
 export default function Banner8({ content }) {
@@ -73,107 +103,145 @@ export default function Banner8({ content }) {
 
   const phone =
     banner.cta_phone ??
-    content?.contact_info?.phone ??
+    content?.CONTACT_info?.phone ??
     content?.navbar?.phone ??
     "";
 
   const headingText = data?.heading || data?.title || "CHIMNEY SERVICES";
-  const headingWords = String(headingText).trim().split(/\s+/).filter(Boolean);
+  const headingStr = stripBannerRankPrefix(String(headingText).trim());
+  const cmsTagline = data?.tagline?.trim();
+  const showTagline =
+    Boolean(cmsTagline) &&
+    normText(cmsTagline) !== normText(headingStr);
+
+  const headingWords = headingStr.split(/\s+/).filter(Boolean);
   const splitIndex = Math.max(1, Math.ceil(headingWords.length / 2));
   const headingTop = headingWords.slice(0, splitIndex).join(" ");
   const headingBottom = headingWords.slice(splitIndex).join(" ");
 
   return (
-    <FullContainer className="relative w-full overflow-hidden bg-[#08285a]">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-r from-[#061f4a] via-[#072a62] to-[#072b5f]" />
-        <div className="absolute left-0 top-0 h-full w-[120px] bg-[#f57a0a] [clip-path:polygon(0_0,100%_0,52%_100%,0_100%)]" />
-        <div className="absolute left-[58px] top-[90px] h-[118px] w-[152px] bg-[#f57a0a] [clip-path:polygon(0_20%,90%_0,100%_52%,16%_100%)] opacity-95" />
-        <div className="absolute left-[138px] top-[172px] h-[62px] w-[88px] bg-[#f57a0a] [clip-path:polygon(0_26%,86%_0,100%_62%,16%_100%)] opacity-90" />
+    <FullContainer className="relative w-auto overflow-x-hidden bg-gradient-to-b! to-[#012f68] from-[#00142c] mt-[57.8px] md:mt-[84px] min-h-[580px] md:h-[600px] md:overflow-hidden">
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-2 w-[130px] sm:w-[140px] md:w-[200px]">
+        <Image
+          src="/st-icons/Temp8/banner.png"
+          alt=""
+          fill
+          priority
+          className="object-contain object-left-top"
+          sizes="(max-width: 768px) 140px, 200px"
+        />
       </div>
 
-      <Container className="relative z-10 pt-4 pb-0 md:pt-6">
-        <div className="grid items-stretch gap-5 md:gap-7 lg:grid-cols-2">
-
-          <div className="pb-3 pl-3 pt-4 md:pl-8 md:pt-8 lg:pl-12 xl:pl-14">
-            <div className="flex items-center gap-2 text-white/90 text-xs font-semibold uppercase tracking-[0.12em] mb-1.5">
-              <div className="w-5 h-5 bg-[#f57a0a] flex items-center justify-center rounded-[2px]">
-                <Phone className="w-4 h-4 text-white" />
+      <Container className="relative z-10 pb-16 pt-14 sm:pt-16 md:pb-4.5 md:pt-3">
+        <div className="grid gap-5 sm:gap-8 lg:items-center lg:grid-cols-2 lg:gap-24">
+          <div className="min-w-0 max-w-full pb-2 max-md:pr-0 md:pl-60 md:pb-4 lg:pl-4 xl:pl-25">
+            <div className="mb-1.5 flex h-[27px] w-fit max-w-full shrink-0 items-center gap-1.5">
+              <div className="flex h-[27px] w-[27px] shrink-0 items-center justify-center rounded-[2px] bg-[#ff4800]">
+                <Phone className="h-4 w-4 text-white" aria-hidden />
               </div>
-              Contact
+              <span
+                className={`${poppin.className} w-[96px] shrink-0 truncate text-left text-[16px] font-normal uppercase leading-normal not-italic text-white`}
+                style={{ color: "#FFF", lineHeight: "normal" }}
+              >
+                {(banner.contact_label || "Contact").trim()}
+              </span>
             </div>
 
             <a
               href={phone ? `tel:${phone}` : "#"}
-              className="text-white text-[44px] md:text-[56px] font-extrabold leading-[1.04]"
+              className={` ${poppin.className} block max-w-full break-words font-bold leading-none text-white text-[clamp(1.375rem,5vw,1.75rem)] sm:text-[28px] lg:text-[30px]`}
             >
               {phone}
             </a>
 
-            <h1 className="mt-3 text-white font-extrabold uppercase text-[50px] md:text-[62px] leading-[0.98] tracking-tight">
+            {showTagline ? (
+              <p
+                className={`${poppin.className} mt-2 max-w-full text-base font-bold not-italic text-white sm:text-lg md:text-xl lg:max-w-[26rem] lg:text-2xl xl:text-[30px]`}
+                style={{ lineHeight: "normal", color: "#FFF" }}
+              >
+                {cmsTagline}
+              </p>
+            ) : null}
+
+            <h1
+              className={`${poppin.className} mt-4 text-[clamp(1.375rem,5.5vw,1.75rem)] font-bold uppercase leading-[1.08] text-white sm:text-[28px] md:text-[36px]`}
+            >
               {headingTop}
             </h1>
-            <div className="mt-2 inline-block bg-[#f57a0a] px-4 md:px-5 py-1.5 md:py-2">
-              <span className="text-white font-extrabold uppercase text-[46px] md:text-[58px] leading-none">
-                {headingBottom || headingTop}
-              </span>
-            </div>
+            {headingBottom ? (
+              <div className="mt-[9px] box-border w-fit max-w-full min-w-0 bg-[#d6510a] px-3 py-2 sm:px-4 sm:py-2.5 md:px-4 md:py-3">
+                <span
+                  className={`${poppin.className} block max-w-full text-left font-bold uppercase not-italic leading-[1.2] tracking-tight text-white text-[clamp(1.25rem,5vw,1.875rem)] sm:text-3xl md:text-[44px]`}
+                  style={{ color: "#FFF" }}
+                >
+                  {headingBottom}
+                </span>
+              </div>
+            ) : null}
 
-            <div className="mt-6 flex flex-col items-start gap-4 md:mt-7 md:gap-5 sm:flex-row sm:items-stretch">
+            <div className="mt-4 flex flex-col items-stretch gap-3 sm:mt-5 sm:flex-row sm:items-start sm:gap-4 max-md:max-w-full">
               {features?.length > 0 && (
-                <ul className="w-full space-y-2 rounded-md border border-white/15 bg-[#0a2f67] p-3 sm:max-w-[248px]">
+                <ul className="w-full shrink-0 space-y-1 max-sm:max-w-full sm:mt-[30px] sm:max-w-[190px]">
                   {features.map((feature, idx) => {
                     const IconComponent = ICON_MAP[feature.icon];
                     return (
                       <li
                         key={idx}
-                        className="flex items-start gap-2 text-white text-sm"
+                        className="flex items-center gap-1.5"
                       >
-                        <span className="w-5 h-5 bg-[#f57a0a] flex items-center justify-center rounded-sm mt-0.5 flex-shrink-0">
+                        <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-[2px] bg-[#ff4800]">
                           {IconComponent ? (
-                            <IconComponent className="w-3.5 h-3.5 text-white" />
+                            <IconComponent className="h-2.5 w-2.5 text-white" />
                           ) : (
-                            <CheckCircle className="w-3.5 h-3.5 text-white" />
+                            <CheckCircle className="h-2.5 w-2.5 text-white" />
                           )}
                         </span>
-                        <span>{feature.text}</span>
+                        <span
+                          className={`${poppin.className} text-[10px] font-normal leading-normal not-italic text-white`}
+                          style={{ color: "#FFF", lineHeight: "normal" }}
+                        >
+                          {feature.text}
+                        </span>
                       </li>
                     );
                   })}
                 </ul>
               )}
 
-              <div className="w-full overflow-hidden rounded-md border border-[#e8edf7] bg-white shadow-[0_12px_30px_rgba(0,0,0,0.35)] sm:max-w-[340px]">
-                <div className="bg-[#0b2a57] text-white text-center py-2.5 font-extrabold uppercase text-sm tracking-wide">
-                  {form_head.title}
-                </div>
-
-                <div className="p-3 md:p-3.5">
-                  <QuoteForm
-                    data={data}
-                    form_head={form_head}
-                    showArrowInButton={false}
-                  />
-                </div>
+              <div className="flex w-full min-w-0 max-w-full flex-col overflow-visible max-md:max-w-full sm:max-w-[min(100%,320px)] sm:self-start">
+                <h3
+                  className={`${poppin.className} mb-2 shrink-0 text-[clamp(1rem,4vw,1.25rem)] font-bold uppercase not-italic text-white sm:text-[20px]`}
+                  style={{ color: "#FFF", lineHeight: "16px" }}
+                >
+                  {(banner.cta_heading || "GET IN TOUCH WITH US").trim()}
+                </h3>
+                <QuoteForm
+                  data={data}
+                  form_head={form_head}
+                  showArrowInButton={false}
+                  compact
+                />
               </div>
             </div>
           </div>
 
-          <div className="relative min-h-[330px] md:min-h-[460px] lg:min-h-[610px]">
-            <div className="absolute inset-0 overflow-hidden">
-              <Image
-                src={image}
-                alt={data?.altImage || "banner"}
-                fill
-                priority
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="object-cover object-center md:object-left"
-              />
-            </div>
+          <div className="relative mx-auto hidden h-full w-full max-w-md pb-6 sm:pb-8 md:pb-24 lg:mx-0 lg:block lg:max-w-none lg:justify-self-end">
           </div>
-
         </div>
       </Container>
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 top-auto z-[1] h-[min(38vh,280px)] min-h-[200px] w-full max-md:max-h-[320px] md:inset-x-auto md:inset-y-0 md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-full md:max-h-none md:w-[calc(50%-80px)] md:min-h-[280px]">
+        <div className="relative h-full min-h-[200px] w-full md:min-h-[280px]">
+          <div className="block md:hidden absolute top-0 left-0 w-full h-full bg-[#00142c] opacity-30 z-10"/>
+          <Image
+            src={image}
+            alt={data?.altImage || "banner"}
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 42vw"
+            className="object-cover object-center"
+          />
+        </div>
+      </div>
     </FullContainer>
   );
 }

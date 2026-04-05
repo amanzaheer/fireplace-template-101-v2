@@ -18,7 +18,22 @@ import {
 } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import { Rubik, Inter, Poppins } from "next/font/google";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 const QuoteForm3 = dynamic(
   () => import("@/components/sections/Banner/QuoteForm/QuoteForm3"),
   {
@@ -26,8 +41,7 @@ const QuoteForm3 = dynamic(
       <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
     ),
     ssr: false,
-  },
-);
+  });
 
 const ICON_MAP = {
   Clock,
@@ -78,7 +92,7 @@ export default function Banner3({ content }) {
   return (
     <FullContainer
       id="banner"
-      className="relative bg-white overflow-hidden w-full min-h-[560px] md:min-h-[640px] lg:min-h-[680px]"
+      className="relative bg-white overflow-hidden w-full min-h-[560px] md:min-h-[600px] lg:min-h-[640px]"
     >
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <Image
@@ -100,12 +114,18 @@ export default function Banner3({ content }) {
         <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 text-white">
           <div className="w-full max-w-[700px]">
             <div className="w-fit flex flex-col items-start justify-center">
-              <div className="font-black max-w-[620px] inline-block uppercase text-[42px] sm:text-[52px] md:text-[66px] leading-[0.95] text-left text-shadow-lg">
-                <span className="text-white">
+              <div className={`${poppins.className} font-black max-w-[620px]  inline-block uppercase text-[60px] md:text-[74px] leading-[0.95] text-left text-shadow-lg`}>
+                <span className="text-white text-[32px] md:text-[44px]">
                   {String(data?.heading || data?.title || "").split(" ").slice(0, 1).join(" ")}{" "}
                 </span>
-                <span className="text-[#f2a51f]">
-                  {String(data?.heading || data?.title || "").split(" ").slice(1).join(" ")}
+                <br />
+
+                <span className="text-[#f59403]">
+                  {String(data?.heading || data?.title || "").split(" ").slice(1, 4).join(" ")}
+                </span>
+                <br />
+                <span className="text-white text-[60px] md:text-[74px]">
+                  {String(data?.heading || data?.title || "").split(" ").slice(4).join(" ")}{" "}
                 </span>
               </div>
               {data?.tagline ? (
@@ -118,10 +138,9 @@ export default function Banner3({ content }) {
                 {data?.description}
               </p>
               {features?.length > 0 ? (
-                <ul className="mb-6 w-fit grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2">
+                <ul className="mb-6 w-fit grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-3 md:gap-y-4">
                   {features?.map((feature, idx) => {
-                    const IconComponent =
-                      feature?.icon != null ? ICON_MAP[feature.icon] : null;
+                    const IconComponent = ICON_MAP[feature.icon];
                     return (
                       <li
                         key={idx}
@@ -132,7 +151,9 @@ export default function Banner3({ content }) {
                         ) : (
                           <CheckCircle className="w-5 h-5 text-[#f2a51f] shrink-0" />
                         )}
-                        {feature?.text ?? ""}
+                        <span className={`${inter.className} text-white font-medium text-[20px] md:text-[24px]`}>
+                          {feature.text}
+                        </span>
                       </li>
                     );
                   })}
@@ -144,16 +165,20 @@ export default function Banner3({ content }) {
                   href={phone ? `tel:${phone}` : "#"}
                   className="inline-flex items-center gap-3 rounded-full bg-transparent text-white text-[40px] md:text-[54px] font-extrabold leading-none"
                 >
-                  <span className="inline-flex items-center justify-center w-11 h-11 md:w-14 md:h-14 rounded-full bg-[#f2a51f] text-black">
-                    <Phone className="w-5 h-5 md:w-6 md:h-6" />
-                  </span>
-                  {phone}
+                  <div className="w-11 h-11 md:w-[71px] md:h-[71px] rounded-full bg-[#efa536] flex items-center justify-center">
+                    <Image src="/st-icons/Temp3/call2.png" alt="Phone" width={150} height={150} className="w-auto h-5 md:h-[22px]" />
+                  </div>
+                  <span className={`${rubik.className} text-white font-bold text-[30px] md:text-[40px] uppercase`}>{phone}</span>
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="w-full md:w-fit max-w-[400px]">
+          <div className="w-full md:w-fit max-w-[370px] relative ">
+            <div className="absolute hidden md:block -top-[50px] -left-[130px] h-auto w-full">
+              <Image src="/st-icons/Temp3/quotearrow.png" alt="Phone" width={250} height={250} className="w-auto h-[100px]" />
+              <h3 className={` ${inter.className} text-white text-lg font-normal w-fit -translate-x-1/2`}> Complete your form & <br /> get a free quote today!</h3>
+            </div>
             <div className="rounded-tl-[20px] rounded-br-[20px] shadow-[0_18px_50px_rgba(0,0,0,0.45)] overflow-hidden">
               <QuoteForm3
                 data={data}
@@ -161,6 +186,8 @@ export default function Banner3({ content }) {
                 showArrowInButton={false}
               />
             </div>
+
+
           </div>
         </div>
       </Container>

@@ -3,11 +3,18 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Phone, TextQuote } from "lucide-react";
+import { Montserrat } from "next/font/google";
+import { CheckCircle2, Phone, TextQuote } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import Heading from "@/components/common/Heading";
 import { IMAGE_BASE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+
+const serviceBenefitsHeadingFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["700"],
+  display: "swap",
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -41,6 +48,10 @@ export default function ServiceBenefits8({ content }) {
 
   if (list.length === 0) return null;
 
+  /** Phone + quote: padding top 15 / sides 38 / bottom 10, brand orange. */
+  const ctaButtonClass =
+    "inline-flex shrink-0 items-center justify-center gap-2 rounded-none bg-[#fe5e00] pt-[15px] pr-[38px] pb-[10px] pl-[38px] text-sm font-semibold text-white shadow transition-colors hover:bg-[#e55500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe5e00]";
+
   return (
     <FullContainer id="service_benefits" className="py-0 md:py-8 overflow-hidden">
       <Container>
@@ -62,14 +73,25 @@ export default function ServiceBenefits8({ content }) {
           </div>
           <div className="px-4 md:px-10 py-8 flex flex-col gap-4 rounded-2xl shadow-[0_0_5px_rgba(0,0,0,0.5)] bg-white z-10 my-7">
             {heading ? (
-              <Heading text={heading} className="text-center md:text-start" />
+              <h2
+                className={cn(
+                  serviceBenefitsHeadingFont.className,
+                  "text-center text-[44px] font-bold leading-tight text-[#000000] md:text-start",
+                )}
+              >
+                {heading}
+              </h2>
             ) : null}
             <div className="flex flex-row items-center justify-center md:justify-start">
               <div className="flex flex-col w-fit space-y-[6px]">
                 {list.map((benefit, index) => (
                   <div key={index} className="flex px-4 items-start">
-                    <ChevronRight className="w-5 h-5 text-primary flex-shrink-0 stroke-[4] mt-1" />
-                    <span className="ml-2 text-xl font-barlow text-blue-900">
+                    <CheckCircle2
+                      className="mt-1 h-5 w-5 shrink-0 text-[#fe5e00]"
+                      strokeWidth={2.5}
+                      aria-hidden
+                    />
+                    <span className="ml-2 font-barlow text-[18px] leading-snug text-[#040404]">
                       {typeof benefit === "object" ? benefit?.title : benefit}
                     </span>
                   </div>
@@ -77,22 +99,19 @@ export default function ServiceBenefits8({ content }) {
               </div>
             </div>
             <div className="w-full gap-2 justify-start hidden md:flex flex-col lg:flex-row items-start lg:items-center lg:gap-4">
-              <Link href={`tel:${phone}`}>
-                <button className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 min-w-[205px] rounded-full bg-orange-500 text-white font-semibold text-lg shadow hover:bg-orange-600 transition-all">
-                  <Phone className="w-5 h-5" />
-                  {phone}
+              <Link href={`tel:${phone}`} className="inline-flex">
+                <button type="button" className={ctaButtonClass}>
+                  <Phone className="h-5 w-5 shrink-0" strokeWidth={2} />
+                  <span className="min-w-0 truncate">{phone}</span>
                 </button>
               </Link>
               <button
+                type="button"
                 onClick={handleQuoteClick}
-                className="inline-flex min-w-[160px] bg-orange-500 rounded-full md:text-base font-barlow py-3 px-6 w-[205px] font-bold text-white transition-colors hover:bg-orange-600"
+                className={cn(ctaButtonClass, "uppercase tracking-wide")}
               >
-                <div className="flex items-center gap-2">
-                  <TextQuote className="w-6 h-6" />
-                  <h2 className="text-md font-thin md:text-xl tracking-widest md:tracking-normal ml-2">
-                    GET A QUOTE
-                  </h2>
-                </div>
+                <TextQuote className="h-5 w-5 shrink-0" strokeWidth={2} />
+                <span>Get a quote</span>
               </button>
             </div>
           </div>

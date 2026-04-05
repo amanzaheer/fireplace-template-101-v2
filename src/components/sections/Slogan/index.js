@@ -7,18 +7,20 @@ import Slogan3 from "./Slogan3";
 import Slogan4 from "./Slogan4";
 import Slogan5 from "./Slogan5";
 import Slogan6 from "./Slogan6";
+import Slogan8 from "./Slogan8";
 const variants = {
   Slogan1,
   Slogan2,
   Slogan3,
   Slogan4,  
-  Slogan6,
   Slogan5,
+  Slogan8,
+  Slogan6,  
 };
 
 export default function Slogan({ variant, content }) {
-      const name = variant ?? "Slogan5";
-  const Component = variants[name] ?? Slogan5;
+      const name = variant ?? "Slogan8";
+  const Component = variants[name] ?? Slogan8;
   return <Component content={content} />;
 }
-export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, variants };
+export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, variants };

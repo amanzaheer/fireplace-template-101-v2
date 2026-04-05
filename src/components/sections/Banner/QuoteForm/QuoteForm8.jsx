@@ -18,10 +18,107 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
+
+function isFieldEmpty(value) {
+  return !String(value ?? "").trim();
+}
+
+/** Top-left hint; hides when user types. Input is transparent on top so caret stays visible. */
+function TopLeftPlaceholderInput({
+  id,
+  name,
+  value,
+  onChange,
+  onFocus,
+  placeholder,
+  compact,
+  hasError,
+  inputClassName,
+  type = "text",
+  ...rest
+}) {
+  const hintClass = compact
+    ? "left-2 top-0.5 text-[8px] text-gray-400"
+    : "left-2 top-1.5 text-[8px] text-gray-400";
+  return (
+    <div
+      className={`relative bg-white border ${
+        hasError ? "border-red-500" : "border-[#bdbdbd]"
+      }`}
+    >
+      {isFieldEmpty(value) && (
+        <span
+          className={`pointer-events-none absolute z-0 select-none ${hintClass}`}
+          aria-hidden
+        >
+          {placeholder}
+        </span>
+      )}
+      <input
+        type={type}
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onFocus={onFocus}
+        placeholder=""
+        className={`relative z-10 md:max-h-[24px] w-full border-0 bg-transparent outline-none ring-0 focus:ring-0 ${inputClassName}`}
+        {...rest}
+      />
+    </div>
+  );
+}
+
+function TopLeftPlaceholderTextarea({
+  id,
+  name,
+  value,
+  onChange,
+  onFocus,
+  placeholder,
+  compact,
+  hasError,
+  rows,
+  className,
+  ...rest
+}) {
+  const hintClass = compact
+    ? "left-2 top-1 text-[8px] text-gray-400"
+    : "left-2 top-1.5 text-[8px] text-gray-400";
+  return (
+    <div
+      className={`relative bg-white border ${
+        hasError ? "border-red-500" : "border-[#bdbdbd]"
+      }`}
+    >
+      {isFieldEmpty(value) && (
+        <span
+          className={`pointer-events-none absolute z-0 select-none ${hintClass}`}
+          aria-hidden
+        >
+          {placeholder}
+        </span>
+      )}
+      <textarea
+        id={id}
+        name={name}
+        value={value}
+        onChange={onChange}
+        onFocus={onFocus}
+        rows={rows}
+        placeholder=""
+        className={`relative z-10 w-full border-0 bg-transparent outline-none ring-0 focus:ring-0 ${className}`}
+        {...rest}
+      />
+    </div>
+  );
+}
+
 export default function QuoteForm8({
   data,
   form_head,
   showArrowInButton = false,
+  compact = false,
 }) {
   const [formData, setFormData] = useState({
     firstName: "",
@@ -242,20 +339,29 @@ export default function QuoteForm8({
   };
 
   return (
-    <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)] relative font-barlow rounded-[15px] h-fit ">
+    <div
+      className={`relative h-fit font-barlow ${
+        compact
+          ? "rounded-none bg-transparent shadow-none"
+          : "rounded-[15px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)]"
+      }`}
+    >
       {!formSubmitted && (
         <>
-        <div className="px-2 md:px-2.5 py-3 bg-[#c92028]">
-          <h3 className={`${poppins.className} text-3xl md:text-[34px] text-white leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2`}>
-            {form_head?.title}
-          </h3>
-          
-        </div>
-        <div>
-        <h4 className={`${inter.className} text-lg md:text-xl font-medium text-black pt-2 text-center text-ink`}>
-            {form_head?.sub_title}
-          </h4>
-        </div>
+        {!compact ? (
+          <>
+            <div className="bg-[#ff4800] px-2 py-1.5">
+              <h3 className={`${poppins.className} text-xl md:text-2xl text-white leading-6 px-1.5 font-bold text-center mb-0.5`}>
+                {form_head?.title}
+              </h3>
+            </div>
+            <div>
+              <h4 className={`${inter.className} text-sm md:text-base font-medium text-black pt-1 text-center text-ink`}>
+                {form_head?.sub_title}
+              </h4>
+            </div>
+          </>
+        ) : null}
         </>
       )}
 
@@ -271,27 +377,26 @@ export default function QuoteForm8({
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-[#cf1f21] hover:bg-red-700 text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
+            className="rounded-md bg-[#ff4800] px-6 py-2 font-medium text-white transition-colors duration-200 hover:bg-[#d44100]"
           >
             OK Thanks
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-2.5 text-black  text-base md:text-lg px-2 md:px-2.5 py-2 md:py-3">
-          <div className="grid grid-cols-2 gap-[8px]">
+        <form onSubmit={handleSubmit} className={`${compact ? "space-y-1 text-black text-[11px] px-0 py-0" : "space-y-1.5 text-black text-sm md:text-base px-1.5 py-1.5"}`}>
+          <div className="grid grid-cols-2 gap-[4px]">
             <div>
               <label htmlFor="firstName" className="sr-only">First name</label>
-              <input
-                type="text"
+              <TopLeftPlaceholderInput
                 id="firstName"
                 name="firstName"
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-                  fieldErrors.firstName ? "border-red-500" : "border-[#bdbdbd]"
-                }`}
-                placeholder="First name"
+                compact={compact}
+                hasError={!!fieldErrors.firstName}
+                placeholder={compact ? "First Name" : "First name"}
+                inputClassName={`pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"}`}
                 required
                 aria-invalid={!!fieldErrors.firstName}
               />
@@ -303,17 +408,16 @@ export default function QuoteForm8({
             </div>
             <div>
               <label htmlFor="lastName" className="sr-only">Last name</label>
-              <input
-                type="text"
+              <TopLeftPlaceholderInput
                 id="lastName"
                 name="lastName"
                 value={formData.lastName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-                  fieldErrors.lastName ? "border-red-500" : "border-[#bdbdbd]"
-                }`}
-                placeholder="Last name"
+                compact={compact}
+                hasError={!!fieldErrors.lastName}
+                placeholder={compact ? "Last Name" : "Last name"}
+                inputClassName={`pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"}`}
                 required
                 aria-invalid={!!fieldErrors.lastName}
               />
@@ -325,56 +429,103 @@ export default function QuoteForm8({
             </div>
           </div>
 
-          <label htmlFor="phone" className="sr-only">Phone number</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.phone ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
-            placeholder="(123) 456-7890"
-            required
-            aria-invalid={!!fieldErrors.phone}
-          />
-          {fieldErrors.phone && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
-          )}
+          {compact ? (
+            <div className="grid grid-cols-2 gap-[4px]">
+              <div>
+                <label htmlFor="email" className="sr-only">Email</label>
+                <TopLeftPlaceholderInput
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  compact
+                  hasError={!!fieldErrors.email}
+                  placeholder="Email"
+                  inputClassName="pl-2 py-1 text-[11px]"
+                  required
+                  aria-invalid={!!fieldErrors.email}
+                />
+                {fieldErrors.email && (
+                  <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
+                )}
+              </div>
+              <div>
+                <label htmlFor="phone" className="sr-only">Phone number</label>
+                <TopLeftPlaceholderInput
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  compact
+                  hasError={!!fieldErrors.phone}
+                  placeholder="Phone"
+                  inputClassName="pl-2 py-1 text-[11px]"
+                  required
+                  aria-invalid={!!fieldErrors.phone}
+                />
+                {fieldErrors.phone && (
+                  <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
+                )}
+              </div>
+            </div>
+          ) : (
+            <>
+              <label htmlFor="phone" className="sr-only">Phone number</label>
+              <TopLeftPlaceholderInput
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
+                onChange={handleChange}
+                onFocus={handleFirstInteraction}
+                compact={false}
+                hasError={!!fieldErrors.phone}
+                placeholder="(123) 456-7890"
+                inputClassName="pl-2 py-1.5"
+                required
+                aria-invalid={!!fieldErrors.phone}
+              />
+              {fieldErrors.phone && (
+                <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
+              )}
 
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.email ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
-            placeholder="your@email.com"
-            required
-            aria-invalid={!!fieldErrors.email}
-          />
-          {fieldErrors.email && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
+              <label htmlFor="email" className="sr-only">Email</label>
+              <TopLeftPlaceholderInput
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={handleFirstInteraction}
+                compact={false}
+                hasError={!!fieldErrors.email}
+                placeholder="your@email.com"
+                inputClassName="pl-2 py-1.5"
+                required
+                aria-invalid={!!fieldErrors.email}
+              />
+              {fieldErrors.email && (
+                <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
+              )}
+            </>
           )}
 
           <label htmlFor="message" className="sr-only">Message</label>
-          <textarea
+          <TopLeftPlaceholderTextarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            rows={3}
-            className={`w-full pl-3 py-3 max-h-[65px] resize-none   bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.message ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
+            rows={compact ? 2 : 2}
+            compact={compact}
+            hasError={!!fieldErrors.message}
             placeholder="Message"
+            className={`pl-2 ${compact ? "py-1 text-[11px] max-h-[44px]" : "py-1.5 max-h-[52px]"} resize-none`}
             required
             aria-invalid={!!fieldErrors.message}
           />
@@ -385,7 +536,7 @@ export default function QuoteForm8({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#cf1f21] text-lg md:text-xl hover:bg-[#c92028]/90 cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+            className={`w-[114.50px] bg-[#ff4800] ${compact ? "text-sm  py-1 uppercase tracking-wide" : "text-base md:text-lg py-2"} flex cursor-pointer items-center justify-center gap-2 px-10 font-medium text-white transition-colors duration-200 hover:bg-[#d44100] disabled:cursor-not-allowed disabled:opacity-70`}
           >
             {isSubmitting ? (
               <>
@@ -393,7 +544,7 @@ export default function QuoteForm8({
                 Submitting...
               </>
             ) : (
-              <div className="text-xl md:text-2xl">
+              <div className={`${poppins.className} font-thin ${compact ? "text-xs" : "text-xs"}`}>
                 Submit
                 {showArrowInButton && (
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

@@ -1,19 +1,7 @@
-"use client";
-
-import React, { useMemo } from "react";
-import Image from "next/image";
+import React from "react";
 import { MapPin } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import Heading from "@/components/common/Heading";
-import { IMAGE_BASE } from "@/lib/constants";
-
-function buildImageSrc(base, filePath) {
-  if (!filePath || typeof filePath !== "string") return "";
-  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
-  const segment = filePath.replace(/^\//, "");
-  return `${basePath}/${segment}`;
-}
 
 function getLocationsList(content, block) {
   const direct = block?.list ?? block?.value?.list;
@@ -24,42 +12,52 @@ function getLocationsList(content, block) {
   return [];
 }
 
-    export default function ServiceCities6({ content }) {
+/** Pin + label color — golden orange like the reference */
+const PIN_CLASS = "text-[#EA580C]";
+const TEXT_CLASS = "text-gray-800";
+
+export default function ServiceCities6({ content }) {
   const block = content?.locations ?? {};
-  const cities = useMemo(() => getLocationsList(content, block), [content, block]);
+  const cities = getLocationsList(content, block);
   const title = block?.title ?? block?.value?.title ?? "Areas We Serve";
-  const mapSrc = buildImageSrc(IMAGE_BASE, "icons/maap.webp");
 
   if (cities.length === 0) return null;
 
   return (
-    <FullContainer className="pt-6 overflow-hidden" id="locations">
-      <Container className="relative pb-14 pr-4">
-        <div className="absolute inset-0 z-0">
-          {mapSrc ? (
-            <Image
-              title="Service Cities Map"
-              src={mapSrc}
-              alt="Service Cities"
-              fill
-              className="w-full h-full object-cover object-center opacity-10"
-              loading="lazy"
-            />
-          ) : null}
-          <div className="absolute inset-0 bg-white/40" />
-        </div>
-        <div className="relative">
-          <Heading text={title} className="pb-6 pt-12" />
-          <div className="grid md:px-2 z-30 grid-cols-3 gap-y-[6px] gap-x-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
-            {cities.map((city, index) => (
-              <div key={index} className="flex items-center">
-                <MapPin className="w-[14px] h-[14px] md:w-[20px] md:h-[20px] mr-[10px] text-primary flex-shrink-0" />
-                <span className="text-primary text-[13.5px] md:text-[19.5px] font-barlow font-[500] leading-tight md:leading-none">
-                  {typeof city === "string" ? city : city?.name ?? city?.title ?? String(city)}
+    <FullContainer className="bg-white py-10 md:py-14 lg:py-16" id="locations">
+      <Container className="px-4 sm:px-5 md:px-15">
+        <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-gray-800 md:mb-10 md:text-5xl">
+          {title}
+        </h2>
+
+        <div
+          className="grid grid-cols-2 gap-x-4 gap-y-3  sm:grid-cols-3 sm:gap-x-5 sm:gap-y-3.5 md:grid-cols-4 md:gap-x-6 lg:grid-cols-6 lg:gap-y-4"
+          role="list"
+        >
+          {cities.map((city, index) => {
+            const label =
+              typeof city === "string"
+                ? city
+                : city?.name ?? city?.title ?? String(city);
+            return (
+              <div
+                key={`${label}-${index}`}
+                className="flex min-w-0 items-start gap-2"
+                role="listitem"
+              >
+                <MapPin
+                  className={`mt-0.5 h-4 w-4 shrink-0 md:h-[18px] md:w-[18px] ${PIN_CLASS}`}
+                  strokeWidth={4}
+                  aria-hidden
+                />
+                <span
+                  className={`font-barlow text-[13px] font-medium leading-snug md:text-base ${TEXT_CLASS}`}
+                >
+                  {label}
                 </span>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </Container>
     </FullContainer>

@@ -23,7 +23,7 @@ function buildImageSrc(base, path) {
   return `${basePath}/${segment}`;
 }
 
-export default function Logo({ logo, imagePath }) {
+export default function Logo({ logo, imagePath, className }) {
   const [hostName, setHostName] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
 
@@ -143,7 +143,7 @@ export default function Logo({ logo, imagePath }) {
           )}
           {logoText && (
             <h2
-              className="font-bold text-base sm:text-lg md:text-3xl ml-2 truncate max-w-[140px] xs:max-w-[180px] sm:max-w-none"
+              className={`font-bold text-base sm:text-lg md:text-3xl ml-2 truncate max-w-[140px] xs:max-w-[180px] sm:max-w-none ${className}`}
             >
               {logoText}
             </h2>
@@ -151,7 +151,7 @@ export default function Logo({ logo, imagePath }) {
         </>
       ) : logoText ? (
         <span
-          className="font-bold text-lg truncate max-w-[180px]"
+          className={`font-bold text-lg truncate max-w-[180px] ${className}`}
           style={textStyle}
         >
           {logoText}

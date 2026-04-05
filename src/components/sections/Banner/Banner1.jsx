@@ -21,7 +21,7 @@ import { resolveRefArray } from "@/lib/content-helpers";
 
 const QuoteForm = dynamic(() => import("@/components/common/QuoteForm"), {
   loading: () => (
-    <div className="bg-white shadow-lg rounded-md h-[400px] w-full md:w-[360px] animate-pulse" />
+    <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
   ),
   ssr: false,
 });
@@ -46,9 +46,8 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-export default function Banner8({ content }) {
+export default function Banner1({ content }) {
   const banner = content?.banner ?? {};
-
   const data = {
     title: banner.title,
     tagline: banner.tagline,
@@ -58,19 +57,15 @@ export default function Banner8({ content }) {
     imageTitle: banner.imageTitle,
     altImage: banner.altImage,
   };
-
   const image =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
     buildImageSrc(IMAGE_BASE, "hero/hero.webp");
-
   const form_head = {
     title: content?.banner?.form_title || "Get Your Free Quote",
     sub_title:
       content?.banner?.form_description || "10% Off for Online Booking",
   };
-
   const features = resolveRefArray(content, banner, "features");
-
   const phone =
     banner.cta_phone ??
     content?.contact_info?.phone ??
@@ -78,106 +73,77 @@ export default function Banner8({ content }) {
     "";
 
   return (
-    <FullContainer className="w-full bg-[#0b2a57] overflow-hidden relative">
-
-      {/* BACKGROUND DESIGN */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute left-0 top-0 w-[48%] h-full bg-gradient-to-br from-[#0b2a57] to-[#052046]" />
-        <div className="absolute left-[-220px] top-[-160px] w-[520px] h-[520px] bg-[#f07a13] rotate-45" />
+    <FullContainer id="banner" className="relative bg-white overflow-hidden w-full md:!h-[790px] lg:!h-auto">
+      <div className="absolute inset-0 w-full h-[600px] md:minh-[790px] overflow-hidden">
+        <Image
+          src={image}
+          title={data?.imageTitle || data?.title || "Banner"}
+          alt={data?.altImage || data?.tagline || "No Banner Found"}
+          priority
+          fill
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+        <div className="absolute inset-0 bg-black/30"></div>
       </div>
 
-      <Container className="relative z-10 py-14 md:py-20">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
-
-          {/* LEFT CONTENT */}
-          <div className="pl-4 md:pl-10 lg:pl-16">
-
-            {/* CONTACT */}
-            <div className="flex items-center gap-3 text-white/80 text-xs font-bold uppercase tracking-widest mb-2">
-              <div className="w-8 h-8 bg-[#0a2042] flex items-center justify-center rounded-md">
-                <Phone className="w-4 h-4 text-white" />
+      <Container className="py-12 md:pb-24 font-barlow relative z-10">
+        <div className="w-full flex flex-col md:flex-row gap-16 md:mx-auto md:w-fit md:gap-[66px] text-white content-center">
+          <div className="relative flex w-full md:w-fit items-center md:items-end flex-col justify-center">
+            <div className="w-fit flex flex-col items-center md:items-start justify-center">
+              <div className="font-[900] max-w-[500px] w-fit inline-block uppercase text-4xl lg:text-[54px] px-4 md:px-0 md:text-6xl leading-tight text-center md:text-start lg:text-left text-shadow-lg">
+                {data?.heading || data?.title}
               </div>
-              Contact
-            </div>
+              {data?.tagline ? (
+                <h2 className="text-[28px] md:px-0 md:text-2xl uppercase font-[900] leading-tight text-[#90D4E1] text-center md:text-start lg:text-left mt-2">
+                  {data?.tagline}
+                </h2>
+              ) : null}
 
-            <a
-              href={phone ? `tel:${phone}` : "#"}
-              className="text-white text-4xl font-extrabold leading-tight"
-            >
-              {phone}
-            </a>
-
-            {/* HEADING */}
-            <h1 className="mt-3 text-white font-extrabold uppercase text-[48px] md:text-[56px] leading-[1.1] tracking-tight">
-              {data?.heading || data?.title}
-            </h1>
-
-            {/* TAGLINE */}
-            {data?.tagline && (
-              <h2 className="text-xl md:text-2xl uppercase font-bold text-[#f07a13] mt-2">
-                {data.tagline}
-              </h2>
-            )}
-
-            {/* DESCRIPTION */}
-            <p className="text-white/90 text-base md:text-lg mt-4 mb-4">
-              {data?.description}
-            </p>
-
-            {/* FEATURES */}
-            {features?.length > 0 && (
-              <ul className="space-y-3">
-                {features.map((feature, idx) => {
-                  const IconComponent = ICON_MAP[feature.icon];
-                  return (
-                    <li
-                      key={idx}
-                      className="flex items-start gap-2 text-white text-sm"
-                    >
-                      <span className="w-5 h-5 bg-[#f07a13] flex items-center justify-center rounded-sm mt-1">
-                        {IconComponent ? (
-                          <IconComponent className="w-4 h-4 text-white" />
-                        ) : (
-                          <CheckCircle className="w-4 h-4 text-white" />
+              <p className="text-[16px] md:text-3xl text-center md:text-start lg:text-left mt-4 mb-1">
+                {data?.description}
+              </p>
+              {features?.length > 0 ? (
+                <ul className="mb-6 w-fit space-y-1 md:space-y-2">
+                  {features?.map((feature, idx) => {
+                    const IconComponent = ICON_MAP[feature.icon];
+                    return (
+                      <li
+                        key={idx}
+                        className="flex items-center gap-3 text-white font-medium text-base md:text-[17px]"
+                      >
+                        {IconComponent && (
+                          <IconComponent className="w-5 h-5 text-white" />
                         )}
-                      </span>
-                      {feature.text}
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
-          </div>
+                        {feature.text}
+                      </li>
+                    );
+                  })}
+                </ul>
+              ) : null}
 
-          {/* RIGHT SIDE */}
-          <div className="relative flex justify-center lg:justify-end">
-
-            {/* IMAGE */}
-            <div className="absolute inset-0 hidden lg:block">
-              <Image
-                src={image}
-                alt="banner"
-                fill
-                className="object-cover object-right rounded-md opacity-90"
-              />
-            </div>
-
-            {/* FORM */}
-            <div className="relative w-full max-w-[360px] bg-white rounded-md shadow-lg overflow-hidden">
-              <div className="bg-[#0b2a57] text-white text-center py-3 font-extrabold uppercase text-sm tracking-wide">
-                {form_head.title}
-              </div>
-
-              <div className="p-4">
-                <QuoteForm
-                  data={data}
-                  form_head={form_head}
-                  showArrowInButton={false}
-                />
+              <div className="w-fit">
+                <a
+                  href={phone ? `tel:${phone}` : "#"}
+                  className="flex items-center gap-3 bg-gradient-to-br from-blue-600 via-sky-500 from-30% to-green-500 text-white px-6 py-3 rounded-2xl text-3xl font-semibold"
+                >
+                  <Phone className="w-6 h-6" />
+                  {phone}
+                </a>
               </div>
             </div>
           </div>
 
+          <div className="w-full md:w-fit">
+            <QuoteForm
+              data={data}
+              form_head={form_head}
+              showArrowInButton={false}
+            />
+          </div>
         </div>
       </Container>
     </FullContainer>
