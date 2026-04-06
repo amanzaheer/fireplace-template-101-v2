@@ -12,7 +12,7 @@ const CallButton = memo(function CallButton({ content }) {
       className="grid md:hidden fixed bottom-0 left-0 right-0 z-50 p-2 bg-white"
       style={{ contain: "layout" }} // Prevent layout shifts
     >
-      <div className="w-full bg-gradient-to-b from-green-700 via-lime-600 to-green-600 rounded-md flex flex-col items-center justify-center py-3">
+      <div className="w-full  from-green-700 via-lime-600 to-green-600 rounded-md flex flex-col items-center justify-center py-3">
         <Link
           title="Call Button"
           href={`tel:${phone}`}

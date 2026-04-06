@@ -8,6 +8,7 @@ import { CheckCircle, Loader, Phone } from "lucide-react";
 import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Rubik, Inter, Poppins } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
 import {
   validateEmail,
@@ -17,6 +18,15 @@ import {
   validateZipcode,
 } from "@/lib/validators";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 const inputBase =
   "w-full border border-white bg-transparent px-3 py-2.5 md:py-3 text-white placeholder:text-white/95 outline-none transition-[box-shadow] focus:ring-2 focus:ring-white/60";
 const inputError = "ring-2 ring-red-300 border-red-200";
@@ -334,57 +344,21 @@ export default function Contact6({ content }) {
                 </button>
               </div>
             ) : (
-              <div className="flex flex-col lg:flex-row lg:items-stretch lg:gap-0">
+              <div className="flex flex-col lg:flex-row items-center justify-center lg:items-stretch lg:gap-0">
                 {/* Left: technician image + callout */}
-                <div className="relative order-2 flex min-h-[280px] w-full shrink-0 flex-col items-center justify-end px-4 pb-8 pt-6 lg:order-1 lg:w-[40%] lg:max-w-[480px] lg:justify-center lg:px-6 lg:pb-10">
-                  <div className="relative h-[260px] w-full max-w-[400px] lg:h-[420px] lg:max-w-none">
-                    {imageSrc ? (
-                      <Image
-                        src={imageSrc}
-                        alt="Our technician — call us today"
-                        fill
-                        className="object-contain object-bottom"
-                        sizes="(max-width: 1024px) 100vw, 40vw"
-                        priority={false}
-                      />
-                    ) : (
-                      <div className="flex h-full items-end justify-center text-white/40">
-                        <Phone className="h-24 w-24" aria-hidden />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="relative z-10 -mt-4 w-full max-w-[340px] lg:absolute lg:bottom-8 lg:left-4 lg:right-auto lg:mt-0 lg:max-w-[300px] xl:left-6">
-                    <div className="flex items-center gap-3 rounded-2xl bg-[#F5E500] px-4 py-3 shadow-md">
-                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#6B3D2E]">
-                        <Phone className="h-6 w-6 text-white" aria-hidden />
-                      </div>
-                      <div className="min-w-0 flex-1 text-left">
-                        <p className="text-sm font-extrabold uppercase tracking-wide text-black md:text-base">
-                          Call Us Today!
-                        </p>
-                        <a
-                          href={phoneLink}
-                          className="mt-1 inline-block w-full max-w-full truncate rounded-full bg-white px-3 py-1.5 text-center text-sm font-bold text-black hover:bg-gray-100"
-                        >
-                          {phoneRaw || "(123) 456-7890"}
-                        </a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+               
 
                 {/* Right: headings + form */}
-                <div className="order-1 w-full flex-1 px-5 py-8 text-white md:px-8 md:py-10 lg:order-2 lg:pl-4 lg:pr-10 xl:pr-14">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white">
+                <div className="  order-1 w-full flex-1 max-w-[960px] px-5 py-8 text-white md:px-8 md:py-10 lg:order-2 lg:pl-4 lg:pr-10 xl:pr-14">
+                <h2 className={`text-3xl md:text-4xl ${rubik.className} lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white`}>
                     {line1}
                   </h2>
 
-                  <h2 className="mt-1 text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white">
+                  <h2 className={`mt-1 text-3xl ${rubik.className} md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white`}>
                     {line2}
                   </h2>
 
-                  <h2 className="mt-1 text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white">
+                  <h2 className={`mt-1 text-3xl ${rubik.className} ${rubik.className} md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white`}>
                     {line3}
                   </h2>
 
@@ -424,11 +398,11 @@ export default function Contact6({ content }) {
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="min-w-[200px] bg-white px-10 py-3 text-base font-bold uppercase tracking-wide text-black shadow-md transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#FF6611] disabled:opacity-70"
+                        className="min-w-[200px] bg-white px-10 py-3 uppercase text-xl md:text-1xl lg:text-3xl tracking-wide text-black shadow-md transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#FF6611] disabled:opacity-70"
                         aria-busy={isSubmitting}
                       >
                         {isSubmitting ? (
-                          <span className="flex items-center   justify-center gap-2">
+                          <span className={`flex items-center  ${poppins.className} justify-center gap-2`}>
                             <Loader className="h-5 w-5 animate-spin" />
                             Processing…
                           </span>

@@ -89,8 +89,8 @@ export default function Navbar6({ content }) {
 
   const navBarClass = cn(
     "fixed top-0 left-0 right-0 z-50 flex w-full flex-col items-stretch py-2",
-    "transition-[background-color,box-shadow,color] duration-300",
-    isScrolled ? "bg-white shadow-sm text-black" : "bg-transparent text-white",
+    "transition-[background-color,color] duration-300",
+    isScrolled ? "bg-white  text-black" : "bg-transparent text-white",
   );
 
   const navLinkIdle = isScrolled
@@ -163,7 +163,7 @@ export default function Navbar6({ content }) {
                   </button>
                   <div
                     className={cn(
-                      "absolute top-full left-0 w-auto min-w-[300px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)] transition-all duration-300 ease-in-out flex flex-col",
+                      "absolute top-full left-0 w-auto min-w-[300px] bg-white transition-all duration-300 ease-in-out flex flex-col",
                       isOpen
                         ? "opacity-100 visible transform translate-y-0"
                         : "opacity-0 invisible transform -translate-y-2",
@@ -226,7 +226,10 @@ export default function Navbar6({ content }) {
             <div className="text-xs">
               <a
                 href={phoneLink}
-                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-2.5 lg:py-3 rounded-full text-white font-bold text-sm lg:text-lg shadow hover:opacity-90 transition-all bg-[#FF6611]"
+                className={cn(
+                  "flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-2.5 lg:py-3 font-bold text-sm lg:text-lg  hover:opacity-90 transition-all",
+                  isScrolled ? "text-black" : "text-white",
+                )}
               >
                 <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
                 {phone}
@@ -238,7 +241,7 @@ export default function Navbar6({ content }) {
                 isScrolled ? "text-[#FF6611]" : "text-white",
               )}
             >
-              Call Us Today
+              
             </h2>
           </div>
 
@@ -256,7 +259,7 @@ export default function Navbar6({ content }) {
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#FF6611] text-white">
+            <div className="pt-1.5 rounded-[3px] p-0.5  text-white">
               {isOpen ? (
                 <X className="w-7 h-6" />
               ) : (
@@ -288,7 +291,10 @@ export default function Navbar6({ content }) {
                 <div className="text-xs">
                   <a
                     href={phoneLink}
-                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-3 rounded-full text-white font-bold text-lg hover:opacity-90 transition-all bg-[#FF6611]"
+                    className={cn(
+                      "flex items-center justify-center sm:justify-start gap-2 px-6 py-3 font-bold text-lg hover:opacity-90 transition-all",
+                      isScrolled ? "text-black" : "text-white",
+                    )}
                   >
                     <Phone className="w-5 h-5" />
                     {phone}
@@ -300,7 +306,7 @@ export default function Navbar6({ content }) {
                     isScrolled ? "text-[#FF6611]" : "text-white",
                   )}
                 >
-                  Call Us Today
+                  
                 </h2>
               </div>
               <div
@@ -309,7 +315,7 @@ export default function Navbar6({ content }) {
                   isScrolled ? "text-black" : "text-white",
                 )}
               >
-                <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#FF6611] text-white">
+                <div className="pt-1.5 rounded-[3px] p-0.5  text-white">
                   <Menu className="w-7 h-6" />
                 </div>
               </div>

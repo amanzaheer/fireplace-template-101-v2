@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/common/Container";
 import FullContainer from "@/components/common/FullContainer";
+import { Rubik, Inter, Poppins } from "next/font/google";
 import {
   CheckCircle,
   Clock,
@@ -21,6 +22,15 @@ import { resolveRefArray } from "@/lib/content-helpers";
 
 const ACCENT = "#FF6611";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 const ICON_MAP = {
   Clock,
   Star,
@@ -203,13 +213,13 @@ export default function Banner6({ content }) {
             </div>
 
             {data?.tagline ? (
-              <p className="mt-4 font-montserrat text-lg sm:text-xl font-semibold uppercase tracking-wide text-center md:text-left text-white/90">
+              <p className={`mt-4 ${poppins.className} font-montserrat text-lg sm:text-xl font-semibold uppercase tracking-wide text-center md:text-left text-white/90`}>
                 {data.tagline}
               </p>
             ) : null}
 
             {data?.description ? (
-              <p className="mt-3 text-base md:text-lg text-white/85 text-center md:text-left max-w-xl">
+              <p className={`mt-3 text-base ${poppins.className} md:text-lg text-white/85 text-center md:text-left max-w-xl`}>
                 {data.description}
               </p>
             ) : null}
