@@ -3,12 +3,18 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronRight, Phone, TextQuote } from "lucide-react";
+import { Montserrat } from "next/font/google";
+import { CheckCircle2, Phone, TextQuote } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import Heading from "@/components/common/Heading";
 import { IMAGE_BASE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+
+const serviceBenefitsHeadingFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["700"],
+  display: "swap",
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -42,9 +48,9 @@ export default function ServiceBenefits8({ content }) {
 
   if (list.length === 0) return null;
 
-  /** Same footprint for phone + quote (aligned pair); vivid orange like Navbar / promos. */
+  /** Phone + quote: padding top 15 / sides 38 / bottom 10, brand orange. */
   const ctaButtonClass =
-    "flex h-12 w-[205px] shrink-0 items-center justify-center gap-2 rounded-full bg-[#ff6600] px-3 text-sm font-semibold text-white shadow transition-colors hover:bg-[#e65c00] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#ff6600]";
+    "inline-flex shrink-0 items-center justify-center gap-2 rounded-none bg-[#fe5e00] pt-[15px] pr-[38px] pb-[10px] pl-[38px] text-sm font-semibold text-white shadow transition-colors hover:bg-[#e55500] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#fe5e00]";
 
   return (
     <FullContainer id="service_benefits" className="py-0 md:py-8 overflow-hidden">
@@ -67,14 +73,25 @@ export default function ServiceBenefits8({ content }) {
           </div>
           <div className="px-4 md:px-10 py-8 flex flex-col gap-4 rounded-2xl shadow-[0_0_5px_rgba(0,0,0,0.5)] bg-white z-10 my-7">
             {heading ? (
-              <Heading text={heading} className="text-center md:text-start" />
+              <h2
+                className={cn(
+                  serviceBenefitsHeadingFont.className,
+                  "text-center text-[44px] font-bold leading-tight text-[#000000] md:text-start",
+                )}
+              >
+                {heading}
+              </h2>
             ) : null}
             <div className="flex flex-row items-center justify-center md:justify-start">
               <div className="flex flex-col w-fit space-y-[6px]">
                 {list.map((benefit, index) => (
                   <div key={index} className="flex px-4 items-start">
-                    <ChevronRight className="w-5 h-5 text-primary flex-shrink-0 stroke-[4] mt-1" />
-                    <span className="ml-2 text-xl font-barlow text-blue-900">
+                    <CheckCircle2
+                      className="mt-1 h-5 w-5 shrink-0 text-[#fe5e00]"
+                      strokeWidth={2.5}
+                      aria-hidden
+                    />
+                    <span className="ml-2 font-barlow text-[18px] leading-snug text-[#040404]">
                       {typeof benefit === "object" ? benefit?.title : benefit}
                     </span>
                   </div>

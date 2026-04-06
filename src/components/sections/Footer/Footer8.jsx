@@ -3,10 +3,36 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Archivo } from "next/font/google";
 import { Clock4, Mail, Phone } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
+
+/** Orange tile + dark glyph (reference “phone-square” style) */
+const FOOTER_ICON_BG = "#D98200";
+const FOOTER_ICON_FG = "#082752";
+
+function FooterSquareIconBadge({ children, className }) {
+  return (
+    <span
+      className={cn(
+        "mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px]",
+        className,
+      )}
+      style={{ backgroundColor: FOOTER_ICON_BG }}
+    >
+      {children}
+    </span>
+  );
+}
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -45,7 +71,13 @@ export default function Footer8({ content }) {
         <Container className="relative z-10">
           <div className="grid w-full grid-cols-1 gap-6 sm:gap-8 lg:grid-cols-2 lg:gap-10 xl:gap-12">
             <div className="w-full min-w-0 max-w-full lg:max-w-[min(100%,36rem)]">
-              <h3 className="mb-2 text-[clamp(1.5rem,4vw,2.75rem)] font-bold leading-tight text-white sm:mb-3 md:text-[2.75rem]">
+              <h3
+                className={cn(
+                  archivo.className,
+                  "mb-2 text-[clamp(1.125rem,3.5vw,25px)] font-bold leading-tight text-white sm:mb-3 md:text-[25px]",
+                )}
+                data-animate-once={true}
+              >
                 Information
               </h3>
               <div className="mb-4 flex flex-wrap items-center gap-2 sm:gap-3">
@@ -67,41 +99,68 @@ export default function Footer8({ content }) {
                 )}
               </div>
               {statement ? (
-                <p className="max-w-full text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem] lg:max-w-[61rem]">
+                <p className="max-w-full text-[17px] leading-[1.45] text-white/95 lg:max-w-[61rem]">
                   {statement}
                 </p>
               ) : null}
             </div>
             <div className="w-full min-w-0 lg:pl-8 xl:pl-16">
-              <h3 className="mb-4 text-[clamp(1.5rem,4vw,2.75rem)] font-bold leading-tight text-white sm:mb-6 md:text-[2.75rem]">
+              <h3
+                className={cn(
+                  archivo.className,
+                  "mb-4 text-[clamp(1.125rem,3.5vw,25px)] font-bold leading-tight text-white sm:mb-6 md:text-[25px]",
+                )}
+                data-animate-once={true}
+              >
                 Contact Info
               </h3>
               <ul className="space-y-3 sm:space-y-4">
                 <li className="flex items-start gap-3">
-                  <Phone className="mt-1 h-5 w-5 shrink-0 text-[#f7a11a] sm:h-6 sm:w-6" />
+                  <FooterSquareIconBadge aria-hidden>
+                    <Phone
+                      className="h-[11px] w-[11px]"
+                      style={{ color: FOOTER_ICON_FG }}
+                      strokeWidth={2.25}
+                      aria-hidden
+                    />
+                  </FooterSquareIconBadge>
                   <Link
                     title="Call Button"
                     href={phone ? `tel:${phone}` : "#"}
-                    className="min-w-0 break-words text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem]"
+                    className="min-w-0 break-words text-[17px] leading-[1.45] text-white/95"
                   >
                     {phone || "(656) 245-0412"}
                   </Link>
                 </li>
                 {email ? (
                   <li className="flex items-start gap-3">
-                    <Mail className="mt-1 h-5 w-5 shrink-0 text-[#f7a11a] sm:h-6 sm:w-6" />
+                    <FooterSquareIconBadge aria-hidden>
+                      <Mail
+                        className="h-[11px] w-[11px]"
+                        style={{ color: FOOTER_ICON_FG }}
+                        strokeWidth={2.25}
+                        aria-hidden
+                      />
+                    </FooterSquareIconBadge>
                     <Link
                       title="Email Button"
                       href={`mailto:${email}`}
-                      className="min-w-0 break-all text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem]"
+                      className="min-w-0 break-all text-[17px] leading-[1.45] text-white/95"
                     >
                       {email}
                     </Link>
                   </li>
                 ) : null}
                 <li className="flex items-start gap-3">
-                  <Clock4 className="mt-1 h-5 w-5 shrink-0 text-[#f7a11a] sm:h-6 sm:w-6" />
-                  <span className="text-[clamp(1rem,2.8vw,1.75rem)] leading-[1.35] text-white/95 md:text-[1.75rem]">
+                  <FooterSquareIconBadge aria-hidden>
+                    <Clock4
+                      className="h-[11px] w-[11px]"
+                      style={{ color: FOOTER_ICON_FG }}
+                      strokeWidth={2.25}
+                      aria-hidden
+                    />
+                  </FooterSquareIconBadge>
+                  <span className="text-[17px] leading-[1.45] text-white/95">
                     {workingHours}
                   </span>
                 </li>
@@ -113,14 +172,14 @@ export default function Footer8({ content }) {
               <Link
                 title="Privacy Policy"
                 href="/privacy-policy"
-                className="text-sm text-white/90 md:text-base"
+                className="text-[17px] text-white/90"
               >
                 Privacy Policy
               </Link>
               <Link
                 title="Terms and conditions"
                 href="/terms-and-conditions"
-                className="text-sm text-white/90 md:text-base"
+                className="text-[17px] text-white/90"
               >
                 Terms and conditions
               </Link>

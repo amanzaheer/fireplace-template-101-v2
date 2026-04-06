@@ -84,6 +84,11 @@ function FeatureCheckIcon() {
   );
 }
 
+/** Reference: navy shell ≈4–6px; orange “island” + CTA clearly rounder (~12–14px) */
+const R_OUTER = "rounded-md";
+const R_ORANGE = "rounded-xl md:rounded-[14px]";
+const R_CTA = "rounded-xl md:rounded-[13px]";
+
 function PromotionCard({
   subheading,
   heading,
@@ -96,7 +101,13 @@ function PromotionCard({
   const label = ctaLabel || phone;
 
   return (
-    <article className="flex h-full min-h-0 flex-col rounded-xl bg-[#061f4a] px-5 py-6 shadow-md md:rounded-2xl md:px-6 md:py-7">
+    <article
+      className={cn(
+        "flex h-full min-h-0 w-full flex-col bg-[#061f4a] px-6 py-6 shadow-md md:px-8 md:py-8",
+        R_OUTER,
+      )}
+    >
+      {/* Fills extra height so orange panel + CTA sit on one baseline across all cards */}
       <div className="flex min-h-0 flex-1 flex-col items-stretch">
         {subheading ? (
           <MaybeMarkdown
@@ -112,7 +123,7 @@ function PromotionCard({
             as="h3"
             className={cn(
               promotionHeading.className,
-              "mx-auto w-full max-w-[20rem] text-center text-[22px] font-semibold not-italic leading-[1.35] text-white sm:max-w-[22rem] sm:text-[26px] md:max-w-[24rem] md:text-[32px] md:leading-[1.4]",
+              "mx-auto w-full max-w-[22rem] text-center text-[22px] font-semibold not-italic leading-[1.35] text-white sm:max-w-[24rem] sm:text-[26px] md:max-w-[26rem] md:text-[32px] md:leading-[1.4]",
             )}
           >
             {heading}
@@ -122,35 +133,43 @@ function PromotionCard({
         {description ? (
           <MaybeMarkdown
             as="p"
-            className="mx-auto mt-3 max-w-[20rem] text-center text-[13px] font-normal leading-relaxed text-white/90 sm:max-w-[22rem] md:mt-3.5 md:text-sm"
+            className="mx-auto mt-3 max-w-[22rem] text-center text-[13px] font-normal leading-relaxed text-white/90 sm:max-w-[24rem] md:mt-3.5 md:text-sm"
           >
             {description}
           </MaybeMarkdown>
         ) : null}
-
-        {featuresList.length > 0 ? (
-          <div className="mt-5 w-full rounded-lg bg-[#D6510A] px-4 py-4 md:mt-6 md:rounded-[10px] md:px-5 md:py-5">
-            <ul className="flex flex-col gap-3 md:gap-3.5">
-              {featuresList.map((feature, index) => (
-                <li
-                  key={index}
-                  className="flex items-start gap-2.5 text-left text-[13px] font-medium leading-snug text-white md:text-[14px]"
-                >
-                  <FeatureCheckIcon />
-                  <MaybeMarkdown as="span" className="min-w-0 pt-0.5">
-                    {feature}
-                  </MaybeMarkdown>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ) : null}
       </div>
+
+      {featuresList.length > 0 ? (
+        <div
+          className={cn(
+            "mx-auto mt-5 w-full max-w-[min(100%,22rem)] shrink-0 bg-[#D6510A] px-4 py-4 md:mt-6 md:max-w-[min(100%,24rem)] md:px-5 md:py-5",
+            R_ORANGE,
+          )}
+        >
+          <ul className="flex flex-col gap-3 md:gap-3.5">
+            {featuresList.map((feature, index) => (
+              <li
+                key={index}
+                className="flex items-start gap-2.5 text-left text-[13px] font-medium leading-snug text-white md:text-[14px]"
+              >
+                <FeatureCheckIcon />
+                <MaybeMarkdown as="span" className="min-w-0 pt-0.5">
+                  {feature}
+                </MaybeMarkdown>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
 
       {phone && label ? (
         <a
           href={`tel:${phone}`}
-          className="mt-5 flex w-full shrink-0 items-center justify-center gap-[10px] rounded-lg bg-[#D6510A] px-5 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-white transition-opacity hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D6510A] md:mt-6 md:px-6 md:py-4 md:text-sm"
+          className={cn(
+            "mt-4 flex w-full shrink-0 items-center justify-center gap-[10px] bg-[#D6510A] px-5 py-3.5 text-center text-xs font-bold uppercase tracking-wide text-white transition-opacity hover:opacity-95 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#D6510A] md:mt-5 md:px-6 md:py-4 md:text-sm",
+            R_CTA,
+          )}
         >
           {label}
         </a>
@@ -168,10 +187,9 @@ export default function Promotion8({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const ctaLabel =
     typeof promotion?.cta_label === "string" ? promotion.cta_label.trim() : "";
-
   return (
     <FullContainer id="promo" className="bg-white">
-      <Container className="max-w-5xl">
+      <Container className="max-w-[min(100%,88rem)] px-4 sm:px-5 md:px-6">
         <div className="w-full pb-10 pt-8 md:pb-14 md:pt-10">
           {title ? (
             <MaybeMarkdown
@@ -195,20 +213,24 @@ export default function Promotion8({ content }) {
 
           <div
             className={cn(
-              "grid grid-cols-1 items-stretch gap-5 md:grid-cols-2 md:gap-6",
+              "flex flex-col items-stretch gap-[1.375rem] md:flex-row md:flex-nowrap md:items-stretch md:gap-[1.625rem]",
               title || description ? "mt-8 md:mt-10" : "mt-0 md:mt-0",
             )}
           >
             {details.map((item, index) => (
-              <PromotionCard
+              <div
                 key={`${featureLineCount(item)}-${index}-${item?.heading ?? ""}`}
-                subheading={item.subheading}
-                heading={item.heading}
-                description={item.description}
-                features={item.features}
-                phone={phone}
-                ctaLabel={ctaLabel}
-              />
+                className="flex min-h-0 min-w-0 flex-1"
+              >
+                <PromotionCard
+                  subheading={item.subheading}
+                  heading={item.heading}
+                  description={item.description}
+                  features={item.features}
+                  phone={phone}
+                  ctaLabel={ctaLabel}
+                />
+              </div>
             ))}
           </div>
         </div>

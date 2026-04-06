@@ -2,9 +2,17 @@
 
 import React, { useState, useCallback, memo } from "react";
 import { CheckCircle, Loader, TextQuote } from "lucide-react";
+import { Poppins } from "next/font/google";
 import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { cn } from "@/lib/utils";
+
+const contactHeadingFont = Poppins({
+  subsets: ["latin"],
+  weight: ["600", "700"],
+  display: "swap",
+});
 import {
   validateEmail,
   validatePhone,
@@ -243,36 +251,50 @@ export default function Contact8({ content }) {
     <FullContainer id="contact-us" className="pb-4 relative mt-9">
       <Container className="relative z-10">
         <div id="quote-form-section">
-          <div className="bg-primary gap-0 rounded-[20px] overflow-hidden mb-5 shadow-lg">
-            <div className="p-7 pt-6 md:pt-10 md:p-10 lg:p-12 bg-primary text-white font-barlow">
-              {formSubmitted ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                  <div className="h-24 w-24 bg-green-100 rounded-full flex items-center justify-center mb-8">
+          <div className="mb-5 overflow-hidden rounded-[20px] bg-gradient-to-b from-[#051529] to-[#11498F] shadow-lg">
+            {formSubmitted ? (
+              <div className="p-7 pt-6 font-barlow text-white md:p-10 md:pt-10 lg:p-12">
+                <div className="flex h-full flex-col items-center justify-center py-12 text-center">
+                  <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-green-100">
                     <CheckCircle className="h-12 w-12 text-green-600" />
                   </div>
-                  <h4 className="text-3xl font-bold text-white mb-4">Thank You!</h4>
-                  <p className="text-white text-xl max-w-md mb-6">
+                  <h4 className="mb-4 text-3xl font-bold text-white">Thank You!</h4>
+                  <p className="mb-6 max-w-md text-xl text-white">
                     Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
                   </p>
                   <button
                     type="button"
                     onClick={closeThankYou}
-                    className="bg-white text-black py-3 px-6 rounded-md font-medium transition-colors duration-200 hover:bg-gray-100"
+                    className="rounded-md bg-white px-6 py-3 font-medium text-black transition-colors duration-200 hover:bg-gray-100"
                   >
                     OK Thanks
                   </button>
                 </div>
-              ) : (
-                <>
-                  <h2 className="text-3xl leading-none md:text-4xl md:leading-7 font-bold mb-4 text-white text-center">
+              </div>
+            ) : (
+              <>
+                <div className="px-7 pb-7 pt-6 font-barlow text-white md:px-10 md:pb-8 md:pt-10 lg:px-12 lg:pb-8 lg:pt-12">
+                  <h2
+                    className={cn(
+                      contactHeadingFont.className,
+                      "mb-4 text-center text-[20px] font-bold leading-tight text-white",
+                    )}
+                  >
                     {title}
                   </h2>
-                  <h3 className="text-[25px] leading-none md:text-4xl md:leading-7 font-bold mb-7 text-white text-center">
+                  <h3
+                    className={cn(
+                      contactHeadingFont.className,
+                      "text-center text-[42px] font-bold leading-tight text-white",
+                    )}
+                  >
                     {subTitle}
                   </h3>
+                </div>
+                <div className="px-7 pb-7 font-barlow text-white md:px-10 md:pb-10 lg:px-12 lg:pb-12">
                   <form onSubmit={handleSubmit} className="space-y-5" noValidate>
                     <div className="rounded-xl bg-orange-500 p-4 md:p-5">
-                      <div className="grid md:grid-cols-2 gap-3">
+                      <div className="grid gap-3 md:grid-cols-2">
                         <NameInput value={formData.name} onChange={handleChange} error={errors.name} />
                         <PhoneInput value={formData.phone} onChange={handleChange} error={errors.phone} />
                         <ZipcodeInput value={formData.zipcode} onChange={handleChange} error={errors.zipcode} />
@@ -282,30 +304,33 @@ export default function Contact8({ content }) {
                         <MessageInput value={formData.message} onChange={handleChange} error={errors.message} />
                       </div>
                     </div>
-                    <div className="flex flex-col text-center justify-center items-center mt-1">
+                    <div className="mt-1 flex flex-col items-center justify-center text-center">
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="w-full mx-auto bg-orange-500 text-white py-3.5 px-10 rounded-md transition-all duration-300 font-semibold flex text-2xl uppercase tracking-wide items-center justify-center shadow-lg hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-400 disabled:opacity-70"
+                        className={cn(
+                          contactHeadingFont.className,
+                          "mx-auto flex w-full items-center justify-center rounded-md bg-orange-500 px-10 py-3.5 text-[25px] font-semibold uppercase tracking-wide text-white shadow-lg transition-all duration-300 hover:bg-orange-600 focus:outline-none focus:ring-2 focus:ring-orange-400 focus:ring-offset-2 disabled:opacity-70",
+                        )}
                         aria-busy={isSubmitting}
                       >
                         {isSubmitting ? (
                           <>
-                            <Loader className="animate-spin mr-3 h-5 w-5" />
+                            <Loader className="mr-3 h-5 w-5 animate-spin" />
                             Processing...
                           </>
                         ) : (
                           <span className="flex items-center gap-2">
-                            <TextQuote className="w-5 h-5" />
+                            <TextQuote className="h-5 w-5" />
                             Get A Quote
                           </span>
                         )}
                       </button>
                     </div>
                   </form>
-                </>
-              )}
-            </div>
+                </div>
+              </>
+            )}
           </div>
         </div>
       </Container>
