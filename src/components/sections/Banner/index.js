@@ -9,7 +9,7 @@ import Banner4 from './Banner4';
 import Banner6 from './Banner6';
 import Banner8 from './Banner8';
 import Banner5 from './Banner5';
-
+import Banner9 from './Banner9';
 import Banner7 from './Banner7';
 const variants = {
   Banner1,
@@ -20,6 +20,7 @@ const variants = {
   Banner8,
   Banner5,
   Banner7,
+  Banner9,
 };
 
 export default function Banner({ variant, content }) {
@@ -27,4 +28,4 @@ export default function Banner({ variant, content }) {
   const Component = variants[name] ?? Banner5;
   return <Component content={content} />;
 }
-export { Banner1, Banner2, Banner3, Banner4, Banner5, Banner6, Banner7, Banner8, variants };
+export { Banner1, Banner2, Banner3, Banner4, Banner5, Banner6, Banner7, Banner8, Banner9, variants };
