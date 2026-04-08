@@ -5,7 +5,22 @@ import { Check } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import md from "@/lib/markdown";
+import { Rubik, Inter, Poppins } from "next/font/google";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+}); 
 /** Burnt orange / rust accent for checks and CTA (matches promo reference) */
 const ACCENT = "#c2410c";
 
@@ -115,7 +130,7 @@ export default function Promotion6({ content }) {
         <div className="w-full pb-12 md:pb-16 pt-10 md:pt-14">
           <MaybeMarkdown
             as="h2"
-            className="text-3xl md:text-4xl font-extrabold text-center text-neutral-900 mb-4 md:mb-6 tracking-tight"
+            className={`${poppins.className} text-3xl md:text-4xl font-extrabold text-center text-neutral-900 mb-4 md:mb-6 tracking-tight`}
           >
             {title}
           </MaybeMarkdown>
