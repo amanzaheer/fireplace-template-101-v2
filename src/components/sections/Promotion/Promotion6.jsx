@@ -5,22 +5,17 @@ import { Check } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import md from "@/lib/markdown";
-import { Rubik, Inter, Poppins } from "next/font/google";
-
-const rubik = Rubik({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+import { DM_Sans, Poppins } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 }); 
+
+const dmSansFont = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 /** Burnt orange / rust accent for checks and CTA (matches promo reference) */
 const ACCENT = "#c2410c";
 
@@ -130,19 +125,20 @@ export default function Promotion6({ content }) {
         <div className="w-full pb-12 md:pb-16 pt-10 md:pt-14">
           <MaybeMarkdown
             as="h2"
-            className={`${poppins.className} text-3xl md:text-4xl font-extrabold text-center text-neutral-900 mb-4 md:mb-6 tracking-tight`}
+            className={` text-3xl md:text-4xl font-extrabold text-center text-neutral-900 mb-4 md:mb-6 tracking-tight`}
           >
             {title}
           </MaybeMarkdown>
           {description ? (
             <MaybeMarkdown
               as="p"
-              className="text-center text-neutral-300 max-w-3xl mx-auto mb-10 md:mb-12 text-base md:text-lg "
+              className={` ${dmSansFont.className} text-center text-neutral-300 max-w-3xl mx-auto mb-10 md:mb-12 text-base md:text-lg `}
             >
               {description}
             </MaybeMarkdown>
           ) : null}
-          <div className="flex flex-nowrap gap-6 md:gap-8 w-full max-w-7xl mx-auto overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth [scrollbar-gutter:stable]">
+          <div className={` ${poppins.className} flex flex-nowrap gap-6 md:gap-8 w-full max-w-7xl mx-auto overflow-x-auto overflow-y-visible overscroll-x-contain scroll-smooth [scrollbar-gutter:stable] `}>
+
             {details.map((item, index) => {
               const hasSubheading = Boolean(item.subheading);
               const overline =
@@ -155,7 +151,7 @@ export default function Promotion6({ content }) {
               return (
                 <div
                   key={index}
-                  className="min-w-[min(100%,280px)] flex-1 basis-0 shrink-0 md:min-w-0 md:shrink"
+                  className={` ${dmSansFont.className}    min-w-[min(100%,280px)] flex-1 basis-0 shrink-0 md:min-w-0 md:shrink`}
                 >
                   <PromotionCard
                     overline={overline}
@@ -168,6 +164,7 @@ export default function Promotion6({ content }) {
               );
             })}
           </div>
+          
         </div>
       </Container>
     </FullContainer>

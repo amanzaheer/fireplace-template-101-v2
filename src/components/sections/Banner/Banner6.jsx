@@ -239,7 +239,7 @@ export default function Banner6({ content }) {
                       className= {` ${poppins.className} flex items-center gap-3 text-white font-medium text-sm sm:text-base`}
                     >
                       <span
-                        className="flex shrink-0 w-7 h-7 rounded-md items-center justify-center"
+                        className={`${poppins.className} flex shrink-0 w-7 h-7 rounded-md items-center justify-center`}
                         style={{ backgroundColor: `${ACCENT}33` }}
                         aria-hidden
                       >
@@ -260,7 +260,7 @@ export default function Banner6({ content }) {
               <div className="mt-10 flex justify-center md:justify-start">
                 <a
                   href={`tel:${phone}`}
-                  className={` inline-flex items-center bg-gradient-to-l from-[#FF6611] to-transparent gap-3 pl-2 pr-6 py-1 rounded-md font-montserrat font-bold text-white text-lg sm:text-xl shadow-lg transition-opacity hover:opacity-95`}
+                className={` ${poppins.className} inline-flex items-center bg-gradient-to-l from-[#FF6611] to-transparent gap-3 pl-2 pr-6 py-1 rounded-md font-montserrat font-bold text-white text-lg sm:text-xl shadow-lg transition-opacity hover:opacity-95`}
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/95 text-black">
                     <Phone className="w-5 h-5" style={{ color: ACCENT }} aria-hidden />

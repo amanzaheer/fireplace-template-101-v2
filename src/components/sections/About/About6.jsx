@@ -113,6 +113,7 @@ export default function About6({ content }) {
               </Link>
             ) : null}
           </div>
+          <div>hghghghgghg</div>
         </div>
       </Container>
     </FullContainer>

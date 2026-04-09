@@ -2,7 +2,19 @@ import React from "react";
 import { MapPin } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Poppins, Inter,  } from "next/font/google"; 
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+    
 function getLocationsList(content, block) {
   const direct = block?.list ?? block?.value?.list;
   if (Array.isArray(direct)) return direct;
@@ -26,7 +38,7 @@ export default function ServiceCities6({ content }) {
   return (
     <FullContainer className="bg-white py-10 md:py-14 lg:py-16" id="locations">
       <Container className="px-4 sm:px-5 md:px-15">
-        <h2 className="mb-8 text-center text-3xl font-bold tracking-tight text-gray-800 md:mb-10 md:text-5xl">
+        <h2 className={` ${poppins.className} mb-8 text-center text-3xl font-bold tracking-tight text-gray-800 md:mb-10 md:text-5xl`}>
           {title}
         </h2>
 
@@ -46,12 +58,12 @@ export default function ServiceCities6({ content }) {
                 role="listitem"
               >
                 <MapPin
-                  className={`mt-0.5 h-4 w-4 shrink-0 md:h-[18px] md:w-[18px] ${PIN_CLASS}`}
+                  className={`${inter.className} mt-0.5 h-4 w-4 shrink-0 md:h-[18px] md:w-[18px] ${PIN_CLASS}`}
                   strokeWidth={4}
                   aria-hidden
                 />
                 <span
-                  className={`font-barlow text-[13px] font-medium leading-snug md:text-base ${TEXT_CLASS}`}
+                  className={`${inter.className}  font-barlow text-[13px] font-medium leading-snug md:text-base ${TEXT_CLASS}`}
                 >
                   {label}
                 </span>
