@@ -91,7 +91,7 @@ export default function Footer6({ content }) {
                   ) : null}
                   <li className="flex items-center gap-3">
                     <Clock4 className="w-5 h-5 text-yellow-500" />
-                    <span className={`${archivo.className} text-white text-sm md:text-[15px]`}>{workingHours}</span>
+                    <span className={`${archivo.className} text-white text-sm md:text-[20px]`}>{workingHours}</span>
                   </li>
                 </ul>
               </div>

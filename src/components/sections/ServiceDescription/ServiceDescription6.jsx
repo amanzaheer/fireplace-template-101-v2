@@ -66,38 +66,75 @@ export default function ServiceDescription6({ content }) {
   return (
     <FullContainer
       id="service_description"
-      className="font-barlow overflow-hidden bg-linear-to-b from-stone-50/80 to-white py-10 md:py-14 lg:py-16"
+      className="font-barlow overflow-hidden bg-white py-10 md:py-14 lg:py-16"
     >
       <Container className="mx-auto max-w-6xl px-5 sm:px-6 md:px-8 lg:px-10">
-        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-10 lg:gap-12">
-          <div className="flex max-w-[640px] flex-col space-y-5 md:space-y-6">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-14">
+          <div className="w-full">
+            <div className="relative mx-auto h-[350px] w-full max-w-[560px] sm:h-[430px]">
+              <div className="absolute left-0 top-0 h-[72%] w-[56%] overflow-hidden rounded-md bg-gray-200 shadow-lg">
+                {imageSrc ? (
+                  <Image
+                    src={imageSrc}
+                    alt={titleForAlt}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 85vw, 30vw"
+                    loading="lazy"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-gray-200" />
+                )}
+              </div>
+              <div
+                className="absolute bottom-0 right-0 h-[78%] w-[64%] rounded-md border-8 shadow-xl"
+                style={{ borderColor: "#f97316" }}
+              >
+                <div className="relative h-full w-full overflow-hidden rounded-[2px] bg-gray-200">
+                  {imageSrc ? (
+                    <Image
+                      src={imageSrc}
+                      alt={`${titleForAlt} featured`}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 90vw, 35vw"
+                      loading="lazy"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-gray-200" />
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex max-w-[640px] flex-col space-y-5 lg:space-y-6">
             {titleFromCms ? (
               <h2
-                className="text-2xl font-bold leading-tight tracking-tight text-balance md:text-3xl lg:text-[2rem]"
-                style={{ color: ACCENT }}
+                className="text-4xl font-extrabold leading-[1.05] tracking-tight text-black md:text-5xl lg:text-[3.4rem]"
               >
                 {titleFromCms}
               </h2>
             ) : null}
 
             <div
-              className="w-full max-w-none text-start prose prose-gray prose-accent-d354 prose-h1:text-2xl md:prose-h1:text-3xl prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-p:text-base md:prose-p:text-lg prose-p:leading-relaxed prose-headings:font-bold prose-headings:text-start prose-p:text-start prose-li:text-start"
+              className="w-full max-w-none text-start prose prose-gray prose-accent-d354 prose-h1:text-2xl md:prose-h1:text-3xl prose-h2:text-xl md:prose-h2:text-2xl prose-h3:text-lg md:prose-h3:text-xl prose-p:text-lg prose-p:leading-relaxed prose-headings:font-bold prose-headings:text-start prose-p:text-start prose-li:text-start prose-li:my-2 prose-li:marker:text-transparent"
               dangerouslySetInnerHTML={{ __html: md.render(description) }}
             />
 
             {phone ? (
-              <div className="flex w-full flex-col items-stretch gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              <div className="flex w-full flex-col items-stretch gap-3 pt-3 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
                 <button
                   type="button"
                   onClick={scrollToQuote}
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border-2 border-neutral-900 bg-neutral-900 px-6 py-3 font-barlow text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border-2 border-neutral-900 bg-neutral-900 px-7 py-3 font-barlow text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
                 >
-                  Get a quote
+                  CALL US TODAY
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </button>
                 <Link
                   href={telHref}
-                  className="inline-flex min-h-[48px] min-w-[220px] items-center justify-center gap-2 rounded-lg px-6 py-3 font-barlow text-base font-bold text-white shadow-md transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2"
+                  className="inline-flex min-h-[22px] min-w-[140px] items-center justify-center gap-2 rounded-md px-6 py-3 font-barlow text-[1.2rem] font-bold text-white shadow-md transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2"
                   style={{
                     backgroundColor: ACCENT,
                     outlineColor: ACCENT,
@@ -112,30 +149,13 @@ export default function ServiceDescription6({ content }) {
                 <button
                   type="button"
                   onClick={scrollToQuote}
-                  className="inline-flex min-h-[48px] items-center justify-center gap-2 rounded-lg border-2 border-neutral-900 bg-neutral-900 px-6 py-3 font-barlow text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
+                  className="inline-flex min-h-[52px] items-center justify-center gap-2 rounded-md border-2 border-neutral-900 bg-neutral-900 px-7 py-3 font-barlow text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-neutral-800 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-neutral-900"
                 >
-                  Get a quote
+                  CALL US TODAY
                   <ArrowRight className="h-4 w-4" aria-hidden />
                 </button>
               </div>
             )}
-          </div>
-
-          <div className="w-full">
-            <div className="relative aspect-4/3 w-full min-h-[260px] overflow-hidden rounded-2xl bg-gray-100 shadow-[0_20px_50px_-24px_rgba(0,0,0,0.2)] ring-1 ring-black/5 sm:aspect-5/4 md:min-h-0 lg:aspect-5/4">
-              {imageSrc ? (
-                <Image
-                  src={imageSrc}
-                  alt={titleForAlt}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  loading="lazy"
-                />
-              ) : (
-                <div className="absolute inset-0 bg-gray-200" />
-              )}
-            </div>
           </div>
         </div>
       </Container>
