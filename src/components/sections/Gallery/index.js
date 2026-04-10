@@ -9,7 +9,7 @@ import Gallery5 from "./Gallery5";
 import Gallery6 from "./Gallery6";
 import Gallery8 from "./Gallery8";  
 import Gallery9 from "./Gallery9";
-
+import Gallery10 from "./Gallery10";
 import Gallery7 from "./Gallery7";
 const variants = {
   Gallery1,
@@ -21,6 +21,7 @@ const variants = {
   Gallery8,
   Gallery7,
   Gallery9,
+  Gallery10,
 };
 
 export default function Gallery({ variant, content }) {
@@ -29,4 +30,4 @@ export default function Gallery({ variant, content }) {
   return <Component content={content} />;
 }
       
-export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5,Gallery6, Gallery8, Gallery7, Gallery9, variants };
+export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5,Gallery6, Gallery8, Gallery7, Gallery9, Gallery10, variants };

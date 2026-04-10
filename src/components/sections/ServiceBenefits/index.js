@@ -10,6 +10,7 @@ import ServiceBenefits8 from "./ServiceBenefits8";
 import ServiceBenefits5 from "./ServiceBenefits5";
 import ServiceBenefits7 from "./ServiceBenefits7";
 import ServiceBenefits9 from "./ServiceBenefits9";
+import ServiceBenefits10 from "./ServiceBenefits10";
 const variants = {
   ServiceBenefits1,
   ServiceBenefits2,
@@ -20,6 +21,7 @@ const variants = {
   ServiceBenefits5,
   ServiceBenefits7,
   ServiceBenefits9,
+  ServiceBenefits10,
 };
 
 export default function ServiceBenefits({ variant, content }) {
@@ -28,4 +30,4 @@ export default function ServiceBenefits({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { ServiceBenefits1, ServiceBenefits2, ServiceBenefits3, ServiceBenefits4, ServiceBenefits6, ServiceBenefits8, ServiceBenefits5, ServiceBenefits7, ServiceBenefits9, variants };
+export { ServiceBenefits1, ServiceBenefits2, ServiceBenefits3, ServiceBenefits4, ServiceBenefits6, ServiceBenefits8, ServiceBenefits5, ServiceBenefits7, ServiceBenefits9, ServiceBenefits10, variants };

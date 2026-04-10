@@ -10,6 +10,8 @@ import OurServices8 from "./OurServices8";
 import OurServices5 from "./OurServices5";
 import OurServices7 from "./OurServices7";
 import OurServices9 from "./OurServices9";
+import OurServices10 from "./OurServices10";
+
 const variants = {
   OurServices1,
   OurServices2,
@@ -20,6 +22,7 @@ const variants = {
   OurServices5,
   OurServices7,
   OurServices9,
+  OurServices10,
 };
 
 export default function OurServices({ variant, content }) {
@@ -28,4 +31,4 @@ export default function OurServices({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7,OurServices9, variants };
+export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7,OurServices9,OurServices10, variants };
