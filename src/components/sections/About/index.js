@@ -1,4 +1,4 @@
-/**
+/*
  * About section: multiple designs, one export.
  * variant comes from domain config (SectionLayout).
  */
@@ -11,6 +11,7 @@ import About7 from "./About7";
 import About6 from "./About6";
 import About8 from "./About8";
 
+
 const variants = {
   About1,
   About2,
@@ -20,11 +21,12 @@ const variants = {
   About8,
   About5,
   About7,
+  
 };
 
 export default function About({ variant, content }) {
-  const name = String(variant ?? "").trim() || "About5";
-  const Component = variants[name] ?? About5;
+  const name = String(variant ?? "").trim() || "About1";
+  const Component = variants[name] ?? About1;
   return <Component content={content} />;
 }
 

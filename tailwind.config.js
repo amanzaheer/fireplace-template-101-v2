@@ -16,9 +16,11 @@ module.exports = {
         
       },
       fontFamily: {
+        Poppins:["Poppins","sans-serif"],
         montserrat: ["var(--font-montserrat)", "Montserrat", ...defaultTheme.fontFamily.sans],
         barlow: ["var(--font-barlow)", "Barlow", "sans-serif"],
         sans: ["Helvetica", "Arial", "sans-serif"],
+        Rubik:["Rubik","sans-serif"],
       },
       gridTemplateColumns: {
         banner: "1.5fr 1fr 0.6fr",
