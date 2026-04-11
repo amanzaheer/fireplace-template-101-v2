@@ -2,7 +2,6 @@
  * Promotion section: multiple designs, one export.
  * variant comes from domain config (SectionLayout).
  */
-import { createElement } from "react";
 import Promotion1 from "./Promotion1";
 import Promotion2 from "./Promotion2";
 import Promotion3 from "./Promotion3";
@@ -11,8 +10,8 @@ import Promotion6 from "./Promotion6";
 import Promotion5 from "./Promotion5";
 import Promotion7 from "./Promotion7";
 import Promotion8 from "./Promotion8";
-import Promotion10 from "./Promotion10";
 import Promotion9 from "./Promotion9";
+
 
 const variants = {
   Promotion1,
@@ -23,19 +22,12 @@ const variants = {
   Promotion5,
   Promotion7,
   Promotion8,
-  Promotion10,
   Promotion9,
 };
 
-/** Match layouts.json design strings even if casing/spacing differs (e.g. promotion8, Promotion 8). */
-function resolvePromotionComponent(variant) {
-  const raw = String(variant ?? "").trim();
-  if (!raw) return Promotion9;
-  if (variants[raw]) return variants[raw];
-  const compact = raw.replace(/\s+/g, "").toLowerCase();
-  const key = Object.keys(variants).find(
-    (k) => k.replace(/\s+/g, "").toLowerCase() === compact,
-  );
-  return key ? variants[key] : Promotion9;
+export default function Promotion({ variant, content }) {
+  const name = variant ?? "Promotion1";
+  const Component = variants[name] ?? Promotion1;
+  return <Component content={content} />;
 }
-export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion5,Promotion6, Promotion7, Promotion8, Promotion9, Promotion10, variants };
+export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion5, Promotion6, Promotion7, Promotion8, Promotion9, variants };
