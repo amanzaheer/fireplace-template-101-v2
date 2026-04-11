@@ -25,3 +25,4 @@ export { default as ServiceDescription2Section } from "./ServiceDescription2";
 export { default as CallUsButton } from "./CallUsButton";
 
 
+export { default as WhyChoose9 } from "./WhyChoose/WhyChoose9";

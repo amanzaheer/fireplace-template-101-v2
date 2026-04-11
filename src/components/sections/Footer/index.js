@@ -1,29 +1,32 @@
 import Footer1 from "./Footer1";
 import Footer2 from "./Footer2";
 import Footer3 from "./Footer3";
-import Footer6 from "./Footer6";
 import Footer4 from "./Footer4";
-import Footer8 from "./Footer8";
 import Footer5 from "./Footer5";
+import Footer6 from "./Footer6";
 import Footer7 from "./Footer7";
 import Footer10 from "./Footer10";
+import Footer8 from "./Footer8";
+import Footer9 from "./Footer9";
+
 const variants = {
   Footer1,
   Footer2,
   Footer3,
-  Footer6,
   Footer4,
-  Footer8,
   Footer5,
+  Footer6,
   Footer7,
   Footer10,
+  Footer8,
+  Footer9,
 };
 
 
 
 export default function Footer({ variant, content }) {
-  const name = variant ?? "Footer5";
-  const Component = variants[name] ?? Footer5;
+    const name = variant ?? "Footer9";
+  const Component = variants[name] ?? Footer9;
   return <Component content={content} />;
 }
-  export { Footer1, Footer2, Footer3, Footer4, Footer8,Footer10,Footer6,Footer7, Footer5, variants };
+  export { Footer1, Footer2, Footer3, Footer4, Footer5,Footer6,Footer7, Footer8, Footer9, Footer10, variants };

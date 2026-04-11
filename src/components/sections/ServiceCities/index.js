@@ -10,6 +10,7 @@ import ServiceCities8 from "./ServiceCities8";
 import ServiceCities5 from "./ServiceCities5";
 import ServiceCities7 from "./ServiceCities7";
 import ServiceCities9 from "./ServiceCities9";
+
 const variants = {
   ServiceCities1,
   ServiceCities2,
@@ -22,9 +23,14 @@ const variants = {
   ServiceCities9,
 };
 
-export default function ServiceCities({ variant, content }) {
-  const name = variant ?? "ServiceCities5";
-  const Component = variants[name] ?? ServiceCities5;
-  return <Component content={content} />;
+function resolveServiceCitiesVariant(variant) {
+  const raw = String(variant ?? "").trim();
+  if (!raw) return ServiceCities9;
+  if (variants[raw]) return variants[raw];
+  const compact = raw.replace(/\s+/g, "").toLowerCase();
+  const key = Object.keys(variants).find(
+    (k) => k.replace(/\s+/g, "").toLowerCase() === compact,
+  );
+  return key ? variants[key] : ServiceCities9;
 }
-export { ServiceCities1, ServiceCities2, ServiceCities3, ServiceCities4, ServiceCities6, ServiceCities9, ServiceCities8, ServiceCities5, variants };
+export { ServiceCities1, ServiceCities2, ServiceCities3, ServiceCities4, ServiceCities5, ServiceCities6, ServiceCities7, ServiceCities8, ServiceCities9, variants };
