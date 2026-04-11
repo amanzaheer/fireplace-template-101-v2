@@ -4,10 +4,10 @@
 import FAQs1 from "./FAQs1";
 import FAQs2 from "./FAQs2";
 import FAQs3 from "./FAQs3";
-import FAQs7 from "./FAQs7";
 import FAQs4 from "./FAQs4";
 import FAQs5 from "./FAQs5";
 import FAQs6 from "./FAQs6";
+import FAQs7 from "./FAQs7";
 import FAQs8 from "./FAQs8";
 import FAQs9 from "./FAQs9";
 
