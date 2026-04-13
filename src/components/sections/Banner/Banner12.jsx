@@ -179,9 +179,9 @@ export default function Banner12({ content }) {
           <div>
             
           </div>
-          <div>
+          <div className="relative z-10 w-full flex items-center justify-center border-white/30 ">
             {features?.length > 0 && (
-              <ul className="mt-5 md:mt-50 z-50 grid max-w-xl grid-cols-1 gap-x-6 border gap-y-3 justify-items-center sm:grid-cols-2 md:justify-items-center">
+              <ul className="my-5 z-50 grid max-w-xl grid-cols-1 gap-x-6 border gap-y-3 justify-items-center sm:grid-cols-2 md:justify-items-center">
                 {features.map((feature, idx) => {
                   const IconComponent =
                     feature?.icon && ICON_MAP[feature.icon]
