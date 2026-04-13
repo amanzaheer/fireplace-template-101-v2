@@ -5,7 +5,8 @@ import Testimonials4 from "./Testimonials4";
 import Testimonials6 from "./Testimonials6";
 import Testimonials8 from "./Testimonials8";
 import Testimonials5 from "./Testimonials5";
-
+import Testimonials9 from "./Testimonials9";
+import Testimonials10 from "./Testimonials10";
 import Testimonials7 from "./Testimonials7";
 const variants = {
   Testimonials1,
@@ -16,6 +17,8 @@ const variants = {
   Testimonials8,
   Testimonials5,
   Testimonials7,
+  Testimonials9,
+  Testimonials10,
 };
 
 function pickVariant(name) {
@@ -28,4 +31,4 @@ export default function Testimonials({ variant, content }) {
   const Component = pickVariant(variant);
   return <Component content={content} />;
 }
-export { Testimonials1, Testimonials2, Testimonials3, Testimonials4, Testimonials6,Testimonials8, Testimonials5,Testimonials7, variants };
+export { Testimonials1, Testimonials2, Testimonials3, Testimonials4, Testimonials6,Testimonials8, Testimonials5,Testimonials7,Testimonials9,Testimonials10, variants };

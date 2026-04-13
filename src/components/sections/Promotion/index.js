@@ -11,6 +11,8 @@ import Promotion6 from "./Promotion6";
 import Promotion5 from "./Promotion5";
 import Promotion7 from "./Promotion7";
 import Promotion8 from "./Promotion8";
+import Promotion9 from "./Promotion9";
+import Promotion10 from "./Promotion10";
 
 const variants = {
   Promotion1,
@@ -20,8 +22,9 @@ const variants = {
   Promotion6,
   Promotion5,
   Promotion7,
-
   Promotion8,
+  Promotion9,
+  Promotion10,
 };
 
 /** Match layouts.json design strings even if casing/spacing differs (e.g. promotion8, Promotion 8). */
@@ -49,5 +52,7 @@ export {
   Promotion5,
   Promotion7,
   Promotion8,
-  variants,
+  Promotion9,
+  Promotion10,
 };
+

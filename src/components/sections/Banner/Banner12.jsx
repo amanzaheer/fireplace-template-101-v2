@@ -1,0 +1,214 @@
+"use client";
+
+import Image from "next/image";
+import { Poppins } from "next/font/google";
+import FullContainer from "@/components/common/FullContainer";
+import {
+  Phone,
+  CheckCircle,
+  Clock,
+  Star,
+  Shield,
+  Award,
+  Trophy,
+  ThumbsUp,
+  FileText,
+  MessageSquare,
+} from "lucide-react";
+import { IMAGE_BASE } from "@/lib/constants";
+import { resolveRefArray } from "@/lib/content-helpers";
+
+import QuoteForm12 from "./QuoteForm/QuoteForm12";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+});
+
+function buildImageSrc(base, filePath) {
+  if (!filePath || typeof filePath !== "string") return "";
+  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
+  const segment = filePath.replace(/^\//, "");
+  return `${basePath}/${segment}`;
+}
+
+const ICON_MAP = {
+  Clock,
+  Star,
+  Shield,
+  Award,
+  CheckCircle,
+  Trophy,
+  ThumbsUp,
+  Phone,
+  FileText,
+  MessageSquare,
+};
+
+/** Split hero + form — copy from `content.banner` (CMS). */
+export default function Banner12({ content }) {
+  const banner = content?.banner ?? {};
+
+  const data = {
+    title: banner.title,
+    tagline: banner.tagline,
+    description: banner.description,
+    heading: banner.heading,
+    list: banner.list,
+    imageTitle: banner.imageTitle,
+    altImage: banner.altImage,
+  };
+
+  const image = buildImageSrc(IMAGE_BASE, banner.file_name) || "";
+
+  const contactLabel = banner.contact_label ?? "";
+  const headingLine1 =
+    banner.heading_primary ??
+    banner.heading_line1 ??
+    banner.heading ??
+    data.title ??
+    "";
+  const headingAccent =
+    banner.heading_accent ?? banner.heading_line2 ?? banner.tagline ?? "";
+
+  const form_head = {
+    title: banner.form_title ?? "",
+    sub_title: banner.form_description ?? "",
+  };
+
+  const features = resolveRefArray(content, banner, "features");
+
+  const phone =
+    banner.cta_phone ??
+    content?.contact_info?.phone ??
+    content?.navbar?.phone ??
+    "";
+
+  const phoneHref = phone ? `tel:${phone}` : "#";
+
+  return (
+    <FullContainer
+      id="banner"
+      className={`relative bg-transparent overflow-hidden w-full px-0 ${poppins.className}`}
+    >
+      <div className="w-full">
+        <div className="relative grid w-full min-h-[480px] grid-cols-1 bg-neutral-900 lg:min-h-[560px]">
+          {image ? (
+            <Image
+              src={image}
+              title={data?.imageTitle || data?.title || ""}
+              alt={data?.altImage || data?.tagline || ""}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+              style={{ objectPosition: "center" }}
+            />
+          ) : null}
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent " />
+
+          <div className="relative z-10 flex min-h-[420px] lg:min-h-full">
+            <div className="relative z-10 mx-auto flex h-full w-full max-w-[620px] flex-col items-center justify-center px-4 py-10 text-center md:ml-auto md:items-start md:py-14 md:pl-16 md:pr-8 lg:pl-20 lg:pr-6 md:text-left">
+              <div className="mb-3 flex  w-full items-center justify-center gap-2.5">
+                {phone ? (
+                  <a
+                    href={phoneHref}
+                    className="inline-flex items-center justify-center width-[292px] shadow-lg bg-[#da4909] rounded-full py-2 px-5 gap-2.5 border-3 h-[46px] border-white text-white hover:opacity-90"
+                  >
+                    {/* <span className="bg-linear-to-r from-[#f20508] to-[#b12224] rounded p-2 flex shrink-0 items-center justify-center mt-0.5">
+                      <Phone className="w-3 h-4 text-white" strokeWidth={2.5} />
+                    </span> */}
+                    <div className="flex min-w-0 items-center gap-2 leading-none">
+                      <span className="font-norml uppercase tracking-wide text-[14px] md:text-[16px] text-white">
+                        {contactLabel || "Contact"}
+                      </span>
+                      <span className="text-[20px] font-bold text-white md:text-[22px]">
+                        {phone}
+                      </span>
+                    </div>
+                  </a>
+                ) : (
+                  <div className="inline-flex items-start gap-2.5 text-black">
+                    <span className="bg-[#da4909] rounded p-2 flex shrink-0 items-center  borderjustify-center mt-0.5">
+                      <Phone className="w-3 h-4 text-white" strokeWidth={2.5} />
+                    </span>
+                    <div className="flex min-w-0 flex-col items-center leading-none md:items-start">
+                      <span className="font-bold uppercase tracking-wide text-xs md:text-[16px] text-black">
+                        {contactLabel || "Contact"}
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              {(headingLine1 || headingAccent) && (
+                <div className="mt-4 md:mt-6 self-center md:self-start">
+                  {headingLine1 ? (
+                    <h2 className="text-center text-white uppercase font-bold  text-2xl leading-tight sm:text-3xl md:text-left md:text-4xl lg:text-5xl">
+                      {headingLine1}
+                    </h2>
+                  ) : null}
+
+                  {headingAccent ? (
+                    <div className="mt-2">
+                      <span className="inline-block bg-[#da4909] rounded-xl text-white px-5 py-2 md:px-6 md:py-3 text-lg md:text-2xl lg:text-4xl font-black uppercase">
+                        {headingAccent}
+                      </span>
+                    </div>
+                  ) : null}
+                </div>
+              )}
+
+              {data?.description && (
+                <p className="mt-3 max-w-xl text-center text-sm text-white md:text-left md:text-base">
+                  {data.description}
+                </p>
+              )}
+            </div>
+          </div>
+
+          <div
+            className={`relative z-10 w-full min-h-[400px]  border  flex items-center justify-center  md:px-8 md:lg: ${poppins.className}`}
+          >
+            <QuoteForm12
+              data={data}
+              form_head={form_head}
+              showArrowInButton={false}
+            />
+          </div>
+          <div>
+            
+          </div>
+          <div>
+            {features?.length > 0 && (
+              <ul className="mt-5 md:mt-50 z-50 grid max-w-xl grid-cols-1 gap-x-6 border gap-y-3 justify-items-center sm:grid-cols-2 md:justify-items-center">
+                {features.map((feature, idx) => {
+                  const IconComponent =
+                    feature?.icon && ICON_MAP[feature.icon]
+                      ? ICON_MAP[feature.icon]
+                      : CheckCircle;
+                  return (
+                    <li
+                      key={idx}
+                      className="flex w-full max-w-[260px] items-start justify-start gap-2.5 text-left text-sm font-medium text-white md:max-w-none md:text-[15px]"
+                    >
+                      <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded bg-[#da4909]">
+                        <IconComponent
+                          className="h-4 w-4 text-white"
+                          aria-hidden
+                        />
+                      </span>
+                      <span className="leading-snug text-left">
+                        {feature.text}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        </div>
+      </div>
+    </FullContainer>
+  );
+}

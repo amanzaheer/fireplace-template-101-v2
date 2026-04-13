@@ -8,6 +8,8 @@ import ServiceDescription6 from "./ServiceDescription6";
 import ServiceDescription4 from "./ServiceDescription4";
 import ServiceDescription5 from "./ServiceDescription5";
 import ServiceDescription7 from "./ServiceDescription7";
+import ServiceDescription9 from "./ServiceDescription9";
+import ServiceDescription10 from "./ServiceDescription10";
 const variants = {
   ServiceDescription1,
   ServiceDescription2,
@@ -16,6 +18,8 @@ const variants = {
   ServiceDescription4,
   ServiceDescription5,
   ServiceDescription7,
+  ServiceDescription9,
+  ServiceDescription10,
 };
 
 export default function ServiceDescription1Section({ variant, content }) {
@@ -32,5 +36,7 @@ export {
   ServiceDescription4,
   ServiceDescription5,
   ServiceDescription7,
+  ServiceDescription9,
+  ServiceDescription10,
   variants,
 };
