@@ -111,9 +111,8 @@ export default function Testimonials7({ content }) {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const getSlideSize = () => 100;
-
-  const slideSize = getSlideSize();
+  const slideSize =
+    testimonials.length > 0 ? 100 / testimonials.length : 0;
 
   useEffect(() => {
     setPrevTranslate(activeIndex * -slideSize);

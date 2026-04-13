@@ -18,7 +18,6 @@ export default function ServiceDescription7({ content }) {
     <FullContainer id="service_description1" className="py-6 md:py-8 bg-white">
       <Container>
         <div className="py-5 max-w-5xl mx-auto">
-
           {/* Title (optional, same theme) */}
           {title ? (
             <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#210202] mb-6 md:mb-8 text-center">

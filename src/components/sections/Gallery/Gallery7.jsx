@@ -59,7 +59,7 @@ export default function Gallery7({ content }) {
                     key={index}
                     className="flex flex-col items-center gap-4 md:gap-5"
                   >
-                    <div className="w-full overflow-hidden  bg-gray-100 shadow-sm border border-[#e5e7eb] rounded">
+                    <div className="relative z-10 w-full overflow-hidden bg-gray-100 rounded-br-[48px] md:rounded-br-[80px] lg:rounded-br-[123px] border-l-11 border-b-11 border-solid border-[#3a8ffb] shadow-lg ring-1 ring-black/5 transition-shadow duration-300 hover:shadow-xl">
                       <div className="aspect-4/3 relative">
                         <Image
                           title={label}
@@ -67,7 +67,7 @@ export default function Gallery7({ content }) {
                           alt={label}
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
-                          className="object-cover transition-transform duration-300 hover:scale-[1.01]"
+                          className="object-cover transition-transform duration-500 ease-out hover:scale-[1.03]"
                           loading="lazy"
                         />
                       </div>
