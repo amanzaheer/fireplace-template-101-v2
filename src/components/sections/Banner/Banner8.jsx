@@ -111,8 +111,7 @@ export default function Banner8({ content }) {
   const headingStr = stripBannerRankPrefix(String(headingText).trim());
   const cmsTagline = data?.tagline?.trim();
   const showTagline =
-    Boolean(cmsTagline) &&
-    normText(cmsTagline) !== normText(headingStr);
+    Boolean(cmsTagline) && normText(cmsTagline) !== normText(headingStr);
 
   const headingWords = headingStr.split(/\s+/).filter(Boolean);
   const splitIndex = Math.max(1, Math.ceil(headingWords.length / 2));
@@ -121,14 +120,26 @@ export default function Banner8({ content }) {
 
   return (
     <FullContainer className="relative w-auto overflow-x-hidden bg-gradient-to-b! to-[#012f68] from-[#00142c] mt-[57.8px] md:mt-[84px] min-h-[580px] md:h-[600px] md:overflow-hidden">
-      <div className="pointer-events-none absolute inset-y-0 left-0 z-2 w-[130px] sm:w-[140px] md:w-[200px]">
-        <Image
-          src="/st-icons/Temp8/banner.png"
-          alt=""
-          fill
-          priority
-          className="object-contain object-left-top"
-          sizes="(max-width: 768px) 140px, 200px"
+      <div
+        className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[130px] sm:w-[140px] md:w-[200px] [--accent-top-h:64px] sm:[--accent-top-h:72px] md:[--accent-top-h:92px]"
+        aria-hidden
+      >
+        <div
+          className=" h-[200px] w-[126px] bg-[#FF5D00] sm:h-[72px] sm:w-[150px] md:h-[450px] md:w-[188px]"
+          style={{
+            // clipPath: "polygon(0% 0%, 56% 0%, 0% 100%)",
+            clipPath: "polygon(0% 60%, 100% 0%, 0% 0%)",
+            // WebkitClipPath: "polygon(0% 0%, 56% 0%, 0% 100%)",
+          }}
+        />
+
+        <div
+          className="absolute inset-y-0 left-0 h-[300px]  w-[100px] lg:h-full lg:w-full bg-[#FF5D00]"
+          style={{
+            // clipPath: "polygon(0 var(--accent-top-h), 50% 100%, 0% 100%)",
+            // WebkitClipPath: "polygon(0 var(--accent-top-h), 50% 100%, 0% 100%)",
+            clipPath: "polygon(0% 0%, 100% 100%, 0% 100%)",
+          }}
         />
       </div>
 
@@ -185,10 +196,7 @@ export default function Banner8({ content }) {
                   {features.map((feature, idx) => {
                     const IconComponent = ICON_MAP[feature.icon];
                     return (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-1.5"
-                      >
+                      <li key={idx} className="flex items-center gap-1.5">
                         <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-[2px] bg-[#ff4800]">
                           {IconComponent ? (
                             <IconComponent className="h-2.5 w-2.5 text-white" />
@@ -225,13 +233,12 @@ export default function Banner8({ content }) {
             </div>
           </div>
 
-          <div className="relative mx-auto hidden h-full w-full max-w-md pb-6 sm:pb-8 md:pb-24 lg:mx-0 lg:block lg:max-w-none lg:justify-self-end">
-          </div>
+          <div className="relative mx-auto hidden h-full w-full max-w-md pb-6 sm:pb-8 md:pb-24 lg:mx-0 lg:block lg:max-w-none lg:justify-self-end"></div>
         </div>
       </Container>
       <div className="pointer-events-none absolute inset-x-0 bottom-0 top-auto z-[1] h-[min(38vh,280px)] min-h-[200px] w-full max-md:max-h-[320px] md:inset-x-auto md:inset-y-0 md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-full md:max-h-none md:w-[calc(50%-80px)] md:min-h-[280px]">
         <div className="relative h-full min-h-[200px] w-full md:min-h-[280px]">
-          <div className="block md:hidden absolute top-0 left-0 w-full h-full bg-[#00142c] opacity-30 z-10"/>
+          <div className="block md:hidden absolute top-0 left-0 w-full h-full bg-[#00142c] opacity-30 z-10" />
           <Image
             src={image}
             alt={data?.altImage || "banner"}
