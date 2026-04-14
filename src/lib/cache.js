@@ -119,6 +119,36 @@ export async function cacheDel(pattern) {
   }
 }
 
+/**
+ * Clear all cached data for a specific domain using SCAN (non-blocking).
+ * Removes both datastore (ds:) and image (img:) keys.
+ * @param {string} namespace — e.g. "fireplace"
+ * @param {string} domain — e.g. "fireplace-supreme.com"
+ * @returns {Promise<number>} Total keys deleted.
+ */
+export async function clearDomainCache(namespace, domain) {
+  const redis = getClient();
+  if (!redis) return 0;
+
+  const patterns = [`ds:${namespace}:${domain}:*`, `img:${namespace}:${domain}:*`];
+  let total = 0;
+
+  try {
+    for (const pattern of patterns) {
+      let cursor = '0';
+      do {
+        const [next, keys] = await redis.scan(cursor, 'MATCH', pattern, 'COUNT', 500);
+        cursor = next;
+        if (keys.length > 0) total += await redis.del(...keys);
+      } while (cursor !== '0');
+    }
+  } catch {
+    // Silently ignore — cache clear failure is not critical
+  }
+
+  return total;
+}
+
 /** Whether the external cache is enabled and potentially available. */
 export function cacheEnabled() {
   return CACHE_ENABLED && Boolean(CACHE_URL);
