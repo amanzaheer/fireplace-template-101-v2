@@ -290,6 +290,48 @@ export async function getPageData(host, pageId, options = {}) {
 }
 
 // ---------------------------------------------------------------------------
+// getLocationData — service+location pages (3-layer merge + full tag resolution)
+// ---------------------------------------------------------------------------
+
+/**
+ * Loads and merges content for a service+location page.
+ *
+ * Returns null if the domain has no data in the datastore.
+ *
+ * Layer order (later wins):
+ *   1. Shared location defaults  →  "location.json"
+ *   2. Per-location overrides    →  "locations/<slug>.json"  (optional)
+ *
+ * Each layer: datastore(domainId) → datastore("default").
+ * Tags resolved with domainData vars + { service, city_name, location }.
+ */
+export async function getLocationData(host, serviceTitle = '', locationSlug, locationTitle = '') {
+  const domainId = getDomainId(host);
+  const domainResult = await loadDomainData(domainId);
+
+  if (!domainResult) return null;
+
+  const { template, domainData } = domainResult;
+
+  // Layer 1 — shared location defaults
+  const sharedDefaults =
+    (await dsRetrieveWithDefault(template, domainId, 'content--location--data.json')) ?? {};
+
+  // Layer 2 — per-location overrides (optional, {} if not found)
+  const locationOverrides =
+    (await dsRetrieveWithDefault(template, domainId, `content--locations--${locationSlug}.json`)) ?? {};
+
+  const merged = deepMerge(sharedDefaults, locationOverrides);
+  const vars = {
+    ...domainData,
+    service: serviceTitle,
+    area: locationTitle || locationSlug,
+    location: locationSlug,
+  };
+  return resolveAllTags(merged, vars);
+}
+
+// ---------------------------------------------------------------------------
 // getServiceData — service pages (3-layer merge + full tag resolution)
 // ---------------------------------------------------------------------------
 

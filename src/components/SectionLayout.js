@@ -65,7 +65,7 @@ export default function SectionLayout({ children, domainConfig, content }) {
 
   return (
     <>
-      {order.map((key) => {
+      {order.map((key, index) => {
         if (key === "Content") {
           return <div key="Content">{children}</div>;
         }
@@ -75,7 +75,7 @@ export default function SectionLayout({ children, domainConfig, content }) {
         if (!Component) return null;
         const variant = section.design;
         return (
-          <Component key={key} variant={variant} content={content} />
+          <Component key={`${key}-${index}`} variant={variant} content={content} />
         );
       })}
     </>

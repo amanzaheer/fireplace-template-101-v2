@@ -109,7 +109,7 @@ export default function ServiceBenefits7({ content }) {
                   className={`${rubik.className} inline-flex items-center justify-center gap-2 bg-[#0a4da3] text-white px-6 h-[46px] min-w-[217px] text-xl md:text-[20px]    leading-none rounded hover:bg-[#0b4189] transition-colors duration-200`}
                 >
                   <Image
-                    src="/st-icons/Temp2/call2.png"
+                    src="/st-icons/Temp2/call1.png"
                     alt="Phone"
                     width={16}
                     height={16}

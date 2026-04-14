@@ -84,7 +84,7 @@ const PromotionCard = ({
           className="inline-flex items-center justify-center gap-2 rounded-full bg-[#D91F27] hover:bg-[#bf1b22] text-white px-6 py-2.5 md:px-7 md:py-3 w-fit mx-auto font-semibold leading-none transition-colors"
         >
           <Image
-            src="/st-icons/Temp2/call2.png"
+            src="/st-icons/Temp2/call1.png"
             alt="Phone"
             width={16}
             height={16}

@@ -96,7 +96,7 @@ export default function Gallery2({ content }) {
                         href={`tel:${phone}`}
                         className={`${rubik.className} inline-flex items-center justify-center gap-2 rounded-full bg-[#d62828] text-white font-semibold text-base md:text-lg px-8 py-3 min-w-[220px] shadow-md hover:bg-[#bf1f1f] transition-colors duration-200`}
                       >
-                        <Image src="/st-icons/Temp2/call2.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
+                        <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
                         <span className={`${rubik.className} text-white font-normal md:text-lg`}>{phone}</span>
                       </a>
                     ) : null}

@@ -78,7 +78,7 @@ export default function ServiceDescription2({ content }) {
                     href={`tel:${phone}`}
                     className="inline-flex max-w-full items-center justify-center gap-2 rounded-full bg-[#d62828] text-white font-bold px-6 py-3 text-base hover:bg-[#bf1f1f] transition-colors duration-200"
                   >
-                    <Image src="/st-icons/Temp2/call2.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
+                    <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
                     <span className={`${rubik.className} text-white font-normal md:text-lg`}>{phone}</span>
                   </a>
                 </div>

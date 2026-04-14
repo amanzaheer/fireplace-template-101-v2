@@ -156,7 +156,7 @@ export default function Banner1({ content }) {
                       className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all border-2 border-white bg-[#c92028]"
                     >
                       <Image
-                        src="/st-icons/Temp2/call2.png"
+                        src="/st-icons/Temp2/call1.png"
                         alt="Phone"
                         width={16}
                         height={16}
