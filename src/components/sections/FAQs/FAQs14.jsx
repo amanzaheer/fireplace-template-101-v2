@@ -12,11 +12,23 @@ function PlusMinusIcon({ open }) {
       aria-hidden
     >
       {open ? (
-        <svg width="14" height="2" viewBox="0 0 14 2" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="14"
+          height="2"
+          viewBox="0 0 14 2"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <rect width="14" height="2" rx="1" fill="currentColor" />
         </svg>
       ) : (
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg
+          width="14"
+          height="14"
+          viewBox="0 0 14 14"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+        >
           <path
             d="M7 1v12M1 7h12"
             stroke="currentColor"
@@ -44,16 +56,16 @@ export default function FAQs14({ content }) {
   if (!faqItems.length) return null;
 
   return (
-    <FullContainer className="bg-[#1C1C1C] py-10 md:py-16" id="faqs">
+    <FullContainer className=" py-10 md:py-16" id="faqs">
       <Container className="px-4">
         <div className="grid grid-cols-1 items-start gap-10 lg:grid-cols-12 lg:gap-12 xl:gap-16">
           <div className="lg:col-span-7">
-            <h2 className="font-montserrat text-3xl font-bold leading-tight text-[#F59402] md:text-4xl">
+            <h2 className="font-montserrat text-5xl font-bold leading-tight text-[black md:text-4xl">
               {faqTitle}
             </h2>
             <a
               href="#faq-contact-form"
-              className="mt-5 inline-block rounded-lg bg-[#F59402] px-6 py-2.5 text-xs font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
+              className="mt-5 inline-block rounded-lg bg-[#786F6F] px-6 py-2.5 text-xl font-semibold uppercase tracking-wide text-white transition hover:brightness-95"
             >
               Ask a question
             </a>
@@ -91,7 +103,9 @@ export default function FAQs14({ content }) {
                     >
                       <div className="min-h-0 overflow-hidden">
                         <div className="border-t border-neutral-200 px-4 pb-4 pt-0 md:px-5 md:pb-5">
-                          <p className="pt-3 text-sm leading-relaxed text-neutral-600 md:text-[15px]">{a}</p>
+                          <p className="pt-3 text-sm leading-relaxed text-neutral-600 md:text-[15px]">
+                            {a}
+                          </p>
                         </div>
                       </div>
                     </div>
@@ -102,10 +116,7 @@ export default function FAQs14({ content }) {
           </div>
 
           <div className="lg:col-span-5">
-            <div
-              id="faq-contact-form"
-              className="lg:sticky lg:top-24"
-            >
+            <div id="faq-contact-form" className="lg:sticky lg:top-24">
               <Contact14 content={content} embedded />
             </div>
           </div>

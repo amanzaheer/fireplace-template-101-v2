@@ -132,7 +132,8 @@ export default function Contact14({ content, embedded = false }) {
       ? formHead.sub_title.trim()
       : DEFAULT_SUBTITLE;
 
-  const id = (suffix) => (embedded ? `faq-contact-${suffix}` : `contact-${suffix}`);
+  const id = (suffix) =>
+    embedded ? `faq-contact-${suffix}` : `contact-${suffix}`;
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -150,7 +151,10 @@ export default function Contact14({ content, embedded = false }) {
     if (!formStarted && typeof window !== "undefined") {
       try {
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "form start", url: window.location.href });
+        window.dataLayer.push({
+          event: "form start",
+          url: window.location.href,
+        });
         setFormStarted(true);
       } catch {
         setFormStarted(true);
@@ -160,7 +164,8 @@ export default function Contact14({ content, embedded = false }) {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
+    if (!formData.firstName.trim())
+      newErrors.firstName = "First name is required";
     else if (!validateName(formData.firstName)) {
       newErrors.firstName = "Use 2–50 letters only";
     }
@@ -169,10 +174,12 @@ export default function Contact14({ content, embedded = false }) {
       newErrors.lastName = "Use 2–50 letters only";
     }
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!validateEmail(formData.email)) newErrors.email = "Enter a valid email";
+    else if (!validateEmail(formData.email))
+      newErrors.email = "Enter a valid email";
     const cleanPhone = formData.phone.replace(/\D/g, "");
     if (!formData.phone.trim()) newErrors.phone = "Phone is required";
-    else if (!validatePhone(cleanPhone)) newErrors.phone = "Enter a valid 10-digit US phone";
+    else if (!validatePhone(cleanPhone))
+      newErrors.phone = "Enter a valid 10-digit US phone";
     if (!formData.message.trim()) newErrors.message = "Message is required";
     else if (!validateMessage(formData.message, 10)) {
       newErrors.message = "Message must be at least 10 characters";
@@ -220,7 +227,8 @@ export default function Contact14({ content, embedded = false }) {
         throw new Error(result.message || "Form submission failed");
       }
 
-      if (result.success === false) throw new Error(result.message || "Form submission failed");
+      if (result.success === false)
+        throw new Error(result.message || "Form submission failed");
 
       if (typeof window !== "undefined" && window.dataLayer) {
         window.dataLayer.push({
@@ -236,7 +244,8 @@ export default function Contact14({ content, embedded = false }) {
         });
       }
       toast.success(
-        result.message || "Your request has been submitted successfully! We'll contact you shortly.",
+        result.message ||
+          "Your request has been submitted successfully! We'll contact you shortly.",
       );
       setFormSubmitted(true);
     } catch (err) {
@@ -260,7 +269,10 @@ export default function Contact14({ content, embedded = false }) {
 
   const closeThankYou = () => {
     if (typeof window !== "undefined" && window.dataLayer) {
-      window.dataLayer.push({ event: "leadSubmitted", url: window.location.href });
+      window.dataLayer.push({
+        event: "leadSubmitted",
+        url: window.location.href,
+      });
     }
     setFormSubmitted(false);
     setFormData({
@@ -281,9 +293,12 @@ export default function Contact14({ content, embedded = false }) {
             <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-white/90">
               <CheckCircle className="h-9 w-9 text-green-600" aria-hidden />
             </div>
-            <h4 className="font-montserrat text-xl font-bold text-neutral-900 md:text-2xl">Thank you!</h4>
+            <h4 className="font-montserrat text-xl font-bold text-neutral-900 md:text-2xl">
+              Thank you!
+            </h4>
             <p className="mt-2 max-w-md text-sm text-neutral-900/90">
-              Your request has been submitted. We&apos;ll get back to you shortly.
+              Your request has been submitted. We&apos;ll get back to you
+              shortly.
             </p>
             <button
               type="button"
@@ -298,13 +313,19 @@ export default function Contact14({ content, embedded = false }) {
             <h2 className="font-montserrat text-lg font-bold leading-snug text-neutral-900 md:text-xl">
               {title}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-900/90 md:text-[15px]">{subTitle}</p>
+            <p className="mt-2 text-sm leading-relaxed text-neutral-900/90 md:text-[15px]">
+              {subTitle}
+            </p>
           </>
         )}
       </div>
 
       {!formSubmitted ? (
-        <form onSubmit={handleSubmit} className="space-y-4 px-5 py-6 md:px-6 md:py-7" noValidate>
+        <form
+          onSubmit={handleSubmit}
+          className="space-y-4 px-5 py-6 md:px-6 md:py-7"
+          noValidate
+        >
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <FirstNameInput
               id={id("first-name")}
@@ -340,7 +361,7 @@ export default function Contact14({ content, embedded = false }) {
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full rounded-lg bg-[#F39C12] py-3.5 font-montserrat text-sm font-bold uppercase tracking-wide text-neutral-900 transition hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 disabled:opacity-70"
+            className="w-full rounded-lg bg-[#F39C12] py-3.5 font-montserrat text-xl font-bold uppercase tracking-wide text-neutral-900 transition hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 disabled:opacity-70"
             aria-busy={isSubmitting}
           >
             {isSubmitting ? (

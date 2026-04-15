@@ -1,293 +1,384 @@
 "use client";
 
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
+import { Montserrat, Poppins } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
-import { Poppins } from "next/font/google";
+import { cn } from "@/lib/utils";
 
-const poppins = Poppins({
+const testimonialsHeadingFont = Montserrat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["700", "800"],
   display: "swap",
 });
 
-function buildImageSrc(base, filePath) {
-  if (!filePath || typeof filePath !== "string") return "";
-  if (
-    filePath.startsWith("/") ||
-    filePath.startsWith("http://") ||
-    filePath.startsWith("https://")
-  ) {
-    return filePath;
-  }
-  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
-  const segment = filePath.replace(/^\//, "");
-  return `${basePath}/${segment}`;
-}
+const chimneyFont = Poppins({
+  subsets: ["latin"],
+  weight: ["700", "800"],
+  display: "swap",
+});
 
-/** Brand quote mark — path fill from CMS color via CSS */
-function TestimonialsQuoteMark({ className }) {
+const testimonialsReviewFont = Montserrat({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["italic"],
+  display: "swap",
+});
+
+/** Decorative quote mark (brand asset, 49×41 viewBox, #F59402) */
+function TestimonialsQuoteIcon({ className }) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="52"
-      height="43"
-      viewBox="0 0 52 43"
+      width={49}
+      height={41}
+      viewBox="0 0 49 41"
       fill="none"
-      className={`shrink-0 text-[#F59402] ${className ?? ""}`}
+      className={cn("shrink-0", className)}
       aria-hidden
     >
       <path
-        d="M22.3301 0C13.1718 0.643535 0.00723556 2.10572 0 20.0418V42.6086H20.4363V18.4637H13.6505C13.2206 12.0166 18.5295 10.3519 24.3026 9.074L22.3301 0ZM49.71 0C40.5517 0.643535 27.3871 2.10576 27.3799 20.0418V42.6086H47.8163V18.4637H41.0305C40.6005 12.0166 45.9095 10.3519 51.6826 9.074L49.71 0Z"
-        fill="currentColor"
+        d="M21.171 0C12.4881 0.610132 0.00686 1.99642 0 19.0015V40.3969H19.3756V17.5054H12.942C12.5344 11.3929 17.5677 9.81458 23.0412 8.60301L21.171 0ZM47.1297 0C38.4468 0.610132 25.9656 1.99646 25.9588 19.0015V40.3969H45.3344V17.5054H38.9008C38.4931 11.3929 43.5265 9.81458 49 8.60301L47.1297 0Z"
+        fill="#F59402"
       />
     </svg>
   );
 }
 
-function StarRow({ rating, className = "", onDarkBackground = true }) {
-  const n = Math.min(5, Math.max(0, Number.isFinite(Number(rating)) ? Number(rating) : 5));
-  const emptyClass = onDarkBackground ? "text-white/25" : "text-neutral-300";
-  return (
-    <div className={`flex items-center gap-0.5 ${className}`} aria-hidden>
-      {[1, 2, 3, 4, 5].map((i) => (
-        <span
-          key={i}
-          className={`text-lg leading-none md:text-xl ${i <= n ? "text-[#F59402]" : emptyClass}`}
-        >
-          ★
-        </span>
-      ))}
-    </div>
-  );
-}
-
-function initialsFromName(name) {
-  if (!name || typeof name !== "string") return "";
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return "";
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return `${parts[0][0] ?? ""}${parts[parts.length - 1][0] ?? ""}`.toUpperCase();
-}
-
-function normalizeTestimonialsBlock(raw) {
-  if (raw == null) return {};
-  if (Array.isArray(raw)) return { list: raw };
-  if (typeof raw === "object") {
-    const list = Array.isArray(raw.list)
-      ? raw.list
-      : Array.isArray(raw.items)
-        ? raw.items
-        : Array.isArray(raw.value)
-          ? raw.value
-          : [];
-    return { ...raw, list };
-  }
-  return {};
+function buildImageSrc(base, filePath) {
+  if (!filePath || typeof filePath !== "string") return "";
+  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
+  const segment = filePath.replace(/^\//, "");
+  return `${basePath}/${segment}`;
 }
 
 export default function Testimonials14({ content }) {
-  const data = normalizeTestimonialsBlock(content?.testimonials);
-  const rawList = Array.isArray(data.list) ? data.list : [];
-
-  const sidebarObj = data.sidebar && typeof data.sidebar === "object" ? data.sidebar : {};
-  const sidebarTitle =
-    (typeof data.sidebarTitle === "string" && data.sidebarTitle.trim()
-      ? data.sidebarTitle.trim()
-      : null) ??
-    (typeof data.serviceTitle === "string" && data.serviceTitle.trim()
-      ? data.serviceTitle.trim()
-      : null) ??
-    (typeof sidebarObj.title === "string" && sidebarObj.title.trim()
-      ? sidebarObj.title.trim()
-      : null);
-
-  const sidebarAuthor =
-    (typeof data.sidebarAuthor === "string" && data.sidebarAuthor.trim()
-      ? data.sidebarAuthor.trim()
-      : "") ||
-    (typeof sidebarObj.name === "string" && sidebarObj.name.trim() ? sidebarObj.name.trim() : "");
-
-  const sidebarLabelRaw =
-    data.sidebarLabel ?? sidebarObj.role ?? sidebarObj.label ?? "";
-  const sidebarLabel =
-    typeof sidebarLabelRaw === "string" && sidebarLabelRaw.trim()
-      ? sidebarLabelRaw.trim().toUpperCase()
-      : "";
-
-  const sidebarRating = Number(data.sidebarRating ?? sidebarObj.rating);
-  const hasSidebar = Boolean(sidebarTitle || sidebarAuthor);
-
-  const items = useMemo(
-    () =>
-      rawList.map((t) => ({
-        ...t,
-        quote: typeof t?.quote === "string" ? t.quote : typeof t?.text === "string" ? t.text : "",
-        name: typeof t?.name === "string" ? t.name : "",
-        avatar: typeof t?.avatar === "string" && t.avatar.trim() ? t.avatar.trim() : "",
-        role:
-          typeof t?.role === "string" && t.role.trim()
-            ? t.role.trim()
-            : typeof t?.label === "string" && t.label.trim()
-              ? t.label.trim()
-              : "",
-        rating: Number(t?.rating),
-      })),
-    [rawList],
-  );
+  const data = content?.testimonials ?? {};
+  const testimonials = Array.isArray(data.list) ? data.list : [];
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [currentTranslate, setCurrentTranslate] = useState(0);
+  const [prevTranslate, setPrevTranslate] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
+  const sliderRef = useRef(null);
+  const autoSlideRef = useRef(null);
+  const animationRef = useRef(null);
+
+  const testimonialsWithAvatars = useMemo(() => {
+    const getRandomAvatar = (seed) =>
+      `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+        seed,
+      )}`;
+
+    const getRandomDate = (index) => {
+      const start = new Date("2023-01-01").getTime();
+      const end = new Date("2023-12-31").getTime();
+      const length = Math.max(testimonials.length, 1);
+      const seed = (index * 2654435761) % length;
+      const offset = (seed / length) * (end - start);
+      const randomTime = start + offset;
+      const date = new Date(randomTime);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
+
+    return testimonials.map((testimonial, index) => ({
+      ...testimonial,
+      avatar:
+        testimonial.avatar ||
+        getRandomAvatar(testimonial.name || `user-${index}`),
+      date: getRandomDate(index),
+    }));
+  }, [testimonials]);
+
+  const defaultAvatar = useMemo(
+    () => "https://api.dicebear.com/7.x/avataaars/svg?seed=default",
+    [],
+  );
 
   useEffect(() => {
-    setActiveIndex((i) => Math.min(i, Math.max(0, items.length - 1)));
-  }, [items.length]);
+    const checkScreenSize = () => {
+      if (typeof window === "undefined") return;
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
 
-  const maxIndex = Math.max(0, items.length - 1);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
 
-  const goPrev = useCallback(() => {
-    setActiveIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  }, [maxIndex]);
+  const getSlideSize = () => {
+    if (isMobile) return 100;
+    if (isTablet) return 50;
+    return 33.333;
+  };
 
-  const goNext = useCallback(() => {
-    setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  }, [maxIndex]);
+  const slideSize = getSlideSize();
 
   useEffect(() => {
-    if (items.length <= 1) return;
-    const t = setInterval(goNext, 5500);
-    return () => clearInterval(t);
-  }, [items.length, goNext]);
+    setPrevTranslate(activeIndex * -slideSize);
+    setCurrentTranslate(activeIndex * -slideSize);
+  }, [activeIndex, slideSize]);
 
-  const bgPath =
-    typeof data.file_name === "string" && data.file_name.trim()
-      ? data.file_name.trim()
-      : typeof data.background_image === "string" && data.background_image.trim()
-        ? data.background_image.trim()
-        : "";
-  const bgSrc = bgPath ? buildImageSrc(IMAGE_BASE, bgPath) : "";
+  useEffect(() => {
+    const startAutoSlide = () => {
+      autoSlideRef.current = setInterval(() => {
+        if (testimonials.length > 1) {
+          setActiveIndex((prev) => {
+            const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+            const maxAllowedIndex = Math.max(
+              0,
+              testimonials.length - visibleSlides,
+            );
+            return prev >= maxAllowedIndex ? 0 : prev + 1;
+          });
+        }
+      }, 5000);
+    };
 
-  const sectionTitle =
-    typeof data.title === "string" && data.title.trim() ? data.title.trim() : null;
+    if (!isDragging) {
+      startAutoSlide();
+    }
 
-  const current = items[activeIndex];
+    return () => {
+      if (autoSlideRef.current) {
+        clearInterval(autoSlideRef.current);
+      }
+    };
+  }, [isDragging, testimonials.length, isMobile, isTablet]);
+  const animation = useCallback(() => {
+    if (!sliderRef.current || !isDragging) return;
 
-  if (!items.length) return null;
+    animationRef.current = requestAnimationFrame(() => {
+      if (!sliderRef.current || !isDragging) return;
+      sliderRef.current.style.transform = `translateX(${currentTranslate}%)`;
+    });
+  }, [isDragging, currentTranslate]);
+  const setSliderPosition = useCallback(() => {
+    if (sliderRef.current) {
+      sliderRef.current.style.transform = `translateX(${currentTranslate}%)`;
+    }
+  }, [currentTranslate]);
 
-  const quoteText = current?.quote ?? "";
-  const starCount = Math.min(5, Math.max(0, Number.isFinite(current?.rating) ? Number(current.rating) : 5));
+  const getPositionX = (e) =>
+    e.type.includes("mouse") ? e.pageX : e.touches[0].pageX;
+
+  const handleDragStart = (e) => {
+    e.preventDefault();
+    if (testimonials.length <= 1) return;
+    setIsDragging(true);
+    setStartX(getPositionX(e));
+    if (autoSlideRef.current) {
+      clearInterval(autoSlideRef.current);
+    }
+    animationRef.current = requestAnimationFrame(animation);
+  };
+
+  const handleDragMove = (e) => {
+    if (!isDragging) return;
+    const currentX = getPositionX(e);
+    const moveX = currentX - startX;
+    const containerWidth = sliderRef.current?.clientWidth || 1;
+    const movePercent = (moveX / containerWidth) * 100;
+    setCurrentTranslate(movePercent + prevTranslate);
+  };
+
+  const handleDragEnd = () => {
+    if (!isDragging) return;
+    cancelAnimationFrame(animationRef.current);
+    const movedPercent = currentTranslate - prevTranslate;
+    const threshold = -15;
+    const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+    const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
+
+    if (movedPercent < threshold) {
+      if (activeIndex >= maxAllowedIndex) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+      }
+    } else if (movedPercent > Math.abs(threshold)) {
+      if (activeIndex <= 0) {
+        setActiveIndex(maxAllowedIndex);
+      } else {
+        setActiveIndex(activeIndex - 1);
+      }
+    } else {
+      setCurrentTranslate(prevTranslate);
+      setSliderPosition();
+    }
+
+    setIsDragging(false);
+  };
+
+  const handleArrowClick = (direction) => {
+    const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+    const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
+
+    if (direction === "next") {
+      if (activeIndex >= maxAllowedIndex) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+      }
+    } else if (direction === "prev") {
+      if (activeIndex <= 0) {
+        setActiveIndex(maxAllowedIndex);
+      } else {
+        setActiveIndex(activeIndex - 1);
+      }
+    }
+  };
+
+  if (!testimonials.length) return null;
+  const active =
+    testimonialsWithAvatars[activeIndex] ?? testimonialsWithAvatars[0];
+  const quoteText = active?.quote || active?.text || "";
+  const words = String(quoteText).split(" ").filter(Boolean);
+  const leftTitle = words.slice(0, 1).join(" ") || "Chimney";
+  const leftSubtitle = words.slice(1, 2).join(" ") || "Maintenance";
+  const file_name = buildImageSrc(IMAGE_BASE, data.file_name);
 
   return (
-    <FullContainer className="relative overflow-hidden py-12 md:py-16" id="testimonials">
-      {bgSrc ? (
-        <div className="absolute inset-0">
-          <Image src={bgSrc} alt="" fill className="object-cover" sizes="100vw" priority={false} />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/45 to-black/35" aria-hidden />
-        </div>
-      ) : (
-        <div className="absolute inset-0 bg-neutral-900" aria-hidden />
-      )}
-
-      <Container className="relative z-10 mx-auto max-w-6xl px-4">
-        {sectionTitle ? (
+    <FullContainer
+      className="relative overflow-hidden py-10 md:py-20"
+      id="testimonials"
+    >
+      <div className="absolute inset-0">
+        <Image
+          src={file_name}
+          alt="Testimonials background"
+          fill
+          className="object-cover"
+        />
+      </div>
+      <Container className="relative z-10 mx-auto max-w-[1274px] px-4">
+        <div className="mb-8 text-center md:mb-10">
           <h2
-            className={`${poppins.className} mb-10 text-center text-[44px] font-medium leading-[55.902px] text-[#FFF] md:mb-12`}
+            className={cn(
+              testimonialsHeadingFont.className,
+              "mb-2 text-[44px] font-extrabold leading-tight tracking-tight text-[#FFFFFF]",
+            )}
           >
-            {sectionTitle}
+            Our Happy Clients
           </h2>
-        ) : null}
+        </div>
 
-        <div
-          className={`grid gap-8 md:gap-10 lg:items-center ${hasSidebar ? "lg:grid-cols-[minmax(0,0.95fr)_minmax(0,1.25fr)]" : "lg:grid-cols-1"}`}
-        >
-          {hasSidebar ? (
-            <aside className="flex flex-col gap-4 text-white lg:max-w-md">
-              <TestimonialsQuoteMark className="h-[43px] w-[52px]" />
-              {sidebarTitle ? (
-                <h3 className="font-montserrat text-2xl font-bold leading-tight md:text-3xl">{sidebarTitle}</h3>
-              ) : null}
-              <StarRow
-                rating={Number.isFinite(sidebarRating) ? sidebarRating : 5}
-                className="justify-start"
-                onDarkBackground
-              />
-              {sidebarAuthor ? (
-                <p className="font-montserrat text-lg font-bold md:text-xl">{sidebarAuthor}</p>
-              ) : null}
-              {sidebarLabel ? (
-                <p className="text-xs font-semibold tracking-[0.2em] text-white/90 md:text-sm">{sidebarLabel}</p>
-              ) : null}
-            </aside>
-          ) : null}
-
-          <div className={`min-w-0 ${hasSidebar ? "" : "mx-auto max-w-3xl"}`}>
-            <article
-              className="rounded-2xl border border-white/40 bg-white/65 p-6 shadow-[0_20px_50px_rgba(0,0,0,0.25)] backdrop-blur-md md:p-8"
-              key={activeIndex}
+        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.45fr] gap-6 md:gap-8 items-center">
+          <div className="text-white px-2 md:px-4">
+            <div className="mb-1 leading-none">
+              <TestimonialsQuoteIcon className="h-[41px] w-[49px]" />
+            </div>
+            <h3
+              className={cn(
+                chimneyFont.className,
+                "text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-[#FFFFFF] md:text-[64px]",
+              )}
             >
-              <div className="mb-4 flex justify-start">
-                <StarRow rating={starCount} className="justify-start" onDarkBackground={false} />
-              </div>
+              {leftTitle}
+            </h3>
+            <p
+              className={cn(
+                testimonialsHeadingFont.className,
+                "mt-1 text-[44px] font-bold leading-tight text-[#FFFFFF]",
+              )}
+            >
+              {leftSubtitle}
+            </p>
 
-              {quoteText ? (
-                <p className="font-barlow text-base leading-relaxed text-neutral-900 md:text-lg">{quoteText}</p>
-              ) : null}
+            <div className="flex items-center gap-1 mt-4">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span key={star} className="text-[#ffb13a] text-2xl">
+                  ★
+                </span>
+              ))}
+            </div>
+            <p className="mt-4 text-3xl font-bold">
+              {active?.name || "Mr. John Doe"}
+            </p>
+            <p className="text-sm md:text-base font-semibold text-white/85 uppercase">
+              Clients
+            </p>
+          </div>
 
-              <div className="mt-8 flex flex-col gap-6 sm:flex-row sm:items-end sm:justify-between">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-full border border-neutral-200 bg-neutral-100">
-                    {current?.avatar ? (
-                      <Image
-                        src={current.avatar}
-                        alt={current.name ? `Photo of ${current.name}` : ""}
-                        fill
-                        className="object-cover"
-                        unoptimized
-                      />
-                    ) : (
-                      <span className="flex h-full w-full items-center justify-center font-montserrat text-sm font-semibold text-neutral-600">
-                        {initialsFromName(current?.name)}
-                      </span>
-                    )}
-                  </div>
-                  <div className="min-w-0">
-                    {current?.name ? (
-                      <p className="font-montserrat font-bold text-neutral-900">{current.name}</p>
-                    ) : null}
-                    {current?.role ? (
-                      <p className="font-montserrat text-xs font-semibold uppercase tracking-wide text-neutral-800">
-                        {current.role}
-                      </p>
-                    ) : null}
-                  </div>
+          <div className="bg-[#e7e5e4]/80 p-4 shadow-[0_16px_48px_rgba(0,0,0,0.18)] backdrop-blur-[2px] rounded-[18px]  md:p-7 ">
+            <div className="flex items-center gap-1 mb-3">
+              {[1, 2, 3, 4, 5].map((star) => (
+                <span key={star} className="text-[#f4a52f] text-2xl">
+                  ★
+                </span>
+              ))}
+            </div>
+            <p
+              className={cn(
+                testimonialsReviewFont.className,
+                "min-h-[84px] text-[20px] italic leading-[1.45] text-black",
+              )}
+            >
+              &ldquo;{quoteText}&rdquo;
+            </p>
+
+            <div className="mt-5 flex items-center justify-between gap-4">
+              <div className="inline-flex items-center gap-3  text-black px-4 py-2 rounded-xl min-w-[250px]">
+                <div className="relative w-12 h-12 rounded-full overflow-hidden">
+                  <Image
+                    src={active?.avatar || defaultAvatar}
+                    alt={active?.name || "avatar"}
+                    fill
+                    className="object-cover"
+                    unoptimized
+                  />
                 </div>
-
-                {items.length > 1 ? (
-                  <div className="flex shrink-0 justify-end gap-2 sm:ml-auto">
-                    <button
-                      type="button"
-                      onClick={goPrev}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-900 bg-white/80 text-neutral-900 transition hover:bg-neutral-900 hover:text-white"
-                      aria-label="Previous testimonial"
-                    >
-                      <ChevronLeft className="h-5 w-5" strokeWidth={2} />
-                    </button>
-                    <button
-                      type="button"
-                      onClick={goNext}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-neutral-900 bg-white/80 text-neutral-900 transition hover:bg-neutral-900 hover:text-white"
-                      aria-label="Next testimonial"
-                    >
-                      <ChevronRight className="h-5 w-5" strokeWidth={2} />
-                    </button>
-                  </div>
-                ) : null}
+                <div>
+                  <p className="text-2xl font-bold leading-tight">
+                    {active?.name || "Mr. John Doe"}
+                  </p>
+                  <p className="text-sm font-semibold uppercase leading-tight">
+                    Clients
+                  </p>
+                </div>
               </div>
-            </article>
+
+              <div className="flex gap-2">
+                <button
+                  type="button"
+                  onClick={() => handleArrowClick("prev")}
+                  className="w-10 h-10 rounded-full  border shadow flex items-center justify-center text-[#0a2a57]"
+                  aria-label="Previous testimonial"
+                >
+                  <ChevronLeftIcon className="w-5 h-5" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => handleArrowClick("next")}
+                  className="w-10 h-10 rounded-full  border shadow flex items-center justify-center text-[#0a2a57]"
+                  aria-label="Next testimonial"
+                >
+                  <ChevronRightIcon className="w-5 h-5" />
+                </button>
+              </div>
+            </div>
           </div>
         </div>
+
+        <style jsx>{`
+          /* keep responsive logic hooks active without altering functionality contracts */
+        `}</style>
       </Container>
     </FullContainer>
   );

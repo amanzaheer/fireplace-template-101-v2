@@ -50,14 +50,16 @@ function firstNonEmptyArray(...candidates) {
 
 function pickFeatureList(block, content) {
   const resolved = resolveRefArray(content, block, "features");
-  return firstNonEmptyArray(
-    resolved,
-    block.features,
-    block.items,
-    block.points,
-    block.steps,
-    block.list,
-  ) ?? [];
+  return (
+    firstNonEmptyArray(
+      resolved,
+      block.features,
+      block.items,
+      block.points,
+      block.steps,
+      block.list,
+    ) ?? []
+  );
 }
 
 function buildImageSrc(base, filePath) {
@@ -126,7 +128,8 @@ export default function WhyChoose14({ content }) {
   )
     .toString()
     .trim();
-  const filePath = typeof block.file_name === "string" ? block.file_name.trim() : "";
+  const filePath =
+    typeof block.file_name === "string" ? block.file_name.trim() : "";
   const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
   const useUnoptimized =
     imageSrc.startsWith("/api/") ||
@@ -136,10 +139,14 @@ export default function WhyChoose14({ content }) {
     .map((feature, idx) => getStepParts(feature, idx))
     .filter((item) => item.title || item.description);
 
-  if (!heading && !subheading && normalizedFeatures.length === 0 && !imageSrc) return null;
+  if (!heading && !subheading && normalizedFeatures.length === 0 && !imageSrc)
+    return null;
 
   return (
-    <FullContainer id="whychooseus" className="bg-white py-14 md:py-20 lg:py-24">
+    <FullContainer
+      id="whychooseus"
+      className="bg-white py-14 md:py-20 lg:py-24"
+    >
       <Container className="px-4 sm:px-6 lg:px-8">
         <div className="inline-flex w-full min-w-0 flex-col items-center gap-[53px]">
           <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
@@ -158,13 +165,18 @@ export default function WhyChoose14({ content }) {
           </header>
 
           <div className="mx-auto grid w-full min-w-0 max-w-[1080px] self-stretch gap-8 md:grid-cols-2 md:items-center md:gap-3 lg:gap-4">
-            <ul className="relative flex w-full min-w-0 list-none flex-col gap-6 self-stretch p-0 md:gap-7 md:pl-5 lg:pl-8">
+            <ul className="relative flex w-full min-w-0 list-none flex-col gap-5 self-stretch p-0 md:gap-5 md:pl-4 lg:gap-6 lg:pl-12">
+              <span
+                aria-hidden
+                className="pointer-events-none absolute bottom-[18px] left-[19px] top-[18px] hidden w-[4px] rounded-full bg-[#50207E] md:block lg:left-[27px]"
+              />
+              <span
+                aria-hidden
+                className="pointer-events-none absolute bottom-[18px] left-[19px] hidden h-[30%] w-[4px] rounded-full bg-[#F59402] md:block lg:left-[27px]"
+              />
               {normalizedFeatures.map(({ title, description }, idx) => {
                 return (
-                  <li
-                    key={idx}
-                    className="flex items-center gap-3.5 sm:gap-4"
-                  >
+                  <li key={idx} className="flex items-center gap-3 sm:gap-3.5">
                     <StepCheckIcon className="h-[46px] w-[46px] shrink-0 aspect-square" />
                     <div className="flex min-w-0 flex-1 flex-col items-stretch text-left">
                       {title ? (
@@ -177,7 +189,9 @@ export default function WhyChoose14({ content }) {
                       {description ? (
                         <p
                           className={`${rubik.className} mt-1 text-base font-normal leading-relaxed text-neutral-600 sm:text-[17px] ${
-                            title ? "" : "mt-0 text-base font-medium leading-relaxed text-[#333] sm:text-lg"
+                            title
+                              ? ""
+                              : "mt-0 text-base font-medium leading-relaxed text-[#333] sm:text-lg"
                           }`}
                         >
                           {description}

@@ -23,5 +23,6 @@ export { default as Gallery } from "./Gallery";
 export { default as ServiceDescription1Section } from "./ServiceDescription1";
 export { default as ServiceDescription2Section } from "./ServiceDescription2";
 export { default as CallUsButton } from "./CallUsButton";
+export { default as Cta } from "./Cta";
 
 

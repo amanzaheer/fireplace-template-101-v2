@@ -4,6 +4,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
+  Clock4,
   Facebook,
   Instagram,
   Linkedin,
@@ -29,26 +30,18 @@ function telHref(phone) {
   return digits ? `tel:${digits}` : "#";
 }
 
-const STATIC_NAV = [
-  { label: "Home", href: "/" },
-  { label: "Our Services", href: "/#our_services" },
-  { label: "Locations", href: "/#locations" },
-  { label: "FAQs", href: "/#faqs" },
-  { label: "About", href: "/#about" },
-  { label: "Contact Us", href: "/#contact-us" },
-];
+const SOCIAL_ICON_MAP = {
+  facebook: Facebook,
+  twitter: Twitter,
+  instagram: Instagram,
+  linkedin: Linkedin,
+};
 
-const STATIC_ADDRESS =
-  "Lumbung Hidup St. 425 East Java Madiun City 1234";
-const STATIC_EMAIL_FALLBACK = "fireplace.pro@gmail.com";
-const STATIC_PHONE_DISPLAY_FALLBACK = "(737) 315-3438";
-
-const SOCIAL_LINKS = [
-  { label: "Facebook", href: "https://www.facebook.com/", Icon: Facebook },
-  { label: "Twitter", href: "https://twitter.com/", Icon: Twitter },
-  { label: "Instagram", href: "https://www.instagram.com/", Icon: Instagram },
-  { label: "LinkedIn", href: "https://www.linkedin.com/", Icon: Linkedin },
-];
+function normalizeMenuHref(link) {
+  if (!link || typeof link !== "string") return "#";
+  if (link.startsWith("/") || link.startsWith("#")) return link;
+  return `/#${link}`;
+}
 
 function FireplaceMark({ className }) {
   return (
@@ -74,10 +67,7 @@ function FireplaceMark({ className }) {
         strokeWidth="2"
         fill="none"
       />
-      <path
-        d="M32 48C28 44 27 38 32 32C37 38 36 44 32 48Z"
-        fill="#F97316"
-      />
+      <path d="M32 48C28 44 27 38 32 32C37 38 36 44 32 48Z" fill="#F97316" />
       <path
         d="M32 46C30 43 29.5 39 32 36C34.5 39 34 43 32 46Z"
         fill="#FDBA74"
@@ -90,18 +80,24 @@ export default function Footer14({ content }) {
   const footer = content?.footer ?? {};
   const contactInfo = content?.contact_info ?? {};
   const navbar = content?.navbar ?? {};
+  const menuItems = Array.isArray(navbar?.menu_items) ? navbar.menu_items : [];
+  const footerNav = menuItems
+    .map((item) => ({
+      label: item?.title,
+      href: normalizeMenuHref(item?.link),
+    }))
+    .filter((item) => item.label && item.href);
 
-  const phoneRaw =
-    contactInfo.phone ?? navbar.phone ?? STATIC_PHONE_DISPLAY_FALLBACK;
+  const phoneRaw = contactInfo.phone ?? navbar.phone ?? "";
   const phoneDisplay =
-    typeof phoneRaw === "string" && phoneRaw.trim()
-      ? phoneRaw.trim()
-      : STATIC_PHONE_DISPLAY_FALLBACK;
+    typeof phoneRaw === "string" && phoneRaw.trim() ? phoneRaw.trim() : "";
 
   const email =
-    (typeof contactInfo.email === "string" && contactInfo.email.trim()
-      ? contactInfo.email.trim()
-      : "") || STATIC_EMAIL_FALLBACK;
+    typeof contactInfo.email === "string" ? contactInfo.email.trim() : "";
+  const workingHours =
+    typeof contactInfo.working_hours === "string"
+      ? contactInfo.working_hours.trim()
+      : "";
 
   const address =
     (typeof contactInfo.address === "string" && contactInfo.address.trim()
@@ -109,23 +105,51 @@ export default function Footer14({ content }) {
       : "") ||
     (typeof footer.address === "string" && footer.address.trim()
       ? footer.address.trim()
-      : "") ||
-    STATIC_ADDRESS;
+      : "");
 
   const brandName =
+    (typeof navbar?.logo?.logoText === "string" && navbar.logo.logoText.trim()
+      ? navbar.logo.logoText.trim()
+      : "") ||
     (typeof navbar.company_name === "string" && navbar.company_name.trim()
       ? navbar.company_name.trim()
       : "") ||
     (typeof footer.company_name === "string" && footer.company_name.trim()
       ? footer.company_name.trim()
+      : "");
+  const statement =
+    (typeof footer.value === "string" && footer.value.trim()
+      ? footer.value.trim()
       : "") ||
-    "Fireplace Pro";
+    (typeof footer.statement === "string" && footer.statement.trim()
+      ? footer.statement.trim()
+      : "");
+
+  const socialLinks = Array.isArray(footer.social_links)
+    ? footer.social_links
+        .map((item) => {
+          const type = String(item?.type ?? item?.label ?? "").toLowerCase();
+          const Icon = SOCIAL_ICON_MAP[type];
+          const href = typeof item?.href === "string" ? item.href.trim() : "";
+          if (!Icon || !href) return null;
+          return {
+            label: item?.label ?? type,
+            href,
+            Icon,
+          };
+        })
+        .filter(Boolean)
+    : [];
 
   const trustBadgeSrcs = [1, 2, 3, 4, 5].map((n) =>
     buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`),
   );
 
   const copyrightYear = new Date().getFullYear();
+  const cityName =
+    typeof content?.city_name === "string" && content.city_name.trim()
+      ? content.city_name.trim()
+      : "";
 
   return (
     <footer className="font-barlow text-white antialiased">
@@ -140,7 +164,7 @@ export default function Footer14({ content }) {
                 className="flex flex-wrap gap-x-6 gap-y-2 text-[15px] md:text-base text-white/95"
                 aria-label="Footer"
               >
-                {STATIC_NAV.map(({ label, href }) => (
+                {footerNav.map(({ label, href }) => (
                   <Link
                     key={label}
                     href={href}
@@ -150,6 +174,12 @@ export default function Footer14({ content }) {
                   </Link>
                 ))}
               </nav>
+
+              {statement ? (
+                <p className="text-sm leading-relaxed text-white/90">
+                  {statement}
+                </p>
+              ) : null}
 
               <div className="flex flex-wrap gap-2 sm:gap-3">
                 {trustBadgeSrcs.map((src, index) =>
@@ -171,23 +201,25 @@ export default function Footer14({ content }) {
                 )}
               </div>
 
-              <Link
-                href={telHref(phoneDisplay)}
-                title="Call now"
-                className="inline-flex max-w-full items-center gap-4 rounded-2xl bg-[#F59402] px-5 py-4 text-white shadow-lg shadow-black/20 transition hover:brightness-95 sm:max-w-md"
-              >
-                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15">
-                  <Phone className="h-6 w-6" strokeWidth={2} aria-hidden />
-                </span>
-                <span className="flex min-w-0 flex-col text-left leading-tight">
-                  <span className="text-xs font-semibold uppercase tracking-wide text-white/90">
-                    Call now
+              {phoneDisplay ? (
+                <Link
+                  href={telHref(phoneDisplay)}
+                  title="Call now"
+                  className="inline-flex w-fit max-w-full items-center gap-4 rounded-2xl bg-[#F59402] px-5 py-4 text-white shadow-lg shadow-black/20 transition hover:brightness-95 sm:max-w-md"
+                >
+                  <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white/15">
+                    <Phone className="h-6 w-6" strokeWidth={2} aria-hidden />
                   </span>
-                  <span className="font-montserrat text-lg font-bold tracking-tight sm:text-xl">
-                    {phoneDisplay}
+                  <span className="flex w-full flex-col text-left leading-tight">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-white/90">
+                      Call now
+                    </span>
+                    <span className="font-montserrat text-lg font-bold tracking-tight sm:text-xl">
+                      {phoneDisplay}
+                    </span>
                   </span>
-                </span>
-              </Link>
+                </Link>
+              ) : null}
             </div>
 
             <div className="lg:pl-4">
@@ -195,44 +227,50 @@ export default function Footer14({ content }) {
                 Stay Tuned With Us
               </h3>
               <ul className="mt-6 space-y-4 text-[15px] text-white/95 md:text-base">
-                <li className="flex gap-3">
-                  <MapPin
-                    className="mt-0.5 h-5 w-5 shrink-0 text-orange-500"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                  <span className="leading-relaxed">{address}</span>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Mail
-                    className="h-5 w-5 shrink-0 text-orange-500"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                  <Link
-                    href={`mailto:${email}`}
-                    className="hover:text-orange-400 transition-colors break-all"
-                  >
-                    {email}
-                  </Link>
-                </li>
-                <li className="flex items-center gap-3">
-                  <Phone
-                    className="h-5 w-5 shrink-0 text-orange-500"
-                    strokeWidth={2}
-                    aria-hidden
-                  />
-                  <Link
-                    href={telHref(phoneDisplay)}
-                    className="hover:text-orange-400 transition-colors"
-                  >
-                    {phoneDisplay}
-                  </Link>
-                </li>
+                {email ? (
+                  <li className="flex items-center gap-3">
+                    <Mail
+                      className="h-5 w-5 shrink-0 text-orange-500"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                    <Link
+                      href={`mailto:${email}`}
+                      className="hover:text-orange-400 transition-colors break-all"
+                    >
+                      {email}
+                    </Link>
+                  </li>
+                ) : null}
+                {phoneDisplay ? (
+                  <li className="flex items-center gap-3">
+                    <Phone
+                      className="h-5 w-5 shrink-0 text-orange-500"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                    <Link
+                      href={telHref(phoneDisplay)}
+                      className="hover:text-orange-400 transition-colors"
+                    >
+                      {phoneDisplay}
+                    </Link>
+                  </li>
+                ) : null}
+                {workingHours ? (
+                  <li className="flex items-center gap-3">
+                    <Clock4
+                      className="h-5 w-5 shrink-0 text-orange-500"
+                      strokeWidth={2}
+                      aria-hidden
+                    />
+                    <span>{workingHours}</span>
+                  </li>
+                ) : null}
               </ul>
 
               <div className="mt-8 flex flex-wrap gap-4">
-                {SOCIAL_LINKS.map(({ label, href, Icon }) => (
+                {socialLinks.map(({ label, href, Icon }) => (
                   <a
                     key={label}
                     href={href}
@@ -266,7 +304,9 @@ export default function Footer14({ content }) {
               </div>
             </div>
             <p className="text-sm text-neutral-400">
-              Copyright © {copyrightYear} Missouri | Powered by Fireplace-Pro
+              Copyright © {copyrightYear}
+              {cityName ? ` ${cityName}` : ""} | Powered by{" "}
+              {brandName || "Fireplace"}
             </p>
           </div>
         </Container>

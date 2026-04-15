@@ -132,7 +132,8 @@ const DEFAULT_NAV_TAGLINE = "Safe, Reliable & Trustable";
 export default function Navbar14({ content }) {
   const { logo, phone, menu_items = [] } = content?.navbar ?? {};
   const navTagline =
-    typeof content?.navbar?.tagline === "string" && content.navbar.tagline.trim()
+    typeof content?.navbar?.tagline === "string" &&
+    content.navbar.tagline.trim()
       ? content.navbar.tagline.trim()
       : DEFAULT_NAV_TAGLINE;
   const cityLabel =
@@ -348,7 +349,7 @@ export default function Navbar14({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="relative sticky top-0 z-20 h-auto min-h-[88px] w-full bg-white py-3 shadow-sm md:min-h-[104px] md:py-3.5">
+      <FullContainer className="relative sticky top-0 z-20 h-auto min-h-[88px] w-full bg-[#FFFFFF] py-3 shadow-sm md:min-h-[104px] md:py-3.5">
         <Container>
           <div className="flex h-full w-full flex-row items-center justify-between gap-3 md:pr-4 lg:pr-6">
             <div className="flex h-full min-w-0 items-center justify-start">

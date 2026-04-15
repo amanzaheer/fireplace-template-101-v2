@@ -29,7 +29,10 @@ export default function Gallery14({ content }) {
   if (!title && !html && files.length === 0) return null;
 
   return (
-    <FullContainer id="gallery" className="w-full bg-[#f5f7fb] py-10 md:py-14 lg:py-16">
+    <FullContainer
+      id="gallery"
+      className="w-full bg-gradient-to-t from-[#fffdfb] via-white to-[#f5f2ee] py-10 md:py-14 lg:py-16"
+    >
       <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-2xl bg-white p-4 shadow-[0_12px_36px_rgba(0,0,0,0.07)] ring-1 ring-black/5 md:p-6 lg:p-8">
           <div className="grid grid-cols-1 items-start gap-7 lg:grid-cols-2 lg:gap-10">
@@ -44,7 +47,10 @@ export default function Gallery14({ content }) {
                   ? `${title} - image ${index + 1} of ${files.length}`
                   : `Gallery image ${index + 1} of ${files.length}`;
                 return (
-                  <div key={index} className="relative overflow-hidden rounded-xl bg-neutral-200">
+                  <div
+                    key={index}
+                    className="relative overflow-hidden rounded-xl bg-neutral-200"
+                  >
                     <div className="relative aspect-[4/3] w-full">
                       <Image
                         title={label}

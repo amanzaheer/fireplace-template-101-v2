@@ -24,7 +24,10 @@ function BannerCtaIcon({ className }) {
       height={38}
       viewBox="0 0 39 38"
       fill="none"
-      className={cn("h-[38px] w-[39px] shrink-0", className)}
+      className={cn(
+        "  h-[20px] lg:h-[38px]  w-[20] lg:w-[39px] shrink-0",
+        className,
+      )}
       aria-hidden
     >
       <path
@@ -52,10 +55,6 @@ const ICON_MAP = {
   Trophy: Star,
 };
 
-// const DEFAULT_HEADLINE = "Top-Rated Fireplace Repair & Maintenance Experts";
-// const DEFAULT_SUBHEAD =
-//   "Trusted Professionals in Fireplace Installation, Cleaning & Repair";
-/** Left se right tak linear sweep — left thoda gehra, seedha right ki taraf khulta hai */
 const BAR_GRADIENT =
   "linear-gradient(90deg, #675B57 0%, #7a6f6a 38%, #867b75 68%, #958983 100%)";
 function buildImageSrc(base, filePath) {
@@ -83,79 +82,73 @@ export default function Banner14({ content }) {
     imageTitle: banner.imageTitle,
     altImage: banner.altImage,
   };
-  
-  const headline = data?.heading?.trim() || data?.title?.trim() || "";
-  const heroSubline = data?.tagline?.trim() || data?.description?.trim() || "";
-  const barTitle = data?.heading?.trim() || data?.title?.trim() || "";
-  const subhead = data?.tagline?.trim() || data?.description?.trim() || "";
-  const imageSrc = buildImageSrc(IMAGE_BASE, banner.file_name);
-  const useUnoptimized =
-    imageSrc.startsWith("/api/") ||
-    imageSrc.startsWith("http://") ||
-    imageSrc.startsWith("https://");
-
+  const image =
+    buildImageSrc(IMAGE_BASE, banner.file_name) ||
+    buildImageSrc(IMAGE_BASE, "hero/hero.webp");
   const form_head = {
-    title: banner.form_title || "",
-    sub_title: banner.form_description || "",
+    title: content?.banner?.form_title || "Get Your Free Quote",
+    sub_title:
+      content?.banner?.form_description || "10% Off for Online Booking",
   };
-
-  let features = resolveRefArray(content, banner, "features");
-  if (!Array.isArray(features)) features = [];
-
+  const features = resolveRefArray(content, banner, "features");
+  const listItems =
+    features?.length > 0
+      ? features
+      : Array.isArray(data?.list)
+        ? data.list
+            .map((item) => {
+              if (typeof item === "string") return { text: item };
+              if (item && typeof item === "object") return item;
+              return null;
+            })
+            .filter(Boolean)
+        : [];
   const phone =
-    banner.cta_phone?.trim() ||
-    content?.contact_info?.phone?.trim() ||
-    content?.navbar?.phone?.trim() ||
+    banner.cta_phone ??
+    content?.contact_info?.phone ??
+    content?.navbar?.phone ??
     "";
-  const tel = phone ? `tel:${phone.replace(/\s/g, "")}` : "#";
+  const telHref = phone ? `tel:${phone}` : "#";
+  const barTitle = data?.title?.trim() || data?.heading?.trim() || "";
+  const subhead = data?.description?.trim() || data?.tagline?.trim() || "";
 
   return (
-    <FullContainer id="banner" className="relative w-full overflow-hidden bg-neutral-900">
+    <FullContainer
+      id="banner"
+      className="relative w-full overflow-hidden bg-neutral-900"
+    >
       <div className="relative min-h-[640px] w-full lg:min-h-[720px]">
-        {imageSrc ? (
-          <Image
-            src={imageSrc}
-            alt={data?.altImage || headline || "Banner image"}
-            fill
-            priority
-            className="object-cover object-center"
-            sizes="100vw"
-            unoptimized={useUnoptimized}
-          />
-        ) : null}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" aria-hidden />
+        <Image
+          src={image}
+          title={data?.imageTitle || data?.title || "Banner"}
+          alt={data?.altImage || data?.tagline || "No Banner Found"}
+          priority
+          fill
+          className="object-cover object-center"
+          sizes="100vw"
+          style={{
+            objectFit: "cover",
+            objectPosition: "center",
+          }}
+        />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35"
+          aria-hidden
+        />
 
         <Container className="relative z-10 mx-auto max-w-7xl px-4 pb-28 pt-14 sm:px-6 sm:pb-32 sm:pt-16 lg:px-8 lg:pb-36 lg:pt-20">
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-16">
             <div className="max-w-2xl text-white lg:max-w-none">
               <h1 className="font-montserrat text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-[1.12]">
-                <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
-                  {(() => {
-                    const words = (headline || "").trim().split(/\s+/).filter(Boolean);
-                    const lead = words.slice(0, 2).join(" ");
-                    const tail = words.slice(2).join(" ");
-                    return (
-                      <>
-                        <span>{lead || headline}</span>
-                        <Star
-                          className="inline-block h-7 w-7 shrink-0 fill-amber-400 text-amber-400 sm:h-8 sm:w-8 md:h-9 md:w-9"
-                          aria-hidden
-                        />
-                        {tail ? <span>{tail}</span> : null}
-                      </>
-                    );
-                  })()}
-                </span>
+                {data?.heading || data?.title}
               </h1>
 
-              {heroSubline ? (
-                <p className="mt-4 max-w-xl font-barlow text-base font-medium leading-relaxed text-white/90 sm:text-lg md:mt-5 md:text-xl">
-                  {heroSubline}
-                </p>
-              ) : null}
+              <p className="mt-4 max-w-xl font-barlow text-base font-medium leading-relaxed text-white/90 sm:text-lg md:mt-5 md:text-xl">
+                {data?.tagline}
+              </p>
 
               <ul className="mt-8 grid max-w-lg grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2 sm:gap-y-3.5 md:mt-10">
-                {features.slice(0, 6).map((feature, idx) => {
+                {listItems.slice(0, 6).map((feature, idx) => {
                   const key = feature?.icon;
                   const Icon = (key && ICON_MAP[key]) || FileText;
                   const text = feature?.text ?? feature?.title ?? "";
@@ -165,7 +158,11 @@ export default function Banner14({ content }) {
                       key={`${text}-${idx}`}
                       className="flex items-start gap-3 font-barlow text-sm font-medium text-white/95 sm:text-[15px]"
                     >
-                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" strokeWidth={2} aria-hidden />
+                      <Icon
+                        className="mt-0.5 h-5 w-5 shrink-0 text-amber-400"
+                        strokeWidth={2}
+                        aria-hidden
+                      />
                       <span>{text}</span>
                     </li>
                   );
@@ -175,7 +172,7 @@ export default function Banner14({ content }) {
               {phone ? (
                 <div className="mt-8 md:mt-10">
                   <Link
-                    href={tel}
+                    href={telHref}
                     className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-3 shadow-lg transition hover:bg-neutral-100 sm:px-6 sm:py-3.5"
                   >
                     <BannerCtaIcon />
@@ -202,19 +199,19 @@ export default function Banner14({ content }) {
       </div>
 
       <div
-        className="relative z-20 w-full border-t border-black/10 px-4 py-4 sm:px-6 lg:px-8"
+        className="relative z-5 w-full border-t border-black/10 px-4 py-4 sm:px-6 lg:px-8"
         style={{ background: BAR_GRADIENT }}
       >
         <Container className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
           {barTitle || subhead ? (
             <div className="text-center md:text-left">
               {barTitle ? (
-                <p className="font-montserrat text-[20px] font-bold leading-tight text-white">
+                <p className="font-montserrat text-2xl lg:text-5xl font-bold leading-tight text-white">
                   {barTitle}
                 </p>
               ) : null}
               {subhead ? (
-                <p className="font-barlow text-sm leading-snug text-white/95 md:text-base">
+                <p className="font-barlow   text-xl lg:text-2xl my-4 leading-snug text-white/95 ">
                   {subhead}
                 </p>
               ) : null}
@@ -222,12 +219,12 @@ export default function Banner14({ content }) {
           ) : null}
           {phone ? (
             <Link
-              href={tel}
+              href={telHref}
               className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-white px-5 py-2.5 shadow-md transition hover:bg-neutral-100"
             >
               <BannerCtaIcon />
               <span
-                className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+                className={`${rubik.className}  text-[16px] lg:text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
               >
                 {phone}
               </span>

@@ -24,6 +24,7 @@ const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDe
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
+const Cta = dynamic(() => import("@/components/sections/Cta"));
 const PrivacyPolicy = dynamic(() => import("@/components/sections/PrivacyPolicy"));
 const TermsAndConditions = dynamic(
   () => import("@/components/sections/TermsAndConditions"),
@@ -43,6 +44,7 @@ const sectionComponents = {
   ServiceCities,
   BeforeAfter,
   Testimonials,
+  Cta,
   Footer,
   Header,
   ServiceDescription,
