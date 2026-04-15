@@ -10,7 +10,7 @@ import FAQs6 from "./FAQs6";
 import FAQs7 from "./FAQs7";
 import FAQs8 from "./FAQs8";
 import FAQs9 from "./FAQs9";
-
+import FAQs14 from "./FAQs14";
 const variants = {
   FAQs1,
   FAQs2,
@@ -21,11 +21,12 @@ const variants = {
   FAQs7,
   FAQs8,
   FAQs9,
-};
+  FAQs14,
+    };
 
 export default function FAQs({ variant, content }) {
-  const name = variant ?? "FAQs1";
-  const Component = variants[name] ?? FAQs1;
+  const name = variant ?? "FAQs14";
+  const Component = variants[name] ?? FAQs14;
   return <Component content={content} />;
 }
-export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs7, FAQs8, FAQs9, variants };
+export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs7, FAQs8, FAQs9, FAQs14,   variants };
