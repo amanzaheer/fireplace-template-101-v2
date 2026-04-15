@@ -29,4 +29,4 @@ export default function FAQs({ variant, content }) {
   const Component = variants[name] ?? FAQs14;
   return <Component content={content} />;
 }
-export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs7, FAQs8, FAQs9, FAQs14,   variants };
+export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs7,FAQs8, FAQs9, FAQs14, variants };
