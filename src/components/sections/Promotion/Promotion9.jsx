@@ -43,11 +43,19 @@ function LeftOrangeCheckIcon() {
   );
 }
 
-function CardListCheckIcon() {
+function CardListCheckIcon({ isMainCard = false }) {
   return (
-    <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 border-[#040404] bg-transparent">
+    <span
+      className={cn(
+        "mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border-2 bg-transparent",
+        isMainCard ? "border-[#F59402]" : "border-[#040404]",
+      )}
+    >
       <svg
-        className="h-3 w-3 shrink-0 text-[#040404]"
+        className={cn(
+          "h-3 w-3 shrink-0",
+          isMainCard ? "text-[#F59402]" : "text-[#040404]",
+        )}
         fill="none"
         stroke="currentColor"
         viewBox="0 0 24 24"
@@ -80,11 +88,17 @@ function PromotionGradientCard({
   features,
   phoneLink,
   ctaLabel,
+  isMainCard = false,
 }) {
   const list = Array.isArray(features) ? features : [];
 
   return (
-    <div className="flex h-full min-h-0 w-full max-w-[420px] flex-col rounded-2xl bg-gradient-to-b from-[#4b26a6] to-[#1a73e8] p-5 shadow-xl sm:p-6">
+    <div
+      className={cn(
+        "flex h-full min-h-0 w-full max-w-[420px] flex-col rounded-2xl p-5 shadow-xl sm:p-6",
+        isMainCard ? "bg-[#191515]" : "bg-gradient-to-b from-[#4b26a6] to-[#1a73e8]",
+      )}
+    >
       <div className="flex flex-col gap-1 sm:gap-1.5">
         <div className="flex h-[148px] shrink-0 flex-col justify-start overflow-hidden text-center sm:h-[158px]">
           {subheading ? (
@@ -120,7 +134,7 @@ function PromotionGradientCard({
                 key={index}
                 className={`${poppins.className} flex items-start gap-3 text-[13.46px] font-medium leading-snug text-[#040404]`}
               >
-                <CardListCheckIcon />
+                <CardListCheckIcon isMainCard={isMainCard} />
                 <MaybeMarkdown as="span" className="min-w-0 flex-1 leading-snug">
                   {feature}
                 </MaybeMarkdown>
@@ -131,7 +145,12 @@ function PromotionGradientCard({
 
         <a
           href={phoneLink}
-          className={`${poppins.className} flex w-full shrink-0 items-center justify-center rounded-xl bg-[#f2a33c] px-4 py-3 text-center text-[21.04px] font-bold uppercase tracking-wide text-[#FFFFFF] shadow-md transition-colors hover:bg-[#e89430] focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#4b26a6]`}
+          className={cn(
+            `${poppins.className} flex w-full shrink-0 items-center justify-center rounded-xl px-4 py-3 text-center text-[21.04px] font-bold uppercase tracking-wide text-[#FFFFFF] shadow-md transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2`,
+            isMainCard
+              ? "bg-[#E9E8E7] hover:bg-[#d8d7d6] focus-visible:ring-offset-[#191515]"
+              : "bg-[#f2a33c] hover:bg-[#e89430] focus-visible:ring-offset-[#4b26a6]",
+          )}
         >
           {ctaLabel}
         </a>
@@ -285,6 +304,7 @@ export default function Promotion9({ content }) {
                   features={item.features}
                   phoneLink={phoneLink}
                   ctaLabel={ctaLabel}
+                  isMainCard={index === 0}
                 />
               </div>
             ))}

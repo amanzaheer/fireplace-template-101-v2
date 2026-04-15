@@ -11,20 +11,54 @@ function trimStr(v) {
   return typeof v === "string" && v.trim() ? v.trim() : "";
 }
 
-/** Supports CMS keys: `Image`, `image`, `file_name`. */
+/** Supports mixed CMS keys for image path fields. */
 function pickImageFromObject(obj) {
   if (!obj || typeof obj !== "object") return "";
-  return (
+  const nestedImage =
+    trimStr(obj?.Image?.url) ||
+    trimStr(obj?.Image?.src) ||
+    trimStr(obj?.image?.url) ||
+    trimStr(obj?.image?.src) ||
+    trimStr(obj?.file_name?.url) ||
+    trimStr(obj?.file_name?.src) ||
+    trimStr(obj?.file?.url) ||
+    trimStr(obj?.file?.src) ||
+    "";
+  if (nestedImage) return nestedImage;
+
+  const direct =
     trimStr(obj.Image) ||
     trimStr(obj.image) ||
     trimStr(obj.file_name) ||
-    ""
-  );
+    trimStr(obj.filename) ||
+    trimStr(obj.file) ||
+    trimStr(obj.src) ||
+    trimStr(obj.url) ||
+    trimStr(obj.map_image) ||
+    trimStr(obj.location_image) ||
+    "";
+  if (direct) return direct;
+
+  // Fallback for unpredictable key casing from CMS exports.
+  for (const [key, value] of Object.entries(obj)) {
+    if (typeof value !== "string") continue;
+    const normalizedKey = key.toLowerCase().replace(/\s+/g, "");
+    if (
+      normalizedKey.includes("image") ||
+      normalizedKey.includes("file") ||
+      normalizedKey === "src" ||
+      normalizedKey === "url"
+    ) {
+      const candidate = trimStr(value);
+      if (candidate) return candidate;
+    }
+  }
+  return "";
 }
 
 /** `/images/...` → public · relative paths → `/api/image/...` · absolute URLs as-is */
 function resolveLocationImageSrc(path) {
-  const t = trimStr(path);
+  const t = trimStr(path).replace(/\\/g, "/");
   if (!t) return "";
   if (t.startsWith("/") || t.startsWith("http://") || t.startsWith("https://")) {
     return t;
@@ -90,6 +124,8 @@ function normalizeCityEntry(raw, fallbackImage) {
       trimStr(raw.title) ||
       trimStr(raw.label) ||
       trimStr(raw.city) ||
+      trimStr(raw.city_name) ||
+      trimStr(raw.location) ||
       "";
     const explicit = pickImageFromObject(raw);
     const resolved = explicit || fallback;
@@ -111,14 +147,22 @@ function normalizeCityEntry(raw, fallbackImage) {
 export default function ServiceCities14({ content }) {
   const locationsBlock = content?.locations ?? {};
   const locationMeta = content?.location ?? {};
+  const rawList = useMemo(() => getLocationsList(content), [content]);
+
+  const listFallbackImage = useMemo(() => {
+    for (const row of rawList) {
+      const candidate = pickImageFromObject(row);
+      if (candidate) return candidate;
+    }
+    return "";
+  }, [rawList]);
 
   const defaultLocationImage =
     pickImageFromObject(content) ||
     pickImageFromObject(locationsBlock) ||
     pickImageFromObject(locationMeta) ||
+    listFallbackImage ||
     "";
-
-  const rawList = useMemo(() => getLocationsList(content), [content]);
 
   const cities = useMemo(
     () => rawList.map((row) => normalizeCityEntry(row, defaultLocationImage)),

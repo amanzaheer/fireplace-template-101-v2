@@ -11,6 +11,7 @@ import Gallery8 from "./Gallery8";
 
 import Gallery7 from "./Gallery7";
 import Gallery9 from "./Gallery9";
+import Gallery14 from "./Gallery14";
 const variants = {
   Gallery1,
   Gallery2,
@@ -20,13 +21,14 @@ const variants = {
   Gallery6,
   Gallery8,
   Gallery7,
-  Gallery9
+  Gallery9,
+  Gallery14
 };
 
 export default function Gallery({ variant, content }) {
-      const name = variant ?? "Gallery9";
-  const Component = variants[name] ?? Gallery9;
+      const name = variant ?? "Gallery14";
+    const Component = variants[name] ?? Gallery14;
   return <Component content={content} />;
 }
       
-export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5,Gallery6, Gallery8, Gallery7, Gallery9, variants };
+export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5,Gallery6, Gallery8, Gallery7, Gallery9, Gallery14, variants };

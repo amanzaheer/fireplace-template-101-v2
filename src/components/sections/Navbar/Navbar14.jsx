@@ -22,6 +22,9 @@ const poppins = Poppins({
   weight: ["700"],
 });
 
+const NAV_CONTACT_TEXT_CLASS =
+  "self-stretch text-[#0B0B0B] text-[21.691px] not-italic font-bold leading-normal";
+
 const SCROLL_OFFSET = 80;
 
 /** Top-level labels from CMS — typography matches design spec per item */
@@ -65,35 +68,29 @@ const NAV_PHONE_HANDSET_PATH =
 const NAV_PHONE_BASE_PATH =
   "M36.6164 10.9849C34.45 8.2087 33.2768 4.78638 33.2843 1.26493L33.2876 0.985313V0H29.9588V3.32876H16.6438V0H13.315V1.09849L13.3184 1.36479C13.3232 4.90037 12.1404 8.3351 9.95965 11.1181L0 23.3013V33.2876H46.6027V23.3013L36.6164 10.9849ZM23.3013 26.6301C20.6528 26.6301 18.1127 25.578 16.24 23.7052C14.3672 21.8324 13.315 19.2923 13.315 16.6438C13.315 13.9953 14.3672 11.4552 16.24 9.58244C18.1127 7.70965 20.6528 6.65752 23.3013 6.65752C25.9499 6.65752 28.4899 7.70965 30.3627 9.58244C32.2355 11.4552 33.2876 13.9953 33.2876 16.6438C33.2876 19.2923 32.2355 21.8324 30.3627 23.7052C28.4899 25.578 25.9499 26.6301 23.3013 26.6301Z";
 
-/**
- * Handset arc (54×17) stacked above rotary base — matches reference layout;
- * base art is cropped so the handset is not doubled.
- */
 function NavPhoneIcon({ className }) {
   return (
     <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 54 42"
+      width="54"
+      height="54"
+      viewBox="0 0 54 54"
       fill="none"
-      className={cn("h-[32px] w-auto shrink-0", className)}
+      xmlns="http://www.w3.org/2000/svg"
+      className={cn("h-[54px] w-[54px] shrink-0", className)}
       aria-hidden
     >
-      <path d={NAV_PHONE_HANDSET_PATH} fill="#5A3713" />
-      <g transform="translate(3.5, 16.5)">
-        <svg
-          width="47"
-          height="25"
-          viewBox="0 9.25 47 24.75"
-          preserveAspectRatio="xMidYMid meet"
-          overflow="hidden"
-        >
-          <path
-            d={NAV_PHONE_BASE_PATH}
-            fill="#5A3713"
-            fillRule="evenodd"
-          />
-        </svg>
-      </g>
+      <path
+        d="M52.8616 12.849L50.8311 8.48834C50.5798 7.95183 50.2132 7.47736 49.7575 7.09876C49.3018 6.72015 48.7682 6.44674 48.1947 6.29802C41.7435 4.54043 34.3437 3.46524 26.7142 3.33209C19.1948 3.45018 11.7187 4.49441 4.45477 6.44115C3.90552 6.60094 2.94684 7.4065 2.44087 8.46837L0.400339 12.8523C0.138951 13.392 0.00242448 13.9837 0.000887355 14.5833V17.4793L-0.00244141 17.6158C-0.00244141 18.9207 1.0561 19.9792 2.36098 19.9792L2.47083 19.9759H10.8526C11.5132 19.9602 12.1414 19.6868 12.6029 19.2141C13.0645 18.7413 13.3228 18.1067 13.3226 17.446L13.3159 17.2696V14.4402C13.3162 14.0784 13.4071 13.7226 13.5804 13.4051C13.7537 13.0875 14.0038 12.8185 14.3079 12.6227C18.1113 10.5998 22.4069 9.68743 26.7042 9.98961C30.9919 9.70124 35.2754 10.6093 39.0772 12.6127C39.5532 12.9422 39.9493 13.6113 39.9493 14.3736V17.2763C39.9268 17.6164 39.9732 17.9576 40.0859 18.2794C40.1985 18.6011 40.375 18.8968 40.6048 19.1486C40.8345 19.4005 41.1128 19.6033 41.4229 19.7448C41.733 19.8864 42.0685 19.9639 42.4093 19.9726H50.8011L50.9043 19.9759C51.5311 19.9759 52.1323 19.7269 52.5755 19.2837C53.0187 18.8404 53.2677 18.2393 53.2677 17.6125L53.2644 17.4693V14.58C53.2633 13.9717 53.1232 13.3717 52.855 12.8257L52.8616 12.849Z"
+        fill="#5A3713"
+      />
+      <path
+        d="M39.9479 30.9641C37.7815 28.1879 36.6083 24.7656 36.6158 21.2442L36.6192 20.9645V19.9792H33.2904V23.308H19.9753V19.9792H16.6466V21.0777L16.6499 21.344C16.6547 24.8796 15.4719 28.3143 13.2912 31.0973L3.33154 43.2806V53.2668H49.9342V43.2806L39.9479 30.9641ZM26.6329 46.6093C23.9843 46.6093 21.4443 45.5572 19.5715 43.6844C17.6987 41.8116 16.6466 39.2716 16.6466 36.623C16.6466 33.9745 17.6987 31.4345 19.5715 29.5617C21.4443 27.6889 23.9843 26.6368 26.6329 26.6368C29.2814 26.6368 31.8214 27.6889 33.6942 29.5617C35.567 31.4345 36.6192 33.9745 36.6192 36.623C36.6192 39.2716 35.567 41.8116 33.6942 43.6844C31.8214 45.5572 29.2814 46.6093 26.6329 46.6093Z"
+        fill="#5A3713"
+      />
+      <path
+        d="M33.2894 35.4317C33.3095 36.3817 33.1522 37.3265 32.8268 38.2105C32.5014 39.0945 32.0145 39.9 31.3947 40.5795C30.7748 41.2591 30.0345 41.7992 29.2172 42.1679C28.3999 42.5367 27.5221 42.7268 26.6353 42.727C25.7485 42.7273 24.8705 42.5377 24.0531 42.1693C23.2356 41.801 22.495 41.2613 21.8748 40.5821C21.2547 39.9028 20.7674 39.0977 20.4416 38.2138C20.1158 37.33 19.9581 36.3853 19.9777 35.4353C20.0162 33.5713 20.7341 31.7975 21.9778 30.4936C23.2214 29.1898 24.892 28.4594 26.6319 28.459C28.3718 28.4585 30.0428 29.1879 31.2871 30.4911C32.5313 31.7943 33.2501 33.5677 33.2894 35.4317Z"
+        fill="#5A3713"
+      />
     </svg>
   );
 }
@@ -307,21 +304,22 @@ export default function Navbar14({ content }) {
           <div className="hidden flex-col items-end gap-0.5 text-right lg:flex">
             <a
               href={phoneLink}
-              className="flex items-stretch gap-2 text-[#4a3428] transition-opacity hover:opacity-80"
+              className="flex items-center gap-2 text-[#4a3428] transition-opacity hover:opacity-80"
             >
               <div className="flex w-[53.27px] shrink-0 flex-col items-center justify-center">
                 <NavPhoneIcon />
               </div>
-              <span
-                className={`${poppins.className} flex self-stretch items-center text-[21.691px] font-bold not-italic leading-normal text-[#0B0B0B]`}
-              >
-                {phone || "(800) 555-1212"}
-              </span>
+              <div className="flex flex-col items-start leading-none">
+                <span
+                  className={`${poppins.className} ${NAV_CONTACT_TEXT_CLASS}`}
+                >
+                  {phone || "(800) 555-1212"}
+                </span>
+                <span className="mt-1 text-[24px] font-normal leading-none text-[#1F1F1F]">
+                  Call: {cityLabel}
+                </span>
+              </div>
             </a>
-            <span className="flex items-center justify-end gap-1.5 text-[11px] font-medium text-neutral-500">
-              <NavLocationPin />
-              {cityLabel}
-            </span>
           </div>
 
           <div
@@ -365,21 +363,22 @@ export default function Navbar14({ content }) {
               <div className="hidden flex-col items-end gap-0.5 text-right md:flex">
                 <a
                   href={phoneLink}
-                  className="flex items-stretch gap-2 text-[#4a3428] transition-opacity hover:opacity-80"
+                  className="flex items-center gap-2 text-[#4a3428] transition-opacity hover:opacity-80"
                 >
                   <div className="flex w-[53.27px] shrink-0 flex-col items-center justify-center">
                     <NavPhoneIcon />
                   </div>
-                  <span
-                    className={`${poppins.className} flex self-stretch items-center text-[21.691px] font-bold not-italic leading-normal text-[#0B0B0B]`}
-                  >
-                    {phone || "(800) 555-1212"}
-                  </span>
+                  <div className="flex flex-col items-start leading-none">
+                    <span
+                      className={`${poppins.className} ${NAV_CONTACT_TEXT_CLASS}`}
+                    >
+                      {phone || "(800) 555-1212"}
+                    </span>
+                    <span className="mt-1 text-[24px] font-normal leading-none text-[#1F1F1F]">
+                      Call: {cityLabel}
+                    </span>
+                  </div>
                 </a>
-                <span className="flex items-center justify-end gap-1.5 text-[11px] font-medium text-neutral-500">
-                  <NavLocationPin />
-                  {cityLabel}
-                </span>
               </div>
               <div className="pl-3 lg:hidden">
                 <div className="rounded-md border border-neutral-300 bg-white p-1.5 shadow-sm">

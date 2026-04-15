@@ -52,23 +52,21 @@ const ICON_MAP = {
   Trophy: Star,
 };
 
-const DEFAULT_HERO_FEATURES = [
-  { icon: "Wrench", text: "Fire Place & Repair" },
-  { icon: "Clock", text: "Same Day Service" },
-  { icon: "Star", text: "5 Star Rated On Google" },
-  { icon: "Star", text: "10+ Years Of Experience" },
-  { icon: "Shield", text: "Licensed And Insured" },
-];
-
-const DEFAULT_HEADLINE = "Top-Rated Fireplace Repair & Maintenance Experts";
-const DEFAULT_SUBHEAD =
-  "Trusted Professionals in Fireplace Installation, Cleaning & Repair";
-
+// const DEFAULT_HEADLINE = "Top-Rated Fireplace Repair & Maintenance Experts";
+// const DEFAULT_SUBHEAD =
+//   "Trusted Professionals in Fireplace Installation, Cleaning & Repair";
 /** Left se right tak linear sweep — left thoda gehra, seedha right ki taraf khulta hai */
 const BAR_GRADIENT =
   "linear-gradient(90deg, #675B57 0%, #7a6f6a 38%, #867b75 68%, #958983 100%)";
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
+  if (
+    filePath.startsWith("/") ||
+    filePath.startsWith("http://") ||
+    filePath.startsWith("https://")
+  ) {
+    return filePath;
+  }
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
@@ -76,45 +74,55 @@ function buildImageSrc(base, filePath) {
 
 export default function Banner14({ content }) {
   const banner = content?.banner ?? {};
-  const headline = (banner.heading || banner.title || DEFAULT_HEADLINE).trim();
-  const subhead = (banner.tagline || banner.description || DEFAULT_SUBHEAD).trim();
-  const imageSrc =
-    buildImageSrc(IMAGE_BASE, banner.file_name) ||
-    buildImageSrc(IMAGE_BASE, "hero/hero.webp");
+  const data = {
+    title: banner.title,
+    tagline: banner.tagline,
+    description: banner.description,
+    heading: banner.heading,
+    list: banner.list,
+    imageTitle: banner.imageTitle,
+    altImage: banner.altImage,
+  };
+  
+  const headline = data?.heading?.trim() || data?.title?.trim() || "";
+  const heroSubline = data?.tagline?.trim() || data?.description?.trim() || "";
+  const barTitle = data?.heading?.trim() || data?.title?.trim() || "";
+  const subhead = data?.tagline?.trim() || data?.description?.trim() || "";
+  const imageSrc = buildImageSrc(IMAGE_BASE, banner.file_name);
   const useUnoptimized =
     imageSrc.startsWith("/api/") ||
     imageSrc.startsWith("http://") ||
     imageSrc.startsWith("https://");
 
   const form_head = {
-    title: banner.form_title || "Get Your Fireplace Fixed Today",
-    sub_title: banner.form_description || "Fast & Reliable Service",
+    title: banner.form_title || "",
+    sub_title: banner.form_description || "",
   };
 
   let features = resolveRefArray(content, banner, "features");
-  if (!Array.isArray(features) || features.length < 4) {
-    features = DEFAULT_HERO_FEATURES;
-  }
+  if (!Array.isArray(features)) features = [];
 
   const phone =
     banner.cta_phone?.trim() ||
     content?.contact_info?.phone?.trim() ||
     content?.navbar?.phone?.trim() ||
-    "(800) 555-1212";
-  const tel = `tel:${phone.replace(/\s/g, "")}`;
+    "";
+  const tel = phone ? `tel:${phone.replace(/\s/g, "")}` : "#";
 
   return (
     <FullContainer id="banner" className="relative w-full overflow-hidden bg-neutral-900">
       <div className="relative min-h-[640px] w-full lg:min-h-[720px]">
-        <Image
-          src={imageSrc}
-          alt={headline || "Hero"}
-          fill
-          priority
-          className="object-cover object-center"
-          sizes="100vw"
-          unoptimized={useUnoptimized}
-        />
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={data?.altImage || headline || "Banner image"}
+            fill
+            priority
+            className="object-cover object-center"
+            sizes="100vw"
+            unoptimized={useUnoptimized}
+          />
+        ) : null}
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" aria-hidden />
 
         <Container className="relative z-10 mx-auto max-w-7xl px-4 pb-28 pt-14 sm:px-6 sm:pb-32 sm:pt-16 lg:px-8 lg:pb-36 lg:pt-20">
@@ -123,7 +131,7 @@ export default function Banner14({ content }) {
               <h1 className="font-montserrat text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-[1.12]">
                 <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1">
                   {(() => {
-                    const words = headline.trim().split(/\s+/).filter(Boolean);
+                    const words = (headline || "").trim().split(/\s+/).filter(Boolean);
                     const lead = words.slice(0, 2).join(" ");
                     const tail = words.slice(2).join(" ");
                     return (
@@ -140,9 +148,11 @@ export default function Banner14({ content }) {
                 </span>
               </h1>
 
-              <p className="mt-4 max-w-xl font-barlow text-base font-medium leading-relaxed text-white/90 sm:text-lg md:mt-5 md:text-xl">
-                {subhead}
-              </p>
+              {heroSubline ? (
+                <p className="mt-4 max-w-xl font-barlow text-base font-medium leading-relaxed text-white/90 sm:text-lg md:mt-5 md:text-xl">
+                  {heroSubline}
+                </p>
+              ) : null}
 
               <ul className="mt-8 grid max-w-lg grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2 sm:gap-y-3.5 md:mt-10">
                 {features.slice(0, 6).map((feature, idx) => {
@@ -162,19 +172,21 @@ export default function Banner14({ content }) {
                 })}
               </ul>
 
-              <div className="mt-8 md:mt-10">
-                <Link
-                  href={tel}
-                  className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-3 shadow-lg transition hover:bg-neutral-100 sm:px-6 sm:py-3.5"
-                >
-                  <BannerCtaIcon />
-                  <span
-                    className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+              {phone ? (
+                <div className="mt-8 md:mt-10">
+                  <Link
+                    href={tel}
+                    className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-3 shadow-lg transition hover:bg-neutral-100 sm:px-6 sm:py-3.5"
                   >
-                    {phone}
-                  </span>
-                </Link>
-              </div>
+                    <BannerCtaIcon />
+                    <span
+                      className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+                    >
+                      {phone}
+                    </span>
+                  </Link>
+                </div>
+              ) : null}
             </div>
 
             <div className="w-full justify-self-center lg:justify-self-end">
@@ -194,21 +206,33 @@ export default function Banner14({ content }) {
         style={{ background: BAR_GRADIENT }}
       >
         <Container className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
-          <p className="text-center font-barlow text-base text-white md:text-left md:text-lg">
-            <span className="font-bold">Professional Fireplace Service</span>{" "}
-            <span className="font-medium text-white/90">in the Comfort of Your Home</span>
-          </p>
-          <Link
-            href={tel}
-            className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-white px-5 py-2.5 shadow-md transition hover:bg-neutral-100"
-          >
-            <BannerCtaIcon />
-            <span
-              className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+          {barTitle || subhead ? (
+            <div className="text-center md:text-left">
+              {barTitle ? (
+                <p className="font-montserrat text-[20px] font-bold leading-tight text-white">
+                  {barTitle}
+                </p>
+              ) : null}
+              {subhead ? (
+                <p className="font-barlow text-sm leading-snug text-white/95 md:text-base">
+                  {subhead}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+          {phone ? (
+            <Link
+              href={tel}
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-white px-5 py-2.5 shadow-md transition hover:bg-neutral-100"
             >
-              {phone}
-            </span>
-          </Link>
+              <BannerCtaIcon />
+              <span
+                className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+              >
+                {phone}
+              </span>
+            </Link>
+          ) : null}
         </Container>
       </div>
     </FullContainer>

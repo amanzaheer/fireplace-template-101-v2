@@ -6,9 +6,23 @@ import Container from "@/components/common/Container";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
+  if (
+    filePath.startsWith("/") ||
+    filePath.startsWith("http://") ||
+    filePath.startsWith("https://")
+  ) {
+    return filePath;
+  }
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
@@ -178,7 +192,9 @@ export default function Testimonials14({ content }) {
 
       <Container className="relative z-10 mx-auto max-w-6xl px-4">
         {sectionTitle ? (
-          <h2 className="font-montserrat mb-10 text-center text-2xl font-medium text-white md:mb-12 md:text-3xl">
+          <h2
+            className={`${poppins.className} mb-10 text-center text-[44px] font-medium leading-[55.902px] text-[#FFF] md:mb-12`}
+          >
             {sectionTitle}
           </h2>
         ) : null}

@@ -25,8 +25,8 @@ const variants = {
 
 
 export default function Footer({ variant, content }) {
-  const name = variant ?? "Footer14";
-  const Component = variants[name] ?? Footer14;
+  const name = variant ?? "Footer1";
+  const Component = variants[name] ?? Footer1;
   return <Component content={content} />;
 }
 export { Footer1, Footer2, Footer3, Footer4, Footer5, Footer6, Footer7, Footer8, Footer9, Footer14, variants };

@@ -4,10 +4,17 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import { Poppins } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import md from "@/lib/markdown";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  display: "swap",
+});
 
 /** Replace [service] token with the item's own title. */
 function resolveServiceTag(str, title) {
@@ -24,6 +31,8 @@ function markdownPreview(str) {
 const MAX_DISPLAY = 8;
 const BLUR_DATA_URL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
+const CARD_CONTENT_TEXT_CLASS =
+  "w-[357px] max-w-full text-left text-[14px] font-normal not-italic leading-[22.15px] text-[#6E6E6E]";
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -85,7 +94,9 @@ export default function OurServices14({ content }) {
     <FullContainer id="our_services" className="bg-[#fafafa] py-12 md:py-16 lg:py-20">
       <Container className="px-4 sm:px-6 lg:px-8">
         <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
-          <h2 className="font-montserrat text-2xl font-bold leading-tight tracking-tight text-neutral-900 sm:text-3xl md:text-[2rem] md:leading-snug">
+          <h2
+            className={`${poppins.className} self-stretch text-center text-[44px] font-medium not-italic leading-[93.872px] text-[#2D2D2D] capitalize`}
+          >
             {title}
           </h2>
           {sectionSub ? (
@@ -125,7 +136,7 @@ export default function OurServices14({ content }) {
                   )}
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-6 md:gap-3.5 md:p-7">
-                  <h3 className="text-left font-montserrat text-lg font-bold leading-snug text-neutral-900 md:text-[1.15rem]">
+                  <h3 className="text-left font-poppins text-[21.095px] font-medium not-italic leading-[36.916px] text-[#2D2D2D]">
                     {service.path && service.path !== "#" ? (
                       <Link
                         href={service.path}
@@ -139,19 +150,19 @@ export default function OurServices14({ content }) {
                   </h3>
                   {service.description ? (
                     <div
-                      className="prose prose-sm flex-1 max-w-none text-left font-barlow text-sm leading-relaxed text-neutral-600 prose-p:my-0 prose-p:text-neutral-600 prose-p:leading-relaxed prose-headings:my-1 prose-headings:text-neutral-900 prose-a:text-[#7A7471] prose-strong:text-neutral-800 md:text-[15px]"
+                      className={`flex-1 ${poppins.className} ${CARD_CONTENT_TEXT_CLASS} [&_*]:font-inherit [&_*]:text-[#6E6E6E] [&_*]:leading-[22.15px] [&_p]:m-0 [&_ul]:m-0 [&_ol]:m-0 [&_li]:m-0`}
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
                     />
                   ) : (
-                    <p className="flex-1 text-left text-sm leading-relaxed text-neutral-600 md:text-[15px]">
+                    <p className={`flex-1 ${poppins.className} ${CARD_CONTENT_TEXT_CLASS}`}>
                       No description provided.
                     </p>
                   )}
                   <a
                     href={phone ? `tel:${phone}` : "#"}
-                    className="mt-auto inline-flex w-fit items-center gap-2 rounded-full bg-[#7A7471] px-5 py-2.5 font-montserrat text-[11px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#6b6562] sm:px-6 sm:py-3 sm:text-xs md:text-[13px]"
+                    className="mt-auto flex w-[217.278px] items-center justify-center gap-[21.095px] rounded-[12px] bg-[#786F6F] px-[40.08px] py-[12.657px] font-montserrat text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#6d6565]"
                   >
                     <span>Call us today</span>
                     <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2.5} aria-hidden />

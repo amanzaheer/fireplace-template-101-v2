@@ -41,30 +41,6 @@ function StepCheckIcon({ className }) {
   );
 }
 
-/** Shown when CMS has no list (same idea as Banner14 default features). */
-const DEFAULT_STEPS = [
-  {
-    title: "Tell us what you need",
-    description:
-      "Share a few details online or by phone so we can understand your fireplace issue.",
-  },
-  {
-    title: "Get a clear plan",
-    description:
-      "We explain options and pricing before any work begins—no surprises.",
-  },
-  {
-    title: "Expert on-site service",
-    description:
-      "Licensed technicians arrive on time with the right tools and parts.",
-  },
-  {
-    title: "Safe, reliable results",
-    description:
-      "We test everything, leave the area tidy, and you get dependable warmth again.",
-  },
-];
-
 function firstNonEmptyArray(...candidates) {
   for (const a of candidates) {
     if (Array.isArray(a) && a.length > 0) return a;
@@ -74,20 +50,25 @@ function firstNonEmptyArray(...candidates) {
 
 function pickFeatureList(block, content) {
   const resolved = resolveRefArray(content, block, "features");
-  return (
-    firstNonEmptyArray(
-      resolved,
-      block.features,
-      block.items,
-      block.points,
-      block.steps,
-      block.list,
-    ) ?? DEFAULT_STEPS
-  );
+  return firstNonEmptyArray(
+    resolved,
+    block.features,
+    block.items,
+    block.points,
+    block.steps,
+    block.list,
+  ) ?? [];
 }
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
+  if (
+    filePath.startsWith("/") ||
+    filePath.startsWith("http://") ||
+    filePath.startsWith("https://")
+  ) {
+    return filePath;
+  }
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
@@ -130,27 +111,32 @@ function getStepParts(feature, index) {
     return { title: "", description: rawText };
   }
 
-  return { title: `Step ${index + 1}`, description: "" };
+  return { title: "", description: "" };
 }
 
 export default function WhyChoose14({ content }) {
   const block = content?.why_choose ?? {};
   const features = pickFeatureList(block, content);
-  const heading = (block.heading ?? "How We Can Help").trim();
+  const heading = typeof block.heading === "string" ? block.heading.trim() : "";
   const subheading = (
     block.description ??
     block.subheading ??
     block.tagline ??
-    "Simple, seamless, and stress-free fireplace service in 4 easy steps."
+    ""
   )
     .toString()
     .trim();
-  const filePath = block.file_name ?? "about/about.webp";
+  const filePath = typeof block.file_name === "string" ? block.file_name.trim() : "";
   const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
   const useUnoptimized =
     imageSrc.startsWith("/api/") ||
     imageSrc.startsWith("http://") ||
     imageSrc.startsWith("https://");
+  const normalizedFeatures = features
+    .map((feature, idx) => getStepParts(feature, idx))
+    .filter((item) => item.title || item.description);
+
+  if (!heading && !subheading && normalizedFeatures.length === 0 && !imageSrc) return null;
 
   return (
     <FullContainer id="whychooseus" className="bg-white py-14 md:py-20 lg:py-24">
@@ -172,10 +158,8 @@ export default function WhyChoose14({ content }) {
           </header>
 
           <div className="mx-auto grid w-full min-w-0 max-w-[1080px] self-stretch gap-8 md:grid-cols-2 md:items-center md:gap-3 lg:gap-4">
-            <ul className="flex w-full min-w-0 list-none flex-col gap-6 self-stretch p-0 md:gap-7">
-              {features.map((feature, idx) => {
-                const { title, description } = getStepParts(feature, idx);
-                if (!title && !description) return null;
+            <ul className="relative flex w-full min-w-0 list-none flex-col gap-6 self-stretch p-0 md:gap-7 md:pl-5 lg:pl-8">
+              {normalizedFeatures.map(({ title, description }, idx) => {
                 return (
                   <li
                     key={idx}
@@ -193,7 +177,7 @@ export default function WhyChoose14({ content }) {
                       {description ? (
                         <p
                           className={`${rubik.className} mt-1 text-base font-normal leading-relaxed text-neutral-600 sm:text-[17px] ${
-                            title ? "" : "mt-0 text-lg font-medium text-black sm:text-xl"
+                            title ? "" : "mt-0 text-base font-medium leading-relaxed text-[#333] sm:text-lg"
                           }`}
                         >
                           {description}
@@ -217,13 +201,7 @@ export default function WhyChoose14({ content }) {
                     loading="lazy"
                     unoptimized={useUnoptimized}
                   />
-                ) : (
-                  <div
-                    className={`${rubik.className} absolute inset-0 flex items-center justify-center text-neutral-400`}
-                  >
-                    Image
-                  </div>
-                )}
+                ) : null}
               </div>
             </div>
           </div>
