@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'standalone',
+  compress: false,
   serverExternalPackages: ['ioredis', 'sharp'],
   images: {
     formats: ['image/avif', 'image/webp'],
