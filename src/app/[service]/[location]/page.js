@@ -3,6 +3,11 @@ import { notFound } from "next/navigation";
 import SectionLayout from "@/components/SectionLayout";
 import MaintenancePage from "@/components/MaintenancePage";
 import { getPageData, getLocationData, getPageConfig, resolveAllTags } from "@/lib/page-data";
+import {
+    findLocationEntryByUrlSegment,
+    pathSegmentMatchesPath,
+    titleFromLocationSlug,
+} from "@/lib/location-routing";
 
 export const dynamic = 'force-dynamic';
 
@@ -15,23 +20,30 @@ export async function generateMetadata({ params }) {
     if (!homeData) return { title: "Coming Soon" };
 
     const services = homeData.content?.services ?? [];
-    const serviceEntry = services.find((s) => s.path === `/${service}`);
+    const serviceEntry = services.find((s) => pathSegmentMatchesPath(s.path, service));
     if (!serviceEntry) return { title: "Service" };
 
     const locations = homeData.content?.locations ?? [];
-    const locationEntry = (locations?.list || []).find((l) => l.path === `/${location}`);
+    const locationEntry = findLocationEntryByUrlSegment(locations?.list || [], location);
     if (!locationEntry) return { title: serviceEntry.title ?? "Service" };
+
+    const locationTitleForMeta =
+        (typeof locationEntry === "object" && locationEntry != null
+            ? locationEntry.title ?? locationEntry.name
+            : undefined) ||
+        titleFromLocationSlug(location) ||
+        location;
 
     const locationContent = await getLocationData(
         host,
         serviceEntry.title,
         location,
-        locationEntry.title
+        locationTitleForMeta
     );
     const meta = locationContent?.meta_data;
 
     return {
-        title: meta?.title ?? `${serviceEntry.title} in ${locationEntry.title}`,
+        title: meta?.title ?? `${serviceEntry.title} in ${locationTitleForMeta}`,
         description: meta?.description ?? undefined,
     };
 }
@@ -46,12 +58,19 @@ export default async function ServiceLocationPage({ params }) {
     if (!homeData) return <MaintenancePage />;
 
     const services = homeData.content?.services ?? [];
-    const serviceData = services.find((s) => s.path === `/${service}`);
+    const serviceData = services.find((s) => pathSegmentMatchesPath(s.path, service));
     if (!serviceData) notFound();
 
     const locations = homeData.content?.locations ?? [];
-    const locationData = (locations?.list || []).find((l) => l.path === `/${location}`);
+    const locationData = findLocationEntryByUrlSegment(locations?.list || [], location);
     //   if (!locationData) notFound();
+
+    const locationTitleResolved =
+        (typeof locationData === "object" && locationData != null
+            ? locationData.title ?? locationData.name
+            : undefined) ||
+        titleFromLocationSlug(location) ||
+        location;
 
     // 2. Merged location content:
     //    shared location defaults + per-location overrides, with all [tags] resolved
@@ -59,18 +78,20 @@ export default async function ServiceLocationPage({ params }) {
         host,
         serviceData.title,
         location,
-        locationData?.title
+        locationTitleResolved
     );
     if (!locationContent) return <MaintenancePage />;
 
     // vars used to resolve [service] / [area] in data coming from homeData
     const locationVars = {
         service: serviceData.title,
-        area: locationData?.title || location,
+        area: locationTitleResolved,
         location,
     };
 
     // 3. Final merged content passed to every section component
+    // Keep home navbar: location JSON from the datastore often includes a partial `navbar`
+    // that overwrites logo config (image vs text). Home + service pages use home-only navbar.
     const mergedContent = {
         ...homeData.content,
         ...locationContent,
@@ -78,6 +99,7 @@ export default async function ServiceLocationPage({ params }) {
         locations: resolveAllTags(homeData.content?.locations ?? [], locationVars),
         serviceDetail: resolveAllTags(serviceData, locationVars),
         locationDetail: resolveAllTags(locationData, locationVars),
+        // navbar: homeData.content?.navbar ?? locationContent?.navbar,
     };
 
     // domainConfig for the location page layout (sections order / visibility)

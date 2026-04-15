@@ -116,7 +116,7 @@ export default function Banner1({ content }) {
               <div
                 className={`${poppins.className} font-black max-w-[560px] inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-left text-shadow-lg`}
               >
-                {data?.heading || data?.title}kk
+                {data?.heading || data?.title}
               </div>
               {data?.tagline ? (
                 <h2 className="text-xl md:text-2xl uppercase font-extrabold leading-tight text-[#ffffff] text-left mt-2">
