@@ -11,7 +11,7 @@ import Navbar8 from './Navbar8';
 import Navbar5 from './Navbar5';
 import Navbar7 from './Navbar7';
 import Navbar9 from './Navbar9';
-
+import Navbar14 from './Navbar14';
 const variants = {
   Navbar1,
   Navbar2,
@@ -22,13 +22,11 @@ const variants = {
   Navbar7,
   Navbar8,
   Navbar9,
+  Navbar14,
 };
-
-
-
 export default function Navbar({ variant, content }) {
-  const name = String(variant ?? "").trim() || "Navbar9";
-  const Component = variants[name] ?? Navbar9;
+  const name = String(variant ?? "").trim() || "Navbar14";
+  const Component = variants[name] ?? Navbar14;
   return <Component content={content} />;
 }
-export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, variants };
+export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14,     variants };
