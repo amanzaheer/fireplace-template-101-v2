@@ -12,7 +12,7 @@ import Promotion7 from "./Promotion7";
 import Promotion8 from "./Promotion8";
 import Promotion9 from "./Promotion9";
 import Promotion14 from "./Promotion14";
-
+import Promotion15 from "./Promotion15";
 const variants = {
   Promotion1,
   Promotion2,
@@ -24,11 +24,12 @@ const variants = {
   Promotion8,
   Promotion9,
   Promotion14,
+  Promotion15,
 };
 
 export default function Promotion({ variant, content }) {
   const name = String(variant ?? "").trim() || "Promotion14";
-  const Component = variants[name] ?? Promotion14;
+  const Component = variants[name] ?? Promotion1;
   return <Component content={content} />;
 }
-export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion5, Promotion6, Promotion7, Promotion8, Promotion9, Promotion14, variants };
+export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion5, Promotion6, Promotion7, Promotion8, Promotion9, Promotion14, Promotion15, variants };

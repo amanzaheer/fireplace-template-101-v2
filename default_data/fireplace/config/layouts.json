@@ -1,0 +1,279 @@
+{
+  "sections": {
+    "Navbar": {
+      "design": "Navbar2",
+      "visible": true
+    },
+    "Header": {
+      "design": "Header2",
+      "visible": true
+    },
+    "Banner": {
+      "design": "Banner1",
+      "visible": true
+    },
+    "Breadcrumbs": {
+      "design": "Breadcrumbs1",
+      "visible": true
+    },
+    "About": {
+      "design": "About1",
+      "visible": true
+    },
+    "Promotion": {
+      "design": "Promotion1",
+      "visible": true
+    },
+    "Hero": {
+      "design": "Hero1",
+      "visible": false
+    },
+    "Features": {
+      "design": "Features1",
+      "visible": false
+    },
+    "Testimonials": {
+      "design": "Testimonials1",
+      "visible": false
+    },
+    "Footer": {
+      "design": "Footer1",
+      "visible": true
+    },
+    "BeforeAfter": {
+      "design": "BeforeAfter1",
+      "visible": true
+    },
+    "OurServices": {
+      "design": "OurServices1",
+      "visible": true
+    },
+    "WhyChoose": {
+      "design": "WhyChoose1",
+      "visible": true
+    },
+    "Slogan": {
+      "design": "Slogan1",
+      "visible": true
+    },
+    "ServiceBenefits": {
+      "design": "ServiceBenefits1",
+      "visible": true
+    },
+    "Contact": {
+      "design": "Contact1",
+      "visible": true
+    },
+    "FAQs": {
+      "design": "FAQs1",
+      "visible": true
+    },
+    "ServiceCities": {
+      "design": "ServiceCities1",
+      "visible": true
+    },
+    "ServiceDescription": {
+      "design": "ServiceDescription1",
+      "visible": true
+    },
+    "Gallery": {
+      "design": "Gallery1",
+      "visible": true
+    },
+    "ServiceDescription1": {
+      "design": "ServiceDescription1",
+      "visible": true
+    },
+    "ServiceDescription2": {
+      "design": "ServiceDescription2",
+      "visible": true
+    },
+    "CallUsButton": {
+      "design": "CallUsButton2",
+      "visible": true
+    },
+    "Cta": {
+      "design": "Cta14",
+      "visible": true
+    }
+  },
+  "order": [
+    "Navbar",
+    "Banner",
+    "Breadcrumbs",
+    "About",
+    "Promotion",
+    "Testimonials",
+    "BeforeAfter",
+    "OurServices",
+    "WhyChoose",
+    "Slogan",
+    "ServiceBenefits",
+    "Contact",
+    "FAQs",
+    "ServiceCities",
+    "Footer",
+    "Cta",
+    "CallUsButton"
+  ],
+  "pages": {
+    "home": {
+      "sections": {
+        "Navbar": {
+          "design": "Navbar14",
+          "visible": true
+        },
+        "Banner": {
+          "design": "Banner14",
+          "visible": true
+        },
+        "About": {
+          "design": "About14",
+          "visible": true
+        },
+        "Promotion": {
+          "design": "Promotion14",
+          "visible": true
+        },
+        "Testimonials": {
+          "design": "Testimonials14",
+          "visible": true
+        },
+        "Footer": {
+          "design": "Footer14",
+          "visible": true
+        },
+        "BeforeAfter": {
+          "design": "BeforeAfter14",
+          "visible": true
+        },
+        "OurServices": {
+          "design": "OurServices14",
+          "visible": true
+        },
+        "WhyChoose": {
+          "design": "WhyChoose14",
+          "visible": true
+        },
+        "Slogan": {
+          "design": "Slogan14",
+          "visible": true
+        },
+        "ServiceBenefits": {
+          "design": "ServiceBenefits14",
+          "visible": false
+        },
+        "Contact": {
+          "design": "Contact14",
+          "visible": false
+        },
+        "FAQs": {
+          "design": "FAQs14",
+          "visible": true
+        },
+        "ServiceCities": {
+          "design": "ServiceCities14",
+          "visible": true
+        },
+        "CallUsButton": {
+          "design": "CallUsButton14",
+          "visible": true
+        },
+        "Cta": {
+          "design": "Cta14",
+          "visible": true
+        }
+      },
+      "order": [
+        "Navbar",
+        "Banner",
+        "Breadcrumbs",
+        "About",
+        "Promotion",
+        "Testimonials",
+        "BeforeAfter",
+        "OurServices",
+        "WhyChoose",
+        "Slogan",
+        "ServiceBenefits",
+        "Contact",
+        "FAQs",
+        "ServiceCities",
+        "Cta",
+        "Footer",
+        "CallUsButton"
+      ]
+    },
+    "service": {
+      "sections": {
+        "Navbar": {
+          "design": "Navbar14",
+          "visible": true
+        },
+        "Banner": {
+          "design": "Banner14",
+          "visible": true
+        },
+        "Breadcrumbs": {
+          "design": "Breadcrumbs14",
+          "visible": true
+        },
+        "ServiceDescription": {
+          "design": "ServiceDescription14",
+          "visible": true
+        },
+        "Gallery": {
+          "design": "Gallery14",
+          "visible": true
+        },
+        "ServiceDescription1": {
+          "design": "ServiceDescription14",
+          "visible": true
+        },
+        "ServiceDescription2": {
+          "design": "ServiceDescription14",
+          "visible": true
+        },
+        "Contact": {
+          "design": "Contact14",
+          "visible": false
+        },
+        "FAQs": {
+          "design": "FAQs14",
+          "visible": true
+        },
+        "ServiceCities": {
+          "design": "ServiceCities14",
+          "visible": true
+        },
+        "Footer": {
+          "design": "Footer14",
+          "visible": true
+        },
+        "CallUsButton": {
+          "design": "CallUsButton14",
+          "visible": true
+        },
+        "Cta": {
+          "design": "Cta14",
+          "visible": true
+        }
+      },
+      "order": [
+        "Navbar",
+        "Banner",
+        "Breadcrumbs",
+        "ServiceDescription",
+        "Gallery",
+        "ServiceDescription1",
+        "ServiceDescription2",
+        "Contact",
+        "FAQs",
+        "ServiceCities",
+        "Cta",
+        "Footer",
+        "CallUsButton"
+      ]
+    }
+  }
+}

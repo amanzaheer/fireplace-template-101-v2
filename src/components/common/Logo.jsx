@@ -30,7 +30,13 @@ function buildImageSrc(base, path) {
   return `${basePath}/${segment}`;
 }
 
-export default function Logo({ logo, imagePath, className, tagline }) {
+export default function Logo({
+  logo,
+  imagePath,
+  className,
+  tagline,
+  taglineClassName,
+}) {
   const [hostName, setHostName] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
 
@@ -120,7 +126,7 @@ export default function Logo({ logo, imagePath, className, tagline }) {
 
   if (!logoData) return null;
 
-  const taglineClassName = `${taglineFont.className} max-w-[280px] text-[13px] font-medium leading-snug tracking-wide text-[#0B0B0B] sm:max-w-none sm:text-sm md:text-[15px]`;
+  const computedTaglineClassName = `${taglineFont.className} max-w-[280px] text-[13px] font-medium leading-snug tracking-wide text-[#0B0B0B] sm:max-w-none sm:text-sm md:text-[15px] ${taglineClassName ?? ""}`;
 
   return (
     <Link
@@ -145,7 +151,9 @@ export default function Logo({ logo, imagePath, className, tagline }) {
               style={logoStyle}
               className="shrink-0 scale-110"
             />
-            <span className={`${taglineClassName} text-left`}>{tagline}</span>
+            <span className={`${computedTaglineClassName} text-left`}>
+              {tagline}
+            </span>
           </span>
         ) : (
           <Image
@@ -179,7 +187,7 @@ export default function Logo({ logo, imagePath, className, tagline }) {
                   {logoText}
                 </h2>
               ) : null}
-              <span className={taglineClassName}>{tagline}</span>
+              <span className={computedTaglineClassName}>{tagline}</span>
             </span>
           </span>
         ) : (
@@ -190,7 +198,7 @@ export default function Logo({ logo, imagePath, className, tagline }) {
                 alt="Logo"
                 width={windowWidth < 768 ? 32 : 44}
                 height={windowWidth < 768 ? 32 : 44}
-                className="flex-shrink-0 object-contain"
+                className="shrink-0 object-contain"
               />
             )}
             {logoText && (
@@ -211,7 +219,7 @@ export default function Logo({ logo, imagePath, className, tagline }) {
             >
               {logoText}
             </span>
-            <span className={taglineClassName}>{tagline}</span>
+            <span className={computedTaglineClassName}>{tagline}</span>
           </span>
         ) : (
           <span

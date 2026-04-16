@@ -1,0 +1,847 @@
+{
+    "status": true,
+    "message": "Done",
+    "data": [
+        {
+            "_id": "692894ac535666bd36b5ec6c",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "banner",
+            "value": {
+                "title": "Trusted Experts in Exclusive Fire Protection",
+                "imageTitle": "#1 Fire Protection Service In Your Area",
+                "altImage": "#1 Fire Protection Service In Your Area"
+            },
+            "file_name": "1762952434662-mgxmhl.jpeg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-11-18T10:49:00.334Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec6d",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "logo",
+            "value": {
+                "logoType": "text",
+                "logoText": "Fireplace Built",
+                "logoHeight": 85,
+                "logoWidth": 261,
+                "fontSize": 32,
+                "isBold": true,
+                "isItalic": false,
+                "fontFamily": "Inter"
+            },
+            "file_name": "1762148104987-r3aq9z.png",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec74",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-liner-2",
+            "value": "cat-chimney-liner-2",
+            "file_name": "1756880219405-r5uj3f.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec78",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "state_",
+            "value": "state",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec7c",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "gtm_head",
+            "value": "<!-- Google tag (gtag.js) -->\r\n<script async src=\"https://www.googletagmanager.com/gtag/js?id=G-K01NWH2KV6\"></script>\r\n<script>\r\n  window.dataLayer = window.dataLayer || [];\r\n  function gtag(){dataLayer.push(arguments);}\r\n  gtag('js', new Date());\r\n\r\n  gtag('config', 'G-K01NWH2KV6');\r\n</script>",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-09-18T05:32:57.222Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec81",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "slogan_1",
+            "value": {
+                "title": "Committed to Excellence - Fireplace Built",
+                "description": "At Fireplace Built, we are dedicated to providing exceptional fireplace repair, cleaning, and maintenance services. Our experienced professionals ensure your fireplace operates safely, efficiently, and beautifully — delivering lasting comfort and peace of mind."
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec96",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-wood-burning-fireplace-4",
+            "value": "cat-wood-burning-fireplace-4",
+            "file_name": "1758178393900-zqcxar.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T06:53:13.808Z",
+            "updatedAt": "2025-09-18T06:53:13.900Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec99",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service-why-wood-burning-fireplace",
+            "value": "## Why Choose Wood-Burning Fireplace?\r\n\r\nA wood-burning fireplace adds timeless charm and a cozy atmosphere to any home. The natural crackling sound and rich aroma of burning wood create an authentic experience that modern heating systems cannot replicate. Beyond aesthetics, it also serves as a reliable heat source, especially during power outages or colder months.\r\n\r\nChoosing a wood-burning fireplace also offers flexibility and cost savings. With access to affordable or locally sourced firewood, homeowners can enjoy efficient heating while reducing reliance on electricity or gas. It’s a perfect blend of tradition, warmth, and practicality, making it a favorite choice for those who value comfort and authenticity.",
+            "file_name": null,
+            "file_names": [
+                "1758187419253-ptfnwx.jpg",
+                "1758187419254-sojsw0.jpg"
+            ],
+            "createdAt": "2025-09-18T09:08:09.843Z",
+            "updatedAt": "2025-09-18T09:23:39.254Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec7a",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "contact_info",
+            "value": {
+                "phone": "(475) 382-8247",
+                "email": "sales@##website##"
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-11-18T11:48:29.995Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec7e",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "terms",
+            "value": "# Terms and Conditions\r\n\r\nWelcome to **Fireplace Careplus** (\"Company,\" \"we,\" \"us,\" or \"our\"). By accessing or using our website [https://##website##](https://##website##) (the \"Website\") and our services, you agree to comply with and be bound by the following Terms and Conditions. Please read them carefully.\r\n\r\n## 1) Use of the Website\r\n\r\n- You agree to use our Website only for lawful purposes.  \r\n- You must not use the Website in any way that could harm, disable, or impair its functionality or interfere with other users.  \r\n- Unauthorized use of this Website may result in legal action.\r\n\r\n## 2) Services\r\n\r\n- We provide fireplace repair, cleaning, maintenance, and related services.  \r\n- Services are subject to availability and scheduling.  \r\n- We reserve the right to refuse service to anyone at our discretion.\r\n\r\n## 3) Intellectual Property\r\n\r\n- All content on this Website, including text, graphics, logos, images, and software, is owned by **Fireplace Careplus** and protected by intellectual property laws.  \r\n- You may not reproduce, distribute, or create derivative works from any content without our written consent.\r\n\r\n## 4) Pricing and Payment\r\n\r\n- All prices are subject to change without notice.  \r\n- Payments must be made as agreed at the time of service booking.  \r\n- Disputes regarding billing must be reported to us within 15 days from the invoice date.\r\n\r\n## 5) Disclaimer\r\n\r\n- We make reasonable efforts to maintain accurate information on our Website, but we do not guarantee its completeness, accuracy, or availability.  \r\n- Your use of the Website and services is at your own risk.\r\n\r\n## 6) Limitation of Liability\r\n\r\n- To the fullest extent permitted by law, **Fireplace Careplus** shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of your use of the Website or services.\r\n\r\n## 7) Third-Party Links\r\n\r\n- Our Website may contain links to third-party websites. We are not responsible for the content, services, or privacy practices of third-party websites.\r\n\r\n## 8) Changes to These Terms\r\n\r\n- We may modify these Terms and Conditions at any time. Changes are effective immediately upon posting on the Website.\r\n\r\n## 9) Governing Law\r\n\r\n- These Terms are governed by and construed in accordance with the laws of the United States, without regard to its conflict of law provisions.\r\n\r\n## 10) Contact Us\r\n\r\nIf you have any questions about these Terms and Conditions, please contact us at:\r\n\r\n**Fireplace Careplus**  \r\n**Email**: sales@##website##  \r\n**Phone**: ##phone##\r\n",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-10-30T13:39:40.021Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec83",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "favicon",
+            "value": "favicon",
+            "file_name": "1758294224798-uvl8zq.png",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-09-19T15:03:44.798Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec84",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "meta_home",
+            "value": {
+                "title": "Fireplace Careplus Near Me",
+                "description": "Looking for reliable fireplace care near you? Fireplace Careplus offers expert fireplace cleaning, repair, maintenance, and installation services. Keep your home warm, safe, and energy-efficient with help from our trusted professionals."
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-11-18T11:51:32.750Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec8a",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "features",
+            "value": [
+                {
+                    "icon": "FileText",
+                    "text": "Fire Place & Repair"
+                },
+                {
+                    "icon": "Clock",
+                    "text": "Same Day Service"
+                },
+                {
+                    "icon": "Star",
+                    "text": "5 Star Rated On Google"
+                },
+                {
+                    "icon": "Shield",
+                    "text": "Licensed And Insured"
+                },
+                {
+                    "icon": "MessageSquare",
+                    "text": "10+ Years Of Experience"
+                }
+            ],
+            "file_name": "1758179586052-lcfy64.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-11-18T11:51:40.113Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec8f",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "meta_service",
+            "value": {
+                "title": "Professional Fireplace Services",
+                "description": "Trust our team for expert fireplace cleaning, repair, and maintenance. Keep your home safe with our professional, reliable fireplace services."
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-11-18T11:44:55.121Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec92",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-fireplace-repair-0",
+            "value": "cat-fireplace-repair-0",
+            "file_name": "1758176544742-bt8a32.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T06:22:24.643Z",
+            "updatedAt": "2025-09-18T06:22:24.742Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec9b",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service-why-fireplace-maintenance",
+            "value": "## Why Choose Fireplace Maintenance?\r\n\r\nRegular fireplace maintenance is key to ensuring both safety and efficiency in your home. Over time, soot, creosote, and wear can build up, leading to reduced performance or potential fire hazards. Professional maintenance helps catch minor issues before they turn into costly repairs, keeping your fireplace in top condition year-round.\r\n\r\nBeyond safety, maintenance also enhances comfort and performance. A well-maintained fireplace produces better airflow, burns fuel more efficiently, and provides consistent warmth. Choosing expert fireplace maintenance not only extends the life of your system but also creates a safer, cleaner, and more enjoyable home environment.",
+            "file_name": null,
+            "file_names": [
+                "1758187048470-sm4i8f.jpg",
+                "1758187048470-bubxtg.jpg"
+            ],
+            "createdAt": "2025-09-18T09:09:13.103Z",
+            "updatedAt": "2025-09-18T09:17:28.470Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec70",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "faqs",
+            "value": [
+                {
+                    "question": "What is included in a fireplace inspection?",
+                    "answer": "At Fireplace Built, our inspections include a detailed examination of your fireplace’s structure, components, and ventilation system. We look for cracks, blockages, or wear to ensure your fireplace operates safely and efficiently."
+                },
+                {
+                    "question": "How often should I have my fireplace cleaned?",
+                    "answer": "Fireplace Built recommends scheduling a professional cleaning and inspection at least once a year. Regular maintenance prevents soot buildup, enhances safety, and keeps your fireplace performing at its best."
+                },
+                {
+                    "question": "What are the signs that my fireplace needs repair?",
+                    "answer": "If you notice cracks, smoke escaping indoors, strange smells, or reduced efficiency, it’s time to call Fireplace Built. Our experts will diagnose and repair the issue to restore your fireplace’s safety and performance."
+                },
+                {
+                    "question": "Do you service gas and wood-burning fireplaces?",
+                    "answer": "Yes! Fireplace Built provides expert service for both gas and wood-burning fireplaces — including cleaning, inspections, and repairs — ensuring reliable and safe operation all year round."
+                }
+            ],
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec72",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-inspection-0",
+            "value": "cat-chimney-inspection-0",
+            "file_name": "1756879625843-gpu9zz.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec76",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-crown-repair-4",
+            "value": "cat-chimney-crown-repair-4",
+            "file_name": "1756881016689-80bspt.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec80",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "benefits",
+            "value": {
+                "tagline": "Benefits",
+                "heading": "Fireplace Built Service Benefits",
+                "description": "Regular maintenance with Fireplace Built enhances safety, efficiency, and the lifespan of your fireplace. Discover the key advantages of choosing our professional care services.",
+                "list": [
+                    {
+                        "title": "Fire Prevention",
+                        "description": "Minimize the risk of accidental fires with expert cleaning and maintenance from Fireplace Built."
+                    },
+                    {
+                        "title": "Improved Air Quality",
+                        "description": "Eliminate soot, ash, and harmful pollutants to maintain cleaner and healthier indoor air quality."
+                    },
+                    {
+                        "title": "Enhanced Efficiency",
+                        "description": "Boost heating performance and reduce energy consumption by keeping your fireplace optimized with Fireplace Built."
+                    },
+                    {
+                        "title": "Extended Fireplace Lifespan",
+                        "description": "Protect your investment and extend the life of your fireplace with routine inspections and professional care from our team."
+                    },
+                    {
+                        "title": "Safe Operation",
+                        "description": "Ensure reliable and safe operation of both gas and wood-burning fireplaces with expert servicing by Fireplace Built."
+                    },
+                    {
+                        "title": "Improved Comfort",
+                        "description": "Enjoy steady warmth, dependable performance, and complete peace of mind through consistent care from Fireplace Built."
+                    }
+                ]
+            },
+            "file_name": "1758178934033-3sz6yu.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec86",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service_gallery_head",
+            "value": "## What is  ##service## ?\r\n##service## is the process of updating the front and surrounding areas of your existing fireplace without the need for a complete overhaul or replacement. It involves removing the old materials, such as outdated brick, tile, or stone, and replacing them with modern, more appealing finishes. Refacing allows homeowners to refresh the look of their fireplace, increase the value of their home, and improve its overall aesthetic appeal—all without the hefty price tag of a full remodel.\r\n",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-09-18T05:32:57.223Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec88",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service_description1",
+            "value": "## Why Is ##service## Important?  \r\n\r\nFireplaces face a variety of challenges due to regular use, heat, and exposure to moisture. Without proper care, these issues can affect safety, efficiency, and comfort. Regular **##service##** is essential for keeping your fireplace system in excellent condition. Here’s why it matters:  \r\n\r\n- **Protection from Damage:** Over time, heat, soot, and moisture can cause wear and tear. **##service##** helps prevent cracks, blockages, and costly repairs while extending the life of your fireplace.  \r\n\r\n- **Improved Safety:** Creosote buildup, poor airflow, or damaged parts can increase the risk of fire or harmful gas leaks. Regular **##service##** reduces these dangers and keeps your home safe.  \r\n\r\n- **Better Air Quality:** A poorly maintained fireplace can push smoke, odors, or carbon monoxide back into your home. **##service##** ensures proper ventilation and a healthier indoor environment.  \r\n\r\n- **Enhanced Efficiency:** Debris, buildup, or damage can reduce heating performance. **##service##** restores efficiency, helping your fireplace run cleaner, safer, and more effectively.  \r\n",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-09-18T08:42:31.807Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec8b",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-installation-1757327062085",
+            "value": "cat-chimney-installation-1757327062085",
+            "file_name": "1757327065213-dtsptx.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-09-18T05:32:57.224Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec8c",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-sweep-1757327090789",
+            "value": "cat-chimney-sweep-1757327090789",
+            "file_name": "1757327095465-k9egdk.png",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-09-18T05:32:57.224Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec8e",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "meta_privacy",
+            "value": {
+                "title": "Privacy Policy",
+                "description": "Read our Privacy Policy to learn how we collect, use, and protect your personal information while providing trusted fireplace services."
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-11-18T11:51:48.381Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec90",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "meta_terms",
+            "value": {
+                "title": "Terms & Conditions - Fireplace",
+                "description": "Read the Terms & Conditions of Fireplace. Learn about our services, user responsibilities, and legal policies to ensure a safe and trusted experience."
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-11-18T11:51:55.758Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec91",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "locations",
+            "value": {
+                "tagline": "Our Coverage Area",
+                "heading": "States We Serve",
+                "list": [
+                    "Alabama",
+                    "Alaska",
+                    "Arizona",
+                    "Arkansas",
+                    "California",
+                    "Colorado",
+                    "Connecticut",
+                    "Delaware",
+                    "District Of Columbia",
+                    "Florida",
+                    "Georgia",
+                    "Hawaii",
+                    "Idaho",
+                    "Illinois",
+                    "Indiana",
+                    "Iowa",
+                    "Kansas",
+                    "Kentucky",
+                    "Louisiana",
+                    "Maine",
+                    "Maryland",
+                    "Massachusetts",
+                    "Michigan",
+                    "Minnesota",
+                    "Mississippi",
+                    "Missouri",
+                    "Montana",
+                    "Nebraska",
+                    "Nevada",
+                    "New Hampshire",
+                    "New Jersey",
+                    "New Mexico",
+                    "New York",
+                    "North Carolina",
+                    "North Dakota",
+                    "Ohio",
+                    "Oklahoma",
+                    "Oregon",
+                    "Pennsylvania",
+                    "Rhode Island",
+                    "South Carolina",
+                    "South Dakota",
+                    "Tennessee",
+                    "Texas",
+                    "Utah",
+                    "Vermont",
+                    "Virginia",
+                    "Washington",
+                    "West Virginia",
+                    "Wisconsin",
+                    "Wyoming"
+                ]
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-11-18T11:48:55.123Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec93",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-fireplace-cleaning-1",
+            "value": "cat-fireplace-cleaning-1",
+            "file_name": "1758176602738-rw2bjr.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T06:23:22.646Z",
+            "updatedAt": "2025-09-18T06:23:22.738Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec94",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-fireplace-maintenance-2",
+            "value": "cat-fireplace-maintenance-2",
+            "file_name": "1758177079913-tygo7f.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T06:31:19.822Z",
+            "updatedAt": "2025-09-18T06:31:19.914Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec95",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-gas-fireplace-services-3",
+            "value": "cat-gas-fireplace-services-3",
+            "file_name": "1758177111369-zdkgwv.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T06:31:51.275Z",
+            "updatedAt": "2025-09-18T06:31:51.369Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec9a",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service-why-gas-fireplace-services",
+            "value": "## Why Choose Gas Fireplace Services?\r\n\r\nGas fireplaces are known for their convenience, efficiency, and low maintenance, but they still require professional care to operate safely. Over time, components like burners, valves, and pilot lights may need inspection or repair. Choosing expert gas fireplace services ensures your system runs smoothly, prevents gas leaks, and keeps your home safe and comfortable.\r\n\r\nIn addition to safety, regular gas fireplace services enhance performance and extend the lifespan of your unit. Professional technicians can optimize flame quality, improve energy efficiency, and handle any necessary upgrades. With reliable service, you enjoy consistent warmth, worry-free operation, and the cozy ambiance of a gas fireplace all year round.\r\n",
+            "file_name": null,
+            "file_names": [
+                "1758187215017-8yfrzw.jpg",
+                "1758187215017-kjlprp.jpg"
+            ],
+            "createdAt": "2025-09-18T09:08:38.326Z",
+            "updatedAt": "2025-09-18T09:20:15.017Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec6e",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "services",
+            "value": [
+                {
+                    "title": "Fireplace Repair",
+                    "description": "Restore the beauty and functionality of your fireplace with expert repairs that address cracks, drafts, and heat loss.",
+                    "image": "1758176544742-bt8a32.jpg",
+                    "id": 0
+                },
+                {
+                    "title": "Fireplace Cleaning",
+                    "description": "Keep your fireplace safe and efficient with professional cleaning to remove soot, ash, and debris.",
+                    "image": "1758176602738-rw2bjr.jpg",
+                    "id": 1
+                },
+                {
+                    "title": "Fireplace Maintenance",
+                    "description": "Extend the life of your fireplace with regular maintenance that ensures safety, performance, and reliability.",
+                    "image": "1758177079913-tygo7f.jpg",
+                    "id": 2
+                },
+                {
+                    "title": "Gas Fireplace Services",
+                    "description": "Professional installation, repair, and servicing of gas fireplaces for optimal efficiency and safety.",
+                    "image": "1758177111369-zdkgwv.jpg",
+                    "id": 3
+                },
+                {
+                    "title": "Wood-Burning Fireplace",
+                    "description": "Expert services for wood-burning fireplaces including installation, repair, and cleaning for a cozy home.",
+                    "image": "1758178393900-zqcxar.jpg",
+                    "id": 4
+                }
+            ],
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-11-18T11:47:29.970Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec6f",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "testimonials",
+            "value": {
+                "tagline": "Testimonials",
+                "heading": "Our Happy Clients",
+                "description": "Don’t just take our word for it — see what our satisfied customers have to say about Fireplace Caregroup services.",
+                "list": [
+                    {
+                        "quote": "Fireplace Caregroup did an incredible job! They repaired cracks, improved airflow, and made our fireplace look brand new. Highly recommend!",
+                        "name": "Linda",
+                        "rating": 5
+                    },
+                    {
+                        "quote": "Amazing service from Fireplace Caregroup! They cleaned our fireplace thoroughly, ensured safety, and explained every detail clearly.",
+                        "name": "Tom Peterson",
+                        "rating": 5
+                    },
+                    {
+                        "quote": "I tried other companies before, but Fireplace Caregroup diagnosed the issue right away and fixed it perfectly. Excellent experience!",
+                        "name": "Robert Johnson",
+                        "rating": 5
+                    },
+                    {
+                        "quote": "Our fireplace needed full maintenance, and Fireplace Caregroup handled everything with care and professionalism. Highly efficient team!",
+                        "name": "Sarah Williams",
+                        "rating": 4
+                    },
+                    {
+                        "quote": "We had heavy soot buildup — Fireplace Caregroup cleaned it so well that it now burns cleaner and looks amazing!",
+                        "name": "Michael Chen",
+                        "rating": 5
+                    },
+                    {
+                        "quote": "After years without service, Fireplace Caregroup restored our fireplace completely. It’s now safe, efficient, and beautiful again!",
+                        "name": "Jennifer Adams",
+                        "rating": 5
+                    }
+                ]
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-10-30T13:11:35.046Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec71",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "prices",
+            "value": {
+                "why_choose_us": {
+                    "heading": "WHY CHOOSE FIREPLACE ?",
+                    "subheading": "Key Advantages",
+                    "features": [
+                        "Keep your fireplace clean, safe, and efficient with Fireplace Built.",
+                        "Boost heating performance and energy efficiency.",
+                        "Prevent fire hazards through expert maintenance.",
+                        "Ensure safe operation of both gas and wood-burning fireplaces.",
+                        "Save energy with improved ventilation and optimized airflow."
+                    ]
+                },
+                "price2": {
+                    "price_now": "$89",
+                    "original_price": "$399",
+                    "service_title": "Full Fireplace Cleaning & System Sanitization",
+                    "features": [
+                        "Per Fireplace",
+                        "Complete Fireplace Cleaning by Built Experts",
+                        "Soot & Debris Removal for Safety",
+                        "Smoke Flow Optimization for Better Heating",
+                        "Flue & Damper Inspection",
+                        "Component Safety Check by Certified Technicians"
+                    ]
+                },
+                "price3": {
+                    "price_now": "$69",
+                    "original_price": "$259",
+                    "service_title": "Comprehensive Fireplace Inspection",
+                    "features": [
+                        "Detailed Visual Inspection by Fireplace Built",
+                        "Smoke Draft Efficiency Evaluation",
+                        "Blockage & Vent Obstruction Detection",
+                        "Soot & Debris Buildup Analysis",
+                        "Component and Connection Condition Check",
+                        "Firebox & Damper Performance Assessment"
+                    ]
+                }
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec73",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-lining-1",
+            "value": "cat-chimney-lining-1",
+            "file_name": "1756880168409-o7q1on.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec75",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-cap-repair-3",
+            "value": "cat-chimney-cap-repair-3",
+            "file_name": "1756880394299-naqrjd.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec77",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-flashing-repair-5",
+            "value": "cat-chimney-flashing-repair-5",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T05:32:57.221Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec79",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "footer",
+            "value": "Our goal is to give you services that are fast, effective, and affordable, and that go above and beyond what you expect.",
+            "file_name": "1758175392675-gerqw4.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.221Z",
+            "updatedAt": "2025-09-18T06:03:12.675Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec7b",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "feautures",
+            "value": [
+                {
+                    "icon": "FileText",
+                    "text": "Fireplace Careplus Repair & Cleaning"
+                },
+                {
+                    "icon": "Clock",
+                    "text": "Same Day Service"
+                },
+                {
+                    "icon": "Star",
+                    "text": "5 Star Rated On Google"
+                },
+                {
+                    "icon": "Shield",
+                    "text": "Licensed And Insured"
+                },
+                {
+                    "icon": "MessageSquare",
+                    "text": "Over 10 Years Of Professional Experience"
+                }
+            ],
+            "file_name": "1758179577061-15sx4g.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-11-18T11:48:15.717Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec7d",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "form_head",
+            "value": {
+                "title": "Claim Fireplace Built Offer Today",
+                "sub_title": "Offer ends in just a few hours!"
+            },
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec7f",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "policy",
+            "value": "# Privacy Policy  \r\n\r\n**Fireplace careplus** (\"Company,\" \"we,\" \"us,\" or \"our\") is committed to protecting your privacy. This Privacy Policy describes how we collect, use, and safeguard your information when you visit our website [https://##website##](https://##website##) (the \"Website\").  \r\n\r\n## 1) Information We Collect  \r\n\r\n- **Personal Information**: When you contact us, request services, or subscribe to our updates, we may collect your name, email address, phone number, and service details.  \r\n- **Non-Personal Information**: We may automatically collect details such as your IP address, browser type, operating system, and browsing behavior through cookies and analytics tools.  \r\n\r\n## 2) How We Use Your Information  \r\n\r\n- To provide and manage our fireplace services.  \r\n- To respond to inquiries and customer service requests.  \r\n- To improve our website and marketing efforts.  \r\n- To comply with legal obligations.  \r\n\r\n## 3) How We Protect Your Information  \r\n\r\nWe implement security measures to protect your personal data from unauthorized access, disclosure, alteration, or destruction.  \r\n\r\n## 4) Sharing Your Information  \r\n\r\nWe do not sell, trade, or rent your personal information. We may share data with trusted third-party service providers who assist in website operations, payment processing, or customer support.  \r\n\r\n## 5) Cookies and Tracking Technologies  \r\n\r\nOur website may use cookies to enhance user experience. You can set your browser to refuse cookies, but this may affect website functionality.  \r\n\r\n## 6) Third-Party Links  \r\n\r\nOur website may contain links to third-party websites. We are not responsible for their privacy practices and encourage you to review their policies.  \r\n\r\n## 7) Your Privacy Rights  \r\n\r\nDepending on your location, you may have rights to access, update, or delete your personal information. You can contact us for such requests.  \r\n\r\n## 8) Changes to This Privacy Policy  \r\n\r\nWe may update this policy from time to time. The latest version will always be available on our website.  \r\n\r\n## 9) Contact Us  \r\n\r\nFor any questions about this Privacy Policy, please contact us at:  \r\n\r\n**Fireplace careplus**  \r\n**Email**: sales@##website##  \r\n**Phone**: ##phone##  \r\n",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.222Z",
+            "updatedAt": "2025-10-30T13:40:49.027Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec82",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "about",
+            "value": {
+                "heading": "About Fireplace Built",
+                "description1": "At Fireplace Built, we bring over 18 years of trusted experience in professional fireplace cleaning, maintenance, and repair services nationwide. Our certified experts follow the highest safety and quality standards to keep your fireplace operating efficiently and beautifully.",
+                "description2": "Certified & Experienced Professionals – The Fireplace Built team is fully licensed, insured, and trained to deliver top-notch fireplace services. From deep cleaning and safety inspections to complete repairs and performance upgrades, we help homeowners enjoy a safer, warmer, and more comfortable home all year round."
+            },
+            "file_name": "1758179389199-uwxj9m.jpeg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-12-04T08:01:40.815Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec85",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service_banner",
+            "value": {
+                "heading": "#1 ##service##",
+                "tagline": "Top-Rated ##service## – We Serve Your Area!",
+                "list": [
+                    "Fireplace Cleaning",
+                    "Same Day Service",
+                    "5 Star Rated On Google",
+                    "Licensed And Insured",
+                    "10+ Years Of Experience"
+                ]
+            },
+            "file_name": "1758181106921-lty52x.jpg",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-11-18T11:39:58.481Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec87",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service_description",
+            "value": "## ##service## Services  \r\n\r\nEnsuring safety, comfort, and efficiency, ##service## is essential for maintaining the performance and longevity of your fireplace system. Over time, heat, moisture, and regular use can cause buildup, wear, or damage, leading to poor efficiency, smoke issues, or safety concerns.  \r\n\r\nRegular ##service## not only prevents costly repairs but also protects your home from potential fire hazards, harmful gases, and system breakdowns. By addressing issues early and keeping your fireplace in excellent condition, you enjoy reliable warmth, improved energy efficiency, and long-term peace of mind.  \r\n",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-09-18T08:38:14.379Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec89",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service_description2",
+            "value": "## **Benefits of ##service##**  \r\n\r\n**Enhanced Safety**  \r\nOne of the primary benefits of **##service##** is improved safety. An unmaintained fireplace can lead to fire hazards, smoke issues, or even carbon monoxide leaks. Regular service reduces these risks significantly.  \r\n\r\n**Prevention of Damage**  \r\nFireplaces are exposed to constant heat, soot, and sometimes moisture. Services like **##service##** help identify and repair vulnerable areas, preventing costly structural damage and keeping your system reliable.  \r\n\r\n**Improved Heating Efficiency**  \r\nWhether you’re using a wood-burning or gas fireplace, professional **##service##** ensures your system runs at peak performance. This means better heat output, lower energy costs, and improved comfort.  \r\n\r\n**Extended Lifespan of Components**  \r\nRoutine inspections, maintenance, and repairs through **##service##** protect your investment by extending the lifespan of key parts such as liners, dampers, and vents. This reduces the need for expensive replacements.  \r\n\r\n**Better Indoor Air Quality**  \r\nWithout proper care, fireplaces can accumulate soot, ash, or debris, negatively impacting air quality. Regular **##service##** keeps airflow clean and healthy, ensuring a safer living environment for your family.  \r\n\r\n**Code Compliance & Property Value**  \r\nProfessional **##service##** helps your fireplace meet safety and building code requirements. A properly maintained fireplace not only boosts safety but also enhances your home’s appeal and resale value.  \r\n",
+            "file_name": null,
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.223Z",
+            "updatedAt": "2025-09-18T08:43:08.428Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec8d",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "cat-chimney-inspection-1757327118452",
+            "value": "cat-chimney-inspection-1757327118452",
+            "file_name": "1757327121284-m5o4pq.webp",
+            "file_names": [],
+            "createdAt": "2025-09-18T05:32:57.224Z",
+            "updatedAt": "2025-09-18T05:32:57.224Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec97",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service-why-fireplace-repair",
+            "value": "## Why Choose Fireplace Repair?\r\n\r\nA well-maintained fireplace not only enhances the beauty and comfort of your home but also ensures safety for your family. Over time, fireplaces can develop cracks, blockages, or wear that may lead to poor efficiency, smoke issues, or even fire hazards. Choosing professional fireplace repair helps restore proper function, extend the lifespan of your system, and provide peace of mind.\r\n\r\nInvesting in expert repair services also improves energy efficiency and prevents costly future damage. Whether it’s sealing cracks, fixing the chimney lining, or restoring masonry, skilled technicians can handle issues effectively. Regular fireplace repair keeps your home warm, safe, and inviting all year round",
+            "file_name": null,
+            "file_names": [
+                "1758185862958-w1buth.jpg",
+                "1758185862958-mdcu4k.jpg"
+            ],
+            "createdAt": "2025-09-18T08:57:42.867Z",
+            "updatedAt": "2025-09-18T08:57:42.959Z",
+            "__v": 0
+        },
+        {
+            "_id": "692894ac535666bd36b5ec98",
+            "project_id": "692894ac535666bd36b5ec69",
+            "key": "service-why-fireplace-cleaning",
+            "value": "## Why Choose Fireplace Cleaning?\r\n\r\nRegular fireplace cleaning is essential to keep your home safe and your system working efficiently. Over time, soot, ash, and creosote build up inside the fireplace and chimney, which can restrict airflow and increase the risk of dangerous chimney fires. Professional cleaning removes these hazards, ensuring your fireplace operates smoothly and safely.\r\n\r\nIn addition to safety, fireplace cleaning also improves air quality and boosts heating efficiency. A clean fireplace produces less smoke, distributes heat more effectively, and creates a warm, inviting atmosphere. Choosing expert cleaning services helps protect your home, extend the life of your fireplace, and maintain a healthier living space.",
+            "file_name": null,
+            "file_names": [
+                "1758186243798-n2m291.jpg",
+                "1758186243798-teryux.jpg"
+            ],
+            "createdAt": "2025-09-18T09:04:03.702Z",
+            "updatedAt": "2025-09-18T09:04:03.798Z",
+            "__v": 0
+        }
+    ]
+}
