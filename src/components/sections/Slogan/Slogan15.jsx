@@ -35,7 +35,7 @@ function BannerCtaIcon({ className }) {
     );
   }
 
-export default function Slogan9({ content }) {
+export default function Slogan15({ content }) {
     const block = content?.slogan ?? {};
     const banner = content?.banner ?? {};
     const title = block.title ?? "";

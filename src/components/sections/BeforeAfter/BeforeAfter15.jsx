@@ -333,7 +333,7 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
             />
           ))}
         </div>
-        <div className="w-full flex items-center justify-center">
+        <div className="w-full flex items-center pt-6 justify-center">
           <Link
             href={tel}
             className="inline-flex items-center gap-3 rounded-xl bg-[#786f6f] px-5 py-2  transition hover:bg-[#62370c] sm:px-6 sm:py-2.5 "

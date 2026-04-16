@@ -106,7 +106,7 @@ export default function Banner15({ content }) {
 
   return (
     <FullContainer id="banner" className="relative w-full overflow-hidden bg-neutral-900">
-      <div className="relative h-[500px] w-full max-h-[500px] overflow-hidden lg:h-[480px] lg:max-h-[480px]">
+      <div className="relative h-full w-full py-6 lg:py-0 max-h-full overflow-hidden lg:h-[480px] lg:max-h-[480px]">
         <Image
           src={imageSrc}
           alt={headline || "Hero"}
@@ -119,10 +119,10 @@ export default function Banner15({ content }) {
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" aria-hidden />
 
         <Container className="relative lg:px-0! z-10 mx-auto max-w-[880px] flex flex-col items-center justify-center h-full">
-          <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full ">
-            <div className="max-w-2xl text-white lg:max-w-none flex flex-col items-start justify-center gap-4 w-full">
-              <h1 className="font-montserrat text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-[1.12]">
-                <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 ">
+          <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full  ">
+            <div className="max-w-2xl text-white md:max-w-none flex flex-col items-center lg:items-start justify-center gap-4 w-full">
+              <h1 className="font-montserrat font-bold leading-tight tracking-tight text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-[1.12]">
+                <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
                   {(() => {
                     const words = headline.trim().split(/\s+/).filter(Boolean);
                     const lead = words.slice(0, 2).join(" ");
@@ -138,10 +138,10 @@ export default function Banner15({ content }) {
                       </>
                     );
                   })()}
-                </span>
+                </div>
               </h1>
 
-              <p className="max-w-xl font-barlow text-base font-medium leading-relaxed text-white/90 sm:text-lg md:text-xl">
+              <p className="max-w-xl font-barlow font-medium items-center justify-center text-center md:text-left leading-relaxed text-white/90 text-lg md:text-xl">
                 {subhead}
               </p>
 
@@ -154,7 +154,7 @@ export default function Banner15({ content }) {
                   return (
                     <li
                       key={`${text}-${idx}`}
-                      className="flex items-start gap-3 font-barlow text-sm font-medium text-white/95 sm:text-[15px]"
+                      className="flex items-start gap-3 font-barlow font-medium text-white/95 text-[15px]"
                     >
                       <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" strokeWidth={2} aria-hidden />
                       <span>{text}</span>
