@@ -8,7 +8,7 @@ import Footer7 from "./Footer7";
 import Footer8 from "./Footer8";
 import Footer9 from "./Footer9";
 import Footer14 from "./Footer14";
-
+import Footer15 from "./Footer15";
 const variants = {
   Footer1,
   Footer2,
@@ -20,13 +20,14 @@ const variants = {
   Footer8,
   Footer9,
   Footer14,
+  Footer15,
 };
 
 
 
 export default function Footer({ variant, content }) {
-  const name = variant ?? "Footer14";
+  const name = variant ?? "Footer1";
   const Component = variants[name] ?? Footer14;
   return <Component content={content} />;
 }
-export { Footer1, Footer2, Footer3, Footer4, Footer5, Footer6, Footer7, Footer8, Footer9, Footer14, variants };
+export { Footer1, Footer2, Footer3, Footer4, Footer5, Footer6, Footer7, Footer8, Footer9, Footer14, Footer15, variants };

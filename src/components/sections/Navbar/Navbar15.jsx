@@ -173,19 +173,19 @@ export default function Navbar14({ content }) {
 
     const headerContent = (
         <>
-            <div className="flex h-full w-full flex-row items-center justify-between gap-3 md:pr-4 lg:pr-6">
+            <div className="flex h-full w-full flex-row items-center justify-between gap-3 ">
                 <div className="flex flex-col h-full min-w-0 items-start justify-between lg:min-h-[140px]">
                     <div className="flex-1 flex flex-col items-center justify-center h-full ">
 
-                    <Logo
-                        logo={logo}
-                        imagePath={imagePath}
-                        tagline={navTagline}
-                        className="font-serif font-bold text-[#3d2914] md:text-2xl lg:text-[1.65rem]"
-                    />
+                        <Logo
+                            logo={logo}
+                            imagePath={imagePath}
+                            tagline={navTagline}
+                            className="font-serif font-bold text-[#3d2914] md:text-2xl lg:text-[1.65rem]"
+                        />
                     </div>
 
-                    <div className="hidden min-w-0 items-center h-fit py-2  justify-center gap-6 lg:flex lg:gap-8">
+                    <div className="hidden min-w-0 items-center h-fit py-2 justify-center gap-4 lg:flex lg:gap-4">
                         {menuItemsArray.map((item) => {
                             if (isDropdownItem(item)) {
                                 const children = getDropdownChildren(item);
@@ -200,9 +200,9 @@ export default function Navbar14({ content }) {
                                     >
                                         <button
                                             type="button"
-                                            className={cn(
-                                               
-                                                "flex h-full items-center gap-1text-[15px] transition-opacity hover:opacity-85",
+                                            className={cn( `${inter.className}`,
+
+                                                "flex h-full items-center gap-1 text-[15px] transition-opacity hover:opacity-85",
                                             )}
                                         >
                                             {item.title}
@@ -249,9 +249,9 @@ export default function Navbar14({ content }) {
                                     <Link
                                         key={item.link ?? item.title}
                                         href={item.link}
-                                        className={cn(
-                                        "text-[16px] font-bold"
-                                       
+                                        className={cn( `${inter.className}`,
+                                            "text-[16px] font-bold"
+
                                         )}
                                     >
                                         {item.title}
@@ -264,7 +264,7 @@ export default function Navbar14({ content }) {
                                     type="button"
                                     onClick={() => handleNavigation(item.link)}
                                     className={cn(
-                                          "text-[16px] "
+                                        `${inter.className} text-[16px] `
                                     )}
                                 >
                                     {item.title}
@@ -318,7 +318,7 @@ export default function Navbar14({ content }) {
                         </div>
                     </div>
 
-                    <div className={`capitalize text-center text-[22px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
+                    <div className={`capitalize hidden lg:block text-center text-[22px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
                         call now & speak to an Expert Instantly
                     </div>
                 </div>
@@ -329,71 +329,71 @@ export default function Navbar14({ content }) {
     if (!mounted) {
         return (
             <FullContainer className="relative sticky top-0 z-20 h-auto w-full bg-white shadow-sm ">
-                <Container className="md:max-w-[1000px] " >
-                <div className="flex h-full w-full flex-row items-center justify-between gap-3 md:pr-4 lg:pr-6">
-                <div className="flex flex-col h-full min-w-0 items-start justify-between lg:min-h-[140px]">
-                    <div className="flex-1 flex flex-col items-center justify-center h-full  ">
+                <Container className="md:max-w-[880px] py-4 lg:py-0 lg:px-0! " >
+                    <div className="flex h-full w-full flex-row items-center justify-between gap-3 ">
+                        <div className="flex flex-col h-full min-w-0 items-start justify-between lg:min-h-[140px]">
+                            <div className="flex-1 flex flex-col items-center justify-center h-full  ">
 
-                    <Logo
-                        logo={logo}
-                        imagePath={imagePath}
-                        tagline={navTagline}
-                        className="font-serif font-bold text-[#3d2914] md:text-2xl lg:text-[1.65rem]"
-                    />
-                    </div>
-                    <div className="h-10">
-                    </div>
-                </div>
-                <div className="flex flex-col gap-2 items-center justify-between h-full lg:min-h-[140px]">
-                    <div className="hidden flex-col gap-0.5 text-right lg:flex h-full py-[15px]">
-                        <a
-                            href={phoneLink}
-                            className="flex items-stretch gap-2 text-[#4a3428] transition-opacity hover:opacity-80"
-                        >
-                            <div className="flex w-[53.27px] shrink-0 flex-col items-center justify-center">
-                                <img src="/st-icons/Temp15/telephone.png" alt="phone" className="w-full h-full min-h-[60px] min-w-[60px]  aspect-square" />
+                                <Logo
+                                    logo={logo}
+                                    imagePath={imagePath}
+                                    tagline={navTagline}
+                                    className="font-serif font-bold text-[#3d2914] md:text-2xl lg:text-[1.65rem]"
+                                />
                             </div>
-                            <div className="flex flex-col items-start justify-center">
-
-                                <span
-                                    className={`${poppins.className} flex self-stretch items-center text-[21.691px] font-bold not-italic leading-normal text-[#0B0B0B]`}
+                            <div className="h-10 hidden lg:block">
+                            </div>
+                        </div>
+                        <div className="flex flex-col gap-2 items-center justify-between h-full lg:min-h-[140px]">
+                            <div className="hidden flex-col gap-0.5 text-right lg:flex h-full py-[15px]">
+                                <a
+                                    href={phoneLink}
+                                    className="flex items-stretch gap-2 text-[#4a3428] transition-opacity hover:opacity-80"
                                 >
-                                    {phone || "(800) 555-1212"}
-                                </span>
-                                <span className="flex items-center justify-end gap-1.5 text-[11px] font-medium text-neutral-500">
-                                    {cityLabel}
-                                </span>
+                                    <div className="flex w-[53.27px] shrink-0 flex-col items-center justify-center">
+                                        <img src="/st-icons/Temp15/telephone.png" alt="phone" className="w-full h-full min-h-[60px] min-w-[60px]  aspect-square" />
+                                    </div>
+                                    <div className="flex flex-col items-start justify-center">
+
+                                        <span
+                                            className={`${poppins.className} flex self-stretch items-center text-[21.691px] font-bold not-italic leading-normal text-[#0B0B0B]`}
+                                        >
+                                            {phone || "(800) 555-1212"}
+                                        </span>
+                                        <span className="flex items-center justify-end gap-1.5 text-[11px] font-medium text-neutral-500">
+                                            {cityLabel}
+                                        </span>
+                                    </div>
+
+                                </a>
+
                             </div>
 
-                        </a>
+                            <div
+                                className="cursor-pointer pl-3 text-neutral-800 lg:hidden "
+                                onClick={mounted ? toggleMenu : undefined}
+                                role="button"
+                                tabIndex={0}
+                                onKeyDown={(e) =>
+                                    mounted && (e.key === "Enter" || e.key === " ") && toggleMenu()
+                                }
+                                aria-expanded={isOpen}
+                                aria-label={isOpen ? "Close menu" : "Open menu"}
+                            >
+                                <div className="rounded-md border border-neutral-300 bg-white p-1.5 shadow-sm">
+                                    {isOpen ? (
+                                        <X className="h-6 w-7" strokeWidth={2} />
+                                    ) : (
+                                        <Menu className="h-6 w-7" strokeWidth={2} />
+                                    )}
+                                </div>
+                            </div>
 
-                    </div>
-
-                    <div
-                        className="cursor-pointer pl-3 text-neutral-800 lg:hidden "
-                        onClick={mounted ? toggleMenu : undefined}
-                        role="button"
-                        tabIndex={0}
-                        onKeyDown={(e) =>
-                            mounted && (e.key === "Enter" || e.key === " ") && toggleMenu()
-                        }
-                        aria-expanded={isOpen}
-                        aria-label={isOpen ? "Close menu" : "Open menu"}
-                    >
-                        <div className="rounded-md border border-neutral-300 bg-white p-1.5 shadow-sm">
-                            {isOpen ? (
-                                <X className="h-6 w-7" strokeWidth={2} />
-                            ) : (
-                                <Menu className="h-6 w-7" strokeWidth={2} />
-                            )}
+                            <div className={`capitalize hidden lg:block text-center text-[22px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
+                                call now & speak to an Expert Instantly
+                            </div>
                         </div>
                     </div>
-
-                    <div className={`capitalize text-center text-[22px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
-                        call now & speak to an Expert Instantly
-                    </div>
-                </div>
-            </div>
                 </Container>
             </FullContainer>
         );
@@ -404,7 +404,7 @@ export default function Navbar14({ content }) {
             id="navbar"
             className="relative sticky top-0 z-20 h-auto  w-full bg-white shadow-sm  "
         >
-            <Container className="md:max-w-[1000px] ">{headerContent}</Container>
+            <Container className="md:max-w-[880px] py-4 lg:py-0 lg:px-0! ">{headerContent}</Container>
 
             <div
                 className={cn(

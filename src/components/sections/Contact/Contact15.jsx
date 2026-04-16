@@ -366,7 +366,7 @@ export default function Contact14({ content, embedded = false }) {
 
   return (
     <FullContainer id="contact-us" className="relative mt-9 pb-4">
-      <Container className="relative z-10">
+      <Container className="relative z-10 max-w-[880px] lg:px-0!">
         <div id="quote-form-section">{card}</div>
       </Container>
     </FullContainer>
