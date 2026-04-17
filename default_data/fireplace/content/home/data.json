@@ -184,6 +184,39 @@
       }
     ]
   },
+  "workingprocess": {
+    "heading": "Working Process",
+    "description": "See how we work.",
+    "list": [
+      {
+        "title": "Free Consultation",
+        "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
+        "image": "workingprocess/message.png"
+      },
+      {
+        "title": " Expert Execution",
+        "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
+         "image" :"workingprocess/person.png"
+
+      },
+      {
+        "title": "Quality Assurance",
+        "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
+         "image" :"workingprocess/verified.png"
+
+      }
+      
+
+    ]
+    
+  },
+  "calltoaction": {
+    "title": "Get a free quote from a Chimney Services",
+    "description": "Our pros offer great prices & great service. Find out the exact price of your home project today!",
+    "button_text": "GET A FREE ESTIMATE",
+    "button_link": "contact-us"
+  },
+
   "form_head": {
     "title": "10% Off Total Price for Online Booking",
     "sub_title": "Ask For A Quote Here"
@@ -192,6 +225,18 @@
     "phone": "[phone]",
     "email": "info@[domain]",
     "working_hours": "[working_hours]"
+  },
+
+  "reviewandrating": {
+    "title": "Reviews and Ratings",
+    "description": "See what our customers are saying about us.",
+    "list": [
+      {
+        "name": "John Doe",
+        "rating": 5,
+        "comment": "Great service! The team was professional and did a great job."
+      }
+    ]
   },
   "city_name": "[city_name]",
   "faqs": {
@@ -339,3 +384,4 @@
     "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service."
   }
 }
+

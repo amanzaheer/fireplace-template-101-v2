@@ -9,7 +9,7 @@
       "visible": true
     },
     "Banner": {
-      "design": "Banner1",
+      "design": "Banner12",
       "visible": true
     },
     "Breadcrumbs": {
@@ -92,6 +92,19 @@
       "design": "CallUsButton2",
       "visible": true
     },
+  
+    "ReviewandRating": {
+      "design": "ReviewandRating1",
+      "visible": true
+    },
+    "workingprocess": {
+      "design": "WorkingProcess1",
+      "visible": true
+    },
+    "calltoaction": {
+      "design": "CallToAction1",
+      "visible": true
+    },
     "Cta": {
       "design": "Cta14",
       "visible": true
@@ -100,12 +113,15 @@
   "order": [
     "Navbar",
     "Banner",
+    "ReviewandRating",
     "Breadcrumbs",
     "About",
+    "workingprocess",
     "Promotion",
     "Testimonials",
     "BeforeAfter",
     "OurServices",
+    "calltoaction",
     "WhyChoose",
     "Slogan",
     "ServiceBenefits",
@@ -120,79 +136,94 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar11",
+          "design": "Navbar12",
           "visible": true
         },
         "Banner": {
-          "design": "Banner11",
+          "design": "Banner12",
           "visible": true
         },
         "About": {
-          "design": "About11",
+          "design": "About12",
           "visible": true
         },
         "Promotion": {
-          "design": "Promotion11",
+          "design": "Promotion12",
           "visible": true
         },
         "Testimonials": {
-          "design": "Testimonials11",
+          "design": "Testimonials12",
           "visible": true
         },
         "Footer": {
-          "design": "Footer11",
+          "design": "Footer12",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter11",
+          "design": "BeforeAfter12",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices11",
+          "design": "OurServices12",
           "visible": true
         },
         "WhyChoose": {
-          "design": "WhyChoose11",
+          "design": "WhyChoose12",
           "visible": true
         },
         "Slogan": {
-          "design": "Slogan11",
+          "design": "Slogan12",
           "visible": true
         },
         "ServiceBenefits": {
-          "design": "ServiceBenefits11",
-          "visible": false
+          "design": "ServiceBenefits12",
+          "visible": true
         },
         "Contact": {
-          "design": "Contact11",
+          "design": "Contact12",
           "visible": false
         },
         "FAQs": {
-          "design": "FAQs11",
+          "design": "FAQs12",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities11",
+          "design": "ServiceCities12",
           "visible": true
         },
         "CallUsButton": {
-          "design": "CallUsButton11",
+          "design": "CallUsButton12",
+          "visible": true
+        },
+        "ReviewandRating": {
+          "design": "ReviewandRating12",
+          "visible": true
+        },
+        "workingprocess": {
+          "design": "WorkingProcess1",
+          "visible": true
+        },
+        "calltoaction": {
+          "design": "CallToAction1",
           "visible": true
         },
         "Cta": {
-          "design": "Cta11",
-          "visible": true
+          "design": "Cta1",
+          "visible": false
         }
       },
       "order": [
         "Navbar",
         "Banner",
+        "ReviewandRating",
         "Breadcrumbs",
         "About",
+        "workingprocess",
         "Promotion",
         "Testimonials",
         "BeforeAfter",
         "OurServices",
+        "calltoaction",
         "WhyChoose",
         "Slogan",
         "ServiceBenefits",

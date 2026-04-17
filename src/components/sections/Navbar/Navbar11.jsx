@@ -6,10 +6,12 @@ import Link from "next/link";
 import { ChevronDown, Menu, X } from "lucide-react";
 import FullContainer from "../../common/FullContainer";
 import Logo from "@/components/common/Logo";
+import Container from "@/components/common/Container";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Inter, Poppins } from "next/font/google";
+
 
 const SCROLL_OFFSET = 80;
 const inter = Inter({
@@ -79,6 +81,13 @@ export default function Navbar11({ content }) {
     },
     [router, scrollToSection],
   );
+  const handleHomeNavigation = useCallback(() => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    router.push("/");
+  }, [pathname, router]);
 
   const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
@@ -160,7 +169,20 @@ export default function Navbar11({ content }) {
               );
             }
             const isLink = item.link?.startsWith("/");
+            const isHomeLink = item.link === "/";
             const isActive = pathname === item.link;
+            if (isHomeLink) {
+              return (
+                <button
+                  key={item.link ?? item.title}
+                  type="button"
+                  onClick={handleHomeNavigation}
+                  className={`${inter.className} relative inline-flex h-full items-center text-black text-[16px] font-normal leading-[100%] tracking-[0%] transition-all hover:font-semibold hover:text-black after:content-[''] after:absolute after:left-0 after:right-0 after:-bottom-8 after:h-[3px] after:bg-[#da4909] after:opacity-0 after:transition-opacity hover:after:opacity-100`}
+                >
+                  {item.title}
+                </button>
+              );
+            }
             if (isLink) {
               return (
                 <Link
@@ -219,21 +241,34 @@ export default function Navbar11({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="sticky top-0 z-20 h-[82px] w-full bg-transparent py-0 shadow-sm md:h-[84px]">
-        <div className="grid h-full min-h-[78px] w-full grid-cols-2 items-stretch md:min-h-[80px]">
-          <div className="h-full bg-black">
-            <div className="flex h-full w-full items-center justify-center px-4 md:justify-start md:pl-12 md:pr-6 lg:pl-16 lg:pr-8">
+      <FullContainer className="shadow-sm w-full sticky top-0 z-20 border-t-4 border-t-[#da4909] bg-white text-black py-2 h-[82px] md:h-[84px]">
+        <Container>
+          <div className="flex flex-row justify-between h-full  items-center w-full md:pr-8">
+            <div className="h-full flex items-center justify-center">
               <Logo logo={logo} imagePath={imagePath} />
             </div>
-          </div>
-          <div className="h-full bg-[#efa536]">
-            <div className="flex h-full w-full items-center justify-end px-2 md:px-4 lg:justify-center">
-              <div className="rounded-[3px] bg-black/10 p-0.5 pt-1.5 text-black lg:hidden">
-                <Menu className="h-6 w-7" />
+            <div className="flex items-center justify-end flex-row">
+              <div className="hidden md:flex flex-col gap-0.5 md:gap-1 justify-center items-center">
+                <div className="text-xs">
+                  <a
+                    href={phoneLink}
+                    className={phoneButtonClass}
+                  >
+                    <span className={phoneTextClass}>{phone}</span>
+                  </a>
+                </div>
+                <h2 className={`${inter.className} text-[#c92028] font-bold text-xs md:text-sm leading-none`}>
+                  Call Us Today
+                </h2>
+              </div>
+              <div className="lg:hidden pl-5 text-[#da4909]">
+              <div className="rounded-[3px] border border-[#da4909] bg-white p-0.5 pt-1.5">
+                  <Menu className="w-7 h-6" />
+                </div>
               </div>
             </div>
           </div>
-        </div>
+        </Container>
       </FullContainer>
     );
   }
@@ -326,7 +361,28 @@ export default function Navbar11({ content }) {
               );
             }
             const isLink = item.link?.startsWith("/");
+            const isHomeLink = item.link === "/";
             const isActive = pathname === item.link;
+            if (isHomeLink) {
+              return (
+                <button
+                  key={item.link ?? item.title}
+                  type="button"
+                  className={cn(
+                    "px-4 py-1 cursor-pointer text-left",
+                    isActive
+                      ? "bg-[#da4909] text-black"
+                      : "text-black bg-transparent hover:text-[#da4909]",
+                  )}
+                  onClick={() => {
+                    handleHomeNavigation();
+                    closeMenu();
+                  }}
+                >
+                  {item.title}
+                </button>
+              );
+            }
             if (isLink) {
               return (
                 <Link

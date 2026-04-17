@@ -25,13 +25,13 @@ export default function WhyChoose11({ content }) {
   const block = content?.why_choose ?? {};
   const features = resolveRefArray(content, block, "features");
   const heading = block.heading ?? "Why Choose Us";
-  const subHeading = block?.title ?? "Who We Are";
+  const subHeading = block?.title ?? "";
   const filePath = block.file_name ?? "about/about.webp";
   const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
 
   if (features.length === 0) return null;
-
+  
   return (
     <FullContainer
       id="whychooseus"
