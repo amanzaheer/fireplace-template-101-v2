@@ -14,6 +14,7 @@ import Slogan15 from "./Slogan15";
 import Slogan11 from "./Slogan11";
 import Slogan12 from "./Slogan12";
 import Slogan14 from "./Slogan14";
+import Slogan10 from "./Slogan10";
 const variants = {
   Slogan1,
   Slogan2,
@@ -28,6 +29,7 @@ const variants = {
   Slogan11,
   Slogan14,
   Slogan12,
+  Slogan10,
 };
 
 export default function Slogan({ variant, content }) {
@@ -35,5 +37,5 @@ export default function Slogan({ variant, content }) {
   const Component = variants[name] ?? Slogan9;
   return <Component content={content} />;
 }
-export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9,Slogan15,Slogan11,Slogan12,Slogan14,variants };
+export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9,Slogan15,Slogan11,Slogan12,Slogan14,Slogan10,variants };
 
