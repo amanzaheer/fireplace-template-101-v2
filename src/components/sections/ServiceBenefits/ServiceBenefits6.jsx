@@ -3,6 +3,7 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Poppins, Inter, Rubik } from "next/font/google";
 import {
   Check,
   Phone,
@@ -21,7 +22,20 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 
-/** CMS: optional `icon` string per benefit item (Lucide component name). */
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 const benefitIconMap = {
   Check,
   Flame,
@@ -41,7 +55,7 @@ function BenefitIcon({ benefit }) {
   const Icon = benefitIconMap[name] ?? Check;
   return (
     <span
-      className="mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F97316]"
+      className={`${poppins.className} mt-0.5 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#F97316]`}
       aria-hidden
     >
       <Icon className="h-4 w-4 text-white" strokeWidth={2.5} />
@@ -102,14 +116,14 @@ export default function ServiceBenefits6({ content }) {
       <div className="flex flex-col pl-4 sm:pl-6 md:pl-10 lg:pl-12 max-w-[600px]">
         
         {subHeading ? (
-          <p className="font-barlow text-lg font-semibold text-black md:text-3xl">
+          <p className={`${poppins.className} font-barlow text-lg font-semibold text-black md:text-3xl`}>
             {subHeading}
           </p>
         ) : null}
 
         {heading ? (
           <h2
-            className={`font-barlow font-extrabold text-black ${
+            className={`${poppins.className} font-barlow font-extrabold text-black ${
               subHeading ? "mt-2" : ""
             } text-3xl leading-tight tracking-tight md:text-4xl lg:text-[2.75rem] lg:leading-[1.1]`}
           >

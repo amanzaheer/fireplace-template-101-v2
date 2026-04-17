@@ -275,7 +275,7 @@ export default function Navbar2({ content }) {
         !isVisible && "-translate-y-full",
       )}
     >
-      <Container>{headerContent}</Container>
+      <Container >{headerContent}</Container>
 
       <div
         className={cn(

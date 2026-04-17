@@ -13,6 +13,7 @@ export { default as Testimonials } from "./Testimonials";
 export { default as BeforeAfter } from "./BeforeAfter";
 export { default as OurServices } from "./OurServices";
 export { default as WhyChoose } from "./WhyChoose";
+export { default as WorkingProcess } from "./WorkingProcess";
 export { default as Slogan } from "./Slogan";
 export { default as ServiceBenefits } from "./ServiceBenefits";
 export { default as Contact } from "./Contact";
@@ -23,5 +24,6 @@ export { default as Gallery } from "./Gallery";
 export { default as ServiceDescription1Section } from "./ServiceDescription1";
 export { default as ServiceDescription2Section } from "./ServiceDescription2";
 export { default as CallUsButton } from "./CallUsButton";
+export { default as Cta } from "./Cta";
 
 

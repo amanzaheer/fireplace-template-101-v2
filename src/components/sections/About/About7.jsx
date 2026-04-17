@@ -58,18 +58,26 @@ export default function About7({ content }) {
           </div>
 
           <div className="order-1 lg:order-2">
-            <p className={`${poppins.className} text-lg md:text-2xl font-medium tracking-normal text-[#5e5e5e] leading-tight mb-2`}>
+            <p
+              className={`${poppins.className} text-lg md:text-2xl font-medium tracking-normal text-[#5e5e5e] leading-tight mb-2`}
+            >
               {label}
             </p>
-            <h2 className={`${poppins.className} text-[32px] sm:text-[40px] md:text-[46px] font-bold leading-none text-black mb-3`}>
+            <h2
+              className={`${poppins.className} text-[32px] sm:text-[40px] md:text-[46px] font-bold leading-none text-black mb-3`}
+            >
               {heading}
             </h2>
 
-            <p className={`${poppins.className} text-sm md:text-base leading-[1.55] text-black`}>
+            <p
+              className={`${poppins.className} text-sm md:text-base leading-[1.55] text-black`}
+            >
               {description1}
             </p>
             {description2 ? (
-              <p className={`${poppins.className} mt-2 text-sm md:text-base leading-[1.55] text-black`}>
+              <p
+                className={`${poppins.className} mt-2 text-sm md:text-base leading-[1.55] text-black`}
+              >
                 {description2}
               </p>
             ) : null}
@@ -87,7 +95,7 @@ export default function About7({ content }) {
                 className={`${rubik.className} inline-flex items-center justify-center gap-2 bg-[#0a4da3] text-white h-11 px-5 min-w-[219px] min-h-[46px] rounded font-medium text-lg leading-none`}
               >
                 <Image
-                  src="/st-icons/Temp2/call2.png"
+                  src="/st-icons/Temp2/call1.png"
                   alt="Phone"
                   width={16}
                   height={16}

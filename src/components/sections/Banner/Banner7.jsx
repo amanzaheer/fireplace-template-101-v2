@@ -7,7 +7,7 @@ import FullContainer from "@/components/common/FullContainer";
 import { Phone } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
-import {Poppins, Inter } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 import { Rubik } from "next/font/google";
 const poppins = Poppins({
   subsets: ["latin"],
@@ -21,12 +21,15 @@ const rubik = Rubik({
   subsets: ["regular"],
   weight: ["400", "500", "600", "700"],
 });
-const QuoteForm7 = dynamic(() => import("@/components/sections/Banner/QuoteForm/QuoteForm7"), {
-  loading: () => (
-    <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
-  ),
-  ssr: false,
-});
+const QuoteForm7 = dynamic(
+  () => import("@/components/sections/Banner/QuoteForm/QuoteForm7"),
+  {
+    loading: () => (
+      <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
+    ),
+    ssr: false,
+  },
+);
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -79,7 +82,7 @@ export default function Banner7({ content }) {
             objectPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-black/60"/>
+        <div className="absolute inset-0 bg-black/60" />
       </div>
 
       <Container className="relative z-10 font-barlow py-8 md:py-10 lg:py-0 mt-8 md:mt-8 lg:mt-10">
@@ -94,17 +97,23 @@ export default function Banner7({ content }) {
                   <Phone className="w-6 h-6" />
                 </span>
                 <span className="leading-none flex flex-col gap-1 md:gap-1.5">
-                  <span className={`${poppins.className} block text-[18px] md:text-[20px] font-black uppercase tracking-tight`}>
+                  <span
+                    className={`${poppins.className} block text-[18px] md:text-[20px] font-black uppercase tracking-tight`}
+                  >
                     Call Us Now!
                   </span>
-                  <span className={`${poppins.className} block text-[24px] md:text-[26px] font-black`}>
+                  <span
+                    className={`${poppins.className} block text-[24px] md:text-[26px] font-black`}
+                  >
                     {phone || "(123)-456-7890"}
                   </span>
                 </span>
               </a>
 
               <div className="bg-[#023e8a] px-5 md:px-6 py-5 md:py-6 rounded-tr-[2px] rounded-br-[72px] max-w-[560px]">
-                <h1 className={`${poppins.className} font-black uppercase text-[40px] sm:text-[48px] lg:text-[55px] leading-[0.95] text-white`}>
+                <h1
+                  className={`${poppins.className} font-black uppercase text-[40px] sm:text-[48px] lg:text-[55px] leading-[0.95] text-white`}
+                >
                   {data?.heading || data?.title}
                 </h1>
               </div>
@@ -134,24 +143,21 @@ export default function Banner7({ content }) {
               ) : null}
             </div>
           </div>
-
-           
         </div>
       </Container>
       <div className="relative lg:absolute lg:bottom-0 lg:right-0 w-full max-w-[450px] h-fit z-10 mt-6 lg:mt-0">
-      <div className="w-full md:w-fit max-w-[450px] ml-auto">
-            <div className=" overflow-hidden">
-              <div className="bg-transparent px-0 pb-0 lg:min-h-[483.5px]">
-                <QuoteForm7
-                  data={data}
-                  form_head={form_head}
-                  showArrowInButton={false}
-                />
-              </div>
+        <div className="w-full md:w-fit max-w-[450px] ml-auto">
+          <div className=" overflow-hidden">
+            <div className="bg-transparent px-0 pb-0 lg:min-h-[483.5px]">
+              <QuoteForm7
+                data={data}
+                form_head={form_head}
+                showArrowInButton={false}
+              />
             </div>
           </div>
+        </div>
       </div>
     </FullContainer>
-
   );
 }

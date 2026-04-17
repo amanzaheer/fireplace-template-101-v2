@@ -26,6 +26,7 @@ const CallButton = memo(function CallButton({ content }) {
           <div className="text-3xl font-semibold">{phone}</div>
         </Link>
       </div>
+      
     </div>
   );
 });

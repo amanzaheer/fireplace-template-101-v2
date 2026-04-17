@@ -19,11 +19,17 @@ const ServiceBenefits = dynamic(() => import("@/components/sections/ServiceBenef
 const ServiceCities = dynamic(() => import("@/components/sections/ServiceCities"));
 const Slogan = dynamic(() => import("@/components/sections/Slogan"));
 const Testimonials = dynamic(() => import("@/components/sections/Testimonials"));
+const ReviewandRating = dynamic(() =>
+  import("@/components/sections/ReviewandRating"),
+);
 const WhyChoose = dynamic(() => import("@/components/sections/WhyChoose"));
+const WorkingProcess = dynamic(() => import("@/components/sections/WorkingProcess"));
 const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDescription"));
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
+const Cta = dynamic(() => import("@/components/sections/Cta"));
+const CallToAction = dynamic(() => import("@/components/sections/CallToAction"));
 const PrivacyPolicy = dynamic(() => import("@/components/sections/PrivacyPolicy"));
 const TermsAndConditions = dynamic(
   () => import("@/components/sections/TermsAndConditions"),
@@ -36,6 +42,7 @@ const sectionComponents = {
   Promotion,
   OurServices,
   WhyChoose,
+  WorkingProcess,
   Slogan,
   ServiceBenefits,
   Contact,
@@ -43,6 +50,8 @@ const sectionComponents = {
   ServiceCities,
   BeforeAfter,
   Testimonials,
+  Cta,
+  ReviewandRating,
   Footer,
   Header,
   ServiceDescription,
@@ -50,6 +59,9 @@ const sectionComponents = {
   ServiceDescription1: ServiceDescription1Section,
   ServiceDescription2: ServiceDescription2Section,
   CallUsButton,
+  CallToAction,
+  workingprocess: WorkingProcess,
+  calltoaction: CallToAction,
   PrivacyPolicy,
   TermsAndConditions,
 };
@@ -65,7 +77,7 @@ export default function SectionLayout({ children, domainConfig, content }) {
 
   return (
     <>
-      {order.map((key) => {
+      {order.map((key, index) => {
         if (key === "Content") {
           return <div key="Content">{children}</div>;
         }
@@ -75,7 +87,7 @@ export default function SectionLayout({ children, domainConfig, content }) {
         if (!Component) return null;
         const variant = section.design;
         return (
-          <Component key={key} variant={variant} content={content} />
+          <Component key={`${key}-${index}`} variant={variant} content={content} />
         );
       })}
     </>

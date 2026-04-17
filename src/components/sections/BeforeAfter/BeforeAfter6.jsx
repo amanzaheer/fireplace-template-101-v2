@@ -10,6 +10,12 @@ import Image from "next/image";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -91,7 +97,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
 
   return (
     <div
-      className="relative w-full aspect-square overflow-hidden"
+      className={`${poppins.className} relative w-full aspect-square overflow-hidden`}
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       ref={containerRef}
@@ -106,7 +112,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
           sizes="(max-width: 768px) 50vw, 25vw"
         />
         <div
-          className={`${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 right-4 bg-white bg-opacity-70 text-black px-3 py-1 rounded z-10`}
+          className={`${poppins.className} ${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 right-4 bg-white bg-opacity-70 text-black px-3 py-1  rounded z-10`}
         >
           After
         </div>
@@ -125,19 +131,19 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
             sizes="(max-width: 768px) 50vw, 25vw"
           />
           <div
-            className={`${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 left-4 bg-white bg-opacity-70 z-10 text-black px-3 py-1 rounded`}
+            className={`${poppins.className} ${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 left-4 bg-white bg-opacity-70 z-10 text-black px-3 py-1 rounded`}
           >
             Before
           </div>
         </div>
       </div>
       <div
-        className="absolute top-0 bottom-0 w-[3px] bg-white cursor-ew-resize z-10"
+        className={`${poppins.className} absolute top-0 bottom-0 w-[3px] bg-white cursor-ew-resize z-10`}
         style={{ left: `${sliderPosition}%`, marginLeft: "-2px" }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border-[3px] border-white shadow-md flex items-center justify-center">
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border-[3px] border-white shadow-md flex items-center justify-center">
           <div className="flex items-center gap-2">
             {arrowSrc ? (
               <>
@@ -177,7 +183,7 @@ export default function BeforeAfter6({ content }) {
   return (
     <FullContainer id="before_after">
       <Container className="pb-16 pt-6">
-        <h2 className="text-center text-neutral-900 font-semibold w-full text-2xl md:text-3xl lg:text-[50px] mb-4 md:mb-5">
+        <h2 className="text-center text-neutral-900 font-bold w-full text-2xl md:text-3xl lg:text-[50px] mb-4 md:mb-5">
           {title}
         </h2>
         <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-5">

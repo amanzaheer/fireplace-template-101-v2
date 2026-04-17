@@ -9,6 +9,20 @@ import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { Poppins, Inter, Rubik   } from "next/font/google";    
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+}); 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 import {
   validateEmail,
   validatePhone,
@@ -365,7 +379,7 @@ export default function Contact6({ content }) {
                         </p>
                         <a
                           href={phoneLink}
-                          className="mt-1 inline-block w-full max-w-full truncate rounded-full bg-white px-3 py-1.5 text-center text-sm font-bold text-black hover:bg-gray-100"
+                          className={` ${poppins.className} mt-1 inline-block w-full max-w-full truncate rounded-full bg-white px-3 py-1.5 text-center text-sm font-regular text-black hover:bg-gray-100`}
                         >
                           {phoneRaw || "(123) 456-7890"}
                         </a>
@@ -376,15 +390,15 @@ export default function Contact6({ content }) {
 
                 {/* Right: headings + form */}
                 <div className="order-1 w-full flex-1 px-5 py-8 text-white md:px-8 md:py-10 lg:order-2 lg:pl-4 lg:pr-10 xl:pr-14">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white">
+                  <h2 className={` ${rubik.className} text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white`}>
                     {line1}
                   </h2>
 
-                  <h2 className="mt-1 text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white">
+                  <h2 className={` ${rubik.className} mt-1 text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white`}>
                     {line2}
                   </h2>
 
-                  <h2 className="mt-1 text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white">
+                  <h2 className={` ${rubik.className} mt-1 text-3xl md:text-4xl lg:text-5xl xl:text-5xl font-extrabold leading-tight text-white`}>
                     {line3}
                   </h2>
 
@@ -393,7 +407,7 @@ export default function Contact6({ content }) {
                     className="mt-8 space-y-4"
                     noValidate
                   >
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                    <div className={` ${poppins.className} grid grid-cols-1 gap-4 sm:grid-cols-2`}>
                       <NameInput
                         value={formData.name}
                         onChange={handleChange}
@@ -415,16 +429,18 @@ export default function Contact6({ content }) {
                         error={errors.zipcode}
                       />
                     </div>
+                    <div className={` ${poppins.className} mt-3`}>
                     <MessageInput
                       value={formData.message}
                       onChange={handleChange}
                       error={errors.message}
                     />
+                    </div>
                     <div className="flex justify-center pt-2 md:justify-start">
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="min-w-[200px] bg-white px-10 py-3 text-base font-bold uppercase tracking-wide text-black shadow-md transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#FF6611] disabled:opacity-70"
+                        className={` ${poppins.className} min-w-[200px] bg-white px-10 py-3 text-base font-regular uppercase tracking-wide text-black shadow-md transition-colors hover:bg-gray-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#FF6611] disabled:opacity-70`}
                         aria-busy={isSubmitting}
                       >
                         {isSubmitting ? (

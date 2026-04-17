@@ -4,10 +4,16 @@
 import ServiceDescription1 from "./ServiceDescription1";
 import ServiceDescription2 from "./ServiceDescription2";
 import ServiceDescription3 from "./ServiceDescription3";
-import ServiceDescription6 from "./ServiceDescription6";
 import ServiceDescription4 from "./ServiceDescription4";
 import ServiceDescription5 from "./ServiceDescription5";
+import ServiceDescription6 from "./ServiceDescription6";
 import ServiceDescription7 from "./ServiceDescription7";
+import ServiceDescription14 from "./ServiceDescription14";
+import ServiceDescription11 from "./ServiceDescription11";
+import ServiceDescription15 from "./ServiceDescription15";
+import ServiceDescription12 from "./ServiceDescription12";
+import ServiceDescription10 from "./ServiceDescription10";
+
 const variants = {
   ServiceDescription1,
   ServiceDescription2,
@@ -16,6 +22,11 @@ const variants = {
   ServiceDescription4,
   ServiceDescription5,
   ServiceDescription7,
+  ServiceDescription14,
+  ServiceDescription15,
+  ServiceDescription11,
+  ServiceDescription12,
+  ServiceDescription10,
 };
 
 export default function ServiceDescription1Section({ variant, content }) {
@@ -32,5 +43,10 @@ export {
   ServiceDescription4,
   ServiceDescription5,
   ServiceDescription7,
+  ServiceDescription14,
+  ServiceDescription15,
+  ServiceDescription11,
+  ServiceDescription12,
+  ServiceDescription10,
   variants,
 };

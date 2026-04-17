@@ -3,9 +3,16 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { DM_Sans } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
 
 const DEFAULT_IMAGE_BASE = IMAGE_BASE;
+
+/** Navbar / logo tagline — readable sans, slightly larger than before */
+const taglineFont = DM_Sans({
+  subsets: ["latin"],
+  weight: ["500", "600"],
+});
 
 function isValidImageSrc(src) {
   if (!src || typeof src !== "string") return false;
@@ -23,7 +30,13 @@ function buildImageSrc(base, path) {
   return `${basePath}/${segment}`;
 }
 
-export default function Logo({ logo, imagePath, className }) {
+export default function Logo({
+  logo,
+  imagePath,
+  className,
+  tagline,
+  taglineClassName,
+}) {
   const [hostName, setHostName] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
 
@@ -113,49 +126,109 @@ export default function Logo({ logo, imagePath, className }) {
 
   if (!logoData) return null;
 
+  const computedTaglineClassName = `${taglineFont.className} max-w-[280px] text-[13px] font-medium leading-snug tracking-wide text-[#0B0B0B] sm:max-w-none sm:text-sm md:text-[15px] ${taglineClassName ?? ""}`;
+
   return (
     <Link
       title={`Logo - ${hostName}`}
       href="/"
-      className="flex items-center justify-center"
+      className={
+        tagline
+          ? "inline-flex min-w-0 items-center"
+          : "flex items-center justify-center"
+      }
     >
       {showImageLogo ? (
-        <Image
-          height={dynamicLogoHeight}
-          width={dynamicLogoWidth}
-          src={imageLogoSrc}
-          title={`Logo - ${hostName}`}
-          alt={`${logoText || "logo"} - ${hostName}`}
-          sizes="(max-width: 768px) 100px, (max-width: 1200px) 150px, 200px"
-          style={logoStyle}
-          className="scale-110"
-        />
-      ) : showTextLogo ? (
-        <>
-          {showTextLogoIcon && (
+        tagline ? (
+          <span className="inline-flex min-w-0 items-center gap-2.5 sm:gap-3">
             <Image
-              src={textLogoIconSrc}
-              alt="Logo"
-              width={windowWidth < 768 ? 32 : 44}
-              height={windowWidth < 768 ? 32 : 44}
-              className="object-contain flex-shrink-0"
+              height={dynamicLogoHeight}
+              width={dynamicLogoWidth}
+              src={imageLogoSrc}
+              title={`Logo - ${hostName}`}
+              alt={`${logoText || "logo"} - ${hostName}`}
+              sizes="(max-width: 768px) 100px, (max-width: 1200px) 150px, 200px"
+              style={logoStyle}
+              className="shrink-0 scale-110"
             />
-          )}
-          {logoText && (
-            <h2
-              className={`font-bold text-base sm:text-lg md:text-3xl ml-2 truncate max-w-[140px] xs:max-w-[180px] sm:max-w-none ${className}`}
+            <span className={`${computedTaglineClassName} text-left`}>
+              {tagline}
+            </span>
+          </span>
+        ) : (
+          <Image
+            height={dynamicLogoHeight}
+            width={dynamicLogoWidth}
+            src={imageLogoSrc}
+            title={`Logo - ${hostName}`}
+            alt={`${logoText || "logo"} - ${hostName}`}
+            sizes="(max-width: 768px) 100px, (max-width: 1200px) 150px, 200px"
+            style={logoStyle}
+            className="scale-110"
+          />
+        )
+      ) : showTextLogo ? (
+        tagline ? (
+          <span className="inline-flex min-w-0 items-center gap-2 sm:gap-2.5">
+            {showTextLogoIcon ? (
+              <Image
+                src={textLogoIconSrc}
+                alt="Logo"
+                width={windowWidth < 768 ? 32 : 44}
+                height={windowWidth < 768 ? 32 : 44}
+                className="shrink-0 self-center object-contain"
+              />
+            ) : null}
+            <span className="flex min-w-0 flex-col items-start justify-center gap-1.5">
+              {logoText ? (
+                <h2
+                  className={`max-w-[200px] truncate text-base font-bold xs:max-w-[220px] sm:max-w-none sm:text-lg md:text-3xl ${className ?? ""}`}
+                >
+                  {logoText}
+                </h2>
+              ) : null}
+              <span className={computedTaglineClassName}>{tagline}</span>
+            </span>
+          </span>
+        ) : (
+          <div className="flex items-center">
+            {showTextLogoIcon && (
+              <Image
+                src={textLogoIconSrc}
+                alt="Logo"
+                width={windowWidth < 768 ? 32 : 44}
+                height={windowWidth < 768 ? 32 : 44}
+                className="shrink-0 object-contain"
+              />
+            )}
+            {logoText && (
+              <h2
+                className={`ml-2 max-w-[140px] truncate text-base font-bold xs:max-w-[180px] sm:max-w-none sm:text-lg md:text-3xl ${className ?? ""}`}
+              >
+                {logoText}
+              </h2>
+            )}
+          </div>
+        )
+      ) : logoText ? (
+        tagline ? (
+          <span className="flex min-w-0 flex-col items-start justify-center gap-1.5">
+            <span
+              className={`max-w-[200px] truncate font-bold sm:max-w-none ${className}`}
+              style={textStyle}
             >
               {logoText}
-            </h2>
-          )}
-        </>
-      ) : logoText ? (
-        <span
-          className={`font-bold text-lg truncate max-w-[180px] ${className}`}
-          style={textStyle}
-        >
-          {logoText}
-        </span>
+            </span>
+            <span className={computedTaglineClassName}>{tagline}</span>
+          </span>
+        ) : (
+          <span
+            className={`font-bold text-lg truncate max-w-[180px] ${className}`}
+            style={textStyle}
+          >
+            {logoText}
+          </span>
+        )
       ) : null}
     </Link>
   );

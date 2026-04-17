@@ -3,6 +3,7 @@
 import React, { useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { Poppins, Inter } from "next/font/google";
 import {
   Clock,
   Star,
@@ -21,6 +22,14 @@ import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 const ACCENT = "#D35400";
 
 const accentBtn =
@@ -91,20 +100,20 @@ export default function WhyChoose6({ content }) {
             <div className="grid grid-cols-1 items-start gap-8 lg:grid-cols-[1fr_1.2fr_1fr] lg:gap-6 xl:gap-8">
               {/* LEFT SIDE */}
               <div className="w-full">
-                <p className="text-3xl leading-tight font-semibold text-black md:text-4.5xl">
+                <p className={`${poppins.className} text-3xl leading-tight font-semibold text-black md:text-4.5xl`}>
                   {heading}
                 </p>
 
-                <h2 className="mt-2 text-4xl leading-[0.95] font-extrabold text-black md:text-4.5xl">
+                <h2 className={`${poppins.className} mt-2 text-4xl leading-[0.95] font-extrabold text-black md:text-4.5xl`}>
                   {subHeading}
                 </h2>
 
-                <p className="mt-4 max-w-[420px] text-base leading-[1.35] text-black md:text-xl">
+                <p className={`${poppins.className} mt-4 max-w-[420px] text-base leading-[1.35] text-black md:text-xl`}>
                   {description}
                 </p>
 
                 {/* FIRST FEATURES ONLY */}
-                <ul className="mt-4 space-y-2.5">
+                <ul className={`${poppins.className} mt-4 space-y-2.5`}>
                   {firstFeatures.map((feature, idx) => {
                     const iconName =
                       typeof feature === "object" ? feature?.icon : null;
@@ -121,7 +130,7 @@ export default function WhyChoose6({ content }) {
                     return (
                       <li
                         key={idx}
-                        className="flex items-start gap-3 text-lg leading-tight text-black md:text-2xl"
+                        className={`${poppins.className} flex items-start gap-3 text-lg leading-tight text-black md:text-2xl`}
                       >
                         {IconComponent && (
                           <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
@@ -132,7 +141,7 @@ export default function WhyChoose6({ content }) {
                   })}
                 </ul>
                 {phone ? (
-                  <div className="mt-5">
+                  <div className={`${poppins.className} mt-5`}>
                     <Link
                       href={telHref}
                       className={accentBtn}
@@ -149,18 +158,18 @@ export default function WhyChoose6({ content }) {
               </div>
 
               <div className="w-full">
-                <div className="relative h-[420px] w-full overflow-hidden rounded-xl bg-gray-200 sm:h-[480px] lg:h-[560px]">
+                <div className={`${poppins.className} relative h-[420px] w-full overflow-hidden rounded-xl bg-gray-200 sm:h-[480px] lg:h-[560px]`}>
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
                       alt="Why choose us"
                       fill
-                      className="object-cover"
+                      className={`${poppins.className} object-cover`}
                       sizes="(max-width: 768px) 100vw, 58vw"
                       loading="lazy"
                     />
                   ) : (
-                    <div className="absolute inset-0 flex items-center justify-center text-gray-400 font-large">
+                    <div className={`${poppins.className} absolute inset-0 flex items-center justify-center text-gray-400 font-large`}>
                       Why Choose Us
                     </div>
                   )}
@@ -168,7 +177,7 @@ export default function WhyChoose6({ content }) {
               </div>
 
               <div className="w-full">
-                <ul className="space-y-4 lg:pt-2">
+                <ul className={`${poppins.className} space-y-4 lg:pt-2`}>
                   {lastFeatures.map((feature, idx) => {
                     const iconName =
                       typeof feature === "object" ? feature?.icon : null;
@@ -185,7 +194,7 @@ export default function WhyChoose6({ content }) {
                     return (
                       <li
                         key={`moved-${idx}`}
-                        className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                            className={`${inter.className} flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl`}
                       >
                         {IconComponent && (
                           <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
@@ -211,7 +220,7 @@ export default function WhyChoose6({ content }) {
                     return (
                       <li
                         key={`right-${idx}`}
-                        className="flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl"
+                        className={` ${inter.className} flex items-start gap-2.5 text-lg leading-tight text-black md:text-2xl`}
                       >
                         {IconComponent && (
                           <IconComponent className="mt-0.5 h-6 w-6 shrink-0 text-[#F97316]" />
@@ -222,11 +231,11 @@ export default function WhyChoose6({ content }) {
                   })}
                 </ul>
 
-                <div className="mt-5 flex flex-col gap-3 sm:flex-row sm:items-center">
+                <div className={`${poppins.className} mt-5 flex flex-col gap-3 sm:flex-row sm:items-center`}>
                   <button
                     type="button"
                     onClick={scrollToQuote}
-                    className={`${accentBtn} font-barlow font-bold tracking-wide md:text-base`}
+                    className={`${inter.className} ${ accentBtn}  font-bold tracking-wide md:text-base`}
                     style={{
                       backgroundColor: ACCENT,
                       outlineColor: ACCENT,

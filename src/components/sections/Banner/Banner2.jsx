@@ -116,7 +116,7 @@ export default function Banner1({ content }) {
               <div
                 className={`${poppins.className} font-black max-w-[560px] inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-left text-shadow-lg`}
               >
-                {data?.heading || data?.title}kk
+                {data?.heading || data?.title}
               </div>
               {data?.tagline ? (
                 <h2 className="text-xl md:text-2xl uppercase font-extrabold leading-tight text-[#ffffff] text-left mt-2">
@@ -156,7 +156,7 @@ export default function Banner1({ content }) {
                       className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all border-2 border-white bg-[#c92028]"
                     >
                       <Image
-                        src="/st-icons/Temp2/call2.png"
+                        src="/st-icons/Temp2/call1.png"
                         alt="Phone"
                         width={16}
                         height={16}

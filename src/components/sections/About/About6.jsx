@@ -6,10 +6,25 @@ import { Phone } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { Rubik, Inter, Poppins } from "next/font/google";
 
 const PANEL_BG = "#121212";
 const ACCENT = "#D35400";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
@@ -98,6 +113,7 @@ export default function About6({ content }) {
               </Link>
             ) : null}
           </div>
+          <div>hghghghgghg</div>
         </div>
       </Container>
     </FullContainer>

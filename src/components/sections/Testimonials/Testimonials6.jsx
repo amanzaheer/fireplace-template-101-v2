@@ -4,7 +4,32 @@ import React, { useState, useEffect, useMemo, useRef } from "react";
 import FullContainer from "@/components/common/FullContainer";
 import Image from "next/image";
 import { ArrowLeft, ArrowRight, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import { Rubik, Inter, Lexend, DM_Sans, Poppins } from "next/font/google";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const dmSansFont = DM_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const lexend = Lexend({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 /** Reference palette */
 const ORANGE = "#E65100";
 const ORANGE_DEEP = "#BF360C";
@@ -73,7 +98,7 @@ export default function Testimonials6({ content }) {
 
   return (
     <FullContainer
-      className="bg-white font-montserrat py-10 md:py-14 !px-0 !items-stretch"
+      className= {`${poppins.className} bg-white font-montserrat py-10 md:py-14 !px-0 !items-stretch`} 
       id="testimonials"
     >
       <div className="w-full overflow-x-hidden">
@@ -108,7 +133,7 @@ export default function Testimonials6({ content }) {
 
           {/* Right: grows to fill remaining row width; all content centered */}
           <div
-            className="w-full flex-1 min-w-0 flex flex-col items-center text-center relative border-0 border-l border-black/10 lg:rounded-none rounded-lg lg:rounded-tl-none lg:rounded-bl-none lg:rounded-tr-lg lg:rounded-br-lg px-6 py-8 md:px-10 md:py-10 min-h-[360px] md:min-h-[400px] shadow-none"
+            className= {`${dmSansFont.className} w-full flex-1 min-w-0 flex flex-col items-center text-center relative border-0 border-l border-black/10 lg:rounded-none rounded-lg lg:rounded-tl-none lg:rounded-bl-none lg:rounded-tr-lg lg:rounded-br-lg px-6 py-8 md:px-10 md:py-10 min-h-[360px] md:min-h-[400px] shadow-none`}
             style={{ backgroundColor: GRAY_PANEL }}
           >
             <h2 className="text-center text-neutral-900 font-semibold w-full text-2xl md:text-3xl lg:text-[55px] mb-4 md:mb-5">

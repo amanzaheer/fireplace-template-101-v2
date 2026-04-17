@@ -18,6 +18,26 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
+/** Drop first ATX heading when it repeats the section title (avoids double h2). */
+function stripDuplicateLeadingHeading(markdown, sectionTitle) {
+  if (!markdown || typeof markdown !== "string" || !sectionTitle)
+    return markdown;
+  const normalizedTitle = sectionTitle
+    .replace(/\s+/g, " ")
+    .trim()
+    .toLowerCase();
+  const lines = markdown.split(/\r?\n/);
+  let i = 0;
+  while (i < lines.length && lines[i].trim() === "") i += 1;
+  const m = lines[i]?.trim().match(/^#{1,6}\s+(.+)$/);
+  if (!m) return markdown;
+  const headingText = m[1].replace(/\s+/g, " ").trim().toLowerCase();
+  if (headingText !== normalizedTitle) return markdown;
+  i += 1;
+  while (i < lines.length && lines[i].trim() === "") i += 1;
+  return lines.slice(i).join("\n").trim();
+}
+
 export default function ServiceDescription7({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
 
@@ -33,6 +53,10 @@ export default function ServiceDescription7({ content }) {
     ? buildImageSrc(IMAGE_BASE, content?.service_description?.file_name)
     : buildImageSrc(IMAGE_BASE, "hero/hero.webp");
 
+  const descriptionHtml = md.render(
+    stripDuplicateLeadingHeading(description, title),
+  );
+
   return (
     <FullContainer id="service_description" className="py-10 md:py-14 bg-white">
       <Container>
@@ -45,7 +69,7 @@ export default function ServiceDescription7({ content }) {
               <div
                 className={`${prose} w-full text-left text-[#212020] prose-h1:!text-start prose-h2:!text-start prose-h3:!text-start`}
                 style={{ ["--prose-primary"]: "#212020" }}
-                dangerouslySetInnerHTML={{ __html: md.render(description) }}
+                dangerouslySetInnerHTML={{ __html: descriptionHtml }}
               />
               {phone ? (
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
@@ -67,17 +91,22 @@ export default function ServiceDescription7({ content }) {
               ) : null}
             </div>
 
-            <div className="relative w-full min-h-[260px] md:min-h-[340px] rounded-2xl overflow-hidden bg-gray-100 shadow-sm order-1 md:order-2">
-              {imageSrc ? (
-                <Image
-                  src={imageSrc}
-                  alt={title}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                  loading="lazy"
-                />
-              ) : null}
+            <div className="relative order-1 md:order-2 flex justify-center md:justify-end">
+              <div className="relative w-full max-w-[546px] h-[544px] overflow-hidden rounded-br-[123px] z-10 border-l-11 border-b-11 border-[#3a8ffb]">
+                {imageSrc ? (
+                  <Image
+                    title={title}
+                    src={imageSrc}
+                    alt={title}
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 1024px) 100vw, 45vw"
+                  />
+                ) : (
+                  <div className="w-full h-full bg-gray-200" />
+                )}
+              </div>
             </div>
           </div>
         </div>

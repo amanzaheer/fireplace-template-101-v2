@@ -23,8 +23,7 @@ function hostToDomainId(host) {
     .replace(/^https?:\/\//, '')
     .replace(/:\d+$/, '')
     .replace(/^www\./, '')
-    .toLowerCase()
-    .replace(/\./g, '-');
+    .toLowerCase();
 }
 
 /**
@@ -42,7 +41,7 @@ export function hostToDomain(host) {
 }
 
 export function getDomainId(host) {
-  if (!host || isDevHost(host)) return DEFAULT_DOMAIN_ID;
+  if (!host || isDevHost(host)) return hostToDomainId(DEFAULT_DOMAIN_ID);
   return hostToDomainId(host);
 }
 

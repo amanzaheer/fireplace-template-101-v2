@@ -1,0 +1,18 @@
+{
+  "industry": "fireplace",
+  "domain": "example.com",
+  "company_name": "Fireplace Built",
+  "phone": "(555) 123-4567",
+  "email": "info@example.com",
+  "tagline": "Professional Fireplace Repair & Maintenance",
+  "theme_color": "#01306E",
+  "gtm_id": "GTM-XXXXXXX",
+  "city_name": "San Francisco",
+  "state_name": "CA",
+  "working_hours":"Monday - Friday: 9AM - 7PM",
+  "rabitMQName":"fireplace_service_queue",
+  "crm_url": "",
+  "crm_form_path": "",
+  "crm_token": "",
+  "crm_industry_code": ""
+}

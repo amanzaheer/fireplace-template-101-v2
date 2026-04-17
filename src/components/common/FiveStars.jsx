@@ -21,7 +21,7 @@ export default function FiveStars({ className, starClassName }) {
       aria-label="5 out of 5 stars"
     >
       {STAR_KEYS.map((k) => (
-        <FontAwesomeIcon key={k} icon={faStar} className={`${starClassName} text-[17px] md:text-[20px]`} />
+        <FontAwesomeIcon key={k} icon={faStar} className={`${starClassName} text-[17px] text-[#EFA536] md:text-[20px]`} />
       ))}
     </div>
   );

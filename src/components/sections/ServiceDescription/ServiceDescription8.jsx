@@ -74,7 +74,7 @@ export default function ServiceDescription8({
                   "prose-strong:font-semibold prose-strong:text-slate-800",
                   "prose-li:marker:text-[#c2410c]",
                 )}
-                dangerouslySetInnerHTML={{ __html: md.render(description) }}
+                dangerouslySetInnerHTML={{ __html: description }}
               />
               {phone ? (
                 <div className="mt-2 flex w-full flex-col gap-3 pt-2 sm:flex-row sm:flex-wrap sm:items-center">

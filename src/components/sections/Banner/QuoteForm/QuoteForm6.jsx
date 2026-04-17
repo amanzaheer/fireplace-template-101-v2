@@ -3,12 +3,18 @@
 import { useState } from "react";
 import { CheckCircle, Loader, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
+import { Poppins } from "next/font/google";
 import {
   validateEmail,
   validatePhone,
   validateName,
   validateMessage,
 } from "@/lib/validators";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 export default function QuoteForm6({
   data,
@@ -241,15 +247,15 @@ export default function QuoteForm6({
       className="rounded-[16px] border-4 border-[#FF6611]/50"
     >
       <div
-        className="relative w-full max-w-sm rounded-[12px] to-10% bg-zinc-950/75 opacity-90 backdrop-blur-md shadow-2xl font-barlow h-fit"
+        className="relative w-full max-w-sm rounded-[12px] to-10% bg-zinc-950/75 opacity-90 backdrop-blur-md shadow-2xl font-poppins h-fit"
       >
       {!formSubmitted && (
         <div className="px-4 pt-4 pb-2 md:px-5 md:pt-5">
-          <h3 className="font-montserrat font-bold text-white text-center uppercase tracking-wide text-lg md:text-xl leading-tight">
+                <h3 className={` ${poppins.className} font-bold text-white text-center uppercase tracking-wide text-lg md:text-xl leading-tight`}>
             {form_head?.title}
           </h3>
           {form_head?.sub_title ? (
-            <p className="mt-2 text-center text-sm md:text-base text-white/65 font-medium">
+            <p className={` ${poppins.className} mt-2 text-center text-sm md:text-base text-white/65 font-medium`}>
               {form_head.sub_title}
             </p>
           ) : null}
@@ -257,18 +263,18 @@ export default function QuoteForm6({
       )}
 
       {formSubmitted ? (
-        <div className="flex flex-col items-center justify-center text-center py-10 px-6 md:px-8">
-          <div className="h-16 w-16 rounded-full bg-[#FF6611]/20 border border-[#FF6611]/50 flex items-center justify-center mb-4">
+        <div className={` ${poppins.className} flex flex-col items-center justify-center text-center py-10 px-6 md:px-8`}>
+          <div className={` ${poppins.className} h-16 w-16 rounded-full bg-[#FF6611]/20 border border-[#FF6611]/50 flex items-center justify-center mb-4`}>
             <CheckCircle className="h-9 w-9 text-[#FF6611]" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2 font-montserrat">Thank You!</h3>
-          <p className="text-white/75 max-w-md mb-6 text-sm md:text-base">
+          <h3 className={` ${poppins.className} text-xl font-bold text-white mb-2`}>Thank You!</h3>
+          <p className={` ${poppins.className} text-white/75 max-w-md mb-6 text-sm md:text-base`}>
             Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
           </p>
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-[#FF6611] hover:bg-[#FF6611]/90 text-white py-2.5 px-8 rounded-lg font-montserrat font-bold uppercase tracking-wide transition-colors duration-200"
+            className={` ${poppins.className} bg-[#FF6611] hover:bg-[#FF6611]/90 text-white py-2.5 px-8 rounded-lg font-bold uppercase tracking-wide transition-colors duration-200`}
           >
             OK Thanks
           </button>
@@ -276,11 +282,11 @@ export default function QuoteForm6({
       ) : (
         <form
           onSubmit={handleSubmit}
-          className="space-y-3 text-base md:text-lg px-4 py-4 pt-2 md:px-4"
+          className={` ${poppins.className} space-y-3 text-base md:text-lg px-4 py-4 pt-2 md:px-4`}
         >
-          <div className="grid grid-cols-2 gap-2">
+          <div className={` ${poppins.className} grid grid-cols-2 gap-2`}>
 
-          <div>
+          <div className={` ${poppins.className}`}>
             <label htmlFor="firstName" className="sr-only">
               First name
             </label>
@@ -291,7 +297,7 @@ export default function QuoteForm6({
               value={formData.firstName}
               onChange={handleChange}
               onFocus={handleFirstInteraction}
-              className={`${fieldBase} ${fieldErrors.firstName ? "border-red-400" : "border-white/35"}`}
+              className={`${poppins.className} ${ fieldBase} ${fieldErrors.firstName ? "border-red-400" : "border-white/35"}`}
               placeholder="First name"
               required
               aria-invalid={!!fieldErrors.firstName}
@@ -300,7 +306,7 @@ export default function QuoteForm6({
               <div className="text-red-300 text-sm font-medium mt-1">{fieldErrors.firstName}</div>
             )}
           </div>
-          <div>
+          <div className={` ${poppins.className}`}>
             <label htmlFor="lastName" className="sr-only">
               Last name
             </label>
@@ -311,7 +317,7 @@ export default function QuoteForm6({
               value={formData.lastName}
               onChange={handleChange}
               onFocus={handleFirstInteraction}
-              className={`${fieldBase} ${fieldErrors.lastName ? "border-red-400" : "border-white/35"}`}
+              className={`${poppins.className} ${poppins.className} ${fieldBase} ${fieldErrors.lastName ? "border-red-400" : "border-white/35"}`}
               placeholder="Last name"
               required
               aria-invalid={!!fieldErrors.lastName}
@@ -323,7 +329,7 @@ export default function QuoteForm6({
           </div>
 
 
-          <label htmlFor="phone" className="sr-only">
+          <label htmlFor="phone" className={` ${poppins.className} sr-only`}>
             Phone number
           </label>
           <input
@@ -333,7 +339,7 @@ export default function QuoteForm6({
             value={formData.phone}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`${fieldBase} ${fieldErrors.phone ? "border-red-400" : "border-white/35"}`}
+            className={`${poppins.className} ${fieldBase} ${fieldErrors.phone ? "border-red-400" : "border-white/35"}`}
             placeholder="(123)-456-7890"
             required
             aria-invalid={!!fieldErrors.phone}
@@ -342,7 +348,7 @@ export default function QuoteForm6({
             <div className="text-red-300 text-sm font-medium">{fieldErrors.phone}</div>
           )}
 
-          <label htmlFor="email" className="sr-only">
+          <label htmlFor="email" className={` ${poppins.className} sr-only`}>
             Email
           </label>
           <input
@@ -352,7 +358,7 @@ export default function QuoteForm6({
             value={formData.email}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`${fieldBase} ${fieldErrors.email ? "border-red-400" : "border-white/35"}`}
+            className={`${poppins.className} ${fieldBase} ${fieldErrors.email ? "border-red-400" : "border-white/35"}`}
             placeholder="your@email.com"
             required
             aria-invalid={!!fieldErrors.email}
@@ -361,7 +367,7 @@ export default function QuoteForm6({
             <div className="text-red-300 text-sm font-medium">{fieldErrors.email}</div>
           )}
 
-          <label htmlFor="message" className="sr-only">
+          <label htmlFor="message" className={` ${poppins.className} sr-only`}>
             Message
           </label>
           <textarea
@@ -371,7 +377,7 @@ export default function QuoteForm6({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={5}
-            className={`${fieldBase} min-h-[50px] max-h-[70px] resize-y ${fieldErrors.message ? "border-red-400" : "border-white/35"}`}
+            className={`${poppins.className} ${fieldBase} min-h-[50px] max-h-[70px] resize-y ${fieldErrors.message ? "border-red-400" : "border-white/35"}`}
             placeholder="Message"
             required
             aria-invalid={!!fieldErrors.message}
@@ -383,7 +389,7 @@ export default function QuoteForm6({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-0 bg-[#FF6611] hover:bg-[#FF6611]/90 disabled:opacity-70 text-lg md:text-xl font-thin cursor-pointer rounded-lg py-3.5 px-6 text-white font-montserrat uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2"
+                className={` ${poppins.className} w-full mt-0 bg-[#FF6611] hover:bg-[#FF6611]/90 disabled:opacity-70 text-lg md:text-xl font-thin cursor-pointer rounded-lg py-3.5 px-6 text-white uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2`}
           >
             {isSubmitting ? (
               <>
