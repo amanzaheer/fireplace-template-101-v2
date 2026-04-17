@@ -56,6 +56,17 @@
     "email": "info@[domain]",
     "working_hours": "[working_hours]"
   },
+  "reviewandrating": {
+    "title": "Reviews and Ratings",
+    "description": "See what our customers are saying about us.",
+    "list": [
+      {
+        "name": "John Doe",
+        "rating": 5,
+        "comment": "Great service! The team was professional and did a great job."
+      }
+    ]
+  },
   "faqs": {
     "title": "FAQs",
     "items": [

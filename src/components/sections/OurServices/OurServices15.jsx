@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo } from "react";
+import React, { useMemo, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -23,6 +23,7 @@ function markdownPreview(str) {
 }
 
 const MAX_DISPLAY = 8;
+const SCROLL_OFFSET = 100;
 const BLUR_DATA_URL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
 
@@ -47,6 +48,37 @@ export default function OurServices15({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const ourServices = content?.our_services;
   const servicesFromNav = content?.services ?? [];
+
+  const scrollToSection = useCallback((element) => {
+    if (!element) return;
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    window.scrollTo({ top, behavior: "smooth" });
+  }, []);
+
+  const handleNavigation = useCallback(
+    (id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        scrollToSection(element);
+      } else {
+        router.push("/");
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          scrollToSection(el);
+        }, 500);
+      }
+    },
+    [router, scrollToSection],
+  );
+
+  const handleHomeNavigation = useCallback(() => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    router.push("/");
+  }, [pathname, router]);
 
   const services = useMemo(() => {
     if (Array.isArray(ourServices?.items) && ourServices.items.length > 0) {
@@ -77,6 +109,13 @@ export default function OurServices15({ content }) {
     () => (Array.isArray(services) ? services.slice(0, MAX_DISPLAY) : []),
     [services],
   );
+  const serviceColumns = useMemo(() => {
+    const columns = [[], [], []];
+    displayServices.forEach((service, index) => {
+      columns[index % 3].push(service);
+    });
+    return columns;
+  }, [displayServices]);
 
   if (!displayServices.length) return null;
 

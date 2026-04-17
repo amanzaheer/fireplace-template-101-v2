@@ -1,18 +1,15 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { ChevronRight, Phone, TextQuote } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import Heading from "@/components/common/Heading";
 import { IMAGE_BASE } from "@/lib/constants";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
+import { ArrowRight } from "lucide-react";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
   subsets: ["latin"],
-  weight: ["400"],
-  display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 function buildImageSrc(base, filePath) {
@@ -25,8 +22,12 @@ function buildImageSrc(base, filePath) {
 export default function ServiceBenefits9 ({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const block = content?.service_benefits ?? {};
-  const heading = block.heading ?? "";
+  const heading = block.heading ?? "Committed to Excellence";
+  const intro =
+    block.description ??
+    "Chimney One provides top-quality chimney maintenance and repair services with precision and care. From cleaning and inspections to expert repairs, our experienced team ensures safety, efficiency, and long-lasting performance for your chimney.";
   const list = Array.isArray(block.list) ? block.list : [];
+  const sectionTitle = block.title ?? "Chimney Service CO Benefits";
   const filePath = block.file_name ?? "about/about.webp";
   const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
 
@@ -47,67 +48,74 @@ export default function ServiceBenefits9 ({ content }) {
   };
 
   return (
-    <FullContainer id="service_benefits" className="py-0 md:py-8 overflow-hidden">
+    <FullContainer id="service_benefits" className="py-10 md:py-14 overflow-hidden bg-white">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div className="md:w-[111%] rounded-md relative bg-blue-500 h-full overflow-hidden min-h-[200px] md:min-h-[320px]">
-            {imageSrc ? (
-              <Image
-                title="Service Background"
-                src={imageSrc}
-                alt="Service Benefits"
-                fill
-                className="object-cover"
-                loading="lazy"
-                sizes="(max-width: 768px) 100vw, 50vw"
-              />
-            ) : (
-              <div className="absolute inset-0 bg-blue-200" />
-            )}
-          </div>
-          <div className="px-4 md:px-10 py-8 flex flex-col gap-4 rounded-2xl shadow-[0_0_5px_rgba(0,0,0,0.5)] bg-white z-10 my-7">
-            {heading ? (
-              <Heading
-                text={heading}
-                className="text-center text-[#000000] md:text-start"
-              />
-            ) : null}
-            <div className="flex items-center justify-center md:justify-start">
-              <div className="flex flex-col w-fit space-y-[6px]">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 md:gap-10 lg:gap-14 items-center">
+            <div className="relative flex justify-center lg:justify-end order-2 lg:order-2">
+              <div className="relative h-[526px] rounded  w-full max-w-[540px] shrink-0 overflow-hidden bg-gray-100">
+                {imageSrc ? (
+                  <Image
+                    title="Service Background"
+                    src={imageSrc}
+                    alt="Service Benefits"
+                    fill
+                    className="object-cover"
+                    loading="lazy"
+                    sizes="(max-width: 1024px) 100vw, 540px"
+                  />
+                ) : (
+                  <div className="h-full w-full bg-gray-200" />
+                )}
+              </div>
+            </div>
+
+            <div className={montserrat.className}>
+              <p className="mt-6 text-xl font-medium leading-tight text-[#4a4a4a] md:text-3xl">
+                {heading}
+              </p>
+              <h3 className="mb-2 mt-6 h-[106px] w-[433px] text-[35px] font-bold leading-[0.95] text-black">
+                {sectionTitle}
+              </h3>
+
+              <div className="grid grid-cols-1 gap-x-2">
                 {list.map((benefit, index) => (
-                  <div key={index} className="flex px-4 items-start">
-                    <ChevronRight className="mt-1 h-5 w-5 shrink-0 stroke-[4] text-[#EFA536]" />
-                    <span
-                      className={`${poppins.className} ml-2 text-base font-normal leading-normal text-[#000]`}
-                    >
+                  <div key={index} className="flex items-center gap-1">
+                    <div className="h-7 w-7 shrink-0 whitespace-nowrap">
+                      <Image
+                        src="/st-icons/Temp12/shield.png"
+                        alt="Check"
+                        width={28}
+                        height={28}
+                        className="h-7 w-7 object-contain"
+                      />
+                    </div>
+                    <span className="text-[16px] leading-snug text-[#222222] md:text-[18px]">
                       {typeof benefit === "object" ? benefit?.title : benefit}
                     </span>
                   </div>
                 ))}
               </div>
-            </div>
-            <div className="w-full gap-2 justify-start hidden md:flex flex-col lg:flex-row items-start lg:items-center lg:gap-4">
-              <Link href={`tel:${phone}`}>
-                <button
-                  type="button"
-                  className="flex min-w-[205px] items-center justify-center gap-2 rounded-none bg-[#EFA536] px-6 py-3 font-barlow text-lg font-semibold text-white shadow transition-colors hover:bg-[#EFA536]/85 sm:justify-start"
+
+              <div className="mt-7 flex flex-col gap-8 sm:flex-row">
+                {/* <a
+                  href={`tel:${phone}`}
+                  className="inline-flex h-[46px] min-w-[219px] items-center justify-center gap-2 bg-[#da4909] px-8 text-sm font-semibold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-yellow-600"
                 >
-                  <Phone className="h-5 w-5 shrink-0 text-white" strokeWidth={2.25} />
-                  {phone}
-                </button>
-              </Link>
-              <button
-                type="button"
-                onClick={handleQuoteClick}
-                className="inline-flex min-w-[160px] w-[205px] items-center justify-center gap-2 rounded-none bg-[#EFA536] px-6 py-3 font-barlow text-base font-bold text-white transition-colors hover:bg-[#EFA536]/85 md:text-base"
-              >
-                <div className="flex items-center gap-2">
-                  <TextQuote className="h-6 w-6 shrink-0 text-white" strokeWidth={2.25} />
-                  <span className="text-md ml-2 font-thin tracking-widest md:text-xl md:tracking-normal">
-                    GET A QUOTE
-                  </span>
-                </div>
-              </button>
+                  Call Us Today
+                  <span aria-hidden="true">→</span>
+                </a> */}
+                
+                <a
+              href={phone ? `tel:${phone}` : "#"}
+              className="inline-flex h-auto min-h-[46px] w-[323px] shrink-0 items-center justify-center gap-2 rounded-full border-3 border-white bg-[#da4909] px-6 py-[11px] font-normal uppercase tracking-wide text-white shadow-lg transition-opacity hover:opacity-95"
+            >
+              <span className="text-[16px]">CALL NOW:</span>
+              <span className="text-[20px] font-bold">
+                {phone || "(888)-249-0566"}
+              </span>
+            </a>
+              </div>
             </div>
           </div>
         </div>
