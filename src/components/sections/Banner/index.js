@@ -12,9 +12,11 @@ import Banner8 from './Banner8';
 import Banner14 from './Banner14';
 import Banner7 from './Banner7';
 import Banner9 from './Banner9';
+import Banner10 from './Banner10';
 import Banner11 from './Banner11';
 import Banner15 from './Banner15';
 import Banner12 from './Banner12';
+
 
 const variants = {
   Banner1,
@@ -30,6 +32,7 @@ const variants = {
   Banner15,
   Banner11,
   Banner12,
+  Banner10,
 };
 
 export default function Banner({ variant, content }) {
@@ -37,7 +40,7 @@ export default function Banner({ variant, content }) {
   const Component = variants[name] ?? Banner14;
   return <Component content={content} />;
 }
-export { Banner1, Banner2, Banner3, Banner4, Banner5, Banner6, Banner7, Banner8, Banner9, Banner14, Banner15, Banner11, Banner12, variants };
+export { Banner1, Banner2, Banner3, Banner4, Banner5, Banner6, Banner7, Banner8, Banner9, Banner14, Banner15, Banner11, Banner12, Banner10, variants };
 
 
 
