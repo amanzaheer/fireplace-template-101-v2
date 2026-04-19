@@ -33,7 +33,7 @@ const rubik = Rubik({
 const CheckIcon = ({ isMainCard }) => (
     <Icon
       path={mdiShieldCheckOutline}
-      size={1}
+      size={1.3}
       color={isMainCard ? "#f3a008" : "#f3a008"}
       className="mt-0.5 shrink-0"
     />
@@ -75,7 +75,7 @@ const PromotionCard = ({
           <div className="w-fit h-auto whitespace-nowrap shrink-0">
             <CheckIcon isMainCard={isMainCard} />
           </div>
-          <MaybeMarkdown as="span" className={`${inter.className} pt-0.5 pl-1 text-[12px]`}>
+          <MaybeMarkdown as="span" className={`${inter.className} pt-0.5 pl-1 text-[16px] lg:text-[19px]`}>
             {feature}
           </MaybeMarkdown>
         </div>
@@ -88,7 +88,7 @@ const PromotionCard = ({
       {isMainCard ? (
         <a
           href={telHref}
-          className="inline-flex items-center justify-center gap-2 rounded-md bg-white text-[#f3a008] px-6 py-0.5 md:px-4 md:py-1.5 w-fit mx-auto font-semibold leading-none transition-colors"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-white text-[#f3a008] px-6 py-0.5 md:px-4 md:py-2.5 w-fit mx-auto font-semibold leading-none transition-colors"
         >
           <svg
             width="23"
@@ -104,7 +104,7 @@ const PromotionCard = ({
               fill="#f3a008"
             />
           </svg>
-          <span className={`${rubik.className} text-[16px] lg:text-lg font-semibold`}>
+          <span className={`${rubik.className} text-[20px] lg:text-[25px] font-semibold`}>
             {phone || "(888)-249-0566"}
           </span>
         </a>
@@ -129,7 +129,7 @@ const PromotionCard = ({
           {title ? (
             <MaybeMarkdown
               as="h3"
-              className={`${poppins.className} text-center text-[20px] font-normal leading-[1.05] text-white md:text-[24px]`}
+              className={`${poppins.className} text-center text-[24px] lg:text-[35px] font-normal leading-[1.05] text-white`}
             >
               {title}
             </MaybeMarkdown>
@@ -139,7 +139,7 @@ const PromotionCard = ({
         {heading ? (
             <MaybeMarkdown
               as="h3"
-              className={`${poppins.className} text-center text-[20px] font-bold pt-4 leading-[1.05] text-white md:text-[20px]`}
+              className={`${poppins.className} text-center text-[20px] lg:text-[28px] font-bold pt-4 leading-[1.05] text-white`}
             >
               {heading}
             </MaybeMarkdown>
@@ -167,14 +167,14 @@ const PromotionCard = ({
         <div className="text-center">
           <MaybeMarkdown
             as="h3"
-            className={`${poppins.className} text-[20px] font-semibold leading-[1.05] tracking-tight text-[#111] md:text-[24px]`}
+            className={`${poppins.className} text-[24px] lg:text-[33px] font-semibold leading-[1.05] tracking-tight text-[#111]`}
           >
             {heading}
           </MaybeMarkdown>
           {subheading ? (
             <MaybeMarkdown
               as="p"
-              className={`${poppins.className} mt-2 text-[18px] font-normal leading-[1.05] text-[#151515] md:text-[22px]`}
+              className={`${poppins.className} mt-2 text-[22px] lg:text-[30px] font-normal leading-[1.05] text-[#151515]`}
             >
               {subheading}
             </MaybeMarkdown>
@@ -200,7 +200,7 @@ export default function Promotion15({ content }) {
     <FullContainer id="promo" className="bg-[#ffffff]">
       <Container>
         <div className="w-full py-10 md:py-16 md:pb-20">
-          <div className="mx-auto grid w-full max-w-[880px] grid-cols-1 items-stretch gap-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-center md:gap-5">
+          <div className="grid mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 grid-cols-1 items-stretch gap-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-center md:gap-5">
             {details.map((item, index) => (
               <PromotionCard
                 key={index}

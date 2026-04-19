@@ -129,9 +129,9 @@ export default function OurServices15({ content }) {
 
   return (
     <FullContainer id="our_services" className="bg-[#fafafa] py-12 md:py-16 lg:py-20">
-      <Container className="max-w-[880px] px-4 sm:px-6 lg:px-0!">
+      <Container className=" mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
-          <h2 className={`${poppins.className} text-center text-3xl md:text-[35.5px] font-normal text-[#2d2d2d] tracking-tight`}>
+          <h2 className={`${poppins.className} text-center text-[32px] lg:text-[44px] font-normal text-[#2d2d2d] tracking-tight`}>
             {title}
           </h2>
           {sectionSub ? (
@@ -171,7 +171,7 @@ export default function OurServices15({ content }) {
                   )}
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-3 md:gap-3 md:p-3">
-                  <h3 className="text-left font-montserrat text-lg font-bold leading-snug text-neutral-900 md:text-[1.15rem]">
+                  <h3 className="text-left font-montserrat text-lg md:text-[21px] font-bold leading-snug text-neutral-900 ">
                     {service.path && service.path !== "#" ? (
                       <Link
                         href={service.path}
@@ -185,7 +185,7 @@ export default function OurServices15({ content }) {
                   </h3>
                   {service.description ? (
                     <div
-                      className="flex-1 text-left font-poppins text-[9px] font-normal leading-relaxed text-gray-700 [&_p]:m-0 [&_p]:font-poppins [&_p]:text-[11px] [&_p]:font-normal [&_p]:leading-relaxed [&_p]:text-[#6e6e6e] [&_a]:text-[#6e6e6e] [&_strong]:font-semibold"
+                      className="flex-1 text-left font-poppins text-[9px] font-normal leading-relaxed text-gray-700 [&_p]:m-0 [&_p]:font-poppins [&_p]:text-[14px] [&_p]:font-normal [&_p]:leading-relaxed [&_p]:text-[#6e6e6e] [&_a]:text-[#6e6e6e] [&_strong]:font-semibold"
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
@@ -197,7 +197,7 @@ export default function OurServices15({ content }) {
                   )}
                   <a
                     href={phone ? `tel:${phone}` : "#"}
-                    className="mt-auto inline-flex w-fit mb-3 items-center gap-2 rounded-lg bg-[#f59403] px-5 py-2.5 font-montserrat text-[11px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#6b6562] sm:px-6 sm:py-3 sm:text-xs md:text-[13px]"
+                    className="mt-auto inline-flex w-fit mb-3 items-center gap-2 rounded-lg bg-[#f59403] px-5 py-2.5 font-montserrat text-[11px] md:text-[14px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#6b6562] sm:px-6 sm:py-3 sm:text-xs"
                   >
                     <span>Call us today</span>
                     <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2.5} aria-hidden />

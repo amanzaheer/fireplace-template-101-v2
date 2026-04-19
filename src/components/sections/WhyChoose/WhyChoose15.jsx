@@ -154,7 +154,7 @@ export default function WhyChoose14({ content }) {
 
   return (
     <FullContainer id="whychooseus" className="bg-white py-14 md:py-20 lg:py-24">
-      <Container className="px-4 sm:px-6 lg:px-0! max-w-[880px]">
+      <Container className="px-4 sm:px-6 mx-auto w-full max-w-7xl lg:px-8">
         <div className="inline-flex w-full min-w-0 flex-col items-center gap-[53px]">
           <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
             <h2

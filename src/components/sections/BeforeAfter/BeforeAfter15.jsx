@@ -272,8 +272,8 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
 
   return (
     <FullContainer id="before_after">
-      <Container className="max-w-[880px] pb-16 pt-6 lg:px-0!">
-        <h2 className={`${poppins.className} text-center text-3xl md:text-[35.5px] font-normal text-[#2d2d2d] tracking-tight mb-8 md:mb-10`}>
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-6 ">
+        <h2 className={`${poppins.className} text-center text-[32px] lg:text-[44px] font-normal text-[#2d2d2d] tracking-tight mb-8 md:mb-10`}>
           {title}
         </h2>
         <div className="hidden md:block">
