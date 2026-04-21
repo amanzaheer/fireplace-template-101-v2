@@ -22,7 +22,7 @@ const poppins = Poppins({
 
 const rubik = Rubik({
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 function BannerCtaIcon({ className }) {
@@ -49,7 +49,7 @@ function buildImageSrc(base, filePath) {
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
-}
+} 
 
 function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt }) {
   const [isHover, setIsHover] = useState(false);
@@ -179,12 +179,10 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt }) {
 export default function BeforeAfter15({ content }) {
   const banner = content?.banner ?? {};
   const phone =
-  banner.cta_phone?.trim() ||
-  content?.contact_info?.phone?.trim() ||
-  content?.navbar?.phone?.trim() ||
-  "(800) 555-1212";
-const tel = `tel:${phone.replace(/\s/g, "")}`;
-
+    banner.cta_phone?.trim() ||
+    content?.contact_info?.phone?.trim() ||
+    content?.navbar?.phone?.trim() ||
+    "(800) 555-1212";
 
   const block = content?.before_after ?? {};
   const rawItems = Array.isArray(block.items) ? block.items : [];
@@ -196,6 +194,7 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
   const wheelDeltaXRef = useRef(0);
 
   const title = block.title ?? "Before And After Results";
+  const subtitle = block.subtitle ?? "";
   const imageBase = IMAGE_BASE;
 
   const items = rawItems.map((item) => ({
@@ -209,6 +208,7 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
   const maxLgIndex = Math.max(0, items.length - 3);
   const maxIndex = slidesPerView === 3 ? maxLgIndex : maxMdIndex;
 
+  const telHref = phone ? `tel:${phone}` : "#";
   const handlePrev = () => {
     setCurrentIndex((prev) => Math.max(0, prev - 1));
   };
@@ -272,11 +272,22 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
 
   return (
     <FullContainer id="before_after">
-      <Container className="max-w-[880px] pb-16 pt-6 lg:px-0!">
-        <h2 className={`${poppins.className} text-center text-3xl md:text-[35.5px] font-normal text-[#2d2d2d] tracking-tight mb-8 md:mb-10`}>
-          {title}
-        </h2>
-        <div className="hidden md:block">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-6 ">
+      <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+            <h2
+              className={`${poppins.className} w-full self-stretch text-center text-[28px] font-medium leading-[34px] text-black sm:text-[36px] sm:leading-[44px] md:text-[44px] md:leading-[53px]`}
+            >
+              {title}
+            </h2>
+            {subtitle ? (
+              <p
+                className={`${rubik.className} mt-3 text-base font-normal leading-tight text-black sm:text-lg md:text-lg`}
+              >
+                {subtitle}
+              </p>
+            ) : null}
+          </header>
+        <div className="hidden md:block pt-6 md:pt-10">
           <div
             className="relative overflow-hidden"
             onContextMenu={(e) => e.preventDefault()}
@@ -322,7 +333,7 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
             </div>
           )}
         </div>
-        <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-5 pt-6 md:pt-10 ">
           {items.slice(0, 2).map((item, index) => (
             <BeforeAfterSlider
               key={index}
@@ -334,17 +345,19 @@ const tel = `tel:${phone.replace(/\s/g, "")}`;
           ))}
         </div>
         <div className="w-full flex items-center pt-6 justify-center">
-          <Link
-            href={tel}
-            className="inline-flex items-center gap-3 rounded-xl bg-[#786f6f] px-5 py-2  transition hover:bg-[#62370c] sm:px-6 sm:py-2.5 "
-          >
-            <BannerCtaIcon />
-            <span
-              className={`${rubik.className} text-[24px] font-bold not-italic leading-normal text-[#fff4e6]`}
+          {phone ? (
+            <Link
+              href={telHref}
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-[#786f6f] px-5 lg:px-10 py-2.5 shadow-md transition hover:bg-[#62370c]"
             >
-              {phone}
-            </span>
-          </Link>
+              <BannerCtaIcon />
+              <span
+                className={`${rubik.className}  text-[16px] lg:text-[32px] font-bold not-italic leading-normal text-[#fff4e6]`}
+              >
+                {phone}
+              </span>
+            </Link>
+          ) : null}
         </div>
       </Container>
     </FullContainer>

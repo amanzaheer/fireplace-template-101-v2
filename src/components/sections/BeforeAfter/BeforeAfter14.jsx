@@ -1,17 +1,28 @@
 "use client";
 
-import React, { useState, useRef, useEffect, useCallback } from "react";
+import React, {
+  useState,
+  useRef,
+  useEffect,
+  useCallback,
+} from "react";
 import Image from "next/image";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Poppins, Rubik } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
+import { cn } from "@/lib/utils"
 import Link from "next/link";
-import { Rubik } from "next/font/google";
-import { cn } from "@/lib/utils";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700", "700"],
+});
 
 const rubik = Rubik({
   subsets: ["latin"],
-  weight: ["700"],
+  weight: ["400", "500", "600", "700"],
 });
 
 function BannerCtaIcon({ className }) {
@@ -22,15 +33,12 @@ function BannerCtaIcon({ className }) {
       height={38}
       viewBox="0 0 39 38"
       fill="none"
-      className={cn(
-        "  h-[22px] lg:h-[38px]  w-[22px] lg:w-[39px] shrink-0",
-        className,
-      )}
+      className={cn("h-[28px] w-[29px] shrink-0", className)}
       aria-hidden
     >
       <path
         d="M15.9343 0H5.37446e-05V1.80952C-0.0121365 8.77558 2.04963 15.5955 5.93547 21.4428C8.79926 25.7545 12.5677 29.4264 16.9929 32.2167C22.994 36.0029 29.9935 38.0118 37.1429 37.9999H39V22.4743L26.5757 19.7835L23.1215 23.1492C19.9606 21.1703 17.2737 18.5517 15.2435 15.4714L18.6959 12.1057L15.9343 0Z"
-        fill="#ffffff"
+        fill="#fff4e6"
       />
     </svg>
   );
@@ -41,15 +49,9 @@ function buildImageSrc(base, filePath) {
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
-}
+} 
 
-function BeforeAfterSlider({
-  beforeImage,
-  afterImage,
-  beforeAlt,
-  afterAlt,
-  arrowSrc,
-}) {
+function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt }) {
   const [isHover, setIsHover] = useState(false);
   const [sliderPosition, setSliderPosition] = useState(50);
   const [isActive, setIsActive] = useState(false);
@@ -95,24 +97,20 @@ function BeforeAfterSlider({
       e.preventDefault();
       setIsActive(true);
       updateContainerRect();
-      document.addEventListener("mousemove", handleMouseMove, {
-        passive: false,
-      });
+      document.addEventListener("mousemove", handleMouseMove, { passive: false });
       document.addEventListener("mouseup", handleMouseUp, { passive: true });
     },
-    [handleMouseMove, handleMouseUp, updateContainerRect],
+    [handleMouseMove, handleMouseUp, updateContainerRect]
   );
 
   const handleTouchStart = useCallback(
     (e) => {
       setIsActive(true);
       updateContainerRect();
-      document.addEventListener("touchmove", handleTouchMove, {
-        passive: false,
-      });
+      document.addEventListener("touchmove", handleTouchMove, { passive: false });
       document.addEventListener("touchend", handleTouchEnd, { passive: true });
     },
-    [handleTouchMove, handleTouchEnd, updateContainerRect],
+    [handleTouchMove, handleTouchEnd, updateContainerRect]
   );
 
   useEffect(() => {
@@ -126,7 +124,7 @@ function BeforeAfterSlider({
 
   return (
     <div
-      className="relative w-full overflow-hidden rounded-[28px] aspect-[1.35/1] shadow-[0_10px_28px_rgba(0,0,0,0.14)]"
+      className="relative w-full aspect-3/2 overflow-hidden rounded-[35px]"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       ref={containerRef}
@@ -141,7 +139,7 @@ function BeforeAfterSlider({
           sizes="(max-width: 768px) 50vw, 25vw"
         />
         <div
-          className={`${isHover ? "opacity-100" : "opacity-100"} transition-all duration-300 absolute bottom-2.5 right-3 bg-black/55 text-white px-3 py-1 rounded-md z-10 text-[10px] font-semibold tracking-[0.08em] uppercase`}
+          className={`${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded z-10`}
         >
           After
         </div>
@@ -160,103 +158,182 @@ function BeforeAfterSlider({
             sizes="(max-width: 768px) 50vw, 25vw"
           />
           <div
-            className={`${isHover ? "opacity-100" : "opacity-100"} transition-all duration-300 absolute bottom-2.5 left-3 bg-black/55 z-10 text-white px-3 py-1 rounded-md text-[10px] font-semibold tracking-[0.08em] uppercase`}
+            className={`${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 left-4 bg-black bg-opacity-70 z-10 text-white px-3 py-1 rounded`}
           >
             Before
           </div>
         </div>
       </div>
       <div
-        className="absolute top-0 bottom-0 w-[2px] bg-white/90 cursor-ew-resize z-10"
+        className="absolute top-0 bottom-0 w-[3px] bg-white cursor-ew-resize z-10"
         style={{ left: `${sliderPosition}%`, marginLeft: "-2px" }}
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="absolute top-1/2 left-1/2 flex h-8 w-8 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-black/25 border-2 border-white shadow-md backdrop-blur-[1px]">
-          <div className="flex items-center gap-2">
-            {arrowSrc ? (
-              <>
-                <Image
-                  src={arrowSrc}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className="w-2.5 h-2.5"
-                />
-                <Image
-                  src={arrowSrc}
-                  alt=""
-                  width={20}
-                  height={20}
-                  className="rotate-180 w-2.5 h-2.5"
-                />
-              </>
-            ) : (
-              <>
-                <span className="text-white text-xs">◀</span>
-                <span className="text-white text-xs">▶</span>
-              </>
-            )}
-          </div>
-        </div>
+
       </div>
     </div>
   );
 }
 
 export default function BeforeAfter14({ content }) {
+  const banner = content?.banner ?? {};
+  const phone =
+    banner.cta_phone?.trim() ||
+    content?.contact_info?.phone?.trim() ||
+    content?.navbar?.phone?.trim() ||
+    "(800) 555-1212";
+
   const block = content?.before_after ?? {};
   const rawItems = Array.isArray(block.items) ? block.items : [];
   if (rawItems.length === 0) return null;
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [slidesPerView, setSlidesPerView] = useState(3);
+  const dragStartXRef = useRef(null);
+  const touchStartXRef = useRef(null);
+  const wheelDeltaXRef = useRef(0);
 
   const title = block.title ?? "Before And After Results";
+  const subtitle = block.subtitle ?? "";
   const imageBase = IMAGE_BASE;
-  const arrowSrc = buildImageSrc(
-    imageBase,
-    block.arrow_icon ?? "icons/arrowhead.webp",
-  );
-  const banner = content?.banner ?? {};
-  const phone =
-    banner?.cta_phone ??
-    content?.contact_info?.phone ??
-    content?.navbar?.phone ??
-    "";
-  const telHref = phone ? `tel:${phone}` : "#";
 
-  const items = rawItems
-    .map((item) => ({
-      before: buildImageSrc(imageBase, item.before),
-      after: buildImageSrc(imageBase, item.after),
-      before_alt: item.before_alt ?? "Before",
-      after_alt: item.after_alt ?? "After",
-    }))
-    .filter((item) => item.before && item.after);
+  const items = rawItems.map((item) => ({
+    before: buildImageSrc(imageBase, item.before),
+    after: buildImageSrc(imageBase, item.after),
+    before_alt: item.before_alt ?? "Before",
+    after_alt: item.after_alt ?? "After",
+  })).filter((item) => item.before && item.after);
   if (items.length === 0) return null;
+  const maxMdIndex = Math.max(0, items.length - 2);
+  const maxLgIndex = Math.max(0, items.length - 3);
+  const maxIndex = slidesPerView === 3 ? maxLgIndex : maxMdIndex;
+
+  const telHref = phone ? `tel:${phone}` : "#";
+  const handlePrev = () => {
+    setCurrentIndex((prev) => Math.max(0, prev - 1));
+  };
+
+  const handleNext = () => {
+    setCurrentIndex((prev) => Math.min(maxIndex, prev + 1));
+  };
+
+  const handleDotClick = (index) => {
+    setCurrentIndex(index);
+  };
+
+  const handleMouseDragStart = (e) => {
+    if (e.button !== 0 && e.button !== 2) return;
+    dragStartXRef.current = e.clientX;
+  };
+
+  const handleMouseDragEnd = (e) => {
+    if (dragStartXRef.current === null) return;
+    const deltaX = e.clientX - dragStartXRef.current;
+    dragStartXRef.current = null;
+    if (Math.abs(deltaX) < 50) return;
+    if (deltaX < 0) handleNext();
+    if (deltaX > 0) handlePrev();
+  };
+
+  const handleTouchStart = (e) => {
+    touchStartXRef.current = e.touches?.[0]?.clientX ?? null;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartXRef.current === null) return;
+    const touchEndX = e.changedTouches?.[0]?.clientX ?? touchStartXRef.current;
+    const deltaX = touchEndX - touchStartXRef.current;
+    touchStartXRef.current = null;
+    if (Math.abs(deltaX) < 50) return;
+    if (deltaX < 0) handleNext();
+    if (deltaX > 0) handlePrev();
+  };
+
+  const handleWheel = (e) => {
+    // Trackpad two-finger swipe usually emits wheel deltaX.
+    wheelDeltaXRef.current += Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+    if (Math.abs(wheelDeltaXRef.current) < 60) return;
+    if (wheelDeltaXRef.current > 0) handleNext();
+    if (wheelDeltaXRef.current < 0) handlePrev();
+    wheelDeltaXRef.current = 0;
+  };
+
+  useEffect(() => {
+    const resizeReset = () => {
+      const nextSlides = window.innerWidth >= 1024 ? 3 : 2;
+      const nextMaxIndex = nextSlides === 3 ? maxLgIndex : maxMdIndex;
+      setSlidesPerView(nextSlides);
+      setCurrentIndex((prev) => Math.min(prev, nextMaxIndex));
+    };
+    resizeReset();
+    window.addEventListener("resize", resizeReset);
+    return () => window.removeEventListener("resize", resizeReset);
+  }, [maxLgIndex, maxMdIndex]);
 
   return (
     <FullContainer id="before_after">
-      <Container className="py-10 md:py-14 lg:py-16">
-        <h2 className="mb-4 text-center font-montserrat text-3xl font-semibold tracking-tight text-black sm:text-4xl lg:text-[54px] lg:leading-[1.12]">
-          {title}
-        </h2>
-        {block?.sub_title ? (
-          <p className="mx-auto mb-8 max-w-4xl text-center font-barlow text-base font-semibold leading-snug text-black/90 md:mb-10 md:text-[29px] md:leading-[1.25]">
-            {block.sub_title}
-          </p>
-        ) : null}
-        <div className="hidden md:grid grid-cols-4 gap-5 lg:gap-6">
-          {items.map((item, index) => (
-            <BeforeAfterSlider
-              key={index}
-              beforeImage={item.before}
-              afterImage={item.after}
-              beforeAlt={item.before_alt}
-              afterAlt={item.after_alt}
-              arrowSrc={arrowSrc}
-            />
-          ))}
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-6 ">
+      <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+            <h2
+              className={`${poppins.className} w-full self-stretch text-center text-[28px] font-medium leading-[34px] text-black sm:text-[36px] sm:leading-[44px] md:text-[44px] md:leading-[53px]`}
+            >
+              {title}
+            </h2>
+            {subtitle ? (
+              <p
+                className={`${rubik.className} mt-3 text-base font-normal leading-tight text-black sm:text-lg md:text-lg`}
+              >
+                {subtitle}
+              </p>
+            ) : null}
+          </header>
+        <div className="hidden md:block pt-6 md:pt-10">
+          <div
+            className="relative overflow-hidden"
+            onContextMenu={(e) => e.preventDefault()}
+            onMouseDown={handleMouseDragStart}
+            onMouseUp={handleMouseDragEnd}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onWheel={handleWheel}
+          >
+            <div
+              className="flex gap-5 transition-transform duration-500 ease-out"
+              style={{
+                transform:
+                  slidesPerView === 3
+                    ? `translateX(calc(-${currentIndex} * ((100% - 40px) / 3 + 20px)))`
+                    : `translateX(calc(-${currentIndex} * ((100% - 20px) / 2 + 20px)))`,
+              }}
+            >
+              {items.map((item, index) => (
+                <div key={index} className="w-[calc(50%-10px)] shrink-0 lg:w-[calc((100%-40px)/3)]">
+                  <BeforeAfterSlider
+                    beforeImage={item.before}
+                    afterImage={item.after}
+                    beforeAlt={item.before_alt}
+                    afterAlt={item.after_alt}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+          {items.length > 3 && (
+            <div className="mt-6 flex items-center justify-center gap-3">
+              {Array.from({ length: maxIndex + 1 }).map((_, dotIndex) => (
+                <button
+                  key={`before-after-dot-${dotIndex}`}
+                  type="button"
+                  onClick={() => handleDotClick(dotIndex)}
+                  aria-label={`Go to slide ${dotIndex + 1}`}
+                  className={`h-2.5 w-2.5 rounded-full transition-all ${currentIndex === dotIndex ? "bg-[#7a7471] w-6" : "bg-[#c9c3bf] hover:bg-[#a8a19d]"
+                    }`}
+                />
+              ))}
+            </div>
+          )}
         </div>
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:hidden">
+        <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-5 pt-6 md:pt-10 ">
           {items.slice(0, 2).map((item, index) => (
             <BeforeAfterSlider
               key={index}
@@ -264,26 +341,24 @@ export default function BeforeAfter14({ content }) {
               afterImage={item.after}
               beforeAlt={item.before_alt}
               afterAlt={item.after_alt}
-              arrowSrc={arrowSrc}
             />
           ))}
         </div>
-
-        {phone ? (
-          <div className="mt-8 flex w-full justify-center md:mt-10">
+        <div className="w-full flex items-center pt-6 justify-center">
+          {phone ? (
             <Link
               href={telHref}
-              className="inline-flex w-fit  items-center justify-center gap-3 rounded-[10px] bg-[#8f888a] px-6 py-3 shadow-md transition hover:bg-[#7d7678]"
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-[#786f6f] px-5 lg:px-10 py-2.5 shadow-md transition hover:bg-[#62370c]"
             >
-              <BannerCtaIcon className="h-9 w-9  " />
+              <BannerCtaIcon />
               <span
-                className={`${rubik.className}  text-[24px] lg:text-[38px] font-bold not-italic leading-none text-white`}
+                className={`${rubik.className}  text-[16px] lg:text-[32px] font-bold not-italic leading-normal text-[#fff4e6]`}
               >
                 {phone}
               </span>
             </Link>
-          </div>
-        ) : null}
+          ) : null}
+        </div>
       </Container>
     </FullContainer>
   );

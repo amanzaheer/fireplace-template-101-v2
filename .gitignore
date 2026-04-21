@@ -5,6 +5,7 @@ node_modules/
 .next/
 out/
 build/
+default_data/
 
 # Production artifacts
 dist/
@@ -42,6 +43,18 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# Keep generated local content out of git
+/default_data/fireplace/content/
+/domain_data/
+
+# macOS archive metadata
+/__MACOSX/
+
+# Local scripts & credentials (do not commit)
+/scripts/service-account.json
+/scripts/seed-datastore.mjs
+/scripts/sync-placeholders.mjs
 
 # Keep generated local content out of git
 /default_data/fireplace/content/å

@@ -12,15 +12,27 @@
       "file_name": "logo/fireplace-logo.png"
     },
     "menu_items": [
-      { "title": "Home", "link": "/" },
-      { "title": "Locations", "link": "locations" },
+      {
+        "title": "Home",
+        "link": "/"
+      },
+      {
+        "title": "Locations",
+        "link": "locations"
+      },
       {
         "title": "Services",
         "link": "#",
         "childrenRef": "services"
       },
-      { "title": "FAQs", "link": "faqs" },
-      { "title": "Contact Us", "link": "contact-us" }
+      {
+        "title": "FAQs",
+        "link": "faqs"
+      },
+      {
+        "title": "Contact Us",
+        "link": "contact-us"
+      }
     ],
     "phone": "[phone]"
   },
@@ -57,12 +69,32 @@
     }
   ],
   "our_services": {
-    "title": "Our Services"
+    "title": "Our Services",
+    "subtitle": "Reliable, safe, and professional solutions for all types of fireplaces."
   },
   "why_choose": {
     "heading": "Why Choose Us",
+    "subheading": "Simple, seamless, and stress-free fireplace service in 4 easy steps.",
     "file_name": "why-us/why-us.avif",
-    "childrenRef": "features"
+    "childrenRef": "features",
+    "keyFeatures": [
+      {
+        "title": "Book Online",
+        "description": "Easily schedule your fireplace service at your convenience. Our quick booking process ensures a smooth start without any hassle."
+      },
+      {
+        "title": "Meet Your Expert",
+        "description": "Our certified professionals arrive on time, fully equipped, and ready to deliver reliable and high-quality service."
+      },
+      {
+        "title": "Expert Inspection",
+        "description": "We carefully inspect your fireplace to identify any issues, ensuring safety, efficiency, and proper functionality."
+      },
+      {
+        "title": "Get Sparkling Results",
+        "description": "Enjoy a clean, safe, and perfectly working fireplace with long-lasting performance and peace of mind."
+      }
+    ]
   },
   "slogan": {
     "title": "Quality Fireplace Services You Can Trust",
@@ -99,6 +131,7 @@
     ]
   },
   "banner": {
+    "header":"Top-Rated",
     "title": "Trusted Experts in [industry] services",
     "tagline": "trusted professionals in [industry] installation, cleaning & repair",
     "form_title": "Claim Fire Place Services Offer Today",
@@ -157,6 +190,7 @@
   },
   "before_after": {
     "title": "Before And After Results",
+    "subtitle": "See the quality of our chimney repair and cleaning work — real before & after results from DFW homeowners just like you..",
     "items": [
       {
         "before": "beforeafter/before1.webp",
@@ -196,19 +230,14 @@
       {
         "title": " Expert Execution",
         "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-         "image" :"workingprocess/person.png"
-
+        "image": "workingprocess/person.png"
       },
       {
         "title": "Quality Assurance",
         "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-         "image" :"workingprocess/verified.png"
-
+        "image": "workingprocess/verified.png"
       }
-      
-
     ]
-    
   },
   "calltoaction": {
     "title": "Get a free quote from a Chimney Services",
@@ -216,7 +245,6 @@
     "button_text": "GET A FREE ESTIMATE",
     "button_link": "contact-us"
   },
-
   "form_head": {
     "title": "10% Off Total Price for Online Booking",
     "sub_title": "Ask For A Quote Here"
@@ -226,7 +254,6 @@
     "email": "info@[domain]",
     "working_hours": "[working_hours]"
   },
-
   "reviewandrating": {
     "title": "Reviews and Ratings",
     "description": "See what our customers are saying about us.",
@@ -345,7 +372,7 @@
   ],
   "testimonials": {
     "reviewCount": "150+",
-    "file_name": "testimonials/fireplace.webp",
+    "file_name": "testimonials/fireplace.png",
     "list": [
       {
         "name": "John D.",
@@ -384,4 +411,3 @@
     "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service."
   }
 }
-

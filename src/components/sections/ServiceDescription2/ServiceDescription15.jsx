@@ -72,7 +72,7 @@ export default function ServiceDescription15({ content }) {
 
   return (
     <FullContainer id="service_description2" className="bg-[#f4f5f7] py-10 md:py-14">
-      <Container className="max-w-[880px] lg:px-0!">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="rounded-[12px] border border-black/5 bg-white px-5 py-7 shadow-[0_2px_14px_rgba(0,0,0,0.06)] md:px-8 md:py-9">
           <div>
             {title ? (

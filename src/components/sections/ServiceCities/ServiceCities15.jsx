@@ -34,9 +34,9 @@ export default function ServiceCities3({ content }) {
 
   return (
     <FullContainer className="py-10 md:py-14 bg-[#ffffff]" id="locations">
-      <Container className="max-w-[880px] lg:px-0!">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
-          <h2 className={`${poppins.className} text-center text-3xl md:text-[35.5px] font-normal text-[#2d2d2d] tracking-tight mb-8 md:mb-10`}>
+          <h2 className={`${poppins.className} text-center text-[32px] lg:text-[44px] font-normal text-[#2d2d2d] tracking-tight mb-8 md:mb-10`}>
             {title}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 md:gap-x-5 gap-y-3">
@@ -46,12 +46,12 @@ export default function ServiceCities3({ content }) {
                 className="inline-flex items-center  gap-1.5 w-fit bg-[#f2f2f2]  h-fit  rounded-[1px] px-1 py-0.5 shadow-[0_2px_2px_0px_rgba(0,0,0,0.2)]"
               >
                 <svg
-                  width="16"
-                  height="16"
+                  width="18"
+                  height="18"
                   viewBox="0 0 18 22"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-[15px] shrink-0 md:h-[16px] md:w-[16px]"
+                  className=" w-[17px] shrink-0 h-[19px] md:h-[21px] md:w-[17px]"
                   aria-hidden
                 >
                   <path
@@ -59,7 +59,7 @@ export default function ServiceCities3({ content }) {
                     fill="#CF1F21"
                   />
                 </svg>
-                <span className={`${inter.className} text-[12px] md:text-[14px] font-normal leading-tight text-[#000000]`}>
+                <span className={`${inter.className} text-[14px] md:text-[16px] font-normal leading-tight text-[#000000]`}>
                   {typeof city === "string" ? city : city?.name ?? city?.title ?? String(city)}
                 </span>
               </div>

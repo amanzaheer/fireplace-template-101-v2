@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useCallback } from "react";
+import React, { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
@@ -9,7 +9,7 @@ import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import md from "@/lib/markdown";
 import { Poppins } from "next/font/google";
-
+import { Rubik } from "next/font/google";
 /** Replace [service] token with the item's own title. */
 function resolveServiceTag(str, title) {
   if (!str || !title) return str ?? "";
@@ -23,7 +23,6 @@ function markdownPreview(str) {
 }
 
 const MAX_DISPLAY = 8;
-const SCROLL_OFFSET = 100;
 const BLUR_DATA_URL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
 
@@ -44,41 +43,15 @@ const poppins = Poppins({
   weight: ["400", "500", "600", "700", "700"],
 });
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export default function OurServices15({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const ourServices = content?.our_services;
   const servicesFromNav = content?.services ?? [];
-
-  const scrollToSection = useCallback((element) => {
-    if (!element) return;
-    const top =
-      element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-    window.scrollTo({ top, behavior: "smooth" });
-  }, []);
-
-  const handleNavigation = useCallback(
-    (id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        scrollToSection(element);
-      } else {
-        router.push("/");
-        setTimeout(() => {
-          const el = document.getElementById(id);
-          scrollToSection(el);
-        }, 500);
-      }
-    },
-    [router, scrollToSection],
-  );
-
-  const handleHomeNavigation = useCallback(() => {
-    if (pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    router.push("/");
-  }, [pathname, router]);
 
   const services = useMemo(() => {
     if (Array.isArray(ourServices?.items) && ourServices.items.length > 0) {
@@ -120,7 +93,7 @@ export default function OurServices15({ content }) {
   if (!displayServices.length) return null;
 
   const title = ourServices?.title ?? "Services Provided";
-  const sectionSub =
+  const subtitle = ourServices?.subtitle ?? "";
     trimStr(ourServices?.sub_title) ||
     trimStr(ourServices?.subtitle) ||
     trimStr(ourServices?.subheading) ||
@@ -129,18 +102,22 @@ export default function OurServices15({ content }) {
 
   return (
     <FullContainer id="our_services" className="bg-[#fafafa] py-12 md:py-16 lg:py-20">
-      <Container className="max-w-[880px] px-4 sm:px-6 lg:px-0!">
-        <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
-          <h2 className={`${poppins.className} text-center text-3xl md:text-[35.5px] font-normal text-[#2d2d2d] tracking-tight`}>
-            {title}
-          </h2>
-          {sectionSub ? (
-            <p className="mt-3 font-barlow text-sm leading-relaxed text-neutral-600 sm:text-base md:mt-4 md:text-[17px]">
-              {sectionSub}
-            </p>
-          ) : null}
-        </header>
-        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-3">
+      <Container className=" mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+            <h2
+              className={`${poppins.className} w-full self-stretch text-center text-[28px] font-medium leading-[34px] text-black sm:text-[36px] sm:leading-[44px] md:text-[44px] md:leading-[53px]`}
+            >
+              {title}
+            </h2>
+            {subtitle ? (
+              <p
+                className={`${rubik.className} mt-3 text-base font-normal leading-tight text-black sm:text-lg md:text-lg`}
+              >
+                {subtitle}
+              </p>
+            ) : null}
+          </header>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-5 pt-10">
           {displayServices.map((service) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
@@ -171,7 +148,7 @@ export default function OurServices15({ content }) {
                   )}
                 </div>
                 <div className="flex flex-1 flex-col gap-3 p-3 md:gap-3 md:p-3">
-                  <h3 className="text-left font-montserrat text-lg font-bold leading-snug text-neutral-900 md:text-[1.15rem]">
+                  <h3 className="text-left font-montserrat text-lg md:text-[21px] font-bold leading-snug text-neutral-900 ">
                     {service.path && service.path !== "#" ? (
                       <Link
                         href={service.path}
@@ -185,7 +162,7 @@ export default function OurServices15({ content }) {
                   </h3>
                   {service.description ? (
                     <div
-                      className="flex-1 text-left font-poppins text-[9px] font-normal leading-relaxed text-gray-700 [&_p]:m-0 [&_p]:font-poppins [&_p]:text-[11px] [&_p]:font-normal [&_p]:leading-relaxed [&_p]:text-[#6e6e6e] [&_a]:text-[#6e6e6e] [&_strong]:font-semibold"
+                      className="flex-1 text-left font-poppins text-[9px] font-normal leading-relaxed text-gray-700 [&_p]:m-0 [&_p]:font-poppins [&_p]:text-[14px] [&_p]:font-normal [&_p]:leading-relaxed [&_p]:text-[#6e6e6e] [&_a]:text-[#6e6e6e] [&_strong]:font-semibold"
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
@@ -197,7 +174,7 @@ export default function OurServices15({ content }) {
                   )}
                   <a
                     href={phone ? `tel:${phone}` : "#"}
-                    className="mt-auto inline-flex w-fit mb-3 items-center gap-2 rounded-lg bg-[#f59403] px-5 py-2.5 font-montserrat text-[11px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#6b6562] sm:px-6 sm:py-3 sm:text-xs md:text-[13px]"
+                    className="mt-auto inline-flex w-fit mb-3 items-center gap-2 rounded-lg bg-[#f59403] px-5 py-2.5 font-montserrat text-[11px] md:text-[14px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#6b6562] sm:px-6 sm:py-3 sm:text-xs"
                   >
                     <span>Call us today</span>
                     <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2.5} aria-hidden />

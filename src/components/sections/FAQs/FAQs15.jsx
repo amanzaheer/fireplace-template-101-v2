@@ -45,8 +45,8 @@ export default function FAQs15({ content }) {
 
   return (
     <FullContainer className="bg-[#ffffff] py-10 md:py-16" id="faqs">
-      <Container className="max-w-[880px] lg:px-0!">
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[55%_45%]">
           <div className="">
             <h2 className="font-montserrat text-3xl font-bold leading-tight text-neutral-900 md:text-[42px]">
               {faqTitle}
@@ -77,7 +77,7 @@ export default function FAQs15({ content }) {
                       aria-controls={`faq-content-${index}`}
                     >
                       <span
-                        className={`pr-3 font-montserrat text-[16px] leading-[1.2] text-neutral-900 md:text-[18px] font-semibold`}
+                        className={`pr-3 font-montserrat text-[16px] leading-[1.2] text-neutral-900 md:text-[22px] font-semibold`}
                       >
                         {q}
                       </span>
@@ -91,7 +91,7 @@ export default function FAQs15({ content }) {
                     >
                       <div className="min-h-0 overflow-hidden">
                         <div className="pb-4 pr-8 pt-0">
-                          <p className="text-[9px] leading-relaxed text-neutral-600 md:text-[10px]">{a}</p>
+                          <p className="text-[10px] leading-relaxed text-neutral-600 md:text-[12px]">{a}</p>
                         </div>
                       </div>
                     </div>
@@ -104,7 +104,7 @@ export default function FAQs15({ content }) {
           <div className="">
             <div
               id="faq-contact-form"
-              className="w-full max-w-[430px]"
+              className="w-full "
             >
               <Contact15 content={content} embedded />
             </div>

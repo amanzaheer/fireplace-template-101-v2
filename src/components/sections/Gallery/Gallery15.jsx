@@ -61,7 +61,7 @@ export default function Gallery15({ content }) {
 
   return (
     <FullContainer id="gallery" className="bg-[#f4f5f7] py-10 md:py-14">
-      <Container className="max-w-[880px] lg:px-0!">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {title ? (
           <h2
             className={`${rubik.className} mb-4 text-center text-[30px] font-bold leading-tight tracking-tight text-[#2d2d2d] md:mb-5 md:text-[40px]`}

@@ -12,7 +12,7 @@ import {
   validateMessage,
 } from "@/lib/validators";
 
-const labelClass = "mb-1.5 block text-sm lg:text-[18px] font-medium text-white";
+const labelClass = "mb-1.5 block text-[16px] lg:text-[22px] font-medium text-white";
 
 const FirstNameInput = memo(({ id, value, onChange, error }) => (
   <div>
@@ -25,7 +25,7 @@ const FirstNameInput = memo(({ id, value, onChange, error }) => (
       name="firstName"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
+      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
       placeholder="First name"
       required
       aria-invalid={!!error}
@@ -46,7 +46,7 @@ const LastNameInput = memo(({ id, value, onChange, error }) => (
       name="lastName"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
+      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
       placeholder="Last name"
       required
       aria-invalid={!!error}
@@ -67,7 +67,7 @@ const EmailInput = memo(({ id, value, onChange, error }) => (
       name="email"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
+      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
       placeholder="Email"
       required
       aria-invalid={!!error}
@@ -88,7 +88,7 @@ const PhoneInput = memo(({ id, value, onChange, error }) => (
       name="phone"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
+      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
       placeholder="Phone"
       aria-invalid={!!error}
       autoComplete="tel"
@@ -108,7 +108,7 @@ const MessageInput = memo(({ id, value, onChange, error }) => (
       value={value}
       onChange={onChange}
       rows={5}
-      className={`min-h-[70px] max-h-[80px] w-full resize-y rounded-lg border border-neutral-300 bg-white px-3 py-1.5 text-sm text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
+      className={`min-h-[70px] max-h-[90px] w-full resize-y rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
       placeholder="Message"
       required
       aria-invalid={!!error}
@@ -295,10 +295,10 @@ export default function Contact14({ content, embedded = false }) {
           </div>
         ) : (
           <>
-            <h2 className="font-montserrat text-lg font-bold leading-snug text-neutral-900 md:text-xl">
+            <h2 className="font-montserrat text-lg font-bold leading-snug text-neutral-900 md:text-[25px">
               {title}
             </h2>
-            <p className="mt-2 text-sm leading-relaxed text-neutral-900/90 md:text-[15px]">{subTitle}</p>
+            <p className="mt-2 text-sm leading-relaxed text-neutral-900/90 md:text-[16px]">{subTitle}</p>
           </>
         )}
       </div>
@@ -366,7 +366,7 @@ export default function Contact14({ content, embedded = false }) {
 
   return (
     <FullContainer id="contact-us" className="relative mt-9 pb-4">
-      <Container className="relative z-10 max-w-[880px] lg:px-0!">
+      <Container className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div id="quote-form-section">{card}</div>
       </Container>
     </FullContainer>
