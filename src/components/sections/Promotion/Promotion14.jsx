@@ -88,7 +88,7 @@ const PromotionCard = ({
       {isMainCard ? (
         <a
           href={telHref}
-          className="inline-flex items-center justify-center gap-2 rounded-md bg-white text-[#f3a008] px-6 py-0.5 md:px-4 md:py-2.5 w-fit mx-auto font-semibold leading-none transition-colors"
+          className="inline-flex items-center justify-center gap-2 rounded-md bg-white text-[#f3a008] px-6 py-2 md:px-4 md:py-2.5 w-fit mx-auto font-semibold leading-none transition-colors"
         >
           <svg
             width="23"

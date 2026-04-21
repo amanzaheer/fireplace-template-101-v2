@@ -287,7 +287,7 @@ export default function BeforeAfter14({ content }) {
               </p>
             ) : null}
           </header>
-        <div className="hidden md:block pt-10">
+        <div className="hidden md:block pt-6 md:pt-10">
           <div
             className="relative overflow-hidden"
             onContextMenu={(e) => e.preventDefault()}
@@ -333,7 +333,7 @@ export default function BeforeAfter14({ content }) {
             </div>
           )}
         </div>
-        <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-5">
+        <div className="md:hidden grid grid-cols-2 md:grid-cols-4 gap-5 pt-6 md:pt-10 ">
           {items.slice(0, 2).map((item, index) => (
             <BeforeAfterSlider
               key={index}

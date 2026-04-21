@@ -339,7 +339,7 @@
                   <button
                     type="button"
                     onClick={() => handleArrowClick("prev")}
-                    className="w-10 h-10 rounded-full  border shadow flex items-center justify-center text-[#0a2a57]"
+                    className="w-6 h-6 md:w-10 md:h-10 rounded-full  border shadow flex items-center justify-center text-[#0a2a57]"
                     aria-label="Previous testimonial"
                   >
                     <ChevronLeftIcon className="w-5 h-5" />
@@ -347,7 +347,7 @@
                   <button
                     type="button"
                     onClick={() => handleArrowClick("next")}
-                    className="w-10 h-10 rounded-full  border shadow flex items-center justify-center text-[#0a2a57]"
+                    className="w-6 h-6 md:w-10 md:h-10 rounded-full  border shadow flex items-center justify-center text-[#0a2a57]"
                     aria-label="Next testimonial"
                   >
                     <ChevronRightIcon className="w-5 h-5" />
