@@ -10,7 +10,8 @@ import { Rubik } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { cn } from "@/lib/utils";
-
+import { FiveStars } from "@/components/common";
+import QuoteForm14 from "./QuoteForm/QuoteForm14";
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["700"],
@@ -24,10 +25,7 @@ function BannerCtaIcon({ className }) {
       height={38}
       viewBox="0 0 39 38"
       fill="none"
-      className={cn(
-        "  h-[20px] lg:h-[38px]  w-[20] lg:w-[39px] shrink-0",
-        className,
-      )}
+      className={cn("h-[28px] w-[29px] shrink-0", className)}
       aria-hidden
     >
       <path
@@ -38,7 +36,7 @@ function BannerCtaIcon({ className }) {
   );
 }
 
-const QuoteForm14 = dynamic(() => import("./QuoteForm/QuoteForm14"), {
+const Quote15 = dynamic(() => import("./QuoteForm/QuoteForm15"), {
   loading: () => (
     <div className="h-[420px] w-full max-w-[420px] animate-pulse rounded-2xl bg-white/80 shadow-xl lg:min-w-[360px]" />
   ),
@@ -55,17 +53,23 @@ const ICON_MAP = {
   Trophy: Star,
 };
 
+const DEFAULT_HERO_FEATURES = [
+  { icon: "Wrench", text: "Fire Place & Repair" },
+  { icon: "Clock", text: "Same Day Service" },
+  { icon: "Star", text: "5 Star Rated On Google" },
+  { icon: "Star", text: "10+ Years Of Experience" },
+  { icon: "Shield", text: "Licensed And Insured" },
+];
+
+const DEFAULT_HEADLINE = "Top-Rated Fireplace Repair & Maintenance Experts";
+const DEFAULT_SUBHEAD =
+  "Trusted Professionals in Fireplace Installation, Cleaning & Repair";
+
+/** Left se right tak linear sweep — left thoda gehra, seedha right ki taraf khulta hai */
 const BAR_GRADIENT =
-  "linear-gradient(90deg, #675B57 0%, #7a6f6a 38%, #867b75 68%, #958983 100%)";
+  "#786f6f";
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
-  if (
-    filePath.startsWith("/") ||
-    filePath.startsWith("http://") ||
-    filePath.startsWith("https://")
-  ) {
-    return filePath;
-  }
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
@@ -73,82 +77,75 @@ function buildImageSrc(base, filePath) {
 
 export default function Banner14({ content }) {
   const banner = content?.banner ?? {};
-  const data = {
-    title: banner.title,
-    tagline: banner.tagline,
-    description: banner.description,
-    heading: banner.heading,
-    list: banner.list,
-    imageTitle: banner.imageTitle,
-    altImage: banner.altImage,
-  };
-  const image =
+  const header = banner?.header?.trim() || "";
+  const barTitle = banner?.title?.trim() || banner?.heading?.trim() || "";
+  const headline = (banner.heading || banner.title || DEFAULT_HEADLINE).trim();
+  const subhead = (banner.tagline || banner.description || DEFAULT_SUBHEAD).trim();
+  const phone =
+    banner.cta_phone?.trim() ||
+    content?.contact_info?.phone?.trim() ||
+    content?.navbar?.phone?.trim() ||
+    "(800) 555-1212";
+  const telHref = phone ? `tel:${phone}` : "#";
+  const imageSrc =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
     buildImageSrc(IMAGE_BASE, "hero/hero.webp");
+  const useUnoptimized =
+    imageSrc.startsWith("/api/") ||
+    imageSrc.startsWith("http://") ||
+    imageSrc.startsWith("https://");
+
   const form_head = {
-    title: content?.banner?.form_title || "Get Your Free Quote",
-    sub_title:
-      content?.banner?.form_description || "10% Off for Online Booking",
+    title: banner.form_title || "Get Your Fireplace Fixed Today",
+    sub_title: banner.form_description || "Fast & Reliable Service",
   };
-  const features = resolveRefArray(content, banner, "features");
-  const listItems =
-    features?.length > 0
-      ? features
-      : Array.isArray(data?.list)
-        ? data.list
-            .map((item) => {
-              if (typeof item === "string") return { text: item };
-              if (item && typeof item === "object") return item;
-              return null;
-            })
-            .filter(Boolean)
-        : [];
-  const phone =
-    banner.cta_phone ??
-    content?.contact_info?.phone ??
-    content?.navbar?.phone ??
-    "";
-  const telHref = phone ? `tel:${phone}` : "#";
-  const barTitle = data?.title?.trim() || data?.heading?.trim() || "";
-  const subhead = data?.description?.trim() || data?.tagline?.trim() || "";
+
+  let features = resolveRefArray(content, banner, "features");
+  if (!Array.isArray(features) || features.length < 4) {
+    features = DEFAULT_HERO_FEATURES;
+  }
+
+  const tel = `tel:${phone.replace(/\s/g, "")}`;
 
   return (
-    <FullContainer
-      id="banner"
-      className="relative w-full overflow-hidden bg-neutral-900"
-    >
-      <div className="relative min-h-[640px] w-full lg:min-h-[720px]">
+    <FullContainer id="banner" className="relative w-full overflow-hidden bg-neutral-900">
+      <div className="relative h-full w-full py-6 lg:py-0 max-h-full overflow-hidden lg:h-[580px] lg:max-h-[580px]">
         <Image
-          src={image}
-          title={data?.imageTitle || data?.title || "Banner"}
-          alt={data?.altImage || data?.tagline || "No Banner Found"}
+          src={imageSrc}
+          alt={headline || "Hero"}
           priority
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          style={{
-            objectFit: "cover",
-            objectPosition: "center",
-          }}
+          className="object-cover object-center absolute inset-0 h-full w-full "
+          width={10000}
+          height={480}
+          unoptimized={useUnoptimized}
         />
-        <div
-          className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35"
-          aria-hidden
-        />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" aria-hidden />
 
-        <Container className="relative z-10 mx-auto max-w-7xl px-4 pb-28 pt-14 sm:px-6 sm:pb-32 sm:pt-16 lg:px-8 lg:pb-36 lg:pt-20">
-          <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-16">
-            <div className="max-w-2xl text-white lg:max-w-none">
-              <h1 className="font-montserrat text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-[1.12]">
-                {data?.heading || data?.title}
+        <Container className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center justify-center h-full">
+          <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full  ">
+            <div className=" text-white md:max-w-none flex flex-col items-center lg:items-start justify-center gap-4 w-full">
+              <div>
+
+              <h1 className="font-montserrat flex items-center gap-2 text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl  lg:leading-[1.12]">
+                <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
+                  <span>{header}</span>
+                </div>
+                <FiveStars className="" starClassName="text-[#f59a00] " />
               </h1>
+              <h1 className="max-w-lg font-montserrat text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl  lg:leading-[1.12]">
+                <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
+                  <span>{headline}</span>
+                </div>
+              </h1>
+              </div>
 
-              <p className="mt-4 max-w-xl font-barlow text-base font-medium leading-relaxed text-white/90 sm:text-lg md:mt-5 md:text-xl">
-                {data?.tagline}
+
+              <p className="max-w-xl font-barlow font-medium items-center justify-center text-center md:text-left leading-relaxed text-white/90 text-[20px] lg:text-[23px]">
+                {subhead}
               </p>
 
-              <ul className="mt-8 grid max-w-lg grid-cols-1 gap-x-10 gap-y-3 sm:grid-cols-2 sm:gap-y-3.5 md:mt-10">
-                {listItems.slice(0, 6).map((feature, idx) => {
+              <ul className="grid max-w-lg grid-cols-1 gap-x-10 gap-y-1.5 sm:grid-cols-2 sm:gap-y-2">
+                {features.slice(0, 6).map((feature, idx) => {
                   const key = feature?.icon;
                   const Icon = (key && ICON_MAP[key]) || FileText;
                   const text = feature?.text ?? feature?.title ?? "";
@@ -156,37 +153,31 @@ export default function Banner14({ content }) {
                   return (
                     <li
                       key={`${text}-${idx}`}
-                      className="flex items-start gap-3 font-barlow text-sm font-medium text-white/95 sm:text-[15px]"
+                      className="flex items-start gap-3 font-barlow font-medium text-white/95 text-[15px] lg:text-[18px]"
                     >
-                      <Icon
-                        className="mt-0.5 h-5 w-5 shrink-0 text-amber-400"
-                        strokeWidth={2}
-                        aria-hidden
-                      />
+                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" strokeWidth={2} aria-hidden />
                       <span>{text}</span>
                     </li>
                   );
                 })}
               </ul>
 
-              {phone ? (
-                <div className="mt-8 md:mt-10">
-                  <Link
-                    href={telHref}
-                    className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-3 shadow-lg transition hover:bg-neutral-100 sm:px-6 sm:py-3.5"
+              <div className="">
+                <Link
+                  href={tel}
+                  className="inline-flex items-center gap-3 rounded-xl bg-white px-5 lg:px-10 py-2 shadow-[0_0_10px_1px_rgba(0,0,0,0.4)] shadow-white transition hover:bg-neutral-100 sm:px-6 sm:py-2.5 "
+                >
+                  <BannerCtaIcon />
+                  <span
+                    className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
                   >
-                    <BannerCtaIcon />
-                    <span
-                      className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
-                    >
-                      {phone}
-                    </span>
-                  </Link>
-                </div>
-              ) : null}
+                    {phone}
+                  </span>
+                </Link>
+              </div>
             </div>
 
-            <div className="w-full justify-self-center lg:justify-self-end">
+            <div className="w-full max-w-[400px] justify-self-center px-0 md:px-5 lg:justify-self-end lg:px-8">
               <QuoteForm14
                 data={{}}
                 form_head={form_head}
@@ -220,7 +211,7 @@ export default function Banner14({ content }) {
           {phone ? (
             <Link
               href={telHref}
-              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-white px-5 py-2.5 shadow-md transition hover:bg-neutral-100"
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-white px-5 lg:px-10 py-2.5 shadow-md transition hover:bg-neutral-100"
             >
               <BannerCtaIcon />
               <span

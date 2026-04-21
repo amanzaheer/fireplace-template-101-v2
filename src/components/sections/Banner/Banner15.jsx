@@ -67,7 +67,7 @@ const DEFAULT_SUBHEAD =
 
 /** Left se right tak linear sweep — left thoda gehra, seedha right ki taraf khulta hai */
 const BAR_GRADIENT =
-  "linear-gradient(90deg, #675B57 0%, #7a6f6a 38%, #867b75 68%, #958983 100%)";
+  "#62370c";
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
@@ -77,8 +77,15 @@ function buildImageSrc(base, filePath) {
 
 export default function Banner15({ content }) {
   const banner = content?.banner ?? {};
+  const barTitle = banner?.title?.trim() || banner?.heading?.trim() || "";
   const headline = (banner.heading || banner.title || DEFAULT_HEADLINE).trim();
   const subhead = (banner.tagline || banner.description || DEFAULT_SUBHEAD).trim();
+  const phone =
+    banner.cta_phone?.trim() ||
+    content?.contact_info?.phone?.trim() ||
+    content?.navbar?.phone?.trim() ||
+    "(800) 555-1212";
+  const telHref = phone ? `tel:${phone}` : "#";
   const imageSrc =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
     buildImageSrc(IMAGE_BASE, "hero/hero.webp");
@@ -97,11 +104,6 @@ export default function Banner15({ content }) {
     features = DEFAULT_HERO_FEATURES;
   }
 
-  const phone =
-    banner.cta_phone?.trim() ||
-    content?.contact_info?.phone?.trim() ||
-    content?.navbar?.phone?.trim() ||
-    "(800) 555-1212";
   const tel = `tel:${phone.replace(/\s/g, "")}`;
 
   return (
@@ -120,26 +122,22 @@ export default function Banner15({ content }) {
 
         <Container className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center justify-center h-full">
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full  ">
-            <div className="max-w-2xl text-white md:max-w-none flex flex-col items-center lg:items-start justify-center gap-4 w-full">
-              <h1 className="font-montserrat font-bold leading-tight tracking-tight text-4xl md:text-5xl lg:text-[52px] lg:leading-[58px]">
-                <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
-                  {(() => {
-                    const words = headline.trim().split(/\s+/).filter(Boolean);
-                    const lead = words.slice(0, 2).join(" ");
-                    const tail = words.slice(2).join(" ");
-                    return (
-                      <>
-                        <span>{lead || headline}</span>
-                        <div className="mt-2">
+            <div className=" text-white md:max-w-none flex flex-col items-center lg:items-start justify-center gap-4 w-full">
+              <div>
 
-                        <FiveStars className="" starClassName="text-[#f59a00] text-[16px]!" />
-                        </div>
-                        {tail ? <span>{tail}</span> : null}
-                      </>
-                    );
-                  })()}
+              <h1 className="font-montserrat flex items-center gap-2 text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl  lg:leading-[1.12]">
+                <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
+                  <span>Top-Rated</span>
+                </div>
+                <FiveStars className="" starClassName="text-[#f59a00] " />
+              </h1>
+              <h1 className="max-w-lg font-montserrat text-3xl font-bold leading-tight tracking-tight sm:text-4xl md:text-5xl  lg:leading-[1.12]">
+                <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
+                  <span>{headline}</span>
                 </div>
               </h1>
+              </div>
+
 
               <p className="max-w-xl font-barlow font-medium items-center justify-center text-center md:text-left leading-relaxed text-white/90 text-[20px] lg:text-[23px]">
                 {subhead}
@@ -166,7 +164,7 @@ export default function Banner15({ content }) {
               <div className="">
                 <Link
                   href={tel}
-                  className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-2 shadow-[0_0_10px_1px_rgba(0,0,0,0.4)] shadow-white transition hover:bg-neutral-100 sm:px-6 sm:py-2.5 "
+                  className="inline-flex items-center gap-3 rounded-xl bg-white px-5 lg:px-10 py-2 shadow-[0_0_10px_1px_rgba(0,0,0,0.4)] shadow-white transition hover:bg-neutral-100 sm:px-6 sm:py-2.5 "
                 >
                   <BannerCtaIcon />
                   <span
@@ -191,25 +189,37 @@ export default function Banner15({ content }) {
       </div>
 
       <div
-        className="relative z-10 w-full border-t bg-[#62370c] border-black/10 px-4 py-6 sm:px-6 lg:px-10"
-       
+        className="relative z-5 w-full border-t border-black/10 px-4 py-4 sm:px-6 lg:px-8"
+        style={{ background: BAR_GRADIENT }}
       >
-        <Container className="mx-auto  flex w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
-          <p className="text-center font-barlow text-base flex flex-col items-start text-white md:text-left md:text-lg">
-            <span className="font-bold text-2xl md:text-3xl lg:text-4xl">Professional Fireplace Service</span>{" "}
-            <span className="font-medium text-white/90 text-xl md:text-2xl lg:text-3xl">in the Comfort of Your Home</span>
-          </p> 
-          <Link
-                  href={tel}
-                  className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-2  transition hover:bg-neutral-100 sm:px-6 sm:py-2.5 "
-                >
-                  <BannerCtaIcon />
-                  <span
-                    className={`${rubik.className} text-[24px] lg:text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
-                  >
-                    {phone}
-                  </span>
-                </Link>
+        <Container className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
+          {barTitle || subhead ? (
+            <div className="text-center md:text-left">
+              {barTitle ? (
+                <p className="font-montserrat text-2xl lg:text-5xl font-bold leading-tight text-white">
+                  {barTitle}
+                </p>
+              ) : null}
+              {subhead ? (
+                <p className="font-barlow   text-xl lg:text-2xl my-4 leading-snug text-white/95 ">
+                  {subhead}
+                </p>
+              ) : null}
+            </div>
+          ) : null}
+          {phone ? (
+            <Link
+              href={telHref}
+              className="inline-flex shrink-0 items-center gap-2.5 rounded-xl bg-white px-5 lg:px-10 py-2.5 shadow-md transition hover:bg-neutral-100"
+            >
+              <BannerCtaIcon />
+              <span
+                className={`${rubik.className}  text-[16px] lg:text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+              >
+                {phone}
+              </span>
+            </Link>
+          ) : null}
         </Container>
       </div>
     </FullContainer>

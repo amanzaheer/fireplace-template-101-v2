@@ -84,7 +84,7 @@ export default function Footer15({ content }) {
     typeof navbar?.tagline === "string" && navbar.tagline.trim()
       ? navbar.tagline.trim()
       : "Safe, Reliable & Trustable";
-
+ const statement = footer.value ?? footer.statement ?? "";
   const phoneRaw =
     contactInfo.phone ?? navbar.phone ?? STATIC_PHONE_DISPLAY_FALLBACK;
   const phoneDisplay =
@@ -144,7 +144,9 @@ export default function Footer15({ content }) {
                   </Link>
                 ))}
               </nav>
-
+              {statement ? (
+                <p className="text-white/95 text-[14px] md:text-[14px] max-w-[620px] leading-relaxed mt-4">{statement}</p>
+              ) : null}
               <div className="flex pt-12 flex-wrap gap-2 sm:gap-3  ">
                 {trustBadgeSrcs.map((src, index) =>
                   src ? (
