@@ -14,7 +14,18 @@ import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { cn } from "@/lib/utils";
+import FiveStars from "@/components/common/FiveStars";
+import { Archivo } from "next/font/google";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const archivo = Archivo({
+  subsets: ["latin", "italian"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 const testimonialsHeadingFont = Montserrat({
   subsets: ["latin"],
   weight: ["700", "800"],
@@ -63,6 +74,7 @@ function buildImageSrc(base, filePath) {
 
 export default function Testimonials14({ content }) {
   const data = content?.testimonials ?? {};
+  const logo = content?.navbar?.logo ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];
 
   const [activeIndex, setActiveIndex] = useState(0);
@@ -280,57 +292,26 @@ export default function Testimonials14({ content }) {
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.45fr] gap-6 md:gap-8 items-center">
-          <div className="text-white px-2 md:px-4">
-            <div className="mb-1 leading-none">
-              <TestimonialsQuoteIcon className="h-[41px] w-[49px]" />
+          <div className="w-full lg:w-[240px] h-full shrink-0 text-white mt-10 lg:mt-20 ">
+            <div className="mb-2">
+              <TestimonialsQuoteIcon className="w-10 h-10 text-[#f59a00]" />
             </div>
-            <h3
-              className={cn(
-                chimneyFont.className,
-                "text-[clamp(2.25rem,7vw,4rem)] font-extrabold leading-[0.95] text-[#FFFFFF] md:text-[64px]",
-              )}
-            >
-              {leftTitle}
-            </h3>
-            <p
-              className={cn(
-                testimonialsHeadingFont.className,
-                "mt-1 text-[44px] font-bold leading-tight text-[#FFFFFF]",
-              )}
-            >
-              {leftSubtitle}
+            <p className={`${poppins.className} font-extrabold text-[24px] md:text-[33px] leading-tight mb-3 capitalize`}>
+              {logo?.logoText}
             </p>
-
-            <div className="flex items-center gap-1 mt-4">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span key={star} className="text-[#ffb13a] text-2xl">
-                  ★
-                </span>
-              ))}
-            </div>
-            <p className="mt-4 text-3xl font-bold">
-              {active?.name || "Mr. John Doe"}
+            <FiveStars className="mb-2" starClassName="text-[#f59a00] text-[21px]!" />
+            <p className={`${archivo.className} text-white font-extrabold text-[18px] md:text-[21px] leading-none`}>
+              {testimonialsWithAvatars[activeIndex]?.name}
             </p>
-            <p className="text-sm md:text-base font-semibold text-white/85 uppercase">
+            <p className={`${archivo.className} text-white/80 text-[12px] md:text-[14px] font-semibold uppercase tracking-[0.12em]`}>
               Clients
             </p>
           </div>
 
           <div className="bg-[#e7e5e4]/80 p-4 shadow-[0_16px_48px_rgba(0,0,0,0.18)] backdrop-blur-[2px] rounded-[18px]  md:p-7 ">
-            <div className="flex items-center gap-1 mb-3">
-              {[1, 2, 3, 4, 5].map((star) => (
-                <span key={star} className="text-[#f4a52f] text-2xl">
-                  ★
-                </span>
-              ))}
-            </div>
-            <p
-              className={cn(
-                testimonialsReviewFont.className,
-                "min-h-[84px] text-[20px] italic leading-[1.45] text-black",
-              )}
-            >
-              &ldquo;{quoteText}&rdquo;
+            <FiveStars className="mb-2" starClassName="text-[#f59a00] text-[21px]!" />
+            <p className={`${archivo.className} text-black italic font-normal text-[16px] md:text-[18px]  leading-[1.45] flex-1`}>
+              &ldquo;{active?.quote || active?.text}&rdquo;
             </p>
 
             <div className="mt-5 flex items-center justify-between gap-4">

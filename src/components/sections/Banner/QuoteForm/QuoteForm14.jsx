@@ -9,7 +9,7 @@ import {
   validateName,
   validateMessage,
 } from "@/lib/validators";
-import { Poppins, Inter } from "next/font/google";
+import {Poppins, Inter } from "next/font/google";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -211,9 +211,7 @@ export default function QuoteForm14({
       const result = await response.json();
 
       if (!response.ok) {
-        throw new Error(
-          result.message || `HTTP error! status: ${response.status}`,
-        );
+        throw new Error(result.message || `HTTP error! status: ${response.status}`);
       }
 
       if (result.success === false) {
@@ -222,12 +220,9 @@ export default function QuoteForm14({
           result.errors.forEach((error) => {
             if (error.includes("First name")) serverErrors.firstName = error;
             else if (error.includes("Last name")) serverErrors.lastName = error;
-            else if (error.includes("Email") || error.includes("email"))
-              serverErrors.email = error;
-            else if (error.includes("Phone") || error.includes("phone"))
-              serverErrors.phone = error;
-            else if (error.includes("Message") || error.includes("message"))
-              serverErrors.message = error;
+            else if (error.includes("Email") || error.includes("email")) serverErrors.email = error;
+            else if (error.includes("Phone") || error.includes("phone")) serverErrors.phone = error;
+            else if (error.includes("Message") || error.includes("message")) serverErrors.message = error;
           });
           setFieldErrors((prev) => ({ ...prev, ...serverErrors }));
           throw new Error("Please fix the validation errors above");
@@ -238,7 +233,7 @@ export default function QuoteForm14({
       fireGTMEvent(formData);
       toast.success(
         result.message ||
-          "Your request has been submitted successfully! We'll contact you shortly.",
+          "Your request has been submitted successfully! We'll contact you shortly."
       );
       setFormSubmitted(true);
     } catch (err) {
@@ -253,24 +248,21 @@ export default function QuoteForm14({
     <div
       className={`relative h-fit font-barlow ${
         isHero
-          ? "rounded-2xl border border-white/55 bg-[#e7e5e4]/80 p-4 shadow-[0_16px_48px_rgba(0,0,0,0.18)] backdrop-blur-[2px] md:p-6"
-          : "rounded-[15px] bg-gray-100 shadow-[0_0_10px_rgba(0,0,0,0.4)]"
+          ? "rounded-2xl border border-white/50 bg-white/80 p-2 py-4 md:py-6 md:pb-8 shadow-[0_16px_48px_rgba(0,0,0,0.2)] md:p-3"
+          : "rounded-[15px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)]"
       }`}
     >
       {!formSubmitted && (
         <>
           {isHero ? (
-            <div className="mb-4 flex w-full flex-col border-b border-neutral-500/30 pb-4">
+            <div className="mb-4 flex w-full flex-col ">
               <h3
-                className={`${poppins.className} flex min-h-[66px] w-full shrink-0 items-center justify-center self-stretch text-center font-bold not-italic text-black`}
-                style={{ fontSize: "28.07px", lineHeight: "30.1px" }}
+                className={`${poppins.className} flex min-h-[66px] text-lg md:text-[28px] leading-5 md:leading-[30px]  w-full shrink-0 items-center justify-center self-stretch text-center font-bold not-italic text-black`}
               >
                 {form_head?.title}
               </h3>
               {form_head?.sub_title ? (
-                <p
-                  className={`${inter.className} mt-1.5 text-center text-sm font-medium text-neutral-800 sm:text-base`}
-                >
+                <p className={`${inter.className} text-sm md:text-[16px] text-center font-medium text-neutral-600 `}>
                   {form_head?.sub_title}
                 </p>
               ) : null}
@@ -279,14 +271,14 @@ export default function QuoteForm14({
             <>
               <div className="bg-[#c92028] px-2 py-3 md:px-2.5">
                 <h3
-                  className={`${poppins.className} mb-2 px-2.5 text-center text-3xl font-bold leading-7 text-white md:text-[34px] md:leading-[30px]`}
+                  className={`${poppins.className} px-2.5 text-xl text-center font-bold leading-7 text-white md:text-[34px] md:leading-[30px]`}
                 >
                   {form_head?.title}
                 </h3>
               </div>
               <div>
                 <h4
-                  className={`${inter.className} text-ink text-center pt-2 text-lg font-medium text-black md:text-xl`}
+                  className={`${inter.className} text-ink pt-2 text-center text-lg font-medium text-black md:text-xl`}
                 >
                   {form_head?.sub_title}
                 </h4>
@@ -297,14 +289,13 @@ export default function QuoteForm14({
       )}
 
       {formSubmitted ? (
-        <div className="flex flex-col items-center justify-center text-center py-6  px-4 md:px-7 ">
+        <div className="flex flex-col items-center justify-center text-center py-2  px-4 md:px-7 ">
           <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
           <h3 className="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
           <p className="text-gray-600 max-w-md mb-6">
-            Your request has been submitted successfully. We&apos;ll contact you
-            shortly with your personalized quote.
+            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
           </p>
           <button
             type="button"
@@ -317,13 +308,11 @@ export default function QuoteForm14({
       ) : (
         <form
           onSubmit={handleSubmit}
-          className={`space-y-2.5 text-base text-black md:text-lg ${isHero ? "px-0 py-0" : "px-2 py-2 md:px-2.5 md:py-3"}`}
+          className={`space-y-2.5 text-base text-black md:text-lg `}
         >
           <div className="grid grid-cols-2 gap-[8px]">
             <div>
-              <label htmlFor="firstName" className="sr-only">
-                First name
-              </label>
+              <label htmlFor="firstName" className="sr-only">First name</label>
               <input
                 type="text"
                 id="firstName"
@@ -331,12 +320,8 @@ export default function QuoteForm14({
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full rounded-lg border py-3 pl-3 outline-none placeholder:text-gray-400 md:rounded-xl ${
-                  fieldErrors.firstName
-                    ? "border-red-500"
-                    : isHero
-                      ? "border-neutral-700 bg-[#e7e5e4]"
-                      : "border-[#bdbdbd] bg-white"
+                className={`w-full rounded-sm text-[16px] border bg-transparent py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+                  fieldErrors.firstName ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
                 }`}
                 placeholder="First name"
                 required
@@ -349,9 +334,7 @@ export default function QuoteForm14({
               )}
             </div>
             <div>
-              <label htmlFor="lastName" className="sr-only">
-                Last name
-              </label>
+              <label htmlFor="lastName" className="sr-only">Last name</label>
               <input
                 type="text"
                 id="lastName"
@@ -359,28 +342,22 @@ export default function QuoteForm14({
                 value={formData.lastName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full rounded-lg border py-3 pl-3 outline-none placeholder:text-gray-400 md:rounded-xl ${
-                  fieldErrors.lastName
-                    ? "border-red-500"
-                    : isHero
-                      ? "border-neutral-700 bg-[#e7e5e4]"
-                      : "border-[#bdbdbd] bg-white"
+                className={`w-full rounded-sm text-[16px] border bg-transparent py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+                  fieldErrors.lastName ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
                 }`}
                 placeholder="Last name"
                 required
                 aria-invalid={!!fieldErrors.lastName}
               />
               {fieldErrors.lastName && (
-                <div className="text-red-500 text-sm font-medium mt-1">
+                <div className="text-[#cf1f21] text-sm font-medium mt-1">
                   {fieldErrors.lastName}
                 </div>
               )}
             </div>
           </div>
 
-          <label htmlFor="phone" className="sr-only">
-            Phone number
-          </label>
+          <label htmlFor="phone" className="sr-only">Phone number</label>
           <input
             type="tel"
             id="phone"
@@ -388,26 +365,18 @@ export default function QuoteForm14({
             value={formData.phone}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`w-full rounded-lg border py-3 pl-3 outline-none placeholder:text-gray-400 md:rounded-xl ${
-              fieldErrors.phone
-                ? "border-red-500"
-                : isHero
-                  ? "border-neutral-700 bg-[#e7e5e4]"
-                  : "border-[#bdbdbd] bg-white"
+            className={`w-full rounded-sm text-[16px] border bg-transparent py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+              fieldErrors.phone ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
             }`}
             placeholder="Phone No."
             required
             aria-invalid={!!fieldErrors.phone}
           />
           {fieldErrors.phone && (
-            <div className="text-red-500 text-sm font-medium">
-              {fieldErrors.phone}
-            </div>
+            <div className="text-[#cf1f21] text-sm font-medium">{fieldErrors.phone}</div>
           )}
 
-          <label htmlFor="email" className="sr-only">
-            Email
-          </label>
+          <label htmlFor="email" className="sr-only">Email</label>
           <input
             type="email"
             id="email"
@@ -415,26 +384,18 @@ export default function QuoteForm14({
             value={formData.email}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.email
-                ? "border-red-500"
-                : isHero
-                  ? "border-neutral-700 bg-[#e7e5e4]"
-                  : "border-[#bdbdbd] bg-white"
+            className={`w-full rounded-sm text-[16px] border bg-transparent py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+              fieldErrors.email ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
             }`}
             placeholder="your@email.com"
             required
             aria-invalid={!!fieldErrors.email}
           />
           {fieldErrors.email && (
-            <div className="text-red-500 text-sm font-medium">
-              {fieldErrors.email}
-            </div>
-          )}
+            <div className="text-[#cf1f21] text-sm font-medium">{fieldErrors.email}</div>
+          )}    
 
-          <label htmlFor="message" className="sr-only">
-            Message
-          </label>
+          <label htmlFor="message" className="sr-only">Message</label>
           <textarea
             id="message"
             name="message"
@@ -442,29 +403,23 @@ export default function QuoteForm14({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={4}
-            className={`w-full max-h-[140px] resize-none rounded-lg border py-3 pl-3 outline-none placeholder:text-gray-400 md:rounded-xl ${
-              fieldErrors.message
-                ? "border-red-500"
-                : isHero
-                  ? "border-neutral-700 bg-[#e7e5e4]"
-                  : "border-[#bdbdbd] bg-white"
+              className={`w-full max-h-[60px] resize-none rounded-sm text-[16px] border bg-transparent py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+              fieldErrors.message ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
             }`}
             placeholder="Message"
             required
             aria-invalid={!!fieldErrors.message}
           />
           {fieldErrors.message && (
-            <div className="text-red-500 text-sm font-medium">
-              {fieldErrors.message}
-            </div>
+            <div className="text-[#cf1f21] text-sm font-medium">{fieldErrors.message}</div>
           )}
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-3 font-montserrat font-bold uppercase tracking-wide text-white transition-colors duration-200 ${
+            className={`flex w-full cursor-pointer items-center justify-center gap-2 px-6 py-2 font-montserrat font-normal uppercase tracking-wide text-white transition-colors duration-200 ${
               isHero
-                ? "rounded-lg bg-[#8f878a] text-sm hover:bg-[#7d7578] md:text-base"
+                ? "rounded-sm bg-[#786f6f] text-sm hover:bg-[#786f6f]/90 md:text-base"
                 : "rounded-full bg-[#cf1f21] text-lg font-medium hover:bg-[#c92028]/90 md:text-xl"
             }`}
           >
@@ -474,11 +429,7 @@ export default function QuoteForm14({
                 Submitting...
               </>
             ) : (
-              <span
-                className={
-                  isHero ? "text-sm md:text-base" : "text-xl md:text-2xl"
-                }
-              >
+              <span className={isHero ? "text-sm md:text-base" : "text-xl md:text-2xl"}>
                 {isHero ? "SUBMIT" : "Submit"}
                 {showArrowInButton && (
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />

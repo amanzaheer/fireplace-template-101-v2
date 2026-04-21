@@ -123,8 +123,7 @@ export default function WhyChoose14({ content }) {
   const subheading = (
     block.description ??
     block.subheading ??
-    block.tagline ??
-    ""
+    block.tagline 
   )
     .toString()
     .trim();
@@ -149,7 +148,7 @@ export default function WhyChoose14({ content }) {
     >
       <Container className="px-4 sm:px-6 lg:px-8">
         <div className="inline-flex w-full min-w-0 flex-col items-center gap-[53px]">
-          <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+        <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
             <h2
               className={`${poppins.className} w-full self-stretch text-center text-[28px] font-medium leading-[34px] text-black sm:text-[36px] sm:leading-[44px] md:text-[44px] md:leading-[53px]`}
             >
@@ -157,7 +156,7 @@ export default function WhyChoose14({ content }) {
             </h2>
             {subheading ? (
               <p
-                className={`${rubik.className} mt-3 text-base font-normal leading-relaxed text-neutral-600 sm:mt-4 sm:text-lg md:text-xl`}
+                className={`${rubik.className} mt-3 text-base font-normal leading-tight text-black sm:text-lg md:text-lg`}
               >
                 {subheading}
               </p>

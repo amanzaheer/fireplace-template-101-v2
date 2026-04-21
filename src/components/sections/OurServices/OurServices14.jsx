@@ -4,17 +4,12 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Poppins } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import md from "@/lib/markdown";
-
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-  display: "swap",
-});
+import { Poppins } from "next/font/google";
+import { Rubik } from "next/font/google";
 
 /** Replace [service] token with the item's own title. */
 function resolveServiceTag(str, title) {
@@ -31,8 +26,6 @@ function markdownPreview(str) {
 const MAX_DISPLAY = 8;
 const BLUR_DATA_URL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
-const CARD_CONTENT_TEXT_CLASS =
-  "w-[357px] max-w-full text-left text-[14px] font-normal not-italic leading-[22.15px] text-[#6E6E6E]";
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -45,10 +38,22 @@ function trimStr(v) {
   return typeof v === "string" && v.trim() ? v.trim() : "";
 }
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
 export default function OurServices14({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const ourServices = content?.our_services;
   const servicesFromNav = content?.services ?? [];
+  const subtitle = ourServices?.subtitle ?? "";
 
   const services = useMemo(() => {
     if (Array.isArray(ourServices?.items) && ourServices.items.length > 0) {
@@ -79,6 +84,13 @@ export default function OurServices14({ content }) {
     () => (Array.isArray(services) ? services.slice(0, MAX_DISPLAY) : []),
     [services],
   );
+  const serviceColumns = useMemo(() => {
+    const columns = [[], [], []];
+    displayServices.forEach((service, index) => {
+      columns[index % 3].push(service);
+    });
+    return columns;
+  }, [displayServices]);
 
   if (!displayServices.length) return null;
 
@@ -92,20 +104,22 @@ export default function OurServices14({ content }) {
 
   return (
     <FullContainer id="our_services" className="bg-[#fafafa] py-12 md:py-16 lg:py-20">
-      <Container className="px-4 sm:px-6 lg:px-8">
-        <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
-          <h2
-            className={`${poppins.className} self-stretch text-center text-[44px] font-medium not-italic leading-[93.872px] text-[#2D2D2D] capitalize`}
-          >
-            {title}
-          </h2>
-          {sectionSub ? (
-            <p className="mt-3 font-barlow text-sm leading-relaxed text-neutral-600 sm:text-base md:mt-4 md:text-[17px]">
-              {sectionSub}
-            </p>
-          ) : null}
-        </header>
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-7 lg:grid-cols-3 lg:gap-8">
+      <Container className=" mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+      <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+            <h2
+              className={`${poppins.className} w-full self-stretch text-center text-[28px] font-medium leading-[34px] text-black sm:text-[36px] sm:leading-[44px] md:text-[44px] md:leading-[53px]`}
+            >
+              {title}
+            </h2>
+            {subtitle ? (
+              <p
+                className={`${rubik.className} mt-3 text-base font-normal leading-tight text-black sm:text-lg md:text-lg`}
+              >
+                {subtitle}
+              </p>
+            ) : null}
+          </header>
+        <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3 lg:gap-5 pt-10">
           {displayServices.map((service) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
@@ -115,7 +129,7 @@ export default function OurServices14({ content }) {
                 key={service.id}
                 className="flex h-full flex-col overflow-hidden rounded-[10px] bg-white shadow-[0_2px_20px_rgba(15,23,42,0.07)] ring-1 ring-neutral-200/80 transition-shadow duration-200 hover:shadow-[0_6px_28px_rgba(15,23,42,0.1)]"
               >
-                <div className="relative aspect-[5/4] w-full shrink-0 bg-neutral-200">
+                <div className="relative aspect-32/23 w-full shrink-0 bg-neutral-200">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
@@ -135,8 +149,8 @@ export default function OurServices14({ content }) {
                     </div>
                   )}
                 </div>
-                <div className="flex flex-1 flex-col gap-3 p-6 md:gap-3.5 md:p-7">
-                  <h3 className="text-left font-poppins text-[21.095px] font-medium not-italic leading-[36.916px] text-[#2D2D2D]">
+                <div className="flex flex-1 flex-col gap-3 p-3 md:gap-3 md:p-3">
+                  <h3 className="text-left font-montserrat text-lg md:text-[21px] font-bold leading-snug text-neutral-900 ">
                     {service.path && service.path !== "#" ? (
                       <Link
                         href={service.path}
@@ -150,19 +164,19 @@ export default function OurServices14({ content }) {
                   </h3>
                   {service.description ? (
                     <div
-                      className={`flex-1 ${poppins.className} ${CARD_CONTENT_TEXT_CLASS} [&_*]:font-inherit [&_*]:text-[#6E6E6E] [&_*]:leading-[22.15px] [&_p]:m-0 [&_ul]:m-0 [&_ol]:m-0 [&_li]:m-0`}
+                      className="flex-1 text-left font-poppins text-[9px] font-normal leading-relaxed text-gray-700 [&_p]:m-0 [&_p]:font-poppins [&_p]:text-[14px] [&_p]:font-normal [&_p]:leading-relaxed [&_p]:text-[#6e6e6e] [&_a]:text-[#6e6e6e] [&_strong]:font-semibold"
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
                     />
                   ) : (
-                    <p className={`flex-1 ${poppins.className} ${CARD_CONTENT_TEXT_CLASS}`}>
+                    <p className="flex-1 text-left font-poppins text-[9px] font-normal leading-relaxed text-gray-400">
                       No description provided.
                     </p>
                   )}
                   <a
                     href={phone ? `tel:${phone}` : "#"}
-                    className="mt-auto flex w-[217.278px] items-center justify-center gap-[21.095px] rounded-[12px] bg-[#786F6F] px-[40.08px] py-[12.657px] font-montserrat text-[13px] font-bold uppercase tracking-wide text-white transition-colors hover:bg-[#6d6565]"
+                    className="mt-auto inline-flex w-fit mb-3 items-center gap-2 rounded-lg bg-[#786f6f] px-5 py-2.5 font-montserrat text-[11px] md:text-[14px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#786f6f]/90 sm:px-6 sm:py-3 sm:text-xs"
                   >
                     <span>Call us today</span>
                     <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2.5} aria-hidden />

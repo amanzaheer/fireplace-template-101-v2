@@ -1,11 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { Poppins, Rubik } from "next/font/google";
+import { Montserrat, Poppins, Rubik } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -76,6 +81,8 @@ function pickFeatureList(block, content) {
   const resolved = resolveRefArray(content, block, "features");
   return (
     firstNonEmptyArray(
+      block.keyFeatures,
+      block.KeyFeatures,
       resolved,
       block.features,
       block.items,
@@ -133,15 +140,14 @@ function getStepParts(feature, index) {
   return { title: `Step ${index + 1}`, description: "" };
 }
 
-export default function WhyChoose14({ content }) {
+export default function WhyChoose15({ content }) {
   const block = content?.why_choose ?? {};
   const features = pickFeatureList(block, content);
   const heading = (block.heading ?? "How We Can Help").trim();
   const subheading = (
     block.description ??
     block.subheading ??
-    block.tagline ??
-    "Simple, seamless, and stress-free fireplace service in 4 easy steps."
+    block.tagline 
   )
     .toString()
     .trim();
@@ -156,60 +162,60 @@ export default function WhyChoose14({ content }) {
     <FullContainer id="whychooseus" className="bg-white py-14 md:py-20 lg:py-24">
       <Container className="px-4 sm:px-6 mx-auto w-full max-w-7xl lg:px-8">
         <div className="inline-flex w-full min-w-0 flex-col items-center gap-[53px]">
-          <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
+        <header className="mx-auto flex w-full max-w-3xl flex-col items-center text-center">
             <h2
-              className={`${poppins.className} w-full self-stretch text-center text-3xl md:text-[35.5px] font-normal text-[#2d2d2d] tracking-tight`}
+              className={`${poppins.className} w-full self-stretch text-center text-[28px] font-medium leading-[34px] text-black sm:text-[36px] sm:leading-[44px] md:text-[44px] md:leading-[53px]`}
             >
               {heading}
             </h2>
             {subheading ? (
               <p
-                className={`${rubik.className}  text-xs font-normal leading-relaxed text-[#2d2d2d] sm:text-[13px] md:text-sm`}
+                className={`${rubik.className} mt-3 text-base font-normal leading-tight text-black sm:text-lg md:text-lg`}
               >
                 {subheading}
               </p>
             ) : null}
           </header>
 
-          <div className="mx-auto grid w-full min-w-0 max-w-[1080px] self-stretch gap-8 md:grid-cols-2 md:items-center md:gap-3 lg:gap-4">
+          <div className="mx-auto grid w-full min-w-0 max-w-[1080px] self-stretch gap-8 md:grid-cols-2 md:items-center md:gap-3 lg:gap-9">
             <div className=" border-l-3 border-[#4c2477] relative py-4">
 
-            <ul className="flex w-full min-w-0 list-none flex-col justify-center pl-3 lg:pl-5 gap-6 self-stretch p-0 md:gap-7">
-              <div className="h-[30%] w-[3px] absolute left-0 -translate-x-[3px] bottom-0 bg-[#f59402]"></div>
-              {features.map((feature, idx) => {
-                const { title, description } = getStepParts(feature, idx);
-                if (!title && !description) return null;
-                return (
-                  <li
-                    key={idx}
-                    className="flex items-center gap-3.5 sm:gap-4"
-                  >
-                    <StepCheckIcon className="h-[38px] w-[38px] shrink-0 aspect-square" />
-                    <div className="flex min-w-0 flex-1 flex-col items-stretch text-left">
-                      {title ? (
-                        <h3
-                          className={`${rubik.className} text-base font-bold text-[#2d2d2d] sm:text-lg`}
-                        >
-                          {title}
-                        </h3>
-                      ) : null}
-                      {description ? (
-                        <p
-                          className={`${rubik.className} mt-1 text-sm font-normal leading-relaxed text-[#2d2d2d] sm:text-[16px] ${title ? "" : "mt-0 text-lg font-medium text-black sm:text-xl"
-                            }`}
-                        >
-                          {description}
-                        </p>
-                      ) : null}
-                    </div>
-                  </li>
-                );
-              })}
-            </ul>
+              <ul className="flex w-full min-w-0 list-none flex-col justify-center pl-3 lg:pl-5 gap-6 self-stretch p-0 md:gap-6">
+                <div className="h-[30%] w-[3px] absolute left-0 -translate-x-[3px] bottom-0 bg-[#f59402]"></div>
+                {features.map((feature, idx) => {
+                  const { title, description } = getStepParts(feature, idx);
+                  if (!title && !description) return null;
+                  return (
+                    <li
+                      key={idx}
+                      className="flex items-start gap-3.5 sm:gap-4"
+                    >
+                      <StepCheckIcon className="h-[38px] w-[38px] shrink-0 aspect-square" />
+                      <div className="flex min-w-0 flex-1 flex-col items-stretch text-left">
+                        {title ? (
+                          <h3
+                            className={`${poppins.className} text-base font-medium text-[#2d2d2d] sm:text-lg`}
+                          >
+                            {title}
+                          </h3>
+                        ) : null}
+                        {description ? (
+                          <p
+                            className={`${montserrat.className} mt-1 text-sm font-normal leading-relaxed text-[#000000] sm:text-[13px] ${title ? " " : "mt-0 text-lg font-medium text-black sm:text-xl"
+                              }`}
+                          >
+                            {description}
+                          </p>
+                        ) : null}
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
 
             <div className="relative min-h-[280px] w-full min-w-0 md:min-h-0">
-              <div className="relative aspect-[4/5] w-full overflow-hidden rounded-[20px] bg-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.08)] sm:rounded-[24px] md:aspect-auto md:h-[clamp(320px,46vh,460px)] md:rounded-[36px] lg:h-[clamp(340px,48vh,500px)] lg:rounded-[40px]">
+              <div className="relative aspect-4/5 w-full overflow-hidden rounded-[20px] bg-neutral-200 shadow-[0_12px_40px_rgba(0,0,0,0.08)] sm:rounded-[24px] md:aspect-auto md:h-[clamp(320px,46vh,460px)] md:rounded-[36px] lg:h-[clamp(340px,48vh,500px)] lg:rounded-[40px]">
                 {imageSrc ? (
                   <Image
                     src={imageSrc}

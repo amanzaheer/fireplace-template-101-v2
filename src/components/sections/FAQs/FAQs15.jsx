@@ -46,7 +46,7 @@ export default function FAQs15({ content }) {
   return (
     <FullContainer className="bg-[#ffffff] py-10 md:py-16" id="faqs">
       <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[55%_45%]">
           <div className="">
             <h2 className="font-montserrat text-3xl font-bold leading-tight text-neutral-900 md:text-[42px]">
               {faqTitle}
