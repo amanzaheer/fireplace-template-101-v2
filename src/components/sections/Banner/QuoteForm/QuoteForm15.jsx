@@ -248,7 +248,7 @@ export default function QuoteForm14({
     <div
       className={`relative h-fit font-barlow ${
         isHero
-          ? "rounded-2xl border border-white/50 bg-white/95 p-2 shadow-[0_16px_48px_rgba(0,0,0,0.2)] backdrop-blur-sm md:p-3"
+          ? "rounded-2xl border border-white/50 bg-white/95 p-2 py-4 md:py-6 md:pb-8 shadow-[0_16px_48px_rgba(0,0,0,0.2)] backdrop-blur-sm md:p-3"
           : "rounded-[15px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)]"
       }`}
     >
@@ -257,12 +257,12 @@ export default function QuoteForm14({
           {isHero ? (
             <div className="mb-4 flex w-full flex-col ">
               <h3
-                className={`${poppins.className} flex min-h-[66px] text-lg md:text-[22px] leading-5  w-full shrink-0 items-center justify-center self-stretch text-center font-bold not-italic text-black`}
+                className={`${poppins.className} flex min-h-[66px] text-lg md:text-[28px] leading-5 md:leading-[30px]  w-full shrink-0 items-center justify-center self-stretch text-center font-bold not-italic text-black`}
               >
                 {form_head?.title}
               </h3>
               {form_head?.sub_title ? (
-                <p className={`${inter.className} text-sm text-center font-medium text-neutral-600 `}>
+                <p className={`${inter.className} text-sm md:text-[16px] text-center font-medium text-neutral-600 `}>
                   {form_head?.sub_title}
                 </p>
               ) : null}
@@ -320,7 +320,7 @@ export default function QuoteForm14({
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full rounded-sm text-[14px] border bg-white py-1 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+                className={`w-full rounded-sm text-[16px] border bg-white py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
                   fieldErrors.firstName ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
                 }`}
                 placeholder="First name"
@@ -342,7 +342,7 @@ export default function QuoteForm14({
                 value={formData.lastName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full rounded-sm text-[14px] border bg-white py-1 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+                className={`w-full rounded-sm text-[16px] border bg-white py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
                   fieldErrors.lastName ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
                 }`}
                 placeholder="Last name"
@@ -365,7 +365,7 @@ export default function QuoteForm14({
             value={formData.phone}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`w-full rounded-sm text-[14px] border bg-white py-1 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+            className={`w-full rounded-sm text-[16px] border bg-white py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
               fieldErrors.phone ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
             }`}
             placeholder="Phone No."
@@ -384,7 +384,7 @@ export default function QuoteForm14({
             value={formData.email}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`w-full rounded-sm text-[14px] border bg-white py-1 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+            className={`w-full rounded-sm text-[16px] border bg-white py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
               fieldErrors.email ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
             }`}
             placeholder="your@email.com"
@@ -403,7 +403,7 @@ export default function QuoteForm14({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={4}
-            className={`w-full max-h-[60px] resize-none rounded-sm text-[14px] border bg-white py-1 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
+            className={`w-full max-h-[60px] resize-none rounded-sm text-[16px] border bg-white py-1.5 pl-3 outline-none placeholder:text-gray-500 md:rounded-lg ${
               fieldErrors.message ? "border-[#cf1f21]" : isHero ? "border-[#2c2c2c]" : "border-[#2c2c2c]"
             }`}
             placeholder="Message"

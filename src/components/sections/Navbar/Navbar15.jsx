@@ -202,7 +202,7 @@ export default function Navbar14({ content }) {
                                             type="button"
                                             className={cn( `${inter.className}`,
 
-                                                "flex h-full items-center gap-1 text-[15px] transition-opacity hover:opacity-85",
+                                                "flex h-full items-center gap-1 text-[16px] lg:text-[20px] transition-opacity hover:opacity-85",
                                             )}
                                         >
                                             {item.title}
@@ -227,7 +227,7 @@ export default function Navbar14({ content }) {
                                                             title={child?.title}
                                                             href={href}
                                                             className={cn(
-                                                                `${inter.className} block cursor-pointer px-4 py-2 text-[15px] not-italic leading-normal transition-colors`,
+                                                                `${inter.className} block cursor-pointer px-4 py-2 text-[16px] lg:text-[20px] not-italic leading-normal transition-colors`,
                                                                 isActive
                                                                     ? "bg-neutral-100 font-bold text-neutral-900"
                                                                     : "font-normal text-[#161616] hover:bg-neutral-50 hover:text-neutral-900",
@@ -250,7 +250,7 @@ export default function Navbar14({ content }) {
                                         key={item.link ?? item.title}
                                         href={item.link}
                                         className={cn( `${inter.className}`,
-                                            "text-[16px] font-bold"
+                                            "text-[16px] lg:text-[20px] font-bold"
 
                                         )}
                                     >
@@ -264,7 +264,7 @@ export default function Navbar14({ content }) {
                                     type="button"
                                     onClick={() => handleNavigation(item.link)}
                                     className={cn(
-                                        `${inter.className} text-[16px] `
+                                        `${inter.className} text-[16px] lg:text-[20px] `
                                     )}
                                 >
                                     {item.title}
@@ -285,11 +285,11 @@ export default function Navbar14({ content }) {
                             <div className="flex flex-col items-start justify-center">
 
                                 <span
-                                    className={`${poppins.className} flex self-stretch items-center text-[21.691px] font-bold not-italic leading-normal text-[#0B0B0B]`}
+                                    className={`${poppins.className} flex self-stretch items-center text-[24px] lg:text-[30px] font-bold not-italic leading-normal text-[#0B0B0B]`}
                                 >
                                     {phone || "(800) 555-1212"}
                                 </span>
-                                <span className="flex items-center justify-end gap-1.5 text-[11px] font-medium text-neutral-500">
+                                <span className="flex items-center justify-end gap-1.5 text-[12px] lg:text-[15px] font-medium text-neutral-500">
                                     {cityLabel}
                                 </span>
                             </div>
@@ -318,7 +318,7 @@ export default function Navbar14({ content }) {
                         </div>
                     </div>
 
-                    <div className={`capitalize hidden lg:block text-center text-[22px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
+                    <div className={`capitalize hidden lg:block text-center text-[24px] lg:text-[29px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
                         call now & speak to an Expert Instantly
                     </div>
                 </div>
@@ -329,7 +329,7 @@ export default function Navbar14({ content }) {
     if (!mounted) {
         return (
             <FullContainer className="relative sticky top-0 z-20 h-auto w-full bg-white shadow-sm ">
-                <Container className="md:max-w-[880px] py-4 lg:py-0 lg:px-0! " >
+                <Container className=" py-4 lg:py-0 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" >
                     <div className="flex h-full w-full flex-row items-center justify-between gap-3 ">
                         <div className="flex flex-col h-full min-w-0 items-start justify-between lg:min-h-[140px]">
                             <div className="flex-1 flex flex-col items-center justify-center h-full  ">
@@ -341,7 +341,7 @@ export default function Navbar14({ content }) {
                                     className="font-serif font-bold text-[#3d2914] md:text-2xl lg:text-[1.65rem]"
                                 />
                             </div>
-                            <div className="h-10 hidden lg:block">
+                            <div className="h-[46px] hidden lg:block">
                             </div>
                         </div>
                         <div className="flex flex-col gap-2 items-center justify-between h-full lg:min-h-[140px]">
@@ -356,11 +356,11 @@ export default function Navbar14({ content }) {
                                     <div className="flex flex-col items-start justify-center">
 
                                         <span
-                                            className={`${poppins.className} flex self-stretch items-center text-[21.691px] font-bold not-italic leading-normal text-[#0B0B0B]`}
+                                            className={`${poppins.className} flex self-stretch items-center text-[24px] lg:text-[30px] font-bold not-italic leading-normal text-[#0B0B0B]`}
                                         >
                                             {phone || "(800) 555-1212"}
                                         </span>
-                                        <span className="flex items-center justify-end gap-1.5 text-[11px] font-medium text-neutral-500">
+                                        <span className="flex items-center justify-end gap-1.5 text-[12px] lg:text-[15px] font-medium text-neutral-500">
                                             {cityLabel}
                                         </span>
                                     </div>
@@ -389,7 +389,7 @@ export default function Navbar14({ content }) {
                                 </div>
                             </div>
 
-                            <div className={`capitalize hidden lg:block text-center text-[22px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
+                            <div className={`capitalize hidden lg:block text-center text-[24px] lg:text-[29px] font-bold px-4 py-0.5 rounded-t-md  bg-black text-white ${antonio.className}`}>
                                 call now & speak to an Expert Instantly
                             </div>
                         </div>
@@ -404,7 +404,7 @@ export default function Navbar14({ content }) {
             id="navbar"
             className="relative sticky top-0 z-20 h-auto  w-full bg-white shadow-sm  "
         >
-            <Container className="md:max-w-[880px] py-4 lg:py-0 lg:px-0! ">{headerContent}</Container>
+            <Container className=" py-4 lg:py-0 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ">{headerContent}</Container>
 
             <div
                 className={cn(

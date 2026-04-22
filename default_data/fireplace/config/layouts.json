@@ -5,7 +5,7 @@
       "visible": true
     },
     "Header": {
-      "design": "Header2",
+      "design": "Header15",
       "visible": true
     },
     "Banner": {
@@ -13,7 +13,7 @@
       "visible": true
     },
     "Breadcrumbs": {
-      "design": "Breadcrumbs1",
+      "design": "Breadcrumbs15",
       "visible": true
     },
     "About": {
@@ -21,75 +21,75 @@
       "visible": true
     },
     "Promotion": {
-      "design": "Promotion1",
+      "design": "Promotion15",
       "visible": true
     },
     "Hero": {
-      "design": "Hero1",
+      "design": "Hero15",
       "visible": false
     },
     "Features": {
-      "design": "Features1",
+      "design": "Features15",
       "visible": false
     },
     "Testimonials": {
-      "design": "Testimonials1",
+      "design": "Testimonials15",
       "visible": false
     },
     "Footer": {
-      "design": "Footer1",
+      "design": "Footer15",
       "visible": true
     },
     "BeforeAfter": {
-      "design": "BeforeAfter1",
+      "design": "BeforeAfter15",
       "visible": true
     },
     "OurServices": {
-      "design": "OurServices1",
+      "design": "OurServices15",
       "visible": true
     },
     "WhyChoose": {
-      "design": "WhyChoose1",
+      "design": "WhyChoose15",
       "visible": true
     },
     "Slogan": {
-      "design": "Slogan1",
+      "design": "Slogan15",
       "visible": true
     },
     "ServiceBenefits": {
-      "design": "ServiceBenefits1",
+      "design": "ServiceBenefits15",
       "visible": true
     },
     "Contact": {
-      "design": "Contact1",
+      "design": "Contact15",
       "visible": true
     },
     "FAQs": {
-      "design": "FAQs1",
+      "design": "FAQs15",
       "visible": true
     },
     "ServiceCities": {
-      "design": "ServiceCities1",
+      "design": "ServiceCities15",
       "visible": true
     },
     "ServiceDescription": {
-      "design": "ServiceDescription1",
+      "design": "ServiceDescription15",
       "visible": true
     },
     "Gallery": {
-      "design": "Gallery1",
+      "design": "Gallery15",
       "visible": true
     },
     "ServiceDescription1": {
-      "design": "ServiceDescription1",
+      "design": "ServiceDescription15",
       "visible": true
     },
     "ServiceDescription2": {
-      "design": "ServiceDescription2",
+      "design": "ServiceDescription15",
       "visible": true
     },
     "CallUsButton": {
-      "design": "CallUsButton2",
+      "design": "CallUsButton15",
       "visible": true
     },
   

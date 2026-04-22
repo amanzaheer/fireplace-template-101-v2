@@ -106,7 +106,7 @@ export default function Banner15({ content }) {
 
   return (
     <FullContainer id="banner" className="relative w-full overflow-hidden bg-neutral-900">
-      <div className="relative h-full w-full py-6 lg:py-0 max-h-full overflow-hidden lg:h-[480px] lg:max-h-[480px]">
+      <div className="relative h-full w-full py-6 lg:py-0 max-h-full overflow-hidden lg:h-[580px] lg:max-h-[580px]">
         <Image
           src={imageSrc}
           alt={headline || "Hero"}
@@ -118,10 +118,10 @@ export default function Banner15({ content }) {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" aria-hidden />
 
-        <Container className="relative lg:px-0! z-10 mx-auto max-w-[880px] flex flex-col items-center justify-center h-full">
+        <Container className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center justify-center h-full">
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full  ">
             <div className="max-w-2xl text-white md:max-w-none flex flex-col items-center lg:items-start justify-center gap-4 w-full">
-              <h1 className="font-montserrat font-bold leading-tight tracking-tight text-4xl md:text-5xl lg:text-[2.75rem] lg:leading-[1.12]">
+              <h1 className="font-montserrat font-bold leading-tight tracking-tight text-4xl md:text-5xl lg:text-[52px] lg:leading-[58px]">
                 <div className="inline-flex flex-wrap justify-center lg:justify-start items-center gap-x-2 gap-y-1 ">
                   {(() => {
                     const words = headline.trim().split(/\s+/).filter(Boolean);
@@ -141,7 +141,7 @@ export default function Banner15({ content }) {
                 </div>
               </h1>
 
-              <p className="max-w-xl font-barlow font-medium items-center justify-center text-center md:text-left leading-relaxed text-white/90 text-lg md:text-xl">
+              <p className="max-w-xl font-barlow font-medium items-center justify-center text-center md:text-left leading-relaxed text-white/90 text-[20px] lg:text-[23px]">
                 {subhead}
               </p>
 
@@ -154,7 +154,7 @@ export default function Banner15({ content }) {
                   return (
                     <li
                       key={`${text}-${idx}`}
-                      className="flex items-start gap-3 font-barlow font-medium text-white/95 text-[15px]"
+                      className="flex items-start gap-3 font-barlow font-medium text-white/95 text-[15px] lg:text-[18px]"
                     >
                       <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" strokeWidth={2} aria-hidden />
                       <span>{text}</span>
@@ -170,7 +170,7 @@ export default function Banner15({ content }) {
                 >
                   <BannerCtaIcon />
                   <span
-                    className={`${rubik.className} text-[24px] font-bold not-italic leading-normal text-[#F29100]`}
+                    className={`${rubik.className} text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
                   >
                     {phone}
                   </span>
@@ -178,7 +178,7 @@ export default function Banner15({ content }) {
               </div>
             </div>
 
-            <div className="w-full max-w-[360px] justify-self-center px-0 md:px-5 lg:justify-self-end lg:px-8">
+            <div className="w-full max-w-[400px] justify-self-center px-0 md:px-5 lg:justify-self-end lg:px-8">
               <QuoteForm15
                 data={{}}
                 form_head={form_head}
@@ -191,10 +191,10 @@ export default function Banner15({ content }) {
       </div>
 
       <div
-        className="relative z-10 w-full border-t bg-[#62370c] border-black/10 px-4 py-4 sm:px-6 lg:px-8"
+        className="relative z-10 w-full border-t bg-[#62370c] border-black/10 px-4 py-6 sm:px-6 lg:px-10"
        
       >
-        <Container className="mx-auto  flex max-w-[880px] flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
+        <Container className="mx-auto  flex w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
           <p className="text-center font-barlow text-base flex flex-col items-start text-white md:text-left md:text-lg">
             <span className="font-bold text-2xl md:text-3xl lg:text-4xl">Professional Fireplace Service</span>{" "}
             <span className="font-medium text-white/90 text-xl md:text-2xl lg:text-3xl">in the Comfort of Your Home</span>
@@ -205,7 +205,7 @@ export default function Banner15({ content }) {
                 >
                   <BannerCtaIcon />
                   <span
-                    className={`${rubik.className} text-[24px] font-bold not-italic leading-normal text-[#F29100]`}
+                    className={`${rubik.className} text-[24px] lg:text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
                   >
                     {phone}
                   </span>

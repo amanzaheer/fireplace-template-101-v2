@@ -148,7 +148,7 @@ export default function ServiceDescription15({ content }) {
 
   return (
     <FullContainer id="service_description" className="bg-[#f4f5f7] py-10 md:py-14 lg:py-16">
-      <Container className="max-w-[880px] lg:px-0!">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-8">
           <div className="order-2 flex justify-center lg:order-1 lg:justify-start">
             <SplitServiceImage src={imageSrc} alt={title} />

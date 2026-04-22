@@ -50,7 +50,7 @@ function Breadcrumbs({ breadcrumbs, className }) {
     <nav
       aria-label="Breadcrumb"
       className={cn(
-        "w-full flex items-center py-2 font-semibold text-gray-500 max-w-[880px] mx-auto",
+        "w-full flex items-center py-2 font-semibold text-gray-500 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 ",
         className
       )}
     >

@@ -52,10 +52,10 @@ export default function About15({ content }) {
 
   return (
     <FullContainer id="about" className="w-full bg-[#f4f5f7] py-10 md:py-14 lg:py-16">
-      <Container className="max-w-[880px] lg:px-0!">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         {heading ? (
           <h2
-            className={`${rubik.className} mx-auto max-w-3xl text-center text-[30px] font-bold leading-tight tracking-tight text-[#2d2d2d] md:text-[40px]`}
+            className={`${poppins.className} text-black text-center text-[32px] lg:text-[44px]  w-full font-semibold mb-4 md:mb-6`}
           >
             {heading}
           </h2>
@@ -63,18 +63,18 @@ export default function About15({ content }) {
 
         {introHtml ? (
           <div
-            className={`${poppins.className} mx-auto mt-4 max-w-3xl text-center text-[13px] font-normal leading-[1.65] text-[#4a4a4a] md:mt-5 [&_a]:font-medium [&_a]:text-[#f59402] [&_a]:underline [&_p]:mb-3 [&_p]:leading-[1.65] [&_p]:last:mb-0 [&_strong]:font-semibold [&_li]:text-[13px] [&_li]:leading-[1.65] [&_li]:text-[#4a4a4a]`}
+            className={`${poppins.className} mx-auto mt-4 max-w-3xl text-center text-[16px] font-normal leading-[1.65] text-[#4a4a4a] md:mt-5 [&_a]:font-medium [&_a]:text-[#f59402] [&_a]:underline [&_p]:mb-3 [&_p]:leading-[1.65] [&_p]:last:mb-0 [&_strong]:font-semibold [&_li]:text-[13px] [&_li]:leading-[1.65] [&_li]:text-[#4a4a4a]`}
             dangerouslySetInnerHTML={{ __html: introHtml }}
           />
         ) : null}
 
         {cardHtml || imageSrc ? (
-          <div className="relative mx-auto mt-8 overflow-hidden rounded-[16px] border border-black/5 bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.08)] md:mt-10 md:p-5">
+          <div className="relative mx-auto mt-8 overflow-hidde rounded-[16px]  border border-black/5 bg-white p-4 shadow-[0_2px_14px_rgba(0,0,0,0.08)] md:mt-10 md:p-5">
             <div className="grid items-stretch gap-4 lg:grid-cols-[1.05fr_0.95fr] lg:gap-5">
               <div className="order-2 rounded-[12px] bg-[#f8f9fb] p-5 lg:order-1 lg:p-6">
                 {cardHtml ? (
                   <div
-                    className={`${poppins.className} text-left text-[13px] font-normal leading-[1.7] text-[#4a4a4a] [&_a]:text-[#f59402] [&_a]:font-medium [&_a]:underline [&_li]:my-1 [&_li]:text-[13px] [&_li]:leading-[1.7] [&_li]:text-[#4a4a4a] [&_p]:mb-3 [&_p]:last:mb-0 [&_strong]:font-semibold [&_strong]:text-[#2d2d2d] [&_ul]:my-2 [&_blockquote]:border-l-3 [&_blockquote]:border-[#f59402]/40 [&_blockquote]:pl-3`}
+                    className={`${poppins.className} text-left text-[16px] font-normal  min-h-[180px] leading-[1.7] text-[#4a4a4a] [&_a]:text-[#f59402] [&_a]:font-medium [&_a]:underline [&_li]:my-1 [&_li]:text-[13px] [&_li]:leading-[1.7] [&_li]:text-[#4a4a4a] [&_p]:mb-3 [&_p]:last:mb-0 [&_strong]:font-semibold [&_strong]:text-[#2d2d2d] [&_ul]:my-2 [&_blockquote]:border-l-3 [&_blockquote]:border-[#f59402]/40 [&_blockquote]:pl-3`}
                     dangerouslySetInnerHTML={{ __html: cardHtml }}
                   />
                 ) : (

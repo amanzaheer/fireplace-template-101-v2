@@ -48,7 +48,7 @@ export default function ServiceBenefits15 ({ content }) {
 
   return (
     <FullContainer id="service_benefits" className="py-0 md:py-8 overflow-hidden ">
-      <Container className="max-w-[880px] lg:px-0!">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-[40%_60%] gap-4">
           <div className="md:w-[111%] rounded-md relative bg-blue-500 h-full overflow-hidden min-h-[200px] md:min-h-[320px]">
             {imageSrc ? (

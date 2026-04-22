@@ -233,32 +233,33 @@ export default function Testimonials15({ content }) {
   if (!testimonials.length) return null;
 
   return (
-    <FullContainer className="py-10 md:py-14 lg:py-22  bg-[#172b60] " id="testimonials">
-      <Container className="max-w-[880px] mx-auto px-4 lg:px-0! ">
+    <FullContainer className="py-10 md:py-14 lg:pb-22 lg:p1-8 bg-[#172b60] " id="testimonials">
+      <Container className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ">
         <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-          <div className="w-full lg:w-[240px] h-full shrink-0 text-white ">
+          <div className="w-full lg:w-[240px] h-full shrink-0 text-white mt-10 lg:mt-20 ">
             <div className="mb-2">
               <QuoteIcon className="w-10 h-10 text-[#f59a00] rotate-180" />
             </div>
-            <p className={`${poppins.className} font-extrabold text-[24px] leading-tight mb-3 capitalize`}>
+            <p className={`${poppins.className} font-extrabold text-[24px] md:text-[33px] leading-tight mb-3 capitalize`}>
               {logo?.logoText}
             </p>
-            <FiveStars className="mb-2" starClassName="text-[#f59a00] text-[16px]!" />
-            <p className={`${archivo.className} text-white font-extrabold text-[18px] leading-none`}>
+            <FiveStars className="mb-2" starClassName="text-[#f59a00] text-[21px]!" />
+            <p className={`${archivo.className} text-white font-extrabold text-[18px] md:text-[21px] leading-none`}>
               {testimonialsWithAvatars[activeIndex]?.name}
             </p>
-            <p className={`${archivo.className} text-white/80 text-[12px] font-semibold uppercase tracking-[0.12em]`}>
+            <p className={`${archivo.className} text-white/80 text-[12px] md:text-[14px] font-semibold uppercase tracking-[0.12em]`}>
               Clients
             </p>
           </div>
 
           <div className="w-full flex-1">
-            <h2 className={`${poppins.className} text-[#ffffff] text-[24px] md:text-[32px]  w-full font-semibold mb-4 md:mb-6`}>
-              Our Happy Clients
-            </h2>
+            
 
             <div className="relative">
-            <div className="testimonial-slider-container overflow-x-hidden w-full max-w-[600px] mx-auto rounded-lg">
+            <div className="testimonial-slider-container overflow-x-hidden w-full max-w-[600px] mx-auto rounded-lg pt-10">
+            <h2 className={`${poppins.className} text-[#ffffff] text-[32px] lg:text-[44px]  w-full font-semibold mb-4 md:mb-6`}>
+              Our Happy Clients
+            </h2>
                 <div
                   ref={sliderRef}
                   className={`testimonial-slider ${
@@ -274,11 +275,11 @@ export default function Testimonials15({ content }) {
                   onMouseLeave={handleDragEnd}
                 >
                   {testimonialsWithAvatars.map((testimonial, index) => (
-                    <div key={index} className="testimonial-slide">
-                      <div className="bg-white/90 border border-[#d7d7d7] p-5 md:p-7 min-h-[220px] md:min-h-[230px] flex flex-col">
-                        <FiveStars className="mb-4" starClassName="text-[#f59a00] text-[16px]!" />
+                    <div key={index} className="testimonial-slide rounded-lg  overflow-hidden">
+                      <div className="bg-white/90 border border-[#d7d7d7] px-4 py-5 md:py-8 md:px-5 min-h-[220px] md:min-h-[230px] flex flex-col">
+                        <FiveStars className="mb-4" starClassName="text-[#f59a00] text-[21px]!" />
 
-                        <p className={`${archivo.className} text-[#545454] italic text-[16px] leading-[1.45] flex-1`}>
+                        <p className={`${archivo.className} text-[#545454] italic text-[16px] md:text-[18px]  leading-[1.45] flex-1`}>
                           &ldquo;{testimonial.quote || testimonial.text}&rdquo;
                         </p>
 
