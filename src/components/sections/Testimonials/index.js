@@ -12,6 +12,7 @@ import Testimonials15 from "./Testimonials15";
 import Testimonials11 from "./Testimonials11";
 import Testimonials12 from "./Testimonials12";
 import Testimonials10 from "./Testimonials10";
+import Testimonials13 from "./Testimonials13";
 const variants = {
   Testimonials1,
   Testimonials2,
@@ -27,6 +28,7 @@ const variants = {
   Testimonials11,
   Testimonials12,
   Testimonials10,
+  Testimonials13,
 };
 
 function pickVariant(name) {
@@ -55,5 +57,6 @@ export {
   Testimonials11,
   Testimonials12,
   Testimonials10,
+  Testimonials13,
   variants,
 };

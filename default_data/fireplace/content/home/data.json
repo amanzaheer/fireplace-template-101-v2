@@ -189,7 +189,7 @@
     ]
   },
   "workingprocess": {
-    "heading": "Working Process",
+    "heading": "Our Working Process",
     "description": "See how we work.",
     "list": [
       {
@@ -215,7 +215,7 @@
     
   },
   "calltoaction": {
-    "title": "Get a free quote from a Chimney Services",
+    "title": "Get a free quote from a [industry] Services",
     "description": "Our pros offer great prices & great service. Find out the exact price of your home project today!",
     "button_text": "GET A FREE ESTIMATE",
     "button_link": "contact-us"
@@ -232,8 +232,8 @@
   },
 
   "reviewandrating": {
-    "title": "Reviews and Ratings",
-    "description": "See what our customers are saying about us.",
+    "title": "The Most Trusted and 5-Star Rated Chimney Cleaners in [city_name]",
+    "description": "",
     "list": [
       {
         "name": "John Doe",
@@ -245,6 +245,7 @@
   "city_name": "[city_name]",
   "faqs": {
     "title": "FAQs",
+    "image": "footer/faqs-illustration.png",
     "items": [
       {
         "question": "What is included in a fireplace inspection?",
@@ -263,6 +264,16 @@
         "answer": "Yes! [company_name] provides expert service for both gas and wood-burning fireplaces — including cleaning, inspections, and repairs — ensuring reliable and safe operation all year round."
       }
     ]
+  },
+  "MilestoneBanner":{
+   "image": "MilestoneBanner/banner.png",
+      "title": "15,000+",
+      "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow. ",
+        "title2": "Best Service Team",
+        "description2": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot,",
+        "name": "Michael Nguyen",
+        "rating": 5.0,
+        "role": "Operations Lead"
   },
   "footer": {
     "information_heading": "Information",
@@ -349,6 +360,7 @@
       "text": "10+ Years Of Experience"
     }
   ],
+  
   "testimonials": {
     "reviewCount": "150+",
     "heading": "Our Happy Clients",
@@ -386,9 +398,12 @@
       }
     ]
   },
+  "videosection":{
+    "title": "Watch Our Video",
+    "file_name": "videosection/vedio13.mp4"
+  },
   "cta": {
     "title": "Ready to Book Your Fireplace Service?",
     "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service."
   }
 }
-
