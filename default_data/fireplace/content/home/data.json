@@ -70,6 +70,7 @@
   },
   "service_benefits": {
     "heading": "[company_name] Service Benefits",
+    "title": "Chimney Service CO Benefits",
     "file_name": "benefits/benefits.avif",
     "list": [
       {
@@ -99,6 +100,8 @@
     ]
   },
   "banner": {
+    "header":"Top-Rated",
+    "label":"contact",
     "title": "Trusted Experts in [industry] services",
     "tagline": "trusted professionals in [industry] installation, cleaning & repair",
     "form_title": "Claim Fire Place Services Offer Today",
@@ -116,6 +119,7 @@
   },
   "promotion": {
     "title": "Monthly Promotion",
+    "cta_label": "Call Us Today",
     "description": null,
     "details": [
       {
@@ -218,7 +222,7 @@
   },
 
   "form_head": {
-    "title": "10% Off Total Price for Online Booking",
+    "title": "10% Off Total Price for Online Bookin kkg",
     "sub_title": "Ask For A Quote Here"
   },
   "contact_info": {
@@ -272,6 +276,8 @@
         "role": "Operations Lead"
   },
   "footer": {
+    "information_heading": "Information",
+    "contact_heading": "Contact",
     "value": "[company_name] – Your trusted source for professional fireplace services. Our team of experienced professionals is dedicated to quality workmanship and customer satisfaction. Contact us today!",
     "file_name": "footer/footerbg.webp"
   },
@@ -357,6 +363,7 @@
   
   "testimonials": {
     "reviewCount": "150+",
+    "heading": "Our Happy Clients",
     "file_name": "testimonials/fireplace.webp",
     "list": [
       {

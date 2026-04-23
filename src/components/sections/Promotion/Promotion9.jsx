@@ -167,7 +167,7 @@ export default function Promotion9({ content }) {
   const ctaLabel =
     typeof promotion?.cta_label === "string" && promotion.cta_label.trim()
       ? promotion.cta_label.trim()
-      : "Call For Redeem";
+      : "Call Us Today";
 
   const phoneDisplay = resolvePhone(content);
   const phoneLink = phoneDisplay ? `tel:${phoneDisplay}` : "#";
