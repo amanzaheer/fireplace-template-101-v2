@@ -9,8 +9,8 @@ const poppins = Poppins({
 
 export default function CallToAction1({ content }) {
   const section = content?.call_to_action ?? content?.calltoaction ?? {};
-  const heading = section?.heading ?? section?.title ?? "Get a free quote from a ";
-  const sub_heading = section?.sub_heading ?? "Chimney Services";
+  const heading = section?.heading ?? section?.title ?? "Get a free quote from a";
+ 
   const description =
     section?.description ??
     "Our pros offer great prices & great service. Find out the exact price of your home project today!";
@@ -35,9 +35,7 @@ export default function CallToAction1({ content }) {
             <div className="max-w-[700px]">
               <h2 className="text-[24px] font-normal leading-[1.1] md:text-[40px]">
                 {heading}
-                <span className="text-white text-[44px] font-bold md:text-[40px]">
-                  {sub_heading}
-                </span>
+              
               </h2>
               <p className="mt-3 max-w-[650px] text-[15px] font-medium leading-snug text-white/95 md:text-[18px]">
                 {description}

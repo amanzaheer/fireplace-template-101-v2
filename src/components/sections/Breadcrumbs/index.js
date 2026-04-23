@@ -11,6 +11,7 @@ import Breadcrumbs15 from "./Breadcrumbs15";
 import Breadcrumbs11 from "./Breadcrumbs11";
 import Breadcrumbs12 from "./Breadcrumbs12";
 import Breadcrumbs10 from "./Breadcrumbs10";
+import Breadcrumbs13 from "./Breadcrumbs13";
 const variants = {
   Breadcrumbs1,
   Breadcrumbs2,
@@ -22,6 +23,7 @@ const variants = {
   Breadcrumbs11,
   Breadcrumbs12,
   Breadcrumbs10,
+  Breadcrumbs13,
 };
 
 export default function BreadcrumbsSection({ variant, content }) {
@@ -29,4 +31,4 @@ export default function BreadcrumbsSection({ variant, content }) {
   const Component = variants[name] ?? Breadcrumbs1;
   return <Component content={content} />;
 }
-export { Breadcrumbs1, Breadcrumbs2, Breadcrumbs3, Breadcrumbs4, Breadcrumbs6, Breadcrumbs7,Breadcrumbs12,Breadcrumbs15,Breadcrumbs11,Breadcrumbs10,variants };
+export { Breadcrumbs1, Breadcrumbs2, Breadcrumbs3, Breadcrumbs4, Breadcrumbs6, Breadcrumbs7,Breadcrumbs12,Breadcrumbs15,Breadcrumbs11,Breadcrumbs10,Breadcrumbs13,variants };
