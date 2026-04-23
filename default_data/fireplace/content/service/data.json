@@ -69,6 +69,7 @@
   },
   "faqs": {
     "title": "FAQs",
+    "image": "footer/faqs-illustration.png",
     "items": [
       {
         "id": 1,

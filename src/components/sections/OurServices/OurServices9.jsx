@@ -91,28 +91,42 @@ function ServiceCardText({ service }) {
 }
 
 function ServiceCardImage({ service, imageSrc }) {
-  return (
-    <div className="relative h-44 w-full overflow-hidden rounded-lg bg-neutral-200 sm:h-48 md:h-52">
-      {imageSrc ? (
-        <Image
-          src={imageSrc}
-          alt={service.title || "Service"}
-          fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-          className="object-cover"
-          loading="lazy"
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL}
-        />
-      ) : (
-        <div className="flex h-full w-full items-center justify-center bg-neutral-200">
-          <span className="text-3xl font-bold text-neutral-400">
-            {service.title?.charAt(0) ?? "?"}
-          </span>
-        </div>
-      )}
+  const hasPath = Boolean(service.path && service.path !== "#");
+  const frameClass =
+    "relative h-44 w-full overflow-hidden rounded-lg bg-neutral-200 transition-opacity hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-900 focus-visible:ring-offset-2 sm:h-48 md:h-52";
+
+  const inner = imageSrc ? (
+    <Image
+      src={imageSrc}
+      alt={service.title || "Service"}
+      fill
+      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      className="object-cover"
+      loading="lazy"
+      placeholder="blur"
+      blurDataURL={BLUR_DATA_URL}
+    />
+  ) : (
+    <div className="flex h-full w-full items-center justify-center bg-neutral-200">
+      <span className="text-3xl font-bold text-neutral-400">
+        {service.title?.charAt(0) ?? "?"}
+      </span>
     </div>
   );
+
+  if (hasPath) {
+    return (
+      <Link
+        href={service.path}
+        className={`${frameClass} block`}
+        aria-label={`${service.title || "Service"} — view service`}
+      >
+        {inner}
+      </Link>
+    );
+  }
+
+  return <div className={frameClass}>{inner}</div>;
 }
 
 export default function OurServices9({ content }) {

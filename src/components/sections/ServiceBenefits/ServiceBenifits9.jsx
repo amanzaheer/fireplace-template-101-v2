@@ -23,9 +23,7 @@ export default function ServiceBenefits9 ({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const block = content?.service_benefits ?? {};
   const heading = block.heading ?? "Committed to Excellence";
-  const intro =
-    block.description ??
-    "Chimney One provides top-quality chimney maintenance and repair services with precision and care. From cleaning and inspections to expert repairs, our experienced team ensures safety, efficiency, and long-lasting performance for your chimney.";
+ 
   const list = Array.isArray(block.list) ? block.list : [];
   const sectionTitle = block.title ?? "Chimney Service CO Benefits";
   const filePath = block.file_name ?? "about/about.webp";

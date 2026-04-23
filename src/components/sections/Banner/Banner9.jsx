@@ -47,6 +47,7 @@ export default function Banner9({ content }) {
 
   const data = {
     title: banner.title,
+    label:banner.label,
     tagline: banner.tagline,
     description: banner.description,
     heading: banner.heading,
@@ -102,9 +103,9 @@ export default function Banner9({ content }) {
           <div className="min-w-0 pl-3 md:pl-5 lg:pl-8">
             <div className="mb-3 flex items-center gap-3 text-xs font-bold uppercase tracking-widest text-white">
               <div className="flex h-8 w-8 items-center justify-center rounded-md bg-[#EFA536] shadow-sm">
-                <Phone className="h-4 w-4 text-[#000]" strokeWidth={2.25} />
+                <Phone className="h-4 w-4 text-[#000] capitalize" strokeWidth={2.25} />
               </div>
-              Contact
+              {data.label}
             </div>
 
             <a

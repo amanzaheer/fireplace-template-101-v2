@@ -15,6 +15,7 @@ import ServiceDescription14 from "./ServiceDescription14";
 import ServiceDescription15 from "./ServiceDescription15";
 import ServiceDescription11 from "./ServiceDescription11";
 import ServiceDescription12 from "./ServiceDescription12";
+import ServiceDescription13 from "./ServiceDescription13";
 const variants = {
   ServiceDescription1,
   ServiceDescription2,
@@ -30,7 +31,7 @@ const variants = {
   ServiceDescription15,
   ServiceDescription11,
   ServiceDescription12,
-
+  ServiceDescription13,
 };
 
 export default function ServiceDescription({ variant, content }) {
@@ -38,5 +39,5 @@ export default function ServiceDescription({ variant, content }) {
   const Component = variants[name] ?? ServiceDescription14;
   return <Component content={content} />;
 }
-export { ServiceDescription1, ServiceDescription2, ServiceDescription3, ServiceDescription4, ServiceDescription5, ServiceDescription6, ServiceDescription7, ServiceDescription8, ServiceDescription9, ServiceDescription14, ServiceDescription15, ServiceDescription11, ServiceDescription12, ServiceDescription10, variants };
+export { ServiceDescription1, ServiceDescription2, ServiceDescription3, ServiceDescription4, ServiceDescription5, ServiceDescription6, ServiceDescription7, ServiceDescription8, ServiceDescription9, ServiceDescription14, ServiceDescription15, ServiceDescription11, ServiceDescription12, ServiceDescription10, ServiceDescription13,variants };
 

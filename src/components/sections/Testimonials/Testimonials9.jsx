@@ -41,6 +41,7 @@ export default function Testimonials9({
   const data = content?.testimonials ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];
   const reviewCount = data.reviewCount ?? "150+";
+  const heading = data.heading ?? "Our Happy Clients";
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -286,7 +287,7 @@ export default function Testimonials9({
             textAlign: "center",
           }}
         >
-          Our Happy Clients
+          {heading}
         </h2>
 
         <div className="flex w-full min-w-0 flex-col gap-3">
@@ -427,7 +428,7 @@ export default function Testimonials9({
     <>
       <div className="mb-6 w-full text-center">
         <h2 className="mb-2 text-center text-4xl font-extrabold text-[#002B5B]">
-          Our Happy Clients
+         {heading}
         </h2>
       </div>
 
