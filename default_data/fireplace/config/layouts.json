@@ -1,11 +1,7 @@
 {
   "sections": {
     "Navbar": {
-<<<<<<< HEAD
       "design": "Navbar13",
-=======
-      "design": "Navbar9",
->>>>>>> 68886a5 (remove static data of template 9)
       "visible": true
     },
     "Header": {
@@ -17,7 +13,6 @@
       "visible": true
     },
     "Breadcrumbs": {
-<<<<<<< HEAD
       "design": "Breadcrumbs13",
       "visible": true
     },
@@ -51,41 +46,6 @@
     },
     "OurServices": {
       "design": "OurServices12",
-=======
-      "design": "Breadcrumbs9",
-      "visible": true
-    },
-    "About": {
-      "design": "About9",
-      "visible": true
-    },
-    "Promotion": {
-      "design": "Promotion9",
-      "visible": true
-    },
-    "Hero": {
-      "design": "Hero9",
-      "visible": false
-    },
-    "Features": {
-      "design": "Features9",
-      "visible": false
-    },
-    "Testimonials": {
-      "design": "Testimonials9",
-      "visible": false
-    },
-    "Footer": {
-      "design": "Footer9",
-      "visible": true
-    },
-    "BeforeAfter": {
-      "design": "BeforeAfter9",
-      "visible": true
-    },
-    "OurServices": {
-      "design": "OurServices9",
->>>>>>> 68886a5 (remove static data of template 9)
       "visible": true
     },
     "WhyChoose": {
@@ -93,7 +53,6 @@
       "visible": true
     },
     "Slogan": {
-<<<<<<< HEAD
       "design": "Slogan12",
       "visible": true
     },
@@ -131,50 +90,10 @@
     },
     "CallUsButton": {
       "design": "CallUsButton12",
-=======
-      "design": "Slogan9",
-      "visible": true
-    },
-    "ServiceBenefits": {
-      "design": "ServiceBenefits9",
-      "visible": true
-    },
-    "Contact": {
-      "design": "Contact9",
-      "visible": true
-    },
-    "FAQs": {
-      "design": "FAQs9",
-      "visible": true
-    },
-    "ServiceCities": {
-      "design": "ServiceCities9",
-      "visible": true
-    },
-    "ServiceDescription": {
-      "design": "ServiceDescription9",
-      "visible": true
-    },
-    "Gallery": {
-      "design": "Gallery9",
-      "visible": true
-    },
-    "ServiceDescription1": {
-      "design": "ServiceDescription9",
-      "visible": true
-    },
-    "ServiceDescription2": {
-      "design": "ServiceDescription9",
-      "visible": true
-    },
-    "CallUsButton": {
-      "design": "CallUsButton9",
->>>>>>> 68886a5 (remove static data of template 9)
       "visible": true
     },
   
     "ReviewandRating": {
-<<<<<<< HEAD
       "design": "ReviewandRating12",
       "visible": true
     },
@@ -196,21 +115,6 @@
     },
     "Videosection": {
       "design": "Videosection13",
-=======
-      "design": "ReviewandRating9",
-      "visible": false
-    },
-    "workingprocess": {
-      "design": "WorkingProcess9",
-      "visible": false
-    },
-    "calltoaction": {
-      "design": "CallToAction9",
-      "visible": false
-    },
-    "Cta": {
-      "design": "Cta9",
->>>>>>> 68886a5 (remove static data of template 9)
       "visible": true
     }
   },
@@ -242,7 +146,6 @@
     "home": {
       "sections": {
         "Navbar": {
-<<<<<<< HEAD
           "design": "Navbar13",
           "visible": true
         },
@@ -324,81 +227,6 @@
         },
         "Videosection": {
           "design": "Videosection13",
-=======
-          "design": "Navbar9",
-          "visible": true
-        },
-        "Banner": {
-          "design": "Banner9",
-          "visible": true
-        },
-        "About": {
-          "design": "About9",
-          "visible": true
-        },
-        "Promotion": {
-          "design": "Promotion9",
-          "visible": true
-        },
-        "Testimonials": {
-          "design": "Testimonials9",
-          "visible": true
-        },
-        "Footer": {
-          "design": "Footer9",
-          "visible": true
-        },
-        "BeforeAfter": {
-          "design": "BeforeAfter9",
-          "visible": true
-        },
-        "OurServices": {
-          "design": "OurServices9",
-          "visible": true
-        },
-        "WhyChoose": {
-          "design": "WhyChoose9",
-          "visible": true
-        },
-        "Slogan": {
-          "design": "Slogan9",
-          "visible": true
-        },
-        "ServiceBenefits": {
-          "design": "ServiceBenefits9",
-          "visible": true
-        },
-        "Contact": {
-          "design": "Contact9",
-          "visible": true
-        },
-        "FAQs": {
-          "design": "FAQs9",
-          "visible": true
-        },
-        "ServiceCities": {
-          "design": "ServiceCities9",
-          "visible": true
-        },
-        "CallUsButton": {
-          "design": "CallUsButton9",
-          "visible": true
-        },
-        "ReviewandRating": {
-          "design": "ReviewandRating9",
-          "visible": false
-        },
-        "workingprocess": {
-          "design": "WorkingProcess9",
-          "visible": false
-        },
-        "calltoaction": {
-          "design": "CallToAction9",
-          "visible": false
-        },
-        "Cta": {
-          "design": "Cta9",
->>>>>>> 68886a5 (remove static data of template 9)
           "visible": true
         }
       },
@@ -430,7 +258,6 @@
     "service": {
       "sections": {
         "Navbar": {
-<<<<<<< HEAD
           "design": "Navbar13",
           "visible": true
         },
@@ -481,58 +308,6 @@
         "Cta": {
           "design": "Cta13",
           "visible": false
-=======
-          "design": "Navbar9",
-          "visible": true
-        },
-        "Banner": {
-          "design": "Banner9",
-          "visible": true
-        },
-        "Breadcrumbs": {
-          "design": "Breadcrumbs9",
-          "visible": true
-        },
-        "ServiceDescription": {
-          "design": "ServiceDescription9",
-          "visible": true
-        },
-        "Gallery": {
-          "design": "Gallery9",
-          "visible": true
-        },
-        "ServiceDescription1": {
-          "design": "ServiceDescription9",
-          "visible": true
-        },
-        "ServiceDescription2": {
-          "design": "ServiceDescription9",
-          "visible": true
-        },
-        "Contact": {
-          "design": "Contact9",
-          "visible": false
-        },
-        "FAQs": {
-          "design": "FAQs9",
-          "visible": true
-        },
-        "ServiceCities": {
-          "design": "ServiceCities9",
-          "visible": true
-        },
-        "Footer": {
-          "design": "Footer9",
-          "visible": true
-        },
-        "CallUsButton": {
-          "design": "CallUsButton9",
-          "visible": true
-        },
-        "Cta": {
-          "design": "Cta9",
-          "visible": true
->>>>>>> 68886a5 (remove static data of template 9)
         }
       },
       "order": [
