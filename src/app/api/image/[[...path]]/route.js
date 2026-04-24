@@ -36,6 +36,17 @@ function imageResponse(buf, contentType, maxAge = 86400) {
   });
 }
 
+async function readLocalTemplateImage(template, relativePath) {
+  try {
+    const buf = await readFile(
+      join(process.cwd(), "default_data", template, "images", relativePath),
+    );
+    return buf;
+  } catch {
+    return null;
+  }
+}
+
 export async function GET(request, context) {
   const forwarded = request.headers.get("x-forwarded-for");
   const ip = forwarded?.split(",")[0]?.trim() || "unknown";
@@ -62,14 +73,11 @@ export async function GET(request, context) {
 
   // DEV: bypass datastore and serve from local default_data
   if (USE_LOCAL_IMAGES) {
-    try {
-      const buf = await readFile(
-        join(process.cwd(), "default_data", template, "images", relativePath),
-      );
-      return imageResponse(buf, mime, 0); // no cache in dev
-    } catch {
-      return new Response("Not Found", { status: 404 });
+    const localBuf = await readLocalTemplateImage(template, relativePath);
+    if (localBuf) {
+      return imageResponse(localBuf, mime, 0); // no cache in dev
     }
+    return new Response("Not Found", { status: 404 });
   }
 
   // PROD: images are managed externally and stored in the datastore Objects API.
@@ -96,6 +104,12 @@ export async function GET(request, context) {
         // not in this scope, try next
       }
     }
+  }
+
+  // Local fallback: helps local/dev environments where datastore isn't seeded.
+  const fallbackBuf = await readLocalTemplateImage(template, relativePath);
+  if (fallbackBuf) {
+    return imageResponse(fallbackBuf, mime, 0);
   }
 
   return new Response("Not Found", { status: 404 });

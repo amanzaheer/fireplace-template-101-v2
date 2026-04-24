@@ -1,409 +1,417 @@
-{
-  "meta_data": {
-    "title": "[company_name] Near Me",
-    "description": "Tagline text.",
-    "file_name": null
-  },
-  "navbar": {
-    "logo": {
-      "logoText": "[company_name]",
-      "logoType": "text",
-      "alt": "[company_name] Logo",
-      "file_name": "logo/fireplace-logo.png"
+  {
+    "meta_data": {
+      "title": "[company_name] Near Me",
+      "description": "Tagline text.",
+      "file_name": null
     },
-    "menu_items": [
-      { "title": "Home", "link": "/" },
-      { "title": "Locations", "link": "locations" },
-      {
-        "title": "Services",
-        "link": "#",
-        "childrenRef": "services"
+    "navbar": {
+      "logo": {
+        "logoText": "[company_name]",
+        "logoType": "text",
+        "alt": "[company_name] Logo",
+        "file_name": "logo/fireplace-logo.png"
       },
-      { "title": "FAQs", "link": "faqs" },
-      { "title": "Contact Us", "link": "contact-us" }
+      "menu_items": [
+        { "title": "Home", "link": "/" },
+        { "title": "Locations", "link": "locations" },
+        {
+          "title": "Services",
+          "link": "#",
+          "childrenRef": "services"
+        },
+        { "title": "FAQs", "link": "faqs" },
+        { "title": "Contact Us", "link": "contact-us" }
+      ],
+      "phone": "[phone]"
+    },
+    "services": [
+      {
+        "title": "Fireplace Repair",
+        "path": "/fireplace-repair",
+        "description": "Restore the beauty and functionality of your fireplace with expert repairs that address cracks, drafts, and heat loss.",
+        "image": "services/fireplace-repair.webp"
+      },
+      {
+        "title": "Fireplace Cleaning",
+        "path": "/fireplace-cleaning",
+        "description": "Keep your fireplace safe and efficient with professional cleaning to remove soot, ash, and debris.",
+        "image": "services/fireplace-cleaning.webp"
+      },
+      {
+        "title": "Fireplace Maintenance",
+        "path": "/fireplace-maintenance",
+        "description": "Extend the life of your fireplace with regular maintenance that ensures safety, performance, and reliability.",
+        "image": "services/fireplace-maintenance.webp"
+      },
+      {
+        "title": "Gas Fireplace Services",
+        "path": "/gas-fireplace-services",
+        "description": "Professional installation, repair, and servicing of gas fireplaces for optimal efficiency and safety.",
+        "image": "services/gas-fireplace.webp"
+      },
+      {
+        "title": "Wood-Burning Fireplace",
+        "path": "/wood-burning-fireplace",
+        "description": "Expert services for wood-burning fireplaces including installation, repair, and cleaning for a cozy home.",
+        "image": "services/fireplace-inspection.webp"
+      }
     ],
-    "phone": "[phone]"
-  },
-  "services": [
-    {
-      "title": "Fireplace Repair",
-      "path": "/fireplace-repair",
-      "description": "Restore the beauty and functionality of your fireplace with expert repairs that address cracks, drafts, and heat loss.",
-      "image": "services/fireplace-repair.webp"
+    "our_services": {
+      "title": "Our Services"
     },
-    {
-      "title": "Fireplace Cleaning",
-      "path": "/fireplace-cleaning",
-      "description": "Keep your fireplace safe and efficient with professional cleaning to remove soot, ash, and debris.",
-      "image": "services/fireplace-cleaning.webp"
+    "why_choose": {
+      "heading": "Why Choose Us",
+      "file_name": "why-us/why-us.avif",
+      "childrenRef": "features"
     },
-    {
-      "title": "Fireplace Maintenance",
-      "path": "/fireplace-maintenance",
-      "description": "Extend the life of your fireplace with regular maintenance that ensures safety, performance, and reliability.",
-      "image": "services/fireplace-maintenance.webp"
+    "slogan": {
+      "title": "Quality Fireplace Services You Can Trust",
+      "description": "At [company_name], we are dedicated to providing exceptional fireplace services. Our experienced professionals ensure quality workmanship and customer satisfaction on every job."
     },
-    {
-      "title": "Gas Fireplace Services",
-      "path": "/gas-fireplace-services",
-      "description": "Professional installation, repair, and servicing of gas fireplaces for optimal efficiency and safety.",
-      "image": "services/gas-fireplace.webp"
+    "service_benefits": {
+      "heading": "[company_name] Service Benefits",
+      "file_name": "benefits/benefits.avif",
+      "list": [
+        {
+          "title": "Fire Prevention",
+          "description": "Prevent fire hazards and CO issues."
+        },
+        {
+          "title": "Improved Air Quality",
+          "description": "Properly working fireplaces heat better."
+        },
+        {
+          "title": "Enhanced Efficiency",
+          "description": "Maintenance extends fireplace life."
+        },
+        {
+          "title": "Extended Fireplace Lifespan",
+          "description": "Remove soot and improve air quality."
+        },
+        {
+          "title": "Safe Operation",
+          "description": "Know your fireplace is safe."
+        },
+        {
+          "title": "Improved Comfort",
+          "description": "Working fireplaces add value."
+        }
+      ]
     },
-    {
-      "title": "Wood-Burning Fireplace",
-      "path": "/wood-burning-fireplace",
-      "description": "Expert services for wood-burning fireplaces including installation, repair, and cleaning for a cozy home.",
-      "image": "services/fireplace-inspection.webp"
-    }
-  ],
-  "our_services": {
-    "title": "Our Services"
-  },
-  "why_choose": {
-    "heading": "Why Choose Us",
-    "file_name": "why-us/why-us.avif",
-    "childrenRef": "features"
-  },
-  "slogan": {
-    "title": "Quality Fireplace Services You Can Trust",
-    "description": "At [company_name], we are dedicated to providing exceptional fireplace services. Our experienced professionals ensure quality workmanship and customer satisfaction on every job."
-  },
-  "service_benefits": {
-    "heading": "[company_name] Service Benefits",
-    "title": "Chimney Service CO Benefits",
-    "file_name": "benefits/benefits.avif",
-    "list": [
+    "banner": {
+      "title": "Trusted Experts in [industry] services",
+      "tagline": "trusted professionals in [industry] installation, cleaning & repair",
+      "form_title": "Claim Fire Place Services Offer Today",
+      "form_description": "Offer ends in just a few hours!",
+      "cta_phone": "[phone]",
+      "file_name": "hero/hero.webp",
+      "childrenRef": "features"
+    },
+    "size": {
+      "title": "What size is the TV?",
+      "choose_label": "Choose",
+      "label_price_separator": " – ",
+      "card_background": "#496EB9",
+      "button_text_color": "#FF4811",
+      "tv_image": "/images/TV img1.png",
+      "tv_image_alt": "TV illustration",
+      "options": [
+        {
+          "id": "31",
+          "label": "31\" or smaller",
+          "price": "$65",
+          "size_display": "31\""
+        },
+        {
+          "id": "32-59",
+          "label": "32\"–59\"",
+          "price": "$149",
+          "size_display": "59\""
+        },
+        {
+          "id": "60-a",
+          "label": "60\" or larger",
+          "price": "$169",
+          "size_display": "60\""
+        },
+        {
+          "id": "60-b",
+          "label": "60\" or larger",
+          "price": "$209",
+          "size_display": "60\""
+        }
+      ]
+    },
+    "about": {
+      "heading": "About [company_name]",
+      "description1": "At Fireplace Services, we bring over 18 years of experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
+      "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
+      "points": null,
+      "file_name": "about/about.webp"
+    },
+    "promotion": {
+      "title": "Monthly Promotion",
+      "description": null,
+      "details": [
+        {
+          "heading": "**Why Choose [company_name]?**",
+          "subheading": "Key Advantages",
+          "features": [
+            "Keep your fireplace clean, safe, and efficient with [company_name].",
+            "Boost heating performance and energy efficiency.",
+            "Prevent fire hazards through expert maintenance.",
+            "Ensure safe operation of both gas and wood-burning fireplaces.",
+            "Save energy with improved ventilation and optimized airflow."
+          ]
+        },
+        {
+          "heading": "Full Fireplace Cleaning & System Sanitization",
+          "subheading": null,
+          "features": [
+            "Per Fireplace",
+            "Complete Fireplace Cleaning by Active Experts",
+            "Soot & Debris Removal for Safety",
+            "Smoke Flow Optimization for Better Heating",
+            "Flue & Damper Inspection",
+            "Component Safety Check by Certified Technicians"
+          ]
+        },
+        {
+          "heading": "Comprehensive Fireplace Inspection",
+          "subheading": null,
+          "features": [
+            "Detailed Visual Inspection by Fireplace Active",
+            "Smoke Draft Efficiency Evaluation",
+            "Blockage & Vent Obstruction Detection",
+            "Soot & Debris Buildup Analysis",
+            "Component and Connection Condition Check",
+            "Firebox & Damper Performance Assessment"
+          ]
+        }
+      ]
+    },
+    "before_after": {
+      "title": "Before And After Results",
+      "items": [
+        {
+          "before": "beforeafter/before1.webp",
+          "after": "beforeafter/after1.webp",
+          "before_alt": "Before service",
+          "after_alt": "After service"
+        },
+        {
+          "before": "beforeafter/before2.webp",
+          "after": "beforeafter/after2.webp",
+          "before_alt": "Before service",
+          "after_alt": "After service"
+        },
+        {
+          "before": "beforeafter/before3.webp",
+          "after": "beforeafter/after3.webp",
+          "before_alt": "Before service",
+          "after_alt": "After service"
+        },
+        {
+          "before": "beforeafter/before4.webp",
+          "after": "beforeafter/after4.webp",
+          "before_alt": "Before service",
+          "after_alt": "After service"
+        }
+      ]
+    },
+    "form_head": {
+      "title": "10% Off Total Price for Online Booking",
+      "sub_title": "Ask For A Quote Here"
+    },
+    "contact_info": {
+      "phone": "[phone]",
+      "email": "info@[domain]",
+      "working_hours": "[working_hours]"
+    },
+    "city_name": "[city_name]",
+    "faqs": {
+      "title": "FAQs",
+      "items": [
+        {
+          "question": "What is included in a fireplace inspection?",
+          "answer": "At [company_name], our inspections include a detailed examination of your fireplace’s structure, components, and ventilation system. We look for cracks, blockages, or wear to ensure your fireplace operates safely and efficiently."
+        },
+        {
+          "question": "How often should I have my fireplace cleaned?",
+          "answer": "[company_name] recommends scheduling a professional cleaning and inspection at least once a year. Regular maintenance prevents soot buildup, enhances safety, and keeps your fireplace performing at its best."
+        },
+        {
+          "question": "What are the signs that my fireplace needs repair?",
+          "answer": "If you notice cracks, smoke escaping indoors, strange smells, or reduced efficiency, it’s time to call [company_name]. Our experts will diagnose and repair the issue to restore your fireplace’s safety and performance."
+        },
+        {
+          "question": "Do you service gas and wood-burning fireplaces?",
+          "answer": "Yes! [company_name] provides expert service for both gas and wood-burning fireplaces — including cleaning, inspections, and repairs — ensuring reliable and safe operation all year round."
+        }
+      ]
+    },
+    "footer": {
+      "value": "[company_name] – Your trusted source for professional fireplace services. Our team of experienced professionals is dedicated to quality workmanship and customer satisfaction. Contact us today!",
+      "file_name": "footer/footerbg.webp"
+    },
+    "locations": {
+      "title": "Areas We Serve",
+      "image": "locations/map.jpg",
+      "list": [
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "District Of Columbia",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming"
+      ]
+    },
+    "features": [
       {
-        "title": "Fire Prevention",
-        "description": "Prevent fire hazards and CO issues."
+        "icon": "FileText",
+        "text": "Fire Place & Repair"
       },
       {
-        "title": "Improved Air Quality",
-        "description": "Properly working fireplaces heat better."
+        "icon": "Clock",
+        "text": "Same Day Service"
       },
       {
-        "title": "Enhanced Efficiency",
-        "description": "Maintenance extends fireplace life."
+        "icon": "Star",
+        "text": "5 Star Rated On Google"
       },
       {
-        "title": "Extended Fireplace Lifespan",
-        "description": "Remove soot and improve air quality."
+        "icon": "Shield",
+        "text": "Licensed & Insured"
       },
       {
-        "title": "Safe Operation",
-        "description": "Know your fireplace is safe."
-      },
-      {
-        "title": "Improved Comfort",
-        "description": "Working fireplaces add value."
+        "icon": "MessageSquare",
+        "text": "10+ Years Of Experience"
       }
-    ]
-  },
-  "banner": {
-    "header":"Top-Rated",
-    "label":"contact",
-    "title": "Trusted Experts in [industry] services",
-    "tagline": "trusted professionals in [industry] installation, cleaning & repair",
-    "form_title": "Claim Fire Place Services Offer Today",
-    "form_description": "Offer ends in just a few hours!",
-    "cta_phone": "[phone]",
-    "file_name": "hero/hero.webp",
-    "childrenRef": "features"
-  },
-  "about": {
-    "heading": "About [company_name]",
-    "description1": "At Fireplace Services, we bring over 18 years of experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
-    "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
-    "points": null,
-    "file_name": "about/about.webp"
-  },
-  "promotion": {
-    "title": "Monthly Promotion",
-    "cta_label": "Call Us Today",
-    "description": null,
-    "details": [
-      {
-        "heading": "**Why Choose [company_name]?**",
-        "subheading": "Key Advantages",
-        "features": [
-          "Keep your fireplace clean, safe, and efficient with [company_name].",
-          "Boost heating performance and energy efficiency.",
-          "Prevent fire hazards through expert maintenance.",
-          "Ensure safe operation of both gas and wood-burning fireplaces.",
-          "Save energy with improved ventilation and optimized airflow."
-        ]
-      },
-      {
-        "heading": "Full Fireplace Cleaning & System Sanitization",
-        "subheading": null,
-        "features": [
-          "Per Fireplace",
-          "Complete Fireplace Cleaning by Active Experts",
-          "Soot & Debris Removal for Safety",
-          "Smoke Flow Optimization for Better Heating",
-          "Flue & Damper Inspection",
-          "Component Safety Check by Certified Technicians"
-        ]
-      },
-      {
-        "heading": "Comprehensive Fireplace Inspection",
-        "subheading": null,
-        "features": [
-          "Detailed Visual Inspection by Fireplace Active",
-          "Smoke Draft Efficiency Evaluation",
-          "Blockage & Vent Obstruction Detection",
-          "Soot & Debris Buildup Analysis",
-          "Component and Connection Condition Check",
-          "Firebox & Damper Performance Assessment"
-        ]
-      }
-    ]
-  },
-  "before_after": {
-    "title": "Before And After Results",
-    "items": [
-      {
-        "before": "beforeafter/before1.webp",
-        "after": "beforeafter/after1.webp",
-        "before_alt": "Before service",
-        "after_alt": "After service"
-      },
-      {
-        "before": "beforeafter/before2.webp",
-        "after": "beforeafter/after2.webp",
-        "before_alt": "Before service",
-        "after_alt": "After service"
-      },
-      {
-        "before": "beforeafter/before3.webp",
-        "after": "beforeafter/after3.webp",
-        "before_alt": "Before service",
-        "after_alt": "After service"
-      },
-      {
-        "before": "beforeafter/before4.webp",
-        "after": "beforeafter/after4.webp",
-        "before_alt": "Before service",
-        "after_alt": "After service"
-      }
-    ]
-  },
-  "workingprocess": {
-    "heading": "Our Working Process",
-    "description": "See how we work.",
-    "list": [
-      {
-        "title": "Free Consultation",
-        "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-        "image": "workingprocess/message.png"
-      },
-      {
-        "title": " Expert Execution",
-        "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-         "image" :"workingprocess/person.png"
+    ],
 
-      },
-      {
-        "title": "Quality Assurance",
-        "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-         "image" :"workingprocess/verified.png"
-
-      }
-      
-
-    ]
+    "testimonials": {
+      "reviewCount": "150+",
+      "file_name": "testimonials/fireplace.webp",
+      "list": [
+        {
+          "name": "John D.",
+          "text": "[company_name] did an amazing job! Professional, efficient, and great results. Highly recommend!",
+          "rating": 5
+        },
+        {
+          "name": "Sarah M.",
+          "text": "Excellent service from start to finish. The team was professional and completed the work on time.",
+          "rating": 5
+        },
+        {
+          "name": "Mike R.",
+          "text": "Very impressed with the quality of work. Fair pricing and excellent customer service.",
+          "rating": 5
+        },
+        {
+          "name": "Lisa K.",
+          "text": "Fast response and great results. Will definitely use again and recommend to others.",
+          "rating": 5
+        },
+        {
+          "name": "David W.",
+          "text": "Professional team that takes pride in their work. Very satisfied with the results.",
+          "rating": 5
+        },
+        {
+          "name": "Jennifer L.",
+          "text": "Excellent experience from quote to completion. Highly recommend [company_name]!",
+          "rating": 5
+        }
+      ]
+    },
+    "cta": {
+      "title": "Ready to Book Your Fireplace Service?",
+      "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service.",
+      "image": "/images/Cta%20img1.jpg"
+    },
     
+"company_profile": {
+  "sub_title": "Your Same Day TV Mounting Los Angeles Company",
+  "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
+  "large_image": "Profiles/CompanyProfile2.jpg",
+  "large_image_alt": "Company Profile",
+  "small_image": "Profiles/CompanyProfile1.jpg",
+  "small_image_alt": "Company Profile Preview",
+  "button": {
+    "text": "Book Service Now",
+    "link": "#"
   },
-  "calltoaction": {
-    "title": "Get a free quote from a [industry] Services",
-    "description": "Our pros offer great prices & great service. Find out the exact price of your home project today!",
-    "button_text": "GET A FREE ESTIMATE",
-    "button_link": "contact-us"
-  },
-
-  "form_head": {
-    "title": "10% Off Total Price for Online Bookin kkg",
-    "sub_title": "Ask For A Quote Here"
-  },
-  "contact_info": {
-    "phone": "[phone]",
-    "email": "info@[domain]",
-    "working_hours": "[working_hours]"
-  },
-
-  "reviewandrating": {
-    "title": "The Most Trusted and 5-Star Rated Chimney Cleaners in [city_name]",
-    "description": "",
-    "list": [
-      {
-        "name": "John Doe",
-        "rating": 5,
-        "comment": "Great service! The team was professional and did a great job."
-      }
-    ]
-  },
-  "city_name": "[city_name]",
-  "faqs": {
-    "title": "FAQs",
-    "image": "footer/faqs-illustration.png",
-    "items": [
-      {
-        "question": "What is included in a fireplace inspection?",
-        "answer": "At [company_name], our inspections include a detailed examination of your fireplace’s structure, components, and ventilation system. We look for cracks, blockages, or wear to ensure your fireplace operates safely and efficiently."
-      },
-      {
-        "question": "How often should I have my fireplace cleaned?",
-        "answer": "[company_name] recommends scheduling a professional cleaning and inspection at least once a year. Regular maintenance prevents soot buildup, enhances safety, and keeps your fireplace performing at its best."
-      },
-      {
-        "question": "What are the signs that my fireplace needs repair?",
-        "answer": "If you notice cracks, smoke escaping indoors, strange smells, or reduced efficiency, it’s time to call [company_name]. Our experts will diagnose and repair the issue to restore your fireplace’s safety and performance."
-      },
-      {
-        "question": "Do you service gas and wood-burning fireplaces?",
-        "answer": "Yes! [company_name] provides expert service for both gas and wood-burning fireplaces — including cleaning, inspections, and repairs — ensuring reliable and safe operation all year round."
-      }
-    ]
-  },
-  "MilestoneBanner":{
-   "image": "MilestoneBanner/banner.png",
-      "title": "15,000+",
-      "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow. ",
-        "title2": "Best Service Team",
-        "description2": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot,",
-        "name": "Michael Nguyen",
-        "rating": 5.0,
-        "role": "Operations Lead"
-  },
-  "footer": {
-    "information_heading": "Information",
-    "contact_heading": "Contact",
-    "value": "[company_name] – Your trusted source for professional fireplace services. Our team of experienced professionals is dedicated to quality workmanship and customer satisfaction. Contact us today!",
-    "file_name": "footer/footerbg.webp"
-  },
-  "locations": {
-    "title": "Areas We Serve",
-    "image": "locations/map.jpg",
-    "list": [
-      "Alabama",
-      "Alaska",
-      "Arizona",
-      "Arkansas",
-      "California",
-      "Colorado",
-      "Connecticut",
-      "Delaware",
-      "District Of Columbia",
-      "Florida",
-      "Georgia",
-      "Hawaii",
-      "Idaho",
-      "Illinois",
-      "Indiana",
-      "Iowa",
-      "Kansas",
-      "Kentucky",
-      "Louisiana",
-      "Maine",
-      "Maryland",
-      "Massachusetts",
-      "Michigan",
-      "Minnesota",
-      "Mississippi",
-      "Missouri",
-      "Montana",
-      "Nebraska",
-      "Nevada",
-      "New Hampshire",
-      "New Jersey",
-      "New Mexico",
-      "New York",
-      "North Carolina",
-      "North Dakota",
-      "Ohio",
-      "Oklahoma",
-      "Oregon",
-      "Pennsylvania",
-      "Rhode Island",
-      "South Carolina",
-      "South Dakota",
-      "Tennessee",
-      "Texas",
-      "Utah",
-      "Vermont",
-      "Virginia",
-      "Washington",
-      "West Virginia",
-      "Wisconsin",
-      "Wyoming"
-    ]
-  },
-  "features": [
-    {
-      "icon": "FileText",
-      "text": "Fire Place & Repair"
-    },
-    {
-      "icon": "Clock",
-      "text": "Same Day Service"
-    },
-    {
-      "icon": "Star",
-      "text": "5 Star Rated On Google"
-    },
-    {
-      "icon": "Shield",
-      "text": "Licensed & Insured"
-    },
-    {
-      "icon": "MessageSquare",
-      "text": "10+ Years Of Experience"
+  "childrenRef": "features"
+},
+"features": [               
+  { "text": "Highly Rated" },
+  { "text": "Licensed & Insured" },
+  { "text": "Friendly, Professional Service" },
+  { "text": "Satisfaction Guaranteed" }
+],
+    "work_portfolio": {
+      "file_name": [
+         "WorkPortfolio/gallery1.jpg",
+        "WorkPortfolio/gallery2.jpg",
+        "WorkPortfolio/gallery3.jpg",
+        "WorkPortfolio/gallery4.jpg",
+        "WorkPortfolio/gallery5.jpg",
+        "WorkPortfolio/gallery6.jpg",
+        "WorkPortfolio/gallery7.jpg",
+        "WorkPortfolio/gallery8.jpg",
+        "WorkPortfolio/gallery9.jpg",
+        "WorkPortfolio/gallery10.jpg",
+        "WorkPortfolio/gallery11.jpg",
+        "WorkPortfolio/gallery12.jpg",
+        "WorkPortfolio/gallery13.jpg",
+        "WorkPortfolio/gallery14.jpg",
+        "WorkPortfolio/gallery15.jpg"
+      ]
     }
-  ],
-  
-  "testimonials": {
-    "reviewCount": "150+",
-    "heading": "Our Happy Clients",
-    "file_name": "testimonials/fireplace.webp",
-    "list": [
-      {
-        "name": "John D.",
-        "text": "[company_name] did an amazing job! Professional, efficient, and great results. Highly recommend!",
-        "rating": 5
-      },
-      {
-        "name": "Sarah M.",
-        "text": "Excellent service from start to finish. The team was professional and completed the work on time.",
-        "rating": 5
-      },
-      {
-        "name": "Mike R.",
-        "text": "Very impressed with the quality of work. Fair pricing and excellent customer service.",
-        "rating": 5
-      },
-      {
-        "name": "Lisa K.",
-        "text": "Fast response and great results. Will definitely use again and recommend to others.",
-        "rating": 5
-      },
-      {
-        "name": "David W.",
-        "text": "Professional team that takes pride in their work. Very satisfied with the results.",
-        "rating": 5
-      },
-      {
-        "name": "Jennifer L.",
-        "text": "Excellent experience from quote to completion. Highly recommend [company_name]!",
-        "rating": 5
-      }
-    ]
-  },
-  "videosection":{
-    "title": "Watch Our Video",
-    "file_name": "videosection/vedio13.mp4"
-  },
-  "cta": {
-    "title": "Ready to Book Your Fireplace Service?",
-    "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service."
   }
-}

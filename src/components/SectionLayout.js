@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Navbar from "@/components/sections/Navbar";
 import Banner from "@/components/sections/Banner";
 import Header from "@/components/sections/Header";
+import CompanyProfile from "@/components/sections/CompanyProfile";
 
 // Below-fold components loaded lazily to reduce initial JS bundle
 const About = dynamic(() => import("@/components/sections/About"));
@@ -27,6 +28,7 @@ const WorkingProcess = dynamic(() => import("@/components/sections/WorkingProces
 const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDescription"));
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
+
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
 const Cta = dynamic(() => import("@/components/sections/Cta"));
 const CallToAction = dynamic(() => import("@/components/sections/CallToAction"));
@@ -34,6 +36,8 @@ const MilestoneBanner = dynamic(() =>
   import("@/components/sections/MilestoneBanner"),
 );
 const Videosection = dynamic(() => import("@/components/sections/Videosection"));
+const TVSizes = dynamic(() => import("@/components/sections/TVSizes"));
+const WorkPortfolio = dynamic(() => import("@/components/sections/WorkPortfolio"));
 const PrivacyPolicy = dynamic(() => import("@/components/sections/PrivacyPolicy"));
 const TermsAndConditions = dynamic(
   () => import("@/components/sections/TermsAndConditions"),
@@ -70,6 +74,9 @@ const sectionComponents = {
   calltoaction: CallToAction,
   PrivacyPolicy,
   TermsAndConditions,
+  CompanyProfile,
+  TVSizes,
+  WorkPortfolio,
 };
 
 const DEFAULT_THEME_COLOR = "#1A2956";

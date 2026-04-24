@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { DM_Sans } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
+import { cn } from "@/lib/utils";
 
 const DEFAULT_IMAGE_BASE = IMAGE_BASE;
 
@@ -22,6 +23,23 @@ function isValidImageSrc(src) {
   );
 }
 
+/** First word orange, remainder navy — navbar / brand lockup style. */
+function LogoBrandMark({ text, split }) {
+  const trimmed = (text ?? "").trim();
+  if (!trimmed) return null;
+  if (!split) return <>{trimmed}</>;
+  const words = trimmed.split(/\s+/).filter(Boolean);
+  if (words.length === 0) return null;
+  const first = words[0];
+  const rest = words.slice(1).join(" ");
+  return (
+    <>
+      <span className="text-[#F5521B]">{first}</span>
+      {rest ? <span className="text-[#003366]">{`\u00A0${rest}`}</span> : null}
+    </>
+  );
+}
+
 function buildImageSrc(base, path) {
   if (!path || typeof path !== "string") return "";
   const basePath =
@@ -36,6 +54,8 @@ export default function Logo({
   className,
   tagline,
   taglineClassName,
+  /** When true, brand text splits: first word #F5521B, rest #003366, uppercase via parent. */
+  splitBrandWords = false,
 }) {
   const [hostName, setHostName] = useState("");
   const [windowWidth, setWindowWidth] = useState(1200);
@@ -135,7 +155,10 @@ export default function Logo({
       className={
         tagline
           ? "inline-flex min-w-0 items-center"
-          : "flex items-center justify-center"
+          : cn(
+              "flex items-center justify-center",
+              splitBrandWords && "justify-start",
+            )
       }
     >
       {showImageLogo ? (
@@ -182,16 +205,31 @@ export default function Logo({
             <span className="flex min-w-0 flex-col items-start justify-center gap-1.5">
               {logoText ? (
                 <h2
-                  className={`max-w-[200px] truncate text-base font-bold xs:max-w-[220px] sm:max-w-none sm:text-lg md:text-3xl ${className ?? ""}`}
+                  className={cn(
+                    "max-w-[200px] truncate xs:max-w-[220px] sm:max-w-none",
+                    splitBrandWords
+                      ? "text-base font-black uppercase leading-none tracking-tight sm:text-xl md:text-2xl lg:text-[28px]"
+                      : "text-base font-bold sm:text-lg md:text-3xl",
+                    className,
+                  )}
                 >
-                  {logoText}
+                  {splitBrandWords ? (
+                    <LogoBrandMark split text={logoText} />
+                  ) : (
+                    logoText
+                  )}
                 </h2>
               ) : null}
               <span className={computedTaglineClassName}>{tagline}</span>
             </span>
           </span>
         ) : (
-          <div className="flex items-center">
+          <div
+            className={cn(
+              "flex items-center",
+              splitBrandWords ? "gap-2 sm:gap-2.5" : "",
+            )}
+          >
             {showTextLogoIcon && (
               <Image
                 src={textLogoIconSrc}
@@ -203,9 +241,20 @@ export default function Logo({
             )}
             {logoText && (
               <h2
-                className={`ml-2 max-w-[140px] truncate text-base font-bold xs:max-w-[180px] sm:max-w-none sm:text-lg md:text-3xl ${className ?? ""}`}
+                className={cn(
+                  "min-w-0 max-w-[140px] truncate xs:max-w-[180px] sm:max-w-none",
+                  splitBrandWords
+                    ? "text-base font-black uppercase leading-none tracking-tight sm:text-xl md:text-2xl lg:text-[28px]"
+                    : "ml-2 text-base font-bold sm:text-lg md:text-3xl",
+                  !splitBrandWords && "ml-2",
+                  className,
+                )}
               >
-                {logoText}
+                {splitBrandWords ? (
+                  <LogoBrandMark split text={logoText} />
+                ) : (
+                  logoText
+                )}
               </h2>
             )}
           </div>

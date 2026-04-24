@@ -25,5 +25,6 @@ export { default as ServiceDescription1Section } from "./ServiceDescription1";
 export { default as ServiceDescription2Section } from "./ServiceDescription2";
 export { default as CallUsButton } from "./CallUsButton";
 export { default as Cta } from "./Cta";
-
+export { default as TVSizes } from "./TVSizes";
+export { default as WorkPortfolio } from "./WorkPortfolio";
 

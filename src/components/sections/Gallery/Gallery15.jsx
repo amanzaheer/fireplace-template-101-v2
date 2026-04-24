@@ -121,13 +121,6 @@ export default function Gallery15({ content }) {
                           <BannerCtaIcon className="h-4 w-4 shrink-0" />
                           {phone}
                         </a>
-                        {/* <button
-                          type="button"
-                          className={`${rubik.className} inline-flex h-[40px] w-full max-w-[160px] items-center justify-center gap-2 rounded-[8px] bg-[#f59402] px-4 text-[13px] font-bold uppercase text-white shadow-[0_2px_8px_rgba(0,0,0,0.18)] transition-colors hover:bg-[#df8801]`}
-                        >
-                          <TextQuote className="h-4 w-4 shrink-0" strokeWidth={2.25} />
-                          Quote
-                        </button> */}
                       </div>
                     ) : null}
                   </div>

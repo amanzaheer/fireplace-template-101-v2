@@ -13,7 +13,6 @@ function buildImageSrc(base, filePath) {
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
 }
-
 /** Template 5 banner — split hero + orange panel with QuoteForm5. */
 export default function Banner5({ content }) {
   const banner = content?.banner ?? {};

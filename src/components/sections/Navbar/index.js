@@ -17,6 +17,7 @@ import Navbar12 from './Navbar12';
 import Navbar13 from './Navbar13';
 import Navbar14 from './Navbar14';
 import Navbar15 from './Navbar15';
+import Navbar16 from './Navbar16';
 const variants = {
   Navbar1,
   Navbar2,
@@ -33,10 +34,11 @@ const variants = {
   Navbar12,
   Navbar10,
   Navbar13,
+  Navbar16,
 };
 export default function Navbar({ variant, content }) {
-  const name = String(variant ?? "").trim() || "Navbar1";
-  const Component = variants[name] ?? Navbar1;
+  const name = String(variant ?? "").trim() || "Navbar16";
+  const Component = variants[name] ?? Navbar16;
   return <Component content={content} />;
 }
 export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, variants };

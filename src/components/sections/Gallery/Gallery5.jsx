@@ -45,7 +45,7 @@ export default function Gallery5({ content }) {
         {title ? (
           <header className="mb-8 text-center md:mb-12">
             <h2 className="mx-auto max-w-4xl px-3 text-3xl font-extrabold leading-[1.12] tracking-tight sm:text-4xl md:text-[2.65rem] md:leading-[1.1]">
-              <span className="bg-gradient-to-br from-gray-900 via-gray-800 to-[#b45309] bg-clip-text text-transparent drop-shadow-[0_1px_0_rgba(255,255,255,0.4)]">
+              <span className="bg-gradient-to-br' from-gray-900 via-gray-800 to-[#b45309] bg-clip-text text-transparent drop-shadow-[0_1px_0_rgba(255,255,255,0.4)]">
                 {title}
               </span>
             </h2>
@@ -53,7 +53,7 @@ export default function Gallery5({ content }) {
               className="mx-auto mt-5 flex justify-center gap-1.5 md:mt-6"
               aria-hidden
             >
-              <span className="h-1 w-10 rounded-full bg-gradient-to-r from-transparent via-[#D35400] to-[#ea580c]" />
+              <span className="h-1 w-10 rounded-full bg-gradient-to-r' from-transparent via-[#D35400] to-[#ea580c]" />
               <span className="h-1 w-3 rounded-full bg-[#fb923c]" />
             </div>
           </header>
@@ -78,7 +78,7 @@ export default function Gallery5({ content }) {
                   key={index}
                   className="group relative flex h-full flex-col overflow-hidden rounded-xl border border-gray-100 bg-white shadow-sm transition-shadow hover:shadow-md"
                 >
-                  <div className="relative aspect-[4/3] shrink-0">
+                  <div className="relative aspect-[4/3]' shrink-0">
                     <Image
                       title={label}
                       src={src}
@@ -102,7 +102,7 @@ export default function Gallery5({ content }) {
                         }}
                       >
                         <Phone className="h-5 w-5 shrink-0" aria-hidden />
-                        <span className="min-w-0 break-words">{phone}</span>
+                        <span className="min-w-0 'break-words">{phone}</span>
                       </a>
                     </div>
                   ) : null}
