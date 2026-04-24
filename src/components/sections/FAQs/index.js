@@ -15,6 +15,7 @@ import FAQs15 from "./FAQs15";
 import FAQs12 from "./FAQs12";
 import FAQs10 from "./FAQs10";
 import FAQs13 from "./FAQs13";
+import FAQs16 from "./FAQs16";
 const variants = {
   FAQs1,
   FAQs2,
@@ -30,11 +31,12 @@ const variants = {
   FAQs12,
   FAQs10,
   FAQs13,
+  FAQs16
     };
 
 export default function FAQs({ variant, content }) {
-  const name = variant ?? "FAQs14";
-  const Component = variants[name] ?? FAQs14;
+  const name = variant ?? "FAQs16";
+  const Component = variants[name] ?? FAQs16;
   return <Component content={content} />;
 }
 export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs8, FAQs9, FAQs14, FAQs15, FAQs12, FAQs10, FAQs13, variants };

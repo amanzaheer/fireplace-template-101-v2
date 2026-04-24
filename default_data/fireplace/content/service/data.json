@@ -27,6 +27,41 @@
     "file_name": "services/fireplace-repair.webp",
     "childrenRef": "features"
   },
+  "size": {
+    "title": "What size is the TV?",
+    "choose_label": "Choose",
+    "label_price_separator": " – ",
+    "card_background": "#496EB9",
+    "button_text_color": "#FF4811",
+    "tv_image": "/images/TV img1.png",
+    "tv_image_alt": "TV illustration",
+    "options": [
+      {
+        "id": "31",
+        "label": "31\" or smaller",
+        "price": "$65",
+        "size_display": "31\""
+      },
+      {
+        "id": "32-59",
+        "label": "32\"–59\"",
+        "price": "$149",
+        "size_display": "59\""
+      },
+      {
+        "id": "60-a",
+        "label": "60\" or larger",
+        "price": "$169",
+        "size_display": "60\""
+      },
+      {
+        "id": "60-b",
+        "label": "60\" or larger",
+        "price": "$209",
+        "size_display": "60\""
+      }
+    ]
+  },
   "features": [
     {
       "icon": "FileText",

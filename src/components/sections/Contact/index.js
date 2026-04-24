@@ -35,8 +35,8 @@ const variants = {
 };
 
 export default function Contact({ variant, content }) {
-  const name = variant ?? "Contact14";
-  const Component = variants[name] ?? Contact14 ;
+  const name = variant ?? "Contact16";
+  const Component = variants[name] ?? Contact16 ;
   return <Component content={content} />;
 }
 export { Contact1, Contact2, Contact3, Contact4, Contact5, Contact6, Contact7, Contact8, Contact9, Contact14, Contact15, Contact11, Contact10, Contact13, variants };
