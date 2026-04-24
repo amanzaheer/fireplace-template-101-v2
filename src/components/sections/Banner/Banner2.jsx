@@ -36,7 +36,7 @@ const QuoteForm2 = dynamic(
   () => import("@/components/sections/Banner/QuoteForm/QuoteForm2"),
   {
     loading: () => (
-      <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
+      <div className="bg-white shadow-lg rounded-[15px] h-[380px] w-full md:w-[370px] animate-pulse" />
     ),
     ssr: false,
   },
@@ -91,9 +91,9 @@ export default function Banner1({ content }) {
   return (
     <FullContainer
       id="banner"
-      className="relative bg-white overflow-hidden w-full min-h-[200px]"
+      className="relative bg-white w-full min-h-[200px] mb-[200px]"
     >
-      <div className="absolute inset-0 w-full h-full overflow-hidden">
+      <div className="absolute inset-0 w-full h-full ">
         <Image
           src={image}
           title={data?.imageTitle || data?.title || "Banner"}
@@ -110,16 +110,16 @@ export default function Banner1({ content }) {
       </div>
 
       <Container className="relative z-10 font-barlow py-10 md:py-14 lg:py-12">
-        <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-10 text-white">
-          <div className="relative w-full max-w-[640px]">
+        <div className="w-full flex flex-col min-h-[400px]  items-center lg:items-start justify-between gap-8 lg:gap-10 text-white">
+          <div className="relative w-full max-w-full">
             <div className="w-full flex flex-col items-start justify-center">
               <div
-                className={`${poppins.className} font-black max-w-[560px] inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-left text-shadow-lg`}
+                className={`${poppins.className} font-black text-center w-full max-w-full inline-block uppercase text-[34px] sm:text-[42px] lg:text-[52px] leading-[1.04] text-shadow-lg`}
               >
                 {data?.heading || data?.title}
               </div>
               {data?.tagline ? (
-                <h2 className="text-xl md:text-2xl uppercase font-extrabold leading-tight text-[#ffffff] text-left mt-2">
+                <h2 className="text-xl text-center  md:text-2xl uppercase font-extrabold leading-tight text-[#ffffff] mt-2 w-full">
                   {data?.tagline}
                 </h2>
               ) : null}
@@ -128,8 +128,8 @@ export default function Banner1({ content }) {
                 {data?.description}
               </p>
               {features?.length > 0 ? (
-                <ul className="mb-6 w-fit space-y-1 md:space-y-1.5">
-                  {features?.map((feature, idx) => {
+                <ul className="mb-6 flex flex-col lg:flex-row items-center pt-0 lg:pt-5 justify-center space-y-1 md:space-y-1.5 w-full gap-0 lg:gap-10">
+                  {features?.slice(0, 3).map((feature, idx) => {
                     const IconComponent = ICON_MAP[feature.icon];
                     return (
                       <li
@@ -147,8 +147,19 @@ export default function Banner1({ content }) {
                   })}
                 </ul>
               ) : null}
+            </div>
+          </div>
 
-              <div className="w-fit">
+          <div className="w-full lg:absolute lg:bottom-0 lg:translate-y-1/2 z-50 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-20 bg-black rounded-2xl px-5 lg:px-10 py-10">
+            <div className="flex flex-col items-center justify-between py-5 lg:py-20">
+              <div className="flex flex-col items-start justify-center gap-5">
+
+                <h3 className={`${poppins.className} text-2xl text-left md:text-4xl lg:text-5xl font-bold text-white`}>How we can help?</h3>
+                <p className={`${poppins.className} text-base md:text-lg lg:text-xl text-white/90`}>we are available 7 days a week. call or book your service now.</p>
+              </div>
+
+              <div className="w-full flex flex-col lg:flex-row gap-2 pt-5 lg:pt-0 items-center justify-between ">
+                <h3 className={`${inter.className} text-2xl  font-bold text-white`}>Call Us Today</h3>
                 <div className="flex flex-col gap-0.5 md:gap-1 justify-center items-center">
                   <div className="text-xs">
                     <a
@@ -172,11 +183,8 @@ export default function Banner1({ content }) {
                 </div>
               </div>
             </div>
-          </div>
-
-          <div className="w-full md:w-fit max-w-[400px]">
             <div className="rounded-[18px] shadow-[0_16px_40px_rgba(0,0,0,0.32)] overflow-hidden">
-              <div className="bg-transparent px-0 pb-0 lg:min-h-[483.5px]">
+              <div className="bg-transparent px-0 pb-0 ">
                 <QuoteForm2
                   data={data}
                   form_head={form_head}
