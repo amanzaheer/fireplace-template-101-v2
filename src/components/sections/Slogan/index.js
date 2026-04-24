@@ -28,12 +28,12 @@ const variants = {
   Slogan7,
   Slogan8,
   Slogan9,
-  Slogan15,
+  Slogan10,
   Slogan11,
+  Slogan12,
   Slogan13,
   Slogan14,
-  Slogan12,
-  Slogan10,
+  Slogan15,
   Slogan16,
 };
 
@@ -42,6 +42,5 @@ export default function Slogan({ variant, content }) {
   const Component = variants[name] ?? Slogan16;
   return <Component content={content} />;
 }
-export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9,Slogan15,Slogan11,Slogan12,Slogan14,Slogan10,Slogan13,variants };
+export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9, Slogan15, Slogan11, Slogan12, Slogan14, Slogan10, Slogan13, variants };
 
-export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan5, Slogan6, Slogan8, Slogan9, Slogan15, Slogan16, variants };
