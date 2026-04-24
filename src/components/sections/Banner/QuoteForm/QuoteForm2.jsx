@@ -9,7 +9,7 @@ import {
   validateName,
   validateMessage,
 } from "@/lib/validators";
-import {Poppins, Inter } from "next/font/google";
+import { Poppins, Inter } from "next/font/google";
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -230,7 +230,7 @@ export default function QuoteForm2({
       fireGTMEvent(formData);
       toast.success(
         result.message ||
-          "Your request has been submitted successfully! We'll contact you shortly."
+        "Your request has been submitted successfully! We'll contact you shortly."
       );
       setFormSubmitted(true);
     } catch (err) {
@@ -245,17 +245,17 @@ export default function QuoteForm2({
     <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)] relative font-barlow rounded-[15px] h-fit ">
       {!formSubmitted && (
         <>
-        <div className="px-2 md:px-2.5 py-3 bg-[#c92028]">
-          <h3 className={`${poppins.className} text-3xl md:text-[34px] text-white leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2`}>
-            {form_head?.title}
-          </h3>
-          
-        </div>
-        <div>
-        <h4 className={`${inter.className} text-lg md:text-xl font-medium text-black pt-2 text-center text-ink`}>
-            {form_head?.sub_title}
-          </h4>
-        </div>
+          <div className="px-2 md:px-2.5 py-3 bg-[#c92028]">
+            <h3 className={`${poppins.className} text-3xl md:text-[34px] text-white leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2`}>
+              {form_head?.title}
+            </h3>
+
+          </div>
+          <div>
+            {/* <h4 className={`${inter.className} text-lg md:text-xl font-medium text-black pt-2 text-center text-ink`}>
+              {form_head?.sub_title}
+            </h4> */}
+          </div>
         </>
       )}
 
@@ -278,7 +278,7 @@ export default function QuoteForm2({
         </div>
       ) : (
         <form onSubmit={handleSubmit} className="space-y-2.5 text-black  text-base md:text-lg px-2 md:px-2.5 py-2 md:py-3">
-          <div className="grid grid-cols-2 gap-[8px]">
+          <div className="grid grid-cols-2 lg:grid-cols-3 gap-[8px]">
             <div>
               <label htmlFor="firstName" className="sr-only">First name</label>
               <input
@@ -288,9 +288,8 @@ export default function QuoteForm2({
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-                  fieldErrors.firstName ? "border-red-500" : "border-[#bdbdbd]"
-                }`}
+                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${fieldErrors.firstName ? "border-red-500" : "border-[#bdbdbd]"
+                  }`}
                 placeholder="First name"
                 required
                 aria-invalid={!!fieldErrors.firstName}
@@ -310,9 +309,8 @@ export default function QuoteForm2({
                 value={formData.lastName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-                  fieldErrors.lastName ? "border-red-500" : "border-[#bdbdbd]"
-                }`}
+                className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${fieldErrors.lastName ? "border-red-500" : "border-[#bdbdbd]"
+                  }`}
                 placeholder="Last name"
                 required
                 aria-invalid={!!fieldErrors.lastName}
@@ -323,45 +321,52 @@ export default function QuoteForm2({
                 </div>
               )}
             </div>
+            <div>
+            <label htmlFor="phone" className="sr-only">Phone number</label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${fieldErrors.phone ? "border-red-500" : "border-[#bdbdbd]"
+                }`}
+              placeholder="(123) 456-7890"
+              required
+              aria-invalid={!!fieldErrors.phone}
+            />
+            {fieldErrors.phone && (
+              <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
+            )}
+          </div>
+          </div>
+          <div className=" gap-[8px]">
+
+         
+
+          <div>
+            <label htmlFor="email" className="sr-only">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${fieldErrors.email ? "border-red-500" : "border-[#bdbdbd]"
+                }`}
+              placeholder="your@email.com"
+              required
+              aria-invalid={!!fieldErrors.email}
+            />
+            {fieldErrors.email && (
+              <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
+            )}
+          </div>
           </div>
 
-          <label htmlFor="phone" className="sr-only">Phone number</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.phone ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
-            placeholder="(123) 456-7890"
-            required
-            aria-invalid={!!fieldErrors.phone}
-          />
-          {fieldErrors.phone && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
-          )}
 
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full pl-3 py-3 bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.email ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
-            placeholder="your@email.com"
-            required
-            aria-invalid={!!fieldErrors.email}
-          />
-          {fieldErrors.email && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
-          )}
 
           <label htmlFor="message" className="sr-only">Message</label>
           <textarea
@@ -371,9 +376,8 @@ export default function QuoteForm2({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={3}
-            className={`w-full pl-3 py-3 max-h-[65px] resize-none   bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
-              fieldErrors.message ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
+            className={`w-full pl-3 py-3 max-h-[65px] resize-none   bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${fieldErrors.message ? "border-red-500" : "border-[#bdbdbd]"
+              }`}
             placeholder="Message"
             required
             aria-invalid={!!fieldErrors.message}
