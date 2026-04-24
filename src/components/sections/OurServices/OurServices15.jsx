@@ -49,37 +49,6 @@ export default function OurServices15({ content }) {
   const ourServices = content?.our_services;
   const servicesFromNav = content?.services ?? [];
 
-  const scrollToSection = useCallback((element) => {
-    if (!element) return;
-    const top =
-      element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
-    window.scrollTo({ top, behavior: "smooth" });
-  }, []);
-
-  const handleNavigation = useCallback(
-    (id) => {
-      const element = document.getElementById(id);
-      if (element) {
-        scrollToSection(element);
-      } else {
-        router.push("/");
-        setTimeout(() => {
-          const el = document.getElementById(id);
-          scrollToSection(el);
-        }, 500);
-      }
-    },
-    [router, scrollToSection],
-  );
-
-  const handleHomeNavigation = useCallback(() => {
-    if (pathname === "/") {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-      return;
-    }
-    router.push("/");
-  }, [pathname, router]);
-
   const services = useMemo(() => {
     if (Array.isArray(ourServices?.items) && ourServices.items.length > 0) {
       return ourServices.items.map((item, i) => {
@@ -128,10 +97,15 @@ export default function OurServices15({ content }) {
     "";
 
   return (
-    <FullContainer id="our_services" className="bg-[#fafafa] py-12 md:py-16 lg:py-20">
+    <FullContainer
+      id="our_services"
+      className="bg-[#fafafa] py-12 md:py-16 lg:py-20"
+    >
       <Container className=" mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8">
         <header className="mx-auto mb-10 max-w-4xl text-center md:mb-12">
-          <h2 className={`${poppins.className} text-center text-[32px] lg:text-[44px] font-normal text-[#2d2d2d] tracking-tight`}>
+          <h2
+            className={`${poppins.className} text-center text-[32px] lg:text-[44px] font-normal text-[#2d2d2d] tracking-tight`}
+          >
             {title}
           </h2>
           {sectionSub ? (
@@ -200,7 +174,11 @@ export default function OurServices15({ content }) {
                     className="mt-auto inline-flex w-fit mb-3 items-center gap-2 rounded-lg bg-[#f59403] px-5 py-2.5 font-montserrat text-[11px] md:text-[14px] font-bold uppercase tracking-wide text-white shadow-sm transition-colors hover:bg-[#6b6562] sm:px-6 sm:py-3 sm:text-xs"
                   >
                     <span>Call us today</span>
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4" strokeWidth={2.5} aria-hidden />
+                    <ArrowRight
+                      className="h-3.5 w-3.5 shrink-0 sm:h-4 sm:w-4"
+                      strokeWidth={2.5}
+                      aria-hidden
+                    />
                   </a>
                 </div>
               </div>
