@@ -1,3 +1,4 @@
+"use client";
 /**
  * Navbar section: multiple designs, one export.
  * variant comes from domain config (SectionLayout); fallback for standalone use.
@@ -18,6 +19,7 @@ import Navbar13 from './Navbar13';
 import Navbar14 from './Navbar14';
 import Navbar15 from './Navbar15';
 import Navbar16 from './Navbar16';
+import Navbar17 from './Navbar17';
 const variants = {
   Navbar1,
   Navbar2,
@@ -35,6 +37,8 @@ const variants = {
   Navbar10,
   Navbar13,
   Navbar16,
+   Navbar10,
+   Navbar17,
 };
 export default function Navbar({ variant, content }) {
   const name = String(variant ?? "").trim() || "Navbar16";
@@ -42,3 +46,4 @@ export default function Navbar({ variant, content }) {
   return <Component content={content} />;
 }
 export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, variants };
+

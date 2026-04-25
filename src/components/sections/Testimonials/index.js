@@ -11,23 +11,32 @@
   import Testimonials14 from "./Testimonials14";
   import Testimonials15 from "./Testimonials15";
   import Testimonials16 from "./Testimonials16";
+  import Testimonials17 from "./Testimonials17"
+
+const variants = {
+  Testimonials1,
+  Testimonials2,
+  Testimonials3,
+  Testimonials4,
+  Testimonials6,
+  Testimonials7,
+  Testimonials8,
+  Testimonials9,
+  Testimonials5,
+  Testimonials10,
+  Testimonials14,
+  Testimonials15,
+  Testimonials17,
+};
+
+function pickVariant(name) {
+  const key = String(name ?? "").trim();
+  const C = variants[key] ?? Testimonials5;
+  return typeof C === "function" ? C : Testimonials5;
+}
 
 
-  const variants = {
-    Testimonials1,
-    Testimonials2,
-    Testimonials3,
-    Testimonials4,
-    Testimonials6,
-    Testimonials8,
-    Testimonials5,
-    Testimonials7,
-    Testimonials10,
-    Testimonials9,
-    Testimonials14,
-    Testimonials15,
-    Testimonials16,
-  };export default function Testimonials({ variant, content }) {
+ export default function Testimonials({ variant, content }) {
       const name = String(variant ?? '').trim() || 'Testimonials16';
     const Component = variants[name] ?? Testimonials16;
     return <Component content={content} />;
@@ -47,5 +56,6 @@
     Testimonials14,
     Testimonials15,
     Testimonials16,
+    Testimonials17,
     variants,
   };

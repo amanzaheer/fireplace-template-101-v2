@@ -1,3 +1,4 @@
+"use client";
 /**
  * FAQs section: accordion of questions and answers.
  */
@@ -16,6 +17,8 @@ import FAQs12 from "./FAQs12";
 import FAQs10 from "./FAQs10";
 import FAQs13 from "./FAQs13";
 import FAQs16 from "./FAQs16";
+import FAQs10 from "./FAQs10"
+import FAQs17 from "./FAQs17"
 const variants = {
   FAQs1,
   FAQs2,
@@ -26,17 +29,17 @@ const variants = {
   FAQs7,
   FAQs8,
   FAQs9,
+  FAQs13,  
   FAQs14,
   FAQs15,
   FAQs12,
   FAQs10,
-  FAQs13,
-  FAQs16
-    };
+  FAQs17,
+};
 
 export default function FAQs({ variant, content }) {
   const name = variant ?? "FAQs16";
   const Component = variants[name] ?? FAQs16;
   return <Component content={content} />;
 }
-export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs8, FAQs9, FAQs14, FAQs15, FAQs12, FAQs10, FAQs13, variants };
+export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs8,FAQs10, FAQs5,FAQs6,FAQs7,FAQs17,FAQs9,FAQs10,FAQs12,FAQs13,FAQs14,FAQs15,variants};

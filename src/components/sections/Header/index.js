@@ -1,3 +1,4 @@
+"use client";
 import Header1 from './Header1';
 
 const variants = { Header1 };
@@ -7,4 +8,4 @@ export default function Header({ variant, content }) {
   const Component = variants[name] ?? Header1;
   return <Component content={content} />;
 }
-export { Header1, variants };
+export { Header1 };

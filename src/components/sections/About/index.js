@@ -1,3 +1,4 @@
+"use client";
 /*
  * About section: multiple designs, one export.
  * variant comes from domain config (SectionLayout).
@@ -17,6 +18,7 @@ import About14 from "./About14";
 import About15 from "./About15";
 import About12 from "./About12";
 import About13 from "./About13";
+import About17 from "./About17";
 
 
 import About16 from "./About16";
@@ -37,6 +39,8 @@ const variants = {
   About10,
   About13,
   About16,
+  About17,
+  
 };
 
 export default function About({ variant, content }) {
@@ -44,4 +48,6 @@ export default function About({ variant, content }) {
   const Component = variants[name] ?? About16;
   return <Component content={content} />;
 }
-export { About1, About2, About3, About4, About5, About6, About7, About8, About9, About14, About15, About11, About12, About10, About13, variants };
+export { About1, About2, About3, About4, About5, About6, About7, About8, About9, About14, About15, About11, About12, About10, About13,About17, variants };
+
+

@@ -350,7 +350,7 @@ export default function QuoteForm8({
         <>
         {!compact ? (
           <>
-            <div className="bg-[#ff4800] px-2 py-1.5">
+            <div className="bg-[#FF0504] px-2 py-1.5">
               <h3 className={`${poppins.className} text-xl md:text-2xl text-white leading-6 px-1.5 font-bold text-center mb-0.5`}>
                 {form_head?.title}
               </h3>
@@ -377,7 +377,7 @@ export default function QuoteForm8({
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="rounded-md bg-[#ff4800] px-6 py-2 font-medium text-white transition-colors duration-200 hover:bg-[#d44100]"
+            className="rounded-md bg-[#FF0504] px-6 py-2 font-medium text-white transition-colors duration-200 hover:bg-[#FF0504]"
           >
             OK Thanks
           </button>
@@ -536,7 +536,7 @@ export default function QuoteForm8({
           <button
             type="submit"
             disabled={isSubmitting}
-            className={`w-[114.50px] bg-[#ff4800] ${compact ? "text-sm  py-1 uppercase tracking-wide" : "text-base md:text-lg py-2"} flex cursor-pointer items-center justify-center gap-2 px-10 font-medium text-white transition-colors duration-200 hover:bg-[#d44100] disabled:cursor-not-allowed disabled:opacity-70`}
+            className={`w-[114.50px] bg-[#FF0504] ${compact ? "text-sm  py-1 uppercase tracking-wide" : "text-base md:text-lg py-2"} flex cursor-pointer items-center justify-center gap-2 px-10 font-medium text-white transition-colors duration-200 hover:bg-[#FF0504] disabled:cursor-not-allowed disabled:opacity-70`}
           >
             {isSubmitting ? (
               <>

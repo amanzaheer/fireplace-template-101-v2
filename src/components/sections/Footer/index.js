@@ -1,3 +1,4 @@
+"use client";
 import Footer1 from "./Footer1";
 import Footer2 from "./Footer2";
 import Footer3 from "./Footer3";
@@ -14,6 +15,7 @@ import Footer12 from "./Footer12";
 import Footer13 from "./Footer13";
 import Footer10 from "./Footer10";
 import Footer16 from "./Footer16";  
+import Footer17 from "./Footer17";
 const variants = {
   Footer1,
   Footer2,
@@ -24,11 +26,11 @@ const variants = {
   Footer7,
   Footer8,
   Footer9,
-  Footer14,
   Footer15,
   Footer16,
+  Footer10,
+  Footer17,
 };
-
 
 
 export default function Footer({ variant, content }) {
@@ -37,3 +39,4 @@ export default function Footer({ variant, content }) {
   return <Component content={content} />;
 }
 export { Footer1, Footer2, Footer3, Footer4, Footer5, Footer6, Footer7, Footer8, Footer9, Footer14, Footer15, Footer11, Footer12, Footer10, Footer13, Footer16,variants };
+

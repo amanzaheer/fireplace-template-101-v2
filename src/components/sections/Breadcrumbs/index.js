@@ -1,3 +1,4 @@
+"use client";
 /**
  * Breadcrumbs section: multiple designs, one export.
  */
@@ -34,3 +35,4 @@ export default function BreadcrumbsSection({ variant, content }) {
   return <Component content={content} />;
 }
 export { Breadcrumbs1, Breadcrumbs2, Breadcrumbs3, Breadcrumbs4, Breadcrumbs6, Breadcrumbs7,Breadcrumbs12,Breadcrumbs15,Breadcrumbs11,Breadcrumbs10,Breadcrumbs13,variants };
+

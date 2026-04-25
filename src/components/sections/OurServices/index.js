@@ -1,3 +1,4 @@
+"use client";
 /**
  * OurServices section: multiple designs, one export.
  */
@@ -18,6 +19,8 @@ import OurServices12 from "./OurServices12";
 import OurServices13 from "./OurServices13";
 
 import OurServices16 from "./OurServices16";
+import OurServices10 from "./OurServices10"
+import OurServices17 from "./OurServices17";
 const variants = {
   OurServices1,
   OurServices2,
@@ -35,6 +38,7 @@ const variants = {
   OurServices12,
   OurServices13,
   OurServices16,
+  OurServices17,
 };
 
 export default function OurServices({ variant, content }) {
@@ -44,3 +48,4 @@ export default function OurServices({ variant, content }) {
 }
 
 export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices14, OurServices15, OurServices16, variants };
+
