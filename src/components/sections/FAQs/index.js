@@ -11,14 +11,15 @@ import FAQs6 from "./FAQs6";
 import FAQs7 from "./FAQs7";
 import FAQs8 from "./FAQs8";
 import FAQs9 from "./FAQs9";
-import FAQs14 from "./FAQs14";
-import FAQs15 from "./FAQs15";
-import FAQs12 from "./FAQs12";
 import FAQs10 from "./FAQs10";
+import FAQs11 from "./FAQs11";
+import FAQs12 from "./FAQs12";
 import FAQs13 from "./FAQs13";
+import FAQs14 from "./FAQs14";
+import FAQs15 from "./FAQs15"
 import FAQs16 from "./FAQs16";
-import FAQs10 from "./FAQs10"
-import FAQs17 from "./FAQs17"
+import FAQs17 from "./FAQs17";
+
 const variants = {
   FAQs1,
   FAQs2,
@@ -29,11 +30,13 @@ const variants = {
   FAQs7,
   FAQs8,
   FAQs9,
-  FAQs13,  
+  FAQs10,
+  FAQs11,
+  FAQs12,
+  FAQs13,
   FAQs14,
   FAQs15,
-  FAQs12,
-  FAQs10,
+  FAQs16,
   FAQs17,
 };
 
@@ -42,4 +45,4 @@ export default function FAQs({ variant, content }) {
   const Component = variants[name] ?? FAQs16;
   return <Component content={content} />;
 }
-export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs8,FAQs10, FAQs5,FAQs6,FAQs7,FAQs17,FAQs9,FAQs10,FAQs12,FAQs13,FAQs14,FAQs15,variants};
+export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs5, FAQs6, FAQs7, FAQs8, FAQs9, FAQs10, FAQs11, FAQs12, FAQs13, FAQs14, FAQs15, FAQs16, FAQs17, variants };
