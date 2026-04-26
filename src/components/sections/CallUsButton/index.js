@@ -1,3 +1,4 @@
+"use client";
 /**
  * CallButton section: multiple designs, one export.
  * variant comes from domain config (SectionLayout).
@@ -20,3 +21,4 @@ export default function CallButton({ variant, content }) {
   return <Component content={content} />;
 }
 export { CallButton1, CallButton3, CallButton8, CallButton6,variants };
+

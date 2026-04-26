@@ -127,12 +127,12 @@ export default function WhyChoose8({ content }) {
             </ul>
             <div className="mt-2 flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <div
-                className="[&_button]:!min-h-[48px] [&_button]:!rounded-none [&_button]:!border-0 [&_button]:!bg-[#ff6600] [&_button]:!px-7 [&_button]:!py-3 [&_button]:!text-sm [&_button]:!font-bold [&_button]:!uppercase [&_button]:!tracking-wide [&_button]:!text-white [&_button]:!shadow-none [&_button]:hover:!bg-[#e65c00] [&_button]:!transition-colors [&_svg]:!text-white"
+                className="[&_button]:!min-h-[48px] [&_button]:!rounded-none [&_button]:!border-0 [&_button]:!bg-[#FF0504] [&_button]:!px-7 [&_button]:!py-3 [&_button]:!text-sm [&_button]:!font-bold [&_button]:!uppercase [&_button]:!tracking-wide [&_button]:!text-white [&_button]:!shadow-none [&_button]:hover:!bg-[#E00403] [&_button]:!transition-colors [&_svg]:!text-white"
               >
                 <PrimaryPhone phone={phone} variant="orange" />
               </div>
               <div
-                className="[&_button]:!min-h-[48px] [&_button]:!w-auto [&_button]:!min-w-[160px] [&_button]:!rounded-none [&_button]:!border-0 [&_button]:!bg-[#ff6600] [&_button]:!px-7 [&_button]:!py-3 [&_button]:!text-sm [&_button]:!font-bold [&_button]:!uppercase [&_button]:!tracking-wide [&_button]:!text-white [&_button]:!shadow-none [&_button]:hover:!bg-[#e65c00] [&_button]:!transition-colors [&_h2]:!text-white [&_h2]:!font-bold [&_h2]:!text-sm [&_svg]:!text-white"
+                className="[&_button]:!min-h-[48px] [&_button]:!w-auto [&_button]:!min-w-[160px] [&_button]:!rounded-none [&_button]:!border-0 [&_button]:!bg-[#FF0504] [&_button]:!px-7 [&_button]:!py-3 [&_button]:!text-sm [&_button]:!font-bold [&_button]:!uppercase [&_button]:!tracking-wide [&_button]:!text-white [&_button]:!shadow-none [&_button]:hover:!bg-[#E00403] [&_button]:!transition-colors [&_h2]:!text-white [&_h2]:!font-bold [&_h2]:!text-sm [&_svg]:!text-white"
               >
                 <QuoteButton phone={phone} variant="orange" />
               </div>

@@ -1,3 +1,4 @@
+"use client";
 /**
  * PrivacyPolicy section: multiple designs, one export.
  * `variant` comes from domain config (layouts.json via SectionLayout).
@@ -20,5 +21,5 @@ export default function PrivacyPolicy({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { PrivacyPolicy1, PrivacyPolicy2, PrivacyPolicy3, PrivacyPolicy4, variants };
+export { PrivacyPolicy1, PrivacyPolicy2, PrivacyPolicy3, PrivacyPolicy4 };
 

@@ -1,3 +1,4 @@
+"use client";
 /**
  * ServiceDescription1 section: multiple designs, one export.
  */
@@ -15,6 +16,7 @@ import ServiceDescription12 from "./ServiceDescription12";
 import ServiceDescription10 from "./ServiceDescription10";
 import ServiceDescription13 from "./ServiceDescription13";
 
+import ServiceDescription17 from "./ServiceDescription17";
 const variants = {
   ServiceDescription1,
   ServiceDescription2,
@@ -29,6 +31,7 @@ const variants = {
   ServiceDescription12,
   ServiceDescription10,
   ServiceDescription13,
+  ServiceDescription17,
 };
 
 export default function ServiceDescription1Section({ variant, content }) {
@@ -52,4 +55,5 @@ export {
   ServiceDescription10,
   ServiceDescription13,
   variants,
+  ServiceDescription17,
 };

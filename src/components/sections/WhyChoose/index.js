@@ -1,3 +1,4 @@
+"use client";
 /**
  * WhyChoose section: multiple designs, one export.
  */
@@ -18,6 +19,7 @@ import WhyChoose10 from "./WhyChoose10";
 import WhyChoose13 from "./WhyChoose13";
 import WhyChoose16 from "./WhyChoose16";
 
+import WhyChoose17 from "./WhyChoose17";
 const variants = {
   WhyChoose1,
   WhyChoose2,
@@ -31,6 +33,12 @@ const variants = {
   WhyChoose14,
   WhyChoose15,
   WhyChoose16,
+  WhyChoose10,
+  WhyChoose17,
+  WhyChoose11,
+  WhyChoose12,
+  WhyChoose13,
+ 
 };
 
 export default function WhyChoose({ variant, content }) {
@@ -38,4 +46,5 @@ export default function WhyChoose({ variant, content }) {
   const Component = variants[name] ?? WhyChoose16;
   return <Component content={content} />;
 }
-export { WhyChoose1, WhyChoose2, WhyChoose3, WhyChoose4, WhyChoose6, WhyChoose8, WhyChoose5, WhyChoose7, WhyChoose9, WhyChoose14,WhyChoose15,WhyChoose16, variants };
+export { WhyChoose1, WhyChoose2, WhyChoose3, WhyChoose4, WhyChoose6, WhyChoose8, WhyChoose5, WhyChoose7, WhyChoose9,WhyChoose11,WhyChoose12,WhyChoose13, WhyChoose14,WhyChoose15,WhyChoose16,WhyChoose17, variants };
+

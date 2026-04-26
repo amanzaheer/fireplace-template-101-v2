@@ -64,7 +64,7 @@ export default function Slogan8({ content }) {
                 </p>
               ) : null}
               {phone ? (
-                <div className="[&_button]:!min-h-[48px] [&_button]:!rounded-none  [&_button]:!border-0 [&_button]:!bg-[#ff6600] [&_button]:!px-7 [&_button]:!py-3 [&_button]:!text-sm [&_button]:!font-bold [&_button]:!uppercase [&_button]:!tracking-wide [&_button]:!text-white [&_button]:!shadow-none [&_button]:hover:!bg-[#e65c00] [&_button]:!transition-colors [&_svg]:!text-white">
+                <div className="[&_button]:!min-h-[48px] [&_button]:!rounded-none  [&_button]:!border-0 [&_button]:!bg-[#FF0504] [&_button]:!px-7 [&_button]:!py-3 [&_button]:!text-sm [&_button]:!font-bold [&_button]:!uppercase [&_button]:!tracking-wide [&_button]:!text-white [&_button]:!shadow-none [&_button]:hover:!bg-[#E00403] [&_button]:!transition-colors [&_svg]:!text-white">
                   <PrimaryPhone phone={phone} variant="orange" />
                 </div>
               ) : null}

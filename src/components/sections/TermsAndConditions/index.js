@@ -1,3 +1,4 @@
+"use client";
 /**
  * TermsAndConditions section: multiple designs, one export.
  * `variant` comes from domain config (layouts.json via SectionLayout).
@@ -20,5 +21,5 @@ export default function TermsAndConditions({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { TermsAndConditions1, TermsAndConditions2, TermsAndConditions3, TermsAndConditions4, variants };
+export { TermsAndConditions1, TermsAndConditions2, TermsAndConditions3, TermsAndConditions4 };
 
