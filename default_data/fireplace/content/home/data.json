@@ -389,12 +389,7 @@
   },
   "childrenRef": "features"
 },
-"features": [               
-  { "text": "Highly Rated" },
-  { "text": "Licensed & Insured" },
-  { "text": "Friendly, Professional Service" },
-  { "text": "Satisfaction Guaranteed" }
-],
+
     "work_portfolio": {
       "file_name": [
          "WorkPortfolio/gallery1.jpg",

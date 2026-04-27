@@ -4,7 +4,18 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/common/Container";
 import FullContainer from "@/components/common/FullContainer";
-import { Phone } from "lucide-react";
+import {
+  Phone,
+  CheckCircle,
+  Clock,
+  Star,
+  Shield,
+  Award,
+  Trophy,
+  ThumbsUp,
+  FileText,
+  MessageSquare,
+} from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Poppins, Inter } from "next/font/google";
@@ -30,6 +41,19 @@ const QuoteForm7 = dynamic(
     ssr: false,
   },
 );
+
+const ICON_MAP = {
+  Clock,
+  Star,
+  Shield,
+  Award,
+  CheckCircle,
+  Trophy,
+  ThumbsUp,
+  Phone,
+  FileText,
+  MessageSquare,
+};
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -121,20 +145,15 @@ export default function Banner7({ content }) {
               {features?.length > 0 ? (
                 <ul className="mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
                   {features?.map((feature, idx) => {
+                    const IconComponent = ICON_MAP[feature.icon];
                     return (
                       <li
                         key={idx}
                         className={`${inter.className} flex items-center gap-2 text-white font-medium text-base md:text-xl text-[14px] md:text-[16px] leading-tight`}
                       >
-                        <div className="w-5 h-auto whitespace-nowrap shrink-0">
-                          <Image
-                            src="/st-icons/Temp7/shield icon.png"
-                            alt="Check"
-                            width={16}
-                            height={16}
-                            className="w-auto h-5 md:h-[19px]"
-                          />
-                        </div>
+                        {IconComponent ? (
+                          <IconComponent className="w-5 h-5 text-white shrink-0" />
+                        ) : null}
                         {feature.text}
                       </li>
                     );
