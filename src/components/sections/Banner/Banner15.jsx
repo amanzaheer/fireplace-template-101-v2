@@ -12,7 +12,6 @@ import { resolveRefArray } from "@/lib/content-helpers";
 import { cn } from "@/lib/utils";
 import QuoteForm15 from "./QuoteForm/QuoteForm15";
 import { FiveStars } from "@/components/common";
-import QuoteForm15 from "./QuoteForm/QuoteForm15";
 
 const rubik = Rubik({
   subsets: ["latin"],
