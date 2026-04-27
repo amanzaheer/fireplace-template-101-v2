@@ -31,7 +31,7 @@ export default function Gallery1({ content }) {
     <FullContainer id="gallery" className="pt-10 md:pt-16 pb-10 md:pb-16">
       <Container className="!px-4 md:!px-8">
         {title ? (
-          <h2 className="text-2xl md:text-[32px] font-bold text-[#01306e] text-center mb-4">
+          <h2 className="text-2xl md:text-[32px] font-bold text-black text-center mb-4">
             {title}
           </h2>
         ) : null}

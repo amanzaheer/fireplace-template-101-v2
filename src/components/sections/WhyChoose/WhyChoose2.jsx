@@ -10,6 +10,25 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import {Poppins, Inter, Rubik} from "next/font/google";
+
+const poppins = Poppins({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
 
 function buildImageSrc(base, filePath) {
     if (!filePath || typeof filePath !== "string") return "";
@@ -30,9 +49,9 @@ export default function WhyChoose2({ content }) {
     if (features.length === 0) return null;
 
     return (
-        <FullContainer id="whychooseus" className="py-8 md:py-12 ">
-            <div className=" w-screen mx-auto">
-                <div className="relative min-h-[380px] w-full  md:min-h-[600px] overflow-hidden rounded-none">
+        <FullContainer id="whychooseus" className="pt-0 pb-8 md:pb-12">
+            <div className=" w-full mx-auto">
+                <div className="relative min-h-[500px] w-full  md:min-h-[695px] overflow-hidden rounded-none">
                     {imageSrc ? (
                         <Image
                             src={imageSrc}
@@ -50,13 +69,13 @@ export default function WhyChoose2({ content }) {
                         <Container className=''> 
                         <div className=" z-10 flex items-center min-h-[380px] md:min-h-[460px]">
                             <div className="w-full max-w-[560px] bg-white rounded-2xl shadow-xl p-5 md:p-8">
-                                <h2 className="text-3xl md:text-5xl font-extrabold text-black uppercase tracking-tight leading-none">
+                                <h2 className={`${poppins.className} text-3xl pt-4 md:text-[44px] font-bold text-black uppercase tracking-tight leading-none`}>
                                     {heading}
                                 </h2>
-                                <p className="text-xl md:text-4xl text-ink font-medium mt-2 mb-5">
+                                <p className={`${poppins.className} text-[22px] md:text-[27px] leading-tight text-ink font-medium mt-2 mb-5`}>
                                     {subheading}
                                 </p>
-                                <ul className="space-y-2.5">
+                                <ul className="space-y-2">
                                     {features.map((feature, idx) => {
                                         const text =
                                             typeof feature === "object"
@@ -68,10 +87,10 @@ export default function WhyChoose2({ content }) {
                                         return (
                                             <li
                                                 key={idx}
-                                                className="flex items-start gap-2.5 text-ink text-base md:text-lg"
+                                                className="flex items-center text-ink text-base md:text-lg"
                                             >
-                                                <CheckCircle2 className="w-5 h-5 min-w-5 mt-[2px] text-[#cc2936] shrink-0" />
-                                                <span>{text}</span>
+                                                <Image src="/st-icons/Temp2/shieldCheck.png" alt="Check" width={50} height={50} className="w-auto h-5 md:h-[26px] mt-[0px] text-[#cc2936] shrink-0" />
+                                                <span className={`${inter.className} text-[14px] pl-1 md:text-[16px] leading-tight text-[#040404]`}>{text}</span>
                                             </li>
                                         );
                                     })}
@@ -79,16 +98,16 @@ export default function WhyChoose2({ content }) {
                                 <div className="mt-6 flex flex-col sm:flex-row gap-3 ">
                                     <a
                                         href={`tel:${phone}`}
-                                        className="inline-flex items-center justify-center gap-2 rounded-full bg-black text-white uppercase tracking-wide font-bold px-7 py-3 text-sm hover:bg-[#111827] transition-colors duration-200"
+                                        className={`${rubik.className} inline-flex items-center justify-center gap-2 w-fit rounded-full bg-black text-white uppercase tracking-wide font-bold px-7 py-[9px] text-sm hover:bg-[#111827] transition-colors duration-200`}
                                     >
                                         Call Us Today
                                         <span aria-hidden="true">→</span>
                                     </a>
                                     <a
                                         href={`tel:${phone}`}
-                                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#d62828] text-white font-bold px-6 py-3 text-base hover:bg-[#bf1f1f] transition-colors duration-200"
+                                        className={`${rubik.className} text-[16px] md:text-[19px] inline-flex items-center justify-center gap-2 w-fit rounded-full bg-[#d62828] text-white font-normal px-6 py-[9px] hover:bg-[#bf1f1f] transition-colors duration-200`}
                                     >
-                                        <Phone className="w-4 h-4" />
+                                        <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
                                         <span>{phone || "(888)-249-0566"}</span>
                                     </a>
                                 </div>

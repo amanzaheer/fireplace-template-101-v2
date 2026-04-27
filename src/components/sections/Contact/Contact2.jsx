@@ -5,6 +5,7 @@ import { CheckCircle, Loader } from "lucide-react";
 import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import {Poppins, Inter, Rubik} from "next/font/google";
 import {
     validateEmail,
     validatePhone,
@@ -12,6 +13,24 @@ import {
     validateMessage,
     validateZipcode,
 } from "@/lib/validators";
+
+const poppins = Poppins({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+    subsets: ["latin"],
+    style: ["normal", "italic"],
+    weight: ["400", "500", "600", "700"],
+});
 
 const NameInput = memo(({ value, onChange, error }) => (
     <div>
@@ -249,14 +268,14 @@ export default function Contact2({ content }) {
                                 </div>
                             ) : (
                                 <>
-                                    <h2 className="text-center text-4xl md:text-[52px] font-bold text-white tracking-tight">
+                                    <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-white tracking-tight`}>
                                         {title}
                                     </h2>
-                                    <h3 className="text-4xl md:text-[52px] font-bold mb-6 md:mb-8 text-white text-center leading-tight">
+                                    <h3 className={`${poppins.className} text-center text-3xl md:text-[44px] font-bold mb-6 md:mb-8 text-white text-center leading-tight`}>
                                         {subTitle}
                                     </h3>
                                     <form onSubmit={handleSubmit} className="space-y-2 md:space-y-2" noValidate>
-                                        <div className="grid md:grid-cols-2 gap-2">
+                                        <div className={`${rubik.className} grid md:grid-cols-2 gap-2`}>
                                             <NameInput value={formData.name} onChange={handleChange} error={errors.name} />
                                             <EmailInput value={formData.email} onChange={handleChange} error={errors.email} />
                                             <PhoneInput value={formData.phone} onChange={handleChange} error={errors.phone} />

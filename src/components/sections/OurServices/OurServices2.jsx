@@ -6,7 +6,19 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 import md from "@/lib/markdown";
+import {Rubik, Archivo} from "next/font/google";
 
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const archivo = Archivo({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 /** Replace [service] token with the item's own title. */
 function resolveServiceTag(str, title) {
   if (!str || !title) return str ?? "";
@@ -73,12 +85,12 @@ export default function OurServices2({ content }) {
     <FullContainer id="our_services" className="bg-[#efefef] py-12 md:py-16">
       <Container>
         <div className="mb-8 flex items-start justify-between gap-4">
-          <h2 className="text-3xl md:text-5xl font-extrabold text-ink tracking-tight">
+          <h2 className={`${rubik.className} text-3xl md:text-[44px] font-bold text-ink tracking-tight`}>
             {title}
           </h2>
           <a
             href={`tel:${phone}`}
-            className="hidden md:inline-flex items-center gap-2 text-[#c53030] uppercase text-sm font-bold tracking-wide hover:text-[#a52828] transition-colors duration-200"
+            className={`${archivo.className}  text-[12px] md:text-[14px] hidden md:inline-flex items-center gap-2 text-[#c53030] uppercase text-sm font-bold tracking-wide hover:text-[#a52828] transition-colors duration-200`}
           >
             Get A Quotation
             <span aria-hidden="true">→</span>
@@ -92,7 +104,7 @@ export default function OurServices2({ content }) {
             return (
               <div
                 key={service.id}
-                className="bg-white rounded-[24px] p-6 md:p-12 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col"
+                className="bg-white rounded-[30px] p-6 md:p-12 lg:py-16 shadow-sm hover:shadow-md transition-shadow duration-200 flex flex-col"
               >
                 <div className="relative w-full h-28 md:h-32 bg-gray-100 rounded-4xl overflow-hidden">
                   {imageSrc ? (
@@ -108,19 +120,19 @@ export default function OurServices2({ content }) {
                     />
                   ) : (
                     <div className="w-full h-full bg-gray-200 flex items-center justify-center">
-                      <span className="text-4xl font-bold text-gray-400">
+                      <span className={`${rubik.className} text-[18px] md:text-[22px] leading-tight font-medium text-gray-400`}>
                         {service.title?.charAt(0) ?? "?"}
                       </span>
                     </div>
                   )}
                 </div>
                 <div className="flex flex-col flex-1 pt-6">
-                  <h3 className="text-[30px] leading-tight font-extrabold text-ink mb-3">
+                  <h3 className={`${archivo.className} text-[18px] md:text-[22px] leading-tight font-medium text-ink mb-3`}>
                     {service.title}
                   </h3>
                   {service.description ? (
                     <div
-                      className="prose prose-sm text-[#4b5563] mb-5 max-w-none prose-p:my-0 prose-headings:my-1"
+                      className={`${rubik.className} text-[14px] md:text-[16px] leading-relaxed text-[#6e6e6e] mb-5 max-w-none prose-p:my-0 prose-headings:my-1`}
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
@@ -132,7 +144,7 @@ export default function OurServices2({ content }) {
                   )}
                   <a
                     href={`tel:${phone}`}
-                    className="mt-auto inline-flex w-fit items-center gap-2 bg-[#d62828] text-white uppercase tracking-wide font-bold py-3 px-7 text-sm rounded-full hover:bg-[#bf1f1f] transition-colors duration-200"
+                    className={`${archivo.className} text-xs md:text-[14px]  mt-auto inline-flex w-fit items-center gap-2 bg-[#d62828] text-white uppercase tracking-wide font-bold py-3 px-7 md:py-4 md:px-8 rounded-full hover:bg-[#bf1f1f] transition-colors duration-200`}
                   >
                     Call Us Today
                     <span aria-hidden="true">→</span>
@@ -144,11 +156,11 @@ export default function OurServices2({ content }) {
         </div>
         {services.length > MAX_DISPLAY && (
           <div className="mt-6 text-center">
-            <p className="text-ink text-lg font-semibold">
+            <p className={`${rubik.className} text-[14px] md:text-[16px] leading-tight text-[#6e6e6e] font-medium`}>
               {services.length - MAX_DISPLAY} more services available –{" "}
               <a
                 href={`tel:${phone}`}
-                className="underline hover:text-[#d62828]"
+                className={`${archivo.className} text-[12px] md:text-[14px] underline hover:text-[#d62828]`}
               >
                 Call for details
               </a>

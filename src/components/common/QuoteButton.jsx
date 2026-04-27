@@ -20,13 +20,11 @@ export default function QuoteButton({ phone }) {
   return (
     <button
       onClick={handleClick}
-      className="inline-flex min-w-[160px] bg-[#6B9FE4] rounded-full md:text-base font-barlow py-3 p-6 w-[205px] font-bold text-black transition-colors hover:bg-[#6B9FE4]/80"
+      className="inline-flex w-[217.278px] items-center justify-center gap-[21.095px] rounded-[12px] bg-[#786F6F] px-[40.08px] py-[12.657px] text-sm font-semibold uppercase tracking-wide text-white transition-colors hover:bg-[#786F6F]"
     >
       <div className="flex items-center gap-2">
-        <TextQuote className="w-6 h-6" />
-        <h2 className="text-md font-thin md:text-xl tracking-widest md:tracking-normal ml-2">
-          GET A QUOTE
-        </h2>
+        <TextQuote className="h-5 w-5" />
+        <span>Get A Quote</span>
       </div>
     </button>
   );

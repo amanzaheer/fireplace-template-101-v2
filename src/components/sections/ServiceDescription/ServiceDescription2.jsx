@@ -7,7 +7,25 @@ import md from "@/lib/markdown";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import {Poppins, Inter, Rubik} from "next/font/google";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 const prose =
   "prose max-w-none text-[#171717] prose-headings:font-extrabold prose-headings:text-[#171717] prose-p:text-[#212020] prose-li:text-[#212020] prose-strong:text-[#212020] prose-a:text-[#212020] prose-h1:!text-3xl md:prose-h1:!text-4xl prose-h2:!text-2xl md:prose-h2:!text-3xl";
 
@@ -37,18 +55,18 @@ export default function ServiceDescription2({ content }) {
     <FullContainer id="service_description" className="py-10 md:py-14 bg-white">
       <Container>
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-[#212020] text-center mb-8 md:mb-10">
+          <h2 className={`${rubik.className} text-3xl md:text-5xl font-extrabold tracking-tight text-[#212020] text-center mb-8 md:mb-10`}>
             {title}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
-            <div className="space-y-4 order-2 md:order-1">
+            <div className={`${poppins.className} space-y-4 order-2 md:order-1`}>
               <div
                 className={`${prose} w-full text-left text-[#212020] prose-h1:!text-start prose-h2:!text-start prose-h3:!text-start`}
                 style={{ ["--prose-primary"]: "#212020" }}
                 dangerouslySetInnerHTML={{ __html: md.render(description) }}
               />
               {phone ? (
-                <div className="flex flex-col sm:flex-row gap-3 pt-2">
+                <div className={`${rubik.className} flex flex-col sm:flex-row gap-3 pt-2`}>
                   <a
                     href={`tel:${phone}`}
                     className="inline-flex max-w-full items-center justify-center gap-2 rounded-full bg-black text-white uppercase tracking-wide font-bold px-7 py-3 text-sm hover:bg-[#111827] transition-colors duration-200"
@@ -60,14 +78,14 @@ export default function ServiceDescription2({ content }) {
                     href={`tel:${phone}`}
                     className="inline-flex max-w-full items-center justify-center gap-2 rounded-full bg-[#d62828] text-white font-bold px-6 py-3 text-base hover:bg-[#bf1f1f] transition-colors duration-200"
                   >
-                    <Phone className="w-4 h-4 shrink-0" />
-                    <span>{phone}</span>
+                    <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
+                    <span className={`${rubik.className} text-white font-normal md:text-lg`}>{phone}</span>
                   </a>
                 </div>
               ) : null}
             </div>
 
-            <div className="relative w-full min-h-[260px] md:min-h-[340px] rounded-2xl overflow-hidden bg-gray-100 shadow-sm order-1 md:order-2">
+            <div className={`${inter.className} relative w-full min-h-[260px] md:min-h-[340px] rounded-2xl overflow-hidden bg-gray-100 shadow-sm order-1 md:order-2`}>
               {imageSrc ? (
                 <Image
                   src={imageSrc}

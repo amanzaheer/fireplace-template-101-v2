@@ -1,18 +1,26 @@
 "use client";
 
-import { useState, useEffect, useCallback, useMemo } from "react";
+import { useState, useEffect, useCallback, useMemo, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
-import { Phone, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronDown, Menu, X } from "lucide-react";
 import Container from "../../common/Container";
 import FullContainer from "../../common/FullContainer";
 import Logo from "@/components/common/Logo";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import { Rubik, Inter } from "next/font/google";
+import Image from "next/image";
 
 const SCROLL_OFFSET = 80;
-
+const rubik = Rubik({
+  subsets: ["regular"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 function isDropdownItem(item) {
   return (
     item?.link === "#" && (item?.childrenRef || Array.isArray(item?.services))
@@ -36,6 +44,8 @@ export default function Navbar2({ content }) {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownRef, setOpenDropdownRef] = useState(null);
   const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(true);
+  const lastScrollY = useRef(0);
 
   const pathname = usePathname() ?? "";
   const router = useRouter();
@@ -48,6 +58,20 @@ export default function Navbar2({ content }) {
   useEffect(() => {
     const id = requestAnimationFrame(() => setMounted(true));
     return () => cancelAnimationFrame(id);
+  }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (currentScrollY < 10 || currentScrollY < lastScrollY.current) {
+        setIsVisible(true);
+      } else if (currentScrollY > lastScrollY.current) {
+        setIsVisible(false);
+      }
+      lastScrollY.current = currentScrollY;
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   const scrollToSection = useCallback((element) => {
@@ -85,7 +109,7 @@ export default function Navbar2({ content }) {
           <Logo logo={logo} imagePath={imagePath} />
         </div>
 
-        <div className="hidden lg:flex items-center text-base font-barlow font-semibold justify-center gap-6 ">
+        <div className={`${inter.className} hidden lg:flex items-center text-sm font-normal justify-center gap-6`}>
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
@@ -101,7 +125,7 @@ export default function Navbar2({ content }) {
                   <button
                     type="button"
                     className={cn(
-                      "flex items-center h-full gap-1 text-base",
+                      "flex items-center h-full gap-1 text-sm font-normal",
                       isOpen ? "text-[#c92028]" : "text-black",
                     )}
                   >
@@ -127,7 +151,7 @@ export default function Navbar2({ content }) {
                             title={child?.title}
                             href={href}
                             className={cn(
-                              "text-base py-1 font-semibold px-4 cursor-pointer transition-all duration-100 block",
+                              "text-sm font-normal py-1 px-4 cursor-pointer transition-all duration-100 block",
                               isActive
                                 ? "bg-[#c92028] text-white"
                                 : `text-black hover:bg-[#c92028] hover:text-white`,
@@ -149,7 +173,7 @@ export default function Navbar2({ content }) {
                 <Link
                   key={item.link ?? item.title}
                   href={item.link}
-                  className="cursor-pointer text-black text-base hover:text-[#c92028] transition-colors"
+                  className={`${inter.className} cursor-pointer text-black text-sm font-normal hover:text-[#c92028] transition-colors`}
                 >
                   {item.title}
                 </Link>
@@ -160,7 +184,7 @@ export default function Navbar2({ content }) {
                 key={item.link ?? item.title}
                 type="button"
                 onClick={() => handleNavigation(item.link)}
-                className="cursor-pointer text-black text-base hover:text-[#c92028] transition-colors"
+                className={`${inter.className} cursor-pointer text-black text-sm font-normal hover:text-[#c92028] transition-colors`}
               >
                 {item.title}
               </button>
@@ -173,13 +197,13 @@ export default function Navbar2({ content }) {
             <div className="text-xs">
               <a
                 href={phoneLink}
-                className="flex items-center justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-sm lg:text-lg shadow-lg hover:opacity-90 transition-all bg-[#c92028]"
+                className="flex items-center shadow-xl justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2.5 rounded-full text-white font-semibold text-sm lg:text-lg hover:opacity-90 transition-all bg-[#c92028]"
               >
-                <Phone className="w-3.5 h-3.5 lg:w-5 lg:h-5" />
-                {phone}
+                <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-5 lg:w-6 lg:h-6" />
+                <span className={`${rubik.className} text-white text-sm lg:text-base font-normal`}>{phone}</span>
               </a>
             </div>
-            <h2 className="text-[#c92028] font-bold text-sm lg:text-base md:text-[20px] font-barlow leading-none">
+            <h2 className={`${inter.className} text-[#c92028] font-bold text-xs md:text-sm leading-none`}>
               Call Us Today
             </h2>
           </div>
@@ -210,7 +234,7 @@ export default function Navbar2({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]">
+      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[84px] ">
         <Container>
           <div className="flex flex-row justify-between h-full  items-center w-full md:pr-8">
             <div className="h-full flex items-center justify-center">
@@ -221,13 +245,13 @@ export default function Navbar2({ content }) {
                 <div className="text-xs">
                   <a
                     href={phoneLink}
-                    className="flex items-center justify-center sm:justify-start gap-2 px-6 py-1.5 lg:py-2 rounded-full text-white font-semibold text-lg shadow-lg hover:opacity-90 transition-all bg-[#c92028]"
+                    className="flex items-center shadow-xl justify-center sm:justify-start gap-2 px-6 py-1.5 lg:py-2.5 rounded-full text-white font-semibold text-lg hover:opacity-90 transition-all bg-[#c92028]"
                   >
-                    <Phone className="w-5 h-5" />
-                    {phone}
+                    <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-5 lg:w-6 lg:h-6" />
+                    <span className={`${rubik.className} text-white text-sm lg:text-base font-normal`}>{phone}</span>
                   </a>
                 </div>
-                <h2 className="text-[#c92028] font-bold text-sm lg:text-base md:text-[20px] font-barlow leading-none">
+                <h2 className={`${inter.className} text-[#c92028] font-bold text-xs md:text-sm leading-none`}>
                   Call Us Today
                 </h2>
               </div>
@@ -246,9 +270,12 @@ export default function Navbar2({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[92px]"
+      className={cn(
+        "shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[84px] transition-transform duration-300",
+        !isVisible && "-translate-y-full",
+      )}
     >
-      <Container>{headerContent}</Container>
+      <Container >{headerContent}</Container>
 
       <div
         className={cn(
@@ -258,7 +285,7 @@ export default function Navbar2({ content }) {
             : "h-0 opacity-0 invisible overflow-hidden",
         )}
       >
-        <div className="flex flex-col font-barlow font-semibold text-[18px]">
+        <div className={`flex flex-col font-semibold text-[18px] ${inter.className}`}>
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);

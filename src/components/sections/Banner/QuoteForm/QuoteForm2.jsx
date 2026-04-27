@@ -9,7 +9,15 @@ import {
   validateName,
   validateMessage,
 } from "@/lib/validators";
-
+import {Poppins, Inter } from "next/font/google";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 export default function QuoteForm2({
   data,
   form_head,
@@ -238,13 +246,13 @@ export default function QuoteForm2({
       {!formSubmitted && (
         <>
         <div className="px-2 md:px-2.5 py-3 bg-[#c92028]">
-          <h3 className="text-3xl md:text-[36px] text-white leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2">
+          <h3 className={`${poppins.className} text-3xl md:text-[34px] text-white leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2`}>
             {form_head?.title}
           </h3>
           
         </div>
         <div>
-        <h4 className="text-lg md:text-2xl font-medium pt-2 text-center text-ink">
+        <h4 className={`${inter.className} text-lg md:text-xl font-medium text-black pt-2 text-center text-ink`}>
             {form_head?.sub_title}
           </h4>
         </div>
@@ -263,7 +271,7 @@ export default function QuoteForm2({
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-[#6B9FE4] hover:bg-[#5B88C4] text-black py-2 px-6 rounded-md font-medium transition-colors duration-200"
+            className="bg-[#cf1f21] hover:bg-red-700 text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
           >
             OK Thanks
           </button>
@@ -363,7 +371,7 @@ export default function QuoteForm2({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={3}
-            className={`w-full pl-3 py-3 max-h-[75px] bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
+            className={`w-full pl-3 py-3 max-h-[65px] resize-none   bg-white border rounded-lg md:rounded-xl outline-none placeholder:text-gray-400 ${
               fieldErrors.message ? "border-red-500" : "border-[#bdbdbd]"
             }`}
             placeholder="Message"
@@ -377,7 +385,7 @@ export default function QuoteForm2({
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full bg-[#c92028] text-lg md:text-xl hover:bg-[#c92028]/90 cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+            className="w-full bg-[#cf1f21] text-lg md:text-xl hover:bg-[#c92028]/90 cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
           >
             {isSubmitting ? (
               <>

@@ -13,11 +13,14 @@ module.exports = {
         secondary: "#01306E",
         /** Main body / heading text (not link red, not brand blue) */
         ink: "#212020",
+        
       },
       fontFamily: {
+        Poppins:["Poppins","sans-serif"],
         montserrat: ["var(--font-montserrat)", "Montserrat", ...defaultTheme.fontFamily.sans],
         barlow: ["var(--font-barlow)", "Barlow", "sans-serif"],
         sans: ["Helvetica", "Arial", "sans-serif"],
+        Rubik:["Rubik","sans-serif"],
       },
       gridTemplateColumns: {
         banner: "1.5fr 1fr 0.6fr",

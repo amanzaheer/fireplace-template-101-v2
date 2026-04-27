@@ -7,6 +7,25 @@ import md from "@/lib/markdown";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import {Poppins, Inter, Rubik } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 
 const proseV2 =
   "prose max-w-none prose-headings:font-extrabold prose-headings:text-ink prose-p:text-[#4b5563] prose-li:text-[#4b5563] prose-strong:text-ink prose-a:text-[#d62828]";
@@ -35,7 +54,7 @@ export default function Gallery2({ content }) {
       <Container>
         <div className="max-w-6xl mx-auto">
           {title ? (
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight text-ink text-center mb-4 md:mb-6">
+            <h2 className={`${poppins.className} text-3xl md:text-5xl font-extrabold tracking-tight text-ink text-center mb-4 md:mb-6`}>
               {title}
             </h2>
           ) : null}
@@ -57,7 +76,7 @@ export default function Gallery2({ content }) {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col items-center gap-4 md:gap-5"
+                    className={`${inter.className} flex flex-col items-center gap-4 md:gap-5`}
                   >
                     <div className="w-full overflow-hidden rounded-2xl bg-gray-100 shadow-sm border border-[#e5e7eb]">
                       <div className="aspect-4/3 relative">
@@ -75,10 +94,10 @@ export default function Gallery2({ content }) {
                     {phone ? (
                       <a
                         href={`tel:${phone}`}
-                        className="inline-flex items-center justify-center gap-2 rounded-full bg-[#212020] text-white font-semibold text-base md:text-lg px-8 py-3 min-w-[220px] shadow-md hover:bg-[#2a2a2a] transition-colors duration-200"
+                        className={`${rubik.className} inline-flex items-center justify-center gap-2 rounded-full bg-[#d62828] text-white font-semibold text-base md:text-lg px-8 py-3 min-w-[220px] shadow-md hover:bg-[#bf1f1f] transition-colors duration-200`}
                       >
-                        <Phone className="w-5 h-5 shrink-0" aria-hidden />
-                        <span>{phone}</span>
+                        <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
+                        <span className={`${rubik.className} text-white font-normal md:text-lg`}>{phone}</span>
                       </a>
                     ) : null}
                   </div>

@@ -3,8 +3,21 @@
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import md from "@/lib/markdown";
-import { Phone, ArrowRight, ShieldCheckIcon } from "lucide-react";
-
+import { ArrowRight } from "lucide-react";
+import {Poppins, Inter, Rubik} from "next/font/google";
+import Image from "next/image";
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["regular"],
+  weight: ["400", "500", "600", "700"],
+});
 /**
  * Renders a string as plain text (preserving existing styles) when it contains
  * no markdown, or as HTML when markdown syntax is detected.
@@ -34,82 +47,118 @@ const PromotionCard = ({
   phone,
   isMainCard = false,
 }) => {
-  return (
+  const telHref = phone ? `tel:${phone}` : "#";
+  const featureList = (
     <div
-      className={`relative flex flex-col p-4 h-full rounded-2xl transition-all duration-200 ${
-        isMainCard
-          ? "bg-[#171316] text-white shadow-[0_10px_26px_rgba(0,0,0,0.26)] z-10 md:-my-4 md:scale-[1.03] overflow-hidden"
-          : "bg-white text-[#161616] shadow-[0_6px_18px_rgba(0,0,0,0.12)] border border-[#ececec]"
-      }`}
+      className={`pt-4 ${isMainCard ? "space-y-3 md:space-y-3.5" : "space-y-2.5"}`}
     >
-      {isMainCard && (
-        <div className="bg-[#D91F27] rounded-t-lg  py-2">
-          <MaybeMarkdown as="h3" className="text-[38px]  md:text-[40px] font-normal leading-[1.05] text-white text-center">
-            {heading}
+      {(Array.isArray(features) ? features : [])?.map((feature, index) => (
+        <div
+          key={index}
+          className={`${inter.className} flex items-start font-normal leading-tight ${
+            isMainCard ? "text-white/95" : "text-[#1c1c1c]"
+          }`}
+        >
+          <div className="w-5 h-auto whitespace-nowrap shrink-0">
+            <Image
+              src="/st-icons/Temp2/shieldCheck.png"
+              alt="Check"
+              width={16}
+              height={16}
+              className="w-auto h-5 md:h-[26px]"
+            />
+          </div>
+          <MaybeMarkdown as="span" className={`${inter.className} pt-0.5 pl-1 text-[16px]`}>
+            {feature}
           </MaybeMarkdown>
         </div>
-      )}
+      ))}
+    </div>
+  );
 
-      {heading && (
-        <div className={`text-center `}>
-          {!isMainCard && (
-            <MaybeMarkdown as="h3" className="text-[40px] md:text-[42px] font-black uppercase leading-none tracking-tight text-[#111]">
+  const cta = (
+    <div className={`flex justify-center items-center shrink-0 ${isMainCard ? "pt-6 md:pt-8" : "pt-4"}`}>
+      {isMainCard ? (
+        <a
+          href={telHref}
+          className="inline-flex items-center justify-center gap-2 rounded-full bg-[#D91F27] hover:bg-[#bf1b22] text-white px-6 py-2.5 md:px-7 md:py-3 w-fit mx-auto font-semibold leading-none transition-colors"
+        >
+          <Image
+            src="/st-icons/Temp2/call1.png"
+            alt="Phone"
+            width={16}
+            height={16}
+            className="w-auto h-5 md:h-[22px]"
+          />
+          <span className={`${rubik.className} text-white text-xl lg:text-2xl font-normal`}>
+            {phone || "(888)-249-0566"}
+          </span>
+        </a>
+      ) : (
+        <a
+          href={telHref}
+          className={`${rubik.className} inline-flex items-center uppercase font-medium text-sm justify-center gap-2 rounded-full bg-[#D91F27] hover:bg-[#bf1b22] text-white px-8 py-3.5 w-fit mx-auto leading-none transition-colors`}
+        >
+          Call Us Today
+          <ArrowRight className="w-4 h-4" />
+        </a>
+      )}
+    </div>
+  );
+
+  if (isMainCard) {
+    return (
+      <div
+        className="relative z-10 flex w-full flex-col overflow-hidden rounded-2xl p-4 md:p-5 bg-[#171316] text-white shadow-[0_10px_26px_rgba(0,0,0,0.26)] ring-1 ring-black/10 transition-all duration-200 md:scale-[1.05] md:shadow-[0_18px_40px_rgba(0,0,0,0.32)]"
+      >
+        <div className="bg-[#d91f27] rounded-t-lg p-2 md:p-3">
+          {heading ? (
+            <MaybeMarkdown
+              as="h3"
+              className={`${poppins.className} text-center text-[30px] font-normal leading-[1.05] text-white md:text-[34px]`}
+            >
               {heading}
             </MaybeMarkdown>
-          )}
-          {subheading && (
+          ) : null}
+        </div>
+        <div className="flex flex-col">
+          {subheading ? (
             <MaybeMarkdown
               as="p"
-              className={`mt-2 leading-tight ${
-                isMainCard
-                  ? "text-[44px] md:text-[46px] font-extrabold text-white text-left"
-                  : "text-2xl md:text-3xl font-medium text-[#151515]"
-              }`}
+              className={`${poppins.className} text-left text-[24px] font-normal leading-[1.05] text-white md:text-[28px]`}
             >
               {subheading}
             </MaybeMarkdown>
-          )}
+          ) : null}
+          {featureList}
+          {cta}
         </div>
-      )}
-
-      <div className={`space-y-2.5 flex-1 pt-4 `}>
-        {(Array.isArray(features) ? features : [])?.map((feature, index) => (
-          <div
-            key={index}
-            className={`flex items-start gap-2 text-[16px] leading-tight ${
-              isMainCard ? "text-white/95 font-medium" : "text-[#1c1c1c] font-medium"
-            }`}
-          >
-            <ShieldCheckIcon
-              strokeWidth={1.6}
-              className={`w-5 h-5 mt-0.5 shrink-0 ${
-                isMainCard ? "text-[#d3272f]" : "text-[#c92028]"
-              }`}
-            />
-            <MaybeMarkdown as="span" className="pt-0.5">{feature}</MaybeMarkdown>
-          </div>
-        ))}
       </div>
+    );
+  }
 
-      <div className={` pt-4 flex justify-center items-center`}>
-        {isMainCard ? (
-          <a
-            href={phone ? `tel:${phone}` : "#"}
-            className=" inline-flex items-center justify-center gap-2 rounded-full bg-[#D91F27] hover:bg-[#bf1b22] text-white px-8 py-3.5 w-fit mx-auto font-semibold leading-none transition-colors"
+  return (
+    <div className="relative flex w-full flex-col rounded-2xl border border-[#ececec] bg-white p-4 text-[#161616] shadow-[0_6px_18px_rgba(0,0,0,0.12)] transition-all duration-200">
+      {heading ? (
+        <div className="text-center">
+          <MaybeMarkdown
+            as="h3"
+            className={`${poppins.className} text-[28px] font-normal leading-[1.05] tracking-tight text-[#111] md:text-[32px]`}
           >
-            <Phone className="w-5 h-5" />
-            {phone || "(888)-249-0566"}
-          </a>
-        ) : (
-          <a
-            href={phone ? `tel:${phone}` : "#"}
-            className=" inline-flex items-center justify-center gap-2 rounded-full bg-[#D91F27] hover:bg-[#bf1b22] text-white px-8 py-3.5 w-fit mx-auto font-semibold leading-none transition-colors"
-          >
-            Call Us Today
-            <ArrowRight className="w-4 h-4" />
-          </a>
-        )}
-      </div>
+            {heading}
+          </MaybeMarkdown>
+          {subheading ? (
+            <MaybeMarkdown
+              as="p"
+              className={`${poppins.className} mt-2 text-[23px] font-normal leading-[1.05] text-[#151515] md:text-[27px]`}
+            >
+              {subheading}
+            </MaybeMarkdown>
+          ) : null}
+        </div>
+      ) : null}
+      {featureList}
+      {cta}
     </div>
   );
 };
@@ -124,10 +173,10 @@ export default function Promotion2({ content }) {
     "";
 
   return (
-    <FullContainer id="promo" className="bg-[#f4f4f4]">
+    <FullContainer id="promo" className="bg-[#ffffff]">
       <Container>
-        <div className="w-full py-10 md:py-14">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-5 w-full max-w-[1160px] mx-auto items-stretch">
+        <div className="w-full py-10 md:py-16 md:pb-20">
+          <div className="mx-auto grid w-full max-w-[1160px] grid-cols-1 items-stretch gap-6 md:grid-cols-[1fr_1.1fr_1fr] md:items-center md:gap-5">
             {details.map((item, index) => (
               <PromotionCard
                 key={index}

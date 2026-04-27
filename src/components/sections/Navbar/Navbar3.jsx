@@ -10,8 +10,25 @@ import Logo from "@/components/common/Logo";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import Image from "next/image";
+import { Rubik, Inter, Poppins } from "next/font/google";
 
 const SCROLL_OFFSET = 80;
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 function isDropdownItem(item) {
   return (
@@ -79,9 +96,12 @@ export default function Navbar3({ content }) {
   const phoneLink = phone ? `tel:${phone}` : "#";
 
   return (
-    <FullContainer id="navbar" className="w-full sticky top-0 z-30 bg-white shadow-sm">
+    <FullContainer
+      id="navbar"
+      className="w-full sticky top-0 z-30 bg-white shadow-sm"
+    >
       <Container className="px-0!">
-        <div className="h-[86px] md:h-[92px] flex items-center">
+        <div className="h-[86px] md:min-h-[92px] flex items-center">
           <div className="w-full flex items-center justify-between px-4 md:px-6 lg:px-8">
             <div className="flex items-center">
               <Logo logo={logo} imagePath={imagePath} />
@@ -89,7 +109,7 @@ export default function Navbar3({ content }) {
 
             <a
               href="#quote-form-section"
-              className="hidden md:inline-flex items-center justify-center rounded-full bg-[#1b1d22] text-[#e6a32c] text-base lg:text-lg font-extrabold uppercase px-6 lg:px-10 py-3 hover:bg-[#111217] transition-colors duration-200"
+              className="hidden md:inline-flex items-center h-[64px] justify-center rounded-full bg-[#1b1d22] text-[#e6a32c] text-base lg:text-lg font-extrabold uppercase px-6 lg:px-10 py-3 hover:bg-[#111217] transition-colors duration-200"
             >
               Schedule Appointment
             </a>
@@ -97,9 +117,9 @@ export default function Navbar3({ content }) {
             <div className="hidden md:flex flex-col items-start">
               <a
                 href={phoneLink}
-                className="inline-flex items-center gap-2 text-[#e0a03a] text-3xl font-extrabold leading-none"
+                className={`${rubik.className} inline-flex items-center gap-2 text-[#efa536] text-2xl md:text-[30.27px] font-bold leading-none`}
               >
-                <Phone className="w-6 h-6" />
+                <Image src="/st-icons/Temp3/call1.png" alt="Phone" width={50} height={50} className="w-auto h-5 md:h-[40px]" />
                 {phone || "(888)-249-0566"}
               </a>
             </div>
