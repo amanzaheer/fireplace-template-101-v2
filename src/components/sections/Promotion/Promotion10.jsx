@@ -70,12 +70,12 @@ const PromotionCard = ({
 }) => {
   return (
     <div
-      className={`relative flex flex-col h-full min-h-[500px] border-2 border-b-0 border-black bg-white p-6 text-black transition-all duration-200${
+      className={`relative flex flex-col h-full min-h-[500px] border-2 border-t-0  border-b-0 border-black bg-white p-6 text-black transition-all duration-200${
         isMainCard ? "pt-6" : ""
       }`}
     >
       {heading && (
-        <div className="-mx-6 -mt-6 mb-3 flex h-[132px] w-auto flex-col justify-center bg-black px-6 py-4 text-center text-white">
+        <div className="-mx-6 -mt-6 mb-3 flex h-[132px] w-auto flex-col justify-center bg-[#4685ac] px-6 py-4 text-center text-white">
           <MaybeMarkdown as="h3" className={`${montserrat.className} text-2xl font-semibold tracking-tight mb-2 uppercase`}>
             {heading}
           </MaybeMarkdown>

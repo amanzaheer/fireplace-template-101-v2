@@ -85,21 +85,21 @@ export default function About7({ content }) {
             <div className="mt-5 flex flex-wrap items-center gap-3">
               <a
                 href={phone ? `tel:${phone}` : "#"}
-                className={`${rubik.className} inline-flex items-center justify-center gap-2 bg-black text-white h-11 px-5 min-w-[219px] min-h-[46px] rounded font-semibold text-xs uppercase tracking-wide`}
+                className={`${poppins.className} inline-flex items-center justify-center gap-2 bg-[#3a8ffb]  text-white h-11 px-5 min-w-[219px] min-h-[46px] rounded-full font-semibold text-[19px] uppercase tracking-wide`}
               >
                 Call Us Today
                 <ArrowRight className="w-4 h-4" />
               </a>
               <a
                 href={phone ? `tel:${phone}` : "#"}
-                className={`${rubik.className} inline-flex items-center justify-center gap-2 bg-[#0a4da3] text-white h-11 px-5 min-w-[219px] min-h-[46px] rounded font-medium text-lg leading-none`}
+                className={`${poppins.className} inline-flex items-center justify-center gap-2  bg-[#fe4c4c] rounded-full text-white h-11 px-5 min-w-[219px] min-h-[46px]  font-bold text-[19px] leading-none`}
               >
                 <Image
-                  src="/st-icons/Temp2/call1.png"
+                  src="/st-icons/Temp7/call1.1.png"
                   alt="Phone"
-                  width={16}
-                  height={16}
-                  className="w-auto h-4 md:h-[21px]"
+                  width={32}
+                  height={32}
+                  className="w-auto h-8 md:h-8"
                   unoptimized
                 />
                 {phone || "(888)-249-0566"}

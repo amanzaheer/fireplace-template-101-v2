@@ -11,6 +11,13 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -56,6 +63,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt }) {
 
 export default function BeforeAfter7({ content }) {
   const block = content?.before_after ?? {};
+  const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const rawItems = Array.isArray(block.items) ? block.items : [];
   if (rawItems.length === 0) return null;
   const [activeIndex, setActiveIndex] = useState(0);
@@ -114,6 +122,30 @@ export default function BeforeAfter7({ content }) {
           >
             <ChevronRight className="w-6 h-6" />
           </button>
+        </div>
+
+        <div className="mt-7 flex flex-col sm:flex-row gap-8 justify-center">
+          <a
+            href={`tel:${phone}`}
+            className={`${poppins.className} inline-flex items-center justify-center gap-2 bg-[#3a8ffb] text-white uppercase tracking-wide  px-8 h-[46px] min-w-[219px] text-[19px]  font-bold rounded-full  hover:bg-[#111827] transition-colors duration-200`}
+          >
+            Call Us Today
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href={`tel:${phone}`}
+            className={`${poppins.className} inline-flex items-center justify-center gap-2 bg-[#fe4c4c] text-white px-6 h-[46px] min-w-[217px] text-xl md:text-[19px] font-bold leading-none rounded-full hover:bg-red-700 transition-colors duration-200`}
+          >
+            <Image
+              src="/st-icons/Temp7/call1.1.png"
+              alt="Phone"
+              width={16}
+              height={16}
+              className="w-auto h-4 md:h-8"
+              unoptimized
+            />
+            <span>{phone || "(888)-249-0566"}</span>
+          </a>
         </div>
       </Container>
     </FullContainer>

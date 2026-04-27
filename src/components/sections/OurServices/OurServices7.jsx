@@ -84,17 +84,10 @@ export default function OurServices7({ content }) {
   return (
     <FullContainer id="our_services" className="bg-gradient-to-b from-[#388cf6] to-[#0b4b9d] py-12 md:py-16">
       <Container className=" max-w-5xl!">
-        <div className="mb-8 flex items-center justify-between gap-4 text-white">
-          <h2 className={`${rubik.className} text-3xl md:text-[44px] font-bold tracking-tight`}>
+        <div className="mb-8 flex items-center justify-center gap-4 text-white">
+          <h2 className={`${rubik.className} w-full text-center text-3xl md:text-[44px] font-bold tracking-tight`}>
             {title}
           </h2>
-          <a
-            href={`tel:${phone}`}
-            className={`${archivo.className}  text-[12px] md:text-[14px] hidden md:inline-flex items-center gap-2 text-white uppercase text-sm font-bold tracking-wide hover:text-[#a52828] transition-colors duration-200`}
-          >
-            Get A Quotation
-            <span aria-hidden="true">→</span>
-          </a>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10 ">
           {displayServices.map((service) => {
@@ -126,7 +119,7 @@ export default function OurServices7({ content }) {
                     </div>
                   )}
                 </div>
-
+              
                 <div className="relative z-10 -mt-6 bg-white pt-3 pb-4 px-4 flex flex-col items-center rounded-[18px] rounded-b-none">
                   <h3 className={`${archivo.className} text-[18px] md:text-[20px] leading-tight font-medium text-[#111827] text-center`}>
                     {service.title}
@@ -155,6 +148,29 @@ export default function OurServices7({ content }) {
               </div>
             );
           })}
+        </div>
+        <div className="mt-7 flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center">
+          <a
+            href={`tel:${phone}`}
+            className={`${archivo.className} inline-flex items-center justify-center gap-2 bg-[#3a8ffb] text-white uppercase tracking-wide px-8 h-[46px] min-w-[219px] text-[19px] font-bold rounded-full hover:bg-[#111827] transition-colors duration-200`}
+          >
+            Call Us Today
+            <span aria-hidden="true">→</span>
+          </a>
+          <a
+            href={`tel:${phone}`}
+            className={`${archivo.className} inline-flex items-center justify-center gap-2 bg-[#fe4c4c] text-white px-6 h-[46px] min-w-[217px] text-xl md:text-[19px] font-bold leading-none rounded-full hover:bg-red-700 transition-colors duration-200 shadow-[inset_0_6px_10px_rgba(0,0,0,0.15),_inset_0_-6px_10px_rgba(100,100,100,0.2)]  `}
+          >
+            <Image
+              src="/st-icons/Temp7/call1.1.png"
+              alt="Phone"
+              width={16}
+              height={16}
+              className="w-auto h-4 md:h-8"
+              unoptimized
+            />
+            <span>{phone || "(888)-249-0566"}</span>
+          </a>
         </div>
         {services.length > MAX_DISPLAY && (
           <div className="mt-6 text-center">

@@ -39,11 +39,11 @@ const variants = {
   Gallery17,
 
 };
-const name = variants ?? "Gallery16";
-const Component = variants[name] ?? Gallery16;
-return <Component content={content} />;
-
-
+export default function Gallery({ variant, content }) {
+  const name = variant ?? "Gallery16";
+  const Component = variants[name] ?? Gallery16;
+  return <Component content={content} />;
+}
 
 export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5, Gallery6, Gallery8, Gallery7, Gallery9, Gallery10, Gallery11, Gallery12, Gallery13, Gallery14, Gallery15, Gallery16, Gallery17, variants };
 

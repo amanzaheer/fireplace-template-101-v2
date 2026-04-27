@@ -99,21 +99,21 @@ export default function ServiceBenefits7({ content }) {
               <div className="mt-7 flex flex-col sm:flex-row gap-8">
                 <a
                   href={`tel:${phone}`}
-                  className={`${rubik.className} inline-flex items-center justify-center gap-2 bg-black text-white uppercase tracking-wide font-semibold px-8 h-[46px] min-w-[219px]  rounded text-sm hover:bg-[#111827] transition-colors duration-200`}
+                  className={`${poppins.className} inline-flex items-center justify-center gap-2 bg-[#3a8ffb] text-white uppercase tracking-wide  px-8 h-[46px] min-w-[219px] text-[19px]  font-bold rounded-full  hover:bg-[#111827] transition-colors duration-200`}
                 >
                   Call Us Today
                   <span aria-hidden="true">→</span>
                 </a>
                 <a
                   href={`tel:${phone}`}
-                  className={`${rubik.className} inline-flex items-center justify-center gap-2 bg-[#0a4da3] text-white px-6 h-[46px] min-w-[217px] text-xl md:text-[20px]    leading-none rounded hover:bg-[#0b4189] transition-colors duration-200`}
+                  className={`${poppins.className} inline-flex items-center justify-center gap-2 bg-[#fe4c4c] text-white px-6 h-[46px] min-w-[217px] text-xl md:text-[19px] font-bold    leading-none rounded-full hover:bg-red-700 transition-colors duration-200`}
                 >
                   <Image
-                    src="/st-icons/Temp2/call1.png"
+                    src="/st-icons/Temp7/call1.1.png"
                     alt="Phone"
                     width={16}
                     height={16}
-                    className="w-auto h-4 md:h-[21px]"
+                    className="w-auto h-4 md:h-8"
                   />
                   <span>{phone || "(888)-249-0566"}</span>
                 </a>

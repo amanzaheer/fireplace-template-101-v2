@@ -93,8 +93,8 @@ export default function Banner10({ content }) {
       className={`relative bg-transparent overflow-hidden w-full px-0 ${poppins.className}`}
     >
       <div className="w-full">
-        <div className="relative grid w-full min-h-[480px] grid-cols-1 bg-neutral-900 lg:min-h-[560px] lg:grid-cols-2">
-          {image ? (
+        <div className="relative w-full min-h-[480px] bg-neutral-900 lg:min-h-[550px]">
+          {/* {image ? (
             <Image
               src={image}
               title={data?.imageTitle || data?.title || ""}
@@ -105,29 +105,19 @@ export default function Banner10({ content }) {
               className="object-cover"
               style={{ objectPosition: "center" }}
             />
-          ) : null}
-          <div className="pointer-events-none absolute inset-0 bg-black/50" />
+          ) : null} */}
+        <div className="pointer-events-none absolute inset-0 bg-white" />
 
-          <div className="relative z-10 flex min-h-[420px] lg:min-h-full">
-
-            <div className="relative z-10 mx-auto flex h-full w-full max-w-[620px] flex-col items-center justify-center px-4 py-10 text-center md:ml-auto md:items-start md:py-14 md:pl-16 md:pr-8 lg:pl-20 lg:pr-6 md:text-left">
+          <div className="relative z-10 mx-auto flex min-h-[420px] w-full max-w-[1200px] flex-col items-center justify-between gap-8 px-4 py-10 md:py-14 lg:min-h-[560px] lg:flex-row lg:items-start lg:px-8">
+            <div className="relative z-10 flex h-full w-full max-w-[620px] flex-col items-center justify-center text-center md:items-start md:pl-8 md:pr-6 md:text-left lg:pl-4 lg:pr-2">
               <div className="mb-3 flex items-center justify-center gap-2.5 self-center md:self-start md:justify-start">
                 {phone ? (
                   <a
-                    href={phoneHref}
-                    className="inline-flex items-start gap-2.5 text-black hover:opacity-90"
+                    
+                
                   >
-                    <span className="bg-linear-to-r from-[#f20508] to-[#b12224] rounded p-2 flex shrink-0 items-center justify-center mt-0.5">
-                      <Phone className="w-3 h-4 text-white" strokeWidth={2.5} />
-                    </span>
-                    <div className="flex min-w-0 flex-col items-center leading-none md:items-start">
-                      <span className="font-bold uppercase tracking-wide text-xs md:text-sm text-black">
-                        {contactLabel || "Contact"}
-                      </span>
-                      <span className="mt-1 text-xl font-bold text-black md:text-3xl">
-                        {phone}
-                      </span>
-                    </div>
+                    
+              
                   </a>
                 ) : (
                   <div className="inline-flex items-start gap-2.5 text-black">
@@ -146,16 +136,14 @@ export default function Banner10({ content }) {
               {(headingLine1 || headingAccent) && (
               <div className="mt-4 md:mt-6 self-center md:self-start">
                 {headingLine1 ? (
-                <h2 className="text-center text-white uppercase font-bold  text-2xl leading-tight sm:text-3xl md:text-left md:text-4xl lg:text-5xl">
+                <h2 className="text-center text-black uppercase font-bold  text-2xl leading-tight sm:text-3xl md:text-left md:text-4xl lg:text-5xl">
                   {headingLine1}
                 </h2>
                 ) : null}
 
                 {headingAccent ? (
                 <div className="mt-2">
-                  <span className="inline-block bg-[#e20c0e] rounded-xl text-white px-5 py-2 md:px-6 md:py-3 text-lg md:text-2xl lg:text-4xl font-black uppercase">
-                    {headingAccent}
-                  </span>
+                 
                 </div>
                 ) : null}
               </div>
@@ -177,10 +165,10 @@ export default function Banner10({ content }) {
                     return (
                     <li
                       key={idx}
-                      className="flex w-full max-w-[260px] items-start justify-start gap-2.5 text-left text-sm font-medium text-white md:max-w-none md:text-[15px]"
+                      className="flex w-full max-w-[260px] items-start justify-start gap-2.5 text-left text-sm font-medium text-black md:max-w-none md:text-[15px]"
                     >
-                      <span className="mt-0.5 inline-flex h-7 w-7 shrink-0 items-center justify-center rounded bg-[#e20c0e]">
-                        <IconComponent className="h-4 w-4 text-white" aria-hidden />
+                      <span className="mt-0.5 inline-flex  shrink-0 items-center justify-center rounded">
+                        <IconComponent className="h-5 w-5 text-" aria-hidden />
                       </span>
                       <span className="leading-snug text-left">
                         {feature.text}
@@ -190,11 +178,28 @@ export default function Banner10({ content }) {
                   })}
                 </ul>
               )}
-            </div>
-          </div>
 
-          <div className={`relative z-10 w-full min-h-[400px] justify-center px-5 py-10 md:px-8 md:py-14 lg:px-10 ${poppins.className}`}>
-            <div className="w-full max-w-sm mx-auto">
+              <a
+                href={phone ? `tel:${phone}` : "#"}
+                className="group mb-0 mt-6 inline-flex w-auto max-w-max flex-nowrap items-center justify-center gap-3 self-center rounded-full border border-white/25 bg-[#ff4d4d] px-5 py-3 text-white shadow-[inset_0_4px_6px_rgba(0,0,0,0.15),inset_0_-4px_6px_rgba(0,0,0,0.15)] transition-opacity hover:opacity-95 sm:justify-start sm:px-8 sm:py-3.5 md:mt-8 md:self-start lg:mt-8"
+              >
+                <Image
+                  src="/st-icons/Temp7/call1.1.png"
+                  alt="Call us"
+                  width={32}
+                  height={32}
+                  className="h-7 w-auto shrink-0 sm:h-8"
+                  unoptimized
+                />
+                <span className="min-w-0 text-left text-[14px] font-extrabold leading-none tracking-tight sm:text-[16px] md:text-[26px] lg:text-[20px]">
+                  <span className="whitespace-nowrap">
+                    <span className="uppercase">CALL US 24/7-</span>{" "}
+                    {phone}
+                  </span>
+                </span>
+              </a>
+            </div>
+            <div className="w-full md:w-[444px] md:shrink-0 flex justify-center lg:justify-end">
               <QuoteForm10
                 data={data}
                 form_head={form_head}
@@ -202,6 +207,7 @@ export default function Banner10({ content }) {
               />
             </div>
           </div>
+
         </div>
       </div>
     </FullContainer>

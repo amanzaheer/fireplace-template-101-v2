@@ -31,7 +31,6 @@ const ServiceDescription2Section = dynamic(() => import("@/components/sections/S
 
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
 const Cta = dynamic(() => import("@/components/sections/Cta"));
-const CallToAction = dynamic(() => import("@/components/sections/CallToAction"));
 const MilestoneBanner = dynamic(() =>
   import("@/components/sections/MilestoneBanner"),
 );
@@ -67,11 +66,9 @@ const sectionComponents = {
   ServiceDescription1: ServiceDescription1Section,
   ServiceDescription2: ServiceDescription2Section,
   CallUsButton,
-  CallToAction,
   MilestoneBanner,
   Videosection,
   workingprocess: WorkingProcess,
-  calltoaction: CallToAction,
   PrivacyPolicy,
   TermsAndConditions,
   CompanyProfile,

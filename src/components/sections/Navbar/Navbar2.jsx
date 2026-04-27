@@ -197,7 +197,7 @@ export default function Navbar2({ content }) {
             <div className="text-xs">
               <a
                 href={phoneLink}
-                className="flex items-center shadow-xl justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2.5 rounded-full text-white font-semibold text-sm lg:text-lg hover:opacity-90 transition-all bg-[#c92028]"
+                className="flex items-center shadow-[0_4px_7px_rgba(0,0,0,0.3)] justify-center sm:justify-start gap-2 px-5 lg:px-6 py-1.5 lg:py-2.5 rounded-full text-white font-semibold text-sm lg:text-lg hover:opacity-90 transition-all bg-[#c92028]"
               >
                 <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-5 lg:w-6 lg:h-6" />
                 <span className={`${rubik.className} text-white text-sm lg:text-base font-normal`}>{phone}</span>
@@ -234,7 +234,7 @@ export default function Navbar2({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[84px] ">
+      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[90px] border-t-5 border-t-[#cf1f21] ">
         <Container>
           <div className="flex flex-row justify-between h-full  items-center w-full md:pr-8">
             <div className="h-full flex items-center justify-center">
@@ -271,7 +271,7 @@ export default function Navbar2({ content }) {
     <FullContainer
       id="navbar"
       className={cn(
-        "shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[84px] transition-transform duration-300",
+        "shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[90px] transition-transform duration-300 border-t-5 border-t-[#cf1f21]",
         !isVisible && "-translate-y-full",
       )}
     >
@@ -279,7 +279,7 @@ export default function Navbar2({ content }) {
 
       <div
         className={cn(
-          "lg:hidden py-2 bg-white absolute top-[75px] left-0 right-0 w-full transition-all duration-300",
+          "lg:hidden py-2 bg-white absolute top-[74px] left-0 right-0 w-full transition-all duration-300",
           isOpen
             ? "h-fit opacity-100 visible"
             : "h-0 opacity-0 invisible overflow-hidden",

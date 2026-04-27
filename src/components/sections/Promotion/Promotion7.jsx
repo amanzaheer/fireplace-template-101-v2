@@ -118,17 +118,17 @@ const PromotionCard = ({
       <button
         className={`${isMainCard ? poppins.className : inter.className} rounded flex items-center justify-center gap-2 mt-6 font-semibold  text-lg md:text-[24px] tracking-wide transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-900 focus:ring-offset-2 ${
           isMainCard
-            ? "w-[255px] h-[48px] bg-[#054390] text-white hover:bg-blue-400 hover:text-white mx-auto"
-            : "w-[219px] h-[54px] bg-[#054390] text-white hover:bg-black mx-auto"
+              ? "w-[255px] h-[48px] bg-[#fe4c4c] text-white hover:bg-red-700 hover:text-white mx-auto rounded-full font-poppins"
+            : "w-[219px] h-[54px] bg-[#3a8ffb] text-white hover:bg-black mx-auto rounded-full font-poppins"
         }`}
       >
         {isMainCard ? 
-        <span className={`${poppins.className} inline-flex items-center font-semibold text-lg md:text-[24px] gap-2`}>
+        <span className={`${poppins.className} inline-flex items-center font-semibold text-lg md:text-[24px] font-poppins font-bold gap-2`}>
           <PhoneCallIcon className="w-6 h-6" />
           {phone || "(888)-249-0566"}
         </span>
         : 
-        <span className={`${inter.className} text-xs md:text-sm flex items-center justify-center gap-2`}>  
+        <span className={`${inter.className} text-xs md:text-[19px] font-poppins font-bold flex items-center justify-center gap-2`}>  
           <span className="text-white">Call Us Today</span>
           <ArrowRight className="w-4 h-4 text-white" />
         </span>

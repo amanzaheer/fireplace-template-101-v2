@@ -105,7 +105,8 @@
       "form_description": "Offer ends in just a few hours!",
       "cta_phone": "[phone]",
       "file_name": "hero/hero.webp",
-      "childrenRef": "features"
+      "childrenRef": "features",
+      "file_name2": "hero-banner/banneroverlay7.png"
     },
     "size": {
       "title": "What size is the TV?",
@@ -336,7 +337,7 @@
 
     "testimonials": {
       "reviewCount": "150+",
-      "file_name": "testimonials/fireplace.webp",
+      "file_name": "testimonials/wood-fireplace-repair.webp",
       "list": [
         {
           "name": "John D.",
@@ -373,7 +374,10 @@
     "cta": {
       "title": "Ready to Book Your Fireplace Service?",
       "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service.",
-      "image": "/images/Cta%20img1.jpg"
+      "image": "/images/Cta%20img1.jpg",
+      "button_text": "Get a Free Estimate",
+      "phone": "[phone]"
+
     },
     
 "company_profile": {
