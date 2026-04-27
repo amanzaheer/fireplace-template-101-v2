@@ -12,6 +12,8 @@ import { resolveRefArray } from "@/lib/content-helpers";
 import { cn } from "@/lib/utils";
 import QuoteForm15 from "./QuoteForm/QuoteForm15";
 import { FiveStars } from "@/components/common";
+import QuoteForm15 from "./QuoteForm/QuoteForm15";
+
 const rubik = Rubik({
   subsets: ["latin"],
   weight: ["700"],
@@ -35,13 +37,6 @@ function BannerCtaIcon({ className }) {
     </svg>
   );
 }
-
-const Quote15 = dynamic(() => import("./QuoteForm/QuoteForm15"), {
-  loading: () => (
-    <div className="h-[420px] w-full max-w-[420px] animate-pulse rounded-2xl bg-white/80 shadow-xl lg:min-w-[360px]" />
-  ),
-  ssr: false,
-});
 
 const ICON_MAP = {
   Wrench,
@@ -78,7 +73,11 @@ function buildImageSrc(base, filePath) {
 export default function Banner15({ content }) {
   const banner = content?.banner ?? {};
   const headline = (banner.heading || banner.title || DEFAULT_HEADLINE).trim();
-  const subhead = (banner.tagline || banner.description || DEFAULT_SUBHEAD).trim();
+  const subhead = (
+    banner.tagline ||
+    banner.description ||
+    DEFAULT_SUBHEAD
+  ).trim();
   const imageSrc =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
     buildImageSrc(IMAGE_BASE, "hero/hero.webp");
@@ -105,7 +104,10 @@ export default function Banner15({ content }) {
   const tel = `tel:${phone.replace(/\s/g, "")}`;
 
   return (
-    <FullContainer id="banner" className="relative w-full overflow-hidden bg-neutral-900">
+    <FullContainer
+      id="banner"
+      className="relative w-full overflow-hidden bg-neutral-900"
+    >
       <div className="relative h-full w-full py-6 lg:py-0 max-h-full overflow-hidden lg:h-[580px] lg:max-h-[580px]">
         <Image
           src={imageSrc}
@@ -116,7 +118,10 @@ export default function Banner15({ content }) {
           height={480}
           unoptimized={useUnoptimized}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35" aria-hidden />
+        <div
+          className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35"
+          aria-hidden
+        />
 
         <Container className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center justify-center h-full">
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full  ">
@@ -131,8 +136,10 @@ export default function Banner15({ content }) {
                       <>
                         <span>{lead || headline}</span>
                         <div className="mt-2">
-
-                        <FiveStars className="" starClassName="text-[#f59a00] text-[16px]!" />
+                          <FiveStars
+                            className=""
+                            starClassName="text-[#f59a00] text-[16px]!"
+                          />
                         </div>
                         {tail ? <span>{tail}</span> : null}
                       </>
@@ -156,7 +163,11 @@ export default function Banner15({ content }) {
                       key={`${text}-${idx}`}
                       className="flex items-start gap-3 font-barlow font-medium text-white/95 text-[15px] lg:text-[18px]"
                     >
-                      <Icon className="mt-0.5 h-5 w-5 shrink-0 text-amber-400" strokeWidth={2} aria-hidden />
+                      <Icon
+                        className="mt-0.5 h-5 w-5 shrink-0 text-amber-400"
+                        strokeWidth={2}
+                        aria-hidden
+                      />
                       <span>{text}</span>
                     </li>
                   );
@@ -190,26 +201,27 @@ export default function Banner15({ content }) {
         </Container>
       </div>
 
-      <div
-        className="relative z-10 w-full border-t bg-[#62370c] border-black/10 px-4 py-6 sm:px-6 lg:px-10"
-       
-      >
+      <div className="relative z-10 w-full border-t bg-[#62370c] border-black/10 px-4 py-6 sm:px-6 lg:px-10">
         <Container className="mx-auto  flex w-full max-w-7xl px-4 sm:px-6 lg:px-8 flex-col items-center justify-between gap-4 md:flex-row md:gap-6">
           <p className="text-center font-barlow text-base flex flex-col items-start text-white md:text-left md:text-lg">
-            <span className="font-bold text-2xl md:text-3xl lg:text-4xl">Professional Fireplace Service</span>{" "}
-            <span className="font-medium text-white/90 text-xl md:text-2xl lg:text-3xl">in the Comfort of Your Home</span>
-          </p> 
+            <span className="font-bold text-2xl md:text-3xl lg:text-4xl">
+              Professional Fireplace Service
+            </span>{" "}
+            <span className="font-medium text-white/90 text-xl md:text-2xl lg:text-3xl">
+              in the Comfort of Your Home
+            </span>
+          </p>
           <Link
-                  href={tel}
-                  className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-2  transition hover:bg-neutral-100 sm:px-6 sm:py-2.5 "
-                >
-                  <BannerCtaIcon />
-                  <span
-                    className={`${rubik.className} text-[24px] lg:text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
-                  >
-                    {phone}
-                  </span>
-                </Link>
+            href={tel}
+            className="inline-flex items-center gap-3 rounded-xl bg-white px-5 py-2  transition hover:bg-neutral-100 sm:px-6 sm:py-2.5 "
+          >
+            <BannerCtaIcon />
+            <span
+              className={`${rubik.className} text-[24px] lg:text-[32px] font-bold not-italic leading-normal text-[#F29100]`}
+            >
+              {phone}
+            </span>
+          </Link>
         </Container>
       </div>
     </FullContainer>

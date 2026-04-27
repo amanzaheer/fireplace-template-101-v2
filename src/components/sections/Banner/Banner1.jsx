@@ -1,5 +1,5 @@
 "use client";
- 
+
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/common/Container";
@@ -18,14 +18,8 @@ import {
 } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
- 
-const QuoteForm = dynamic(() => import("@/components/common/QuoteForm"), {
-  loading: () => (
-    <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
-  ),
-  ssr: false,
-});
- 
+import QuoteForm from "@/components/common/QuoteForm";
+
 const ICON_MAP = {
   Clock,
   Star,
@@ -38,14 +32,14 @@ const ICON_MAP = {
   FileText,
   MessageSquare,
 };
- 
+
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
 }
- 
+
 export default function Banner1({ content }) {
   const banner = content?.banner ?? {};
   const data = {
@@ -71,9 +65,12 @@ export default function Banner1({ content }) {
     content?.contact_info?.phone ??
     content?.navbar?.phone ??
     "";
- 
+
   return (
-    <FullContainer id="banner" className="relative bg-white overflow-hidden w-full md:!h-[790px] lg:!h-auto">
+    <FullContainer
+      id="banner"
+      className="relative bg-white overflow-hidden w-full md:!h-[790px] lg:!h-auto"
+    >
       <div className="absolute inset-0 w-full h-[600px] md:minh-[790px] overflow-hidden">
         <Image
           src={image}
@@ -89,7 +86,7 @@ export default function Banner1({ content }) {
         />
         <div className="absolute inset-0 bg-black/30"></div>
       </div>
- 
+
       <Container className="py-12 md:pb-24 font-barlow relative z-10">
         <div className="w-full flex flex-col md:flex-row gap-16 md:mx-auto md:w-fit md:gap-[66px] text-white content-center">
           <div className="relative flex w-full md:w-fit items-center md:items-end flex-col justify-center">
@@ -102,7 +99,7 @@ export default function Banner1({ content }) {
                   {data?.tagline}
                 </h2>
               ) : null}
- 
+
               <p className="text-[16px] md:text-3xl text-center md:text-start lg:text-left mt-4 mb-1">
                 {data?.description}
               </p>
@@ -110,7 +107,9 @@ export default function Banner1({ content }) {
                 <ul className="mb-6 w-fit space-y-1 md:space-y-2">
                   {features?.map((feature, idx) => {
                     const iconKey =
-                      typeof feature?.icon === "string" ? feature.icon.trim() : "";
+                      typeof feature?.icon === "string"
+                        ? feature.icon.trim()
+                        : "";
                     const IconComponent = ICON_MAP[iconKey] ?? CheckCircle;
                     return (
                       <li
@@ -124,7 +123,7 @@ export default function Banner1({ content }) {
                   })}
                 </ul>
               ) : null}
- 
+
               <div className="w-fit">
                 <a
                   href={phone ? `tel:${phone}` : "#"}
@@ -136,7 +135,7 @@ export default function Banner1({ content }) {
               </div>
             </div>
           </div>
- 
+
           <div className="w-full md:w-fit">
             <QuoteForm
               data={data}
@@ -148,4 +147,4 @@ export default function Banner1({ content }) {
       </Container>
     </FullContainer>
   );
-} 
+}

@@ -9,21 +9,12 @@ import { Poppins } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { cn } from "@/lib/utils";
+import QuoteForm16 from "./QuoteForm/QuoteForm16";
 
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-
-const QuoteForm16 = dynamic(
-  () => import("@/components/sections/Banner/QuoteForm/QuoteForm16"),
-  {
-    loading: () => (
-      <div className="h-[420px] w-full max-w-md animate-pulse rounded-lg bg-white shadow-xl" />
-    ),
-    ssr: false,
-  },
-);
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -86,7 +77,8 @@ export default function Banner16({ content }) {
 
   // Change these only when you want a new background style
   const bannerBgColor = "bg-[#c8b7a9]";
-  const bannerOverlay = "bg-gradient-to-r from-black/55 via-black/35 to-black/10";
+  const bannerOverlay =
+    "bg-gradient-to-r from-black/55 via-black/35 to-black/10";
 
   return (
     <FullContainer
@@ -103,7 +95,9 @@ export default function Banner16({ content }) {
           sizes="100vw"
           className="object-cover object-center"
         />
-        <div className={`pointer-events-none absolute inset-0 ${bannerOverlay}`} />
+        <div
+          className={`pointer-events-none absolute inset-0 ${bannerOverlay}`}
+        />
       </div>
 
       <Container className="relative z-10 py-20 md:py-24 lg:py-16">
@@ -123,7 +117,7 @@ export default function Banner16({ content }) {
                         "h-5 w-5 md:h-6 md:w-6",
                         i < rating
                           ? "fill-[#EFA536] text-[#FFC812]"
-                          : "fill-neutral-200 text-neutral-200"
+                          : "fill-neutral-200 text-neutral-200",
                       )}
                       strokeWidth={0}
                     />

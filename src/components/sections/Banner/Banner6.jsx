@@ -19,6 +19,7 @@ import {
 } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import QuoteForm6 from "./QuoteForm/QuoteForm6";
 
 const ACCENT = "#FF6611";
 
@@ -48,16 +49,6 @@ const ICON_MAP = {
   FileText,
   MessageSquare,
 };
-
-const QuoteForm6 = dynamic(() => import("@/components/sections/Banner/QuoteForm/QuoteForm6"), {
-  loading: () => (
-    <div
-      className="h-[420px] w-full max-w-md rounded-xl border border-[#FF6611] bg-black/60 animate-pulse mx-auto md:mx-0"
-      aria-hidden
-    />
-  ),
-  ssr: false,
-});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -181,7 +172,7 @@ export default function Banner6({ content }) {
   const headingText = data?.heading || data?.title || "";
 
   return (
-    <FullContainer 
+    <FullContainer
       id="banner"
       className=" relative overflow-hidden w-full md:min-h-[640px]! lg:min-h-[600px]! max-h-[680px]!"
     >
@@ -203,7 +194,7 @@ export default function Banner6({ content }) {
       <Container className="relative z-10 py-12 md:py-16 lg:py-20 pt-40 ">
         <div className="flex flex-col lg:flex-row lg:items-stretch  pt-10 lg:justify-between gap-12 lg:gap-14 xl:gap-20">
           <div className="flex flex-col justify-center w-full lg:max-w-xl xl:max-w-2xl ">
-            <HeroHeading text={headingText}/>
+            <HeroHeading text={headingText} />
 
             <div
               className="mt-5 h-[3px] w-full max-w-md mx-auto md:mx-0 rounded-full overflow-hidden"
@@ -224,7 +215,9 @@ export default function Banner6({ content }) {
             ) : null}
 
             {data?.description ? (
-                <p className={` ${poppins.className} mt-3 text-base md:text-lg text-white/85 text-center md:text-left max-w-xl`}>
+              <p
+                className={` ${poppins.className} mt-3 text-base md:text-lg text-white/85 text-center md:text-left max-w-xl`}
+              >
                 {data.description}
               </p>
             ) : null}
@@ -236,7 +229,7 @@ export default function Banner6({ content }) {
                   return (
                     <li
                       key={idx}
-                      className= {` ${poppins.className} flex items-center gap-3 text-white font-medium text-sm sm:text-base`}
+                      className={` ${poppins.className} flex items-center gap-3 text-white font-medium text-sm sm:text-base`}
                     >
                       <span
                         className={`${poppins.className} flex shrink-0 w-7 h-7 rounded-md items-center justify-center`}
@@ -260,10 +253,14 @@ export default function Banner6({ content }) {
               <div className="mt-10 flex justify-center md:justify-start">
                 <a
                   href={`tel:${phone}`}
-                className={` ${poppins.className} inline-flex items-center bg-gradient-to-l from-[#FF6611] to-transparent gap-3 pl-2 pr-6 py-1 rounded-md font-montserrat font-bold text-white text-lg sm:text-xl shadow-lg transition-opacity hover:opacity-95`}
+                  className={` ${poppins.className} inline-flex items-center bg-gradient-to-l from-[#FF6611] to-transparent gap-3 pl-2 pr-6 py-1 rounded-md font-montserrat font-bold text-white text-lg sm:text-xl shadow-lg transition-opacity hover:opacity-95`}
                 >
                   <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/95 text-black">
-                    <Phone className="w-5 h-5" style={{ color: ACCENT }} aria-hidden />
+                    <Phone
+                      className="w-5 h-5"
+                      style={{ color: ACCENT }}
+                      aria-hidden
+                    />
                   </span>
                   {phone}
                 </a>
@@ -278,7 +275,6 @@ export default function Banner6({ content }) {
               showArrowInButton={false}
             />
           </div>
-          
         </div>
       </Container>
     </FullContainer>

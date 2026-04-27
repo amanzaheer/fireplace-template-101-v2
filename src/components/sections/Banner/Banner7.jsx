@@ -20,6 +20,8 @@ import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Poppins, Inter } from "next/font/google";
 import { Rubik } from "next/font/google";
+import QuoteForm7 from "./QuoteForm/QuoteForm7";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -32,15 +34,6 @@ const rubik = Rubik({
   subsets: ["regular"],
   weight: ["400", "500", "600", "700"],
 });
-const QuoteForm7 = dynamic(
-  () => import("@/components/sections/Banner/QuoteForm/QuoteForm7"),
-  {
-    loading: () => (
-      <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
-    ),
-    ssr: false,
-  },
-);
 
 const ICON_MAP = {
   Clock,

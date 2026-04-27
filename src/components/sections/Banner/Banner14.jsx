@@ -10,6 +10,7 @@ import { Rubik } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { cn } from "@/lib/utils";
+import QuoteForm14 from "./QuoteForm/QuoteForm14";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -37,13 +38,6 @@ function BannerCtaIcon({ className }) {
     </svg>
   );
 }
-
-const QuoteForm14 = dynamic(() => import("./QuoteForm/QuoteForm14"), {
-  loading: () => (
-    <div className="h-[420px] w-full max-w-[420px] animate-pulse rounded-2xl bg-white/80 shadow-xl lg:min-w-[360px]" />
-  ),
-  ssr: false,
-});
 
 const ICON_MAP = {
   Wrench,
