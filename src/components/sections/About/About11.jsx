@@ -30,7 +30,10 @@ export default function About11({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
 
   return (
-    <FullContainer className="bg-[#efa536] py-10 md:py-14" id="about">
+    <FullContainer
+      className="relative z-10 bg-[#efa536] py-10 md:py-14"
+      id="about"
+    >
       <Container className="max-w-6xl mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 lg:gap-10 items-center">
           <div className="relative order-2 lg:order-1 flex justify-center lg:justify-start">

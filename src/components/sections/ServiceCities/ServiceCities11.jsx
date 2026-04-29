@@ -56,7 +56,7 @@ export default function ServiceCities11({ content }) {
                  alt="Map Pin" 
                  width={15} height={15}
                 className="w-auto h-5" />
-                <span className={`${inter.className} text-[14px] md:text-[16px] font-normal leading-tight text-[#000000]`}>
+                <span className={`${inter.className} text-[14px] md:text-[16px] font-normal leading-tight  text-[#000000]`}>
                   {typeof city === "string" ? city : city?.name ?? city?.title ?? String(city)}
                 </span>
               </div>

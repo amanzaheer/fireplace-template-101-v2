@@ -168,9 +168,7 @@ export default function Navbar14({ content }) {
 
     const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
     const closeMenu = useCallback(() => setIsOpen(false), []);
-
     const phoneLink = phone ? `tel:${phone}` : "#";
-
     const headerContent = (
         <>
             <div className="flex h-full w-full flex-row items-center justify-between gap-3 ">
@@ -184,7 +182,6 @@ export default function Navbar14({ content }) {
                             className="font-serif font-bold text-[#3d2914] md:text-2xl lg:text-[1.65rem]"
                         />
                     </div>
-
                     <div className="hidden min-w-0 items-center h-fit py-2 justify-center gap-4 lg:flex lg:gap-4">
                         {menuItemsArray.map((item) => {
                             if (isDropdownItem(item)) {
@@ -328,7 +325,7 @@ export default function Navbar14({ content }) {
 
     if (!mounted) {
         return (
-            <FullContainer className="relative sticky top-0 z-20 h-auto w-full bg-white shadow-sm ">
+            <FullContainer className="relative 'sticky' top-0 z-20 h-auto w-full bg-white shadow-sm ">
                 <Container className=" py-4 lg:py-0 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8" >
                     <div className="flex h-full w-full flex-row items-center justify-between gap-3 ">
                         <div className="flex flex-col h-full min-w-0 items-start justify-between lg:min-h-[140px]">

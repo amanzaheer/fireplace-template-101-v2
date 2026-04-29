@@ -276,7 +276,7 @@ export default function Navbar11({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="sticky top-0 z-20 h-[82px] w-full bg-transparent py-0 shadow-sm md:h-[84px]"
+      className="sticky top-0 z-20 h-[82px] w-full bg-transparent py-0 shadow-sm md:h-[84px] "
     >
       {headerContent}
 

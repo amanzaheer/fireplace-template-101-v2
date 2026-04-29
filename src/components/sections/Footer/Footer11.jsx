@@ -23,25 +23,31 @@ export default function Footer11({ content }) {
   const statement = footer.value ?? footer.statement ?? "";
   const bgPath = footer.file_name ?? "footer/footerbg.webp";
   const bgSrc = buildImageSrc(IMAGE_BASE, bgPath);
-  const companies = [1, 2, 3, 4, 5].map((n) => buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`));
+  const companies = [1, 2, 3, 4, 5].map((n) =>
+    buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`)
+  );
 
   return (
-    <footer>
+    <footer className="!bg-black" style={{ backgroundColor: "#000000" }}>
       <FullContainer
         id="footer"
-        className="bg-black py-6 md:py-9 mb-16 md:mb-0 relative"
+        className="!bg-black py-6 md:py-9 mb-16 md:mb-0 relative"
+        style={{ backgroundColor: "#000000" }}
       >
+        {/* Invisible bg image (kept for structure) */}
         {bgSrc ? (
           <Image
             title="Footer Image"
             src={bgSrc}
             alt="Footer background"
             fill
-            className="w-full absolute top-0 left-0 h-full object-cover opacity-0"
+            className="w-full absolute top-0 left-0 h-full object-cover opacity-0 pointer-events-none"
           />
         ) : null}
+
         <Container className="relative z-10">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-24 w-full items-start">
+            {/* Left — Information */}
             <div className="max-w-[560px]">
               <h3 className="text-white text-[26px] md:text-[28px] font-extrabold mb-5 leading-none">
                 Information
@@ -72,6 +78,7 @@ export default function Footer11({ content }) {
               ) : null}
             </div>
 
+            {/* Right — Stay Tuned */}
             <div className="w-full md:pl-10 lg:pl-20">
               <h3 className="text-white text-[26px] md:text-[28px] font-extrabold mb-5 leading-none">
                 Stay Tuned With Us
@@ -133,6 +140,7 @@ export default function Footer11({ content }) {
             </div>
           </div>
 
+          {/* Bottom links */}
           <div className="mt-2 pt-2 w-full pb-8 md:pb-0">
             <div className="flex flex-row justify-start items-start gap-6">
               <div className="flex gap-6">

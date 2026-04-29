@@ -53,7 +53,6 @@ export function Cta13CallNowButton({
     </div>
   );
 }
-
 export default function Cta13({ content }) {
   const block = content?.cta ?? {};
   const title =
@@ -64,13 +63,11 @@ export default function Cta13({ content }) {
     typeof block.description === "string" && block.description.trim()
       ? block.description.trim()
       : "";
-
   const phone =
     content?.banner?.cta_phone ??
     content?.contact_info?.phone ??
     content?.navbar?.phone ??
     "";
-
   const phoneDisplay = typeof phone === "string" ? phone.trim() : "";
 
   if (!title && !description && !phoneDisplay) return null;
@@ -91,7 +88,6 @@ export default function Cta13({ content }) {
               </p>
             ) : null}
           </div>
-
           <Cta13CallNowButton phone={phone} />
         </div>
       </Container>

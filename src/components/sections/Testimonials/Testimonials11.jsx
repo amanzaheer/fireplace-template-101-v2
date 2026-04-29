@@ -1,176 +1,162 @@
 "use client";
 
-import React, {
-  useState,
-  useEffect,
-  useMemo,
-  useCallback,
-  useRef,
-} from "react";
+import React, { useMemo } from "react";
 
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import Image from "next/image";
-import { ChevronLeft, ChevronRight, Star } from "lucide-react";
+import { Star } from "lucide-react";
+import { IMAGE_BASE } from "@/lib/constants";
+
+function buildImageSrc(base, filePath) {
+  if (!filePath || typeof filePath !== "string") return "";
+  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
+  const segment = filePath.replace(/^\//, "");
+  return `${basePath}/${segment}`;
+}
+
+function StarsRow({ rating }) {
+  const count = Math.min(5, Math.max(0, Number(rating) || 0));
+
+  return (
+    <div className="flex items-center justify-center gap-0.5" aria-hidden>
+      {[1, 2, 3, 4, 5].map((n) => (
+        <Star
+          key={n}
+          className={
+            n <= count ? "h-8 w-8 fill-[#0b3a57] text-[#0b3a57]" : "h-4 w-4 text-[#177698]"
+          }
+          strokeWidth={n <= count ? 0 : 1.75}
+        />
+      ))}
+    </div>
+  );
+}
 
 export default function Testimonials11({ content }) {
   const data = content?.testimonials ?? {};
-  const testimonials = Array.isArray(data.list) ? data.list : [];
-  const sectionTitle =
-    typeof data.title === "string" && data.title.trim()
-      ? data.title.trim()
-      : "Our Happy Clients";
+  const slogan = content?.slogan ?? {};
 
-  const [activeIndex, setActiveIndex] = useState(0);
-  const autoSlideRef = useRef(null);
+  const list = Array.isArray(data.list) ? data.list : [];
 
-  const testimonialsWithAvatars = useMemo(() => {
-    const getRandomAvatar = (seed) =>
-      `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
-        seed,
-      )}`;
+  const leftTitle =
+    typeof slogan.title === "string" && slogan.title.trim() ? slogan.title.trim() : "";
+  const leftDescription =
+    typeof slogan.description === "string" && slogan.description.trim()
+      ? slogan.description.trim()
+      : "";
 
-    const getRandomDate = (index) => {
-      const start = new Date("2023-01-01").getTime();
-      const end = new Date("2023-12-31").getTime();
-      const length = Math.max(testimonials.length, 1);
-
-      const seed = (index * 2654435761) % length;
-      const offset = (seed / length) * (end - start);
-      const randomTime = start + offset;
-
-      const date = new Date(randomTime);
-      const year = date.getFullYear();
-      const month = String(date.getMonth() + 1).padStart(2, "0");
-      const day = String(date.getDate()).padStart(2, "0");
-
-      return `${year}-${month}-${day}`;
-    };
-
-    return testimonials.map((testimonial, index) => ({
-      ...testimonial,
-      avatar:
-        testimonial.avatar ||
-        getRandomAvatar(testimonial.name || `user-${index}`),
-      date: getRandomDate(index),
-    }));
-  }, [testimonials]);
-
-  const defaultAvatar = useMemo(
-    () => "https://api.dicebear.com/7.x/avataaars/svg?seed=default",
+  const companies = useMemo(
+    () =>
+      [1, 2, 3, 4, 5,]
+        .map((n) => buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`))
+        .filter(Boolean),
     [],
   );
 
-  const maxIndex = Math.max(0, testimonials.length - 1);
-
-  const goPrev = useCallback(() => {
-    setActiveIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  }, [maxIndex]);
-
-  const goNext = useCallback(() => {
-    setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  }, [maxIndex]);
-
-  useEffect(() => {
-    if (testimonials.length <= 1) return;
-
-    autoSlideRef.current = setInterval(() => {
-      setActiveIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 5000);
-
-    return () => {
-      if (autoSlideRef.current) clearInterval(autoSlideRef.current);
-    };
-  }, [testimonials.length, maxIndex]);
-
-  const current = testimonialsWithAvatars[activeIndex];
-  const quoteText = current?.quote || current?.text || "";
-  const starCount = Math.min(5, Math.max(0, Number(current?.rating) || 5));
-
-  if (!testimonials.length) return null;
-
+  const testimonials = useMemo(() => {
+    return list.map((t, index) => ({
+      ...t,
+      image:
+        (typeof t?.image === "string" && t.image.trim() ? t.image.trim() : "") ||
+        (index === 0 ? "testimonials/testimonials1.png" : "testimonials/testimonials2.jpg"),
+      quote:
+        (typeof t?.quote === "string" && t.quote.trim() ? t.quote.trim() : "") ||
+        (typeof t?.text === "string" && t.text.trim() ? t.text.trim() : ""),
+      name: typeof t?.name === "string" ? t.name : "",
+      rating: typeof t?.rating !== "undefined" ? t.rating : "",
+      subtitle: typeof t?.subtitle === "string" ? t.subtitle : "",
+    }));
+  }, [list]);
+  const sectionTitle = typeof data.title === "string" ? data.title.trim() : "";
+  const hasLeft = Boolean(leftTitle || leftDescription || companies.length);
+  const hasRight = testimonials.some((t) => t?.quote || t?.name || t?.image);
+  if (!hasLeft && !hasRight) return null;
   return (
-    <FullContainer id="testimonials" className="py-14 md:py-20 bg-stone-100">
+    <FullContainer id="testimonials" className="bg-white  py-12 md:py-16">
       <Container className="mx-auto">
-        <div className="w-full  bg-[#f4aa2a] px-6 py-10 md:px-10 md:py-12 lg:px-12 lg:py-14 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.25)] flex flex-col">
-          <h2 className="text-center text-3xl sm:text-4xl md:text-[2.75rem] font-bold text-black tracking-tight leading-[1.15] px-1">
-            {sectionTitle}
-          </h2>
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_1fr] gap-8 lg:gap-10 items-start">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+            {leftTitle ? (
+              <h2 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#0b0b0b]">
+                {leftTitle}
+              </h2>
+            ) : null}
+            {leftDescription ? (
+              <p className="mt-4 text-sm md:text-base text-[#0b0b0b]/70 max-w-xl">
+                {leftDescription}
+              </p>
+            ) : null}
 
-          <div
-            key={activeIndex}
-            className="flex flex-col flex-1 mt-7 md:mt-9 transition-all duration-500 ease-out"
-          >
-            <div className="flex justify-center gap-1" aria-hidden>
-              {[1, 2, 3, 4, 5].map((star) => (
-                <Star
-                  key={star}
-                  className={`h-5 w-5 md:h-6 md:w-6 ${
-                    star <= starCount
-                      ? "fill-amber-300 text-amber-300"
-                      : "fill-transparent text-white/35"
-                  }`}
-                  strokeWidth={star <= starCount ? 0 : 1.5}
-                />
-              ))}
-            </div>
-
-            <blockquote className="text-center text-black text-base md:text-lg leading-[1.75] font-normal max-w-3xl mx-auto mt-6 md:mt-8 px-1">
-              <span className="text-black">&ldquo;</span>
-              {quoteText}
-              <span className="text-black">&rdquo;</span>
-            </blockquote>
-
-            <div className="mt-10 md:mt-12 flex flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3 md:gap-4 min-w-0">
-                <div className="relative h-12 w-12 md:h-14 md:w-14 shrink-0 rounded-full overflow-hidden bg-white/30 ring-2 ring-white/50">
-                  <Image
-                    src={current?.avatar || defaultAvatar}
-                    alt={current?.name || "Client"}
-                    fill
-                    className="object-cover"
-                    unoptimized
-                  />
-                </div>
-                <div className="text-left min-w-0">
-                  <p className="font-bold text-black text-sm md:text-base truncate">
-                    {current?.name}
-                  </p>
-                  <p className="text-[10px] md:text-xs font-semibold tracking-[0.2em] text-black uppercase mt-0.5">
-                    Clients
-                  </p>
-                </div>
+            {companies.length ? (
+              <div className="mt-6 flex flex-wrap items-center justify-center lg:justify-start gap-3">
+                {companies.map((src) => (
+               <div
+               key={src}
+               className="h-16 w-16 rounded-full bg-white shadow-sm ring-1 ring-black/5 flex items-center justify-center overflow-hidden"
+             >
+               <Image
+                 src={src}
+                 alt=""
+                 width={100}
+                 height={100}
+                 className="h-16 w-16 object-contain"
+               />
+             </div>
+                ))}
               </div>
+            ) : null}
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            {sectionTitle ? (
+              <div className="sm:col-span-2">
+                <h3 className="text-center sm:text-left text-lg md:text-xl font-semibold text-[#0b0b0b]">
+                  {sectionTitle}
+                </h3>
+              </div>
+            ) : null}
 
-              {testimonials.length > 1 ? (
-                <div className="flex items-center gap-4 md:gap-5 shrink-0">
-                  <button
-                    type="button"
-                    onClick={goPrev}
-                    aria-label="Previous testimonial"
-                    className="h-10 w-10 md:h-11 md:w-11 flex items-center justify-center rounded-full border-2 border-white text-white hover:bg-white/10 transition-colors"
-                  >
-                    <ChevronLeft
-                      className="w-5 h-5 md:w-6 md:h-6"
-                      strokeWidth={2}
+            {testimonials.slice(0, 2).map((t, idx) => (
+              <div
+                key={`${t?.name ?? ""}-${idx}`}
+                className="bg-transparent p-0 flex flex-col"
+              >
+                {t?.image ? (
+                  <div className="relative w-70 h-70 overflow-hidden' aspect-4/3 overflow-hidden">
+                    <Image
+                      src={buildImageSrc(IMAGE_BASE, t.image)}
+                      alt={t?.name || ""}
+                      fill
+                      className="object-cover"
                     />
-                  </button>
-                  <button
-                    type="button"
-                    onClick={goNext}
-                    aria-label="Next testimonial"
-                    className="h-10 w-10 md:h-11 md:w-11 flex items-center justify-center rounded-full border-2 border-white text-white hover:bg-white/10 transition-colors"
-                  >
-                    <ChevronRight
-                      className="w-5 h-5 md:w-6 md:h-6"
-                      strokeWidth={2}
-                    />
-                  </button>
-                </div>
-              ) : (
-                <span className="w-0 shrink-0" aria-hidden />
-              )}
-            </div>
+                  </div>
+                ) : null}
+
+                {t?.quote ? (
+                  <p className="mt-3 text-sm md:text-[15px] leading-[1.35] text-[#000000] text-center">
+                    {t.quote}
+                  </p>
+                ) : null}
+
+                {t?.rating ? (
+                  <div className="mt-2">
+                    <StarsRow rating={t.rating} />
+                  </div>
+                ) : null}
+
+                {t?.name ? (
+                  <p className="mt-2 text-center text-lg md:text-[px] font-semibold text-[#111]">
+                    {t.name}
+                  </p>
+                ) : null}
+
+                {t?.subtitle ? (
+                  <p className="mt-1 text-center text-xs md:text-[16px] text-[#6a6a6a]">
+                    {t.subtitle}
+                  </p>
+                ) : null}
+              </div>
+            ))}
           </div>
         </div>
       </Container>

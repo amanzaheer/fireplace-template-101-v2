@@ -41,10 +41,28 @@ const variants = {
 };
 
 export default function Contact({ variant, content }) {
-  const name = variant ?? "Contact16";
-  const Component = variants[name] ?? Contact16;
+  const name = String(variant ?? "Contact11").trim();
+  const Component = variants[name] ?? Contact11;
   return <Component content={content} />;
 }
-export { Contact1, Contact2, Contact3, Contact4, Contact5, Contact6, Contact7, Contact8, Contact9, Contact14, Contact15, Contact11, Contact10, Contact13, Contact16, variants };
-
+export {
+  Contact1,
+  Contact2,
+  Contact3,
+  Contact4,
+  Contact5,
+  Contact6,
+  Contact7,
+  Contact8,
+  Contact9,
+  Contact10,
+  Contact11,
+  Contact12,
+  Contact13,
+  Contact14,
+  Contact15,
+  Contact16,
+  Contact17,
+  variants,
+};
 

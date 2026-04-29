@@ -37,8 +37,9 @@ export async function POST(request) {
     if (!firstName.trim()) errors.push("First name is required");
     else if (!validateName(firstName)) errors.push("First name must be 2-50 characters and contain only letters");
 
-    if (!lastName.trim()) errors.push("Last name is required");
-    else if (!validateName(lastName)) errors.push("Last name must be 2-50 characters and contain only letters");
+    if (lastName.trim() && !validateName(lastName)) {
+      errors.push("Last name must be 2-50 characters and contain only letters");
+    }
 
     if (!email.trim()) errors.push("Email is required");
     else if (!validateEmail(email)) errors.push("Please enter a valid email address");

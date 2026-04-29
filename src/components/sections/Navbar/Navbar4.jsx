@@ -10,8 +10,13 @@ import Logo from "@/components/common/Logo";
 import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
+import { Poppins } from "next/font/google";
 
 const SCROLL_OFFSET = 80;
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 function isDropdownItem(item) {
   return (
@@ -32,7 +37,6 @@ export default function Navbar4({ content }) {
     () => (Array.isArray(menu_items) ? menu_items : []),
     [menu_items],
   );
-
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownRef, setOpenDropdownRef] = useState(null);
   const [mounted, setMounted] = useState(false);
@@ -79,25 +83,59 @@ export default function Navbar4({ content }) {
   const phoneLink = phone ? `tel:${phone}` : "#";
   const desktopTopBar = (
     <div className="hidden lg:flex w-full h-[40px] bg-[#f59402] border-y border-[#de970f]">
-      <Container className="relative h-full flex items-center justify-end">
-        <div className="absolute left-[210px] xl:left-[230px] flex items-center gap-1.5 text-[17px] font-bold text-[#141414] leading-none">
-          <span>4.8</span>
-          <span className="tracking-[1px] text-white">★★★★★</span>
-          <span className="text-[10px] font-medium text-[#2b2b2b]">(890 Ratings & Reviews)</span>
-        </div>
-        <a
-          href="#quote-form-section"
-          className="inline-flex items-center h-[28px] px-3 rounded-[3px] bg-white text-[#1a1a1a] text-[14px] font-extrabold uppercase tracking-wide border border-[#d7d7d7]"
+      <Container className="relative h-full flex items-center lg:pr-0">
+  
+        {/* LEFT: Rating — aligns with Logo */}
+        <div
+          className="flex items-center gap-1.5 ml-80 text-[17px] font-bold text-[#141414] leading-none"
+          style={{ minWidth: "220px" }}
         >
-          Request Service
-        </a>
+          <span
+            className={poppins.className}
+            style={{
+              color: "#000",
+              fontSize: "16.595px",
+              fontStyle: "normal",
+              fontWeight: 700,
+              lineHeight: "normal",
+            }}
+          >
+            4.8
+          </span>
+          <span className="tracking-[1px] text-white">★★★★★</span>
+          <span className="text-[10px] font-medium text-[#2b2b2b]">
+            (890 Ratings & Reviews)
+          </span>
+        </div>
+  
+        {/* CENTER: spacer */}
+  
+        {/* RIGHT: Button — aligned with phone/contact block below */}
+        <div
+          className="absolute right-6 left-170 top-1/2 -translate-y-1/2 w-[360px] flex ml-170"
+        >
+          <a
+            href="#quote-form-section"
+            className={`request-service-btn inline-flex items-center justify-center px-8 h-[25px] bg-white rounded-[3.8px] ${poppins.className}`}
+            style={{
+              color: "#000",
+              fontSize: "15.909px",
+              fontStyle: "normal",
+              fontWeight: 600,
+              lineHeight: "normal",
+            }}
+            aria-label="Request Service"
+          >
+            Request Service
+          </a>
+        </div>
+  
       </Container>
     </div>
   );
-
   const headerContent = (
     <>
-      <div className="flex flex-row justify-between items-center w-full md:pr-8 h-[82px] md:h-[92px]">
+      <div className="flex flex-row justify-between items-center w-full h-[82px] md:h-[92px]">
         <div className="h-full flex items-center justify-center">
           <Logo logo={logo} imagePath={imagePath} />
         </div>
@@ -196,7 +234,7 @@ export default function Navbar4({ content }) {
             >
               {phone}
             </a>
-          </div>
+          </div>``
 
           <div
             className="lg:hidden text-[#3a3a3a] pl-5 cursor-pointer"
@@ -224,10 +262,10 @@ export default function Navbar4({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white">
+      <FullContainer className="shadow-sm w-full sticky top-0 z-50 bg-white">
         {desktopTopBar}
-        <Container>
-          <div className="flex flex-row justify-between h-[82px] md:h-[92px] items-center w-full md:pr-8">
+        <Container className="lg:pr-0">
+          <div className="flex flex-row justify-between h-[82px] md:h-[92px] items-center w-full">
             <div className="h-full flex items-center justify-center">
               <Logo logo={logo} imagePath={imagePath} />
             </div>
@@ -270,14 +308,14 @@ export default function Navbar4({ content }) {
     <>
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-white"
+      className="shadow-sm w-full sticky top-0 z-50 bg-white"
     >
       {desktopTopBar}
-      <Container>{headerContent}</Container>
+      <Container className="lg:pr-0">{headerContent}</Container>
 
       <div
         className={cn(
-          "lg:hidden py-2 bg-white absolute top-[75px] left-0 right-0 w-full transition-all duration-300",
+          "lg:hidden py-2 bg-white absolute top-[82px] md:top-[92px] left-0 right-0 w-full transition-all duration-300",
           isOpen
             ? "h-fit opacity-100 visible"
             : "h-0 opacity-0 invisible overflow-hidden",
