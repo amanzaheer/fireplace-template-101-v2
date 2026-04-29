@@ -23,6 +23,17 @@ function isFieldEmpty(value) {
   return !String(value ?? "").trim();
 }
 
+/** Base64-encode for the browser; supports Unicode (unlike `btoa` on non-Latin1 strings). */
+function utf8ToBase64(value) {
+  const str = value == null ? "" : String(value);
+  const bytes = new TextEncoder().encode(str);
+  let binary = "";
+  for (let i = 0; i < bytes.length; i += 1) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return btoa(binary);
+}
+
 /** Top-left hint; hides when user types. Input is transparent on top so caret stays visible. */
 function TopLeftPlaceholderInput({
   id,
@@ -34,6 +45,8 @@ function TopLeftPlaceholderInput({
   compact,
   hasError,
   inputClassName,
+  wrapperClassName,
+  hintClassName,
   type = "text",
   ...rest
 }) {
@@ -42,13 +55,15 @@ function TopLeftPlaceholderInput({
     : "left-2 top-1.5 text-[8px] text-gray-400";
   return (
     <div
-      className={`relative bg-white border ${
+      className={`relative border ${
         hasError ? "border-red-500" : "border-[#bdbdbd]"
-      }`}
+      } ${wrapperClassName ?? "bg-white"}`}
     >
       {isFieldEmpty(value) && (
         <span
-          className={`pointer-events-none absolute z-0 select-none ${hintClass}`}
+          className={`pointer-events-none absolute z-0 select-none ${
+            hintClassName ?? hintClass
+          }`}
           aria-hidden
         >
           {placeholder}
@@ -62,7 +77,7 @@ function TopLeftPlaceholderInput({
         onChange={onChange}
         onFocus={onFocus}
         placeholder=""
-        className={`relative z-10 md:max-h-[24px] w-full border-0 bg-transparent outline-none ring-0 focus:ring-0 ${inputClassName}`}
+        className={`relative z-10 w-full min-h-0 max-h-full border-0 bg-transparent outline-none ring-0 focus:ring-0 ${inputClassName}`}
         {...rest}
       />
     </div>
@@ -80,6 +95,8 @@ function TopLeftPlaceholderTextarea({
   hasError,
   rows,
   className,
+  wrapperClassName,
+  hintClassName,
   ...rest
 }) {
   const hintClass = compact
@@ -87,13 +104,15 @@ function TopLeftPlaceholderTextarea({
     : "left-2 top-1.5 text-[8px] text-gray-400";
   return (
     <div
-      className={`relative bg-white border ${
+      className={`relative border ${
         hasError ? "border-red-500" : "border-[#bdbdbd]"
-      }`}
+      } ${wrapperClassName ?? "bg-white"}`}
     >
       {isFieldEmpty(value) && (
         <span
-          className={`pointer-events-none absolute z-0 select-none ${hintClass}`}
+          className={`pointer-events-none absolute z-0 select-none ${
+            hintClassName ?? hintClass
+          }`}
           aria-hidden
         >
           {placeholder}
@@ -107,7 +126,7 @@ function TopLeftPlaceholderTextarea({
         onFocus={onFocus}
         rows={rows}
         placeholder=""
-        className={`relative z-10 w-full border-0 bg-transparent outline-none ring-0 focus:ring-0 ${className}`}
+        className={`relative z-10 min-h-0 w-full max-h-full border-0 bg-transparent outline-none ring-0 focus:ring-0 ${className}`}
         {...rest}
       />
     </div>
@@ -119,7 +138,9 @@ export default function QuoteForm8({
   form_head,
   showArrowInButton = false,
   compact = false,
+  variant = "default",
 }) {
+  const isBanner8 = variant === "banner8";
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -304,10 +325,6 @@ export default function QuoteForm8({
 
       const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.message || `HTTP error! status: ${response.status}`);
-      }
-
       if (result.success === false) {
         if (result.errors && Array.isArray(result.errors)) {
           const serverErrors = {};
@@ -322,6 +339,10 @@ export default function QuoteForm8({
           throw new Error("Please fix the validation errors above");
         }
         throw new Error(result.message || "Form submission failed");
+      }
+
+      if (!response.ok) {
+        throw new Error(result.message || `HTTP error! status: ${response.status}`);
       }
 
       fireGTMEvent(formData);
@@ -340,10 +361,12 @@ export default function QuoteForm8({
 
   return (
     <div
-      className={`relative h-fit font-barlow ${
-        compact
-          ? "rounded-none bg-transparent shadow-none"
-          : "rounded-[15px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)]"
+      className={`relative w-[360px] font-barlow ${
+        isBanner8
+          ? "flex min-h-[500px] flex-col items-start justify-start gap-[13px] overflow-visible rounded-b-[18px] rounded-t-none bg-[#FE5E00] p-[20px] pb-5 shadow-[0_4px_4px_rgba(0,0,0,0.25)]"
+          : compact
+            ? "rounded-none bg-transparent shadow-none"
+            : "h-[454px] rounded-[15px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)]"
       }`}
     >
       {!formSubmitted && (
@@ -355,8 +378,10 @@ export default function QuoteForm8({
                 {form_head?.title}
               </h3>
             </div>
-            <div>
-              <h4 className={`${inter.className} text-sm md:text-base font-medium text-black pt-1 text-center text-ink`}>
+            <div className={isBanner8 ? "w-full shrink-0" : ""}>
+              <h4 className={`${inter.className} pt-1 text-center text-sm font-medium md:text-base ${
+                isBanner8 ? "text-white/95" : "text-black"
+              }`}>
                 {form_head?.sub_title}
               </h4>
             </div>
@@ -383,8 +408,23 @@ export default function QuoteForm8({
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className={`${compact ? "space-y-1 text-black text-[11px] px-0 py-0" : "space-y-1.5 text-black text-sm md:text-base px-1.5 py-1.5"}`}>
-          <div className="grid grid-cols-2 gap-[4px]">
+        <form
+          onSubmit={handleSubmit}
+          className={`${
+            compact
+              ? "space-y-1 px-0 py-0 text-[11px] text-black"
+              : isBanner8
+                ? "mt-2 flex flex-col gap-2.5 px-0 pb-4 text-sm text-white md:text-base"
+                : "space-y-2 px-1.5  py-1.5 text-sm text-black md:text-base"
+          }`}
+        >
+          <div
+            className={
+              !compact && isBanner8
+                ? "grid grid-cols-2 gap-2.5"
+                : "grid grid-cols-2 gap-[4px]"
+            }
+          >
             <div>
               <label htmlFor="firstName" className="sr-only">First name</label>
               <TopLeftPlaceholderInput
@@ -396,7 +436,29 @@ export default function QuoteForm8({
                 compact={compact}
                 hasError={!!fieldErrors.firstName}
                 placeholder={compact ? "First Name" : "First name"}
-                inputClassName={`pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"}`}
+                inputClassName={
+                  !compact && isBanner8
+                    ? "h-full w-full pl-0 text-white"
+                    : `pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"} ${isBanner8 ? "text-white" : ""}`
+                }
+                wrapperClassName={
+                  !compact && isBanner8
+                    ? "flex h-[53px] w-full min-w-0 items-center rounded-[12px] border border-white/70 bg-transparent px-[10px] opacity-100"
+                    : isBanner8
+                      ? "rounded-[8px] border-white/70 bg-transparent"
+                      : !compact
+                        ? "flex h-[53px] w-full min-w-0 items-center rounded-[12px] border border-[#bdbdbd] bg-white px-[10px] opacity-100"
+                        : ""
+                }
+                hintClassName={
+                  !compact
+                    ? isBanner8
+                      ? "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-white/85"
+                      : "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-gray-500"
+                    : isBanner8
+                      ? "left-2 top-1 text-[12px] text-white/85"
+                      : undefined
+                }
                 required
                 aria-invalid={!!fieldErrors.firstName}
               />
@@ -417,7 +479,29 @@ export default function QuoteForm8({
                 compact={compact}
                 hasError={!!fieldErrors.lastName}
                 placeholder={compact ? "Last Name" : "Last name"}
-                inputClassName={`pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"}`}
+                inputClassName={
+                  !compact && isBanner8
+                    ? "h-full w-full pl-0 text-white"
+                    : `pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"} ${isBanner8 ? "text-white" : ""}`
+                }
+                wrapperClassName={
+                  !compact && isBanner8
+                    ? "flex h-[53px] w-full min-w-0 items-center rounded-[12px] border border-white/70 bg-transparent px-[10px] opacity-100"
+                    : isBanner8
+                      ? "rounded-[8px] border-white/70 bg-transparent"
+                      : !compact
+                        ? "flex h-[53px] w-full min-w-0 items-center rounded-[12px] border border-[#bdbdbd] bg-white px-[10px] opacity-100"
+                        : ""
+                }
+                hintClassName={
+                  !compact
+                    ? isBanner8
+                      ? "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-white/85"
+                      : "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-gray-500"
+                    : isBanner8
+                      ? "left-2 top-1 text-[12px] text-white/85"
+                      : undefined
+                }
                 required
                 aria-invalid={!!fieldErrors.lastName}
               />
@@ -443,7 +527,9 @@ export default function QuoteForm8({
                   compact
                   hasError={!!fieldErrors.email}
                   placeholder="Email"
-                  inputClassName="pl-2 py-1 text-[11px]"
+                inputClassName={`pl-2 py-1 text-[11px] ${isBanner8 ? "text-white" : ""}`}
+                wrapperClassName={isBanner8 ? "rounded-[8px] border-white/70 bg-transparent" : ""}
+                hintClassName={isBanner8 ? "left-2 top-1 text-[12px] text-white/85" : ""}
                   required
                   aria-invalid={!!fieldErrors.email}
                 />
@@ -463,7 +549,9 @@ export default function QuoteForm8({
                   compact
                   hasError={!!fieldErrors.phone}
                   placeholder="Phone"
-                  inputClassName="pl-2 py-1 text-[11px]"
+                inputClassName={`pl-2 py-1 text-[11px] ${isBanner8 ? "text-white" : ""}`}
+                wrapperClassName={isBanner8 ? "rounded-[8px] border-white/70 bg-transparent" : ""}
+                hintClassName={isBanner8 ? "left-2 top-1 text-[12px] text-white/85" : ""}
                   required
                   aria-invalid={!!fieldErrors.phone}
                 />
@@ -485,7 +573,21 @@ export default function QuoteForm8({
                 compact={false}
                 hasError={!!fieldErrors.phone}
                 placeholder="(123) 456-7890"
-                inputClassName="pl-2 py-1.5"
+                inputClassName={
+                  isBanner8
+                    ? "h-full w-full pl-0 text-white"
+                    : "h-full w-full pl-0 text-black"
+                }
+                wrapperClassName={
+                  isBanner8
+                    ? "flex h-[53px] w-[320px] max-w-full items-center rounded-[12px] border border-white/70 bg-transparent px-[10px] opacity-100"
+                    : "flex h-[53px] w-[320px] max-w-full items-center rounded-[12px] border border-[#bdbdbd] bg-white px-[10px] opacity-100"
+                }
+                hintClassName={
+                  isBanner8
+                    ? "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-white/85"
+                    : "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-gray-500"
+                }
                 required
                 aria-invalid={!!fieldErrors.phone}
               />
@@ -504,7 +606,21 @@ export default function QuoteForm8({
                 compact={false}
                 hasError={!!fieldErrors.email}
                 placeholder="your@email.com"
-                inputClassName="pl-2 py-1.5"
+                inputClassName={
+                  isBanner8
+                    ? "h-full w-full pl-0 text-white"
+                    : "h-full w-full pl-0 text-black"
+                }
+                wrapperClassName={
+                  isBanner8
+                    ? "flex h-[53px] w-[320px] max-w-full items-center rounded-[12px] border border-white/70 bg-transparent px-[10px] opacity-100"
+                    : "flex h-[53px] w-[320px] max-w-full items-center rounded-[12px] border border-[#bdbdbd] bg-white px-[10px] opacity-100"
+                }
+                hintClassName={
+                  isBanner8
+                    ? "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-white/85"
+                    : "left-[10px] top-1/2 -translate-y-1/2 text-[12px] text-gray-500"
+                }
                 required
                 aria-invalid={!!fieldErrors.email}
               />
@@ -525,7 +641,31 @@ export default function QuoteForm8({
             compact={compact}
             hasError={!!fieldErrors.message}
             placeholder="Message"
-            className={`pl-2 ${compact ? "py-1 text-[11px] max-h-[44px]" : "py-1.5 max-h-[52px]"} resize-none`}
+            className={
+              compact
+                ? `pl-2 py-1 text-[11px] max-h-[44px] resize-none ${isBanner8 ? "text-white" : ""}`
+                : isBanner8
+                  ? "box-border h-full min-h-0 w-full max-h-full resize-none py-[10px] pl-0 pr-0 text-white"
+                  : "box-border h-full min-h-0 w-full max-h-full resize-none py-[10px] pl-0 pr-0 text-black"
+            }
+            wrapperClassName={
+              compact
+                ? isBanner8
+                  ? "rounded-[8px] border border-white/70 bg-transparent"
+                  : undefined
+                : isBanner8
+                  ? "relative h-[63px] w-[320px] max-w-full rounded-[12px] border border-white/70 bg-transparent px-[10px] opacity-100"
+                  : "relative h-[63px] w-[320px] max-w-full rounded-[12px] border border-[#bdbdbd] bg-white px-[10px] opacity-100"
+            }
+            hintClassName={
+              compact
+                ? isBanner8
+                  ? "left-2 top-1 text-[12px] text-white/85"
+                  : undefined
+                : isBanner8
+                  ? "left-[10px] top-[10px] text-[12px] text-white/85"
+                  : "left-[10px] top-[10px] text-[12px] text-gray-500"
+            }
             required
             aria-invalid={!!fieldErrors.message}
           />
@@ -540,14 +680,18 @@ export default function QuoteForm8({
           >
             {isSubmitting ? (
               <>
-                <Loader className="animate-spin mr-2 h-4 w-4" />
+                <Loader className="h-4 w-4 shrink-0 animate-spin" />
                 Submitting...
               </>
             ) : (
-              <div className={`${poppins.className} font-thin ${compact ? "text-xs" : "text-xs"}`}>
+              <div
+                className={`${poppins.className} inline-flex items-center gap-2.5 font-thin ${
+                  compact ? "text-xs" : "text-xs"
+                }`}
+              >
                 Submit
                 {showArrowInButton && (
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  <ArrowRight className="h-4 w-4 shrink-0 transition-transform duration-300 group-hover:translate-x-1" />
                 )}
               </div>
             )}

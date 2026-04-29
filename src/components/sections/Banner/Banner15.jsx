@@ -59,7 +59,6 @@ const DEFAULT_HEADLINE = "Top-Rated Fireplace Repair & Maintenance Experts";
 const DEFAULT_SUBHEAD =
   "Trusted Professionals in Fireplace Installation, Cleaning & Repair";
 
-/** Left se right tak linear sweep — left thoda gehra, seedha right ki taraf khulta hai */
 const BAR_GRADIENT =
   "linear-gradient(90deg, #675B57 0%, #7a6f6a 38%, #867b75 68%, #958983 100%)";
 function buildImageSrc(base, filePath) {
@@ -121,6 +120,7 @@ export default function Banner15({ content }) {
           className="absolute inset-0 bg-gradient-to-r from-black/75 via-black/55 to-black/35"
           aria-hidden
         />
+        <div className="absolute inset-0 'bg-gradient-to-r' from-black/75 via-black/55 to-black/35" aria-hidden />
 
         <Container className="relative mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 z-10 flex flex-col items-center justify-center h-full">
           <div className="grid items-start gap-10 lg:grid-cols-[1fr_min(420px,38vw)] lg:gap-12 xl:gap-0 w-full  ">
@@ -172,7 +172,6 @@ export default function Banner15({ content }) {
                   );
                 })}
               </ul>
-
               <div className="">
                 <Link
                   href={tel}

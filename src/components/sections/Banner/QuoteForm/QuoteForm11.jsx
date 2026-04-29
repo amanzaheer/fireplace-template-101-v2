@@ -10,14 +10,25 @@ import {
   validateMessage,
 } from "@/lib/validators";
 
+/** Banner11 hero form card (Figma). */
+const B11 = {
+  width: 332,
+  height: 398.76666259765625,
+  gap: 11.99,
+  borderRadius: 16.6,
+  borderWidth: 3.69,
+  padding: 18.44,
+};
+
 export default function QuoteForm11({
   data,
   phone,
   form_head,
   showArrowInButton = false,
-  /** 'card' = white floating card; 'orangePanel' = image1 style on solid orange (Banner5) */
+  /** 'card' = white card; 'orangePanel' = on solid orange; 'banner11' = dark + red border (Banner11) */
   variant = "card",
 }) {
+  const isBanner11 = variant === "banner11";
   const isOrangePanel = variant === "orangePanel";
   const [formData, setFormData] = useState({
     name: "",
@@ -193,10 +204,6 @@ export default function QuoteForm11({
 
       const result = await response.json();
 
-      if (!response.ok) {
-        throw new Error(result.message || `HTTP error! status: ${response.status}`);
-      }
-
       if (result.success === false) {
         if (result.errors && Array.isArray(result.errors)) {
           const serverErrors = {};
@@ -216,6 +223,10 @@ export default function QuoteForm11({
           throw new Error("Please fix the validation errors above");
         }
         throw new Error(result.message || "Form submission failed");
+      }
+
+      if (!response.ok) {
+        throw new Error(result.message || `HTTP error! status: ${response.status}`);
       }
 
       fireGTMEvent(formData);
@@ -238,52 +249,74 @@ export default function QuoteForm11({
     `${inputBase} border ${err ? "border-red-500" : "border-gray-200"} rounded-md`;
   const inputOrange = (err) =>
     `${inputBase} ${err ? "ring-2 ring-red-400" : ""}`;
+  const inputBanner11 = (err) =>
+    `w-full min-w-0 box-border rounded-[9px] border bg-zinc-900/50 px-3 py-2.5 text-xs font-medium text-white outline-none transition-shadow placeholder:font-normal placeholder:text-white sm:px-3.5 sm:text-sm ${
+      err
+        ? "border-red-500 focus:border-red-500 focus:ring-1 focus:ring-red-500/40"
+        : "border-white focus:border-white focus:ring-1 focus:ring-white/35"
+    }`;
 
-  const wrapClass = isOrangePanel
-    ? "relative w-full  mx-auto font-[family-name:var(--font-inter)]"
-    : "bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)] relative font-barlow rounded-[15px] h-fit px-4 md:px-7 py-7 md:w-[370px]";
+  const wrapClass = isBanner11
+    ? "relative z-0 box-border mx-auto flex w-full min-w-0 max-w-full shrink-0 flex-col overflow-visible bg-[#1a1a1a] shadow-[0_8px_32px_rgba(0,0,0,0.28)] font-[system-ui,Segoe_UI,sans-serif]"
+    : isOrangePanel
+      ? "relative w-full  mx-auto font-[family-name:var(--font-inter)]"
+      : "bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)] relative font-barlow rounded-[15px] h-fit px-4 md:px-7 py-7 md:w-[370px]";
 
+  const wrapStyle = isBanner11
+    ? {
+        width: `${B11.width}px`,
+        maxWidth: "100%",
+        minHeight: `${B11.height}px`,
+        borderRadius: `${B11.borderRadius}px`,
+        border: `${B11.borderWidth}px solid transparent`,
+        background:
+          "linear-gradient(#1a1a1a, #1a1a1a) padding-box, linear-gradient(180deg, #AF2325 0%, #040404 100%) border-box",
+        padding: `${B11.padding}px`,
+        boxSizing: "border-box",
+        gap: `${B11.gap}px`,
+      }
+    : undefined;
   return (
-    <div className={wrapClass}>
+    <div className={wrapClass} style={wrapStyle}>
       {!formSubmitted && (
         <>
-
-
         
           <h3
             className={
-              isOrangePanel
-                ? "text-center text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#efa536] mb-2 px-1"
-                : "text-3xl md:text-[35px] leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2 text-primary"
+              isBanner11
+                ? "text-center text-sm font-extrabold uppercase leading-snug tracking-widest  text-white sm:text-base"
+                : isOrangePanel
+                  ? "text-center text-2xl md:text-3xl font-bold uppercase tracking-tight text-[#efa536] mb-2 px-1"
+                  : "text-3xl md:text-[35px] leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2 text-primary"
             }
           >
-            <div className="flex flex-col items-center justify-center">  
-
-            <div>
-            {form_head?.title}
-
-            </div>
-
-            {phone && (
-              <span className="text-sm text-gray-500">
-                {phone}
-              </span>
+            {isBanner11 ? (
+                <span className="block break-words px-1 text-balance">
+                  {form_head?.title}
+                </span>
+            ) : (
+              <div className="flex flex-col items-center justify-center">
+                <div>{form_head?.title}</div>
+                {phone ? (
+                  <span className="text-sm  text-white">{phone}</span>
+                ) : null}
+              </div>
             )}
-            </div>
           </h3>
           {form_head?.sub_title && (
             <h4
               className={
-                isOrangePanel
-                  ? "text-center text-sm md:text-base font-bold text-[#efa536] mb-6 md:mb-8"
-                  : "text-lg pt-2 font-bold text-center mb-4 text-[#11121A]"
+                isBanner11
+                  ? "text-center text-xs font-medium leading-relaxed text-white sm:text-sm"
+                  : isOrangePanel
+                    ? "text-center text-sm md:text-base font-bold text-[#efa536] mb-6 md:mb-8"
+                    : "text-lg pt-2 font-bold text-center mb-4 text-[#FFFFFF]"
               }
-              
             >
               {form_head.sub_title}
             </h4>
           )}
-          {isOrangePanel && !form_head?.sub_title && (
+          {isOrangePanel && !form_head?.sub_title && !isBanner11 && (
             <div className="mb-6 md:mb-8" aria-hidden />
           )}
         </>
@@ -293,28 +326,47 @@ export default function QuoteForm11({
 
       {formSubmitted ? (
         <div
-          className={`flex flex-col items-center justify-center text-center py-6 ${isOrangePanel ? "text-white" : ""}`}
+          className={`flex flex-col items-center justify-center text-center ${
+            isBanner11
+              ? "min-h-0 flex-1 justify-center gap-3 py-2"
+              : "py-6"
+          } ${isBanner11 || isOrangePanel ? "text-white" : ""}`}
         >
-          <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+          <div
+            className={`mb-4 flex h-16 w-16 items-center justify-center rounded-full ${
+              isBanner11 ? "bg-zinc-800" : "bg-green-100"
+            }`}
+          >
+            <CheckCircle
+              className={`h-8 w-8 ${
+                isBanner11 ? "text-emerald-500" : "text-green-600"
+              }`}
+            />
           </div>
           <h3
-            className={`text-xl font-bold mb-2 ${isOrangePanel ? "text-white" : "text-gray-800"}`}
+            className={`mb-2 text-xl font-bold ${
+              isBanner11 || isOrangePanel ? "text-white" : "text-gray-800"
+            }`}
           >
             Thank You!
           </h3>
           <p
-            className={`max-w-md mb-6 ${isOrangePanel ? "text-white/90" : "text-gray-600"}`}
+            className={`mb-6 max-w-md ${
+              isBanner11 || isOrangePanel ? "text-zinc-300" : "text-gray-600"
+            }`}
           >
-            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
+            Your request has been submitted successfully. We&apos;ll contact
+            you shortly with your personalized quote.
           </p>
           <button
             type="button"
             onClick={closeThankYouPopup}
             className={
-              isOrangePanel
-                ? "bg-black text-[rgba(255,255,255,0.9)] py-3 px-8 rounded-none font-bold uppercase tracking-wide hover:bg-black/90"
-                : "bg-[#6B9FE4] hover:bg-[#5B88C4] text-black py-2 px-6 rounded-md font-medium transition-colors duration-200"
+              isBanner11
+                ? "rounded-lg bg-red-600 py-2.5 px-8 text-sm font-bold uppercase tracking-wide text-white transition-colors hover:bg-red-700"
+                : isOrangePanel
+                  ? "bg-black text-[rgba(255,255,255,0.9)] py-3 px-8 rounded-none font-bold uppercase tracking-wide hover:bg-black/90"
+                  : "bg-[#6B9FE4] hover:bg-[#5B88C4] text-black py-2 px-6 rounded-md font-medium transition-colors duration-200"
             }
           >
             OK Thanks
@@ -323,9 +375,15 @@ export default function QuoteForm11({
       ) : (
         <form
           onSubmit={handleSubmit}
-          className={isOrangePanel ? "space-y-4 text-black" : "space-y-2.5 text-black"}
+          className={
+            isBanner11
+              ? "flex min-h-0 w-full min-w-0 flex-col gap-[11.99px] text-white"
+              : isOrangePanel
+                ? "space-y-4 text-black"
+                : "space-y-2.5 text-black"
+          }
         >
-          <div>
+          <div className="min-w-0">
             <label htmlFor="name" className="sr-only ">
               Name
             </label>
@@ -337,125 +395,153 @@ export default function QuoteForm11({
               onChange={handleChange}
               onFocus={handleFirstInteraction}
               className={
-                isOrangePanel
-                  ? inputOrange(!!fieldErrors.name)
-                  : inputCard(!!fieldErrors.name)
+                isBanner11
+                  ? inputBanner11(!!fieldErrors.name)
+                  : isOrangePanel
+                    ? inputOrange(!!fieldErrors.name)
+                    : inputCard(!!fieldErrors.name)
               }
-              placeholder="Name"
+              placeholder={isBanner11 ? "First Name" : "Name"}
               required
               aria-invalid={!!fieldErrors.name}
             />
             {fieldErrors.name && (
               <div
-                className={`text-sm font-medium mt-1 ${isOrangePanel ? "text-red-200" : "text-red-500"}`}
+                className={`mt-1 text-sm font-medium ${
+                  isBanner11 || isOrangePanel ? "text-red-300" : "text-red-500"
+                }`}
               >
                 {fieldErrors.name}
               </div>
             )}
           </div>
 
-          <label htmlFor="phone" className="sr-only">
-            Phone number
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={
-              isOrangePanel
-                ? inputOrange(!!fieldErrors.phone)
-                : inputCard(!!fieldErrors.phone)
-            }
-            placeholder="(123) 456-7890"
-            required
-            aria-invalid={!!fieldErrors.phone}
-          />
-          {fieldErrors.phone && (
-            <div
-              className={`text-sm font-medium ${isOrangePanel ? "text-red-200" : "text-red-500"}`}
-            >
-              {fieldErrors.phone}
-            </div>
-          )}
+          <div className="min-w-0">
+            <label htmlFor="phone" className="sr-only">
+              Phone number
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              className={
+                isBanner11
+                  ? inputBanner11(!!fieldErrors.phone)
+                  : isOrangePanel
+                    ? inputOrange(!!fieldErrors.phone)
+                    : inputCard(!!fieldErrors.phone)
+              }
+              placeholder="(123) 456-7890"
+              required
+              aria-invalid={!!fieldErrors.phone}
+            />
+            {fieldErrors.phone && (
+              <div
+                className={`mt-1 text-sm font-medium ${
+                  isBanner11 || isOrangePanel ? "text-red-300" : "text-red-500"
+                }`}
+              >
+                {fieldErrors.phone}
+              </div>
+            )}
+          </div>
 
-          <label htmlFor="email" className="sr-only">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={
-              isOrangePanel
-                ? inputOrange(!!fieldErrors.email)
-                : inputCard(!!fieldErrors.email)
-            }
-            placeholder="your@email.com"
-            required
-            aria-invalid={!!fieldErrors.email}
-          />
-          {fieldErrors.email && (
-            <div
-              className={`text-sm font-medium ${isOrangePanel ? "text-red-200" : "text-red-500"}`}
-            >
-              {fieldErrors.email}
-            </div>
-          )}
+          <div className="min-w-0">
+            <label htmlFor="email" className="sr-only">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              className={
+                isBanner11
+                  ? inputBanner11(!!fieldErrors.email)
+                  : isOrangePanel
+                    ? inputOrange(!!fieldErrors.email)
+                    : inputCard(!!fieldErrors.email)
+              }
+              placeholder="your@email.com"
+              required
+              aria-invalid={!!fieldErrors.email}
+            />
+            {fieldErrors.email && (
+              <div
+                className={`mt-1 text-sm font-medium ${
+                  isBanner11 || isOrangePanel ? "text-red-300" : "text-red-500"
+                }`}
+              >
+                {fieldErrors.email}
+              </div>
+            )}
+          </div>
 
-          <label htmlFor="message" className="sr-only">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            rows={isOrangePanel ? 5 : 3}
-            className={
-              isOrangePanel
-                ? `${inputOrange(!!fieldErrors.message)} min-h-[140px] max-h-none resize-y`
-                : `w-full pl-3 py-2 max-h-[75px] bg-white border rounded-md outline-none placeholder:text-gray-600 ${
-                    fieldErrors.message ? "border-red-500" : "border-gray-200"
-                  }`
-            }
-            placeholder="Message"
-            required
-            aria-invalid={!!fieldErrors.message}
-          />
-          {fieldErrors.message && (
-            <div
-              className={`text-sm font-medium ${isOrangePanel ? "text-red-200" : "text-red-500"}`}
-            >
-              {fieldErrors.message}
-            </div>
-          )}
+          <div className="min-w-0">
+            <label htmlFor="message" className="sr-only">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              rows={isBanner11 || isOrangePanel ? 4 : 3}
+              className={
+                isBanner11
+                  ? `${inputBanner11(!!fieldErrors.message)} min-h-[88px] max-h-36 resize-y`
+                  : isOrangePanel
+                    ? `${inputOrange(!!fieldErrors.message)} min-h-[140px] max-h-none resize-y`
+                    : `w-full pl-3 py-2 max-h-[75px] bg-white border rounded-md outline-none placeholder:text-gray-600 ${
+                        fieldErrors.message ? "border-linear-to-r from-[#cf1f21] via-[#cf1f21] to-[#541f1f]" : "border-gray-200"
+                      }`
+              }
+              placeholder="Message"
+              required
+              aria-invalid={!!fieldErrors.message}
+            />
+            {fieldErrors.message && (
+              <div
+                className={`mt-1 text-sm font-medium ${
+                  isBanner11 || isOrangePanel ? "text-red-300" : "text-red-500"
+                }`}
+              >
+                {fieldErrors.message}
+              </div>
+            )}
+          </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
             className={
-              isOrangePanel
-                ? "mx-auto flex h-[51px] w-full  items-center justify-center gap-2 rounded-none bg-[#efa536] px-6  font-normal uppercase tracking-wide text-[rgba(255,255,255,0.9)] transition-colors duration-200 hover:bg-white hover:text-black md:text-[35px] disabled:cursor-not-allowed disabled:opacity-60"
-                : "w-full bg-[#6B9FE4] hover:bg-[#5B88C4] text-black py-3 px-6 rounded-md font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+              isBanner11
+                ? "mx-auto flex h-10 w-full shrink-0 items-center justify-center gap-2 rounded-none bg-red-600 px-3 text-xs font-extrabold uppercase tracking-widest text-white transition-colors duration-200 hover:bg-red-700 disabled:cursor-not-allowed disabled:opacity-60 sm:h-11 sm:px-4 sm:text-sm"
+                : isOrangePanel
+                  ? "mx-auto flex h-[51px] w-full  items-center justify-center gap-2 rounded-none bg-[#efa536] px-6  font-normal uppercase tracking-wide text-[rgba(255,255,255,0.9)] transition-colors duration-200 hover:bg-white hover:text-black md:text-[35px] disabled:cursor-not-allowed disabled:opacity-60"
+                  : "w-full bg-[#6B9FE4] hover:bg-[#5B88C4] text-black py-3 px-6 rounded-md font-medium transition-colors duration-200 flex items-center justify-center gap-2"
             }
           >
             {isSubmitting ? (
               <>
-                <Loader className="animate-spin h-5 w-5" />
+                <Loader
+                  className={`h-5 w-5 animate-spin ${isBanner11 ? "text-white" : ""}`}
+                />
                 Sending...
               </>
             ) : (
               <>
-                {!isOrangePanel && <FileText className="w-5 h-5" />}
-                {isOrangePanel ? "SUBMIT" : "GET A QUOTE"}
-                {!isOrangePanel && showArrowInButton && (
+                {!isOrangePanel && !isBanner11 && (
+                  <FileText className="w-5 h-5" />
+                )}
+                {isBanner11 || isOrangePanel ? "SUBMIT" : "GET A QUOTE"}
+                {!isOrangePanel && !isBanner11 && showArrowInButton && (
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 )}
               </>

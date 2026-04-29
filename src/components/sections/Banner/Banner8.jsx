@@ -1,6 +1,5 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/common/Container";
 import FullContainer from "@/components/common/FullContainer";
@@ -9,6 +8,7 @@ import {
   Clock,
   Star,
   Shield,
+  ShieldCheck,
   Award,
   Trophy,
   ThumbsUp,
@@ -39,6 +39,7 @@ const ICON_MAP = {
   Clock,
   Star,
   Shield,
+  ShieldCheck,
   Award,
   CheckCircle,
   Trophy,
@@ -47,6 +48,11 @@ const ICON_MAP = {
   FileText,
   MessageSquare,
 };
+
+function isLicensedInsuredLabel(text) {
+  const t = String(text ?? "").toLowerCase();
+  return t.includes("licensed") && t.includes("insured");
+}
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -97,7 +103,7 @@ export default function Banner8({ content }) {
 
   const phone =
     banner.cta_phone ??
-    content?.CONTACT_info?.phone ??
+    content?.contact_info?.phone ??
     content?.navbar?.phone ??
     "";
 
@@ -111,96 +117,98 @@ export default function Banner8({ content }) {
   const splitIndex = Math.max(1, Math.ceil(headingWords.length / 2));
   const headingTop = headingWords.slice(0, splitIndex).join(" ");
   const headingBottom = headingWords.slice(splitIndex).join(" ");
+  const ratingValue = String(
+    banner?.rating_value ?? banner?.rating ?? "",
+  ).trim();
+  const ratingText = String(banner?.rating_text ?? "").trim();
+  const ratingStars = Number(banner?.rating_stars ?? 5);
+  const showRating = Boolean(ratingValue || ratingText);
 
   return (
-    <FullContainer className="relative w-auto overflow-x-hidden bg-gradient-to-b! to-[#012f68] from-[#00142c] mt-[57.8px] md:mt-[84px] min-h-[580px] md:h-[600px] md:overflow-hidden">
-      <div
-        className="pointer-events-none absolute inset-y-0 left-0 z-[2] w-[130px] sm:w-[140px] md:w-[200px] [--accent-top-h:64px] sm:[--accent-top-h:72px] md:[--accent-top-h:92px]"
-        aria-hidden
-      >
-        <div
-          className=" h-[200px] w-[126px] bg-[#FF5D00] sm:h-[72px] sm:w-[150px] md:h-[450px] md:w-[188px]"
-          style={{
-            // clipPath: "polygon(0% 0%, 56% 0%, 0% 100%)",
-            clipPath: "polygon(0% 60%, 100% 0%, 0% 0%)",
-            // WebkitClipPath: "polygon(0% 0%, 56% 0%, 0% 100%)",
-          }}
-        />
+    <FullContainer className="relative mt-[57.8px] w-full bg-[#ececec] py-10 md:mt-[84px] md:py-12">
+      <Container className="relative">
+        <div className="relative ml-4 mr-4 overflow-hidden rounded-[25px] bg-white shadow-[0_8px_60px_rgba(0,0,0,0.06)] lg:w-[1206px]">
+          <div className="absolute inset-0">
+            <Image
+              src={image}
+              alt={data?.altImage || "banner"}
+              fill
+              priority
+              sizes="(max-width: 880px) 100vw, 880px"
+              className="object-cover object-center"
+            />
+            <div className="absolute inset-0 bg-[linear-gradient(248deg,rgba(255,255,255,0.66)_24.27%,rgba(255,255,255,0.66)_87.59%)]" />
+          </div>
+          <div className="relative z-10 grid grid-cols-1 gap-6 p-5 md:grid-cols-[1fr_330px] md:gap-7 md:pb-5 md:pl-7 md:pr-5 md:pt-5 lg:pl-8 lg:pr-6 lg:pt-5">
+            <div className="min-w-0 md:pt-10 lg:pt-12">
+              {(data?.title || cmsTagline) && (
+                <p
+                  className={`${inter.className} text-[26px] leading-none text-[#111] md:text-[38px]`}
+                >
+                  {data?.title || cmsTagline}
+                </p>
+              )}
 
-        <div
-          className="absolute inset-y-0 left-0 h-[300px]  w-[100px] lg:h-full lg:w-full bg-[#FF5D00]"
-          style={{
-            // clipPath: "polygon(0 var(--accent-top-h), 50% 100%, 0% 100%)",
-            // WebkitClipPath: "polygon(0 var(--accent-top-h), 50% 100%, 0% 100%)",
-            clipPath: "polygon(0% 0%, 100% 100%, 0% 100%)",
-          }}
-        />
-      </div>
-
-      <Container className="relative z-10 pb-16 pt-14 sm:pt-16 md:pb-4.5 md:pt-3">
-        <div className="grid gap-5 sm:gap-8 lg:items-center lg:grid-cols-2 lg:gap-24">
-          <div className="min-w-0 max-w-full pb-2 max-md:pr-0 md:pl-60 md:pb-4 lg:pl-4 xl:pl-25">
-            <div className="mb-1.5 flex h-[27px] w-fit max-w-full shrink-0 items-center gap-1.5">
-              <div className="flex h-[27px] w-[27px] shrink-0 items-center justify-center rounded-[2px] bg-[#FF0504]">
-                <Phone className="h-4 w-4 text-white" aria-hidden />
-              </div>
-              <span
-                className={`${poppin.className} w-[96px] shrink-0 truncate text-left text-[16px] font-normal uppercase leading-normal not-italic text-white`}
-                style={{ color: "#FFF", lineHeight: "normal" }}
+              <h1
+                className={`${rubik.className} mt-1 text-[44px] font-bold leading-[0.95] text-[#ff5a00] md:text-[58px] lg:text-[66px]`}
               >
-                {(banner.contact_label || "Contact").trim()}
-              </span>
-            </div>
-
-            <a
-              href={phone ? `tel:${phone}` : "#"}
-              className={` ${poppin.className} block max-w-full break-words font-bold leading-none text-white text-[clamp(1.375rem,5vw,1.75rem)] sm:text-[28px] lg:text-[30px]`}
-            >
-              {phone}
-            </a>
-
-            {showTagline ? (
-              <p
-                className={`${poppin.className} mt-2 max-w-full text-base font-bold not-italic text-white sm:text-lg md:text-xl lg:max-w-[26rem] lg:text-2xl xl:text-[30px]`}
-                style={{ lineHeight: "normal", color: "#FFF" }}
-              >
-                {cmsTagline}
-              </p>
-            ) : null}
-
-            <h1
-              className={`${poppin.className} mt-4 text-[clamp(1.375rem,5.5vw,1.75rem)] font-bold uppercase leading-[1.08] text-white sm:text-[28px] md:text-[36px]`}
-            >
-              {headingTop}
-            </h1>
-            {headingBottom ? (
-              <div className="mt-[9px] box-border w-fit max-w-full min-w-0 bg-[#d6510a] px-3 py-2 sm:px-4 sm:py-2.5 md:px-4 md:py-3">
-                <span
-                  className={`${poppin.className} block max-w-full text-left font-bold uppercase not-italic leading-[1.2] tracking-tight text-white text-[clamp(1.25rem,5vw,1.875rem)] sm:text-3xl md:text-[44px]`}
-                  style={{ color: "#FFF" }}
+                {headingTop}
+              </h1>
+              {headingBottom ? (
+                <h2
+                  className={`${rubik.className} text-[44px] font-bold leading-[0.95] text-[#ff5a00] md:text-[58px] lg:text-[66px]`}
                 >
                   {headingBottom}
-                </span>
-              </div>
-            ) : null}
+                </h2>
+              ) : null}
 
-            <div className="mt-4 flex flex-col items-stretch gap-3 sm:mt-5 sm:flex-row sm:items-start sm:gap-4 max-md:max-w-full">
+              {showTagline ? (
+                <p className={`${inter.className} mt-2 text-[16px] text-[#1c1c1c] md:text-[18px]`}>
+                  {cmsTagline}
+                </p>
+              ) : null}
+
+              {showRating ? (
+                <div className="mt-4 inline-flex items-center overflow-hidden rounded-full bg-black pr-4 shadow-[0_6px_14px_rgba(0,0,0,0.2)]">
+                  <span className="flex items-center gap-2 rounded-full bg-white px-3 py-1.5">
+                    <span className="inline-flex text-[#f6a623]">
+                      {[...Array(Math.max(1, Math.min(5, ratingStars)))].map((_, idx) => (
+                        <Star key={idx} className="h-3.5 w-3.5 fill-current" />
+                      ))}
+                    </span>
+                  </span>
+                  {ratingValue ? (
+                    <span
+                      className={`${inter.className} ml-2 text-[16px] font-semibold text-white`}
+                    >
+                      {ratingValue}
+                    </span>
+                  ) : null}
+                  {ratingText ? (
+                    <span className={`${inter.className} ml-1 text-[13px] text-white/90`}>
+                      {ratingText}
+                    </span>
+                  ) : null}
+                </div>
+              ) : null}
+
               {features?.length > 0 && (
-                <ul className="w-full shrink-0 space-y-1 max-sm:max-w-full sm:mt-[30px] sm:max-w-[190px]">
+                <ul className="mt-4 grid max-w-[660px] grid-cols-1 gap-x-6 gap-y-2 sm:grid-cols-2">
                   {features.map((feature, idx) => {
-                    const IconComponent = ICON_MAP[feature.icon];
+                    const IconComponent = isLicensedInsuredLabel(feature.text)
+                      ? ShieldCheck
+                      : ICON_MAP[feature.icon];
                     return (
                       <li key={idx} className="flex items-center gap-1.5">
                         <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-[2px] bg-[#FF0504]">
                           {IconComponent ? (
-                            <IconComponent className="h-2.5 w-2.5 text-white" />
+                            <IconComponent className="h-3.5 w-3.5 text-white" />
                           ) : (
-                            <CheckCircle className="h-2.5 w-2.5 text-white" />
+                            <CheckCircle className="h-3.5 w-3.5 text-white" />
                           )}
                         </span>
                         <span
-                          className={`${poppin.className} text-[10px] font-normal leading-normal not-italic text-white`}
-                          style={{ color: "#FFF", lineHeight: "normal" }}
+                          className={`${inter.className} text-[15px] leading-tight text-[#1c1c1c]`}
                         >
                           {feature.text}
                         </span>
@@ -210,39 +218,43 @@ export default function Banner8({ content }) {
                 </ul>
               )}
 
-              <div className="flex w-full min-w-0 max-w-full flex-col overflow-visible max-md:max-w-full sm:max-w-[min(100%,320px)] sm:self-start">
-                <h3
-                  className={`${poppin.className} mb-2 shrink-0 text-[clamp(1rem,4vw,1.25rem)] font-bold uppercase not-italic text-white sm:text-[20px]`}
-                  style={{ color: "#FFF", lineHeight: "16px" }}
+              <a
+                href={phone ? `tel:${phone}` : "#"}
+                className={`${poppin.className} mt-5 inline-flex items-center gap-2 rounded-[12px] bg-[#ff5a00] px-5 py-3 text-[32px] font-bold leading-none text-white shadow-[0_8px_18px_rgba(255,90,0,0.35)] transition hover:opacity-90 md:text-[38px]`}
+              >
+                <span
+                  className="flex shrink-0 items-center justify-center self-center"
+                  style={{ width: 34, height: 34 }}
                 >
-                  {(banner.cta_heading || "GET IN TOUCH WITH US").trim()}
-                </h3>
-                <QuoteForm
-                  data={data}
-                  form_head={form_head}
-                  showArrowInButton={false}
-                  compact
-                />
-              </div>
+                  <Phone
+                    className="h-full w-full fill-white stroke-white text-white"
+                    strokeWidth={2.25}
+                    aria-hidden
+                  />
+                </span>
+                {phone}
+              </a>
             </div>
-          </div>
 
-          <div className="relative mx-auto hidden h-full w-full max-w-md pb-6 sm:pb-8 md:pb-24 lg:mx-0 lg:block lg:max-w-none lg:justify-self-end"></div>
-        </div>
-      </Container>
-      <div className="pointer-events-none absolute inset-x-0 bottom-0 top-auto z-[1] h-[min(38vh,280px)] min-h-[200px] w-full max-md:max-h-[320px] md:inset-x-auto md:inset-y-0 md:bottom-auto md:left-auto md:right-0 md:top-0 md:h-full md:max-h-none md:w-[calc(50%-80px)] md:min-h-[280px]">
-        <div className="relative h-full min-h-[200px] w-full md:min-h-[280px]">
-          <div className="block md:hidden absolute top-0 left-0 w-full h-full bg-[#00142c] opacity-30 z-10" />
-          <Image
-            src={image}
-            alt={data?.altImage || "banner"}
-            fill
-            priority
-            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 90vw, 42vw"
-            className="object-cover object-center"
-          />
+            <div className="w-full h-full md:-translate-x-12 md:-translate-y-8 md:justify-self-start md:pl-0 lg:-translate-x-16">
+              <QuoteForm8
+                data={data}
+                form_head={form_head}
+                showArrowInButton={false}
+                compact={false}
+                variant="banner8"
+              />
+            </div>
+          <div className="relative hidden min-h-[420px] w-full md:block">
+            <div
+              className="absolute inset-y-0 left-0 h-full w-[110px] bg-[#FF5D00]"
+              style={{ clipPath: "polygon(0% 0%, 100% 100%, 0% 100%)" }}
+            />
+            <div className="relative h-full w-full" />
+          </div>
         </div>
       </div>
+    </Container>
     </FullContainer>
   );
 }

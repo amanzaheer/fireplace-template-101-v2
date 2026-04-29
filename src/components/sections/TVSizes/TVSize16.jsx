@@ -69,7 +69,7 @@ function DiagonalLine({ insetClass = "inset-[9px]" }) {
     <div
       ref={wrapRef}
       className={cn(
-        "pointer-events-none absolute z-[1] overflow-hidden rounded-[2px]",
+        "pointer-events-none absolute z-[1]' overflow-hidden rounded-[2px]",
         insetClass,
       )}
     >
@@ -119,7 +119,7 @@ function TvScreenBlock({ sizeRaw, sizeDisplay, opt, fallbackAlt }) {
   if (src) {
     return (
       <div className="mx-auto w-full max-w-[233.428px]">
-        <div className="relative aspect-[109/70] w-full overflow-hidden bg-transparent">
+        <div className="relative aspect-[109/70]' w-full overflow-hidden bg-transparent">
           <Image
             src={src}
             alt={alt}

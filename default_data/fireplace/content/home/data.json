@@ -224,10 +224,14 @@
       "title": "10% Off Total Price for Online Booking",
       "sub_title": "Ask For A Quote Here"
     },
+    "contact": {
+      "background_image": "Contactimg/contact11.jpg"
+    },
     "contact_info": {
       "phone": "[phone]",
       "email": "info@[domain]",
       "working_hours": "[working_hours]"
+      
     },
     "city_name": "[city_name]",
     "faqs": {
@@ -342,12 +346,16 @@
         {
           "name": "John D.",
           "text": "[company_name] did an amazing job! Professional, efficient, and great results. Highly recommend!",
-          "rating": 5
+          "rating": 5,
+          "subtitle": "Stainless Steel Chase Covers",
+          "image": "testimonials/testimonials1.png"
         },
         {
           "name": "Sarah M.",
           "text": "Excellent service from start to finish. The team was professional and completed the work on time.",
-          "rating": 5
+          "rating": 5,
+          "subtitle": "Stainless Steel Chase Covers",
+          "image": "testimonials/testimonials2.jpg"
         },
         {
           "name": "Mike R.",

@@ -95,13 +95,13 @@ export default function ServiceBenefits11({ content }) {
                   href={`tel:${phone}`}
                   className="inline-flex h-[46px] min-w-[217px] items-center justify-center gap-2 rounded bg-black px-6 text-xl leading-none text-white transition-colors duration-200 hover:bg-[#0b4189] md:text-[20px]"
                 >
-                  <Image
+                  {/* <Image
                     src="/st-icons/Temp2/call2.png"
                     alt="Phone"
                     width={16}
                     height={16}
                     className="w-auto h-4 md:h-[21px]"
-                  />
+                  /> */}
                   <span>{phone || "(888)-249-0566"}</span>
                 </a>
               </div>

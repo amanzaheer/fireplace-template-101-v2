@@ -49,7 +49,7 @@ function navTopLevelWeightClass(item) {
 function NavbarBannerBackground() {
   return (
     <div className="pointer-events-none absolute inset-0 z-0">
-      <div className="absolute inset-0 bg-gradient-to-r from-[#061f4a] via-[#072a62] to-[#072b5f]" />
+      <div className="absolute inset-0 bg-gradient-to-r'' from-[#061f4a] via-[#072a62] to-[#072b5f]" />
     </div>
   );
 }
@@ -64,8 +64,15 @@ function NavbarPhoneCta({ href, phone, callLabel = "Call Us Today", className })
         className,
       )}
     >
-      <span className="flex h-[22px] w-[22px] md:h-[55px] md:w-[55px] shrink-0 items-center justify-center self-center rounded-full bg-white sm:h-[26px] sm:w-[26px]">
-        <Phone className="h-3 w-3 text-[#ff6600] sm:h-3.5 sm:w-3.5" strokeWidth={2.25} aria-hidden />
+      <span
+        className="flex shrink-0 items-center justify-center self-center opacity-100"
+        style={{ width: "34px", height: "34px" }}
+      >
+        <Phone
+          className="h-full w-full text-white fill-white stroke-white"
+          strokeWidth={2.25}
+          aria-hidden
+        />
       </span>
       <span className="flex min-w-0 flex-1 flex-col items-start justify-center gap-0.5">
         {/* <span className="font-barlow text-[10px] font-bold uppercase leading-none tracking-wide text-white sm:text-xs">
@@ -81,7 +88,6 @@ function NavbarPhoneCta({ href, phone, callLabel = "Call Us Today", className })
     </a>
   );
 }
-
 function isDropdownItem(item) {
   return (
     item?.link === "#" && (item?.childrenRef || Array.isArray(item?.services))
@@ -186,7 +192,7 @@ export default function Navbar8({ content }) {
                   </button>
                   <div
                     className={cn(
-                      "absolute left-0 top-full z-[110] flex max-h-[min(70vh,420px)] w-auto min-w-[300px] flex-col overflow-y-auto overflow-x-hidden border border-white/15 bg-[#061f4a] py-1 shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-all duration-300 ease-in-out dropdown-services-container scrollbar-hide",
+                      "absolute left-0 top-full z-[110]' flex max-h-[min(70vh,420px)] w-auto min-w-[300px] flex-col overflow-y-auto overflow-x-hidden border border-white/15 bg-[#061f4a] py-1 shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-all duration-300 ease-in-out dropdown-services-container scrollbar-hide",
                       isOpen
                         ? "visible translate-y-0 transform opacity-100"
                         : "invisible -translate-y-2 transform opacity-0 pointer-events-none",
@@ -285,7 +291,7 @@ export default function Navbar8({ content }) {
       </Container>
 
      
-      <div className="pointer-events-auto absolute right-0 top-0 z-[110] flex h-full flex-row items-center justify-end bg-transparent md:bg-[#fe5e00]">
+      <div className="pointer-events-auto absolute right-0 top-0 z-[110]' flex h-full flex-row items-center justify-end bg-transparent md:bg-[#fe5e00]">
           <div className="flex max-w-[min(100%,260px)] items-center sm:max-w-none">
             <NavbarPhoneCta
               href={phoneLink}
@@ -339,7 +345,7 @@ export default function Navbar8({ content }) {
       <div
         className={cn(
           interNav.className,
-          "absolute left-0 right-0 top-full z-[100] flex w-full flex-col border-t border-white/10 bg-[#061f4a] py-2 shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-[max-height,opacity] duration-300 ease-in-out lg:hidden",
+          "absolute left-0 right-0 top-full z-[100]' flex w-full flex-col border-t border-white/10 bg-[#061f4a] py-2 shadow-[0_12px_28px_rgba(0,0,0,0.45)] transition-[max-height,opacity] duration-300 ease-in-out lg:hidden",
           isOpen
             ? "max-h-[min(85vh,800px)] overflow-y-auto opacity-100 visible"
             : "max-h-0 overflow-hidden opacity-0 invisible pointer-events-none",
@@ -458,7 +464,7 @@ export default function Navbar8({ content }) {
             );
           })}
       </div>
-      <div className="pointer-events-auto absolute right-0 top-0 z-[110] flex h-full flex-row items-center justify-end bg-transparent md:bg-[#fe5e00]">
+      <div className="pointer-events-auto absolute right-0 top-0 z-[110]'  flex h-full flex-row items-center justify-end bg-transparent md:bg-[#fe5e00]">
           <div className="flex max-w-[min(100%,260px)] items-center sm:max-w-none">
             <NavbarPhoneCta
               href={phoneLink}

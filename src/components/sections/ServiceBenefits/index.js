@@ -40,8 +40,8 @@ const variants = {
 };
 
 export default function ServiceBenefits({ variant, content }) {
-  const name = String(variant ?? "").trim() || "ServiceBenifits14";
-  const Component = variants[name] ?? ServiceBenifits14;
+  const name = String(variant ?? "").trim() || "ServiceBenifits11";
+  const Component = variants[name] ?? ServiceBenefits11;
   return <Component content={content} />;
 }
 
