@@ -1,12 +1,66 @@
 "use client";
 
-import React from "react";
-import Image from "next/image";
+import React, { useEffect, useMemo, useRef, useState,useCallback } from "react";
 import Link from "next/link";
-import { Clock4, Mail, Phone } from "lucide-react";
+import { usePathname } from "next/navigation";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Archivo } from "next/font/google";
+import {
+  faCaretRight,
+  faEnvelope,
+  faMapPin,
+  faSquarePhone,
+  faClock,
+} from "@fortawesome/free-solid-svg-icons";
+import { faTwitter } from "@fortawesome/free-brands-svg-icons";
+import "@fortawesome/fontawesome-svg-core/styles.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Poppins, Inter, Rubik } from "next/font/google";
 import { IMAGE_BASE } from "@/lib/constants";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+
+
+
+
+const SCROLL_OFFSET = 100;
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+const archivo = Archivo({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+config.autoAddCss = false;
+
+const byPrefixAndName = {
+  fab: {
+    twitter: faTwitter,
+  },
+  fas: {
+    "caret-right": faCaretRight,
+    "map-pin": faMapPin,
+    "square-phone": faSquarePhone,
+  },
+};
+
+
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -15,96 +69,309 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-export default function Footer5({ content }) {
+export default function Footer17({ content }) {
+
+
+  const router = useRouter();
+  const pathname = usePathname() ?? "";
+
+  
+  const scrollToSection = useCallback((element) => {
+    if (!element) return;
+    const top =
+      element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+    window.scrollTo({ top, behavior: "smooth" });
+  }, []);
+   
+
+  const handleNavigation = useCallback(
+    (id) => {
+      const element = document.getElementById(id);
+      if (element) {
+        scrollToSection(element);
+      } else {
+        router.push("/");
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          scrollToSection(el);
+        }, 500);
+      }
+    },
+    [router, scrollToSection],
+  );
+  const handleHomeNavigation = useCallback(() => {
+    if (pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+      return;
+    }
+    router.push("/");
+  }, [pathname, router]);
+  const services = useMemo(
+    () => (Array.isArray(content?.services) ? content.services : []),
+    [content?.services],
+  );
+  const quickLinks = useMemo(() => {
+    const menuItems = Array.isArray(content?.navbar?.menu_items)
+      ? content.navbar.menu_items
+      : [];
+    return menuItems.filter(
+      (item) =>
+        item?.title &&
+        item?.link &&
+        !(item.link === "#" && (item.childrenRef || Array.isArray(item.services))),
+    );
+  }, [content?.navbar?.menu_items]);
+
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const servicesWrapRef = useRef(null);
+
+  useEffect(() => {
+    if (!isServicesOpen) return;
+    const onMouseDown = (e) => {
+      const el = servicesWrapRef.current;
+      if (el && !el.contains(e.target)) setIsServicesOpen(false);
+    };
+    document.addEventListener("mousedown", onMouseDown);
+    return () => document.removeEventListener("mousedown", onMouseDown);
+  }, [isServicesOpen]);
+
   const footer = content?.footer ?? {};
   const contactInfo = content?.contact_info ?? {};
   const phone = contactInfo.phone ?? content?.navbar?.phone ?? "";
   const email = contactInfo.email ?? "";
-  const workingHours = contactInfo.working_hours ?? "Monday - Friday: 7AM - 8PM";
+  const workingHours =
+    contactInfo.working_hours ?? "Monday - Friday: 7AM - 8PM";
   const statement = footer.value ?? footer.statement ?? "";
-  const companies = [1, 2, 3, 4, 5].map((n) => buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`));
+  const companies = [1, 2, 3, 4, 5].map((n) =>
+    buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`),
+  );
+
+  const iconClass = "text-[16px] md:text-[20px]";
+  const iconAccent = "text-[#ff0504]";
 
   return (
     <footer>
-      <FullContainer id="footer" className="bg-[#0F1F41] py-8 md:py-12 mb-16 md:mb-0 relative overflow-hidden">
-        <Container className="relative z-10">
-          <div className="rounded-sm bg-[#0F1F41] px-5 py-6 md:px-10 md:py-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 justify-between w-full">
-              <div className="max-w-[560px]">
-                <h3 className="text-white text-3xl md:text-[40px] leading-none font-semibold mb-5">Information</h3>
-                <div className="flex items-center gap-2 md:gap-2.5 mb-5">
+      <FullContainer
+        id="footer"
+        className="bg-[#0f1f41] py-12 md:py-16 mb-16 md:mb-0 relative"
+      >
+        <Container className={`relative z-10 ${archivo.className}`}>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-12">
+            <div>
+              <div className="flex gap-1 mb-2">
                 {companies.map((src, index) =>
                   src ? (
                     <div
                       key={index}
-                      className="w-11 h-11 md:w-[56px] md:h-[56px] flex items-center justify-center overflow-hidden bg-white rounded-full relative shrink-0"
+                      className="w-full h-full aspect-square flex items-center justify-center overflow-hidden bg-white rounded-full relative"
                     >
                       <Image
                         title="Company logo"
                         src={src}
                         alt="Company Logo"
-                        width={80}
+                        width={60}
                         height={60}
                         className="h-[80%] w-[80%] object-contain"
                       />
                     </div>
-                  ) : null
+                  ) : null,
                 )}
-                </div>
-                {statement ? (
-                  <p className="text-white text-base md:text-[15px] leading-[1.8] font-semibold">{statement}</p>
-                ) : null}
               </div>
-              <div className="w-full md:max-w-[460px] md:ml-auto">
-                <h3 className="text-white text-3xl md:text-[40px] leading-none font-semibold mb-5">Stay Tuned With Us</h3>
-                <ul className="space-y-3 md:space-y-4 mt-2">
-                  <li className="flex items-start gap-3">
-                    <Phone className="w-4 h-4 text-[#FF0504] mt-1 shrink-0" />
-                    <Link
-                      title="Call Button"
-                      href={phone ? `tel:${phone}` : "#"}
-                      className="text-white text-sm md:text-[15px] leading-relaxed font-semibold"
-                    >
-                      {phone || "(656) 245-0412"}
-                    </Link>
-                  </li>
-                  {email ? (
-                    <li className="flex items-start gap-3">
-                      <Mail className="w-4 h-4 text-[#FF0504] mt-1 shrink-0" />
-                      <Link
-                        title="Email Button"
-                        href={`mailto:${email}`}
-                        className="text-white text-sm md:text-[15px] leading-relaxed font-semibold"
-                      >
-                        {email}
-                      </Link>
-                    </li>
-                  ) : null}
-                  <li className="flex items-start gap-3">
-                    <Clock4 className="w-4 h-4 text-[#FF0504] mt-1 shrink-0" />
-                    <span className="text-white text-sm md:text-[15px] leading-relaxed font-semibold">{workingHours}</span>
-                  </li>
-                </ul>
-              </div>
+              <p className="text-white/90 text-[17px] leading-relaxed max-w-[420px]">
+                {statement}
+              </p>
             </div>
-            <div className="mt-7 pt-4 border-t border-white/20 w-full">
-              <div className="flex flex-row justify-start items-start gap-6">
-                <div className="flex gap-6 flex-wrap">
-                  <Link
-                    title="Privacy Policy"
-                    href="/privacy-policy"
-                    className="text-white/85 text-sm md:text-[15px] hover:text-white transition-colors"
+
+            <div>
+              <h3
+                className={`${rubik.className} text-white text-2xl md:text-3xl font-bold mb-4`}
+              >
+                Quick Links
+              </h3>
+              <ul className="space-y-2">
+                {quickLinks.map((item) => {
+                  const isHomeLink = item.link === "/";
+                  const isPageLink = item.link?.startsWith("/");
+                  return (
+                    <li key={item.link ?? item.title}>
+                      {isHomeLink ? (
+                        <button
+                          type="button"
+                          onClick={handleHomeNavigation}
+                          className="inline-flex items-center gap-2 text-white/95 text-sm md:text-lg hover:cursor-pointer transition-colors duration-200"
+                        >
+                          <FontAwesomeIcon
+                            icon={byPrefixAndName.fas["caret-right"]}
+                            className="text-[16px] text-[#ff0504]"
+                          />
+                          <span>{item.title}</span>
+                        </button>
+                      ) : isPageLink ? (
+                        <Link
+                          href={item.link}
+                          className="inline-flex items-center gap-2 text-white/95 text-sm md:text-lg hover:text-white transition-colors duration-200"
+                        >
+                          <FontAwesomeIcon
+                            icon={byPrefixAndName.fas["caret-right"]}
+                            className="text-[16px] text-[#ff0504]"
+                          />
+                          <span>{item.title}</span>
+                        </Link>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => handleNavigation(item.link)}
+                          className="inline-flex items-center gap-2 text-white/95 text-sm md:text-lg hover:cursor-pointer transition-colors duration-200"
+                        >
+                          <FontAwesomeIcon
+                            icon={byPrefixAndName.fas["caret-right"]}
+                            className="text-[16px] text-[#ff0504]"
+                          />
+                          <span>{item.title}</span>
+                        </button>
+                      )}
+                    </li>
+                  );
+                })}
+
+                <li className="relative" ref={servicesWrapRef}>
+                  <button
+                    type="button"
+                    onClick={() => setIsServicesOpen((prev) => !prev)}
+                    aria-expanded={isServicesOpen}
+                    className="inline-flex items-center gap-2 text-white/95 text-sm md:text-lg hover:cursor-pointer transition-colors duration-200"
                   >
-                    Privacy Policy
-                  </Link>
+                    <FontAwesomeIcon
+                      icon={byPrefixAndName.fas["caret-right"]}
+                      className={`text-[16px] text-[#ff0504] transition-transform duration-200 ${
+                        isServicesOpen ? "-rotate-90" : "rotate-90"
+                      }`}
+                    />
+                    <span>Services</span>
+                  </button>
+
+                  {services.length > 0 ? (
+                    <div
+                      role="menu"
+                      aria-hidden={!isServicesOpen}
+                      className={[
+                        "absolute bottom-full left-0 z-20",
+                        "w-auto min-w-[300px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]",
+                        "transition-all duration-300 ease-in-out flex flex-col",
+                        isServicesOpen
+                          ? "opacity-100 visible transform translate-y-0 pointer-events-auto"
+                          : "opacity-0 invisible transform -translate-y-2 pointer-events-none",
+                      ].join(" ")}
+                    >
+                      <div className="grow dropdown-services-container scrollbar-hide">
+                        {services.map((svc, idx) => {
+                          const href = svc?.path ?? "#";
+                          const label =
+                            svc?.title ?? svc?.name ?? `Service ${idx + 1}`;
+                          if (!href || href === "#") return null;
+
+                          const isActive = pathname === href;
+                          return (
+                            <Link
+                              key={href}
+                              href={href}
+                              role="menuitem"
+                              onClick={() => setIsServicesOpen(false)}
+                              className={[
+                                "text-sm font-normal py-1 px-4 cursor-pointer transition-all duration-100 block",
+                                isActive
+                                  ? "bg-[#ff0504] text-white"
+                                  : "text-black hover:bg-[#ff0504] hover:text-white",
+                              ].join(" ")}
+                            >
+                              {label}
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  ) : null}
+                </li>
+              </ul>
+            </div>
+
+            <div className=" text-white">
+              <h3
+                className={`${rubik.className} text-white  text-2xl md:text-3xl font-bold mb-4`}
+              >
+                Stay Tuned With Us
+              </h3>
+              <div className="flex flex-col gap-2 md:gap-7">
+                <div className="flex items-start gap-3 ">
+                  <li className="flex items-center gap-1.5">
+                    <FontAwesomeIcon
+                      icon={faClock}
+                      className={`${iconClass} ${iconAccent} shrink-0`}
+                    />
+                    <span className="text-white text-sm md:text-[15px]">
+                      {workingHours}
+                    </span>
+                  </li>
+                </div>
+                <div className="flex items-center gap-3">
+                  <FontAwesomeIcon
+                    icon={faEnvelope}
+                    className={`${iconClass} ${iconAccent} shrink-0`}
+                  />
                   <Link
-                    title="Terms and conditions"
-                    href="/terms-and-conditions"
-                    className="text-white/85 text-sm md:text-[15px] hover:text-white transition-colors"
+                    href={`mailto:${email}`}
+                    className="text-white/95 text-[17px] hover:text-white transition-colors duration-200"
                   >
-                    Terms and conditions
+                    {email}
                   </Link>
                 </div>
+                <div className="flex items-center gap-3">
+                  <FontAwesomeIcon
+                    icon={byPrefixAndName.fas["square-phone"]}
+                    className={`${iconClass} ${iconAccent} shrink-0 `}
+                  />
+                  <Link
+                    href={`tel:${phone}`}
+                    className="text-white/95 text-[17px] hover:text-white transition-colors duration-200"
+                  >
+                    {phone}
+                  </Link>
+                </div>
+                <a
+                  href={phone ? `tel:${phone}` : "#"}
+                  className={`${poppins.className} mt-2 inline-flex h-[54px] w-[206px] items-center gap-2 rounded-[44px] bg-[#ff0504] px-3 py-2 text-white`}
+                >
+                  <span className="flex flex-col leading-none">
+                    <span
+                      className={`${poppins.className} text-[16px] font-normal uppercase tracking-[0.04em] ml-8 text-white`}
+                    >
+                      Call Now:
+                    </span>
+                    <span
+                      className={`${poppins.className} mt-0.5 text-[20px] font-bold tracking-wide ml-2 text-white normal-case`}
+                    >
+                      {phone || "(888)-249-0566"}
+                    </span>
+                  </span>
+                </a>
+                <button
+                  type="button"
+                  onClick={() => handleNavigation("contact-us")}
+                  className={`${poppins.className}  inline-flex h-[54px] w-[206px] items-center gap-2 rounded-[44px] bg-white px-3 py-2 text-black`}
+                >
+                  <span className="flex flex-col leading-none">
+                    <span
+                      className={`${poppins.className} text-[16px] font-normal uppercase tracking-[0.04em] ml-8 text-black`}
+                    >
+                      Book Now:
+                    </span>
+                    <span
+                      className={`${poppins.className} mt-0.5 text-[20px] font-bold tracking-wide ml-4 text-black normal-case`}
+                    >
+                      Appointment
+                    </span>
+                  </span>
+              </button>
               </div>
             </div>
           </div>

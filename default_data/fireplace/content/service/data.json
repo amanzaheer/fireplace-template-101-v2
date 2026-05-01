@@ -104,7 +104,8 @@
   },
   "faqs": {
     "title": "FAQs",
-    "image": "footer/faqs-illustration.png",
+    "file_name": "faqs/faqs13.png",
+    "filename2": "faqs/faqs17.png",
     "items": [
       {
         "id": 1,

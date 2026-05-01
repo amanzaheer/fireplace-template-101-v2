@@ -387,19 +387,34 @@ export default function QuoteForm8({
           <div className="grid grid-cols-2 gap-[4px]">
             <div>
               <label htmlFor="firstName" className="sr-only">First name</label>
-              <TopLeftPlaceholderInput
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
-                onChange={handleChange}
-                onFocus={handleFirstInteraction}
-                compact={compact}
-                hasError={!!fieldErrors.firstName}
-                placeholder={compact ? "First Name" : "First name"}
-                inputClassName={`pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"}`}
-                required
-                aria-invalid={!!fieldErrors.firstName}
-              />
+              {compact ? (
+                <input
+                  id="firstName"
+                  type="text"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  placeholder="First Name"
+                  className={`w-full rounded-md bg-gray-50 px-3 py-1.5 text-[11px] text-black outline-none ${fieldErrors.firstName ? "border-2 border-red-500" : "border border-[#bdbdbd]"}`}
+                  required
+                  aria-invalid={!!fieldErrors.firstName}
+                />
+              ) : (
+                <TopLeftPlaceholderInput
+                  id="firstName"
+                  name="firstName"
+                  value={formData.firstName}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  compact={false}
+                  hasError={!!fieldErrors.firstName}
+                  placeholder="First name"
+                  inputClassName="pl-2 py-1.5"
+                  required
+                  aria-invalid={!!fieldErrors.firstName}
+                />
+              )}
               {fieldErrors.firstName && (
                 <div className="text-red-500 text-sm font-medium mt-1">
                   {fieldErrors.firstName}
@@ -408,19 +423,34 @@ export default function QuoteForm8({
             </div>
             <div>
               <label htmlFor="lastName" className="sr-only">Last name</label>
-              <TopLeftPlaceholderInput
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
-                onChange={handleChange}
-                onFocus={handleFirstInteraction}
-                compact={compact}
-                hasError={!!fieldErrors.lastName}
-                placeholder={compact ? "Last Name" : "Last name"}
-                inputClassName={`pl-2 ${compact ? "py-1 text-[11px]" : "py-1.5"}`}
-                required
-                aria-invalid={!!fieldErrors.lastName}
-              />
+              {compact ? (
+                <input
+                  id="lastName"
+                  type="text"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  placeholder="Last Name"
+                  className={`w-full rounded-md bg-gray-50 px-3 py-1.5 text-[11px] text-black outline-none ${fieldErrors.lastName ? "border-2 border-red-500" : "border border-[#bdbdbd]"}`}
+                  required
+                  aria-invalid={!!fieldErrors.lastName}
+                />
+              ) : (
+                <TopLeftPlaceholderInput
+                  id="lastName"
+                  name="lastName"
+                  value={formData.lastName}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  compact={false}
+                  hasError={!!fieldErrors.lastName}
+                  placeholder="Last name"
+                  inputClassName="pl-2 py-1.5"
+                  required
+                  aria-invalid={!!fieldErrors.lastName}
+                />
+              )}
               {fieldErrors.lastName && (
                 <div className="text-red-500 text-sm font-medium mt-1">
                   {fieldErrors.lastName}
@@ -432,43 +462,39 @@ export default function QuoteForm8({
           {compact ? (
             <div className="grid grid-cols-2 gap-[4px]">
               <div>
-                <label htmlFor="email" className="sr-only">Email</label>
-                <TopLeftPlaceholderInput
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  onFocus={handleFirstInteraction}
-                  compact
-                  hasError={!!fieldErrors.email}
-                  placeholder="Email"
-                  inputClassName="pl-2 py-1 text-[11px]"
-                  required
-                  aria-invalid={!!fieldErrors.email}
-                />
-                {fieldErrors.email && (
-                  <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
-                )}
-              </div>
-              <div>
                 <label htmlFor="phone" className="sr-only">Phone number</label>
-                <TopLeftPlaceholderInput
+                <input
                   type="tel"
                   id="phone"
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
                   onFocus={handleFirstInteraction}
-                  compact
-                  hasError={!!fieldErrors.phone}
-                  placeholder="Phone"
-                  inputClassName="pl-2 py-1 text-[11px]"
+                  placeholder="Phone Number"
+                  className={`w-full rounded-md bg-gray-50 px-3 py-1.5 text-[11px] text-black outline-none ${fieldErrors.phone ? "border-2 border-red-500" : "border border-[#bdbdbd]"}`}
                   required
                   aria-invalid={!!fieldErrors.phone}
                 />
                 {fieldErrors.phone && (
                   <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
+                )}
+              </div>
+              <div>
+                <label htmlFor="email" className="sr-only">Email</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  onFocus={handleFirstInteraction}
+                  placeholder="Email"
+                  className={`w-full rounded-md bg-gray-50 px-3 py-1.5 text-[11px] text-black outline-none ${fieldErrors.email ? "border-2 border-red-500" : "border border-[#bdbdbd]"}`}
+                  required
+                  aria-invalid={!!fieldErrors.email}
+                />
+                {fieldErrors.email && (
+                  <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
                 )}
               </div>
             </div>
@@ -515,20 +541,35 @@ export default function QuoteForm8({
           )}
 
           <label htmlFor="message" className="sr-only">Message</label>
-          <TopLeftPlaceholderTextarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            rows={compact ? 2 : 2}
-            compact={compact}
-            hasError={!!fieldErrors.message}
-            placeholder="Message"
-            className={`pl-2 ${compact ? "py-1 text-[11px] max-h-[44px]" : "py-1.5 max-h-[52px]"} resize-none`}
-            required
-            aria-invalid={!!fieldErrors.message}
-          />
+          {compact ? (
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              rows={2}
+              placeholder="Message"
+              className={`w-full resize-none rounded-md bg-gray-50 px-3 py-1.5 text-[11px] text-black outline-none max-h-[44px] ${fieldErrors.message ? "border-2 border-red-500" : "border border-[#bdbdbd]"}`}
+              required
+              aria-invalid={!!fieldErrors.message}
+            />
+          ) : (
+            <TopLeftPlaceholderTextarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              rows={2}
+              compact={false}
+              hasError={!!fieldErrors.message}
+              placeholder="Message"
+              className="pl-2 py-1.5 max-h-[52px] resize-none"
+              required
+              aria-invalid={!!fieldErrors.message}
+            />
+          )}
           {fieldErrors.message && (
             <div className="text-red-500 text-sm font-medium">{fieldErrors.message}</div>
           )}

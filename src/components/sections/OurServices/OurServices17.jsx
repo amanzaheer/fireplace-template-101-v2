@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
-import { Poppins, Rubik } from "next/font/google";
+import { Inter, Poppins, Rubik } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { cn } from "@/lib/utils";
@@ -27,6 +27,10 @@ const ctaFont = Rubik({
   subsets: ["latin"],
   weight: "600",
   display: "swap",
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 function resolveServiceTag(str, title) {
@@ -51,7 +55,7 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-export default function OurServices8({ content }) {
+export default function OurServices17({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const ourServices = content?.our_services;
   const servicesFromNav = content?.services ?? [];
@@ -92,11 +96,15 @@ export default function OurServices8({ content }) {
   const title = ourServices?.title ?? "Services Provided";
   const eyebrow =
     ourServices?.eyebrow ?? ourServices?.subtitle ?? "Our Best Service";
+  const phoneLink = phone ? `tel:${phone}` : "#";
+  const phoneButtonClass =
+    "h-[54px] w-[220px] inline-flex flex-row items-center justify-center gap-2 rounded-full bg-[#ff0504] text-white shadow-lg transition-all hover:opacity-80";
+  const phoneTextClass = `${inter.className} text-sm md:text-[20px] lg:text-lg font-bold text-white mt-1 leading-none`;
 
   return (
     <FullContainer
       id="our_services"
-      className="w-full min-h-[1050px] bg-white pt-12 pb-8 md:pt-16 md:pb-10"
+      className="w-full min-h-[600px] bg-white pt-12 pb-8 md:pt-16 md:pb-10"
     >
       <Container className="px-4">
         <p className="mb-2 text-center text-lg font-medium text-white/95 md:text-xl">
@@ -106,13 +114,13 @@ export default function OurServices8({ content }) {
         <h2
           className={cn(
             sectionTitleFont.className,
-            "mb-12 text-center text-[36px] font-bold not-italic leading-[45px] text-[#000]",
+            "mb-12 text-center text-[36px] font-bold not-italic leading-[45px] text-black",
           )}
         >
           {title}
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-3 gap-y-1 md:gap-y-1">
+        <div className="grid grid-cols-1 gap-x-2 gap-y-5 md:grid-cols-2 md:gap-x-4 md:gap-y-8 lg:grid-cols-3 lg:gap-x-5">
           {displayServices.map((service) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
@@ -121,10 +129,10 @@ export default function OurServices8({ content }) {
             return (
               <div
                 key={service.id}
-                className="group relative mx-auto w-full max-w-[680px] overflow-visible pb-[72px] sm:pb-[76px] md:pb-[88px]"
+                className="group relative w-full overflow-hidden rounded-b-[18px] bg-white pb-4 shadow-[0_8px_24px_rgba(15,31,65,0.12)]"
               >
                 {/* IMAGE CARD */}
-                <div className="relative h-[320px] w-full overflow-hidden  bg-gray-100 sm:h-[350px] md:h-[380px]">
+                <div className="relative h-[320px] w-full overflow-hidden bg-gray-100 sm:h-[350px] md:h-[291px]">
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
@@ -144,7 +152,7 @@ export default function OurServices8({ content }) {
                 </div>
 
                 {/* CONTENT CARD — sits slightly higher so it doesn’t cover the next section */}
-                <div className=" flex h-[176px] w-[86%]  flex-col px-5 py-4 text-center gap-2 md:h-[220px] md:min-h-[220px] mb-2 mx-auto md:px-6 md:py-5 ">
+                <div className="mb-2 mx-auto flex w-[86%] flex-col gap-2 px-5 py-4 text-center md:min-h-[220px] md:px-6 md:py-5">
 
                   <h3 className="text-[22px] md:text-[24px] font-extrabold text-[#0d1016] mb-2 leading-normal h-auto overflow-visible flex items-center justify-center">
                     {service.path && service.path !== "#" ? (
@@ -158,7 +166,7 @@ export default function OurServices8({ content }) {
 
                   {service.description ? (
                     <div
-                      className="text-[#2e3238] text-[13px] leading-6 mb-2 h-auto min-h-[42px] overflow-visible flex items-center justify-center"
+                      className="mb-2 flex h-auto min-h-[42px] items-center justify-center overflow-visible text-center text-[13px] leading-6 text-[#2e3238] [&_p]:m-0 [&_p]:text-center"
                       dangerouslySetInnerHTML={{
                         __html: markdownPreview(service.description),
                       }}
@@ -184,6 +192,25 @@ export default function OurServices8({ content }) {
             );
           })}
         </div>
+        {phone ? (
+          <div className="mt-8 flex justify-center">
+            <a href={phoneLink} className={phoneButtonClass}>
+              <Image
+                src="/st-icons/Temp17/call17.png"
+                alt="Phone"
+                width={18}
+                height={18}
+                className="h-[30px] w-[30px] shrink-0"
+              />
+              <span className="flex flex-col items-start leading-none">
+                <span className={`${inter.className} text-[16px] font-normal text-white`}>
+                  CLICK TO CALL
+                </span>
+                <span className={phoneTextClass}>{phone}</span>
+              </span>
+            </a>
+          </div>
+        ) : null}
       </Container>
     </FullContainer>
   );

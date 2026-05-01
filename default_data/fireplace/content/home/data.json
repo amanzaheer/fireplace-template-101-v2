@@ -232,6 +232,8 @@
     "city_name": "[city_name]",
     "faqs": {
       "title": "FAQs",
+      "file_name": "faqs/faqs13.png",
+      "filename2": "faqs/faqs17.png",
       "items": [
         {
           "question": "What is included in a fireplace inspection?",
@@ -379,6 +381,11 @@
       "phone": "[phone]"
 
     },
+    "milestonesbanner": {
+      "title": "Milestones",
+      "description": "We are proud to have achieved these milestones in our journey.",
+      "file_name": "milestones/milestones.webp"
+    },
     
 "company_profile": {
   "sub_title": "Your Same Day TV Mounting Los Angeles Company",
@@ -393,7 +400,11 @@
   },
   "childrenRef": "features"
 },
-
+"information_section": {
+  "title": "Trusted Mobile and Safe Service",
+  "sub_title": "[industry] In [city_name]. Why Do You Need It?",
+  "description": "A clean, well-maintained home isn’t just about appearance—it’s about comfort, safety, and healthy living. Clean air, proper airflow, and a well-functioning [industry] all play a key role in creating the perfect indoor environment. However, [industry] cleaning can be time-consuming and complicated, especially when handled without the right tools or expertise.\n\nThat’s where our experienced professionals step in.\n\nWe provide reliable [industry] cleaning services in Leander for both residential and commercial spaces. Our skilled team ensures deep cleaning, removing dust, soot, and harmful particles that affect air quality. With our services, you can enjoy a cleaner, fresher, and healthier space without any hassle."
+},
     "work_portfolio": {
       "file_name": [
          "WorkPortfolio/gallery1.jpg",

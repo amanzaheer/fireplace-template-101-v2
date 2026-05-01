@@ -28,6 +28,7 @@ const WorkingProcess = dynamic(() => import("@/components/sections/WorkingProces
 const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDescription"));
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
+const InformationSection = dynamic(() => import("@/components/sections/InformationSection"));
 
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
 const Cta = dynamic(() => import("@/components/sections/Cta"));
@@ -65,6 +66,7 @@ const sectionComponents = {
   Gallery,
   ServiceDescription1: ServiceDescription1Section,
   ServiceDescription2: ServiceDescription2Section,
+  InformationSection,
   CallUsButton,
   MilestoneBanner,
   Videosection,

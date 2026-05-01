@@ -2,7 +2,7 @@
 
 import React, { useMemo } from "react";
 import Image from "next/image";
-import { Rubik } from "next/font/google";
+import { Inter, Rubik } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { cn } from "@/lib/utils";
@@ -12,6 +12,10 @@ const serviceCitiesHeadingFont = Rubik({
   subsets: ["latin"],
   weight: ["600", "700"],
   display: "swap",
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 function ServiceCitiesPinIcon({ className }) {
@@ -59,6 +63,11 @@ export default function ServiceCities17({ content }) {
   );
   const title = block?.title ?? block?.value?.title ?? "Areas We Serve";
   const mapSrc = buildImageSrc(IMAGE_BASE, "icons/maap.webp");
+  const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
+  const phoneLink = phone ? `tel:${phone}` : "#";
+  const phoneButtonClass =
+    "h-[54px] w-[220px] inline-flex flex-row items-center justify-center gap-2 rounded-full bg-[#ff0504] text-white shadow-lg transition-all hover:opacity-80 font-inter";
+  const phoneTextClass = `${inter.className} text-sm md:text-[20px] lg:text-lg font-inter font-bold text-white mt-1 leading-none`;
 
   if (cities.length === 0) return null;
 
@@ -85,25 +94,44 @@ export default function ServiceCities17({ content }) {
           <h2
             className={cn(
               serviceCitiesHeadingFont.className,
-              "mb-8 w-full px-2 text-center text-[clamp(1.375rem,4.5vw,45px)] font-bold leading-tight text-[#2D2D2D]",
+              "mb-8 w-full px-2 text-center text-[clamp(1.375rem,4.5vw,45px)] font-bold  font-poppins leading-tight text-[#2D2D2D]",
             )}
           >
             {title}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-3">
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-2 gap-y-1">
             {cities.map((city, index) => (
               <div
                 key={index}
-                className="inline-flex items-center gap-2 bg-[#f2f2f2] rounded-sm px-3 py-1.5 shadow-[0_1px_2px_rgba(0,0,0,0.12)] w-fit"
+                className="inline-flex items-center   rounded-sm px-3 py-1.5  w-fit"
               >
                 <ServiceCitiesPinIcon className="h-6 w-6 shrink-0" />
-                <span className="text-[#2f3035] text-[13px] md:text-[14px] font-medium leading-none">
+                <span className="text-black text-[16px] md:text-[17px] font-medium leading-none font-inter shadow-text">
                   {typeof city === "string"
                     ? city
                     : (city?.name ?? city?.title ?? String(city))}
                 </span>
               </div>
             ))}
+          </div>
+          <div className="mt-8 flex justify-center">
+            <a href={phoneLink} className={phoneButtonClass}>
+              <span className="flex h-[30px] w-[30px] items-center justify-center">
+                <Image
+                  src="/st-icons/Temp17/call17.png"
+                  alt="Phone"
+                  width={18}
+                  height={18}
+                  className="h-[30px] w-[30px] shrink-0"
+                />
+              </span>
+              <span className="flex flex-col items-start leading-none">
+                <span className={`${inter.className} text-[16px] font-normal text-white`}>
+                  CLICK TO CALL
+                </span>
+                <span className={phoneTextClass}>{phone}</span>
+              </span>
+            </a>
           </div>
         </div>
       </Container>

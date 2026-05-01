@@ -1,14 +1,17 @@
 "use client";
 
 import Image from "next/image";
-import Link from "next/link";
-import { Phone } from "lucide-react";
+import { Inter } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
 
 const PANEL_BG = "#ffffff";
 const ACCENT = "#FF0504";
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -30,14 +33,14 @@ export default function About6({ content }) {
     buildImageSrc(IMAGE_BASE, about.file_name) ||
     buildImageSrc(IMAGE_BASE, "about/about.webp");
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
-  const telHref = phone ? `tel:${String(phone).replace(/\s/g, "")}` : "";
+  const telHref = phone ? `tel:${String(phone).replace(/\s/g, "")}` : "#";
 
   return (
     <FullContainer className="bg-gray-50 py-10 md:py-14" id="about">
-      <Container className="mx-auto max-w-7xl px-4 md:px-6">
-        <div className="grid min-h-0 grid-cols-1 overflow-hidden rounded-xl shadow-xl lg:grid-cols-2 lg:min-h-[420px]">
+      <Container className="mx-auto max-w-7xl px-4 md:px-6 ">
+        <div className="grid min-h-0 grid-cols-1 overflow-hidden rounded-xl shadow-xl lg:grid-cols-2 lg:min-h-[260px] ">
           {/* Image — top on mobile, right on desktop */}
-          <div className="relative order-1 min-h-[260px] w-full sm:min-h-[300px] lg:order-2 lg:min-h-0 lg:h-full">
+          <div className="relative order-1 min-h-[200px] w-full sm:min-h-[240px] lg:order-2 lg:min-h-0 lg:h-full">
             {image ? (
               <Image
                 title="About Image"
@@ -55,7 +58,7 @@ export default function About6({ content }) {
 
           {/* Copy + CTA — black panel */}
           <div
-            className="order-2 flex flex-col justify-center px-8 py-10 sm:px-10 sm:py-12 md:px-12 md:py-14 lg:order-1 lg:px-14 lg:py-16"
+            className="order-2 flex flex-col justify-center px-8 py-7 sm:px-10 sm:py-8 md:px-12 md:py-10 lg:order-1 lg:px-14 lg:py-10"
             style={{ backgroundColor: PANEL_BG }}
           >
             {data.heading ? (
@@ -88,14 +91,28 @@ export default function About6({ content }) {
             ) : null}
 
             {phone ? (
-              <Link
+              <a
                 href={telHref}
-                className="mt-8 inline-flex w-fit items-center gap-2 rounded-md px-5 py-3 text-base font-semibold text-white transition-opacity hover:opacity-90 focus-visible:outline-2 focus-visible:outline-offset-2"
-                style={{ backgroundColor: ACCENT, outlineColor: ACCENT }}
+                className="mt-8 inline-flex h-[54px] w-[220px] flex-row items-center justify-center gap-2 rounded-full bg-[#ff0504] text-white shadow-lg transition-all hover:opacity-80"
               >
-                <Phone className="h-5 w-5 shrink-0 text-white" strokeWidth={2.25} aria-hidden />
-                {phone}
-              </Link>
+                <Image
+                  src="/st-icons/Temp17/call17.png"
+                  alt="Phone"
+                  width={18}
+                  height={18}
+                  className="h-[30px] w-[30px] shrink-0"
+                />
+                <span className="flex flex-col items-start leading-none">
+                  <span className={`${inter.className} text-[16px] font-normal text-white`}>
+                    CLICK TO CALL
+                  </span>
+                  <span
+                    className={`${inter.className} mt-1 text-sm font-bold leading-none text-white md:text-[20px] lg:text-lg`}
+                  >
+                    {phone}
+                  </span>
+                </span>
+              </a>
             ) : null}
           </div>
         </div>

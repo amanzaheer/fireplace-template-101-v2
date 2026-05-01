@@ -212,7 +212,7 @@ export default function Navbar10({ content }) {
             className={cn(
               "absolute left-1/2 top-full z-30 flex min-w-[260px] -translate-x-1/2 flex-col pt-2 transition-all duration-200 ease-out",
               dropdownOpen
-                ? "visible translate-y-0 opacity-100"
+                 ? "visible translate-y-0 opacity-100"
                 : "invisible -translate-y-1 opacity-0",
             )}
           >
