@@ -19,6 +19,7 @@ import About15 from "./About15";
 import About12 from "./About12";
 import About13 from "./About13";
 import About17 from "./About17";
+import About20 from "./About20";
 
 
 import About16 from "./About16";
@@ -40,14 +41,32 @@ const variants = {
   About13,
   About16,
   About17,
-  
+  About20,
 };
 
 export default function About({ variant, content }) {
-    const name = String(variant ?? "").trim() || "About16";
-  const Component = variants[name] ?? About16;
+  const name = String(variant ?? "About20").trim();
+  const Component = variants[name] ?? About20;
   return <Component content={content} />;
 }
-export { About1, About2, About3, About4, About5, About6, About7, About8, About9, About14, About15, About11, About12, About10, About13,About17, variants };
-
-
+export {
+  About1,
+  About2,
+  About3,
+  About4,
+  About5,
+  About6,
+  About7,
+  About8,
+  About9,
+  About10,
+  About11,
+  About12,
+  About13,
+  About14,
+  About15,
+  About16,
+  About17,
+  About20,
+  variants,
+};

@@ -25,6 +25,7 @@ const ReviewandRating = dynamic(() =>
 );
 const WhyChoose = dynamic(() => import("@/components/sections/WhyChoose"));
 const WorkingProcess = dynamic(() => import("@/components/sections/WorkingProcess"));
+const OurProcess = WorkingProcess;
 const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDescription"));
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
@@ -49,6 +50,7 @@ const sectionComponents = {
   About,
   Promotion,
   OurServices,
+  OurProcess,
   WhyChoose,
   WorkingProcess,
   Slogan,

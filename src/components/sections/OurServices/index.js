@@ -19,6 +19,7 @@ import OurServices14 from "./OurServices14";
 import OurServices15 from "./OurServices15";
 import OurServices16 from "./OurServices16";
 import OurServices17 from "./OurServices17";
+import OurServices20 from "./OurServices20";
 
 const variants = {
   OurServices1,
@@ -38,13 +39,14 @@ const variants = {
   OurServices15,
   OurServices16,
   OurServices17,
+  OurServices20,
 };
 
 export default function OurServices({ variant, content }) {
-  const name = String(variant ?? "").trim() || "OurServices16";
-  const Component = variants[name] ?? OurServices16;
+  const name = String(variant ?? "").trim() || "OurServices20";
+  const Component = variants[name] ?? OurServices20;
   return <Component content={content} />;
 }
 
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, variants };
+export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices20, variants };
 

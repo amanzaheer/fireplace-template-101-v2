@@ -59,9 +59,33 @@
     "our_services": {
       "title": "Our Services"
     },
+    "our_process": {
+      "title": "Our Working Process",
+      "description": "Simple and efficient steps to get your fireplace serviced by experts.",
+      "side_image": "process/process20.png",
+      "decoration_image": "process/processing2.png",
+      "side_image_alt": "Fireplace process illustration",
+      "decoration_alt": "Fireplace process decoration",
+      "list": [
+        {
+          "title": "Free Consultation",
+          "description": "Start with a complimentary consultation where we'll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning."
+        },
+        {
+          "title": "Expert Execution",
+          "description": "Start with a complimentary consultation where we'll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning."
+        },
+        {
+          "title": "Quality Assurance",
+          "description": "Start with a complimentary consultation where we'll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning."
+        }
+      ]
+    },
     "why_choose": {
       "heading": "Why Choose Us",
       "file_name": "why-us/why-us.avif",
+      "main_image": "why-us/whychoose1.png",
+      "file_name2": "why-us/whychoose2.png",
       "childrenRef": "features"
     },
     "slogan": {
@@ -104,9 +128,12 @@
       "form_title": "Claim Fire Place Services Offer Today",
       "form_description": "Offer ends in just a few hours!",
       "cta_phone": "[phone]",
-      "file_name": "hero/hero.webp",
+      "file_name": "hero-banner/banner20.png",
       "childrenRef": "features",
-      "file_name2": "hero-banner/banneroverlay7.png"
+      "file_name2": "hero-banner/banner.webp",
+      "left_collage_image": "hero-banner/leftimg.png",
+      "right_collage_image": "hero-banner/rightimg.png",
+      "bottom_collage_image": "hero-banner/bottomimg.png"
     },
     "size": {
       "title": "What size is the TV?",
@@ -145,7 +172,7 @@
     },
     "about": {
       "heading": "About [company_name]",
-      "description1": "At Fireplace Services, we bring over 18 years of experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
+      "description1": "At Fireplace Services, we bring over experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
       "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
       "points": null,
       "file_name": "about/about.webp"
@@ -224,14 +251,20 @@
       "title": "10% Off Total Price for Online Booking",
       "sub_title": "Ask For A Quote Here"
     },
+    "contact": {
+      "background_image": "Contactimg/contactus20.png"
+    },
     "contact_info": {
       "phone": "[phone]",
       "email": "info@[domain]",
       "working_hours": "[working_hours]"
     },
-    "city_name": "[city_name]",
+    "city_name": "[city_name]bbbbb",
     "faqs": {
-      "title": "FAQs",
+      "title": "Frequently Asked Questions",
+      "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
+      "cta_label": "Ask a Question",
+      "cta_href": "/#contact-us",
       "file_name": "faqs/faqs13.png",
       "filename2": "faqs/faqs17.png",
       "items": [
@@ -258,60 +291,64 @@
       "file_name": "footer/footerbg.webp"
     },
     "locations": {
-      "title": "Areas We Serve",
+      "title": "We Proudly Serve Multiple Locations",
+      "description": "We take pride in providing professional chimney services. Our goal is to deliver reliable, safe, and affordable solutions that keep your chimney clean, efficient, and your home protected with complete peace of mind.",
       "image": "locations/map.jpg",
+      "slider_icon": "Servicecities/locationsslider.png",
+      "cta_label": "BOOK YOUR SERVICE",
+      "cta_href": "/#contact-us",
       "list": [
-        "Alabama",
-        "Alaska",
-        "Arizona",
-        "Arkansas",
-        "California",
-        "Colorado",
-        "Connecticut",
-        "Delaware",
-        "District Of Columbia",
-        "Florida",
-        "Georgia",
-        "Hawaii",
-        "Idaho",
-        "Illinois",
-        "Indiana",
-        "Iowa",
-        "Kansas",
-        "Kentucky",
-        "Louisiana",
-        "Maine",
-        "Maryland",
-        "Massachusetts",
-        "Michigan",
-        "Minnesota",
-        "Mississippi",
-        "Missouri",
-        "Montana",
-        "Nebraska",
-        "Nevada",
-        "New Hampshire",
-        "New Jersey",
-        "New Mexico",
-        "New York",
-        "North Carolina",
-        "North Dakota",
-        "Ohio",
-        "Oklahoma",
-        "Oregon",
-        "Pennsylvania",
-        "Rhode Island",
-        "South Carolina",
-        "South Dakota",
-        "Tennessee",
-        "Texas",
-        "Utah",
-        "Vermont",
-        "Virginia",
-        "Washington",
-        "West Virginia",
-        "Wisconsin",
-        "Wyoming"
+        { "name": "Alabama", "image": "Servicecities/location1.png" },
+        { "name": "Alaska", "image": "Servicecities/location2.png" },
+        { "name": "Arizona", "image": "Servicecities/location3.png" },
+        { "name": "Arkansas", "image": "Servicecities/location4.png" },
+        { "name": "California", "image": "Servicecities/location5.png" },
+        { "name": "Colorado", "image": "Servicecities/location6.png" },
+        { "name": "Connecticut", "image": "Servicecities/location1.png" },
+        { "name": "Delaware", "image": "Servicecities/location2.png" },
+        { "name": "District Of Columbia", "image": "Servicecities/location3.png" },
+        { "name": "Florida", "image": "Servicecities/location4.png" },
+        { "name": "Georgia", "image": "Servicecities/location5.png" },
+        { "name": "Hawaii", "image": "Servicecities/location6.png" },
+        { "name": "Idaho", "image": "Servicecities/location1.png" },
+        { "name": "Illinois", "image": "Servicecities/location2.png" },
+        { "name": "Indiana", "image": "Servicecities/location3.png" },
+        { "name": "Iowa", "image": "Servicecities/location4.png" },
+        { "name": "Kansas", "image": "Servicecities/location5.png" },
+        { "name": "Kentucky", "image": "Servicecities/location6.png" },
+        { "name": "Louisiana", "image": "Servicecities/location1.png" },
+        { "name": "Maine", "image": "Servicecities/location2.png" },
+        { "name": "Maryland", "image": "Servicecities/location3.png" },
+        { "name": "Massachusetts", "image": "Servicecities/location4.png" },
+        { "name": "Michigan", "image": "Servicecities/location5.png" },
+        { "name": "Minnesota", "image": "Servicecities/location6.png" },
+        { "name": "Mississippi", "image": "Servicecities/location1.png" },
+        { "name": "Missouri", "image": "Servicecities/location2.png" },
+        { "name": "Montana", "image": "Servicecities/location3.png" },
+        { "name": "Nebraska", "image": "Servicecities/location4.png" },
+        { "name": "Nevada", "image": "Servicecities/location5.png" },
+        { "name": "New Hampshire", "image": "Servicecities/location6.png" },
+        { "name": "New Jersey", "image": "Servicecities/location1.png" },
+        { "name": "New Mexico", "image": "Servicecities/location2.png" },
+        { "name": "New York", "image": "Servicecities/location3.png" },
+        { "name": "North Carolina", "image": "Servicecities/location4.png" },
+        { "name": "North Dakota", "image": "Servicecities/location5.png" },
+        { "name": "Ohio", "image": "Servicecities/location6.png" },
+        { "name": "Oklahoma", "image": "Servicecities/location1.png" },
+        { "name": "Oregon", "image": "Servicecities/location2.png" },
+        { "name": "Pennsylvania", "image": "Servicecities/location3.png" },
+        { "name": "Rhode Island", "image": "Servicecities/location4.png" },
+        { "name": "South Carolina", "image": "Servicecities/location5.png" },
+        { "name": "South Dakota", "image": "Servicecities/location6.png" },
+        { "name": "Tennessee", "image": "Servicecities/location1.png" },
+        { "name": "Texas", "image": "Servicecities/location2.png" },
+        { "name": "Utah", "image": "Servicecities/location3.png" },
+        { "name": "Vermont", "image": "Servicecities/location4.png" },
+        { "name": "Virginia", "image": "Servicecities/location5.png" },
+        { "name": "Washington", "image": "Servicecities/location6.png" },
+        { "name": "West Virginia", "image": "Servicecities/location1.png" },
+        { "name": "Wisconsin", "image": "Servicecities/location2.png" },
+        { "name": "Wyoming", "image": "Servicecities/location3.png" }
       ]
     },
     "features": [

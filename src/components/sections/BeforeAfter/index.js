@@ -15,6 +15,7 @@ import BeforeAfter10 from "./BeforeAfter10";
 import BeforeAfter13 from "./BeforeAfter13";
 import BeforeAfter16 from "./BeforeAfter16";
 import BeforeAfter17 from "./BeforeAfter17";
+import BeforeAfter20 from "./BeforeAfter20";
 const variants = {
   BeforeAfter1,
   BeforeAfter2,
@@ -30,12 +31,13 @@ const variants = {
   BeforeAfter13,
   BeforeAfter16,
   BeforeAfter17,
+  BeforeAfter20,
 };
 
 export default function BeforeAfter({ variant, content }) {
-  const name = variant ?? "BeforeAfter16";
-  const Component = variants[name] ?? BeforeAfter16;
+  const name = variant ?? "BeforeAfter20";
+  const Component = variants[name] ?? BeforeAfter20;
   return <Component content={content} />;
 }
-export { BeforeAfter1, BeforeAfter2, BeforeAfter3, BeforeAfter4, BeforeAfter6,BeforeAfter10,BeforeAfter17, BeforeAfter7,variants };
+export { BeforeAfter1, BeforeAfter2, BeforeAfter3, BeforeAfter4, BeforeAfter6,BeforeAfter10,BeforeAfter17, BeforeAfter7,BeforeAfter20,    variants };
 
