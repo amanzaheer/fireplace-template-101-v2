@@ -20,6 +20,7 @@ import OurServices15 from "./OurServices15";
 import OurServices16 from "./OurServices16";
 import OurServices17 from "./OurServices17";
 import OurServices20 from "./OurServices20";
+import OurServices19 from "./OurServices19";
 
 const variants = {
   OurServices1,
@@ -40,6 +41,7 @@ const variants = {
   OurServices16,
   OurServices17,
   OurServices20,
+  OurServices19,
 };
 
 export default function OurServices({ variant, content }) {
@@ -48,5 +50,5 @@ export default function OurServices({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices20, variants };
+export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17,OurServices19, OurServices20, variants };
 

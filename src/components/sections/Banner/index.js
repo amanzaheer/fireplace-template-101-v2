@@ -1,3 +1,7 @@
+/**
+ * Banner section: multiple designs, one export.
+ * variant comes from domain config (SectionLayout); fallback for standalone use.
+ */
 "use client";
 import Banner1 from "./Banner1";
 import Banner2 from "./Banner2";
@@ -16,14 +20,15 @@ import Banner14 from "./Banner14";
 import Banner15 from "./Banner15";
 import Banner16 from "./Banner16";
 import Banner17 from "./Banner17";
+import Banner19 from "./Banner19";
 import Banner20 from "./Banner20";
 const variants = {
   Banner1,
   Banner2,
   Banner3,
   Banner4,
-  Banner6,
   Banner5,
+  Banner6,
   Banner7,
   Banner8,
   Banner9,
@@ -35,6 +40,7 @@ const variants = {
   Banner15,
   Banner16,
   Banner17,
+  Banner19,
   Banner20,
 };
 
@@ -61,6 +67,10 @@ export {
   Banner15,
   Banner16,
   Banner17,
+  Banner19,
   Banner20,
   variants,
 };
+ 
+
+

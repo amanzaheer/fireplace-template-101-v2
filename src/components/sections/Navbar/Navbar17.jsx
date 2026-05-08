@@ -31,7 +31,7 @@ function getChildHref(child) {
   return slug ? `/${slug}` : "#";
 }
 
-export default function Navbar12({ content }) {
+export default function Navbar17({ content }) {
   const { logo, phone, menu_items = [] } = content?.navbar ?? {};
   const imagePath = content?.navbar?.imagePath ?? IMAGE_BASE;
   const menuItemsArray = useMemo(
