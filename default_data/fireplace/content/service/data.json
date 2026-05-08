@@ -114,6 +114,10 @@
     "image": "footer/faqs-illustration.png",
     "file_name": "faqs/faqs13.png",
     "filename2": "faqs/faqs17.png",
+    "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
+      "cta_label": "Ask a Question",
+      "cta_href": "/#contact-us",
+
     "items": [
       {
         "question": "What is included in a fireplace inspection?",

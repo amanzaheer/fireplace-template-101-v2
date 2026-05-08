@@ -1,5 +1,4 @@
 "use client";
-
 import Testimonials1 from "./Testimonials1";
 import Testimonials2 from "./Testimonials2";
 import Testimonials3 from "./Testimonials3";
@@ -17,6 +16,7 @@ import Testimonials14 from "./Testimonials14";
 import Testimonials15 from "./Testimonials15";
 import Testimonials16 from "./Testimonials16";
 import Testimonials17 from "./Testimonials17";
+import Testimonials19 from "./Testimonials19";
 import Testimonials20 from "./Testimonials20";
 const variants = {
   Testimonials1,
@@ -38,6 +38,7 @@ const variants = {
   Testimonials16,
   Testimonials17,
   Testimonials20,
+  Testimonials19,
 };
 
 export default function Testimonials({ variant, content }) {
@@ -64,6 +65,8 @@ export {
   Testimonials15,
   Testimonials16,
   Testimonials17,
+  Testimonials19,
   Testimonials20,
   variants,
 };
+

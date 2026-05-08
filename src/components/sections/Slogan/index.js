@@ -19,6 +19,7 @@ import Slogan14 from "./Slogan14";
 import Slogan10 from "./Slogan10";
 import Slogan16 from "./Slogan16";
 import Slogan17 from "./Slogan17";
+import Slogan19 from "./Slogan19";
 
 const variants = {
   Slogan1,
@@ -38,6 +39,7 @@ const variants = {
   Slogan15,
   Slogan16,
   Slogan17,
+  Slogan19,
 };
 
 export default function Slogan({ variant, content }) {
@@ -45,6 +47,6 @@ export default function Slogan({ variant, content }) {
   const Component = variants[name] ?? Slogan16;
   return <Component content={content} />;
 }
-export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9, Slogan15, Slogan11, Slogan12, Slogan14, Slogan10, Slogan13, Slogan17, variants };
+export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9, Slogan15, Slogan11, Slogan12, Slogan14, Slogan10, Slogan13, Slogan17, Slogan19, variants };
 
 

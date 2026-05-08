@@ -19,7 +19,7 @@ import ServiceBenefits12 from "./ServiceBenefits12";
 import ServiceBenefits13 from "./ServiceBenefits13";
 import ServiceBenefits17 from "./ServiceBenefits17";
 import ServiceBenefits20 from "./ServiceBenifits20";
-
+import ServiceBenefits19 from "./ServiceBenefits19";
 const variants = {
   ServiceBenefits1,
   ServiceBenefits2,
@@ -38,6 +38,7 @@ const variants = {
   ServiceBenefits13,
   ServiceBenefits17,
   ServiceBenefits20,
+  ServiceBenefits19,
 };
 
 export default function ServiceBenefits({ variant, content }) {
@@ -46,5 +47,22 @@ export default function ServiceBenefits({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { ServiceBenefits1, ServiceBenefits2, ServiceBenefits3, ServiceBenefits4, ServiceBenefits6, ServiceBenefits8, ServiceBenefits5, ServiceBenefits7, ServiceBenefits9, ServiceBenifits14, ServiceBenefits15, ServiceBenefits11, ServiceBenefits12, ServiceBenefits10, ServiceBenefits13, ServiceBenefits20, variants };
-
+export {
+  ServiceBenefits1,
+  ServiceBenefits2,
+  ServiceBenefits3,
+  ServiceBenefits4,
+  ServiceBenefits5,
+  ServiceBenefits6,
+  ServiceBenefits7,
+  ServiceBenefits8,
+  ServiceBenefits9,
+  ServiceBenefits10,
+  ServiceBenefits11,
+  ServiceBenefits12,
+  ServiceBenefits13,
+  ServiceBenifits14,
+  ServiceBenefits15,
+  ServiceBenefits20,
+  variants,
+}

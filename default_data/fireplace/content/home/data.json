@@ -125,15 +125,19 @@
     "banner": {
       "title": "Trusted Experts in [industry] services",
       "tagline": "trusted professionals in [industry] installation, cleaning & repair",
-      "form_title": "Claim Fire Place Services Offer Today",
+      "form_title": "GET IN TOUCH WITH US",
       "form_description": "Offer ends in just a few hours!",
+      "rating_line": "⭐ Rated 9.94 On Checkatrade ⭐",
+      "contact_subheading": "Contact [city_name] [industry] Services",
+      "need_help_label": "Need Help?",
+      "google_reviews_title": "Verified Customer Reviews",
       "cta_phone": "[phone]",
-      "file_name": "hero-banner/banner20.png",
+      "file_name": "hero-banner/banner.webp",
       "childrenRef": "features",
-      "file_name2": "hero-banner/banner.webp",
-      "left_collage_image": "hero-banner/leftimg.png",
-      "right_collage_image": "hero-banner/rightimg.png",
-      "bottom_collage_image": "hero-banner/bottomimg.png"
+      "file_name2": "hero-banner/overlayimg7.png",
+      "left_collage_image": "hero-banner/left collage.png",
+      "right_collage_image": "hero-banner/right collage.png",
+      "bottom_collage_image": "hero-banner/bottom collage.png"
     },
     "size": {
       "title": "What size is the TV?",
@@ -175,7 +179,29 @@
       "description1": "At Fireplace Services, we bring over experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
       "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
       "points": null,
-      "file_name": "about/about.webp"
+      "file_name": "about/about.webp",
+      "file_name2": "about/about2.png"
+    },
+    "working_process": {
+      "heading": "Our Working Process",
+      "description": "Simple and efficient steps to get your fireplace serviced by experts.",
+      "list": [
+        {
+          "title": "Free Consultation",
+          "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
+          "file_name": "workingprocess/message.png"
+        },
+        {
+          "title": " Expert Execution",
+          "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
+          "file_name": "workingprocess/person.png"
+        },
+        {
+          "title": "Quality Assurance",
+          "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
+          "file_name": "workingprocess/verified.png"
+        }
+      ]
     },
     "promotion": {
       "title": "Monthly Promotion",
@@ -219,7 +245,9 @@
       ]
     },
     "before_after": {
-      "title": "Before And After Results",
+      "title": "Before And After Results [industry]",
+      "sub_title": "[industry] Restoration Services Today",
+      
       "items": [
         {
           "before": "beforeafter/before1.webp",

@@ -97,11 +97,26 @@ export default function SectionLayout({ children, domainConfig, content }) {
         }
         const section = sections[key];
         if (!section || !section.visible) return null;
+        const previousVisibleKey = [...order]
+          .slice(0, index)
+          .reverse()
+          .find((k) => sections[k]?.visible);
+        const previousVisibleSection = previousVisibleKey
+          ? sections[previousVisibleKey]
+          : null;
+        const needsBanner19OverlapCompensation =
+          previousVisibleKey === "Banner" &&
+          previousVisibleSection?.design === "Banner19";
         const Component = sectionComponents[key];
         if (!Component) return null;
         const variant = section.design;
         return (
-          <Component key={`${key}-${index}`} variant={variant} content={content} />
+          <div
+            key={`${key}-${index}`}
+            className={needsBanner19OverlapCompensation ? "pt-0 lg:pt-20" : ""}
+          >
+            <Component variant={variant} content={content} />
+          </div>
         );
       })}
     </>

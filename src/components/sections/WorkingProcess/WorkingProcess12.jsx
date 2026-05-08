@@ -23,7 +23,7 @@ function normalizeImagePath(pathValue) {
   return pathValue.trim().replace(/\\/g, "/").replace(/^\/+/, "");
 }
 
-export default function WorkingProcess1({ content }) {
+export default function WorkingProcess12({ content }) {
   const section = content?.working_process ?? content?.workingprocess ?? {};
   const data = {
     heading: section?.heading ?? section?.title,
