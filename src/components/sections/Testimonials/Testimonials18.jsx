@@ -6,7 +6,7 @@ import Container from "@/components/common/Container";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 
-export default function Testimonials1({ content }) {
+export default function Testimonials18({ content }) {
   const logo = content?.navbar?.logo ?? {};
   const data = content?.testimonials ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];

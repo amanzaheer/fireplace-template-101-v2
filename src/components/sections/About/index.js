@@ -19,8 +19,6 @@ import About15 from "./About15";
 import About12 from "./About12";
 import About13 from "./About13";
 import About17 from "./About17";
-
-
 import About16 from "./About16";
 const variants = {
   About1,

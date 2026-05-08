@@ -19,7 +19,6 @@ import Promotion11 from "./Promotion11";
 import Promotion12 from "./Promotion12";
 import Promotion13 from "./Promotion13";
 import Promotion17 from "./Promotion17";
-
 import Promotion16 from "./Promotion16";
 const variants = {
   Promotion1,
@@ -39,6 +38,7 @@ const variants = {
   Promotion13,
   Promotion16,
   Promotion17,
+  Promotion10,
 };
 
 export default function Promotion({ variant, content }) {
@@ -46,7 +46,8 @@ export default function Promotion({ variant, content }) {
   const Component = variants[name] ?? Promotion16;
   return <Component content={content} />;
 }
-export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion5, Promotion6, Promotion7, Promotion8, Promotion9, Promotion14, Promotion15, Promotion16, variants };
+export { Promotion1, Promotion2, Promotion3, Promotion4, Promotion5, Promotion6, Promotion7, Promotion8, Promotion9, Promotion10,Promotion11,Promotion12,Promotion13,Promotion17,Promotion14, Promotion15, Promotion16, variants };
+
 
 
 

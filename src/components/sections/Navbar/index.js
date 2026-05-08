@@ -20,6 +20,7 @@ import Navbar14 from './Navbar14';
 import Navbar15 from './Navbar15';
 import Navbar16 from './Navbar16';
 import Navbar17 from './Navbar17';
+import Navbar18 from './Navbar18';
 const variants = {
   Navbar1,
   Navbar2,
@@ -37,7 +38,7 @@ const variants = {
   Navbar10,
   Navbar13,
   Navbar16,
-   Navbar10,
+   Navbar18,
    Navbar17,
 };
 export default function Navbar({ variant, content }) {
@@ -45,5 +46,7 @@ export default function Navbar({ variant, content }) {
   const Component = variants[name] ?? Navbar16;
   return <Component content={content} />;
 }
-export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, variants };
 
+
+
+export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar6, Navbar8, Navbar5, Navbar10,Navbar11,Navbar12,Navbar13,Navbar14,Navbar15,Navbar16,Navbar17,Navbar18,variants };
