@@ -1,16 +1,107 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useCallback,
+} from "react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import FiveStars from "@/components/common/FiveStars";
 import Image from "next/image";
 import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { Poppins, Inter, Rubik } from "next/font/google";
+import { Archivo } from "next/font/google";
 
-export default function Testimonials1({ content }) {
-  const logo = content?.navbar?.logo ?? {};
+
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const rubik = Rubik({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
+const archivo = Archivo({
+  subsets: ["latin", "italian"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+function QuoteIcon({ className = "w-14 h-14 text-[#f59a00]" }) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1200"
+      height="1200"
+      viewBox="0 0 1200 1200"
+      fill="currentColor"
+      className={className}
+    >
+      <path d="M681.526 1094.657c212.643-14.942 518.306-48.892 518.474-465.344v-523.97H725.496v560.61h157.559c9.98 149.693-113.285 188.346-247.329 218.017zm-635.724 0c212.644-14.942 518.307-48.894 518.474-465.344v-523.97H89.77v560.61h157.559C257.311 815.647 134.044 854.3 0 883.971z" />
+    </svg>
+  );
+}
+
+/** Multicolor “Google” wordmark (brand colors), text-only. */
+function GoogleWordmark({ className }) {
+  return (
+    <p
+      className={`${poppins.className} flex flex-wrap items-baseline text-[28px] font-bold leading-none tracking-tight md:text-[34px] ${className ?? ""}`}
+      aria-label="Google"
+    >
+      <span className="text-[#4285F4]">G</span>
+      <span className="text-[#EA4335]">o</span>
+      <span className="text-[#FBBC05]">o</span>
+      <span className="text-[#4285F4]">g</span>
+      <span className="text-[#34A853]">l</span>
+      <span className="text-[#EA4335]">e</span>
+    </p>
+  );
+}
+
+function GoogleReviewSummaryInner({ excellentLabel, basedOnLine }) {
+  return (
+    <>
+      <p
+        className={`${archivo.className} text-lg font-extrabold uppercase tracking-wide text-black md:text-xl`}
+      >
+        {excellentLabel}
+      </p>
+      <div className="flex w-full justify-center md:justify-start">
+        <FiveStars className="gap-1" starClassName="text-[#f59a00]" />
+      </div>
+      <p
+        className={`${inter.className} text-sm font-bold text-black md:text-base`}
+      >
+        {basedOnLine}
+      </p>
+      <GoogleWordmark />
+    </>
+  );
+}
+
+export default function Testimonials17({ content }) {
   const data = content?.testimonials ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];
   const reviewCount = data.reviewCount ?? "150+";
+  const excellentLabel = data.excellentLabel ?? "EXCELLENT";
+  const googleReviewsUrl =
+    data.googleReviewsUrl ?? data.google_review_url ?? "";
+  const basedOnTemplate =
+    data.basedOnReviewsText ?? "Based on {count} reviews";
+  const reviewCountDisplay =
+    reviewCount === "" || reviewCount == null ? "150+" : String(reviewCount);
+  const basedOnLine = basedOnTemplate.includes("{count}")
+    ? basedOnTemplate.replace("{count}", reviewCountDisplay)
+    : `Based on ${reviewCountDisplay} reviews`;
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
@@ -18,17 +109,60 @@ export default function Testimonials1({ content }) {
   const [currentTranslate, setCurrentTranslate] = useState(0);
   const [prevTranslate, setPrevTranslate] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [isTablet, setIsTablet] = useState(false);
   const sliderRef = useRef(null);
   const autoSlideRef = useRef(null);
+  const animationRef = useRef(null);
+
+  const testimonialsWithAvatars = useMemo(() => {
+    const getRandomAvatar = (seed) =>
+      `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(
+        seed,
+      )}`;
+
+    const getRandomDate = (index) => {
+      const start = new Date("2023-01-01").getTime();
+      const end = new Date("2023-12-31").getTime();
+      const length = Math.max(testimonials.length, 1);
+      const seed = (index * 2654435761) % length;
+      const offset = (seed / length) * (end - start);
+      const randomTime = start + offset;
+      const date = new Date(randomTime);
+      const year = date.getFullYear();
+      const month = String(date.getMonth() + 1).padStart(2, "0");
+      const day = String(date.getDate()).padStart(2, "0");
+      return `${year}-${month}-${day}`;
+    };
+
+    return testimonials.map((testimonial, index) => ({
+      ...testimonial,
+      avatar:
+        testimonial.avatar ||
+        getRandomAvatar(testimonial.name || `user-${index}`),
+      date: getRandomDate(index),
+    }));
+  }, [testimonials]);
+
+  const defaultAvatar = useMemo(
+    () => "https://api.dicebear.com/7.x/avataaars/svg?seed=default",
+    [],
+  );
 
   useEffect(() => {
-    const checkScreenSize = () => setIsMobile(window.innerWidth < 768);
+    const checkScreenSize = () => {
+      if (typeof window === "undefined") return;
+      setIsMobile(window.innerWidth < 768);
+      setIsTablet(window.innerWidth >= 768 && window.innerWidth < 1024);
+    };
+
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const slideSize = isMobile ? 100 : 50;
+  const getSlideSize = () => 100;
+
+  const slideSize = getSlideSize();
 
   useEffect(() => {
     setPrevTranslate(activeIndex * -slideSize);
@@ -36,135 +170,256 @@ export default function Testimonials1({ content }) {
   }, [activeIndex, slideSize]);
 
   useEffect(() => {
-    if (!isDragging && testimonials.length > 1) {
+    const startAutoSlide = () => {
       autoSlideRef.current = setInterval(() => {
-        setActiveIndex((prev) => {
-          const maxIdx = Math.max(0, testimonials.length - (isMobile ? 1 : 2));
-          return prev >= maxIdx ? 0 : prev + 1;
-        });
+        if (testimonials.length > 1) {
+          setActiveIndex((prev) => {
+            const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+            const maxAllowedIndex = Math.max(
+              0,
+              testimonials.length - visibleSlides,
+            );
+            return prev >= maxAllowedIndex ? 0 : prev + 1;
+          });
+        }
       }, 5000);
+    };
+
+    if (!isDragging) {
+      startAutoSlide();
     }
-    return () => clearInterval(autoSlideRef.current);
-  }, [isDragging, testimonials.length, isMobile]);
 
-  const handleArrowClick = (direction) => {
-    const maxIdx = Math.max(0, testimonials.length - (isMobile ? 1 : 2));
-    if (direction === "next") setActiveIndex(prev => (prev >= maxIdx ? 0 : prev + 1));
-    else setActiveIndex(prev => (prev <= 0 ? maxIdx : prev - 1));
-  };
+    return () => {
+      
+      if (autoSlideRef.current) {
+        clearInterval(autoSlideRef.current);
+      }
+    };
+  }, [isDragging, testimonials.length, isMobile, isTablet]);
+  const animation = useCallback(() => {
+    if (!sliderRef.current || !isDragging) return;
 
-  const getPositionX = (e) => (e.type.includes("mouse") ? e.pageX : e.touches[0].pageX);
+    animationRef.current = requestAnimationFrame(() => {
+      if (!sliderRef.current || !isDragging) return;
+      sliderRef.current.style.transform = `translateX(${currentTranslate}%)`;
+    });
+  }, [isDragging, currentTranslate]);
+  const setSliderPosition = useCallback(() => {
+    if (sliderRef.current) {
+      sliderRef.current.style.transform = `translateX(${currentTranslate}%)`;
+    }
+  }, [currentTranslate]);
+
+  const getPositionX = (e) =>
+    e.type.includes("mouse") ? e.pageX : e.touches[0].pageX;
 
   const handleDragStart = (e) => {
+    e.preventDefault();
     if (testimonials.length <= 1) return;
     setIsDragging(true);
     setStartX(getPositionX(e));
-    clearInterval(autoSlideRef.current);
+    if (autoSlideRef.current) {
+      clearInterval(autoSlideRef.current);
+    }
+    animationRef.current = requestAnimationFrame(animation);
   };
 
   const handleDragMove = (e) => {
     if (!isDragging) return;
     const currentX = getPositionX(e);
-    const movePercent = ((currentX - startX) / (sliderRef.current?.clientWidth || 1)) * 100;
+    const moveX = currentX - startX;
+    const containerWidth = sliderRef.current?.clientWidth || 1;
+    const movePercent = (moveX / containerWidth) * 100;
     setCurrentTranslate(movePercent + prevTranslate);
   };
 
   const handleDragEnd = () => {
     if (!isDragging) return;
+    cancelAnimationFrame(animationRef.current);
     const movedPercent = currentTranslate - prevTranslate;
-    const maxIdx = Math.max(0, testimonials.length - (isMobile ? 1 : 2));
-    if (movedPercent < -15 && activeIndex < maxIdx) setActiveIndex(activeIndex + 1);
-    else if (movedPercent > 15 && activeIndex > 0) setActiveIndex(activeIndex - 1);
-    else setCurrentTranslate(prevTranslate);
+    const threshold = -15;
+    const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+    const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
+
+    if (movedPercent < threshold) {
+      if (activeIndex >= maxAllowedIndex) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+      }
+    } else if (movedPercent > Math.abs(threshold)) {
+      if (activeIndex <= 0) {
+        setActiveIndex(maxAllowedIndex);
+      } else {
+        setActiveIndex(activeIndex - 1);
+      }
+    } else {
+      setCurrentTranslate(prevTranslate);
+      setSliderPosition();
+    }
+
     setIsDragging(false);
+  };
+
+  const handleArrowClick = (direction) => {
+    const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+    const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
+
+    if (direction === "next") {
+      if (activeIndex >= maxAllowedIndex) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+      }
+    } else if (direction === "prev") {
+      if (activeIndex <= 0) {
+        setActiveIndex(maxAllowedIndex);
+      } else {
+        setActiveIndex(activeIndex - 1);
+      }
+    }
   };
 
   if (!testimonials.length) return null;
 
   return (
-    <FullContainer className="py-16 bg-white" id="testimonials">
-      <Container>
-        <h2 className="text-4xl font-extrabold text-black text-center mb-16">Our Happy Clients</h2>
-
-        <div className="flex flex-col md:flex-row items-center gap-4 md:gap-12 relative">
-          
-          {/* Sidebar - Vertically centered with cards */}
-          <div className="w-full md:w-1/4 flex flex-col items-center md:items-start text-center md:text-left">
-            <p className="text-black font-bold text-2xl md:text-4xl leading-tight mb-2">
-              {logo?.logoText || "Fireplace Built"}
-            </p>
-            <div className="flex items-center gap-1 mb-2">
-              {[1, 2, 3, 4, 5].map((s) => (
-                <span key={s} className="text-[#EFA536] text-[20px] font-extrabold">★</span>
-              ))}
-            </div>
-            <p className="text-black font-poppins text-[20px] font-bold">
-              {reviewCount} Google Reviews
-            </p>
-          </div>
-
-          {/* Slider and Centered Arrows */}
-          <div className="relative w-full md:w-3/4 flex items-center">
-            
-            {/* Prev Arrow - Centered on Card */}
-            <button
-              onClick={() => handleArrowClick("prev")}
-              className="hidden md:flex absolute -left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center rounded-full bg-white border-2 border-black shadow-xl hover:bg-gray-50 transition-all"
-            >
-              <ChevronLeftIcon className="w-6 h-6 text-black" />
-            </button>
-
-            <div className="overflow-hidden w-full py-4">
-              <div
-                ref={sliderRef}
-                className={`flex transition-transform duration-500 ease-out ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
-                style={{ transform: `translateX(${currentTranslate}%)` }}
-                onMouseDown={handleDragStart}
-                onMouseMove={handleDragMove}
-                onMouseUp={handleDragEnd}
-                onMouseLeave={handleDragEnd}
-                onTouchStart={handleDragStart}
-                onTouchMove={handleDragMove}
-                onTouchEnd={handleDragEnd}
+    <FullContainer className="py-10 md:py-14 bg-white" id="testimonials">
+      <Container className="mx-auto px-4">
+        <div className="grid grid-cols-1 items-center gap-8 md:grid-cols-2 md:gap-6 lg:gap-10">
+          <div className="flex flex-col items-center text-center md:items-start md:pl-8 md:text-left lg:pl-12">
+            {googleReviewsUrl ? (
+              <a
+                href={googleReviewsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex flex-col items-center gap-3 md:items-center"
               >
-                {testimonials.map((t, i) => (
-                  <div key={i} className="flex-shrink-0 px-2" style={{ width: `${slideSize}%` }}>
-                    <div className="bg-[#f9f9f9] p-8 rounded-2xl shadow-xl border border-gray-100 h-[240px] flex flex-col justify-between">
-                      <div>
-                        <div className="flex justify-between items-start mb-4">
-                          <div className="flex gap-3">
-                            <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-200">
-                              <Image src={`https://api.dicebear.com/7.x/avataaars/svg?seed=${t.name}`} alt={t.name} width={48} height={48} unoptimized />
+                <GoogleReviewSummaryInner
+                  excellentLabel={excellentLabel}
+                  basedOnLine={basedOnLine}
+                />
+              </a>
+            ) : (
+              <div className="flex flex-col items-center gap-3 md:items-center">
+                <GoogleReviewSummaryInner
+                  excellentLabel={excellentLabel}
+                  basedOnLine={basedOnLine}
+                />
+              </div>
+            )}
+          </div>
+          <div className="flex flex-col items-center">
+            <div className="w-full flex-1 text-center">
+              <h2
+                className={`${poppins.className} mb-4 text-center text-4xl font-extrabold text-black md:mb-6 md:text-5xl`}
+              >
+                Our Happy Clients
+              </h2>
+
+              <div className="relative">
+                <div className="testimonial-slider-container overflow-hidden w-full max-w-[580px] p-1 mx-auto">
+                  <div
+                    ref={sliderRef}
+                    className={`testimonial-slider ${
+                      isDragging ? "grabbing" : ""
+                    }`}
+                    style={{ transform: `translateX(${currentTranslate}%)` }}
+                    onTouchStart={handleDragStart}
+                    onTouchMove={handleDragMove}
+                    onTouchEnd={handleDragEnd}
+                    onMouseDown={handleDragStart}
+                    onMouseMove={handleDragMove}
+                    onMouseUp={handleDragEnd}
+                    onMouseLeave={handleDragEnd}
+                  >
+                    {testimonialsWithAvatars.map((testimonial, index) => (
+                      <div key={index} className="testimonial-slide">
+                        <div className="bg-white p-6 md:p-8 rounded-2xl min-h-[280px] md:min-h-[300px] flex flex-col shadow-[0_5px_10px_rgba(0,0,0,0.15)]">
+                          <div className="flex items-center gap-4 mb-5">
+                            <div className="w-20 h-20 rounded-full overflow-hidden relative shrink-0">
+                              <Image
+                                src={testimonial.avatar || defaultAvatar}
+                                alt={testimonial.name}
+                                width={80}
+                                height={80}
+                                className="object-cover"
+                                unoptimized
+                              />
                             </div>
-                            <div>
-                              <h3 className="text-black font-bold text-base">{t.name}</h3>
-                              <div className="flex text-[#EFA536] text-[20px] font-extrabold gap-1">
-                                {[1, 2, 3, 4, 5].map((s) => <span key={s}>★</span>)}
-                              </div>
-                              <p className="text-gray-400 text-[10px] mt-1">2023-08-31</p>
+                            <div className="min-w-0">
+                              <h3
+                                className={`${archivo.className} text-black font-extrabold text-[20px] md:text-[25px] leading-tight wrap-break-word`}
+                              >
+                                {testimonial.name}
+                              </h3>
+                              <p
+                                className={`${archivo.className} text-black text-[20px] md:text-[25px] leading-none font-extrabold uppercase tracking-[0.08em]`}
+                              >
+                                CLIENTS
+                              </p>
+                              <FiveStars
+                                className="mt-2"
+                                starClassName="text-[#f59a00]"
+                              />
                             </div>
                           </div>
-                          <div className="w-6 h-6 rounded-full bg-white flex items-center justify-center text-[10px] font-bold border border-gray-200 shadow-sm">G</div>
+
+                          <p
+                            className={`${archivo.className} text-[#666666] italic text-[15px] md:text-[20px] leading-[1.2] flex-1 wrap-break-word`}
+                          >
+                            &ldquo; {testimonial.quote || testimonial.text}{" "}
+                            &rdquo;
+                          </p>
                         </div>
-                        <p className="text-gray-600 text-sm leading-relaxed italic line-clamp-5">
-                          &quot;{t.quote || t.text}&quot;
-                        </p>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                <div className="flex items-center justify-center gap-5 mt-6">
+                  <button
+                    type="button"
+                    onClick={() => handleArrowClick("prev")}
+                    className="w-14 h-14 flex items-center justify-center rounded-full border-[3px] border-black text-black hover:bg-black hover:text-white transition-colors"
+                    aria-label="Previous testimonial"
+                  >
+                    <ChevronLeftIcon className="w-8 h-8" />
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleArrowClick("next")}
+                    className="w-14 h-14 flex items-center justify-center rounded-full border-[3px] border-black text-black hover:bg-black hover:text-white transition-colors"
+                    aria-label="Next testimonial"
+                  >
+                    <ChevronRightIcon className="w-8 h-8" />
+                  </button>
+                </div>
               </div>
             </div>
-
-            {/* Next Arrow - Centered on Card */}
-            <button
-              onClick={() => handleArrowClick("next")}
-              className="hidden md:flex absolute -right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 items-center justify-center rounded-full bg-white border-2 border-black shadow-xl hover:bg-gray-50 transition-all"
-            >
-              <ChevronRightIcon className="w-6 h-6 text-black" />
-            </button>
           </div>
         </div>
+
+        <style jsx>{`
+          .testimonial-slider {
+            display: flex;
+            transition: ${isDragging ? "none" : "transform 0.5s ease"};
+            cursor: grab;
+            will-change: transform;
+            touch-action: pan-y;
+          }
+
+          .testimonial-slider.grabbing {
+            cursor: grabbing;
+            transition: none;
+          }
+
+          .testimonial-slide {
+            width: 100%;
+            box-sizing: border-box;
+            flex-shrink: 0;
+            padding: 10px;
+          }
+        `}</style>
       </Container>
     </FullContainer>
   );

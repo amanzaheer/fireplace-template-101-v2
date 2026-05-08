@@ -229,6 +229,25 @@ function deepMerge(dst, src) {
   return out;
 }
 
+async function resolveHomeContentForCollages(template, domainId, tagVars) {
+  const raw =
+    (await dsRetrieveWithDefault(template, domainId, 'content--home--data.json')) ?? {};
+  return resolveAllTags(raw, tagVars);
+}
+
+/** Banner20 collage slots + file_name2: copy from home banner only when home defines them (avoid wiping with undefined). */
+function pinBannerCollagesFromHomeBanner(targetBanner, homeBanner) {
+  const h = homeBanner && typeof homeBanner === 'object' ? homeBanner : {};
+  const b =
+    targetBanner && typeof targetBanner === 'object' ? { ...targetBanner } : {};
+  const out = { ...b };
+  if (h.left_collage_image) out.left_collage_image = h.left_collage_image;
+  if (h.right_collage_image) out.right_collage_image = h.right_collage_image;
+  if (h.bottom_collage_image) out.bottom_collage_image = h.bottom_collage_image;
+  if (h.file_name2) out.file_name2 = h.file_name2;
+  return out;
+}
+
 // ---------------------------------------------------------------------------
 // getPageConfig — section layout config only (no content, no tag replacement)
 // ---------------------------------------------------------------------------
@@ -328,6 +347,13 @@ export async function getLocationData(host, serviceTitle = '', locationSlug, loc
     area: locationTitle || locationSlug,
     location: locationSlug,
   };
+
+  const homeContent = await resolveHomeContentForCollages(template, domainId, vars);
+  const homeBanner = homeContent?.banner;
+  if (merged.banner && typeof merged.banner === 'object' && homeBanner && typeof homeBanner === 'object') {
+    merged.banner = pinBannerCollagesFromHomeBanner(merged.banner, homeBanner);
+  }
+
   return resolveAllTags(merged, vars);
 }
 
@@ -365,5 +391,13 @@ export async function getServiceData(host, serviceSlug, serviceTitle = '') {
 
   const merged = deepMerge(sharedDefaults, serviceOverrides);
   const vars = { ...domainData, service: serviceTitle };
+
+  // Banner20: keep collage images + file_name2 aligned with homepage (service JSON overrides no longer swap collages).
+  const homeContent = await resolveHomeContentForCollages(template, domainId, vars);
+  const homeBanner = homeContent?.banner;
+  if (merged.banner && typeof merged.banner === 'object' && homeBanner && typeof homeBanner === 'object') {
+    merged.banner = pinBannerCollagesFromHomeBanner(merged.banner, homeBanner);
+  }
+
   return resolveAllTags(merged, vars);
 }

@@ -57,17 +57,10 @@ export default function QuoteForm10({
     const newErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
+      newErrors.firstName = "Name is required";
     } else if (!validateName(formData.firstName)) {
       newErrors.firstName =
-        "First name must be 2-50 characters and contain only letters";
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
-    } else if (!validateName(formData.lastName)) {
-      newErrors.lastName =
-        "Last name must be 2-50 characters and contain only letters";
+        "Name must be 2-50 characters and contain only letters";
     }
 
     if (!formData.email.trim()) {
@@ -191,7 +184,8 @@ export default function QuoteForm10({
     try {
       const payload = {
         first_name: formData.firstName,
-        last_name: formData.lastName,
+        // API requires last_name; for this landscape design we collect one name field.
+        last_name: formData.firstName,
         email: formData.email,
         phone: formData.phone,
         message: formData.message,
@@ -239,54 +233,25 @@ export default function QuoteForm10({
     }
   };
 
+  const cardClass =
+    "w-full max-w-[444px] h-[558px] rounded-[14.8px] border border-[#cfcfcf] bg-[#5484a6] p-6 shadow-[0_8px_28px_rgba(0,0,0,0.18)]";
   const fieldBase =
-    "w-full px-4 py-2.5 rounded-xl border border-white/90 bg-transparent text-white placeholder:text-white/55 outline-none transition-colors focus:ring-2 focus:ring-[#f20508] focus:border-white";
+    "h-[50px] w-full rounded-[12px] border border-black/60 bg-white px-3 text-[19px] text-black placeholder:text-black/80 outline-none transition-colors focus:border-black";
 
   return (
-    <div className={`rounded-[16px] border-4 border-red-500 bg-transparent ${poppins.className}`}>
-      <div
-        className="relative h-fit w-full max-w-sm rounded-[12px] bg-black text-white"
-      >
+    <div className={`${poppins.className} ${cardClass}`}>
       {!formSubmitted && (
-        <div className="px-4 pt-4 pb-2 md:px-5 md:pt-5">
-          <h3 className="font-montserrat font-bold text-white text-center uppercase tracking-wide text-lg md:text-xl leading-tight">
-            {form_head?.title}
-          </h3>
-          {form_head?.sub_title ? (
-            <p className="mt-2 text-center text-sm md:text-base text-white/65 font-medium">
-              {form_head.sub_title}
-            </p>
-          ) : null}
-        </div>
-      )}
-
-      {formSubmitted ? (
-        <div className="flex flex-col items-center justify-center text-center py-10 px-6 md:px-8">
-          <div className="h-16 w-16 rounded-full bg-[#FF6611]/20 border border-[#FF6611]/50 flex items-center justify-center mb-4">
-            <CheckCircle className="h-9 w-9 text-[#FF6611]" />
-          </div>
-          <h3 className="text-xl font-bold text-white mb-2 font-montserrat">Thank You!</h3>
-          <p className="text-white/75 max-w-md mb-6 text-sm md:text-base">
-            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
-          </p>
-          <button
-            type="button"
-            onClick={closeThankYouPopup}
-            className="bg-[#FF6611] hover:bg-[#FF6611]/90 text-white py-2.5 px-8 rounded-lg font-montserrat font-bold uppercase tracking-wide transition-colors duration-200"
-          >
-            OK Thanks
-          </button>
-        </div>
-      ) : (
         <form
           onSubmit={handleSubmit}
-          className="space-y-3 text-base md:text-lg px-4 py-4 pt-2 md:px-4"
+          className="flex h-full w-full flex-col gap-3"
         >
-          <div className="grid grid-cols-2 gap-2">
+          <h3 className="mb-1 text-center text-[30px] font-extrabold uppercase leading-none text-white">
+            {form_head?.title || "GET IN TOUCH WITH US"}
+          </h3>
 
-          <div>
+          <div className="w-full">
             <label htmlFor="firstName" className="sr-only">
-              First name
+              Name
             </label>
             <input
               type="text"
@@ -295,103 +260,75 @@ export default function QuoteForm10({
               value={formData.firstName}
               onChange={handleChange}
               onFocus={handleFirstInteraction}
-              className={`${fieldBase} ${fieldErrors.firstName ? "border-red-400" : "border-white/35"}`}
-              placeholder="First name"
+              className={`${fieldBase} ${fieldErrors.firstName ? "border-red-500" : ""}`}
+              placeholder="First Name"
               required
               aria-invalid={!!fieldErrors.firstName}
             />
-            {fieldErrors.firstName && (
-              <div className="text-red-300 text-sm font-medium mt-1">{fieldErrors.firstName}</div>
-            )}
           </div>
-          <div>
-            <label htmlFor="lastName" className="sr-only">
-              Last name
+
+          <div className="w-full">
+            <label htmlFor="phone" className="sr-only">
+              Phone number
             </label>
             <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
+              type="tel"
+              id="phone"
+              name="phone"
+              value={formData.phone}
               onChange={handleChange}
               onFocus={handleFirstInteraction}
-              className={`${fieldBase} ${fieldErrors.lastName ? "border-red-400" : "border-white/35"}`}
-              placeholder="Last name"
+              className={`${fieldBase} ${fieldErrors.phone ? "border-red-500" : ""}`}
+              placeholder="(123)-456-7890"
               required
-              aria-invalid={!!fieldErrors.lastName}
+              aria-invalid={!!fieldErrors.phone}
             />
-            {fieldErrors.lastName && (
-              <div className="text-red-300 text-sm font-medium mt-1">{fieldErrors.lastName}</div>
-            )}
-          </div>
           </div>
 
+          <div className="w-full">
+            <label htmlFor="email" className="sr-only">
+              Email
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              className={`${fieldBase} ${fieldErrors.email ? "border-red-500" : ""}`}
+              placeholder="your@email.com"
+              required
+              aria-invalid={!!fieldErrors.email}
+            />
+          </div>
 
-          <label htmlFor="phone" className="sr-only">
-            Phone number
-          </label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`${fieldBase} ${fieldErrors.phone ? "border-red-400" : "border-white/35"}`}
-            placeholder="(123)-456-7890"
-            required
-            aria-invalid={!!fieldErrors.phone}
-          />
-          {fieldErrors.phone && (
-            <div className="text-red-300 text-sm font-medium">{fieldErrors.phone}</div>
-          )}
-
-          <label htmlFor="email" className="sr-only">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`${fieldBase} ${fieldErrors.email ? "border-red-400" : "border-white/35"}`}
-            placeholder="your@email.com"
-            required
-            aria-invalid={!!fieldErrors.email}
-          />
-          {fieldErrors.email && (
-            <div className="text-red-300 text-sm font-medium">{fieldErrors.email}</div>
-          )}
-
-          <label htmlFor="message" className="sr-only">
-            Message
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            rows={5}
-            className={`${fieldBase} min-h-[50px] max-h-[70px] resize-y ${fieldErrors.message ? "border-red-400" : "border-white/35"}`}
-            placeholder="Message"
-            required
-            aria-invalid={!!fieldErrors.message}
-          />
-          {fieldErrors.message && (
-            <div className="text-red-300 text-sm font-medium">{fieldErrors.message}</div>
-          )}
+          <div className="w-full flex-1">
+            <label htmlFor="message" className="sr-only">
+              Message
+            </label>
+            <textarea
+              id="message"
+              name="message"
+              value={formData.message}
+              onChange={handleChange}
+              onFocus={handleFirstInteraction}
+              rows={3}
+              className={`w-full h-full min-h-[80px] resize-none rounded-[14px] border border-black/60 bg-[#ececec] px-3 py-2 text-[19px] text-black placeholder:text-black/80 outline-none ${fieldErrors.message ? "border-red-500" : ""}`}
+              placeholder="Message"
+              required
+              aria-invalid={!!fieldErrors.message}
+            />
+          </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-0 bg-[#f20508] hover:bg-[#FF6611]/90 disabled:opacity-70 text-lg md:text-xl font-thin cursor-pointer rounded-lg py-3.5 px-6 text-white font-montserrat uppercase tracking-wider transition-colors duration-200 flex items-center justify-center gap-2"
+            className="mt-1 flex h-[55px] w-full items-center justify-center gap-2 rounded-[8px] bg-[#ff4d4d] px-6 text-[24px] font-regular uppercase text-white transition-colors duration-200 hover:bg-[#0c5b8f] disabled:opacity-70"
           >
             {isSubmitting ? (
               <>
-                <Loader className="animate-spin h-5 w-5" />
+                <Loader className="h-5 w-5 animate-spin" />
                 Submitting...
               </>
             ) : (
@@ -405,7 +342,25 @@ export default function QuoteForm10({
           </button>
         </form>
       )}
-    </div>
+
+      {formSubmitted ? (
+        <div className="flex h-full flex-col items-center justify-center text-center px-6">
+          <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full border border-[#EAA236]/50 bg-[#EAA236]/20">
+            <CheckCircle className="h-9 w-9 text-[#EAA236]" />
+          </div>
+          <h3 className="mb-2 text-xl font-bold text-black">Thank You!</h3>
+          <p className="mb-6 max-w-md text-sm text-black/75 md:text-base">
+            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
+          </p>
+          <button
+            type="button"
+            onClick={closeThankYouPopup}
+            className="rounded-lg bg-[#EAA236] px-8 py-2.5 font-bold uppercase tracking-wide text-black transition-colors duration-200 hover:bg-[#df9522]"
+          >
+            OK Thanks
+          </button>
+        </div>
+      ) : null}
     </div>
   );
 }

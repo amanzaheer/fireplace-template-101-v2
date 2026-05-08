@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CheckCircle, Loader, FileText, ArrowRight } from "lucide-react";
+import { CheckCircle, Loader, ArrowRight } from "lucide-react";
 import toast from "react-hot-toast";
 import {
   validateEmail,
@@ -9,31 +9,47 @@ import {
   validateName,
   validateMessage,
 } from "@/lib/validators";
-import {Poppins, Inter } from "next/font/google";
+import { Poppins } from "next/font/google";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-const inter = Inter({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+
+function parseFullName(fullName) {
+  const trimmed = fullName.trim();
+  const parts = trimmed.split(/\s+/).filter(Boolean);
+  const firstName = parts[0] || "";
+  const lastName = parts.length > 1 ? parts.slice(1).join(" ") : "";
+  return { firstName, lastName };
+}
+
+const cardShellClass =
+  "w-[320px] h-[370px] rounded-[14.8px] p-[16.44px] flex flex-col min-h-0 " +
+  "bg-gradient-to-br from-white/95 via-white/90 to-sky-100/88 " +
+  "shadow-[0_8px_28px_rgba(0,0,0,0.18)] border border-white/40";
+
+const fieldClass =
+  "w-full shrink-0 rounded-xl border border-black bg-white px-3 py-2 text-sm text-black " +
+  "outline-none placeholder:text-black";
+
+const fieldErrorClass = (hasError) =>
+  `${fieldClass} ${hasError ? "border-red-500" : ""}`;
+
 export default function QuoteForm7({
   data,
   form_head,
   showArrowInButton = false,
 }) {
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     phone: "",
     message: "",
   });
 
   const [fieldErrors, setFieldErrors] = useState({
-    firstName: "",
-    lastName: "",
+    fullName: "",
     email: "",
     phone: "",
     message: "",
@@ -57,19 +73,16 @@ export default function QuoteForm7({
 
   const validateForm = () => {
     const newErrors = {};
+    const { firstName, lastName } = parseFullName(formData.fullName);
+    const nameParts = formData.fullName.trim().split(/\s+/).filter(Boolean);
 
-    if (!formData.firstName.trim()) {
-      newErrors.firstName = "First name is required";
-    } else if (!validateName(formData.firstName)) {
-      newErrors.firstName =
-        "First name must be 2-50 characters and contain only letters";
-    }
-
-    if (!formData.lastName.trim()) {
-      newErrors.lastName = "Last name is required";
-    } else if (!validateName(formData.lastName)) {
-      newErrors.lastName =
-        "Last name must be 2-50 characters and contain only letters";
+    if (!formData.fullName.trim()) {
+      newErrors.fullName = "Full name is required";
+    } else if (nameParts.length < 2) {
+      newErrors.fullName = "Please enter first and last name";
+    } else if (!validateName(firstName) || !validateName(lastName)) {
+      newErrors.fullName =
+        "Use 2–50 letters per name (e.g. Jane Smith)";
     }
 
     if (!formData.email.trim()) {
@@ -96,13 +109,14 @@ export default function QuoteForm7({
   };
 
   const fireGTMEvent = (submittedFormData) => {
+    const { firstName, lastName } = parseFullName(submittedFormData.fullName);
     if (typeof window !== "undefined" && window.dataLayer) {
       window.dataLayer.push({
         event: "form_submit",
         url: window.location.href,
         formData: {
-          firstName: submittedFormData.firstName,
-          lastName: submittedFormData.lastName,
+          firstName,
+          lastName,
           email: submittedFormData.email,
           phone: submittedFormData.phone.replace(/[-()\s]/g, ""),
           message: submittedFormData.message,
@@ -124,15 +138,13 @@ export default function QuoteForm7({
     fireLeadSubmittedEvent();
     setFormSubmitted(false);
     setFormData({
-      firstName: "",
-      lastName: "",
+      fullName: "",
       email: "",
       phone: "",
       message: "",
     });
     setFieldErrors({
-      firstName: "",
-      lastName: "",
+      fullName: "",
       email: "",
       phone: "",
       message: "",
@@ -158,27 +170,36 @@ export default function QuoteForm7({
     if (fieldErrors[name]) {
       const newErrors = { ...fieldErrors };
       switch (name) {
-        case "firstName":
-        case "lastName":
-          if (formattedValue.trim() && validateName(formattedValue)) {
-            delete newErrors[name];
+        case "fullName": {
+          const { firstName, lastName } = parseFullName(formattedValue);
+          const parts = formattedValue.trim().split(/\s+/).filter(Boolean);
+          if (
+            parts.length >= 2 &&
+            validateName(firstName) &&
+            validateName(lastName)
+          ) {
+            delete newErrors.fullName;
           }
           break;
+        }
         case "email":
           if (formattedValue.trim() && validateEmail(formattedValue)) {
             delete newErrors.email;
           }
           break;
-        case "phone":
+        case "phone": {
           const cleanPhone = formattedValue.replace(/[-()\s]/g, "");
           if (cleanPhone && validatePhone(cleanPhone)) {
             delete newErrors.phone;
           }
           break;
+        }
         case "message":
           if (formattedValue.trim() && validateMessage(formattedValue, 10)) {
             delete newErrors.message;
           }
+          break;
+        default:
           break;
       }
       setFieldErrors(newErrors);
@@ -189,11 +210,13 @@ export default function QuoteForm7({
     e.preventDefault();
     if (!validateForm()) return;
 
+    const { firstName, lastName } = parseFullName(formData.fullName);
+
     setIsSubmitting(true);
     try {
       const payload = {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
+        first_name: firstName,
+        last_name: lastName,
         email: formData.email,
         phone: formData.phone,
         message: formData.message,
@@ -215,11 +238,15 @@ export default function QuoteForm7({
         if (result.errors && Array.isArray(result.errors)) {
           const serverErrors = {};
           result.errors.forEach((error) => {
-            if (error.includes("First name")) serverErrors.firstName = error;
-            else if (error.includes("Last name")) serverErrors.lastName = error;
-            else if (error.includes("Email") || error.includes("email")) serverErrors.email = error;
-            else if (error.includes("Phone") || error.includes("phone")) serverErrors.phone = error;
-            else if (error.includes("Message") || error.includes("message")) serverErrors.message = error;
+            if (error.includes("First name") || error.includes("Last name")) {
+              serverErrors.fullName = error;
+            } else if (error.includes("Email") || error.includes("email")) {
+              serverErrors.email = error;
+            } else if (error.includes("Phone") || error.includes("phone")) {
+              serverErrors.phone = error;
+            } else if (error.includes("Message") || error.includes("message")) {
+              serverErrors.message = error;
+            }
           });
           setFieldErrors((prev) => ({ ...prev, ...serverErrors }));
           throw new Error("Please fix the validation errors above");
@@ -242,163 +269,158 @@ export default function QuoteForm7({
   };
 
   return (
-    <div className="relative h-fit bg-[#003f8c] font-barlow">
-      {!formSubmitted && (
-        <div className="px-4 md:px-6 pt-5 pb-4">
-          <h3
-            className={`${poppins.className} text-2xl md:text-3xl font-bold text-white text-center tracking-wide`}
-          >
-            {form_head?.title || "GET IN TOUCH WITH US"}
-          </h3>
-        </div>
-      )}
-
+    <div className={`${poppins.className} ${cardShellClass}`}>
       {formSubmitted ? (
-        <div className="flex flex-col items-center justify-center text-center py-6 px-4 md:px-7">
-          <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+        <div className="flex flex-1 flex-col items-center justify-center gap-[10.69px] text-center min-h-0 px-1">
+          <div className="h-12 w-12 bg-green-100 rounded-full flex items-center justify-center shrink-0">
+            <CheckCircle className="h-6 w-6 text-green-600" />
           </div>
-          <h3 className="text-xl font-bold text-white mb-2">Thank You!</h3>
-          <p className="text-white max-w-md mb-6">
-            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
+          <h3 className="text-base font-bold text-[#1565c0] uppercase tracking-wide">
+            Thank You!
+          </h3>
+          <p className="text-xs text-black leading-snug">
+            Your request has been submitted successfully. We&apos;ll contact you
+            shortly with your personalized quote.
           </p>
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-white text-black hover:bg-black hover:text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
+            className="mt-1 rounded-full border border-black bg-white px-4 py-2 text-xs font-semibold text-black hover:bg-black hover:text-white transition-colors duration-200"
           >
             OK Thanks
           </button>
         </div>
       ) : (
-        <form
-          onSubmit={handleSubmit}
-          className="space-y-3 text-base md:text-lg px-4 md:px-6 pb-5 pt-5"
-        >
-          <div className="grid gap-3">
-            <div>
-              <label htmlFor="firstName" className="sr-only">First name</label>
+        <div className="flex flex-col gap-[10.69px] flex-1 min-h-0 min-w-0">
+          <header className="shrink-0 flex flex-col gap-1 text-center">
+            <h3 className="text-[13px] sm:text-[13px] font-bold uppercase tracking-wide  text-[#1976d2] leading-tight">
+              {form_head?.title || "GET IN TOUCH WITH US"}
+            </h3>
+            <p className="text-[11px] font-normal text-black leading-snug">
+              {form_head?.sub_title ||
+                form_head?.subtitle ||
+                "Fast response within 30 minutes"}
+            </p>
+          </header>
+
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col gap-[10.69px] flex-1 min-h-0 min-w-0"
+          >
+            <div className="shrink-0 min-w-0">
+              <label htmlFor="fullName" className="sr-only">
+                Full name
+              </label>
               <input
                 type="text"
-                id="firstName"
-                name="firstName"
-                value={formData.firstName}
+                id="fullName"
+                name="fullName"
+                value={formData.fullName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full px-3 py-3 bg-white rounded-md outline-none placeholder:text-black text-black ${
-                  fieldErrors.firstName ? "border border-red-500" : "border border-transparent"
-                } ${poppins.className} placeholder:font-normal`}
-                placeholder="Name"
+                className={`${poppins.className} ${fieldErrorClass(!!fieldErrors.fullName)}`}
+                placeholder="Full Name"
                 required
-                aria-invalid={!!fieldErrors.firstName}
+                aria-invalid={!!fieldErrors.fullName}
               />
-              {fieldErrors.firstName && (
-                <div className="text-red-500 text-sm font-medium mt-1">
-                  {fieldErrors.firstName}
+              {fieldErrors.fullName && (
+                <div className="text-[10px] text-red-600 font-medium mt-0.5 leading-tight">
+                  {fieldErrors.fullName}
                 </div>
               )}
             </div>
-            {/* <div>
-              <label htmlFor="lastName" className="sr-only">Last name</label>
+
+            <div className="shrink-0 min-w-0">
+              <label htmlFor="phone" className="sr-only">
+                Phone number
+              </label>
               <input
-                type="text"
-                id="lastName"
-                name="lastName"
-                value={formData.lastName}
+                type="tel"
+                id="phone"
+                name="phone"
+                value={formData.phone}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full px-3 py-3 bg-white rounded-md outline-none placeholder:text-black text-black ${
-                  fieldErrors.lastName ? "border border-red-500" : "border border-transparent"
-                }`}
-                placeholder="Last name"
+                className={`${poppins.className} ${fieldErrorClass(!!fieldErrors.phone)}`}
+                placeholder="Phone Number"
                 required
-                aria-invalid={!!fieldErrors.lastName}
+                aria-invalid={!!fieldErrors.phone}
               />
-              {fieldErrors.lastName && (
-                <div className="text-red-500 text-sm font-medium mt-1">
-                  {fieldErrors.lastName}
+              {fieldErrors.phone && (
+                <div className="text-[10px] text-red-600 font-medium mt-0.5 leading-tight">
+                  {fieldErrors.phone}
                 </div>
               )}
-            </div> */}
-          </div>
+            </div>
 
-          <label htmlFor="phone" className="sr-only">Phone number</label>
-          <input
-            type="tel"
-            id="phone"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full px-3 py-3 bg-white rounded-md outline-none placeholder:text-black text-black ${
-              fieldErrors.phone ? "border border-red-500" : "border border-transparent"
-            } ${poppins.className} placeholder:font-normal`}
-            placeholder="Phone"
-            required
-            aria-invalid={!!fieldErrors.phone}
-          />
-          {fieldErrors.phone && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
-          )}
+            <div className="shrink-0 min-w-0">
+              <label htmlFor="email" className="sr-only">
+                Email
+              </label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                onFocus={handleFirstInteraction}
+                className={`${poppins.className} ${fieldErrorClass(!!fieldErrors.email)}`}
+                placeholder="Email Address"
+                required
+                aria-invalid={!!fieldErrors.email}
+              />
+              {fieldErrors.email && (
+                <div className="text-[10px] text-red-600 font-medium mt-0.5 leading-tight">
+                  {fieldErrors.email}
+                </div>
+              )}
+            </div>
 
-          <label htmlFor="email" className="sr-only">Email</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            className={`w-full px-3 py-3 bg-white rounded-md outline-none placeholder:text-black text-black ${
-              fieldErrors.email ? "border border-red-500" : "border border-transparent"
-            } ${poppins.className} placeholder:font-normal`}
-            placeholder="Email"
-            required
-            aria-invalid={!!fieldErrors.email}
-          />
-          {fieldErrors.email && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
-          )}
+            <div className="flex flex-col gap-0.5 min-h-0 flex-1 min-w-0">
+              <label htmlFor="message" className="sr-only">
+                Message
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                value={formData.message}
+                onChange={handleChange}
+                onFocus={handleFirstInteraction}
+                rows={2}
+                className={`${poppins.className} w-full min-h-[72px] flex-1 resize-none rounded-[22px] border border-black bg-white px-3 py-2 text-sm text-black outline-none placeholder:text-neutral-500 ${
+                  fieldErrors.message ? "border-red-500" : ""
+                }`}
+                placeholder="Message"
+                required
+                aria-invalid={!!fieldErrors.message}
+              />
+              {fieldErrors.message && (
+                <div className="text-[10px] text-red-600 font-medium leading-tight shrink-0">
+                  {fieldErrors.message}
+                </div>
+              )}
+            </div>
 
-          <label htmlFor="message" className="sr-only">Message</label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            onFocus={handleFirstInteraction}
-            rows={4}
-            className={`w-full px-3 py-3 resize-none bg-white rounded-md outline-none placeholder:text-black text-black ${
-              fieldErrors.message ? "border border-red-500" : "border border-transparent"
-            } ${poppins.className} placeholder:normal-case`}
-            placeholder="Message"
-            required
-            aria-invalid={!!fieldErrors.message}
-          />
-          {fieldErrors.message && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.message}</div>
-          )}
-
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="w-full bg-[#3a8ffb] text-lg md:text-xl hover:bg-[#2f7be0] cursor-pointer rounded-md py-3 px-6 text-white font-semibold transition-colors duration-200 flex items-center justify-center gap-2 uppercase"
-          >
-            {isSubmitting ? (
-              <>
-                <Loader className="animate-spin mr-2 h-4 w-4" />
-                Submitting...
-              </>
-            ) : (
-              <div className="text-xl md:text-2xl">
-                Submit
-                {showArrowInButton && (
-                  <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
-                )}
-              </div>
-            )}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className={`${poppins.className} shrink-0 w-full rounded bg-[#ff4d4d] py-2.5 px-4 text-normal font-normal uppercase tracking-wide text-white transition hover:bg-[#c91d15] disabled:opacity-70 flex items-center justify-center gap-2 shadow-[inset_0_6px_10px_rgba(0,0,0,0.10),_inset_0_-6px_10px_rgba(0,0,0,0.2)]`}            >
+              {isSubmitting ? (
+                <>
+                  <Loader className="animate-spin h-4 w-4 shrink-0" />
+                  <span className="text-xs">Submitting...</span>
+                </>
+              ) : (
+                <>
+                  <span>SUBMIT</span>
+                  {showArrowInButton && (
+                    <ArrowRight className="h-4 w-4 shrink-0" />
+                  )}
+                </>
+              )}
+            </button>
+          </form>
+        </div>
       )}
     </div>
   );

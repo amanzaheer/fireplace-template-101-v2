@@ -19,6 +19,7 @@ import {
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Rubik, Inter, Poppins } from "next/font/google";
+import QuoteForm3 from "./QuoteForm/QuoteForm3";
 
 const rubik = Rubik({
   subsets: ["latin"],
@@ -34,14 +35,6 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-const QuoteForm3 = dynamic(
-  () => import("@/components/sections/Banner/QuoteForm/QuoteForm3"),
-  {
-    loading: () => (
-      <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
-    ),
-    ssr: false,
-  });
 
 const ICON_MAP = {
   Clock,
@@ -114,18 +107,29 @@ export default function Banner3({ content }) {
         <div className="w-full flex flex-col lg:flex-row items-center lg:items-start justify-between gap-8 lg:gap-12 text-white">
           <div className="w-full max-w-[700px]">
             <div className="w-fit flex flex-col items-start justify-center">
-              <div className={`${poppins.className} font-black max-w-[620px]  inline-block uppercase text-[60px] md:text-[74px] leading-[0.95] text-left text-shadow-lg`}>
+              <div
+                className={`${poppins.className} font-black max-w-[620px]  inline-block uppercase text-[60px] md:text-[74px] leading-[0.95] text-left text-shadow-lg`}
+              >
                 <span className="text-white text-[32px] md:text-[44px]">
-                  {String(data?.heading || data?.title || "").split(" ").slice(0, 1).join(" ")}{" "}
+                  {String(data?.heading || data?.title || "")
+                    .split(" ")
+                    .slice(0, 1)
+                    .join(" ")}{" "}
                 </span>
                 <br />
 
                 <span className="text-[#f59403]">
-                  {String(data?.heading || data?.title || "").split(" ").slice(1, 4).join(" ")}
+                  {String(data?.heading || data?.title || "")
+                    .split(" ")
+                    .slice(1, 4)
+                    .join(" ")}
                 </span>
                 <br />
                 <span className="text-white text-[60px] md:text-[74px]">
-                  {String(data?.heading || data?.title || "").split(" ").slice(4).join(" ")}{" "}
+                  {String(data?.heading || data?.title || "")
+                    .split(" ")
+                    .slice(4)
+                    .join(" ")}{" "}
                 </span>
               </div>
               {data?.tagline ? (
@@ -151,7 +155,9 @@ export default function Banner3({ content }) {
                         ) : (
                           <CheckCircle className="w-5 h-5 text-[#f2a51f] shrink-0" />
                         )}
-                        <span className={`${inter.className} text-white font-medium text-[20px] md:text-[24px]`}>
+                        <span
+                          className={`${inter.className} text-white font-medium text-[20px] md:text-[24px]`}
+                        >
                           {feature.text}
                         </span>
                       </li>
@@ -166,9 +172,19 @@ export default function Banner3({ content }) {
                   className="inline-flex items-center gap-3 rounded-full bg-transparent text-white text-[40px] md:text-[54px] font-extrabold leading-none"
                 >
                   <div className="w-11 h-11 md:w-[71px] md:h-[71px] rounded-full bg-[#efa536] flex items-center justify-center">
-                    <Image src="/st-icons/Temp3/call2.png" alt="Phone" width={150} height={150} className="w-auto h-5 md:h-[22px]" />
+                    <Image
+                      src="/st-icons/Temp3/call2.png"
+                      alt="Phone"
+                      width={150}
+                      height={150}
+                      className="w-auto h-5 md:h-[22px]"
+                    />
                   </div>
-                  <span className={`${rubik.className} text-white font-bold text-[30px] md:text-[40px] uppercase`}>{phone}</span>
+                  <span
+                    className={`${rubik.className} text-white font-bold text-[30px] md:text-[40px] uppercase`}
+                  >
+                    {phone}
+                  </span>
                 </a>
               </div>
             </div>
@@ -176,8 +192,19 @@ export default function Banner3({ content }) {
 
           <div className="w-full md:w-fit max-w-[370px] relative ">
             <div className="absolute hidden md:block -top-[50px] -left-[130px] h-auto w-full">
-              <Image src="/st-icons/Temp3/quotearrow.png" alt="Phone" width={250} height={250} className="w-auto h-[100px]" />
-              <h3 className={` ${inter.className} text-white text-lg font-normal w-fit -translate-x-1/2`}> Complete your form & <br /> get a free quote today!</h3>
+              <Image
+                src="/st-icons/Temp3/quotearrow.png"
+                alt="Phone"
+                width={250}
+                height={250}
+                className="w-auto h-[100px]"
+              />
+              <h3
+                className={` ${inter.className} text-white text-lg font-normal w-fit -translate-x-1/2`}
+              >
+                {" "}
+                Complete your form & <br /> get a free quote today!
+              </h3>
             </div>
             <div className="rounded-tl-[20px] rounded-br-[20px] shadow-[0_18px_50px_rgba(0,0,0,0.45)] overflow-hidden">
               <QuoteForm3
@@ -186,8 +213,6 @@ export default function Banner3({ content }) {
                 showArrowInButton={false}
               />
             </div>
-
-
           </div>
         </div>
       </Container>

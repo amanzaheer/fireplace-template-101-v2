@@ -61,7 +61,8 @@ export async function GET(request, context) {
     return new Response("Not Found", { status: 404 });
   }
   const relativePath = decodeURIComponent(pathSegments.join("/"));
-  if (relativePath.includes("..") || !/^[a-zA-Z0-9\-_./]+$/.test(relativePath)) {
+  // Allow filenames like "location slider.png" (space): still block path traversal.
+  if (relativePath.includes("..") || !/^[a-zA-Z0-9\-_.\/ ]+$/.test(relativePath)) {
     return new Response("Bad Request", { status: 400 });
   }
 

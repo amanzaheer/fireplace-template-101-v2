@@ -20,6 +20,7 @@ import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Poppins, Inter } from "next/font/google";
 import { Rubik } from "next/font/google";
+import QuoteForm8 from "./QuoteForm/QuoteForm8";
 
 const poppin = Poppins({
   subsets: ["latin"],
@@ -32,13 +33,6 @@ const inter = Inter({
 const rubik = Rubik({
   subsets: ["regular"],
   weight: ["400", "500", "600", "700"],
-});
-
-const QuoteForm = dynamic(() => import("./QuoteForm/QuoteForm8"), {
-  loading: () => (
-    <div className="bg-white shadow-lg h-[120px] w-[280px] animate-pulse" />
-  ),
-  ssr: false,
 });
 
 const ICON_MAP = {
@@ -196,10 +190,7 @@ export default function Banner8({ content }) {
                   {features.map((feature, idx) => {
                     const IconComponent = ICON_MAP[feature.icon];
                     return (
-                      <li
-                        key={idx}
-                        className="flex items-center gap-1.5"
-                      >
+                      <li key={idx} className="flex items-center gap-1.5">
                         <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-[2px] bg-[#FF0504]">
                           {IconComponent ? (
                             <IconComponent className="h-2.5 w-2.5 text-white" />

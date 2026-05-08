@@ -1,6 +1,6 @@
 "use client";
 
-import { Phone } from "lucide-react";
+import Image from "next/image";
 import Icon from "@mdi/react";
 import { mdiShieldCheckOutline } from "@mdi/js";
 import FullContainer from "@/components/common/FullContainer";
@@ -36,7 +36,7 @@ const CheckIcon = ({ isMainCard }) => (
     path={mdiShieldCheckOutline}
     size={1.2}
     color={"#FF1514"}
-    className="mt-0.5 shrink-0"
+    className={`${isMainCard ? "mt-0.5" : "mt-0"} shrink-0`}
   />
 );
 
@@ -46,23 +46,29 @@ const PromotionCard = ({
   features,
   phone,
   isMainCard = false,
+  isFirstCard = false,
 }) => {
+  const phoneLink = phone ? `tel:${phone}` : "#";
+  const phoneButtonClass =
+    "mt-2 mx-auto h-[65px]  w-[260px] inline-flex flex-row items-center justify-center gap-2 rounded-full bg-[#ff0504] text-white shadow-lg transition-all hover:opacity-80 font-inter";
+  const phoneTextClass = `${inter.className} text-sm md:text-[20px] lg:text-lg font-inter font-bold text-white mt-1 leading-none`;
+
   return (
     <div
-      className={`relative flex flex-col h-full rounded-[22px] p-6 md:p-7 border shadow-sm mt-6 ${
+      className={`relative flex flex-col h-full rounded-t-[22px] rounded-b-non p-6 md:p-7 shadow-sm mt-6 ${
         isMainCard
-          ? "bg-[#191515] text-white border-[#f59403] md:scale-[1.02]"
-          : "bg-white text-[#121212] border-[#e7e7e7]"
+          ? "bg-[#191515] text-white md:scale-[1.02]"
+          : "bg-white text-[#121212]"
       }`}
     >
       {heading && (
-        <div className="mb-2">
+        <div className={`mb-2 ${isFirstCard ? "text-center" : ""}`}>
           <MaybeMarkdown
             as="h3"
             className={`${poppins.className} font-extrabold tracking-tight leading-tight ${
               isMainCard
-                ? "text-[22px] md:text-[27px]"
-                : "text-[28px] md:text-[32px]"
+                ? "text-[22px] md:text-[27px] text-center"
+                : "text-[28px] md:text-[32px] text-center"
             }`}
           >
             {heading}
@@ -78,18 +84,18 @@ const PromotionCard = ({
         </div>
       )}
 
-      <div className="space-y-2.5 flex-1 mt-4">
+      <div className="space-y-1 flex-1 mt-4">
         {(Array.isArray(features) ? features : [])?.map((feature, index) => (
           <div
             key={index}
-            className={`flex items-center gap-1.5 text-[30px] leading-snug ${
+            className={`flex items-center gap-1  text-[30px] leading-snug ${
               isMainCard ? "text-white/95" : "text-[#212020]"
             }`}
           >
             <CheckIcon isMainCard={isMainCard} />
             <MaybeMarkdown
               as="span"
-              className={`${inter.className}  text-[14px] md:text-[16px]`}
+              className={`${inter.className} text-[14px] md:text-[16px]`}
             >
               {feature}
             </MaybeMarkdown>
@@ -98,17 +104,27 @@ const PromotionCard = ({
       </div>
 
       {isMainCard ? (
-        <a
-          href={phone ? `tel:${phone}` : "#"}
-          className="mt-2 inline-flex w-fit mb-4 items-center gap-2 rounded-full bg-[#FF0504] text-white font-semibold px-5 py-2.5 text-[28px] leading-none"
-        >
-          <Phone className="w-4 h-4 md:w-5 md:h-5" />
-          {phone || "(888)-249-0566"}
+        <a href={phoneLink} className={phoneButtonClass}>
+          <span className="flex h-[30px] w-[30px] items-center justify-center">
+            <Image
+              src="/st-icons/Temp17/call17.png"
+              alt="Phone"
+              width={18}
+              height={18}
+              className="h-[30px] w-[30px] shrink-0"
+            />
+          </span>
+          <span className="flex flex-col items-start leading-none">
+            <span className={`${inter.className} text-[16px] font-normal text-white`}>
+              CLICK TO CALL
+            </span>
+            <span className={phoneTextClass}>{phone}</span>
+          </span>
         </a>
       ) : (
         <a
-          href={phone ? `tel:${phone}` : "#"}
-          className={`${rubik.className} mt-6 inline-flex w-fit items-center gap-2 rounded-sm bg-[#0F1F41] text-white font-semibold uppercase px-6 py-3 md:px-7 md:py-4 text-[12px] md:text-[14px] leading-none`}
+          href={phoneLink}
+          className={`${rubik.className} mt-1 mx-auto h-[44.9px] inline-flex w-fit gap-2 rounded-sm items-center justify-center bg-[#0F1F41] text-white font-semibold uppercase px-6 py-3 md:px-7 md:py-4 text-[12px] md:text-[14px] leading-none`}
         >
           Call Us Today
           <span aria-hidden="true" className="text-[#FF0504]">→</span>
@@ -118,7 +134,7 @@ const PromotionCard = ({
   );
 };
 
-export default function Promotion3({ content }) {
+export default function Promotion17({ content }) {
   const promotion = content?.promotion ?? {};
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const title = promotion?.title ?? "Monthly Promotion";
@@ -152,6 +168,7 @@ export default function Promotion3({ content }) {
                 features={item.features}
                 phone={phone}
                 isMainCard={index === 1}
+                isFirstCard={index === 0}
               />
             ))}
           </div>

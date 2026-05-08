@@ -4,11 +4,35 @@ import dynamic from "next/dynamic";
 import Image from "next/image";
 import Container from "@/components/common/Container";
 import FullContainer from "@/components/common/FullContainer";
-import { Phone } from "lucide-react";
+import {
+  CheckCircle,
+  Clock,
+  Star,
+  Shield,
+  Award,
+  Trophy,
+  ThumbsUp,
+  Phone,
+  FileText,
+  MessageSquare,
+} from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Poppins, Inter } from "next/font/google";
-import { Rubik } from "next/font/google";
+
+const ICON_MAP = {
+  Clock,
+  Star,
+  Shield,
+  Award,
+  CheckCircle,
+  Trophy,
+  ThumbsUp,
+  Phone,
+  FileText,
+  MessageSquare,
+};
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -17,15 +41,11 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-const rubik = Rubik({
-  subsets: ["regular"],
-  weight: ["400", "500", "600", "700"],
-});
 const QuoteForm7 = dynamic(
   () => import("@/components/sections/Banner/QuoteForm/QuoteForm7"),
   {
     loading: () => (
-      <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
+      <div className="bg-white/90 shadow-lg rounded-[14.8px] h-[370px] w-[320px] max-w-full animate-pulse" />
     ),
     ssr: false,
   },
@@ -52,6 +72,7 @@ export default function Banner7({ content }) {
   const image =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
     buildImageSrc(IMAGE_BASE, "hero/hero.webp");
+  const overlayImage = buildImageSrc(IMAGE_BASE, banner.file_name2);
   const form_head = {
     title: content?.banner?.form_title || "Get Your Free Quote",
     sub_title:
@@ -82,82 +103,104 @@ export default function Banner7({ content }) {
             objectPosition: "center",
           }}
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-black/50" />
+        {overlayImage ? (
+          <div className="absolute inset-y-0 right-0 z-30 hidden w-[42%] lg:block pointer-events-none mr-30">
+            <Image
+              src={overlayImage}
+              alt={data?.altImage || "Banner overlay"}
+              fill
+              sizes="42vw"
+              style={{
+                objectFit: "contain",
+                objectPosition: "right bottom",
+              }}
+              unoptimized
+            />
+          </div>
+        ) : null}
       </div>
-
-      <Container className="relative z-10 font-barlow py-8 md:py-10 lg:py-0 mt-8 md:mt-8 lg:mt-10">
-        <div className="w-full flex flex-col lg:flex-row items-start justify-between gap-8 lg:gap-10 text-white">
-          <div className="relative w-full max-w-[640px]">
-            <div className="w-full flex flex-col items-start">
+       
+      <Container className="relative z-10 font-barlow py-8 md:py-10 lg:py-0 mt-8 md:mt-2 lg:mt-1">
+        <div className="w-full min-h-[450px] flex flex-col lg:flex-row items-center justify-start gap-8 lg:gap-0 text-white">
+          <div className="relative w-full max-w-[640px] lg:-mt-6">
+            <div className="w-full flex flex-col items-center justify-center lg:items-start lg:justify-start">
               <a
                 href={phone ? `tel:${phone}` : "#"}
-                className="inline-flex items-center gap-3 mb-4 md:mb-5 hover:opacity-90 transition-opacity"
+                className={`${poppins.className} group mb-3 md:mb-4 inline-flex w-auto max-w-max flex-nowrap items-center justify-center gap-3 rounded-full border border-white/25 bg-[#ff4d4d] px-5 py-3 text-white shadow-[inset_0_4px_6px_rgba(0,0,0,0.35),inset_0_-4px_6px_rgba(0,0,0,0.35)] transition-opacity hover:opacity-95 sm:justify-start sm:px-8 sm:py-3.5`}
               >
-                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-[#1e90ff] text-white shrink-0">
-                  <Phone className="w-6 h-6" />
-                </span>
-                <span className="leading-none flex flex-col gap-1 md:gap-1.5">
-                  <span
-                    className={`${poppins.className} block text-[18px] md:text-[20px] font-black uppercase tracking-tight`}
-                  >
-                    Call Us Now!
-                  </span>
-                  <span
-                    className={`${poppins.className} block text-[24px] md:text-[26px] font-black`}
-                  >
-                    {phone || "(123)-456-7890"}
+                <Image
+                  src="/st-icons/Temp7/call1.1.png"
+                  alt="altimage"
+                  width={32}
+                  height={32}
+                  className="h-7 w-auto shrink-0 sm:h-8"
+                  unoptimized
+                />
+                <span className="min-w-0 text-left text-[14px] font-extrabold leading-none tracking-tight sm:text-[16px] md:text-[26px] lg:text-[20px]">
+                  <span className="whitespace-nowrap">
+                    <span className="uppercase">CALL US 24/7-</span>{" "}
+                    {phone}
                   </span>
                 </span>
               </a>
-
-              <div className="bg-[#023e8a] px-5 md:px-6 py-5 md:py-6 rounded-tr-[2px] rounded-br-[72px] max-w-[560px]">
-                <h1
-                  className={`${poppins.className} font-black uppercase text-[40px] sm:text-[48px] lg:text-[55px] leading-[0.95] text-white`}
-                >
-                  {data?.heading || data?.title}
-                </h1>
-              </div>
+              <h1
+                className={`${poppins.className} font-black uppercase text-[40px] mt-1 md:mt-2 lg:mt-2 sm:text-[40px] lg:text-[50px] leading-[0.95] text-white text-center lg:text-left max-w-[15ch]`}
+              >
+                {data?.heading || data?.title}
+              </h1>
 
               {features?.length > 0 ? (
-                <ul className="mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+                <ul className="mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-2">
                   {features?.map((feature, idx) => {
+                    const IconComponent = ICON_MAP[feature.icon];
                     return (
                       <li
                         key={idx}
                         className={`${inter.className} flex items-center gap-2 text-white font-medium text-base md:text-xl text-[14px] md:text-[16px] leading-tight`}
                       >
-                        <div className="w-5 h-auto whitespace-nowrap shrink-0">
-                          <Image
-                            src="/st-icons/Temp7/shield icon.png"
-                            alt="Check"
-                            width={16}
-                            height={16}
-                            className="w-auto h-5 md:h-[19px]"
-                          />
-                        </div>
+                        {IconComponent ? (
+                          <IconComponent className="w-5 h-5 text-white shrink-0" />
+                        ) : null}
                         {feature.text}
                       </li>
                     );
                   })}
                 </ul>
               ) : null}
+              <a
+                href={phone ? `tel:${phone}` : "#"}
+                className={`${poppins.className} group mb-0 md:mb-5 inline-flex w-auto border mt-6 md:mt-8 lg:mt-8 max-w-max flex-nowrap items-center justify-center gap-3 rounded-full border-white/25 bg-[#3e8aea] px-5 py-3 text-white shadow-[inset_0_2px_0_rgba(255,255,255,0.12),inset_0_-2px_0_rgba(0,0,0,0.12)] transition-opacity hover:opacity-95 sm:justify-start sm:px-8 sm:py-3.5`}
+              >
+                <Image
+                  src="/st-icons/Temp7/call1.1.png"
+                  alt=""
+                  width={32}
+                  height={32}
+                  className="h-7 w-auto shrink-0 sm:h-8"
+                  unoptimized
+                />
+                <span className="min-w-0 text-left text-[14px] font-extrabold leading-none tracking-tight sm:text-[16px] md:text-[18px] lg:text-[19px]">
+                  <span className="whitespace-nowrap">
+                    <span className="uppercase">Get Your Offer Today</span>
+                  </span>
+                </span>
+              </a>
+            </div>
+          </div>
+          <div className="w-full lg:w-auto flex justify-center lg:justify-left lg:pr-8 xl:pr-16">
+            <div className="overflow-hidden">
+              <div className="bg-transparent px-0 pb-10">
+                <QuoteForm7
+                  data={data}
+                  form_head={form_head}
+                  showArrowInButton={false}
+                />
+              </div>
             </div>
           </div>
         </div>
       </Container>
-      <div className="relative lg:absolute lg:bottom-0 lg:right-0 w-full max-w-[450px] h-fit z-10 mt-6 lg:mt-0">
-        <div className="w-full md:w-fit max-w-[450px] ml-auto">
-          <div className=" overflow-hidden">
-            <div className="bg-transparent px-0 pb-0 lg:min-h-[483.5px]">
-              <QuoteForm7
-                data={data}
-                form_head={form_head}
-                showArrowInButton={false}
-              />
-            </div>
-          </div>
-        </div>
-      </div>
     </FullContainer>
   );
 }

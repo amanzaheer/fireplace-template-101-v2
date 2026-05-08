@@ -20,6 +20,8 @@ import {
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Poppins, Inter } from "next/font/google";
+import QuoteForm4 from "./QuoteForm/QuoteForm4";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -28,14 +30,6 @@ const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-const QuoteForm4 = dynamic(
-  () => import("@/components/sections/Banner/QuoteForm/QuoteForm4"),
-  {
-    loading: () => (
-      <div className="bg-white shadow-lg rounded-[15px] h-[400px] w-full md:w-[370px] animate-pulse" />
-    ),
-    ssr: false,
-  });
 
 const ICON_MAP = {
   Clock,
@@ -137,9 +131,10 @@ export default function Banner4({ content }) {
                   <span className="inline-flex items-center justify-center w-8 h-8 rounded-full bg-[#f59402] text-black ">
                     <PhoneCallIcon className="w-3.5 h-3.5" />
                   </span>
-                  <span className={`${poppins.className} text-[#0f2962] font-normal uppercase  text-sm md:text-base`}>
-
-                  Contact
+                  <span
+                    className={`${poppins.className} text-[#0f2962] font-normal uppercase  text-sm md:text-base`}
+                  >
+                    Contact
                   </span>
                 </a>
                 <a
@@ -150,24 +145,37 @@ export default function Banner4({ content }) {
                 </a>
                 <div className="mt-8 font-black max-w-[400px] inline-block uppercase text-[26px] sm:text-[32px] md:text-[44px] leading-none ">
                   <span className="text-[#0f2962] leading-none">
-                    {String(data?.heading || data?.title || "").split(" ").slice(0, 1).join(" ")}{" "}
+                    {String(data?.heading || data?.title || "")
+                      .split(" ")
+                      .slice(0, 1)
+                      .join(" ")}{" "}
                   </span>
                   <br />
                   <span className="text-[#f59402] md:text-[55px] leading-none">
-                    {String(data?.heading || data?.title || "").split(" ").slice(1, 4).join(" ")}
+                    {String(data?.heading || data?.title || "")
+                      .split(" ")
+                      .slice(1, 4)
+                      .join(" ")}
                   </span>
                   <br />
                   <span className="text-[#0f2962] md:text-[55px] leading-none">
-                    {String(data?.heading || data?.title || "").split(" ").slice(4).join(" ")}
+                    {String(data?.heading || data?.title || "")
+                      .split(" ")
+                      .slice(4)
+                      .join(" ")}
                   </span>
                 </div>
                 {data?.tagline ? (
-                  <h2 className={`text-base md:text-xl font-semibold leading-tight text-white/90 text-left mt-2 ${inter.className}`}>
+                  <h2
+                    className={`text-base md:text-xl font-semibold leading-tight text-white/90 text-left mt-2 ${inter.className}`}
+                  >
                     {data?.tagline}
                   </h2>
                 ) : null}
 
-                  <p className={`text-sm md:text-base text-left mt-3 mb-1 text-white/80 max-w-[560px] ${inter.className}`}>
+                <p
+                  className={`text-sm md:text-base text-left mt-3 mb-1 text-white/80 max-w-[560px] ${inter.className}`}
+                >
                   {data?.description}
                 </p>
                 {features?.length > 0 ? (
@@ -184,7 +192,9 @@ export default function Banner4({ content }) {
                           ) : (
                             <ShieldCheck className="w-5 h-5 text-[#f2a51f] shrink-0" />
                           )}
-                          <span className={`${inter.className} text-white font-medium text-[18px] md:text-[20px]`}>
+                          <span
+                            className={`${inter.className} text-white font-medium text-[18px] md:text-[20px]`}
+                          >
                             {feature.text}
                           </span>
                         </li>
@@ -215,18 +225,14 @@ export default function Banner4({ content }) {
                   showArrowInButton={false}
                 />
               </div>
-
-
             </div>
           </div>
         </Container>
-
       </FullContainer>
       <div className="w-full h-5 relative">
         <div className="bg-[#f59403] h-[13px] absolute top-0 left-0 w-full"></div>
         <div className="bg-[#f59403] h-6 rotate-1 absolute top-0 left-0 w-full"></div>
       </div>
-
     </>
   );
 }

@@ -89,20 +89,35 @@ export default function Navbar7({ content }) {
   const closeMenu = useCallback(() => setIsOpen(false), []);
 
   const phoneLink = phone ? `tel:${phone}` : "#";
+  const phoneNumber = phone || "(123) 456-7890";
   const phoneButtonClass =
-    "flex items-center shadow-xl justify-center sm:justify-start gap-2 px-3 md:px-5 lg:px-6 py-1 md:py-1.5 lg:py-2.5 w-auto min-w-[170px]    absolute right-0  top-0 md:w-[446px] h-[40px] md:h-[87px] text-white hidden md:flex font-semibold hover:opacity-90 transition-all bg-[#3a8ffb]";
-  const phoneCircleClass =
-    "hidden sm:block w-[56px] h-[55px] rounded-full bg-white overflow-hidden shrink-0";
-  const phoneTextClass = `${poppins.className} text-white text-lg md:text-2xl lg:text-4xl font-semibold`;
+    `${poppins.className} hidden md:inline-flex items-center justify-center gap-2   bg-[#fe4c4c] rounded-full text-white px-5 h-13 min-w-[240px] font-bold text-[19px] leading-none hover:opacity-90 transition-all`;
+  const phoneTextClass = "leading-none";
+  const phoneButton = (
+    <a
+      href={phoneLink}
+      className={phoneButtonClass}
+    >
+      <Image
+        src="/st-icons/Temp7/call1.1.png"
+        alt="Phone"
+        width={32}
+        height={32}
+        className="w-auto h-8 shrink-0"
+        unoptimized
+      />
+      <span className={`${phoneTextClass} whitespace-nowrap`}>{phoneNumber}</span>
+    </a>
+  );
 
   const headerContent = (
     <>
-      <div className="flex flex-row justify-between h-full items-center w-full md:pr-8 gap-16 md:gap-20">
+      <div className="flex flex-row justify-between h-full items-center w-full  text-white md:pr-8 gap-16 md:gap-20">
         <div className="h-full flex items-center justify-center">
           <Logo logo={logo} imagePath={imagePath} />
         </div>
 
-        <div className={`${inter.className} hidden lg:flex items-center text-sm font-normal justify-start gap-6 w-full`}>
+        <div className={`${inter.className} hidden lg:flex items-center  text-sm font-normal justify-center gap-6 w-full`}>
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
               const children = getDropdownChildren(item);
@@ -146,8 +161,8 @@ export default function Navbar7({ content }) {
                             className={cn(
                               "text-sm font-normal py-1 px-4 cursor-pointer transition-all duration-100 block",
                               isActive
-                                ? "bg-[#023e8a] text-white"
-                                : `text-black hover:bg-[#023e8a] hover:text-white`,
+                                ? "bg-[#3e8aea] text-white"
+                                : `text-black hover:bg-[#3e8aea] hover:text-white`,
                             )}
                           >
                             {child?.title}
@@ -186,21 +201,12 @@ export default function Navbar7({ content }) {
         </div>
 
         <div className="flex items-center justify-end flex-row">
-          <div className="flex flex-col gap-0.5 md:gap-1 justify-center items-center ">
-            <div className="text-xs">
-              <a
-                href={phoneLink}
-                className={phoneButtonClass}
-              >
-                <div className={phoneCircleClass} />
-                <span className={phoneTextClass}>{phone}</span>
-              </a>
-            </div>
+          <div className="hidden md:flex flex-col gap-0.5 md:gap-1 justify-center items-center">
+            <div className="text-xs">{phoneButton}</div>
             {/* <h2 className={`${inter.className} text-[#c92028] font-bold text-xs md:text-sm leading-none`}>
               Call Us Today
             </h2> */}
           </div>
-
           <div
             className="lg:hidden text-white pl-5 cursor-pointer"
             onClick={mounted ? toggleMenu : undefined}
@@ -212,7 +218,7 @@ export default function Navbar7({ content }) {
             aria-expanded={isOpen}
             aria-label={isOpen ? "Close menu" : "Open menu"}
           >
-            <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#023e8a]">
+            <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#3e8aea]">
               {isOpen ? (
                 <X className="w-7 h-6" />
               ) : (
@@ -227,7 +233,7 @@ export default function Navbar7({ content }) {
 
   if (!mounted) {
     return (
-      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-[#023e8a] text-white py-2 h-[82px] md:h-[84px]">
+      <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-[#3e8aea] text-white py-2 h-[82px] md:h-[78px]">
         <Container>
           <div className="flex flex-row justify-between h-full  items-center w-full md:pr-8">
             <div className="h-full flex items-center justify-center">
@@ -235,21 +241,13 @@ export default function Navbar7({ content }) {
             </div>
             <div className="flex items-center justify-end flex-row">
               <div className="hidden md:flex flex-col gap-0.5 md:gap-1 justify-center items-center">
-                <div className="text-xs">
-                  <a
-                    href={phoneLink}
-                    className={phoneButtonClass}
-                  >
-                    <div className={phoneCircleClass} />
-                    <span className={phoneTextClass}>{phone}</span>
-                  </a>
-                </div>
+                <div className="text-xs">{phoneButton}</div>
                 {/* <h2 className={`${inter.className} text-[#c92028] font-bold text-xs md:text-sm leading-none`}>
                   Call Us Today
                 </h2> */}
               </div>
               <div className="lg:hidden text-white pl-5">
-              <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#023e8a]">
+              <div className="pt-1.5 rounded-[3px] p-0.5 bg-[#3e8aea]">
                   <Menu className="w-7 h-6" />
                 </div>
               </div>
@@ -259,11 +257,11 @@ export default function Navbar7({ content }) {
       </FullContainer>
     );
   }
-
+ 
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 bg-[#023e8a] py-2 h-[82px] md:h-[84px]"
+      className="shadow-sm w-full  top-0 z-20 bg-[#3e8aea] py-2 h-[82px] md:h-[78px]"
     >
       <Container>{headerContent}</Container>
 
@@ -287,7 +285,7 @@ export default function Navbar7({ content }) {
                     className={cn(
                       "px-4 py-1 flex items-center cursor-pointer",
                       children.some((c) => pathname === getChildHref(c))
-                        ? "bg-[#023e8a] text-white"
+                        ? "bg-[#3e8aea] text-white"
                         : "text-black bg-transparent",
                     )}
                     onClick={() =>
@@ -321,7 +319,7 @@ export default function Navbar7({ content }) {
                             className={cn(
                               "py-1 pl-7 px-4 text-lg",
                               isActive
-                                ? "bg-[#023e8a] text-white"
+                                ? "bg-[#3e8aea] text-white"
                                 : "text-black hover:text-[#d62828]",
                             )}
                             onClick={closeMenu}
@@ -346,7 +344,7 @@ export default function Navbar7({ content }) {
                   className={cn(
                     "px-4 py-1",
                     isActive
-                      ? "bg-[#023e8a] text-white"
+                      ? "bg-[#3e8aea] text-white"
                       : "text-black bg-transparent",
                   )}
                   onClick={closeMenu}
@@ -362,7 +360,7 @@ export default function Navbar7({ content }) {
                 className={cn(
                   "px-4 py-1 cursor-pointer text-left",
                   pathname.includes(item.link)
-                    ? "bg-[#023e8a] text-white"
+                    ? "bg-[#3e8aea] text-white"
                     : "text-black bg-transparent",
                 )}
                 onClick={() => {

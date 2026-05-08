@@ -11,7 +11,7 @@ import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import FiveStars from "@/components/common/FiveStars";
 import Image from "next/image";
-import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { IMAGE_BASE } from "@/lib/constants";
 import { Poppins, Inter, Rubik } from "next/font/google";
 import { Archivo } from "next/font/google";
 
@@ -46,6 +46,13 @@ function QuoteIcon({ className = "w-14 h-14 text-[#f59a00]" }) {
       <path d="M681.526 1094.657c212.643-14.942 518.306-48.892 518.474-465.344v-523.97H725.496v560.61h157.559c9.98 149.693-113.285 188.346-247.329 218.017zm-635.724 0c212.644-14.942 518.307-48.894 518.474-465.344v-523.97H89.77v560.61h157.559C257.311 815.647 134.044 854.3 0 883.971z" />
     </svg>
   );
+}
+
+function buildImageSrc(base, filePath) {
+  if (!filePath || typeof filePath !== "string") return "";
+  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
+  const segment = filePath.replace(/^\//, "");
+  return `${basePath}/${segment}`;
 }
 
 export default function Testimonials7({ content }) {
@@ -98,6 +105,9 @@ export default function Testimonials7({ content }) {
     () => "https://api.dicebear.com/7.x/avataaars/svg?seed=default",
     [],
   );
+  const testimonialsBg =
+    buildImageSrc(IMAGE_BASE, data?.file_name) ||
+    buildImageSrc(IMAGE_BASE, "testimonials/testimonials7.jpg");
 
   useEffect(() => {
     const checkScreenSize = () => {
@@ -111,20 +121,23 @@ export default function Testimonials7({ content }) {
     return () => window.removeEventListener("resize", checkScreenSize);
   }, []);
 
-  const slideSize =
-    testimonials.length > 0 ? 100 / testimonials.length : 0;
+  const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
+  const slideStep = testimonials.length > 0 ? 100 / visibleSlides : 0;
 
   useEffect(() => {
-    setPrevTranslate(activeIndex * -slideSize);
-    setCurrentTranslate(activeIndex * -slideSize);
-  }, [activeIndex, slideSize]);
+    const nextTranslate = activeIndex * -slideStep;
+    setPrevTranslate(nextTranslate);
+    setCurrentTranslate(nextTranslate);
+    if (sliderRef.current && !isDragging) {
+      sliderRef.current.style.transform = `translateX(${nextTranslate}%)`;
+    }
+  }, [activeIndex, slideStep, isDragging]);
 
   useEffect(() => {
     const startAutoSlide = () => {
       autoSlideRef.current = setInterval(() => {
         if (testimonials.length > 1) {
           setActiveIndex((prev) => {
-            const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
             const maxAllowedIndex = Math.max(
               0,
               testimonials.length - visibleSlides,
@@ -187,7 +200,6 @@ export default function Testimonials7({ content }) {
     cancelAnimationFrame(animationRef.current);
     const movedPercent = currentTranslate - prevTranslate;
     const threshold = -15;
-    const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
     const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
 
     if (movedPercent < threshold) {
@@ -210,33 +222,30 @@ export default function Testimonials7({ content }) {
     setIsDragging(false);
   };
 
-  const handleArrowClick = (direction) => {
-    const visibleSlides = isMobile ? 1 : isTablet ? 2 : 3;
-    const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
-
-    if (direction === "next") {
-      if (activeIndex >= maxAllowedIndex) {
-        setActiveIndex(0);
-      } else {
-        setActiveIndex(activeIndex + 1);
-      }
-    } else if (direction === "prev") {
-      if (activeIndex <= 0) {
-        setActiveIndex(maxAllowedIndex);
-      } else {
-        setActiveIndex(activeIndex - 1);
-      }
-    }
-  };
-
   if (!testimonials.length) return null;
 
   return (
-    <FullContainer className="py-10 md:py-14 bg-[#0b4da2]" id="testimonials">
-      <Container className="mx-auto px-4">
-        <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-10">
-          <div className="w-full lg:w-[240px] h-full shrink-0 text-white">
-            <div className="mb-2">
+    <FullContainer
+      className="relative py-10 md:py-14 bg-black overflow-hidden"
+      id="testimonials"
+    >
+      {testimonialsBg ? (
+        <div className="absolute inset-0">
+          <Image
+            src={testimonialsBg}
+            alt="Testimonials background"
+            fill
+            sizes="100vw"
+            style={{ objectFit: "cover", objectPosition: "center" }}
+            priority={false}
+          />
+        </div>
+      ) : null}
+      <div className="absolute inset-0 bg-black/80" />
+      <Container className="relative z-10 mx-auto px-4 min-h-[500px] flex items-center justify-center">
+        <div className="w-full flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-10">
+          <div className="w-full lg:w-[240px] shrink-0 text-white flex flex-col items-center justify-center text-center">
+            <div className="mb-2 flex justify-center">
               <QuoteIcon className="w-14 h-14 text-[#f59a00] rotate-180" />
             </div>
             <p className={`${poppins.className} font-extrabold text-[34px] leading-tight mb-3 capitalize`}>
@@ -246,34 +255,15 @@ export default function Testimonials7({ content }) {
             <p className={`${archivo.className} text-white font-extrabold text-[28px] leading-none`}>
               {testimonialsWithAvatars[activeIndex]?.name}
             </p>
-            <p className={`${archivo.className} text-white/80 text-[14px] font-semibold uppercase tracking-[0.12em]`}>
-              Clients
-            </p>
+          
           </div>
 
-          <div className="w-full flex-1">
-            <h2 className={`${poppins.className} text-[#ffffff] text-4xl md:text-5xl font-extrabold mb-4 md:mb-6 text-center`}>
+          <div className="w-full flex-1 flex flex-col justify-center">
+            <h2 className={`${poppins.className} text-[#ffffff] text-4xl md:text-5xl font-extrabold flex items-center justify-center mb-4 md:mb-6 text-center`}>
               Our Happy Clients
             </h2>
 
             <div className="relative">
-              <button
-                type="button"
-                onClick={() => handleArrowClick("prev")}
-                className="hidden lg:flex absolute -left-14 top-1/2 -translate-y-1/2 w-11 h-11 items-center justify-center rounded-full border-2 border-white text-white hover:bg-white hover:text-[#0b4da2] transition-colors z-20"
-                aria-label="Previous testimonial"
-              >
-                <ChevronLeftIcon className="w-6 h-6" />
-              </button>
-              <button
-                type="button"
-                onClick={() => handleArrowClick("next")}
-                className="hidden lg:flex absolute -right-14 top-1/2 -translate-y-1/2 w-11 h-11 items-center justify-center rounded-full border-2 border-white text-white hover:bg-white hover:text-[#0b4da2] transition-colors z-20"
-                aria-label="Next testimonial"
-              >
-                <ChevronRightIcon className="w-6 h-6" />
-              </button>
-
             <div className="testimonial-slider-container overflow-x-hidden w-full max-w-[1020px] mx-auto">
                 <div
                   ref={sliderRef}
@@ -292,7 +282,7 @@ export default function Testimonials7({ content }) {
                   {testimonialsWithAvatars.map((testimonial, index) => (
                     <div key={index} className="testimonial-slide px-2 md:px-3">
                       <div className="bg-transparent overflow-hidden rounded-t-[14px] rounded-b-none">
-                        <div className="bg-[#f5f5f5] border border-[#d7d7d7] border-b-0 rounded-t-[14px] p-5 md:p-7 min-h-[205px] md:min-h-[220px] flex flex-col">
+                        <div className="bg-[#f5f5f5] rounded-t-[14px] p-5 md:p-7 min-h-[205px] md:min-h-[220px] flex flex-col">
                         <FiveStars className="mb-4" starClassName="text-[#f59a00]" />
 
                         <p className={`${archivo.className} text-[#545454] italic text-[18px] md:text-[20px] leading-[1.4] flex-1`}>

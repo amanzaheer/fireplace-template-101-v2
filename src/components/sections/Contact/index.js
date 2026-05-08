@@ -22,6 +22,9 @@ import Contact14 from "./Contact14";
 import Contact15 from "./Contact15";
 import Contact16 from "./Contact16";
 import Contact10 from "./Contact10";
+import Contact17 from "./Contact17";
+import Contact20 from "./Contact20";
+import Contact19 from "./Contact19";
 
 const variants = {
   Contact1,
@@ -33,15 +36,17 @@ const variants = {
   Contact7,
   Contact8,
   Contact9,
-  Contact14,
-  Contact15,
+  Contact10,
   Contact11,
   Contact12,
-  Contact10,
   Contact13,
+  Contact14,
+  Contact15,
   Contact16,
   Contact17,
   Contact18,
+  Contact20,
+  Contact19,
 };
 
 export default function Contact({ variant, content }) {
@@ -49,7 +54,7 @@ export default function Contact({ variant, content }) {
   const Component = variants[name] ?? Contact16;
   return <Component content={content} />;
 }
-export { Contact1, Contact2, Contact3, Contact4, Contact5, Contact6, Contact7, Contact8,Contact12,Contact17, Contact9, Contact14, Contact15, Contact11, Contact10, Contact13, Contact16, Contact18, variants };
+export { Contact1, Contact2, Contact3, Contact4, Contact5, Contact6, Contact7, Contact8,Contact12,Contact17, Contact9, Contact14, Contact15, Contact11, Contact10, Contact13, Contact16, Contact18,Contact19,Contact20, variants };
 
 
 

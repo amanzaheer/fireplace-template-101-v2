@@ -106,10 +106,13 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
           sizes="(max-width: 768px) 50vw, 25vw"
         />
         <div
-          className={`absolute font-bold top-63 right-0 bg-[#FF0504] text-white px-14 py-2 z-10`}
+          // className={`${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 right-4 bg-black bg-opacity-70 text-white px-3 py-1 rounded z-10`}
         >
           After
         </div>
+        <div className="absolute bottom-0 right-0 w-1/2 bg-[#ff0504] text-white text-center py-2 font-semibold z-10">
+  After
+</div>
       </div>
       <div
         className="absolute inset-0 overflow-hidden"
@@ -125,11 +128,14 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
             sizes="(max-width: 768px) 50vw, 25vw"
           />
           <div
-            className={`absolute font-bold top-63 left-0 bg-black  z-10 text-white px-14 py-2 `}
+            // className={`${isHover ? "opacity-100" : "opacity-0"} transition-all duration-500 absolute top-32 left-4 bg-black bg-opacity-70 z-10 text-white px-3 py-1 rounded`}
           >
             Before
           </div>
         </div>
+        <div className="absolute bottom-0 left-0 w-1/2 bg-black text-white text-center py-2 font-semibold z-10">
+  Before
+</div>
       </div>
       <div
         className="absolute top-0 bottom-0 w-[3px] bg-white cursor-ew-resize z-10"
@@ -153,11 +159,22 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
           </div>
         </div>
       </div>
+      <div className="relative w-full aspect-square overflow-hidden">
+  {/* images code */}
+
+  {/* NEW LABELS */}
+  <div className="absolute bottom-0 left-0 w-1/2 bg-black text-white text-center py-2 font-semibold z-10">
+    Before
+  </div>
+  <div className="absolute bottom-0 right-0 w-1/2 bg-[#ff0504] text-white text-center py-2 font-semibold z-10">
+    After
+  </div>
+</div>
     </div>
   );
 }
 
-export default function BeforeAfter1({ content }) {
+export default function BeforeAfter17({ content }) {
   const block = content?.before_after ?? {};
   const rawItems = Array.isArray(block.items) ? block.items : [];
   if (rawItems.length === 0) return null;

@@ -20,6 +20,8 @@ import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Poppins, Inter } from "next/font/google";
 import { Rubik } from "next/font/google";
+import QuoteForm2 from "./QuoteForm/QuoteForm2";
+
 const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -32,15 +34,6 @@ const rubik = Rubik({
   subsets: ["regular"],
   weight: ["400", "500", "600", "700"],
 });
-const QuoteForm2 = dynamic(
-  () => import("@/components/sections/Banner/QuoteForm/QuoteForm2"),
-  {
-    loading: () => (
-      <div className="bg-white shadow-lg rounded-[15px] h-[380px] w-full md:w-[370px] animate-pulse" />
-    ),
-    ssr: false,
-  },
-);
 
 const ICON_MAP = {
   Clock,
@@ -153,13 +146,24 @@ export default function Banner1({ content }) {
           <div className="w-full lg:absolute lg:bottom-0 lg:translate-y-1/2 z-50 grid grid-cols-1 md:grid-cols-[3fr_4fr] gap-20 bg-black rounded-2xl px-5 lg:px-10 py-10">
             <div className="flex flex-col items-center justify-between py-5 lg:py-20">
               <div className="flex flex-col items-start justify-center gap-5">
-
-                <h3 className={`${poppins.className} text-2xl text-left md:text-4xl lg:text-5xl font-bold text-white`}>How we can help?</h3>
-                <p className={`${poppins.className} text-base md:text-lg lg:text-xl text-white/90`}>we are available 7 days a week. call or book your service now.</p>
+                <h3
+                  className={`${poppins.className} text-2xl text-left md:text-4xl lg:text-5xl font-bold text-white`}
+                >
+                  How we can help?
+                </h3>
+                <p
+                  className={`${poppins.className} text-base md:text-lg lg:text-xl text-white/90`}
+                >
+                  we are available 7 days a week. call or book your service now.
+                </p>
               </div>
 
               <div className="w-full flex flex-col lg:flex-row gap-2 pt-5 lg:pt-0 items-center justify-between ">
-                <h3 className={`${inter.className} text-2xl  font-bold text-white`}>Call Us Today</h3>
+                <h3
+                  className={`${inter.className} text-2xl  font-bold text-white`}
+                >
+                  Call Us Today
+                </h3>
                 <div className="flex flex-col gap-0.5 md:gap-1 justify-center items-center">
                   <div className="text-xs">
                     <a

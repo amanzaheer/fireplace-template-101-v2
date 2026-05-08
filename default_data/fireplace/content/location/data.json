@@ -40,6 +40,9 @@
     "email": "info@[domain]",
     "working_hours": "[working_hours]"
   },
+  "contact": {
+    "background_image": "Contactimg/contactus20.png"
+  },
   "faqs": {
     "title": "FAQs",
     "items": [

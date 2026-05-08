@@ -1,144 +1,146 @@
 "use client";
 
 import React, { useState, useCallback, memo } from "react";
-import { CheckCircle, Loader } from "lucide-react";
+import { CheckCircle, Loader, Phone } from "lucide-react";
 import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import { Poppins, Rubik } from "next/font/google";
 import {
   validateEmail,
   validatePhone,
   validateName,
   validateMessage,
+  validateZipcode,
 } from "@/lib/validators";
 
-const labelClass = "mb-1.5 block text-[16px] lg:text-[22px] font-medium text-white";
+const poppins = Poppins({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
 
-const FirstNameInput = memo(({ id, value, onChange, error }) => (
+const rubik = Rubik({
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  weight: ["400", "500", "600", "700"],
+});
+
+const NameInput = memo(({ value, onChange, error }) => (
   <div>
-    <label htmlFor={id} className={labelClass} >
-      Name <span className="text-orange-200">*</span>
-    </label>
     <input
-      id={id}
+      id="contact-name"
       type="text"
-      name="firstName"
+      name="name"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
-      placeholder="First name"
+      className={`w-full px-5 py-3 text-base md:text-lg border rounded bg-transparent outline-none text-white placeholder:text-white ${error ? "border-red-500" : "border-white"} focus:border-gray-300`}
+      placeholder="Your Full Name"
       required
       aria-invalid={!!error}
-      autoComplete="given-name"
     />
-    {error ? <p className="mt-1 text-sm text-white">{error}</p> : null}
+    {error && <p className="text-red-300 text-xs mt-1">{error}</p>}
   </div>
 ));
 
-const LastNameInput = memo(({ id, value, onChange, error }) => (
+const EmailInput = memo(({ value, onChange, error }) => (
   <div>
-    <label htmlFor={id} className={labelClass}>
-      Name <span className="text-orange-200">*</span>
-    </label>
     <input
-      id={id}
-      type="text"
-      name="lastName"
-      value={value}
-      onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
-      placeholder="Last name"
-      required
-      aria-invalid={!!error}
-      autoComplete="family-name"
-    />
-    {error ? <p className="mt-1 text-sm text-white">{error}</p> : null}
-  </div>
-));
-
-const EmailInput = memo(({ id, value, onChange, error }) => (
-  <div>
-    <label htmlFor={id} className={labelClass}>
-      Email Address <span className="text-orange-200">*</span>
-    </label>
-    <input
-      id={id}
+      id="contact-email"
       type="email"
       name="email"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
-      placeholder="Email"
+      className={`w-full px-5 py-3 text-base md:text-lg border rounded bg-transparent outline-none text-white placeholder:text-white ${error ? "border-red-500" : "border-white"} focus:border-gray-300`}
+      placeholder="Your Email ( abc@gmail.com)"
       required
       aria-invalid={!!error}
-      autoComplete="email"
     />
-    {error ? <p className="mt-1 text-sm text-white">{error}</p> : null}
+    {error && <p className="text-red-300 text-xs mt-1">{error}</p>}
   </div>
 ));
 
-const PhoneInput = memo(({ id, value, onChange, error }) => (
+const PhoneInput = memo(({ value, onChange, error }) => (
   <div>
-    <label htmlFor={id} className={labelClass}>
-      Phone Number
-    </label>
     <input
-      id={id}
+      id="contact-phone"
       type="tel"
       name="phone"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
-      placeholder="Phone"
+      className={`w-full px-5 py-3 text-base md:text-lg border rounded bg-transparent outline-none text-white placeholder:text-white ${error ? "border-red-500" : "border-white"} focus:border-gray-300`}
+      placeholder="(123) 456-7890"
+      required
       aria-invalid={!!error}
-      autoComplete="tel"
     />
-    {error ? <p className="mt-1 text-sm text-white">{error}</p> : null}
+    {error && <p className="text-red-300 text-xs mt-1">{error}</p>}
   </div>
 ));
 
-const MessageInput = memo(({ id, value, onChange, error }) => (
+const ZipcodeInput = memo(({ value, onChange, error }) => (
   <div>
-    <label htmlFor={id} className={labelClass}>
-      How can we help you?
-    </label>
+    <input
+      id="contact-zipcode"
+      type="text"
+      name="zipcode"
+      value={value}
+      onChange={onChange}
+      className={`w-full px-5 py-3 text-base md:text-lg border rounded bg-transparent outline-none text-white placeholder:text-white ${error ? "border-red-500" : "border-white"} focus:border-gray-300`}
+      placeholder="ZIP CODE"
+      required
+      aria-invalid={!!error}
+    />
+    {error && <p className="text-red-300 text-xs mt-1">{error}</p>}
+  </div>
+));
+
+const MessageInput = memo(({ value, onChange, error }) => (
+  <div>
     <textarea
-      id={id}
+      id="contact-message"
       name="message"
       value={value}
       onChange={onChange}
-      rows={5}
-      className={`min-h-[70px] max-h-[90px] w-full resize-y rounded-lg border border-neutral-300 bg-white px-3 py-[7px] text-lg text-neutral-900 outline-none placeholder:text-neutral-400 focus:ring-2 focus:ring-[#F39C12]/60 ${error ? "ring-2 ring-red-500" : ""}`}
+      rows={4}
+      className={`w-full px-5 py-3 text-base md:text-lg border rounded bg-transparent outline-none text-white placeholder:text-white min-h-[110px] ${error ? "border-red-500" : "border-white"} focus:border-gray-300`}
       placeholder="Message"
       required
       aria-invalid={!!error}
     />
-    {error ? <p className="mt-1 text-sm text-white">{error}</p> : null}
+    {error && <p className="text-red-300 text-xs mt-1">{error}</p>}
   </div>
 ));
 
-const DEFAULT_TITLE = "Have Questions Or Need Fireplace Service?";
-const DEFAULT_SUBTITLE =
-  "Fill Out The Form Below And Our Experts Will Get Back To You Quickly With The Best Solution For Your Needs.";
+function getHeadlineLines(formHead, title, subTitle) {
+  const line1 = formHead.title_line1?.trim();
+  const line2 = formHead.title_line2?.trim();
+  if (line1 && line2) {
+    return { line1, line2, line3: subTitle };
+  }
+  const match = title.match(/^(.*?)\s+(online\s+booking)\s*$/i);
+  if (match) {
+    const cap = match[2].replace(/\b\w/g, (c) => c.toUpperCase());
+    return { line1: match[1].trim(), line2: cap, line3: subTitle };
+  }
+  return { line1: title, line2: "", line3: subTitle };
+}
 
-export default function Contact19({ content, embedded = false }) {
+export default function Contact19({ content }) {
   const formHead = content?.form_head ?? {};
-  const title =
-    typeof formHead.title === "string" && formHead.title.trim()
-      ? formHead.title.trim()
-      : DEFAULT_TITLE;
-  const subTitle =
-    typeof formHead.sub_title === "string" && formHead.sub_title.trim()
-      ? formHead.sub_title.trim()
-      : DEFAULT_SUBTITLE;
-
-  const id = (suffix) => (embedded ? `faq-contact-${suffix}` : `contact-${suffix}`);
+  const title = formHead.title ?? "10% Off Total Price for Online Booking";
+  const subTitle = formHead.sub_title ?? "Ask For A Quote Here";
+  const { line1, line2, line3 } = getHeadlineLines(formHead, title, subTitle);
+  const displayPhone =
+    formHead.phone?.trim() ||
+    content?.phone?.trim() ||
+    "(123) 456-7890";
+  const telHref = `tel:${displayPhone.replace(/[^\d+]/g, "")}`;
 
   const [formData, setFormData] = useState({
-    firstName: "",
-    lastName: "",
+    name: "",
     email: "",
     phone: "",
+    zipcode: "",
     message: "",
   });
   const [errors, setErrors] = useState({});
@@ -150,7 +152,10 @@ export default function Contact19({ content, embedded = false }) {
     if (!formStarted && typeof window !== "undefined") {
       try {
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({ event: "form start", url: window.location.href });
+        window.dataLayer.push({
+          event: "form start",
+          url: window.location.href,
+        });
         setFormStarted(true);
       } catch {
         setFormStarted(true);
@@ -160,23 +165,22 @@ export default function Contact19({ content, embedded = false }) {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.firstName.trim()) newErrors.firstName = "First name is required";
-    else if (!validateName(formData.firstName)) {
-      newErrors.firstName = "Use 2–50 letters only";
-    }
-    if (!formData.lastName.trim()) newErrors.lastName = "Last name is required";
-    else if (!validateName(formData.lastName)) {
-      newErrors.lastName = "Use 2–50 letters only";
-    }
+    if (!formData.name.trim()) newErrors.name = "Name is required";
+    else if (!validateName(formData.name))
+      newErrors.name = "Name must be 2-50 characters and contain only letters";
     if (!formData.email.trim()) newErrors.email = "Email is required";
-    else if (!validateEmail(formData.email)) newErrors.email = "Enter a valid email";
-    const cleanPhone = formData.phone.replace(/\D/g, "");
-    if (!formData.phone.trim()) newErrors.phone = "Phone is required";
-    else if (!validatePhone(cleanPhone)) newErrors.phone = "Enter a valid 10-digit US phone";
+    else if (!validateEmail(formData.email))
+      newErrors.email = "Please enter a valid email address";
+    const cleanPhone = formData.phone.replace(/[-()\s]/g, "");
+    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    else if (!validatePhone(cleanPhone))
+      newErrors.phone = "Phone number must be exactly 10 digits";
+    if (!formData.zipcode.trim()) newErrors.zipcode = "Zipcode is required";
+    else if (!validateZipcode(formData.zipcode))
+      newErrors.zipcode = "Please enter a valid zipcode (12345 or 12345-6789)";
     if (!formData.message.trim()) newErrors.message = "Message is required";
-    else if (!validateMessage(formData.message, 10)) {
-      newErrors.message = "Message must be at least 10 characters";
-    }
+    else if (!validateMessage(formData.message, 10))
+      newErrors.message = "Message must be at least 10 characters long";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -188,13 +192,16 @@ export default function Contact19({ content, embedded = false }) {
 
     setIsSubmitting(true);
     try {
+      const nameParts = formData.name.trim().split(" ");
+      const firstName = nameParts[0] || "";
+      const lastName = nameParts.slice(1).join(" ") || "";
       const payload = {
-        first_name: formData.firstName.trim(),
-        last_name: formData.lastName.trim(),
-        email: formData.email.trim(),
-        phone: formData.phone.replace(/\D/g, ""),
-        zipcode: "",
-        message: formData.message.trim(),
+        first_name: firstName,
+        last_name: lastName,
+        email: formData.email,
+        phone: formData.phone.replace(/[-()\s]/g, ""),
+        zipcode: formData.zipcode,
+        message: formData.message,
       };
 
       const response = await fetch("/api/contact", {
@@ -208,35 +215,44 @@ export default function Contact19({ content, embedded = false }) {
         if (result.errors && Array.isArray(result.errors)) {
           const serverErrors = {};
           result.errors.forEach((err) => {
-            const low = err.toLowerCase();
-            if (low.includes("first name")) serverErrors.firstName = err;
-            else if (low.includes("last name")) serverErrors.lastName = err;
-            else if (low.includes("email")) serverErrors.email = err;
-            else if (low.includes("phone")) serverErrors.phone = err;
-            else if (low.includes("message")) serverErrors.message = err;
+            if (
+              err.toLowerCase().includes("first name") ||
+              err.toLowerCase().includes("name")
+            )
+              serverErrors.name = err;
+            else if (err.toLowerCase().includes("email"))
+              serverErrors.email = err;
+            else if (err.toLowerCase().includes("phone"))
+              serverErrors.phone = err;
+            else if (err.toLowerCase().includes("zipcode"))
+              serverErrors.zipcode = err;
+            else if (err.toLowerCase().includes("message"))
+              serverErrors.message = err;
           });
           setErrors(serverErrors);
         }
         throw new Error(result.message || "Form submission failed");
       }
 
-      if (result.success === false) throw new Error(result.message || "Form submission failed");
+      if (result.success === false)
+        throw new Error(result.message || "Form submission failed");
 
       if (typeof window !== "undefined" && window.dataLayer) {
         window.dataLayer.push({
           event: "form_submit",
           url: window.location.href,
           formData: {
-            firstName: formData.firstName,
-            lastName: formData.lastName,
+            name: formData.name,
             email: formData.email,
             phone: formData.phone,
             message: formData.message,
+            zipcode: formData.zipcode,
           },
         });
       }
       toast.success(
-        result.message || "Your request has been submitted successfully! We'll contact you shortly.",
+        result.message ||
+          "Your request has been submitted successfully! We'll contact you shortly.",
       );
       setFormSubmitted(true);
     } catch (err) {
@@ -252,122 +268,141 @@ export default function Contact19({ content, embedded = false }) {
     setFormData((prev) => ({ ...prev, [name]: value }));
     setErrors((prev) => {
       if (!prev[name]) return prev;
-      const next = { ...prev };
-      delete next[name];
-      return next;
+      const newErrors = { ...prev };
+      delete newErrors[name];
+      return newErrors;
     });
   }, []);
 
   const closeThankYou = () => {
     if (typeof window !== "undefined" && window.dataLayer) {
-      window.dataLayer.push({ event: "leadSubmitted", url: window.location.href });
+      window.dataLayer.push({
+        event: "leadSubmitted",
+        url: window.location.href,
+      });
     }
     setFormSubmitted(false);
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      message: "",
-    });
+    setFormData({ name: "", email: "", phone: "", zipcode: "", message: "" });
     setErrors({});
-  };
-
-  const card = (
-    <div className="overflow-hidden rounded-lg bg-transparent ">
-      <div className="rounded-t-lg bg-[#F0520E] p-5 mb-0.5">
-        {formSubmitted ? (
-          <div className="flex flex-col items-center py-8 text-center">
-            <div className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-white/90">
-              <CheckCircle className="h-9 w-9 text-green-600" aria-hidden />
-            </div>
-            <h4 className="font-montserrat text-xl font-bold text-neutral-900 md:text-2xl">Thank you!</h4>
-            <p className="mt-2 max-w-md text-sm text-neutral-900/90">
-              Your request has been submitted. We&apos;ll get back to you shortly.
-            </p>
-            <button
-              type="button"
-              onClick={closeThankYou}
-              className="mt-6 rounded-lg bg-neutral-900 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-neutral-800"
-            >
-              OK, thanks
-            </button>
-          </div>
-        ) : (
-          <>
-            <h2 className="font-montserrat text-lg font-bold leading-snug text-white md:text-[25px">
-              {title}
-            </h2>
-            <p className="mt-2 text-sm leading-relaxed text-white md:text-[16px]">{subTitle}</p>
-          </>
-        )}
-      </div>
-      <div className="bg-[#F0520E] rounded-b-lg ">
-
-        {!formSubmitted ? (
-          <form onSubmit={handleSubmit} className="space-y-4 px-5 pb-4 pt-2 md:px-6 md:pb-5" noValidate>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-              <FirstNameInput
-                id={id("first-name")}
-                value={formData.firstName}
-                onChange={handleChange}
-                error={errors.firstName}
-              />
-              <LastNameInput
-                id={id("last-name")}
-                value={formData.lastName}
-                onChange={handleChange}
-                error={errors.lastName}
-              />
-            </div>
-            <EmailInput
-              id={id("email")}
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-            />
-            <PhoneInput
-              id={id("phone")}
-              value={formData.phone}
-              onChange={handleChange}
-              error={errors.phone}
-            />
-            <MessageInput
-              id={id("message")}
-              value={formData.message}
-              onChange={handleChange}
-              error={errors.message}
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full rounded-lg bg-white py-3  font-montserrat text-lg lg:text-2xl font-extrabold uppercase tracking-wide text-black transition hover:brightness-105 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/80 disabled:opacity-70"
-              aria-busy={isSubmitting}
-            >
-              {isSubmitting ? (
-                <span className="inline-flex items-center justify-center gap-2">
-                  <Loader className="h-5 w-5 animate-spin" aria-hidden />
-                  Processing…
-                </span>
-              ) : (
-                "SUBMIT"
-              )}
-            </button>
-          </form>
-        ) : null}
-      </div>
-
-    </div>
-  );
-
-  if (embedded) {
-    return card;
-  }
+  };    
 
   return (
-    <FullContainer id="contact-us" className="relative mt-9 pb-4">
-      <Container className="relative z-10 mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8 ">
-        <div id="quote-form-section">{card}</div>
+    <FullContainer id="contact-us" className="pb-4 relative mt-9 bg-[#1e73be]">
+      <Container className="relative z-10">
+        <div id="quote-form-section">
+          <div className="bg-[#1e73be] gap-0 rounded-[12px] overflow-hidden mb-5">
+            <div className="flex flex-col lg:flex-row lg:min-h-[min(32rem,70vh)] text-white">
+              {/* Left: reserved for hero image (desktop); add bg-image or child when ready */}
+              <div
+                className="hidden lg:block lg:w-[44%] xl:w-[42%] shrink-0 min-h-[420px] bg-[#1e73be]"
+                aria-hidden
+              />
+
+              <div className="flex-1 p-6 sm:p-8 md:p-10 lg:pl-6 lg:pr-12 lg:py-12 xl:pr-16">
+                {formSubmitted ? (
+                  <div className="h-full flex flex-col items-center justify-center text-center py-12">
+                    <div className="h-24 w-24 bg-green-100 rounded-full flex items-center justify-center mb-8">
+                      <CheckCircle className="h-12 w-12 text-green-600" />
+                    </div>
+                    <h4 className="text-3xl font-bold text-white mb-4">
+                      Thank You!
+                    </h4>
+                    <p className="text-white text-xl max-w-md mb-6">
+                      Your request has been submitted successfully. We&apos;ll
+                      contact you shortly with your personalized quote.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={closeThankYou}
+                      className="bg-white text-black py-3 px-6 rounded-md font-medium transition-colors duration-200 hover:bg-gray-100"
+                    >
+                      OK Thanks
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="flex flex-col sm:flex-row sm:items-start gap-4 sm:gap-5 mb-6 md:mb-8 relative">
+                      <div className="flex shrink-0 items-center sm:mt-1 lg:-ml-2 xl:-ml-4">
+                       
+                        <div className="flex rounded-2xl overflow-hidden shadow-md max-w-full">
+                         
+                          
+                        </div>
+                      </div>
+
+                      <div
+                        className={`${rubik.className} text-left flex-1 min-w-0 space-y-0.5`}
+                      >
+                        <p className="text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-white leading-tight tracking-tight">
+                          {line1}
+                        </p>
+                        {line2 ? (
+                          <p className="text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-white leading-tight tracking-tight">
+                            {line2}
+                          </p>
+                        ) : null}
+                        <p className="text-2xl sm:text-3xl md:text-[2.25rem] lg:text-[2.5rem] font-bold text-white leading-tight tracking-tight pt-0.5">
+                          {line3}
+                        </p>
+                      </div>
+                    </div>
+
+                    <form
+                      onSubmit={handleSubmit}
+                      className={`${poppins.className} space-y-2 md:space-y-3`}
+                      noValidate
+                    >
+                      <div className="grid md:grid-cols-2 gap-2 md:gap-3">
+                        <NameInput
+                          value={formData.name}
+                          onChange={handleChange}
+                          error={errors.name}
+                        />
+                        <EmailInput
+                          value={formData.email}
+                          onChange={handleChange}
+                          error={errors.email}
+                        />
+                        <PhoneInput
+                          value={formData.phone}
+                          onChange={handleChange}
+                          error={errors.phone}
+                        />
+                        <ZipcodeInput
+                          value={formData.zipcode}
+                          onChange={handleChange}
+                          error={errors.zipcode}
+                        />
+                      </div>
+                      <MessageInput
+                        value={formData.message}
+                        onChange={handleChange}
+                        error={errors.message}
+                      />
+                      <div className="pt-1">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={`${rubik.className} inline-flex items-center justify-center bg-white text-black py-3 px-10 sm:px-12 rounded font-normal  text-[20px] sm:text-lg uppercase tracking-wide transition-opacity duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#1e73be] disabled:opacity-70`}
+                          aria-busy={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader className="animate-spin mr-3 h-5 w-5" />
+                              Processing...
+                            </>
+                          ) : (
+                            "SUBMIT"
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                  </>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
       </Container>
     </FullContainer>
   );

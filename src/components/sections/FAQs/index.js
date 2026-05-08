@@ -15,11 +15,20 @@ import FAQs14 from "./FAQs14";
 import FAQs15 from "./FAQs15";
 import FAQs12 from "./FAQs12";
 import FAQs11 from "./FAQs11";
+import FAQs10 from "./FAQs10";
+import FAQs11 from "./FAQs11";
+import FAQs12 from "./FAQs12";
 import FAQs13 from "./FAQs13";
+import FAQs14 from "./FAQs14";
+import FAQs15 from "./FAQs15"
 import FAQs16 from "./FAQs16";
 import FAQs10 from "./FAQs10"
 import FAQs17 from "./FAQs17"
 import FAQs18 from "./FAQs18"
+import FAQs17 from "./FAQs17";
+import FAQs20 from "./FAQs20";
+import FAQs19 from "./FAQs19";
+
 const variants = {
   FAQs1,
   FAQs2,
@@ -30,7 +39,10 @@ const variants = {
   FAQs7,
   FAQs8,
   FAQs9,
-  FAQs13,  
+  FAQs10,
+  FAQs11,
+  FAQs12,
+  FAQs13,
   FAQs14,
   FAQs15,
   FAQs12,
@@ -39,12 +51,16 @@ const variants = {
   FAQs10,
   FAQs17,
   FAQs18,
+  FAQs16,
+  FAQs17,
+  FAQs20,
+  FAQs19,
 };
 
 export default function FAQs({ variant, content }) {
-  const name = variant ?? "FAQs16";
-  const Component = variants[name] ?? FAQs16;
+  const name = String(variant ?? "FAQs20").trim();
+  const Component = variants[name] ?? FAQs20;
   return <Component content={content} />;
 }
-export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs8,FAQs10, FAQs5,FAQs6,FAQs7,FAQs17,FAQs9,FAQs11,FAQs12,FAQs13,FAQs14,FAQs15,FAQs16,FAQs18, variants};
+export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs8,FAQs10, FAQs5,FAQs6,FAQs7,FAQs17,FAQs9,FAQs11,FAQs12,FAQs13,FAQs14,FAQs15,FAQs16,FAQs18,FAQs19,FAQs20, variants};
 

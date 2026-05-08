@@ -5,6 +5,7 @@ import { getPageData } from "@/lib/page-data";
 import Toaster from "@/components/common/Toaster";
 import "@/lib/env";
 import "./globals.css";
+import "leaflet/dist/leaflet.css";
 
 const barlow = Barlow({
   subsets: ["latin"],
