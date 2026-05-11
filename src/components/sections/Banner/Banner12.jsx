@@ -98,7 +98,7 @@ export default function Banner12({ content }) {
               style={{ objectPosition: "center" }}
             />
           ) : null}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent " />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t' from-black/80 via-black/50 to-transparent " />
 
           <div className="relative z-10 flex min-h-[420px] lg:min-h-full ">
             <div className="relative z-10 mx-auto flex h-full w-full  flex-col items-center justify-center px-4 py-10 text-center md:ml-auto md:items-start md:py-14 md:pl-16 md:pr-8 lg:pl-20 lg:pr-6 md:text-left">

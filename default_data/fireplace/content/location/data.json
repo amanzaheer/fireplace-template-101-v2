@@ -8,6 +8,13 @@
     "tagline": "Top-Rated [service] – We Serve in [area]!",
     "form_title": "Claim Fire Place Services Offer Today",
     "form_description": "Offer ends in just a few hours!",
+    "cta_phone": "[phone]",
+    "cta_strip": {
+      "subheading": "Extend Your Home With A Beautiful Cleaning",
+      "heading": "It's Easy! Call Now",
+      "phone_label": "CALL NOW:",
+      "phone": "[phone]"
+    },
     "file_name": "services/fireplace-repair.webp",
     "childrenRef": "features"
   },

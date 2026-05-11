@@ -1,7 +1,7 @@
 {
   "sections": {
     "Navbar": {
-      "design": "Navbar19",
+      "design": "Navbar21",
       "visible": true
     },
     "Header": {
@@ -9,86 +9,83 @@
       "visible": true
     },
     "Banner": {
-      "design": "Banner19",
+      "design": "Banner21",
       "visible": true
     },
     "Breadcrumbs": {
       "design": "Breadcrumbs19",
       "visible": true
     },
-   
     "About": {
-      "design": "About19",
+      "design": "About21",
       "visible": true
     },
     "Promotion": {
-      "design": "Promotion19",
+      "design": "Promotion21",
       "visible": true
     },
     "Hero": {
       "design": "Hero19",
       "visible": false
     },
-   
     "Features": {
       "design": "Features19",
       "visible": false
     },
     "Testimonials": {
-      "design": "Testimonials19",
-      "visible": false
+      "design": "Testimonials21",
+      "visible": true
     },
     "Footer": {
-      "design": "Footer19",
+      "design": "Footer21",
       "visible": true
     },
     "BeforeAfter": {
-      "design": "BeforeAfter19",
+      "design": "BeforeAfter21",
       "visible": true
     },
     "OurServices": {
-      "design": "OurServices9",
+      "design": "OurServices21",
       "visible": true
     },
-  
     "WhyChoose": {
-      "design": "WhyChoose19",
+      "design": "WhyChoose21",
       "visible": true
     },
     "Slogan": {
-    "design": "Slogan19",
+      "design": "Slogan21",
       "visible": true
     },
     "ServiceBenefits": {
-      "design": "ServiceBenefits19",
-      "visible": true
+      "design": "ServiceBenefits21",
+      "visible": false
     },
     "Contact": {
-      "design": "Contact19",
+      "design": "Contact21",
       "visible": true
     },
     "FAQs": {
-      "design": "FAQs19",
+      "design": "FAQs21",
       "visible": true
     },
     "ServiceCities": {
-      "design": "ServiceCities19",
+      "design": "ServiceCities21",
       "visible": true
     },
     "ServiceDescription": {
-      "design": "ServiceDescription19",
-      "visible": true
+      "design": "ServiceDescription21",
+      "visible": false
     },
     "Gallery": {
-      "design": "Gallery19",
+      "design": "Gallery21",
       "visible": true
     },
     "ServiceDescription1": {
-      "design": "ServiceDescription19",
+      "design": "ServiceDescription21",
       "visible": true
     },
     "ServiceDescription2": {
-      "design": "ServiceDescription19",
+      "design": "ServiceDescription21",
       "visible": true
     },
     "CallUsButton": {
@@ -99,12 +96,20 @@
       "design": "ReviewandRating19",
       "visible": true
     },
-    "workingprocess": {
-    "design": "WorkingProcess12",
+    "WorkingProcess": {
+      "design": "WorkingProcess21",
+      "visible": true
+    },
+    "WorkingProcess2": {
+      "design": "WorkingProcess21",
+      "visible": true
+    },
+    "calltoaction": {
+      "design": "CallToAction11",
       "visible": false
     },
     "Cta": {
-      "design": "Cta19",
+      "design": "Cta21",
       "visible": true
     },
     "MilestoneBanner": {
@@ -127,17 +132,17 @@
     "TVSizes",
     "Breadcrumbs",
     "About",
-    "WorkingProcess",
+    "WorkingProcess2",
     "Promotion",
     "Testimonials",
     "BeforeAfter",
     "OurServices",
     "Cta",
     "WhyChoose",
-    "Slogan",
     "ServiceBenefits",
     "Contact",
     "FAQs",
+    "Slogan",
     "ServiceCities",
     "WorkPortfolio",
     "CompanyProfile",
@@ -148,11 +153,11 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar19",
+          "design": "Navbar21",
           "visible": true
         },
         "Banner": {
-          "design": "Banner19",
+          "design": "Banner21",
           "visible": true
         },
         "TVSizes": {
@@ -160,51 +165,55 @@
           "visible": false
         },
         "About": {
-          "design": "About19",
+          "design": "About21",
           "visible": true
         },
         "Promotion": {
-          "design": "Promotion19",
+          "design": "Promotion21",
           "visible": true
         },
         "Testimonials": {
-          "design": "Testimonials19",
+          "design": "Testimonials21",
           "visible": true
         },
         "Footer": {
-          "design": "Footer19",
+          "design": "Footer21",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter19",
+          "design": "BeforeAfter21",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices19",
+          "design": "OurServices21",
+          "visible": true
+        },
+        "Gallery": {
+          "design": "Gallery21",
           "visible": true
         },
         "WhyChoose": {
-          "design": "WhyChoose19",
+          "design": "WhyChoose21",
           "visible": true
         },
         "Slogan": {
-          "design": "Slogan19",
+          "design": "Slogan21",
           "visible": true
         },
         "ServiceBenefits": {
-          "design": "ServiceBenefits19",
-          "visible": true
+          "design": "ServiceBenefits21",
+          "visible": false
         },
         "Contact": {
-          "design": "Contact19",
+          "design": "Contact21",
           "visible": true
         },
         "FAQs": {
-        "design": "FAQs19",
+          "design": "FAQs21",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities19",
+          "design": "ServiceCities21",
           "visible": true
         },
         "CallUsButton": {
@@ -212,16 +221,28 @@
           "visible": true
         },
         "ReviewandRating": {
-          "design": "ReviewandRating19",
-          "visible": false
+          "design": "ReviewandRating11",
+          "visible": true
         },
-        "workingprocess": {
-          "design": "WorkingProcess12",
-          "visible": false
+        "WorkingProcess": {
+          "design": "WorkingProcess21",
+          "visible": true
+        },
+        "WorkingProcess2": {
+          "design": "WorkingProcess21",
+          "visible": true
+        },
+        "calltoaction": {
+          "design": "CallToAction11",
+          "visible": true
         },
         "Cta": {
-          "design": "Cta19",
+          "design": "Cta21",
           "visible": true
+        },
+        "WorkPortfolio": {
+          "design": "WorkPortfolio11",
+          "visible": false
         },
         "MilestoneBanner": {
           "design": "MilestoneBanner19",
@@ -244,34 +265,34 @@
         "Breadcrumbs",
         "About",
         "WorkingProcess",
+        "WorkingProcess2",
         "Promotion",
         "Testimonials",
         "BeforeAfter",
         "OurServices",
-        "Gallery", 
+        "Gallery",
         "WhyChoose",
-        "Slogan",
         "ServiceBenefits",
         "Contact",
         "FAQs",
+        "Slogan",
         "ServiceCities",
         "WorkPortfolio",
         "CompanyProfile",
         "CtaBottom",
         "Cta",
         "Footer"
-        
       ]
     },
 
     "service": {
       "sections": {
         "Navbar": {
-          "design": "Navbar19",
+          "design": "Navbar21",
           "visible": true
         },
         "Banner": {
-          "design": "Banner19",
+          "design": "Banner21",
           "visible": true
         },
         "TVSizes": {
@@ -279,39 +300,39 @@
           "visible": false
         },
         "Breadcrumbs": {
-        "design": "Breadcrumbs19",
+          "design": "Breadcrumbs20",
           "visible": true
         },
         "ServiceDescription": {
-          "design": "ServiceDescription19",
+          "design": "ServiceDescription21",
           "visible": true
         },
         "Gallery": {
-          "design": "Gallery19",
+          "design": "Gallery21",
           "visible": true
         },
         "ServiceDescription1": {
-          "design": "ServiceDescription19",
-          "visible": false
+          "design": "ServiceDescription21",
+          "visible": true
         },
         "ServiceDescription2": {
-          "design": "ServiceDescription19",
+          "design": "ServiceDescription21",
           "visible": true
         },
         "Contact": {
-          "design": "Contact19",
-          "visible": false
+          "design": "Contact21",
+          "visible": true
         },
         "FAQs": {
-          "design": "FAQs19",
+          "design": "FAQs21",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities19",
+          "design": "ServiceCities21",
           "visible": true
         },
         "Footer": {
-          "design": "Footer19",
+          "design": "Footer21",
           "visible": true
         },
         "CallUsButton": {
@@ -319,7 +340,7 @@
           "visible": false
         },
         "Cta": {
-          "design": "Cta19",
+          "design": "Cta21",
           "visible": true
         }
       },
@@ -331,6 +352,7 @@
         "Breadcrumbs",
         "ServiceDescription",
         "Gallery",
+        "ServiceDescription1",
         "ServiceDescription2",
         "Contact",
         "FAQs",
@@ -338,6 +360,6 @@
         "Cta",
         "Footer"
       ]
-    } 
+    }
   }
 }

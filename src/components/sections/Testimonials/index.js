@@ -18,6 +18,7 @@ import Testimonials16 from "./Testimonials16";
 import Testimonials17 from "./Testimonials17";
 import Testimonials19 from "./Testimonials19";
 import Testimonials20 from "./Testimonials20";
+import Testimonials21 from "./Testimonials21";
 const variants = {
   Testimonials1,
   Testimonials2,
@@ -39,11 +40,12 @@ const variants = {
   Testimonials17,
   Testimonials20,
   Testimonials19,
+  Testimonials21,
 };
 
 export default function Testimonials({ variant, content }) {
-  const name = String(variant ?? "Testimonials20").trim();
-  const Component = variants[name] ?? Testimonials20  ;
+  const name = String(variant ?? "Testimonials21").trim();
+  const Component = variants[name] ?? Testimonials21  ;
   return <Component content={content} />;
 }
 
@@ -67,6 +69,7 @@ export {
   Testimonials17,
   Testimonials19,
   Testimonials20,
+  Testimonials21,
   variants,
 };
 
