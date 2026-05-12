@@ -25,6 +25,8 @@ import Banner19 from "./Banner19";
 import Banner20 from "./Banner20";
 import Banner18 from "./Banner18";
 import Banner21 from "./Banner21";
+import Banner21 from "./Banner21";  
+
 const variants = {
   Banner1,
   Banner2,

@@ -160,7 +160,7 @@ export default function Contact20({ content }) {
   const formHead = content?.form_head ?? {};
   const title = formHead.title ?? "10% Off Total Price for Online Booking";
   const subTitle = formHead.sub_title ?? "Offer ends in just a few hours!";
-  const contactImagePath = "Contactimg/contactus20.png";
+  const contactImagePath = "about/about2.png";
   const contactImage = buildImageSrc(IMAGE_BASE, contactImagePath);
 
   const [formData, setFormData] = useState({

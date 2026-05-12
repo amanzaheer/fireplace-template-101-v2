@@ -111,28 +111,7 @@ export default function OurServices20({ content }) {
                     </div>
                   )}
 
-                  <div className="pointer-events-none absolute inset-0 bg-black/0  transition-colors duration-300 group-hover:bg-black/70" />
 
-                  <div className="absolute inset-x-0 top-0 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    {service.description ? (
-                      <div
-                        className="prose prose-sm max-w-none text-center font-semibold text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.95)] prose-headings:my-1 prose-p:my-0 **:text-white! [&_a:hover]:text-white! [&_a:visited]:text-white!"
-                        style={{ color: "#FFFFFF" }}
-                        dangerouslySetInnerHTML={{
-                          __html: markdownPreview(service.description),
-                        }}
-                      />
-                    ) : null}
-                  </div>
-
-                  <div className="absolute inset-x-0 bottom-16 px-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
-                    <a
-                      href={`tel:${phone}`}
-                      className="mx-auto block w-fit rounded bg-white px-5 py-2 text-sm font-bold text-[#0b0b0b] transition-colors hover:bg-[#efefef]"
-                    >
-                      Call Us Today 
-                    </a>
-                  </div>
                 </div>
                 <div className="flex justify-center items-center flex-row relative z-10 -mt-12 mb-28 h-[71px]  w-[356px] rounded-tl-[30px] rounded-tr-[30px]  bg-[#CC3333] px-3 py-[10px] text-center">
   <h3

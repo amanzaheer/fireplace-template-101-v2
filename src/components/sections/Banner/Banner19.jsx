@@ -7,13 +7,7 @@ import { ShieldCheck, Phone } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { cn } from "@/lib/utils";
-import { Roboto } from "next/font/google";
 import QuoteForm19 from "./QuoteForm/QuoteForm19";
-
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -111,18 +105,13 @@ export default function Banner19({ content }) {
             ) : null}
 
             {ratingLine ? (
-              <p
-                className={cn(
-                  "mt-3 text-lg font-semibold text-[#094370] md:text-[32px]",
-                  roboto.className
-                )}
-              >
+              <p className="mt-3 text-lg font-semibold text-[#094370] md:text-[32px] font-sans">
                 {ratingLine}
               </p>
             ) : null}
 
             {contactSubheading ? (
-              <p className="mt-4 max-w-xl text-lg font-bold text-black md:text-[24px] font-['Roboto',sans-serif]">
+              <p className="mt-4 max-w-xl text-lg font-bold text-black md:text-[24px] font-sans">
                 {contactSubheading}
               </p>
             ) : null}

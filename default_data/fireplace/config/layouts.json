@@ -106,6 +106,8 @@
     },
     "calltoaction": {
       "design": "CallToAction11",
+    "workingprocess": {
+      "design": "WorkingProcess12",
       "visible": false
     },
     "Cta": {
@@ -125,7 +127,6 @@
       "visible": false
     }
   },
-
   "order": [
     "Navbar",
     "Banner",
@@ -148,7 +149,6 @@
     "CompanyProfile",
     "Footer"
   ],
-
   "pages": {
     "home": {
       "sections": {
@@ -169,7 +169,7 @@
           "visible": true
         },
         "Promotion": {
-          "design": "Promotion21",
+          "design": "Promotion20",
           "visible": true
         },
         "Testimonials": {
@@ -186,10 +186,6 @@
         },
         "OurServices": {
           "design": "OurServices21",
-          "visible": true
-        },
-        "Gallery": {
-          "design": "Gallery21",
           "visible": true
         },
         "WhyChoose": {
@@ -209,7 +205,7 @@
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs21",
+          "design": "FAQs11",
           "visible": true
         },
         "ServiceCities": {
@@ -255,21 +251,23 @@
         "InformationSection": {
           "design": "InformationSection19",
           "visible": false
+        },
+        "WorkingProcess": {
+          "design": "WorkingProcess21",
+          "visible": true
         }
       },
-
       "order": [
         "Navbar",
         "Banner",
         "TVSizes",
         "Breadcrumbs",
         "About",
-        "WorkingProcess",
-        "WorkingProcess2",
         "Promotion",
         "Testimonials",
         "BeforeAfter",
         "OurServices",
+        "WorkingProcess",
         "Gallery",
         "WhyChoose",
         "ServiceBenefits",
@@ -284,7 +282,6 @@
         "Footer"
       ]
     },
-
     "service": {
       "sections": {
         "Navbar": {
@@ -300,7 +297,7 @@
           "visible": false
         },
         "Breadcrumbs": {
-          "design": "Breadcrumbs20",
+          "design": "Breadcrumbs19",
           "visible": true
         },
         "ServiceDescription": {
@@ -321,7 +318,7 @@
         },
         "Contact": {
           "design": "Contact21",
-          "visible": true
+          "visible": false
         },
         "FAQs": {
           "design": "FAQs21",
@@ -344,7 +341,6 @@
           "visible": true
         }
       },
-
       "order": [
         "Navbar",
         "Banner",
@@ -362,4 +358,5 @@
       ]
     }
   }
+}
 }

@@ -40,32 +40,14 @@ const variants = {
   BeforeAfter19,
   BeforeAfter21,
 };
+  
 
 export default function BeforeAfter({ variant, content }) {
     const name = variant ?? "BeforeAfter21";
   const Component = variants[name] ?? BeforeAfter21;
   return <Component content={content} />;
 }
+export { BeforeAfter1, BeforeAfter2, BeforeAfter3, BeforeAfter4, BeforeAfter6,BeforeAfter10,BeforeAfter11,BeforeAfter12,BeforeAfter13,BeforeAfter14,BeforeAfter15,BeforeAfter16,BeforeAfter17,BeforeAfter18,BeforeAfter19,BeforeAfter20,BeforeAfter21, variants };
 
 
-export {
-  BeforeAfter1,
-  BeforeAfter2,
-  BeforeAfter3,
-  BeforeAfter4,
-  BeforeAfter6,
-  BeforeAfter7,
-  BeforeAfter11,
-  BeforeAfter14,
-  BeforeAfter15,
-  BeforeAfter12,
-  BeforeAfter10,
-  BeforeAfter13,
-  BeforeAfter16,
-  BeforeAfter17,
-  BeforeAfter19,
-  BeforeAfter20,
-  BeforeAfter21,
-  variants,
-};
 

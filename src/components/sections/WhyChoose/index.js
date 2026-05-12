@@ -40,7 +40,7 @@ const variants = {
   WhyChoose12,
   WhyChoose13,
   WhyChoose10,
- WhyChoose18,
+  WhyChoose18,
   WhyChoose14,
   WhyChoose15,
   WhyChoose16,

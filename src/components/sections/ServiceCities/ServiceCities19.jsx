@@ -21,7 +21,7 @@ const inter = Inter({
 const LeafletMap = dynamic(
   async () => {
     const leaflet = await import("react-leaflet");
-    const L = await import("leaflet");
+    // const L = await import("leaflet");
 
     const mapPin = L.divIcon({
       html: `

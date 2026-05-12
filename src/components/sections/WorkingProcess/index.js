@@ -20,3 +20,9 @@ export default function WorkingProcess({ variant, content }) {
 }
 
 export { WorkingProcess12, WorkingProcess20, WorkingProcess21, variants };
+export {
+  WorkingProcess12,
+  WorkingProcess20,
+  WorkingProcess21,
+  variants,
+};

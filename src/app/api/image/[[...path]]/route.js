@@ -113,5 +113,13 @@ export async function GET(request, context) {
     return imageResponse(fallbackBuf, mime, 0);
   }
 
+  // If a requested 'why-us' image is missing, fall back to the generic asset that exists locally.
+  if (relativePath.startsWith("why-us/") && relativePath !== "why-us/why-us.avif") {
+    const genericBuf = await readLocalTemplateImage(template, "why-us/why-us.avif");
+    if (genericBuf) {
+      return imageResponse(genericBuf, "image/avif", 0);
+    }
+  }
+
   return new Response("Not Found", { status: 404 });
 }
