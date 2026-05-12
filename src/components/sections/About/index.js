@@ -17,6 +17,7 @@ import About10 from "./About10";
 import About11 from "./About11";
 import About12 from "./About12";
 import About13 from "./About13";
+import About17 from "./About17";
 import About14 from "./About14";
 import About15 from "./About15";
 import About16 from "./About16";

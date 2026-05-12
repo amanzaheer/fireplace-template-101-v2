@@ -41,6 +41,8 @@ const variants = {
   Promotion13,
   Promotion16,
   Promotion17,
+  Promotion10,
+
   Promotion20,
   Promotion19,
   Promotion21,
@@ -51,6 +53,7 @@ export default function Promotion({ variant, content }) {
   const Component = variants[name] ?? Promotion21;
   return <Component content={content} />;
 }
+
 export {
   Promotion1,
   Promotion2,
