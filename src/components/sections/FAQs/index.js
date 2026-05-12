@@ -28,6 +28,7 @@ import FAQs18 from "./FAQs18"
 import FAQs17 from "./FAQs17";
 import FAQs20 from "./FAQs20";
 import FAQs19 from "./FAQs19";
+import FAQs21 from "./FAQs21";
 
 const variants = {
   FAQs1,
@@ -55,12 +56,36 @@ const variants = {
   FAQs17,
   FAQs20,
   FAQs19,
+  FAQs21,
 };
 
 export default function FAQs({ variant, content }) {
-  const name = String(variant ?? "FAQs20").trim();
-  const Component = variants[name] ?? FAQs20;
+  const name = String(variant ?? "FAQs21").trim();
+  const Component = variants[name] ?? FAQs21;
   return <Component content={content} />;
 }
-export { FAQs1, FAQs2, FAQs3, FAQs4, FAQs8,FAQs10, FAQs5,FAQs6,FAQs7,FAQs17,FAQs9,FAQs11,FAQs12,FAQs13,FAQs14,FAQs15,FAQs16,FAQs18,FAQs19,FAQs20, variants};
 
+
+export {
+  FAQs1,
+  FAQs2,
+  FAQs3,
+  FAQs4,
+  FAQs5,
+  FAQs6,
+  FAQs7,
+  FAQs8,
+  FAQs9,
+  FAQs10,
+  FAQs11,
+  FAQs12,
+  FAQs13,
+  FAQs14,
+  FAQs15,
+  FAQs16,
+  FAQs17,
+  FAQs19,
+  FAQs20,
+  FAQs21,
+  variants,
+};

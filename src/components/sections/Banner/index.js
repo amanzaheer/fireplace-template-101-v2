@@ -3,7 +3,6 @@
  * variant comes from domain config (SectionLayout); fallback for standalone use.
  */
 
-
 "use client";
 import Banner1 from "./Banner1";
 import Banner2 from "./Banner2";
@@ -25,6 +24,7 @@ import Banner17 from "./Banner17";
 import Banner19 from "./Banner19";
 import Banner20 from "./Banner20";
 import Banner18 from "./Banner18";
+import Banner21 from "./Banner21";
 const variants = {
   Banner1,
   Banner2,
@@ -46,11 +46,12 @@ const variants = {
   Banner18,
   Banner19,
   Banner20,
+  Banner21,
 };
 
 export default function Banner({ variant, content }) {
-  const name = String(variant ?? '').trim() || 'Banner8';
-  const Component = variants[name] ?? Banner8;
+  const name = String(variant ?? '').trim() || 'Banner21';
+  const Component = variants[name] ?? Banner21;
   return <Component content={content} />;
 }
 
@@ -74,6 +75,7 @@ export {
   Banner17,
   Banner19,
   Banner20,
+  Banner21,
   variants,
 };
  

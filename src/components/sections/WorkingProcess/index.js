@@ -1,4 +1,3 @@
-/**
 "use client";
 
 /**
@@ -6,21 +5,18 @@
  */
 import WorkingProcess12 from "./WorkingProcess12";
 import WorkingProcess20 from "./WorkingProcess20";
+import WorkingProcess21 from "./WorkingProcess21";
 
 const variants = {
   WorkingProcess12,
   WorkingProcess20,
+  WorkingProcess21,
 };
 
 export default function WorkingProcess({ variant, content }) {
-  const name = String(variant ?? "WorkingProcess20").trim();
-  const Component = variants[name] ?? WorkingProcess20;
-
+  const name = String(variant ?? "").trim() || "WorkingProcess21";
+  const Component = variants[name] ?? WorkingProcess21;
   return <Component content={content} />;
 }
 
-export {
-  WorkingProcess12,
-  WorkingProcess20,
-  variants,
-};
+export { WorkingProcess12, WorkingProcess20, WorkingProcess21, variants };

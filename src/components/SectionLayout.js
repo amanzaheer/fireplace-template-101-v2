@@ -1,12 +1,8 @@
 import dynamic from "next/dynamic";
-
-// Above-fold components loaded eagerly
 import Navbar from "@/components/sections/Navbar";
 import Banner from "@/components/sections/Banner";
 import Header from "@/components/sections/Header";
 import CompanyProfile from "@/components/sections/CompanyProfile";
-
-// Below-fold components loaded lazily to reduce initial JS bundle
 const About = dynamic(() => import("@/components/sections/About"));
 const Breadcrumbs = dynamic(() => import("@/components/sections/Breadcrumbs"));
 const BeforeAfter = dynamic(() => import("@/components/sections/BeforeAfter"));
@@ -25,12 +21,12 @@ const ReviewandRating = dynamic(() =>
 );
 const WhyChoose = dynamic(() => import("@/components/sections/WhyChoose"));
 const WorkingProcess = dynamic(() => import("@/components/sections/WorkingProcess"));
+const WorkingProcess2 = dynamic(() => import("@/components/sections/WorkingProcess2"));
 const OurProcess = WorkingProcess;
 const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDescription"));
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
 const InformationSection = dynamic(() => import("@/components/sections/InformationSection"));
-
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
 const Cta = dynamic(() => import("@/components/sections/Cta"));
 const MilestoneBanner = dynamic(() =>
@@ -50,9 +46,10 @@ const sectionComponents = {
   About,
   Promotion,
   OurServices,
-  OurProcess,
+  OurProcess: WorkingProcess2,
   WhyChoose,
   WorkingProcess,
+  WorkingProcess2,
   Slogan,
   ServiceBenefits,
   Contact,
@@ -79,13 +76,7 @@ const sectionComponents = {
   TVSizes,
   WorkPortfolio,
 };
-
 const DEFAULT_THEME_COLOR = "#1A2956";
-
-/**
- * Renders sections in order from domain config. Pass domainConfig and content from getPageData.
- * theme_color from domainData is set on body in root layout (Tailwind primary); passed here for Navbar inline styles.
- */
 export default function SectionLayout({ children, domainConfig, content }) {
   const { sections = {}, order = [] } = domainConfig ?? {};
 

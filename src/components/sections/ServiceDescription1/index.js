@@ -17,6 +17,7 @@ import ServiceDescription10 from "./ServiceDescription10";
 import ServiceDescription13 from "./ServiceDescription13";
 import ServiceDescription19 from "./ServiceDescription19";
 import ServiceDescription17 from "./ServiceDescription17";
+import ServiceDescription21 from "./ServiceDescription21";
 
 const variants = {
   ServiceDescription1,
@@ -34,10 +35,11 @@ const variants = {
   ServiceDescription13,
   ServiceDescription17,
   ServiceDescription19,
+  ServiceDescription21,
 };
 
 export default function ServiceDescription1Section({ variant, content }) {
-  const name = variant ?? "ServiceDescription5";
+  const name = String(variant ?? "ServiceDescription5").trim();
   const Component = variants[name] ?? ServiceDescription5;
   return <Component content={content} />;
 }
@@ -58,5 +60,6 @@ export {
   ServiceDescription13,
   ServiceDescription17,
   ServiceDescription19,
+  ServiceDescription21,
   variants,
 };

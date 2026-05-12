@@ -69,16 +69,32 @@
       "list": [
         {
           "title": "Free Consultation",
-          "description": "Start with a complimentary consultation where we'll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning."
+          "description": "Get a quick fireplace inspection and consultation to identify cleaning, repair, or maintenance needs for safe and efficient performance."
         },
         {
           "title": "Expert Execution",
-          "description": "Start with a complimentary consultation where we'll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning."
+          "description":"Our skilled team provides reliable fireplace cleaning and maintenance using safe methods and professional equipment."
         },
         {
           "title": "Quality Assurance",
-          "description": "Start with a complimentary consultation where we'll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning."
+          "description":  "We ensure your fireplace is clean, secure, and operating properly for improved safety, comfort, and long-lasting performance."
         }
+      ]
+    },
+    "workingprocess2": {
+      "title": "Our Works",
+      "images": [
+        "workingprocess2/process1.jpg",
+        "workingprocess2/process2.jpg",
+        "workingprocess2/process3.jpg",
+        "workingprocess2/process4.jpg",
+        "workingprocess2/process5.jpg"
+      ],
+      "stats": [
+        { "value": "61", "label": "Activate Project" },
+        { "value": "97", "label": "Customer Satisfaction" },
+        { "value": "48", "label": "Awards Winning" },
+        { "value": "56", "label": "Expert Team" }
       ]
     },
     "why_choose": {
@@ -89,8 +105,8 @@
       "childrenRef": "features"
     },
     "slogan": {
-      "title": "Quality Fireplace Services You Can Trust",
-      "description": "At [company_name], we are dedicated to providing exceptional fireplace services. Our experienced professionals ensure quality workmanship and customer satisfaction on every job."
+      "title": "Certified Experts You Can Trust.",
+      "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
     },
     "service_benefits": {
       "heading": "[company_name] Service Benefits",
@@ -132,7 +148,13 @@
       "need_help_label": "Need Help?",
       "google_reviews_title": "Verified Customer Reviews",
       "cta_phone": "[phone]",
-      "file_name": "hero-banner/banner.webp",
+      "cta_strip": {
+        "subheading": "Extend Your Home With A Beautiful Cleaning",
+        "heading": "It's Easy! Call Now",
+        "phone_label": "CALL NOW:",
+        "phone": "[phone]"
+      },
+      "file_name": "hero-banner/banner20.png",
       "childrenRef": "features",
       "file_name2": "hero-banner/overlayimg7.png",
       "left_collage_image": "hero-banner/left collage.png",
@@ -180,28 +202,7 @@
       "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
       "points": null,
       "file_name": "about/about.webp",
-      "file_name2": "about/about2.png"
-    },
-    "working_process": {
-      "heading": "Our Working Process",
-      "description": "Simple and efficient steps to get your fireplace serviced by experts.",
-      "list": [
-        {
-          "title": "Free Consultation",
-          "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-          "file_name": "workingprocess/message.png"
-        },
-        {
-          "title": " Expert Execution",
-          "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-          "file_name": "workingprocess/person.png"
-        },
-        {
-          "title": "Quality Assurance",
-          "description": "Start with a complimentary consultation where we’ll assess your unique cleaning requirements. Our services are customized to meet your specific needs, ensuring thorough and effective chimney cleaning.",
-          "file_name": "workingprocess/verified.png"
-        }
-      ]
+      "file_name2": "about/CompanyProfile2.jpg"
     },
     "promotion": {
       "title": "Monthly Promotion",
@@ -287,7 +288,7 @@
       "email": "info@[domain]",
       "working_hours": "[working_hours]"
     },
-    "city_name": "[city_name]bbbbb",
+    "city_name": "[city_name]",
     "faqs": {
       "title": "Frequently Asked Questions",
       "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
@@ -334,7 +335,7 @@
         { "name": "Colorado", "image": "Servicecities/location6.png" },
         { "name": "Connecticut", "image": "Servicecities/location1.png" },
         { "name": "Delaware", "image": "Servicecities/location2.png" },
-        { "name": "District Of Columbia", "image": "Servicecities/location3.png" },
+        { "name": "District Of Columbia","image": "Servicecities/location3.png" },
         { "name": "Florida", "image": "Servicecities/location4.png" },
         { "name": "Georgia", "image": "Servicecities/location5.png" },
         { "name": "Hawaii", "image": "Servicecities/location6.png" },
@@ -441,7 +442,7 @@
     "cta": {
       "title": "Ready to Book Your Fireplace Service?",
       "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service.",
-      "image": "/images/Cta%20img1.jpg",
+      "image": "Cta/CTA21.png",
       "button_text": "Get a Free Estimate",
       "phone": "[phone]"
 
