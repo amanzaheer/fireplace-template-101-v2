@@ -265,27 +265,11 @@ export async function getPageConfig(host, pageId) {
   return extractPageConfig(configRaw, pageId);
 }
 
-// ---------------------------------------------------------------------------
-// getPageData — home, about, contact, any static page
-// ---------------------------------------------------------------------------
-
-/**
- * Loads content + section config for any static page.
- *
- * Returns null if the domain has no data in the datastore — the page component
- * must render <MaintenancePage /> in that case.
- *
- * All [tag] values in the returned content are fully resolved using domainData.
- * Pass extraVars to inject additional runtime tokens alongside domainData vars.
- *
- * Do NOT use this for service pages — use getServiceData() + getPageConfig() instead.
- */
 export async function getPageData(host, pageId, options = {}) {
   const { domainDataOnly = false, extraVars = {} } = options;
   const domainId = getDomainId(host);
   const domainResult = await loadDomainData(domainId);
 
-  // Domain not configured in datastore — signal maintenance mode
   if (!domainResult) return null;
 
   const { template, domainData } = domainResult;
@@ -295,7 +279,6 @@ export async function getPageData(host, pageId, options = {}) {
   const configRaw = await loadSectionsConfig(domainId, template);
   const domainConfig = extractPageConfig(configRaw, pageId);
 
-  // Content: datastore(domainId) → datastore("default") → null when API configured
   let content = null;
   if (pageId) {
     const remote = await dsRetrieveWithDefault(template, domainId, `content--${pageId}--data.json`);
@@ -308,22 +291,6 @@ export async function getPageData(host, pageId, options = {}) {
   return { domainData, domainConfig, content };
 }
 
-// ---------------------------------------------------------------------------
-// getLocationData — service+location pages (3-layer merge + full tag resolution)
-// ---------------------------------------------------------------------------
-
-/**
- * Loads and merges content for a service+location page.
- *
- * Returns null if the domain has no data in the datastore.
- *
- * Layer order (later wins):
- *   1. Shared location defaults  →  "location.json"
- *   2. Per-location overrides    →  "locations/<slug>.json"  (optional)
- *
- * Each layer: datastore(domainId) → datastore("default").
- * Tags resolved with domainData vars + { service, city_name, location }.
- */
 export async function getLocationData(host, serviceTitle = '', locationSlug, locationTitle = '') {
   const domainId = getDomainId(host);
   const domainResult = await loadDomainData(domainId);

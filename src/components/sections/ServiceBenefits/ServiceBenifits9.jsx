@@ -1,16 +1,26 @@
 "use client";
 
+import React from "react";
 import Image from "next/image";
+import Link from "next/link";
+import { ChevronRight, Phone, TextQuote } from "lucide-react";
+import { Poppins } from "next/font/google";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
-import { Montserrat } from "next/font/google";
-import { ArrowRight } from "lucide-react";
 
-const montserrat = Montserrat({
+const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400"],
+  display: "swap",
 });
+
+function scrollToQuoteForm() {
+  const el = document.getElementById("quote-form-section");
+  if (el) {
+    el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+}
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -19,101 +29,133 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-export default function ServiceBenefits9 ({ content }) {
-  const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
-  const block = content?.service_benefits ?? {};
-  const heading = block.heading ?? "Committed to Excellence";
- 
+function trimStr(v) {
+  if (typeof v !== "string") return "";
+  return v.trim();
+}
+
+function benefitLabel(benefit) {
+  if (typeof benefit === "string") return benefit.trim();
+  if (benefit && typeof benefit === "object") {
+    return (
+      trimStr(benefit.title) ||
+      trimStr(benefit.text) ||
+      ""
+    );
+  }
+  return "";
+}
+
+export default function ServiceBenefits9({ content }) {
+  const contentSafe = content ?? {};
+  const phone =
+    contentSafe?.contact_info?.phone ?? contentSafe?.navbar?.phone ?? "";
+  const phoneHref = phone ? `tel:${phone.replace(/[^\d+]/g, "")}` : "#";
+
+  const block = contentSafe?.service_benefits ?? {};
+  const headingRaw = block.heading ?? "";
+  const headingStr =
+    typeof headingRaw === "string" ? headingRaw.trim() : "";
   const list = Array.isArray(block.list) ? block.list : [];
-  const sectionTitle = block.title ?? "Chimney Service CO Benefits";
-  const filePath = block.file_name ?? "about/about.webp";
-  const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
+  const filePath = trimStr(block.file_name);
+  const imageSrc = filePath ? buildImageSrc(IMAGE_BASE, filePath) : "";
+
+  const imageTitle =
+    trimStr(block.title) ||
+    trimStr(block.image_title) ||
+    headingStr ||
+    "";
+  const imageAlt =
+    trimStr(block.image_alt) ||
+    trimStr(block.alt) ||
+    headingStr ||
+    trimStr(block.title) ||
+    trimStr(block.image_title) ||
+    "";
+
+  const quoteLabel =
+    trimStr(block.cta_label) || trimStr(block.quote_cta_label);
 
   if (list.length === 0) return null;
 
-  const handleQuoteClick = () => {
-    const el =
-      document.getElementById("quote-form-section") ??
-      document.querySelector('.quote-form, [id*="quote"], [class*="quote-form"]');
-
-    if (el) {
-      const offset = 80;
-      window.scrollTo({
-        top: el.getBoundingClientRect().top + window.scrollY - offset,
-        behavior: "smooth",
-      });
-    }
-  };
-
   return (
-    <FullContainer id="service_benefits" className="py-10 md:py-14 overflow-hidden bg-white">
+    <FullContainer id="service_benefits" className="overflow-hidden py-0 md:py-8">
       <Container>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 md:gap-10 lg:gap-14 items-center">
-            <div className="relative flex justify-center lg:justify-end order-2 lg:order-2">
-              <div className="relative h-[526px] rounded  w-full max-w-[540px] shrink-0 overflow-hidden bg-gray-100">
-                {imageSrc ? (
-                  <Image
-                    title="Service Background"
-                    src={imageSrc}
-                    alt="Service Benefits"
-                    fill
-                    className="object-cover"
-                    loading="lazy"
-                    sizes="(max-width: 1024px) 100vw, 540px"
-                  />
-                ) : (
-                  <div className="h-full w-full bg-gray-200" />
-                )}
-              </div>
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:items-stretch md:gap-6 lg:gap-8">
+          <div className="relative order-2 min-h-[220px] w-full overflow-hidden rounded-md bg-blue-500 sm:min-h-[260px] md:order-1 md:min-h-[320px]">
+            {imageSrc ? (
+              <Image
+                {...(imageTitle ? { title: imageTitle } : {})}
+                src={imageSrc}
+                alt={imageAlt}
+                fill
+                className="object-cover"
+                loading="lazy"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            ) : (
+              <div className="absolute inset-0 bg-blue-200" />
+            )}
+          </div>
+          <div className="order-1 z-10 my-4 flex flex-col gap-4 rounded-2xl bg-white px-4 py-6 shadow-[0_0_5px_rgba(0,0,0,0.5)] sm:px-6 sm:py-8 md:order-2 md:my-7 md:px-10">
+            {headingStr ? (
+              <h2 className="text-center text-2xl font-bold uppercase leading-tight tracking-tight text-[#000000] sm:text-3xl md:text-left md:text-4xl lg:text-[2.35rem] lg:leading-[1.12]">
+                {headingStr}
+              </h2>
+            ) : null}
+            <div className="flex w-full justify-center md:justify-start">
+              <ul className="mt-8 grid w-full max-w-xl grid-cols-1 gap-x-10 gap-y-4 sm:max-w-none sm:grid-cols-2 sm:gap-y-3.5">
+                {list.map((benefit, index) => {
+                  const label = benefitLabel(benefit);
+                  if (!label) return null;
+                  return (
+                    <li
+                      key={index}
+                      className="flex items-start px-4 text-left"
+                    >
+                      <ChevronRight className="mt-1 h-5 w-5 shrink-0 stroke-[4] text-[#EFA536]" />
+                      <span
+                        className={`${poppins.className} ml-2 pt-1 text-base font-normal leading-normal text-[#000]`}
+                      >
+                        {label}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
             </div>
-
-            <div className={montserrat.className}>
-              <p className="mt-6 text-xl font-medium leading-tight text-[#4a4a4a] md:text-3xl">
-                {heading}
-              </p>
-              <h3 className="mb-2 mt-6 h-[106px] w-[433px] text-[35px] font-bold leading-[0.95] text-black">
-                {sectionTitle}
-              </h3>
-
-              <div className="grid grid-cols-1 gap-x-2">
-                {list.map((benefit, index) => (
-                  <div key={index} className="flex items-center gap-1">
-                    <div className="h-7 w-7 shrink-0 whitespace-nowrap">
-                      <Image
-                        src="/st-icons/Temp12/shield.png"
-                        alt="Check"
-                        width={28}
-                        height={28}
-                        className="h-7 w-7 object-contain"
-                      />
-                    </div>
-                    <span className="text-[16px] leading-snug text-[#222222] md:text-[18px]">
-                      {typeof benefit === "object" ? benefit?.title : benefit}
+            <div className="mt-8 flex w-full flex-col items-stretch justify-start gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
+              {phone ? (
+                <Link href={phoneHref} className="inline-flex w-full sm:w-auto">
+                  <button
+                    type="button"
+                    className="flex w-full min-w-0 items-center justify-center gap-2 rounded-none bg-[#EFA536] px-6 py-3 font-barlow text-lg font-semibold text-white shadow transition-colors hover:bg-[#EFA536]/85 sm:min-w-[205px] sm:justify-start"
+                  >
+                    <Phone
+                      className="h-5 w-5 shrink-0 text-white"
+                      strokeWidth={2.25}
+                    />
+                    <span className="truncate">{phone}</span>
+                  </button>
+                </Link>
+              ) : null}
+              {quoteLabel ? (
+                <button
+                  type="button"
+                  onClick={scrollToQuoteForm}
+                  className="inline-flex w-full min-w-0 max-w-full items-center justify-center gap-2 rounded-none bg-[#EFA536] px-6 py-3 font-barlow text-base font-bold text-white uppercase tracking-wide transition-colors hover:bg-[#EFA536]/85 sm:w-auto sm:min-w-[160px] sm:max-w-[280px] md:text-base"
+                >
+                  <div className="flex items-center gap-2">
+                    <TextQuote
+                      className="h-6 w-6 shrink-0 text-white"
+                      strokeWidth={2.25}
+                    />
+                    <span className="text-md ml-2 font-thin tracking-widest md:text-xl md:tracking-normal">
+                      {quoteLabel}
                     </span>
                   </div>
-                ))}
-              </div>
-
-              <div className="mt-7 flex flex-col gap-8 sm:flex-row">
-                {/* <a
-                  href={`tel:${phone}`}
-                  className="inline-flex h-[46px] min-w-[219px] items-center justify-center gap-2 bg-[#da4909] px-8 text-sm font-semibold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-yellow-600"
-                >
-                  Call Us Today
-                  <span aria-hidden="true">→</span>
-                </a> */}
-                
-                <a
-              href={phone ? `tel:${phone}` : "#"}
-              className="inline-flex h-auto min-h-[46px] w-[323px] shrink-0 items-center justify-center gap-2 rounded-full border-3 border-white bg-[#da4909] px-6 py-[11px] font-normal uppercase tracking-wide text-white shadow-lg transition-opacity hover:opacity-95"
-            >
-              <span className="text-[16px]">CALL NOW:</span>
-              <span className="text-[20px] font-bold">
-                {phone || "(888)-249-0566"}
-              </span>
-            </a>
-              </div>
+                </button>
+              ) : null}
             </div>
           </div>
         </div>

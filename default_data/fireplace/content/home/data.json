@@ -24,6 +24,29 @@
       ],
       "phone": "[phone]"
     },
+    "contact_info": {
+      "phone": "[phone]",
+      "email": "[email]",
+      "address": "[street], [city_name], [state_name] [zip]",
+      "working_hours": "[working_hours]"
+    },
+    "footer": {
+      "information_heading": "Information",
+      "contact_heading": "Stay Tuned With Us",
+      "value": "Our goal is to give you services that are fast, effective, and affordable, and that go above and beyond what you expect.",
+      "file_name": "footer/footerbg.webp",
+      "badge_images": [
+        "footer/footer1.webp",
+        "footer/footer2.webp",
+        "footer/footer3.webp",
+        "footer/footer4.webp",
+        "footer/footer5.webp"
+      ],
+      "legal_links": [
+        { "label": "Privacy Policy", "href": "/privacy-policy" },
+        { "label": "Terms and Conditions", "href": "/terms-and-conditions" }
+      ]
+    },
     "services": [
       {
         "title": "Fireplace Repair",
@@ -57,7 +80,11 @@
       }
     ],
     "our_services": {
-      "title": "Our Services"
+      "title": "Our Services",
+      "no_description_text": "No description provided.",
+      "overflow_template": "{count} more services available – {link}",
+      "call_for_details_label": "Call for details",
+      "max_display": 9
     },
     "our_process": {
       "title": "Our Working Process",
@@ -99,17 +126,28 @@
     },
     "why_choose": {
       "heading": "Why Choose Us",
+      "cta_label": "GET A QUOTE",
       "file_name": "why-us/why-us.avif",
-      "main_image": "why-us/whychoose1.png",
-      "file_name2": "why-us/whychoose2.png",
-      "childrenRef": "features"
+      "features": [
+        { "icon": "FileText", "text": "Fire Place & Repair" },
+        { "icon": "Clock", "text": "Same Day Service" },
+        { "icon": "Star", "text": "5 Star Rated On Google" },
+        { "icon": "Shield", "text": "Licensed & Insured" },
+        { "icon": "MessageSquare", "text": "10+ Years Of Experience" }
+      ]
     },
     "slogan": {
       "title": "Certified Experts You Can Trust.",
       "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
     },
     "service_benefits": {
-      "heading": "[company_name] Service Benefits",
+      "heading": "Committed to Excellence",
+      "title": "[company_name] Service Benefits",
+      "cta_label": "GET A QUOTE",
+      "call_now_label": "CALL NOW:",
+      "shield_icon": "/st-icons/Temp12/shield.png",
+      "shield_icon_alt": "Check",
+      "image_alt": "Service Benefits",
       "file_name": "benefits/benefits.avif",
       "list": [
         {
@@ -140,14 +178,17 @@
     },
     "banner": {
       "title": "Trusted Experts in [industry] services",
+      "imageTitle": "Trusted Experts in [industry] services",
+      "heading": "TRUSTED EXPERTS IN [industry] SERVICES",
+      "description": "Professional [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
       "tagline": "trusted professionals in [industry] installation, cleaning & repair",
+      "need_help_label": "Need Help?",
+      "cta_phone": "[phone]",
       "form_title": "GET IN TOUCH WITH US",
       "form_description": "Offer ends in just a few hours!",
       "rating_line": "⭐ Rated 9.94 On Checkatrade ⭐",
       "contact_subheading": "Contact [city_name] [industry] Services",
-      "need_help_label": "Need Help?",
       "google_reviews_title": "Verified Customer Reviews",
-      "cta_phone": "[phone]",
       "cta_strip": {
         "subheading": "Extend Your Home With A Beautiful Cleaning",
         "heading": "It's Easy! Call Now",
@@ -155,6 +196,8 @@
         "phone": "[phone]"
       },
       "file_name": "hero-banner/banner20.png",
+      "alt": "Hero",
+      "altImage": "Hero",
       "childrenRef": "features",
       "file_name2": "hero-banner/overlayimg7.png",
       "left_collage_image": "hero-banner/left collage.png",
@@ -200,13 +243,24 @@
       "heading": "About [company_name]",
       "description1": "At Fireplace Services, we bring over experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
       "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
-      "points": null,
-      "file_name": "about/about.webp",
-      "file_name2": "about/CompanyProfile2.jpg"
+
+      "alt": "About [company_name]",
+      "file_name": "about/about.webp"
     },
     "promotion": {
       "title": "Monthly Promotion",
       "description": null,
+      "cta_label": "Call Us Today",
+      "left_cta_label": "[phone]",
+      "left_heading": "TRUSTED EXPERTS IN FIREPLACE SERVICES",
+      "left_subheading": "",
+      "left_features": [
+        "Fireplace cleaning & soot removal",
+        "Full system safety inspection",
+        "Gas & wood-burning maintenance",
+        "Ventilation & draft performance check",
+        "Creosote buildup reduction"
+      ],
       "details": [
         {
           "heading": "**Why Choose [company_name]?**",
@@ -248,7 +302,8 @@
     "before_after": {
       "title": "Before And After Results [industry]",
       "sub_title": "[industry] Restoration Services Today",
-      
+      "before_label": "Before",
+      "after_label": "After",
       "items": [
         {
           "before": "beforeafter/before1.webp",
@@ -276,6 +331,16 @@
         }
       ]
     },
+    "gallery": {
+      "title": "Why Choose [company_name]?",
+      "description": "Professional [industry] care keeps your home safer, warmer, and more efficient. From inspections to cleaning and repairs, [company_name] delivers dependable workmanship in [city_name] and surrounding areas.\n\nSee recent work below — every project is completed with attention to detail and clear communication.",
+      "cta_label": "GET A QUOTE",
+      "file_name": [
+        "services/fireplace-maintenance.webp",
+        "services/gas-fireplace.webp",
+        "services/fireplace-repair.webp"
+      ]
+    },
     "form_head": {
       "title": "10% Off Total Price for Online Booking",
       "sub_title": "Ask For A Quote Here"
@@ -283,19 +348,16 @@
     "contact": {
       "background_image": "Contactimg/contactus20.png"
     },
-    "contact_info": {
-      "phone": "[phone]",
-      "email": "info@[domain]",
-      "working_hours": "[working_hours]"
-    },
     "city_name": "[city_name]",
     "faqs": {
-      "title": "Frequently Asked Questions",
+      "title": "FAQs",
       "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
       "cta_label": "Ask a Question",
       "cta_href": "/#contact-us",
       "file_name": "faqs/faqs13.png",
       "filename2": "faqs/faqs17.png",
+      "side_image": "faqs/whychoose1.png",
+      "side_image_alt": "Technician at work",
       "items": [
         {
           "question": "What is included in a fireplace inspection?",
@@ -315,14 +377,11 @@
         }
       ]
     },
-    "footer": {
-      "value": "[company_name] – Your trusted source for professional fireplace services. Our team of experienced professionals is dedicated to quality workmanship and customer satisfaction. Contact us today!",
-      "file_name": "footer/footerbg.webp"
-    },
     "locations": {
       "title": "We Proudly Serve Multiple Locations",
       "description": "We take pride in providing professional chimney services. Our goal is to deliver reliable, safe, and affordable solutions that keep your chimney clean, efficient, and your home protected with complete peace of mind.",
       "image": "locations/map.jpg",
+      "map_image": "icons/maap.webp",
       "slider_icon": "Servicecities/locationsslider.png",
       "cta_label": "BOOK YOUR SERVICE",
       "cta_href": "/#contact-us",
@@ -405,6 +464,9 @@
 
     "testimonials": {
       "reviewCount": "150+",
+      "heading": "Our Happy Clients",
+      "client_label": "CLIENTS",
+      "google_reviews_label": "Google Reviews",
       "file_name": "testimonials/wood-fireplace-repair.webp",
       "list": [
         {
@@ -489,5 +551,30 @@
         "WorkPortfolio/gallery14.jpg",
         "WorkPortfolio/gallery15.jpg"
       ]
+    },
+    "form_labels": {
+      "default_title": "GET IN TOUCH WITH US",
+      "placeholder_first_name": "First Name",
+      "placeholder_phone": "(123)-456-7890",
+      "placeholder_email": "your@email.com",
+      "placeholder_message": "Message",
+      "submit_button": "SUBMIT",
+      "submitting_label": "Sending…",
+      "processing_label": "Processing...",
+      "thank_you_title": "Thank You!",
+      "thank_you_message": "Your request has been submitted successfully. We'll contact you shortly with your personalized quote.",
+      "thank_you_button": "OK Thanks",
+      "toast_success": "Your request has been submitted successfully! We'll contact you shortly.",
+      "toast_error": "Something went wrong. Please try again.",
+      "errors": {
+        "name_required": "Name is required",
+        "name_invalid": "Name must be 2-50 characters and contain only letters",
+        "email_required": "Email is required",
+        "email_invalid": "Please enter a valid email address",
+        "phone_required": "Phone number is required",
+        "phone_invalid": "Phone number must be exactly 10 digits",
+        "message_required": "Message is required",
+        "message_invalid": "Message must be at least 10 characters long"
+      }
     }
   }

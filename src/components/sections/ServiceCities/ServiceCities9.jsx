@@ -52,8 +52,12 @@ function getLocationsList(content, block) {
 export default function ServiceCities9({ content }) {
   const block = content?.locations ?? {};
   const cities = useMemo(() => getLocationsList(content, block), [content, block]);
-  const title = block?.title ?? block?.value?.title ?? "Areas We Serve";
-  const mapSrc = buildImageSrc(IMAGE_BASE, "icons/maap.webp");
+  const title = block?.title ?? block?.value?.title ?? "";
+  const mapPath =
+    typeof block?.map_image === "string" && block.map_image.trim()
+      ? block.map_image.trim()
+      : "";
+  const mapSrc = mapPath ? buildImageSrc(IMAGE_BASE, mapPath) : "";
 
   if (cities.length === 0) return null;
 
@@ -74,14 +78,16 @@ export default function ServiceCities9({ content }) {
           <div className="absolute inset-0 bg-white/90" />
         </div>
         <div className="relative z-10">
-          <h2
-            className={cn(
-              serviceCitiesHeadingFont.className,
-              "mb-8 w-full px-2 text-center text-[clamp(1.375rem,4.5vw,45px)] font-bold leading-tight text-[#2D2D2D]",
-            )}
-          >
-            {title}
-          </h2>
+          {title ? (
+            <h2
+              className={cn(
+                serviceCitiesHeadingFont.className,
+                "mb-8 w-full px-2 text-center text-[clamp(1.375rem,4.5vw,45px)] font-bold leading-tight text-[#2D2D2D]",
+              )}
+            >
+              {title}
+            </h2>
+          ) : null}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-8 gap-y-3">
             {cities.map((city, index) => (
               <div

@@ -1,7 +1,7 @@
 {
   "meta_data": {
     "title": "Professional [service] Service | [company_name]",
-    "description": "Professional [service] in [city_name][state_name]. Licensed, insured, and satisfaction guaranteed."
+    "description": "Professional [service] in [city_name], [state_name]. Licensed, insured, and satisfaction guaranteed."
   },
   "navbar": {
     "logo": {
@@ -18,6 +18,12 @@
       { "title": "Contact Us", "link": "contact-us" }
     ],
     "phone": "[phone]"
+  },
+  "contact_info": {
+    "phone": "[phone]",
+    "email": "[email]",
+    "address": "[street], [city_name], [state_name] [zip]",
+    "working_hours": "[working_hours]"
   },
   "banner": {
     "title": "#1 [service]",
@@ -87,11 +93,6 @@
   ],
   "city_name": "[city_name]",
   "state_name": "[state_name]",
-  "contact_info": {
-    "phone": "[phone]",
-    "email": "info@[domain]",
-    "working_hours": "[working_hours]"
-  },
   "contact": {
     "background_image": "Contactimg/contactus20.png"
   },
@@ -107,17 +108,15 @@
     ]
   },
   "faqs": {
-    "title": "Frequently Asked Questions",
+    "title": "FAQs",
     "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
     "cta_label": "Ask a Question",
     "cta_href": "/#contact-us",
     "image": "footer/faqs-illustration.png",
     "file_name": "faqs/faqs13.png",
     "filename2": "faqs/faqs17.png",
-    "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
-      "cta_label": "Ask a Question",
-      "cta_href": "/#contact-us",
-
+    "side_image": "faqs/whychoose1.png",
+    "side_image_alt": "Technician at work",
     "items": [
       {
         "question": "What is included in a fireplace inspection?",
@@ -138,24 +137,75 @@
     ]
   },
   "footer": {
+    "information_heading": "Information",
+    "contact_heading": "Stay Tuned With Us",
     "value": "[company_name] – Your trusted source for professional fireplace services in [city_name].",
-    "file_name": "footer/footerbg.webp"
+    "file_name": "footer/footerbg.webp",
+    "legal_links": [
+      { "label": "Privacy Policy", "href": "/privacy-policy" },
+      { "label": "Terms and Conditions", "href": "/terms-and-conditions" }
+    ]
   },
   "service_description": {
     "title": "[service] Services",
-    "description": "## [service] Services\n\nEnsuring safety, comfort, and efficiency, [service] is essential for maintaining the performance and longevity of your fireplace system. Over time, heat, moisture, and regular use can cause buildup, wear, or damage, leading to poor efficiency, smoke issues, or safety concerns.\n\nRegular [service] not only prevents costly repairs but also protects your home from potential fire hazards, harmful gases, and system breakdowns. By addressing issues early and keeping your fireplace in excellent condition, you enjoy reliable warmth, improved energy efficiency, and long-term peace of mind."
+    "cta_label": "GET A QUOTE",
+    "file_name": "services/fireplace-repair.webp",
+    "description": "## [service] Services\n\nEnsuring safety, comfort, ggggggg and efficiency, [service] is essential for maintaining the performance and longevity of your fireplace system. Over time, heat, moisture, and regular use can cause buildup, wear, or damage, leading to poor efficiency, smoke issues, or safety concerns.\n\nRegular [service] not only prevents costly repairs but also protects your home from potential fire hazards, harmful gases, and system breakdowns. By addressing issues early and keeping your fireplace in excellent condition, you enjoy reliable warmth, improved energy efficiency, and long-term peace of mind."
   },
   "gallery": {
     "title": "Why Choose [service]?",
     "description": "Regular [service] is essential to keep your home safe and your system working efficiently. Over time, soot, ash, and creosote build up inside the fireplace and chimney, which can restrict airflow and increase the risk of dangerous chimney fires. Professional cleaning removes these hazards, ensuring your fireplace operates smoothly and safely.\r\n\r\nIn addition to safety, [service] also improves air quality and boosts heating efficiency. A clean fireplace produces less smoke, distributes heat more effectively, and creates a warm, inviting atmosphere. Choosing expert cleaning services helps protect your home, extend the life of your fireplace, and maintain a healthier living space.",
+    "cta_label": "GET A QUOTE",
     "file_name": ["services/fireplace-maintenance.webp", "services/gas-fireplace.webp"]
-  },
+  },  
   "service_description1": {
     "title": null,
-    "description": "## Why Is [service] Important?  \r\n\r\nFireplaces face a variety of challenges due to regular use, heat, and exposure to moisture. Without proper care, these issues can affect safety, efficiency, and comfort. Regular **[service]** is essential for keeping your fireplace system in excellent condition. Here’s why it matters:  \r\n\r\n- **Protection from Damage:** Over time, heat, soot, and moisture can cause wear and tear. **[service]** helps prevent cracks, blockages, and costly repairs while extending the life of your fireplace.  \r\n\r\n- **Improved Safety:** Creosote buildup, poor airflow, or damaged parts can increase the risk of fire or harmful gas leaks. Regular **[service]** reduces these dangers and keeps your home safe.  \r\n\r\n- **Better Air Quality:** A poorly maintained fireplace can push smoke, odors, or carbon monoxide back into your home. **[service]** ensures proper ventilation and a healthier indoor environment.  \r\n\r\n- **Enhanced Efficiency:** Debris, buildup, or damage can reduce heating performance. **[service]** restores efficiency, helping your fireplace run cleaner, safer, and more effectively.  \r\n"
+    "cta_label": "GET A QUOTE",
+    "description": "## Why Is [service] mportant?  \r\n\r\nFireplaces face a variety of challenges due to regular use, heat, and exposure to moisture. Without proper care, these issues can affect safety, efficiency, and comfort. Regular **[service]** is essential for keeping your fireplace system in excellent condition. Here’s why it matters:  \r\n\r\n- **Protection from Damage:** Over time, heat, soot, and moisture can cause wear and tear. **[service]** helps prevent cracks, blockages, and costly repairs while extending the life of your fireplace.  \r\n\r\n- **Improved Safety:** Creosote buildup, poor airflow, or damaged parts can increase the risk of fire or harmful gas leaks. Regular **[service]** reduces these dangers and keeps your home safe.  \r\n\r\n- **Better Air Quality:** A poorly maintained fireplace can push smoke, odors, or carbon monoxide back into your home. **[service]** ensures proper ventilation and a healthier indoor environment.  \r\n\r\n- **Enhanced Efficiency:** Debris, buildup, or damage can reduce heating performance. **[service]** restores efficiency, helping your fireplace run cleaner, safer, and more effectively.  \r\n"
   },
   "service_description2": {
-    "title": null,
+    "title": "Benefits of [service]",
+    "cta_label": "GET A QUOTE",
     "description": "## **Benefits of [service]**  \r\n\r\n**Enhanced Safety**  \r\nOne of the primary benefits of **[service]** is improved safety. An unmaintained fireplace can lead to fire hazards, smoke issues, or even carbon monoxide leaks. Regular service reduces these risks significantly.  \r\n\r\n**Prevention of Damage**  \r\nFireplaces are exposed to constant heat, soot, and sometimes moisture. Services like **[service]** help identify and repair vulnerable areas, preventing costly structural damage and keeping your system reliable.  \r\n\r\n**Improved Heating Efficiency**  \r\nWhether you’re using a wood-burning or gas fireplace, professional **[service]** ensures your system runs at peak performance. This means better heat output, lower energy costs, and improved comfort.  \r\n\r\n**Extended Lifespan of Components**  \r\nRoutine inspections, maintenance, and repairs through **[service]** protect your investment by extending the lifespan of key parts such as liners, dampers, and vents. This reduces the need for expensive replacements.  \r\n\r\n**Better Indoor Air Quality**  \r\nWithout proper care, fireplaces can accumulate soot, ash, or debris, negatively impacting air quality. Regular **[service]** keeps airflow clean and healthy, ensuring a safer living environment for your family.  \r\n\r\n**Code Compliance & Property Value**  \r\nProfessional **[service]** helps your fireplace meet safety and building code requirements. A properly maintained fireplace not only boosts safety but also enhances your home’s appeal and resale value.  \r\n"
+  },
+  "service_benefits": {
+    "heading": "Committed to Excellence",
+    "title": "[company_name] Service Benefits",
+    "cta_label": "GET A QUOTE",
+    "image_alt": "Living room with fireplace — [company_name] [service] benefits",
+    "file_name": "benefits/benefits.avif",
+    "list": [
+      { "title": "Fire Prevention", "description": "Prevent fire hazards and CO issues." },
+      { "title": "Improved Air Quality", "description": "Properly working fireplaces heat better." },
+      { "title": "Enhanced Efficiency", "description": "Maintenance extends fireplace life." },
+      { "title": "Extended Fireplace Lifespan", "description": "Remove soot and improve air quality." },
+      { "title": "Safe Operation", "description": "Know your fireplace is safe." },
+      { "title": "Improved Comfort", "description": "Working fireplaces add value." }
+    ]
+  },
+  "form_labels": {
+    "default_title": "GET IN TOUCH WITH US",
+    "placeholder_first_name": "First Name",
+    "placeholder_phone": "(123)-456-7890",
+    "placeholder_email": "your@email.com",
+    "placeholder_message": "Message",
+    "submit_button": "SUBMIT",
+    "submitting_label": "Sending…",
+    "processing_label": "Processing...",
+    "thank_you_title": "Thank You!",
+    "thank_you_message": "Your request has been submitted successfully. We'll contact you shortly with your personalized quote.",
+    "thank_you_button": "OK Thanks",
+    "toast_success": "Your request has been submitted successfully! We'll contact you shortly.",
+    "toast_error": "Something went wrong. Please try again.",
+    "errors": {
+      "name_required": "Name is required",
+      "name_invalid": "Name must be 2-50 characters and contain only letters",
+      "email_required": "Email is required",
+      "email_invalid": "Please enter a valid email address",
+      "phone_required": "Phone number is required",
+      "phone_invalid": "Phone number must be exactly 10 digits",
+      "message_required": "Message is required",
+      "message_invalid": "Message must be at least 10 characters long"
+    }
   }
 }

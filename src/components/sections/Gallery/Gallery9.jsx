@@ -27,7 +27,6 @@ function buildImageSrc(base, filePath) {
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
 }
-
 function normalizeGalleryEntry(entry) {
   if (typeof entry === "string") {
     const path = entry.trim();
@@ -43,19 +42,47 @@ function normalizeGalleryEntry(entry) {
   return null;
 }
 
+const DEFAULT_GALLERY = {
+  title: "",
+  description: "",
+  cta_label: "GET A QUOTE",
+};
+
+function mergeGalleryBlock(raw) {
+  if (!raw || typeof raw !== "object") return null;
+  const withoutNulls = Object.fromEntries(
+    Object.entries(raw).filter(([, v]) => v != null),
+  );
+  const file_name = Array.isArray(withoutNulls.file_name)
+    ? withoutNulls.file_name
+    : [];
+  return { ...DEFAULT_GALLERY, ...withoutNulls, file_name };
+}
+
 export default function Gallery9({ content }) {
-  const phoneRaw = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
+  const phoneRaw = content?.banner?.cta_phone ??
+    content?.contact_info?.phone ??
+    content?.navbar?.phone ??
+    "";
   const phone = typeof phoneRaw === "string" ? phoneRaw.trim() : "";
   const phoneHref = phone ? `tel:${phone.replace(/[^\d+]/g, "")}` : "#";
 
-  const block = content?.gallery ?? null;
+  const block = mergeGalleryBlock(content?.gallery);
   if (!block) return null;
 
   const title =
-    typeof block.title === "string" ? block.title : String(block.title ?? "");
+    block.title == null
+      ? ""
+      : typeof block.title === "string"
+        ? block.title
+        : String(block.title);
   const html = block.description ? md.render(block.description) : "";
   const rawFiles = Array.isArray(block.file_name) ? block.file_name : [];
   const files = rawFiles.map(normalizeGalleryEntry).filter(Boolean);
+  const ctaLabel =
+    typeof block.cta_label === "string" && block.cta_label.trim()
+      ? block.cta_label.trim()
+      : DEFAULT_GALLERY.cta_label;
 
   if (!title.trim() && !html && files.length === 0) return null;
 
@@ -122,7 +149,7 @@ export default function Gallery9({ content }) {
                 ) : null}
                 <button type="button" onClick={handleQuoteClick} className={ctaClass}>
                   <TextQuote className="h-5 w-5 shrink-0" strokeWidth={2.25} />
-                  GET A QUOTE
+                  {ctaLabel}
                 </button>
               </div>
             </div>

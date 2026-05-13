@@ -40,8 +40,12 @@ export default function Testimonials9({
   const logo = content?.navbar?.logo ?? {};
   const data = content?.testimonials ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];
-  const reviewCount = data.reviewCount ?? "150+";
-  const heading = data.heading ?? "Our Happy Clients";
+  const reviewCount = data.reviewCount ?? "";
+  const heading = data.heading ?? "";
+  const googleReviewsLabel =
+    typeof data.google_reviews_label === "string" && data.google_reviews_label.trim()
+      ? data.google_reviews_label.trim()
+      : "";
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -274,37 +278,26 @@ export default function Testimonials9({
     const embeddedClientLabel =
       typeof data.client_label === "string" && data.client_label.trim()
         ? data.client_label.trim().toUpperCase()
-        : "CLIENTS";
+        : "";
     return (
       <div
-        className="box-border w-full min-w-0 max-w-[628px] rounded-[20px] border border-white/20 bg-gradient-to-r from-[#3F269A] via-[#3d4cab] to-[#2B6CB0] p-4 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.45)] sm:p-5"
+        className="box-border w-full min-w-0 max-w-[628px] rounded-[20px] bg-transparent p-4 sm:p-5"
       >
-        <h2
-          className={`${poppinsEmbeddedTitle.className} mb-4 w-full text-center font-extrabold tracking-tight text-white`}
-          style={{
-            fontSize: "31.398px",
-            lineHeight: 1.2,
-            textAlign: "center",
-          }}
-        >
-          {heading}
-        </h2>
+        {heading ? (
+          <h2
+            className={`${poppinsEmbeddedTitle.className} mb-4 w-full text-center font-extrabold tracking-tight text-white`}
+            style={{
+              fontSize: "31.398px",
+              lineHeight: 1.2,
+              textAlign: "center",
+            }}
+          >
+            {heading}
+          </h2>
+        ) : null}
 
         <div className="flex w-full min-w-0 flex-col gap-3">
           <div className="flex w-full min-w-0 items-center gap-2">
-            {n > vShow ? (
-              <button
-                type="button"
-                onClick={() => handleArrowClick("prev")}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-md transition-colors hover:border-[#EFA536]/50 sm:h-10 sm:w-10"
-                aria-label="Previous review"
-              >
-                <ChevronLeftIcon
-                  className={`h-5 w-5 ${chevronIconClassName ?? "text-neutral-700"}`}
-                />
-              </button>
-            ) : null}
-
             <div
               ref={embeddedViewportRef}
               className="min-w-0 flex-1 overflow-hidden"
@@ -386,19 +379,6 @@ export default function Testimonials9({
                 })}
               </div>
             </div>
-
-            {n > vShow ? (
-              <button
-                type="button"
-                onClick={() => handleArrowClick("next")}
-                className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white shadow-md transition-colors hover:border-[#EFA536]/50 sm:h-10 sm:w-10"
-                aria-label="Next review"
-              >
-                <ChevronRightIcon
-                  className={`h-5 w-5 ${chevronIconClassName ?? "text-neutral-700"}`}
-                />
-              </button>
-            ) : null}
           </div>
 
           {embeddedMaxIdx > 0 ? (
@@ -426,11 +406,13 @@ export default function Testimonials9({
 
   const inner = (
     <>
-      <div className="mb-6 w-full text-center">
-        <h2 className="mb-2 text-center text-4xl font-extrabold text-[#002B5B]">
-         {heading}
-        </h2>
-      </div>
+      {heading ? (
+        <div className="mb-6 w-full text-center">
+          <h2 className="mb-2 text-center text-4xl font-extrabold text-[#002B5B]">
+            {heading}
+          </h2>
+        </div>
+      ) : null}
 
       <div className="relative flex min-h-0 flex-col gap-8 md:flex-row md:items-start md:gap-10">
         <div className="flex shrink-0 items-center justify-between md:mb-0 md:w-48 md:flex-col md:items-start">
@@ -449,9 +431,11 @@ export default function Testimonials9({
                   </span>
                 ))}
               </div>
-              <p className="text-gray-600 text-xs md:text-sm font-medium">
-                {reviewCount} Google Reviews
-              </p>
+              {reviewCount || googleReviewsLabel ? (
+                <p className="text-gray-600 text-xs md:text-sm font-medium">
+                  {[reviewCount, googleReviewsLabel].filter(Boolean).join(" ")}
+                </p>
+              ) : null}
             </div>
           </div>
         </div>

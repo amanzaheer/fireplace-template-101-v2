@@ -23,7 +23,7 @@ function markdownPreview(str) {
   return md.render(str);
 }
 
-const MAX_DISPLAY = 9;
+const DEFAULT_MAX_DISPLAY = 9;
 const BLUR_DATA_URL =
   "data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAv/xAAUEAEAAAAAAAAAAAAAAAAAAAAA/8QAFQEBAQAAAAAAAAAAAAAAAAAAAAX/xAAUEQEAAAAAAAAAAAAAAAAAAAAA/9oADAMBAAIRAxEAPwCdABmX/9k=";
 
@@ -72,7 +72,7 @@ function ServiceCardText({ service }) {
             __html: markdownPreview(service.description),
           }}
         />
-      ) : (
+      ) : service.noDescriptionText ? (
         <p
           className={`${poppins.className} w-full shrink-0 text-center capitalize text-[#000]`}
           style={{
@@ -83,9 +83,9 @@ function ServiceCardText({ service }) {
             lineHeight: "24.596px",
           }}
         >
-          No description provided.
+          {service.noDescriptionText}
         </p>
-      )}
+      ) : null}
     </div>
   );
 }
@@ -136,6 +136,16 @@ export default function OurServices9({ content }) {
   const ourServices = contentSafe?.our_services;
   const servicesFromNav = contentSafe?.services ?? [];
 
+  const noDescriptionText =
+    typeof ourServices?.no_description_text === "string"
+      ? ourServices.no_description_text
+      : "";
+
+  const maxDisplay =
+    typeof ourServices?.max_display === "number" && ourServices.max_display > 0
+      ? ourServices.max_display
+      : DEFAULT_MAX_DISPLAY;
+
   const services = useMemo(() => {
     if (Array.isArray(ourServices?.items) && ourServices.items.length > 0) {
       return ourServices.items.map((item, i) => {
@@ -146,6 +156,7 @@ export default function OurServices9({ content }) {
           path: item.path ?? "#",
           description: resolveServiceTag(item.description ?? "", title),
           image: item.image ?? null,
+          noDescriptionText,
         };
       });
     }
@@ -157,30 +168,41 @@ export default function OurServices9({ content }) {
         path: item.path ?? "#",
         description: resolveServiceTag(item.description ?? "", title),
         image: item.image ?? null,
+        noDescriptionText,
       };
     });
-  }, [ourServices, servicesFromNav]);
+  }, [ourServices, servicesFromNav, noDescriptionText]);
 
   const displayServices = useMemo(
-    () => (Array.isArray(services) ? services.slice(0, MAX_DISPLAY) : []),
-    [services],
+    () => (Array.isArray(services) ? services.slice(0, maxDisplay) : []),
+    [services, maxDisplay],
   );
 
   if (!displayServices.length) return null;
 
-  const sectionTitle = ourServices?.title ?? "Services Provided";
+  const sectionTitle = ourServices?.title ?? "";
+  const overflowTemplate =
+    typeof ourServices?.overflow_template === "string"
+      ? ourServices.overflow_template
+      : "";
+  const callForDetailsLabel =
+    typeof ourServices?.call_for_details_label === "string"
+      ? ourServices.call_for_details_label
+      : "";
 
   return (
     <section
       id="our_services"
-      className="bg-neutral-50 py-12 md:py-16 lg:py-20"
+      className="bg-[#ffffff] py-12 md:py-16 lg:py-20"
     >
       <div className="mx-auto w-full max-w-[1270px] px-4 md:px-6">
-        <h2
-          className={`${poppins.className} mb-10 text-center text-3xl font-bold tracking-tight text-neutral-800 md:mb-12 md:text-4xl lg:text-[2.5rem]`}
-        >
-          {sectionTitle}
-        </h2>
+        {sectionTitle ? (
+          <h2
+            className={`${poppins.className} mb-10 text-center text-3xl font-bold tracking-tight text-neutral-800 md:mb-12 md:text-4xl lg:text-[2.5rem]`}
+          >
+            {sectionTitle}
+          </h2>
+        ) : null}
 
         <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3 lg:gap-8 xl:gap-10">
           {displayServices.map((service, index) => {
@@ -229,19 +251,30 @@ export default function OurServices9({ content }) {
           })}
         </div>
 
-        {services.length > MAX_DISPLAY && (
-          <div className="mt-10 text-center">
-            <p className="text-lg font-semibold text-neutral-700">
-              {services.length - MAX_DISPLAY} more services available –{" "}
-              <a
-                href={phone ? `tel:${phone}` : "#"}
-                className="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
-              >
-                Call for details
-              </a>
-            </p>
-          </div>
-        )}
+        {services.length > maxDisplay && overflowTemplate && callForDetailsLabel ? (
+          (() => {
+            const count = services.length - maxDisplay;
+            const [before, after] = overflowTemplate.includes("{link}")
+              ? overflowTemplate.split("{link}")
+              : [overflowTemplate, ""];
+            const beforeText = before.replace("{count}", String(count));
+            const afterText = after.replace("{count}", String(count));
+            return (
+              <div className="mt-10 text-center">
+                <p className="text-lg font-semibold text-neutral-700">
+                  {beforeText}
+                  <a
+                    href={phone ? `tel:${phone}` : "#"}
+                    className="underline decoration-neutral-400 underline-offset-2 hover:text-neutral-900"
+                  >
+                    {callForDetailsLabel}
+                  </a>
+                  {afterText}
+                </p>
+              </div>
+            );
+          })()
+        ) : null}
       </div>
     </section>
   );

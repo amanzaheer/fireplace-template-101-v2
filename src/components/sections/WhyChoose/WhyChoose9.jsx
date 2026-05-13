@@ -12,7 +12,7 @@ const poppins = Poppins({
   display: "swap",
 });
 
-const BG = "#f5f5f5";
+const BG = "#ffffff";
 const minH = "clamp(280px, 42vw, 460px)";
 const CLIP_LEFT = "polygon(0% 8%, 100% 0%, 100% 100%, 0% 92%)";
 const CLIP_RIGHT = "polygon(0% 0%, 100% 8%, 100% 92%, 0% 100%)";
@@ -137,28 +137,30 @@ export default function WhyChoose9({ content }) {
 
   const block = contentSafe?.why_choose ?? {};
   const features = resolveRefArray(contentSafe, block, "features");
-  const heading = block.heading ?? "Why Choose Us";
-  const filePath = block.file_name ?? "about/about.webp";
-  const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
-  const imageSrcRight =
-    typeof block.file_name_2 === "string" && block.file_name_2.trim()
-      ? buildImageSrc(IMAGE_BASE, block.file_name_2)
-      : imageSrc;
-  const imageAlt =
-    block.alt ?? block.image_alt ?? heading ?? "Why choose us";
+  const heading = typeof block.heading === "string" ? block.heading.trim() : "";
+  const filePath =
+    typeof block.file_name === "string" ? block.file_name.trim() : "";
+  const imageSrc = filePath ? buildImageSrc(IMAGE_BASE, filePath) : "";
+  const secondPath =
+    (typeof block.file_name2 === "string" && block.file_name2.trim()) ||
+    (typeof block.file_name_2 === "string" && block.file_name_2.trim()) ||
+    "";
+  const imageSrcRight = secondPath
+    ? buildImageSrc(IMAGE_BASE, secondPath)
+    : imageSrc;
+  const imageAlt = block.alt ?? block.image_alt ?? heading ?? "";
+  const ctaLabel =
+    typeof block.cta_label === "string" ? block.cta_label.trim() : "";
 
   if (features.length === 0) return null;
 
   const handleQuoteClick = () => {
-    const el =
-      document.getElementById("quote-form-section") ??
-      document.querySelector('.quote-form, [id*="quote"], [class*="quote-form"]');
+    const el = document.getElementById("quote-form-section");
 
     if (el) {
-      const offset = 80;
-      window.scrollTo({
-        top: el.getBoundingClientRect().top + window.scrollY - offset,
+      el.scrollIntoView({
         behavior: "smooth",
+        block: "start",
       });
     }
   };
@@ -180,9 +182,11 @@ export default function WhyChoose9({ content }) {
           </div>
 
           <div className="order-1 lg:order-2">
-            <h2 className="text-left text-2xl font-bold uppercase leading-tight tracking-tight text-[#000000] sm:text-3xl md:text-4xl lg:text-[2.35rem] lg:leading-[1.12]">
-              {heading}
-            </h2>
+            {heading ? (
+              <h2 className="text-left text-2xl font-bold uppercase leading-tight tracking-tight text-[#000000] sm:text-3xl md:text-4xl lg:text-[2.35rem] lg:leading-[1.12]">
+                {heading}
+              </h2>
+            ) : null}
 
             <ul className="mt-8 grid grid-cols-1 gap-x-10 gap-y-4 sm:grid-cols-2 sm:gap-y-3.5">
               {features.map((feature, idx) => {
@@ -209,7 +213,7 @@ export default function WhyChoose9({ content }) {
               })}
             </ul>
 
-            <div className="mt-8 hidden w-full flex-col items-start justify-start gap-2 md:flex lg:flex-row lg:items-center lg:gap-4">
+            <div className="mt-8 flex w-full flex-col items-start justify-start gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               {phone ? (
                 <Link href={phoneLink}>
                   <button
@@ -224,21 +228,23 @@ export default function WhyChoose9({ content }) {
                   </button>
                 </Link>
               ) : null}
-              <button
-                type="button"
-                onClick={handleQuoteClick}
-                className="inline-flex min-w-[160px] w-[205px] items-center justify-center gap-2 rounded-none bg-[#EFA536] px-6 py-3 font-barlow text-base font-bold text-white transition-colors hover:bg-[#EFA536]/85 md:text-base"
-              >
-                <div className="flex items-center gap-2">
-                  <TextQuote
-                    className="h-6 w-6 shrink-0 text-white"
-                    strokeWidth={2.25}
-                  />
-                  <span className="text-md ml-2 font-thin tracking-widest md:text-xl md:tracking-normal">
-                    GET A QUOTE
-                  </span>
-                </div>
-              </button>
+              {ctaLabel ? (
+                <button
+                  type="button"
+                  onClick={handleQuoteClick}
+                  className="inline-flex min-w-[160px] w-[205px] items-center justify-center gap-2 rounded-none bg-[#EFA536] px-6 py-3 font-barlow text-base font-bold text-white transition-colors hover:bg-[#EFA536]/85 md:text-base"
+                >
+                  <div className="flex items-center gap-2">
+                    <TextQuote
+                      className="h-6 w-6 shrink-0 text-white"
+                      strokeWidth={2.25}
+                    />
+                    <span className="text-md ml-2 font-thin tracking-widest md:text-xl md:tracking-normal">
+                      {ctaLabel}
+                    </span>
+                  </div>
+                </button>
+              ) : null}
             </div>
           </div>
         </div>

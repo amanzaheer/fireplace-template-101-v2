@@ -21,9 +21,18 @@ const quoteFormPoppins = Poppins({
 export default function QuoteForm9({
   data: _data,
   form_head,
+  form_labels = {},
   showArrowInButton: _showArrowInButton = false,
   fontClassName: _fontClassName = "",
 }) {
+  const labels = form_labels || {};
+  const errorLabels = labels.errors || {};
+  const placeholders = {
+    firstName: labels.placeholder_first_name || "First Name",
+    phone: labels.placeholder_phone || "(123)-456-7890",
+    email: labels.placeholder_email || "your@email.com",
+    message: labels.placeholder_message || "Message",
+  };
   const inputTypography =
     "text-left font-inherit text-base font-normal leading-normal text-[#000] outline-none placeholder:text-left placeholder:font-inherit placeholder:text-base placeholder:font-normal placeholder:text-[#000]";
   const quoteFieldFrame =
@@ -76,29 +85,34 @@ export default function QuoteForm9({
     const newErrors = {};
 
     if (!formData.firstName.trim()) {
-      newErrors.firstName = "Name is required";
+      newErrors.firstName = errorLabels.name_required || "Name is required";
     } else if (!validateName(formData.firstName)) {
       newErrors.firstName =
+        errorLabels.name_invalid ||
         "Name must be 2-50 characters and contain only letters";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
+      newErrors.email = errorLabels.email_required || "Email is required";
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email =
+        errorLabels.email_invalid || "Please enter a valid email address";
     }
 
     const cleanPhone = formData.phone.replace(/[-()\s]/g, "");
     if (!formData.phone.trim()) {
-      newErrors.phone = "Phone number is required";
+      newErrors.phone = errorLabels.phone_required || "Phone number is required";
     } else if (!validatePhone(cleanPhone)) {
-      newErrors.phone = "Phone number must be exactly 10 digits";
+      newErrors.phone =
+        errorLabels.phone_invalid || "Phone number must be exactly 10 digits";
     }
 
     if (!formData.message.trim()) {
-      newErrors.message = "Message is required";
+      newErrors.message = errorLabels.message_required || "Message is required";
     } else if (!validateMessage(formData.message, 10)) {
-      newErrors.message = "Message must be at least 10 characters long";
+      newErrors.message =
+        errorLabels.message_invalid ||
+        "Message must be at least 10 characters long";
     }
 
     setFieldErrors(newErrors);
@@ -246,21 +260,31 @@ export default function QuoteForm9({
       fireGTMEvent(formData);
       toast.success(
         result.message ||
+          labels.toast_success ||
           "Your request has been submitted successfully! We'll contact you shortly."
       );
       setFormSubmitted(true);
     } catch (err) {
       console.error("Error submitting form:", err);
-      toast.error(err.message || "Something went wrong. Please try again.");
+      toast.error(
+        err.message ||
+          labels.toast_error ||
+          "Something went wrong. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  const title = (form_head?.title || "GET IN TOUCH WITH US").toUpperCase();
+  const title = (
+    form_head?.title ||
+    labels.default_title ||
+    "GET IN TOUCH WITH US"
+  ).toUpperCase();
 
   return (
     <div
+      id="quote-form-section"
       className={`relative flex h-fit w-full max-w-[439px] min-w-0 flex-col rounded-[18px] bg-white px-6 py-8 shadow-[0_12px_40px_-12px_rgba(0,0,0,0.25)] sm:px-8 ${quoteFormPoppins.className}`}
     >
       {!formSubmitted && (
@@ -292,16 +316,19 @@ export default function QuoteForm9({
           <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100">
             <CheckCircle className="h-8 w-8 text-green-600" />
           </div>
-          <h3 className="mb-2 text-xl font-bold text-gray-800">Thank You!</h3>
+          <h3 className="mb-2 text-xl font-bold text-gray-800">
+            {labels.thank_you_title || "Thank You!"}
+          </h3>
           <p className="mb-6 max-w-md text-gray-600">
-            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
+            {labels.thank_you_message ||
+              "Your request has been submitted successfully. We'll contact you shortly with your personalized quote."}
           </p>
           <button
             type="button"
             onClick={closeThankYouPopup}
             className="rounded-lg bg-[#EFA536] px-6 py-2 font-normal text-[24.767px] text-[#000]"
           >
-            OK Thanks
+            {labels.thank_you_button || "OK Thanks"}
           </button>
         </div>
       ) : (
@@ -319,7 +346,7 @@ export default function QuoteForm9({
               onChange={handleChange}
               onFocus={handleFirstInteraction}
               className={cn(inputFieldClass, fieldErrors.firstName && inputError)}
-              placeholder="First Name"
+              placeholder={placeholders.firstName}
               required
               aria-invalid={!!fieldErrors.firstName}
             />
@@ -338,7 +365,7 @@ export default function QuoteForm9({
               onChange={handleChange}
               onFocus={handleFirstInteraction}
               className={cn(inputFieldClass, fieldErrors.phone && inputError)}
-              placeholder="(123)-456-7890"
+              placeholder={placeholders.phone}
               required
               aria-invalid={!!fieldErrors.phone}
             />
@@ -357,7 +384,7 @@ export default function QuoteForm9({
               onChange={handleChange}
               onFocus={handleFirstInteraction}
               className={cn(inputFieldClass, fieldErrors.email && inputError)}
-              placeholder="your@email.com"
+              placeholder={placeholders.email}
               required
               aria-invalid={!!fieldErrors.email}
             />
@@ -375,7 +402,7 @@ export default function QuoteForm9({
               onChange={handleChange}
               onFocus={handleFirstInteraction}
               className={cn(textareaFieldClass, fieldErrors.message && inputError)}
-              placeholder="Message"
+              placeholder={placeholders.message}
               required
               aria-invalid={!!fieldErrors.message}
             />
@@ -402,10 +429,10 @@ export default function QuoteForm9({
                   className="h-5 w-5 shrink-0 animate-spin text-[#060606]"
                   aria-hidden
                 />
-                Sending…
+                {labels.submitting_label || "Sending…"}
               </span>
             ) : (
-              "SUBMIT"
+              labels.submit_button || "SUBMIT"
             )}
           </button>
         </form>

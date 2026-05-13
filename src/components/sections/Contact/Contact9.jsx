@@ -33,7 +33,7 @@ const glassInput =
   "w-full rounded-none border border-white/90 bg-transparent px-3.5 py-2.5 text-[13.560px] text-white outline-none transition-colors placeholder:text-[#FFFFFF] focus:border-white focus:ring-0";
 const glassInputError = "border-red-400 focus:border-red-400 focus:ring-red-400/50";
 
-const NameInput = memo(({ value, onChange, error }) => (
+const NameInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
     <label htmlFor="contact-name" className="sr-only">
       Name (required)
@@ -45,7 +45,7 @@ const NameInput = memo(({ value, onChange, error }) => (
       value={value}
       onChange={onChange}
       className={`${glassInput} ${error ? glassInputError : ""}`}
-      placeholder="First Name"
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
@@ -56,7 +56,7 @@ const NameInput = memo(({ value, onChange, error }) => (
 ));
 NameInput.displayName = "NameInput";
 
-const EmailInput = memo(({ value, onChange, error }) => (
+const EmailInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
     <label htmlFor="contact-email" className="sr-only">
       Email (required)
@@ -68,7 +68,7 @@ const EmailInput = memo(({ value, onChange, error }) => (
       value={value}
       onChange={onChange}
       className={`${glassInput} ${error ? glassInputError : ""}`}
-      placeholder="your@email.com"
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
@@ -79,7 +79,7 @@ const EmailInput = memo(({ value, onChange, error }) => (
 ));
 EmailInput.displayName = "EmailInput";
 
-const PhoneInput = memo(({ value, onChange, error }) => (
+const PhoneInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
     <label htmlFor="contact-phone" className="sr-only">
       Phone number (required)
@@ -91,7 +91,7 @@ const PhoneInput = memo(({ value, onChange, error }) => (
       value={value}
       onChange={onChange}
       className={`${glassInput} ${error ? glassInputError : ""}`}
-      placeholder="(123)-456-7890"
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
@@ -102,7 +102,7 @@ const PhoneInput = memo(({ value, onChange, error }) => (
 ));
 PhoneInput.displayName = "PhoneInput";
 
-const MessageInput = memo(({ value, onChange, error }) => (
+const MessageInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
     <label htmlFor="contact-message" className="sr-only">
       Message (required)
@@ -114,7 +114,7 @@ const MessageInput = memo(({ value, onChange, error }) => (
       onChange={onChange}
       rows={4}
       className={`${glassInput} min-h-[100px] resize-y ${error ? glassInputError : ""}`}
-      placeholder="Message"
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
@@ -128,7 +128,15 @@ MessageInput.displayName = "MessageInput";
 export default function Contact9({ content: contentProp }) {
   const content = contentProp ?? {};
   const formHead = content.form_head ?? {};
-  const title = formHead.title ?? "GET IN TOUCH WITH US";
+  const labels = content.form_labels ?? {};
+  const errorLabels = labels.errors ?? {};
+  const placeholders = {
+    name: labels.placeholder_first_name || "First Name",
+    phone: labels.placeholder_phone || "(123)-456-7890",
+    email: labels.placeholder_email || "your@email.com",
+    message: labels.placeholder_message || "Message",
+  };
+  const title = formHead.title ?? labels.default_title ?? "GET IN TOUCH WITH US";
   const subTitle = formHead.sub_title ?? "";
 
   const testimonialsData = content?.testimonials ?? {};
@@ -139,8 +147,8 @@ export default function Contact9({ content: contentProp }) {
   const sectionBgPath =
     content?.contact?.background_image ??
     testimonialsData.section_bg_image ??
-    "hero/hero.webp";
-  const sectionBgUrl = buildImageSrc(IMAGE_BASE, sectionBgPath);
+    "";
+  const sectionBgUrl = sectionBgPath ? buildImageSrc(IMAGE_BASE, sectionBgPath) : "";
 
   const [formData, setFormData] = useState({
     name: "",
@@ -167,20 +175,29 @@ export default function Contact9({ content: contentProp }) {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.name.trim())
+      newErrors.name = errorLabels.name_required || "Name is required";
     else if (!validateName(formData.name))
       newErrors.name =
+        errorLabels.name_invalid ||
         "Name must be 2-50 characters and contain only letters";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
+    if (!formData.email.trim())
+      newErrors.email = errorLabels.email_required || "Email is required";
     else if (!validateEmail(formData.email))
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email =
+        errorLabels.email_invalid || "Please enter a valid email address";
     const cleanPhone = formData.phone.replace(/[-()\s]/g, "");
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!formData.phone.trim())
+      newErrors.phone = errorLabels.phone_required || "Phone number is required";
     else if (!validatePhone(cleanPhone))
-      newErrors.phone = "Phone number must be exactly 10 digits";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
+      newErrors.phone =
+        errorLabels.phone_invalid || "Phone number must be exactly 10 digits";
+    if (!formData.message.trim())
+      newErrors.message = errorLabels.message_required || "Message is required";
     else if (!validateMessage(formData.message, 10))
-      newErrors.message = "Message must be at least 10 characters long";
+      newErrors.message =
+        errorLabels.message_invalid ||
+        "Message must be at least 10 characters long";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -246,12 +263,17 @@ export default function Contact9({ content: contentProp }) {
       }
       toast.success(
         result.message ||
+          labels.toast_success ||
           "Your request has been submitted successfully! We'll contact you shortly.",
       );
       setFormSubmitted(true);
     } catch (err) {
       console.error("Error submitting form:", err);
-      toast.error(err.message || "Something went wrong. Please try again.");
+      toast.error(
+        err.message ||
+          labels.toast_error ||
+          "Something went wrong. Please try again.",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -329,18 +351,18 @@ export default function Contact9({ content: contentProp }) {
                   <CheckCircle className="h-11 w-11 text-white" />
                 </div>
                 <h4 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
-                  Thank You!
+                  {labels.thank_you_title || "Thank You!"}
                 </h4>
                 <p className="mb-8 max-w-md text-base text-white/90 sm:text-lg">
-                  Your request has been submitted successfully. We&apos;ll
-                  contact you shortly with your personalized quote.
+                  {labels.thank_you_message ||
+                    "Your request has been submitted successfully. We'll contact you shortly with your personalized quote."}
                 </p>
                 <button
                   type="button"
                   onClick={closeThankYou}
                   className="rounded-lg border border-neutral-200 bg-white px-8 py-3 text-base font-semibold text-black transition-colors hover:bg-neutral-100"
                 >
-                  OK Thanks
+                  {labels.thank_you_button || "OK Thanks"}
                 </button>
               </div>
             ) : (
@@ -364,21 +386,25 @@ export default function Contact9({ content: contentProp }) {
                       value={formData.name}
                       onChange={handleChange}
                       error={errors.name}
+                      placeholder={placeholders.name}
                     />
                     <PhoneInput
                       value={formData.phone}
                       onChange={handleChange}
                       error={errors.phone}
+                      placeholder={placeholders.phone}
                     />
                     <EmailInput
                       value={formData.email}
                       onChange={handleChange}
                       error={errors.email}
+                      placeholder={placeholders.email}
                     />
                     <MessageInput
                       value={formData.message}
                       onChange={handleChange}
                       error={errors.message}
+                      placeholder={placeholders.message}
                     />
                   </div>
                   <button
@@ -390,10 +416,10 @@ export default function Contact9({ content: contentProp }) {
                     {isSubmitting ? (
                       <>
                         <Loader className="mr-2 h-5 w-5 animate-spin text-black" />
-                        Processing...
+                        {labels.processing_label || "Processing..."}
                       </>
                     ) : (
-                      "Submit"
+                      labels.submit_button || "Submit"
                     )}
                   </button>
                 </form>

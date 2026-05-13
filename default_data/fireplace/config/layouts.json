@@ -1,27 +1,27 @@
 {
   "sections": {
     "Navbar": {
-      "design": "Navbar21",
+      "design": "Navbar9",
       "visible": true
     },
     "Header": {
       "design": "Header11",
-      "visible": true
+      "visible": false
     },
     "Banner": {
-      "design": "Banner21",
+      "design": "Banner9",
       "visible": true
     },
     "Breadcrumbs": {
       "design": "Breadcrumbs19",
-      "visible": true
+      "visible": false
     },
     "About": {
-      "design": "About21",
+      "design": "About9",
       "visible": true
     },
     "Promotion": {
-      "design": "Promotion21",
+      "design": "Promotion9",
       "visible": true
     },
     "Hero": {
@@ -33,76 +33,76 @@
       "visible": false
     },
     "Testimonials": {
-      "design": "Testimonials21",
-      "visible": true
+      "design": "Testimonials9",
+      "visible": false
     },
     "Footer": {
-      "design": "Footer21",
+      "design": "Footer9",
       "visible": true
     },
     "BeforeAfter": {
-      "design": "BeforeAfter21",
+      "design": "BeforeAfter9",
       "visible": true
     },
     "OurServices": {
-      "design": "OurServices21",
+      "design": "OurServices9",
       "visible": true
     },
     "WhyChoose": {
-      "design": "WhyChoose21",
+      "design": "WhyChoose9",
       "visible": true
     },
     "Slogan": {
-      "design": "Slogan21",
+      "design": "Slogan9",
       "visible": true
     },
     "ServiceBenefits": {
-      "design": "ServiceBenefits21",
-      "visible": false
+      "design": "ServiceBenefits9",
+      "visible": true
     },
     "Contact": {
-      "design": "Contact21",
+      "design": "Contact9",
       "visible": true
     },
     "FAQs": {
-      "design": "FAQs21",
+      "design": "FAQs9",
       "visible": true
     },
     "ServiceCities": {
-      "design": "ServiceCities21",
+      "design": "ServiceCities9",
       "visible": true
     },
     "ServiceDescription": {
-      "design": "ServiceDescription21",
-      "visible": false
+      "design": "ServiceDescription9",
+      "visible": true
     },
     "Gallery": {
-      "design": "Gallery21",
+      "design": "Gallery9",
       "visible": true
     },
     "ServiceDescription1": {
-      "design": "ServiceDescription21",
+      "design": "ServiceDescription9",
       "visible": true
     },
     "ServiceDescription2": {
-      "design": "ServiceDescription21",
+      "design": "ServiceDescription9",
       "visible": true
     },
     "CallUsButton": {
       "design": "CallUsButton19",
-      "visible": true
+      "visible": false
     },
     "ReviewandRating": {
       "design": "ReviewandRating19",
-      "visible": true
+      "visible": false
     },
     "WorkingProcess": {
       "design": "WorkingProcess21",
-      "visible": true
+      "visible": false
     },
     "WorkingProcess2": {
       "design": "WorkingProcess21",
-      "visible": true
+      "visible": false
     },
     "calltoaction": {
       "design": "CallToAction11",
@@ -110,7 +110,7 @@
     },
     "Cta": {
       "design": "Cta21",
-      "visible": true
+      "visible": false
     },
     "MilestoneBanner": {
       "design": "MilestoneBanner19",
@@ -118,7 +118,7 @@
     },
     "Videosection": {
       "design": "Videosection19",
-      "visible": true
+      "visible": false
     },
     "InformationSection": {
       "design": "InformationSection19",
@@ -153,11 +153,11 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar21",
+          "design": "Navbar9",
           "visible": true
         },
         "Banner": {
-          "design": "Banner21",
+          "design": "Banner9",
           "visible": true
         },
         "TVSizes": {
@@ -165,80 +165,80 @@
           "visible": false
         },
         "About": {
-          "design": "About21",
+          "design": "About9",
           "visible": true
         },
         "Promotion": {
-          "design": "Promotion21",
+          "design": "Promotion9",
           "visible": true
         },
         "Testimonials": {
-          "design": "Testimonials21",
-          "visible": true
+          "design": "Testimonials9",
+          "visible": false
         },
         "Footer": {
-          "design": "Footer21",
+          "design": "Footer9",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter21",
+          "design": "BeforeAfter9",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices21",
+          "design": "OurServices9",
           "visible": true
         },
         "Gallery": {
-          "design": "Gallery21",
+          "design": "Gallery9",
           "visible": true
         },
         "WhyChoose": {
-          "design": "WhyChoose21",
+          "design": "WhyChoose9",
           "visible": true
         },
         "Slogan": {
-          "design": "Slogan21",
+          "design": "Slogan9",
           "visible": true
         },
         "ServiceBenefits": {
-          "design": "ServiceBenefits21",
-          "visible": false
+          "design": "ServiceBenefits9",
+          "visible": true
         },
         "Contact": {
-          "design": "Contact21",
+          "design": "Contact9",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs21",
+          "design": "FAQs9",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities21",
+          "design": "ServiceCities9",
           "visible": true
         },
         "CallUsButton": {
           "design": "CallUsButton19",
-          "visible": true
+          "visible": false
         },
         "ReviewandRating": {
           "design": "ReviewandRating11",
-          "visible": true
+          "visible": false
         },
         "WorkingProcess": {
           "design": "WorkingProcess21",
-          "visible": true
+          "visible": false
         },
         "WorkingProcess2": {
           "design": "WorkingProcess21",
-          "visible": true
+          "visible": false
         },
         "calltoaction": {
           "design": "CallToAction11",
-          "visible": true
+          "visible": false
         },
         "Cta": {
           "design": "Cta21",
-          "visible": true
+          "visible": false
         },
         "WorkPortfolio": {
           "design": "WorkPortfolio11",
@@ -288,11 +288,11 @@
     "service": {
       "sections": {
         "Navbar": {
-          "design": "Navbar21",
+          "design": "Navbar9",
           "visible": true
         },
         "Banner": {
-          "design": "Banner21",
+          "design": "Banner9",
           "visible": true
         },
         "TVSizes": {
@@ -301,38 +301,38 @@
         },
         "Breadcrumbs": {
           "design": "Breadcrumbs20",
-          "visible": true
+          "visible": false
         },
         "ServiceDescription": {
-          "design": "ServiceDescription21",
+          "design": "ServiceDescription9",
           "visible": true
         },
         "Gallery": {
-          "design": "Gallery21",
+          "design": "Gallery9",
           "visible": true
         },
         "ServiceDescription1": {
-          "design": "ServiceDescription21",
-          "visible": true
+          "design": "ServiceDescription17",
+          "visible": false
         },
         "ServiceDescription2": {
-          "design": "ServiceDescription21",
+          "design": "ServiceDescription9",
           "visible": true
         },
         "Contact": {
-          "design": "Contact21",
+          "design": "Contact9",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs21",
+          "design": "FAQs9",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities21",
+          "design": "ServiceCities9",
           "visible": true
         },
         "Footer": {
-          "design": "Footer21",
+          "design": "Footer9",
           "visible": true
         },
         "CallUsButton": {
@@ -341,7 +341,7 @@
         },
         "Cta": {
           "design": "Cta21",
-          "visible": true
+          "visible": false
         }
       },
 

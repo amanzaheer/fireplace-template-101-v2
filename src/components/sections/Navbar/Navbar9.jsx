@@ -325,74 +325,82 @@ export default function Navbar9({ content }) {
   );
 
   const headerShellClass =
-    "relative w-full sticky top-0 z-30 bg-gradient-to-r from-[#3F269A] via-[#3d4cab] to-[#2B6CB0] py-2 h-[82px] md:h-[112px]";
+    "fixed top-0 left-0 right-0 z-50 w-full bg-gradient-to-r from-[#3F269A] via-[#3d4cab] to-[#2B6CB0] py-2 h-[82px] md:h-[112px]";
+
+  const navSpacer = (
+    <div className="h-[82px] md:h-[112px]" aria-hidden="true" />
+  );
 
   if (!mounted) {
     return (
-      <FullContainer className={headerShellClass}>
-        <Container>
-          <div className="flex h-full w-full items-center justify-between md:pr-8">
-            <div className="flex h-full items-center justify-center">
-              <div className="text-white [&_a]:text-white [&_a_h2]:text-white [&_a_span]:text-white">
-                <Logo
-              logo={logo}
-              imagePath={imagePath}
-              textLogoClassName={NAVBAR9_LOGO_TEXT_CLASS}
-              textLogoStyle={NAVBAR9_LOGO_TEXT_STYLE}
-            />
+      <>
+        <FullContainer className={headerShellClass}>
+          <Container>
+            <div className="flex h-full w-full items-center justify-between md:pr-8">
+              <div className="flex h-full items-center justify-center">
+                <div className="text-white [&_a]:text-white [&_a_h2]:text-white [&_a_span]:text-white">
+                  <Logo
+                    logo={logo}
+                    imagePath={imagePath}
+                    textLogoClassName={NAVBAR9_LOGO_TEXT_CLASS}
+                    textLogoStyle={NAVBAR9_LOGO_TEXT_STYLE}
+                  />
+                </div>
               </div>
-            </div>
-            <div className="flex items-center justify-end">
-              <div className="hidden md:flex">
-                <a href={phoneLink} className="flex items-center gap-1.5">
+              <div className="flex items-center justify-end">
+                <div className="hidden md:flex">
+                  <a href={phoneLink} className="flex items-center gap-1.5">
+                    <span
+                      className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                      style={{ backgroundColor: ACCENT }}
+                    >
+                      <Phone className="h-[18px] w-[18px] text-white" />
+                    </span>
+                    <div
+                      className={`${poppins.className} flex h-[29px] w-[179px] shrink-0 flex-col justify-end text-center text-[#FFFFFF]`}
+                      style={{
+                        fontSize: "18.42px",
+                        fontStyle: "normal",
+                        fontWeight: 700,
+                        lineHeight: "normal",
+                      }}
+                    >
+                      <span className="block min-w-0 w-full truncate">
+                        {phone}
+                      </span>
+                    </div>
+                  </a>
+                </div>
+                <div className="pl-4 lg:hidden">
                   <span
-                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full"
+                    className="inline-flex rounded-md p-1.5"
                     style={{ backgroundColor: ACCENT }}
                   >
-                    <Phone className="h-[18px] w-[18px] text-white" />
+                    <Menu className="h-6 w-6 text-neutral-900" />
                   </span>
-                  <div
-                    className={`${poppins.className} flex h-[29px] w-[179px] shrink-0 flex-col justify-end text-center text-[#FFFFFF]`}
-                    style={{
-                      fontSize: "18.42px",
-                      fontStyle: "normal",
-                      fontWeight: 700,
-                      lineHeight: "normal",
-                    }}
-                  >
-                    <span className="block min-w-0 w-full truncate">
-                      {phone}
-                    </span>
-                  </div>
-                </a>
-              </div>
-              <div className="pl-4 lg:hidden">
-                <span
-                  className="inline-flex rounded-md p-1.5"
-                  style={{ backgroundColor: ACCENT }}
-                >
-                  <Menu className="h-6 w-6 text-neutral-900" />
-                </span>
+                </div>
               </div>
             </div>
-          </div>
-        </Container>
-      </FullContainer>
+          </Container>
+        </FullContainer>
+        {navSpacer}
+      </>
     );
   }
 
   return (
-    <FullContainer id="navbar" className={headerShellClass}>
-      <Container>{headerContent}</Container>
+    <>
+      <FullContainer id="navbar" className={headerShellClass}>
+        <Container>{headerContent}</Container>
 
-      <div
-        className={cn(
-          "absolute left-0 right-0 top-full w-full bg-white py-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)] transition-all duration-300 lg:hidden",
-          isOpen
-            ? "visible h-fit opacity-100"
-            : "invisible h-0 overflow-hidden opacity-0",
-        )}
-      >
+        <div
+          className={cn(
+            "absolute left-0 right-0 top-full w-full bg-white py-2 shadow-[0_16px_40px_rgba(0,0,0,0.12)] transition-all duration-300 lg:hidden",
+            isOpen
+              ? "visible h-fit opacity-100"
+              : "invisible h-0 overflow-hidden opacity-0",
+          )}
+        >
         <div className="flex flex-col font-barlow text-[17px] font-semibold">
           {menuItemsArray.map((item) => {
             if (isDropdownItem(item)) {
@@ -508,5 +516,7 @@ export default function Navbar9({ content }) {
         </a>
       </div>
     </FullContainer>
+    {navSpacer}
+    </>
   );
 }

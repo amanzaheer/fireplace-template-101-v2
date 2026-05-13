@@ -36,10 +36,27 @@ function resolvePhone(content) {
   return typeof raw === "string" ? raw.trim() : "";
 }
 
+const DEFAULT_SERVICE_DESCRIPTION2 = {
+  title: "",
+  description: "",
+  cta_label: "GET A QUOTE",
+};
+
 export default function ServiceDescription9({ content }) {
-  const title = String(content?.service_description2?.title ?? "").trim();
-  const text = content?.service_description2?.description ?? "";
+  const raw2 = content?.service_description2 ?? {};
+  const withoutNulls = Object.fromEntries(
+    Object.entries(
+      raw2 && typeof raw2 === "object" ? raw2 : {},
+    ).filter(([, v]) => v != null),
+  );
+  const sd2 = { ...DEFAULT_SERVICE_DESCRIPTION2, ...withoutNulls };
+  const title = sd2.title == null ? "" : String(sd2.title).trim();
+  const text = sd2.description ?? "";
   const html = text.trim() ? md.render(text) : "";
+  const ctaLabel =
+    typeof sd2.cta_label === "string" && sd2.cta_label.trim()
+      ? sd2.cta_label.trim()
+      : DEFAULT_SERVICE_DESCRIPTION2.cta_label;
 
   if (!title && !html) return null;
 
@@ -106,7 +123,7 @@ export default function ServiceDescription9({ content }) {
               )}
             >
               <TextQuote className="h-5 w-5 shrink-0" strokeWidth={2.25} />
-              GET A QUOTE
+              {ctaLabel}
             </button>
           </div>
         </div>

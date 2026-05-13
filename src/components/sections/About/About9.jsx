@@ -147,14 +147,19 @@ export default function About9({ content }) {
     points: about.points,
   };
 
-  const image =
-    buildImageSrc(IMAGE_BASE, about.file_name) ||
-    buildImageSrc(IMAGE_BASE, "about/about.webp");
+  const primaryPath =
+    typeof about.file_name === "string" && about.file_name.trim()
+      ? about.file_name.trim()
+      : "";
+  const image = primaryPath ? buildImageSrc(IMAGE_BASE, primaryPath) : "";
 
-  const imageRight =
-    typeof about.file_name_2 === "string" && about.file_name_2.trim()
-      ? buildImageSrc(IMAGE_BASE, about.file_name_2)
-      : image;
+  const secondPath =
+    (typeof about.file_name2 === "string" && about.file_name2.trim()) ||
+    (typeof about.file_name_2 === "string" && about.file_name_2.trim()) ||
+    "";
+  const imageRight = secondPath
+    ? buildImageSrc(IMAGE_BASE, secondPath)
+    : image;
 
   const phoneRaw = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const phone = typeof phoneRaw === "string" ? phoneRaw : "";
@@ -162,7 +167,9 @@ export default function About9({ content }) {
 
   const points = Array.isArray(data.points) ? data.points : [];
   const imageAlt =
-    typeof about.alt === "string" && about.alt.trim() ? about.alt.trim() : "About";
+    typeof about.alt === "string" && about.alt.trim()
+      ? about.alt.trim()
+      : data.heading || "";
 
   return (
     <FullContainer className="bg-white py-12 md:py-16 lg:py-20" id="about">
