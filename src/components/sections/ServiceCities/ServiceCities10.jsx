@@ -24,7 +24,7 @@ function getLocationsList(content, block) {
 export default function ServiceCities10({ content }) {
   const block = content?.locations ?? {};
   const cities = useMemo(() => getLocationsList(content, block), [content, block]);
-  const title = block?.title ?? block?.value?.title ?? "Areas We Serve";
+  const title = block?.title ?? block?.value?.title ?? "";
 
   if (cities.length === 0) return null;
 
@@ -32,9 +32,11 @@ export default function ServiceCities10({ content }) {
     <FullContainer className="py-10 md:py-14 bg-[#ffffff]" id="locations">
       <Container>
         <div className="max-w-6xl mx-auto">
-          <h2 className={`${poppins.className} mb-8 text-center text-3xl font-bold tracking-tight text-[#2d2d2d] md:mb-10 md:text-[44px]`}>
-            {title}
-          </h2>
+          {title ? (
+            <h2 className={`${poppins.className} mb-8 text-center text-3xl font-bold tracking-tight text-[#2d2d2d] md:mb-10 md:text-[44px]`}>
+              {title}
+            </h2>
+          ) : null}
           <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-3 md:gap-x-5 gap-y-3">
             {cities.map((city, index) => (
               <div

@@ -217,7 +217,7 @@ export default function Banner8({ content }) {
                 >
                   {(banner.cta_heading || "GET IN TOUCH WITH US").trim()}
                 </h3>
-                <QuoteForm
+                <QuoteForm8
                   data={data}
                   form_head={form_head}
                   showArrowInButton={false}

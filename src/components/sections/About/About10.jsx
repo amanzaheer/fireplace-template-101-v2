@@ -41,13 +41,11 @@ function buildImageSrc(base, filePath) {
 
 export default function About10({ content }) {
   const about = content?.about ?? {};
-  const heading = about.heading ?? "About Chimney pro";
+  const heading = about.heading ?? "";
   const description1 = about.description1 ?? "";
   const description2 = about.description2 ?? "";
-  const label = about.label ?? "ABOUT US";
-  const image =
-    buildImageSrc(IMAGE_BASE, about.file_name) ||
-    buildImageSrc(IMAGE_BASE, "about/about.webp");
+  const label = about.label ?? "";
+  const image = buildImageSrc(IMAGE_BASE, about.file_name ?? "");
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
 
   return (

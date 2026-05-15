@@ -1,92 +1,51 @@
 "use client";
 
-import React, {
+import {
   useState,
   useEffect,
+  useLayoutEffect,
   useRef,
   useMemo,
   useCallback,
 } from "react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import FiveStars from "@/components/common/FiveStars";
 import Image from "next/image";
-import { IMAGE_BASE } from "@/lib/constants";
-import Contact10 from "@/components/sections/Contact/Contact10";
-import { Poppins } from "next/font/google";
-import { Archivo } from "next/font/google";
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
+import { Archivo, Poppins } from "next/font/google";
+import FiveStars from "@/components/common/FiveStars";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
 const archivo = Archivo({
-  subsets: ["latin", "italian"],
-  style: ["normal", "italic"],
-  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  weight: ["500"],
+  display: "swap",
 });
 
-function buildImageSrc(base, filePath) {
-  if (!filePath || typeof filePath !== "string") return "";
-  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
-  const segment = filePath.replace(/^\//, "");
-  return `${basePath}/${segment}`;
-}
+const poppinsEmbeddedTitle = Poppins({
+  subsets: ["latin"],
+  weight: ["800"],
+  display: "swap",
+});
 
-/** Optional `reviewLine` from `content.testimonials.google_review_line`; else default strip. */
-function GoogleReviewStrip({ reviewLine }) {
-  const line =
-    typeof reviewLine === "string" && reviewLine.trim()
-      ? reviewLine.trim()
-      : "4.9 | 6/9 reviews";
+const DEFAULT_AVATAR =
+  "https://api.dicebear.com/7.x/avataaars/svg?seed=default";
 
-  return (
-    <div
-      className={`flex w-full max-w-xl items-center gap-2 rounded-2xl border ml-4 border-white/40 bg-white px-4 py-3 shadow-md sm:gap-3 sm:px-6 ${poppins.className}`}
-    >
-      <div className="flex shrink-0 items-center gap-2" aria-hidden>
-        <svg viewBox="0 0 24 24" className="h-7 w-7 shrink-0" role="img">
-          <path
-            fill="#4285F4"
-            d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-          />
-          <path
-            fill="#34A853"
-            d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-          />
-          <path
-            fill="#FBBC05"
-            d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-          />
-          <path
-            fill="#EA4335"
-            d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-          />
-        </svg>
-        <span className="text-[15px] font-semibold tracking-tight text-gray-800">
-          Google
-        </span>
-      </div>
-      <FiveStars className="shrink-0 sm:ml-1" starClassName="text-[#fbbc04]" />
-      <p className="shrink-0 text-[13px] font-semibold tabular-nums text-gray-800 sm:ml-2 sm:text-sm">
-        {line}
-      </p>
-    </div>
-  );
-}
+const EMBEDDED_CARD_GAP_PX = 12;
 
-export default function Testimonials10({ content }) {
+export default function Testimonials({
+  content,
+  embedded = false,
+  chevronIconClassName,
+}) {
+  const logo = content?.navbar?.logo ?? {};
   const data = content?.testimonials ?? {};
   const testimonials = Array.isArray(data.list) ? data.list : [];
-  const sectionTitle =
-    (typeof data.section_title === "string" && data.section_title.trim()
-      ? data.section_title.trim()
-      : null) ||
-    (typeof data.title === "string" && data.title.trim()
-      ? data.title.trim()
-      : null) ||
-    "Our Happy Clients";
-
+  const reviewCount = data.reviewCount ?? "";
+  const heading = data.heading ?? "";
+  const googleReviewsLabel =
+    typeof data.google_reviews_label === "string" && data.google_reviews_label.trim()
+      ? data.google_reviews_label.trim()
+      : "";
   const [activeIndex, setActiveIndex] = useState(0);
   const [isDragging, setIsDragging] = useState(false);
   const [startX, setStartX] = useState(0);
@@ -96,6 +55,12 @@ export default function Testimonials10({ content }) {
   const sliderRef = useRef(null);
   const autoSlideRef = useRef(null);
   const animationRef = useRef(null);
+  const embeddedTouchX = useRef(null);
+  const embeddedViewportRef = useRef(null);
+  const [embeddedCarousel, setEmbeddedCarousel] = useState({
+    slideW: 0,
+    stepPx: 0,
+  });
 
   const testimonialsWithAvatars = useMemo(() => {
     const getRandomAvatar = (seed) =>
@@ -108,48 +73,35 @@ export default function Testimonials10({ content }) {
       avatar:
         testimonial.avatar ||
         getRandomAvatar(testimonial.name || `user-${index}`),
+      date:
+        typeof testimonial.date === "string" && testimonial.date.trim()
+          ? testimonial.date.trim()
+          : "",
     }));
   }, [testimonials]);
 
-  const defaultAvatar = useMemo(
-    () => "https://api.dicebear.com/7.x/avataaars/svg?seed=default",
-    [],
-  );
-
-  const testimonialsBg =
-    buildImageSrc(IMAGE_BASE, data?.file_name) ||
-    buildImageSrc(IMAGE_BASE, "testimonials/testimonials10.jpg");
-
-  const hasTestimonials = testimonials.length > 0;
-  const footerColors = ["bg-[#4685ac]", "bg-[#ee4545]"];
-
   useEffect(() => {
-    const checkScreenSize = () => {
+    const onResize = () => {
       if (typeof window === "undefined") return;
       setIsMobile(window.innerWidth < 768);
     };
-
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
+    onResize();
+    window.addEventListener("resize", onResize);
+    return () => window.removeEventListener("resize", onResize);
   }, []);
 
-  const visibleSlides = isMobile ? 1 : 2;
-  const slideStep = testimonials.length > 0 ? 100 / visibleSlides : 0;
+  const getSlideSize = () => (isMobile ? 100 : 50);
+
+  const slideSize = getSlideSize();
+
+  const embeddedVisible = embedded ? (isMobile ? 1 : 2) : null;
+
+  const visibleSlides = embedded ? embeddedVisible : isMobile ? 1 : 2;
 
   useEffect(() => {
-    const max = Math.max(0, testimonials.length - visibleSlides);
-    setActiveIndex((i) => Math.min(i, max));
-  }, [testimonials.length, visibleSlides]);
-
-  useEffect(() => {
-    const nextTranslate = activeIndex * -slideStep;
-    setPrevTranslate(nextTranslate);
-    setCurrentTranslate(nextTranslate);
-    if (sliderRef.current && !isDragging) {
-      sliderRef.current.style.transform = `translateX(${nextTranslate}%)`;
-    }
-  }, [activeIndex, slideStep, isDragging]);
+    setPrevTranslate(activeIndex * -slideSize);
+    setCurrentTranslate(activeIndex * -slideSize);
+  }, [activeIndex, slideSize]);
 
   useEffect(() => {
     const startAutoSlide = () => {
@@ -177,6 +129,33 @@ export default function Testimonials10({ content }) {
     };
   }, [isDragging, testimonials.length, visibleSlides]);
 
+  useEffect(() => {
+    if (!embedded) return;
+    const maxIdx = Math.max(0, testimonials.length - visibleSlides);
+    setActiveIndex((i) => Math.min(i, maxIdx));
+  }, [embedded, isMobile, testimonials.length, visibleSlides]);
+
+  useLayoutEffect(() => {
+    if (!embedded) return;
+    const el = embeddedViewportRef.current;
+    if (!el) return;
+
+    const v = isMobile ? 1 : 2;
+    const g = EMBEDDED_CARD_GAP_PX;
+
+    const measure = () => {
+      const w = el.getBoundingClientRect().width;
+      if (w <= 0) return;
+      const slideW = (w - g * Math.max(0, v - 1)) / v;
+      setEmbeddedCarousel({ slideW, stepPx: slideW + g });
+    };
+
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [embedded, isMobile, testimonials.length]);
+
   const animation = useCallback(() => {
     if (!sliderRef.current || !isDragging) return;
 
@@ -185,7 +164,6 @@ export default function Testimonials10({ content }) {
       sliderRef.current.style.transform = `translateX(${currentTranslate}%)`;
     });
   }, [isDragging, currentTranslate]);
-
   const setSliderPosition = useCallback(() => {
     if (sliderRef.current) {
       sliderRef.current.style.transform = `translateX(${currentTranslate}%)`;
@@ -197,7 +175,7 @@ export default function Testimonials10({ content }) {
 
   const handleDragStart = (e) => {
     e.preventDefault();
-    if (testimonials.length <= 1) return;
+    if (embedded || testimonials.length <= 1) return;
     setIsDragging(true);
     setStartX(getPositionX(e));
     if (autoSlideRef.current) {
@@ -242,109 +220,305 @@ export default function Testimonials10({ content }) {
     setIsDragging(false);
   };
 
-  return (
-    <FullContainer
-      className="relative overflow-hidden py-10 md:py-14"
-      id="testimonials"
-    >
-      {testimonialsBg ? (
-        <div className="absolute inset-0">
-          <Image
-            src={testimonialsBg}
-            alt="Testimonials background"
-            fill
-            sizes="100vw"
-            style={{ objectFit: "cover", objectPosition: "center bottom" }}
-            priority={false}
-          />
-        </div>
-      ) : null}
-      <div className="absolute inset-0 bg-sky-950/75" />
+  const handleArrowClick = (direction) => {
+    const maxAllowedIndex = Math.max(0, testimonials.length - visibleSlides);
 
-      <Container className="relative z-10 mx-auto max-w-[1280px] px-4">
-        <div className="flex flex-col items-stretch gap-8 lg:flex-row lg:items-center lg:gap-10">
-          <div className="flex min-w-0 flex-1 flex-col gap-5">
-            <GoogleReviewStrip reviewLine={data.google_review_line} />
+    if (direction === "next") {
+      if (activeIndex >= maxAllowedIndex) {
+        setActiveIndex(0);
+      } else {
+        setActiveIndex(activeIndex + 1);
+      }
+    } else if (direction === "prev") {
+      if (activeIndex <= 0) {
+        setActiveIndex(maxAllowedIndex);
+      } else {
+        setActiveIndex(activeIndex - 1);
+      }
+    }
+  };
 
-            {hasTestimonials ? (
-              <>
-               
+  if (!testimonials.length) return null;
 
-                <div className="relative w-full">
-                  <div className="testimonial-slider-container mx-auto w-full max-w-[1020px] overflow-x-hidden">
+  const n = testimonialsWithAvatars.length;
+
+  const embeddedTouchStart = (e) => {
+    embeddedTouchX.current = e.touches[0].clientX;
+  };
+  const embeddedTouchEnd = (e) => {
+    const v = isMobile ? 1 : 2;
+    const maxSwipe = Math.max(0, n - v);
+    if (embeddedTouchX.current == null || maxSwipe < 1) return;
+    const dx = e.changedTouches[0].clientX - embeddedTouchX.current;
+    if (dx < -56) handleArrowClick("next");
+    else if (dx > 56) handleArrowClick("prev");
+    embeddedTouchX.current = null;
+  };
+
+  if (embedded) {
+    const vShow = isMobile ? 1 : 2;
+    const trackWidthPct = n * (100 / vShow);
+    const embeddedMaxIdx = Math.max(0, n - vShow);
+    const usePixelTrack = embeddedCarousel.stepPx > 0 && embeddedCarousel.slideW > 0;
+    const trackTransform = usePixelTrack
+      ? `translateX(-${activeIndex * embeddedCarousel.stepPx}px)`
+      : `translateX(-${(activeIndex * 100) / n}%)`;
+
+    const embeddedClientLabel =
+      typeof data.client_label === "string" && data.client_label.trim()
+        ? data.client_label.trim().toUpperCase()
+        : "";
+    return (
+      <div
+        className="box-border w-full min-w-0 max-w-[628px] rounded-[20px] bg-transparent p-4 sm:p-5"
+      >
+        {heading ? (
+          <h2
+            className={`${poppinsEmbeddedTitle.className} mb-4 w-full text-center font-extrabold tracking-tight text-white`}
+            style={{
+              fontSize: "31.398px",
+              lineHeight: 1.2,
+              textAlign: "center",
+            }}
+          >
+            {heading}
+          </h2>
+        ) : null}
+
+        <div className="flex w-full min-w-0 flex-col gap-3">
+          <div className="flex w-full min-w-0 items-center gap-2">
+            <div
+              ref={embeddedViewportRef}
+              className="min-w-0 flex-1 overflow-hidden"
+              onTouchStart={embeddedTouchStart}
+              onTouchEnd={embeddedTouchEnd}
+            >
+              <div
+                className="flex transition-transform duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1)]"
+                style={{
+                  gap: `${EMBEDDED_CARD_GAP_PX}px`,
+                  ...(usePixelTrack
+                    ? {}
+                    : { width: `${trackWidthPct}%` }),
+                  transform: trackTransform,
+                }}
+              >
+                {testimonialsWithAvatars.map((testimonial, index) => {
+                  const quoteText =
+                    testimonial.quote || testimonial.text || "";
+                  const avatarSrc =
+                    typeof testimonial.avatar === "string" && testimonial.avatar
+                      ? testimonial.avatar
+                      : DEFAULT_AVATAR;
+                  /* Desktop: red = right card of pair. Mobile (1 card): red = active slide only. */
+                  const isRedFooterStrip =
+                    (vShow === 2 && index === activeIndex + 1) ||
+                    (vShow === 1 && index === activeIndex);
+                  const footerBackground = isRedFooterStrip
+                    ? "linear-gradient(180deg, #FF3030 0%, #E70A0D 100%, #B80508 100%)"
+                    : "linear-gradient(180deg, #4F3FB5 0%, #2F5CAC 42%, #156BB8 100%)";
+                  return (
                     <div
-                      ref={sliderRef}
-                      className={`testimonial-slider ${
-                        isDragging ? "grabbing" : ""
-                      }`}
-                      style={{ transform: `translateX(${currentTranslate}%)` }}
-                      onTouchStart={handleDragStart}
-                      onTouchMove={handleDragMove}
-                      onTouchEnd={handleDragEnd}
-                      onMouseDown={handleDragStart}
-                      onMouseMove={handleDragMove}
-                      onMouseUp={handleDragEnd}
-                      onMouseLeave={handleDragEnd}
+                      key={index}
+                      className="box-border flex min-w-0 shrink-0 flex-col overflow-hidden rounded-t-[22px] rounded-b-none shadow-[0_8px_30px_-8px_rgba(0,0,0,0.35)] ring-1 ring-black/[0.06]"
+                      style={{
+                        width: usePixelTrack
+                          ? embeddedCarousel.slideW
+                          : `${100 / n}%`,
+                      }}
                     >
-                      {testimonialsWithAvatars.map((testimonial, index) => (
-                        <div
-                          key={`${testimonial.name}-${index}`}
-                          className="testimonial-slide px-2 md:px-3"
+                      <div
+                        className="flex min-h-[132px] flex-1 flex-col items-center justify-center px-4 pb-5 pt-5 text-center sm:min-h-[152px] sm:px-6 sm:pb-6 sm:pt-6"
+                        style={{
+                          background:
+                            "linear-gradient(180deg, #FFFFFF 0%, #EEF1F8 100%)",
+                        }}
+                      >
+                        <FiveStars className="justify-center" />
+                        <blockquote
+                          className={`${archivo.className} mt-4 w-full max-w-none text-balance break-words text-center italic font-medium text-[#6E6E6E]`}
+                          style={{
+                            fontSize: "18.578px",
+                            lineHeight: "24.152px",
+                          }}
                         >
-                          <article className="overflow-hidden rounded-b-0 rounded-t-[14px] shadow-lg">
-                            <div className="flex min-h-[180px] flex-col border border-[#d7d7d7] border-b-0 bg-[#f5f5f5] p-5 sm:min-h-[200px] sm:p-6 md:min-h-[205px] md:p-7">
-                              <FiveStars
-                                className="mb-3 md:mb-4"
-                                starClassName="text-[#f59a00]"
-                              />
-                              <p
-                                className={`${archivo.className} flex-1 text-[16px] italic leading-snug text-[#545454] md:text-[18px] md:leading-[1.4] lg:text-[20px]`}
-                              >
-                                &ldquo;
-                                {testimonial.quote || testimonial.text}
-                                &rdquo;
-                              </p>
-                            </div>
-                            <div
-                              className={`px-3 py-2.5 md:py-3 ${footerColors[index % footerColors.length]}`}
-                            >
-                              <div className="flex items-center gap-3">
-                                <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full">
-                                  <Image
-                                    src={testimonial.avatar || defaultAvatar}
-                                    alt={testimonial.name || "Client"}
-                                    width={44}
-                                    height={44}
-                                    className="object-cover"
-                                    unoptimized
-                                  />
-                                </div>
-                                <div className="min-w-0">
-                                  <h3
-                                    className={`${archivo.className} truncate text-[17px] font-extrabold leading-tight text-white md:text-[18px] lg:text-[20px]`}
-                                  >
-                                    {testimonial.name}
-                                  </h3>
-                                  <p
-                                    className={`${archivo.className} text-[11px] font-semibold uppercase tracking-widest text-white/85 md:text-[12px]`}
-                                  >
-                                    Clients
-                                  </p>
-                                </div>
-                              </div>
-                            </div>
-                          </article>
+                          &ldquo;{quoteText}&rdquo;
+                        </blockquote>
+                      </div>
+                      <div
+                        className="flex min-h-[56px] shrink-0 items-center gap-2.5 rounded-b-none px-3.5 py-3 sm:min-h-[60px] sm:px-4"
+                        style={{
+                          background: footerBackground,
+                        }}
+                      >
+                        <img
+                          src={avatarSrc}
+                          alt=""
+                          className="h-10 w-10 shrink-0 rounded-full border-2 border-white/45 bg-white object-cover sm:h-11 sm:w-11"
+                          width={44}
+                          height={44}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <div className="min-w-0 flex-1 text-left leading-tight">
+                          <p className="truncate text-sm font-bold text-white sm:text-[15px]">
+                            {testimonial.name}
+                          </p>
+                          <p className="mt-0.5 truncate text-[9px] font-semibold uppercase tracking-wider text-white/90 sm:text-[10px]">
+                            {embeddedClientLabel}
+                          </p>
                         </div>
-                      ))}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              </>
-            ) : null}
+                  );
+                })}
+              </div>
+            </div>
           </div>
 
-          <div className="flex w-full shrink-0 justify-center lg:w-[439px] lg:justify-end">
-            <Contact10 content={content} embedded />
+          {embeddedMaxIdx > 0 ? (
+            <div className="flex justify-center gap-2 px-1 pt-1">
+              {Array.from({ length: embeddedMaxIdx + 1 }, (_, i) => (
+                <button
+                  key={i}
+                  type="button"
+                  aria-label={`Reviews page ${i + 1} of ${embeddedMaxIdx + 1}`}
+                  aria-current={i === activeIndex ? "true" : undefined}
+                  onClick={() => setActiveIndex(i)}
+                  className={`h-2 rounded-full transition-all duration-300 ${
+                    i === activeIndex
+                      ? "w-8 bg-[#EFA536]"
+                      : "w-2 bg-white/40 hover:bg-white/60"
+                  }`}
+                />
+              ))}
+            </div>
+          ) : null}
+        </div>
+      </div>
+    );
+  }
+
+  const inner = (
+    <>
+      {heading ? (
+        <div className="mb-6 w-full text-center">
+          <h2 className="mb-2 text-center text-4xl font-extrabold text-[#002B5B]">
+            {heading}
+          </h2>
+        </div>
+      ) : null}
+
+      <div className="relative flex min-h-0 flex-col gap-8 md:flex-row md:items-start md:gap-10">
+        <div className="flex shrink-0 items-center justify-between md:mb-0 md:w-48 md:flex-col md:items-start">
+          <div className="flex items-center gap-4 md:w-full">
+            <div className="flex min-w-0 flex-1 flex-col md:w-full">
+              <p className="text-gray-600 font-bold text-xl md:text-3xl capitalize">
+                {logo?.logoText}
+              </p>
+              <div className="flex items-center gap-1">
+                {[1, 2, 3, 4, 5].map((star) => (
+                  <span
+                    key={star}
+                    className="text-yellow-400 text-base md:text-lg"
+                  >
+                    ★
+                  </span>
+                ))}
+              </div>
+              {reviewCount || googleReviewsLabel ? (
+                <p className="text-gray-600 text-xs md:text-sm font-medium">
+                  {[reviewCount, googleReviewsLabel].filter(Boolean).join(" ")}
+                </p>
+              ) : null}
+            </div>
+          </div>
+        </div>
+
+        <div className="relative min-h-[280px] w-full min-w-0 flex-1 md:min-h-[320px]">
+            <div className="pointer-events-none absolute inset-y-0 left-0 right-0 z-10 hidden items-center justify-between md:flex">
+              <button
+                type="button"
+                onClick={() => handleArrowClick("prev")}
+                className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-gray-100 shadow-md transition-colors hover:bg-primary hover:text-white md:h-10 md:w-10"
+                aria-label="Previous testimonial"
+              >
+                <ChevronLeftIcon className="h-5 w-5 md:h-6 md:w-6" />
+              </button>
+              <button
+                type="button"
+                onClick={() => handleArrowClick("next")}
+                className="pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-gray-300 bg-gray-100 shadow-md transition-colors hover:bg-primary hover:text-white md:h-10 md:w-10"
+                aria-label="Next testimonial"
+              >
+                <ChevronRightIcon className="h-5 w-5 md:h-6 md:w-6" />
+              </button>
+            </div>
+
+            <div className="testimonial-slider-container relative w-full overflow-hidden pb-2 pt-1 md:px-12">
+              <div
+                ref={sliderRef}
+                className={`testimonial-slider ${
+                  isDragging ? "grabbing" : ""
+                } gap-3 md:gap-5`}
+                style={{ transform: `translateX(${currentTranslate}%)` }}
+                onTouchStart={handleDragStart}
+                onTouchMove={handleDragMove}
+                onTouchEnd={handleDragEnd}
+                onMouseDown={handleDragStart}
+                onMouseMove={handleDragMove}
+                onMouseUp={handleDragEnd}
+                onMouseLeave={handleDragEnd}
+              >
+                {testimonialsWithAvatars.map((testimonial, index) => (
+                  <div key={index} className="testimonial-slide px-1 md:px-1.5">
+                    <div className="flex h-full min-h-[260px] flex-1 flex-col rounded-xl border border-gray-100 bg-[#f4f4f4] p-4 shadow-md transition-shadow duration-300 hover:shadow-lg md:min-h-[280px] md:p-5">
+                      <div className="flex items-center justify-between mb-2 md:mb-3">
+                        <div className="flex gap-2 md:gap-3">
+                          <div className="w-8 h-8 md:w-10 md:h-10 rounded-full overflow-hidden relative border-2 border-primary">
+                            <Image
+                              src={testimonial.avatar || DEFAULT_AVATAR}
+                              alt={testimonial.name}
+                              width={48}
+                              height={48}
+                              className="object-cover"
+                              unoptimized
+                            />
+                          </div>
+                          <div className="flex-1">
+                            <h3 className="text-gray-800 font-semibold text-sm md:text-base">
+                              {testimonial.name}
+                            </h3>
+                            <div className="flex gap-0.5 mb-2">
+                              {[1, 2, 3, 4, 5].map((star) => (
+                                <span
+                                  key={star}
+                                  className="text-yellow-500 text-sm md:text-base"
+                                >
+                                  ★
+                                </span>
+                              ))}
+                            </div>
+                            {testimonial.date ? (
+                            <p className="text-gray-500 text-xs">
+                              {testimonial.date}
+                            </p>
+                            ) : null}
+                          </div>
+                        </div>
+                        <div className="w-5 h-5 md:w-6 md:h-6 rounded-full bg-white border border-gray-200 flex items-center justify-center text-[#4285F4] font-bold text-xs md:text-sm">
+                          G
+                        </div>
+                      </div>
+
+                      <p className="text-gray-800 text-xs md:text-sm leading-relaxed line-clamp-5 md:line-clamp-none">
+                        &quot;{testimonial.quote || testimonial.text}&quot;
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
 
@@ -367,7 +541,12 @@ export default function Testimonials10({ content }) {
             flex-shrink: 0;
           }
         `}</style>
-      </Container>
+    </>
+  );
+
+  return (
+    <FullContainer className="bg-white pt-6" id="testimonials">
+      <Container className="mx-auto px-4">{inner}</Container>
     </FullContainer>
   );
 }

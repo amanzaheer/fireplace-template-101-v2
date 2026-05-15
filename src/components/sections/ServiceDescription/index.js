@@ -44,8 +44,8 @@ const variants = {
 };
 
 export default function ServiceDescription({ variant, content }) {
-  const name = String(variant ?? "").trim() || "ServiceDescription21";
-  const Component = variants[name] ?? ServiceDescription21;
+  const name = String(variant ?? "").trim() || "ServiceDescription10";
+  const Component = variants[name] ?? ServiceDescription10;
   return <Component content={content} />;
 }
 export { ServiceDescription1, ServiceDescription2, ServiceDescription3, ServiceDescription4, ServiceDescription5, ServiceDescription6, ServiceDescription7, ServiceDescription8, ServiceDescription9, ServiceDescription14, ServiceDescription15, ServiceDescription11, ServiceDescription12, ServiceDescription10, ServiceDescription13, ServiceDescription17, ServiceDescription19, ServiceDescription20, ServiceDescription21, variants };

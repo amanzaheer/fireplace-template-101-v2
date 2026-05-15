@@ -18,7 +18,7 @@ export default function ServiceDescription10({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
 
   return (
-    <FullContainer id="service_description2" className="py-10 md:py-14 bg-[#efefef] ">
+    <FullContainer id="service_description2" className="py-10 md:py-14 bg-[#ffffff] ">
       <Container>
         <div className="max-w-5xl mx-auto">
           <div className="bg-white  shadow-sm border border-[#e5e7eb] p-6 md:p-10  rounded">

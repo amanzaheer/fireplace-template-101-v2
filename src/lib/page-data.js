@@ -209,7 +209,7 @@ function extractPageConfig(configRaw, pageId) {
 // ---------------------------------------------------------------------------
 
 /** Recursively merges src into dst. Arrays and primitives in src replace dst. */
-function deepMerge(dst, src) {
+export function deepMerge(dst, src) {
   if (!src || typeof src !== 'object' || Array.isArray(src)) return src ?? dst;
   const out = { ...dst };
   for (const key of Object.keys(src)) {

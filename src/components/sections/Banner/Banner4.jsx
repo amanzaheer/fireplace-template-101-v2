@@ -97,7 +97,6 @@ export default function Banner4({ content }) {
     content?.contact_info?.phone ??
     content?.navbar?.phone ??
     "";
-
   return (
     <>
       <FullContainer

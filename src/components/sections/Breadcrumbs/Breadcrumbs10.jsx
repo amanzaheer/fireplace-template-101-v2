@@ -11,7 +11,15 @@ import Link from "next/link";
 
 function buildBreadcrumbs(pathname, content) {
   const segments = pathname.split("/").filter(Boolean);
-  const items = [{ label: "Home", url: "/" }];
+  const homeItem = (content?.navbar?.menu_items ?? []).find((m) => {
+    const L = String(m?.link ?? "").trim();
+    return L === "/" || L === "";
+  });
+  const homeLabel =
+    typeof homeItem?.title === "string" && homeItem.title.trim()
+      ? homeItem.title.trim()
+      : "";
+  const items = [{ label: homeLabel, url: "/" }];
   let path = "";
   for (let i = 0; i < segments.length; i++) {
     path += `/${segments[i]}`;

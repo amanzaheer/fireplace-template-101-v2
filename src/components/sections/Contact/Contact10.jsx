@@ -1,98 +1,154 @@
 "use client";
 
-import React, { useState, useCallback, memo } from "react";
+import { useState, useCallback, memo } from "react";
+import Image from "next/image";
 import { CheckCircle, Loader } from "lucide-react";
-import toast from "react-hot-toast";
-import FullContainer from "@/components/common/FullContainer";
-import Container from "@/components/common/Container";
 import { Poppins } from "next/font/google";
+import toast from "react-hot-toast";
 import {
   validateEmail,
   validatePhone,
   validateName,
   validateMessage,
 } from "@/lib/validators";
+import { IMAGE_BASE } from "@/lib/constants";
+import Testimonials10 from "@/components/sections/Testimonials/Testimonials10";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  style: ["normal", "italic"],
   weight: ["400", "500", "600", "700"],
+  display: "swap",
 });
 
-const NameInput = memo(({ value, onChange, error, inputId = "contact-name" }) => (
+function buildImageSrc(base, filePath) {
+  if (!filePath || typeof filePath !== "string") return "";
+  const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
+  const segment = filePath.replace(/^\//, "");
+  return `${basePath}/${segment}`;
+}
+
+const REVIEWS_CARD_CHEVRON = "text-[#EFA536]";
+
+const glassInput =
+  "w-full rounded-none border border-white/90 bg-transparent px-3.5 py-2.5 text-[13.560px] text-white outline-none transition-colors placeholder:text-[#FFFFFF] focus:border-white focus:ring-0";
+const glassInputError = "border-red-400 focus:border-red-400 focus:ring-red-400/50";
+
+const NameInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
+    <label htmlFor="contact-name" className="sr-only">
+      Name (required)
+    </label>
     <input
-      id={inputId}
+      id="contact-name"
       type="text"
       name="name"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-[10px] border border-white bg-transparent px-5 py-3 text-base text-white outline-none placeholder:text-white ${error ? "border-red-300" : "border-white"} focus:border-white`}
-      placeholder="First Name"
+      className={`${glassInput} ${error ? glassInputError : ""}`}
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
-    {error && <p className="mt-1 text-xs text-red-200">{error}</p>}
+    {error ? (
+      <p className="mt-1.5 text-sm text-red-200">{error}</p>
+    ) : null}
   </div>
 ));
+NameInput.displayName = "NameInput";
 
-const EmailInput = memo(({ value, onChange, error, inputId = "contact-email" }) => (
+const EmailInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
+    <label htmlFor="contact-email" className="sr-only">
+      Email (required)
+    </label>
     <input
-      id={inputId}
+      id="contact-email"
       type="email"
       name="email"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-[10px] border border-white bg-transparent px-5 py-3 text-base text-white outline-none placeholder:text-white ${error ? "border-red-300" : "border-white"} focus:border-white`}
-      placeholder="your@email.com"
+      className={`${glassInput} ${error ? glassInputError : ""}`}
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
-    {error && <p className="mt-1 text-xs text-red-200">{error}</p>}
+    {error ? (
+      <p className="mt-1.5 text-sm text-red-200">{error}</p>
+    ) : null}
   </div>
 ));
+EmailInput.displayName = "EmailInput";
 
-const PhoneInput = memo(({ value, onChange, error, inputId = "contact-phone" }) => (
+const PhoneInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
+    <label htmlFor="contact-phone" className="sr-only">
+      Phone number (required)
+    </label>
     <input
-      id={inputId}
+      id="contact-phone"
       type="tel"
       name="phone"
       value={value}
       onChange={onChange}
-      className={`w-full rounded-[10px] border border-white bg-transparent px-5 py-3 text-base text-white outline-none placeholder:text-white ${error ? "border-red-300" : "border-white"} focus:border-white`}
-      placeholder="(123)-456-7890"
+      className={`${glassInput} ${error ? glassInputError : ""}`}
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
-    {error && <p className="mt-1 text-xs text-red-200">{error}</p>}
+    {error ? (
+      <p className="mt-1.5 text-sm text-red-200">{error}</p>
+    ) : null}
   </div>
 ));
+PhoneInput.displayName = "PhoneInput";
 
-const MessageInput = memo(({ value, onChange, error, inputId = "contact-message" }) => (
+const MessageInput = memo(({ value, onChange, error, placeholder }) => (
   <div>
+    <label htmlFor="contact-message" className="sr-only">
+      Message (required)
+    </label>
     <textarea
-      id={inputId}
+      id="contact-message"
       name="message"
       value={value}
       onChange={onChange}
       rows={4}
-      className={`min-h-[100px] w-full rounded-[10px] border border-white bg-transparent px-5 py-3 text-base text-white outline-none placeholder:text-white ${error ? "border-red-300" : "border-white"} focus:border-white`}
-      placeholder="Message"
+      className={`${glassInput} min-h-[100px] resize-y ${error ? glassInputError : ""}`}
+      placeholder={placeholder}
       required
       aria-invalid={!!error}
     />
-    {error && <p className="mt-1 text-xs text-red-200">{error}</p>}
+    {error ? (
+      <p className="mt-1.5 text-sm text-red-200">{error}</p>
+    ) : null}
   </div>
 ));
+MessageInput.displayName = "MessageInput";
 
-export default function Contact10({ content, embedded = false }) {
-  const formHead = content?.form_head ?? {};
-  const title =
-    formHead.title ?? "GET IN TOUCH WITH US";
-  const fieldId = (suffix) =>
-    embedded ? `t10-contact-${suffix}` : `contact-${suffix}`;
+export default function Contact10({ content: contentProp }) {
+  const content = contentProp ?? {};
+  const formHead = content.form_head ?? {};
+  const labels = content.form_labels ?? {};
+  const errorLabels = labels.errors ?? {};
+  const placeholders = {
+    name: labels.placeholder_first_name ?? "",
+    phone: labels.placeholder_phone ?? "",
+    email: labels.placeholder_email ?? "",
+    message: labels.placeholder_message ?? "",
+  };
+  const title = formHead.title ?? labels.default_title ?? "";
+  const subTitle = formHead.sub_title ?? "";
+
+  const testimonialsData = content?.testimonials ?? {};
+  const testimonialList = Array.isArray(testimonialsData.list)
+    ? testimonialsData.list
+    : [];
+
+  const sectionBgPath =
+    content?.contact?.background_image ??
+    testimonialsData.section_bg_image ??
+    "";
+  const sectionBgUrl = sectionBgPath ? buildImageSrc(IMAGE_BASE, sectionBgPath) : "";
 
   const [formData, setFormData] = useState({
     name: "",
@@ -109,10 +165,7 @@ export default function Contact10({ content, embedded = false }) {
     if (!formStarted && typeof window !== "undefined") {
       try {
         window.dataLayer = window.dataLayer || [];
-        window.dataLayer.push({
-          event: "form start",
-          url: window.location.href,
-        });
+        window.dataLayer.push({ event: "form start", url: window.location.href });
         setFormStarted(true);
       } catch {
         setFormStarted(true);
@@ -122,19 +175,27 @@ export default function Contact10({ content, embedded = false }) {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!formData.name.trim()) newErrors.name = "Name is required";
+    if (!formData.name.trim())
+      newErrors.name = errorLabels.name_required ?? "";
     else if (!validateName(formData.name))
-      newErrors.name = "Name must be 2-50 characters and contain only letters";
-    if (!formData.email.trim()) newErrors.email = "Email is required";
+      newErrors.name =
+        errorLabels.name_invalid ?? "";
+    if (!formData.email.trim())
+      newErrors.email = errorLabels.email_required ?? "";
     else if (!validateEmail(formData.email))
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email =
+        errorLabels.email_invalid ?? "";
     const cleanPhone = formData.phone.replace(/[-()\s]/g, "");
-    if (!formData.phone.trim()) newErrors.phone = "Phone number is required";
+    if (!formData.phone.trim())
+      newErrors.phone = errorLabels.phone_required ?? "";
     else if (!validatePhone(cleanPhone))
-      newErrors.phone = "Phone number must be exactly 10 digits";
-    if (!formData.message.trim()) newErrors.message = "Message is required";
+      newErrors.phone =
+        errorLabels.phone_invalid ?? "";
+    if (!formData.message.trim())
+      newErrors.message = errorLabels.message_required ?? "";
     else if (!validateMessage(formData.message, 10))
-      newErrors.message = "Message must be at least 10 characters long";
+      newErrors.message =
+        errorLabels.message_invalid ?? "";
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -170,25 +231,20 @@ export default function Contact10({ content, embedded = false }) {
         if (result.errors && Array.isArray(result.errors)) {
           const serverErrors = {};
           result.errors.forEach((err) => {
-            if (
-              err.toLowerCase().includes("first name") ||
-              err.toLowerCase().includes("name")
-            )
+            const lower = err.toLowerCase();
+            if (lower.includes("first name") || lower.includes("name"))
               serverErrors.name = err;
-            else if (err.toLowerCase().includes("email"))
-              serverErrors.email = err;
-            else if (err.toLowerCase().includes("phone"))
-              serverErrors.phone = err;
-            else if (err.toLowerCase().includes("message"))
-              serverErrors.message = err;
+            else if (lower.includes("email")) serverErrors.email = err;
+            else if (lower.includes("phone")) serverErrors.phone = err;
+            else if (lower.includes("message")) serverErrors.message = err;
           });
           setErrors(serverErrors);
         }
-        throw new Error(result.message || "Form submission failed");
+        throw new Error(result.message ?? "");
       }
 
       if (result.success === false)
-        throw new Error(result.message || "Form submission failed");
+        throw new Error(result.message ?? "");
 
       if (typeof window !== "undefined" && window.dataLayer) {
         window.dataLayer.push({
@@ -199,17 +255,23 @@ export default function Contact10({ content, embedded = false }) {
             email: formData.email,
             phone: formData.phone,
             message: formData.message,
+            zipcode: "",
           },
         });
       }
       toast.success(
-        result.message ||
-          "Your request has been submitted successfully! We'll contact you shortly.",
+        (typeof result.message === "string" && result.message.trim()) ||
+          (typeof labels.toast_success === "string" && labels.toast_success.trim()) ||
+          "",
       );
       setFormSubmitted(true);
     } catch (err) {
       console.error("Error submitting form:", err);
-      toast.error(err.message || "Something went wrong. Please try again.");
+      toast.error(
+        (typeof err?.message === "string" && err.message.trim()) ||
+          (typeof labels.toast_error === "string" && labels.toast_error.trim()) ||
+          "",
+      );
     } finally {
       setIsSubmitting(false);
     }
@@ -238,98 +300,132 @@ export default function Contact10({ content, embedded = false }) {
     setErrors({});
   };
 
-  const formCard = (
-    <div
-      id={embedded ? "quote-form-section-t10" : "quote-form-section"}
-      className={`flex h-[565px] w-full max-w-[439px] flex-col gap-[16.33px] overflow-y-auto rounded-[10px] bg-[#e70a0d] p-[25.12px] text-white shadow-lg ${poppins.className}`}
-    >
-      {formSubmitted ? (
-        <div className="flex h-full min-h-0 flex-col items-center justify-center gap-[16.33px] text-center">
-          <div className="mb-2 flex h-24 w-24 items-center justify-center rounded-full bg-green-100">
-            <CheckCircle className="h-12 w-12 text-green-600" />
-          </div>
-          <h4 className="text-3xl font-bold text-white">Thank You!</h4>
-          <p className="max-w-[320px] text-lg text-white">
-            Your request has been submitted successfully. We&apos;ll contact you
-            shortly with your personalized quote.
-          </p>
-          <button
-            type="button"
-            onClick={closeThankYou}
-            className="mt-2 rounded-[10px] bg-white px-6 py-3 font-medium text-[#e70a0d] transition-colors duration-200 hover:bg-gray-100"
-          >
-            OK Thanks
-          </button>
-        </div>
-      ) : (
-        <>
-          <h2
-            className={`text-center text-[31.4px] font-bold leading-[56.52px] tracking-normal text-white ${poppins.className}`}
-          >
-            {title}
-          </h2>
-          <form
-            onSubmit={handleSubmit}
-            className="flex min-h-0 flex-1 flex-col gap-[16.33px]"
-            noValidate
-          >
-            <NameInput
-              inputId={fieldId("name")}
-              value={formData.name}
-              onChange={handleChange}
-              error={errors.name}
-            />
-            <PhoneInput
-              inputId={fieldId("phone")}
-              value={formData.phone}
-              onChange={handleChange}
-              error={errors.phone}
-            />
-            <EmailInput
-              inputId={fieldId("email")}
-              value={formData.email}
-              onChange={handleChange}
-              error={errors.email}
-            />
-            <MessageInput
-              inputId={fieldId("message")}
-              value={formData.message}
-              onChange={handleChange}
-              error={errors.message}
-            />
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className={`${poppins.className} mt-auto flex h-[55px] w-full shrink-0 items-center justify-center gap-[23.86px] rounded-[5px] bg-white text-center text-[25px] font-normal uppercase tracking-normal text-black transition-opacity duration-200 hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#e70a0d] disabled:opacity-70`}
-              aria-busy={isSubmitting}
-            >
-              {isSubmitting ? (
-                <>
-                  <Loader
-                    className="h-5 w-5 shrink-0 animate-spin text-black"
-                    aria-hidden
-                  />
-                  <span>Processing...</span>
-                </>
-              ) : (
-                "SUBMIT"
-              )}
-            </button>
-          </form>
-        </>
-      )}
-    </div>
-  );
-
-  if (embedded) {
-    return formCard;
-  }
-
   return (
-    <FullContainer id="contact-us" className="relative mt-9 pb-4">
-      <Container className="relative z-10">
-        <div className="mb-5 flex justify-center">{formCard}</div>
-      </Container>
-    </FullContainer>
+    <section
+      id="contact-us"
+      className="relative overflow-hidden bg-[#0a0e14] py-12 md:py-16 lg:py-20"
+    >
+      <div className="pointer-events-none absolute inset-0 z-0" aria-hidden>
+        {sectionBgUrl ? (
+          <Image
+            src={sectionBgUrl}
+            alt=""
+            fill
+            className="object-cover object-center"
+            sizes="100vw"
+            priority={false}
+          />
+        ) : (
+          <div className="h-full w-full bg-neutral-900" />
+        )}
+        <div className="absolute inset-0 bg-[#4685ACB2]" />
+      </div>
+
+      <div className="relative z-10 mx-auto w-full max-w-[1270px] px-3 md:px-4">
+        <div
+          className={
+            testimonialList.length > 0
+              ? "mx-auto grid w-full max-w-[1154px] grid-cols-1 gap-10 lg:grid-cols-[minmax(0,628px)_439px] lg:items-stretch lg:gap-x-[87px] lg:gap-y-0"
+              : "mx-auto flex w-full max-w-2xl flex-col items-center gap-10"
+          }
+        >
+          <div
+            className={`flex min-h-0 min-w-0 w-full flex-col items-center justify-center lg:h-full ${testimonialList.length === 0 ? "hidden" : ""}`}
+          >
+            <div className="mx-auto w-full max-w-[628px] min-w-0">
+              <Testimonials10
+                content={content}
+                embedded
+                chevronIconClassName={REVIEWS_CARD_CHEVRON}
+              />
+            </div>
+          </div>
+          <div
+            className={`${poppins.className} mx-auto flex w-full max-w-[439px] min-w-0 flex-col rounded-xl border border-white/15 bg-gradient-to-b bg-[#E70A0D] p-5 shadow-[0_20px_50px_-12px_rgba(0,0,0,0.45)] sm:p-6 md:p-7 lg:mx-0 lg:max-w-none lg:w-full`}
+          >
+            {formSubmitted ? (
+              <div className="flex flex-col items-center justify-center py-8 text-center sm:py-10">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-lg border border-white/25 bg-white/15">
+                  <CheckCircle className="h-11 w-11 text-white" />
+                </div>
+                <h4 className="mb-3 text-2xl font-bold text-white sm:text-3xl">
+                  {labels.thank_you_title ?? ""}
+                </h4>
+                <p className="mb-8 max-w-md text-base text-white/90 sm:text-lg">
+                  {labels.thank_you_message ||
+                    "Your request has been submitted successfully. We'll contact you shortly with your personalized quote."}
+                </p>
+                <button
+                  type="button"
+                  onClick={closeThankYou}
+                  className="rounded-lg border border-neutral-200 bg-white px-8 py-3 text-base font-semibold text-black transition-colors hover:bg-neutral-100"
+                >
+                  {labels.thank_you_button ?? ""}
+                </button>
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                <h2 className="text-center text-[31.398px] font-bold uppercase leading-tight tracking-wide text-[#FFFFFF]">
+                  {title}
+                </h2>
+                {subTitle ? (
+                  <p className="mt-2 text-center text-[13.560px] font-medium text-[#FFFFFF]">
+                    {subTitle}
+                  </p>
+                ) : null}
+
+                <form
+                  onSubmit={handleSubmit}
+                  className="mt-6 flex flex-col"
+                  noValidate
+                >
+                  <div className="space-y-3">
+                    <NameInput
+                      value={formData.name}
+                      onChange={handleChange}
+                      error={errors.name}
+                      placeholder={placeholders.name}
+                    />
+                    <PhoneInput
+                      value={formData.phone}
+                      onChange={handleChange}
+                      error={errors.phone}
+                      placeholder={placeholders.phone}
+                    />
+                    <EmailInput
+                      value={formData.email}
+                      onChange={handleChange}
+                      error={errors.email}
+                      placeholder={placeholders.email}
+                    />
+                    <MessageInput
+                      value={formData.message}
+                      onChange={handleChange}
+                      error={errors.message}
+                      placeholder={placeholders.message}
+                    />
+                  </div>
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="mt-3 flex w-full shrink-0 items-center justify-center rounded-lg border border-white/20 bg-white py-3 text-[25.119px] font-semibold uppercase tracking-wider text-black shadow-md transition-colors hover:bg-neutral-100 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-[#3E299B] disabled:opacity-70 sm:py-3.5"
+                    aria-busy={isSubmitting}
+                  >
+                    {isSubmitting ? (
+                      <>
+                        <Loader className="mr-2 h-5 w-5 animate-spin text-black" />
+                        {labels.processing_label ?? ""}
+                      </>
+                    ) : (
+                      labels.submit_button ?? ""
+                    )}
+                  </button>
+                </form>
+              </div>
+            )}
+          </div>
+        </div>
+      </div>
+    </section>
   );
 }

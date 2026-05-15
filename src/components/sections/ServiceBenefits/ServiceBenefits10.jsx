@@ -22,7 +22,7 @@ function buildImageSrc(base, filePath) {
 export default function ServiceBenefits10({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const block = content?.service_benefits ?? {};
-  const heading = block.heading ?? "Committed to Excellence";
+  const heading = block.heading ?? "";
   const intro = block.description ?? "";
   const list = Array.isArray(block.list) ? block.list : [];
   const sectionTitle = block.title ?? "";
@@ -42,7 +42,7 @@ export default function ServiceBenefits10({ content }) {
     <FullContainer id="service_benefits" className="overflow-hidden bg-white py-10 md:py-14">
       <Container>
         <div className={`mx-auto grid max-w-[1220px] grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_356px_minmax(0,1fr)] md:items-center md:gap-8 ${poppins.className}`}>
-          <div className="order-1 w-full ml-8 max-w-[380px] gap-4 justify-self-center md:justify-self-end">
+          <div className="order-1 w-full max-w-[380px] gap-4 justify-self-center md:ml-8 md:justify-self-end">
             {heading ? (
               <p className="mb-10 text-[36px] font-bold leading-tight text-black">
                 {heading}

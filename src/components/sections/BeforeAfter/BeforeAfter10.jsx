@@ -156,30 +156,33 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
     </div>
   );
 }
-
 export default function BeforeAfter10({ content }) {
   const block = content?.before_after ?? {};
   const rawItems = Array.isArray(block.items) ? block.items : [];
   if (rawItems.length === 0) return null;
 
-  const title = block.title ?? "Before And After Results";
+  const title = block.title ?? "";
   const imageBase = IMAGE_BASE;
-  const arrowSrc = buildImageSrc(imageBase, block.arrow_icon ?? "icons/arrowhead.webp");
+  const arrowSrc = block.arrow_icon
+    ? buildImageSrc(imageBase, block.arrow_icon)
+    : "";
 
   const items = rawItems.map((item) => ({
     before: buildImageSrc(imageBase, item.before),
     after: buildImageSrc(imageBase, item.after),
-    before_alt: item.before_alt ?? "Before",
-    after_alt: item.after_alt ?? "After",
+    before_alt: item.before_alt ?? "",
+    after_alt: item.after_alt ?? "",
   })).filter((item) => item.before && item.after);
   if (items.length === 0) return null;
 
   return (
     <FullContainer id="before_after">
       <Container className="pb-16 pt-6">
-        <h2 className="text-4xl text-center pb-6 font-extrabold text-black mb-2">
-          {title}
-        </h2>
+        {title ? (
+          <h2 className="mb-2 pb-6 text-center text-4xl font-extrabold text-black">
+            {title}
+          </h2>
+        ) : null}
         <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-5">
           {items.map((item, index) => (
             <BeforeAfterSlider

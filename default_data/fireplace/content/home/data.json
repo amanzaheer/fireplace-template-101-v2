@@ -22,7 +22,8 @@
         { "title": "FAQs", "link": "faqs" },
         { "title": "Contact Us", "link": "contact-us" }
       ],
-      "phone": "[phone]"
+      "phone": "[phone]",
+      "phone_cta_subtitle": "Need Service Now? We Answer Calls 24/7."
     },
     "contact_info": {
       "phone": "[phone]",
@@ -83,7 +84,7 @@
       "title": "Our Services",
       "no_description_text": "No description provided.",
       "overflow_template": "{count} more services available – {link}",
-      "call_for_details_label": "Call for details",
+      "call_for_details_label": "Get A Quotation",
       "max_display": 9
     },
     "our_process": {
@@ -177,16 +178,17 @@
       ]
     },
     "banner": {
-      "title": "Trusted Experts in [industry] services",
+      "title": "Trusted Experts in [industry] services  ",
       "imageTitle": "Trusted Experts in [industry] services",
-      "heading": "TRUSTED EXPERTS IN [industry] SERVICES",
-      "description": "Professional [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
+      "heading": "TRUSTED EXPERTS IN [industry] SERVICES ",
+      "description": " Professional  [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
       "tagline": "trusted professionals in [industry] installation, cleaning & repair",
       "need_help_label": "Need Help?",
       "cta_phone": "[phone]",
+      "call_button_prefix": "CALL US 24/7-",
       "form_title": "GET IN TOUCH WITH US",
       "form_description": "Offer ends in just a few hours!",
-      "rating_line": "⭐ Rated 9.94 On Checkatrade ⭐",
+      "rating_line": "⭐ Rated 9.94 On Checkatrade... ⭐",
       "contact_subheading": "Contact [city_name] [industry] Services",
       "google_reviews_title": "Verified Customer Reviews",
       "cta_strip": {
@@ -286,7 +288,7 @@
           ]
         },
         {
-          "heading": "Comprehensive Fireplace Inspection",
+          "heading": "Comprehensive Fireplace Inspection ",
           "subheading": null,
           "features": [
             "Detailed Visual Inspection by Fireplace Active",
@@ -350,10 +352,19 @@
     },
     "city_name": "[city_name]",
     "faqs": {
-      "title": "FAQs",
+      "title": "Do You Have Any Question Please?",
       "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
+      "right_intro": "Keep your home warm, safe, and efficient with our professional fireplace services. From routine inspections and chimney cleaning to repairs and maintenance, our experienced team ensures your fireplace operates smoothly all year round. We provide reliable support, clear guidance, and timely service so you can enjoy comfort and peace of mind in every season..",
+      "default_open_index": 0,
+      "stats": [
+        { "value": "450+", "label": "Happy Customer" },
+        { "value": "300+", "label": "Satisfied Clients" },
+        { "value": "200+", "label": "Team Members" },
+        { "value": "100+", "label": "Award Winning" }
+      ],
       "cta_label": "Ask a Question",
       "cta_href": "/#contact-us",
+      "image": "footer/faqs-illustration.png",
       "file_name": "faqs/faqs13.png",
       "filename2": "faqs/faqs17.png",
       "side_image": "faqs/whychoose1.png",

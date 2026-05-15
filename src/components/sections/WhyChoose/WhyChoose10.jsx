@@ -23,10 +23,10 @@ function buildImageSrc(base, filePath) {
 export default function WhyChoose10({ content }) {
   const block = content?.why_choose ?? {};
   const features = resolveRefArray(content, block, "features");
-  const heading = block.heading ?? "Why Choose Us";
-  const subHeading = block?.title ?? "Who We Are";
+  const heading = block.heading ?? "";
+  const subHeading = block?.title ?? "";
   const description = block?.description ?? "";
-  const filePath = block.file_name ?? "about/about.webp";
+  const filePath = block.file_name ?? "";
   const imageSrc = buildImageSrc(IMAGE_BASE, filePath);
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const normalizedFeatures = features
@@ -95,20 +95,23 @@ export default function WhyChoose10({ content }) {
           </div>
 
           <div className="order-2 flex w-full items-center justify-center">
-            <div className="relative h-[320px] w-full max-w-[356px] ml-8 overflow-hidden rounded-[11px] bg-gray-200 sm:h-[400px] md:h-[462px] md:w-[356px]">
-              {imageSrc ? (
-                <Image
-                  src={imageSrc}
-                  alt="Why choose us"
-                  fill
-                  className="object-cover"
-                  priority={false}
-                  sizes="(max-width: 768px) 92vw, 356px"
-                />
-              ) : (
-                <div className="h-full w-full bg-gray-300" />
-              )}
-            </div>
+          {/* =========================================
+   UPDATED IMAGE WIDTH + RESPONSIVE SIZE
+========================================= */}
+<div className="relative ml-0 h-[120px] w-full max-w-[950px] overflow-hidden rounded-[11px] bg-gray-200 sm:h-[420px] md:h-[520px] md:max-w-[500px] lg:h-[440px] lg:max-w-[1050px]">
+  {imageSrc ? (
+    <Image
+      src={imageSrc}
+      alt="Why choose us"
+      fill
+      className="object-cover"
+      priority={false}
+      sizes="(max-width: 968px) 92vw, 650px"
+    />
+  ) : (
+    <div className="h-full w-full bg-gray-300" />
+  )}
+</div>
           </div>
 
           <div className="order-3 flex w-full max-w-[380px] flex-col gap-2 justify-self-center md:justify-self-start">

@@ -2,7 +2,13 @@ import { headers } from "next/headers";
 import { notFound } from "next/navigation";
 import SectionLayout from "@/components/SectionLayout";
 import MaintenancePage from "@/components/MaintenancePage";
-import { getPageData, getServiceData, getPageConfig, resolveAllTags } from "@/lib/page-data";
+import {
+  getPageData,
+  getServiceData,
+  getPageConfig,
+  resolveAllTags,
+  deepMerge,
+} from "@/lib/page-data";
 
 export const dynamic = 'force-dynamic';
 
@@ -10,15 +16,11 @@ export async function generateMetadata({ params }) {
   const { service } = await params;
   const headersList = await headers();
   const host = headersList.get("host") ?? "";
-
-  // Get the service title from home data (needed for [service] tag resolution)
   const homeData = await getPageData(host, "home");
   if (!homeData) return { title: "Coming Soon" };
-
   const services = homeData.content?.services ?? [];
   const serviceEntry = services.find((s) => s.path === `/${service}`);
   if (!serviceEntry) return { title: "Service" };
-
   // Load the full merged service content which has resolved meta_data
   const serviceContent = await getServiceData(host, service, serviceEntry.title);
   const meta = serviceContent?.meta_data;
@@ -28,7 +30,6 @@ export async function generateMetadata({ params }) {
     description: meta?.description ?? serviceEntry.description ?? undefined,
   };
 }
-
 export default async function ServicePage({ params }) {
   const { service } = await params;
   const headersList = await headers();
@@ -58,6 +59,13 @@ export default async function ServicePage({ params }) {
     services: resolveAllTags(homeData.content?.services ?? [], serviceVars),
     serviceDetail: resolveAllTags(serviceData, serviceVars),
   };
+
+  // Deep-merge FAQs so service JSON can add stats/right_intro/title without dropping
+  // home `items` when the datastore returns a partial service layer.
+  mergedContent.faqs = deepMerge(
+    homeData.content?.faqs ?? {},
+    serviceContent?.faqs ?? {},
+  );
 
   // domainConfig for the service page layout (sections order / visibility)
   const domainConfig = await getPageConfig(host, "service");
