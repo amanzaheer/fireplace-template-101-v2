@@ -7,9 +7,6 @@ import Cta17 from "./cta17";
 import Cta19 from "./cta19";
 import Cta20 from "./Cta20";
 import Cta21 from "./Cta21";
-
-import Cta18 from "./Cta18";
-import Cta21 from "./Cta21";
 const variants = {
   Cta14,
   Cta16,

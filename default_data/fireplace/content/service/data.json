@@ -94,7 +94,7 @@
   "city_name": "[city_name]",
   "state_name": "[state_name]",
   "contact": {
-    "background_image": "Contactimg/contactus20.png"
+    "background_image": "about/about.webp"
   },
   "reviewandrating": {
     "title": "Reviews and Ratings",
@@ -113,9 +113,9 @@
     "cta_label": "Ask a Question",
     "cta_href": "/#contact-us",
     "image": "footer/faqs-illustration.png",
-    "file_name": "faqs/faqs13.png",
-    "filename2": "faqs/faqs17.png",
-    "side_image": "faqs/whychoose1.png",
+    "file_name": "about/about.webp",
+    "filename2": "about/about2.png",
+    "side_image": "why-us/why-us.avif",
     "side_image_alt": "Technician at work",
     "items": [
       {

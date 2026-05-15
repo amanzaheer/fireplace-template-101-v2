@@ -22,6 +22,8 @@ export default async function Home() {
   const host = headersList.get("host") ?? "";
   const data = await getPageData(host, "home");
 
+  
+
   if (!data?.content) return <MaintenancePage />;
 
   return <SectionLayout domainConfig={data.domainConfig} content={data.content} />;

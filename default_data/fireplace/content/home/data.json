@@ -195,7 +195,7 @@
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
       },
-      "file_name": "hero-banner/banner20.png",
+      "file_name": "hero-banner/banner.webp",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
@@ -346,7 +346,7 @@
       "sub_title": "Ask For A Quote Here"
     },
     "contact": {
-      "background_image": "Contactimg/contactus20.png"
+      "background_image": "about/about.webp"
     },
     "city_name": "[city_name]",
     "faqs": {
@@ -354,9 +354,9 @@
       "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
       "cta_label": "Ask a Question",
       "cta_href": "/#contact-us",
-      "file_name": "faqs/faqs13.png",
-      "filename2": "faqs/faqs17.png",
-      "side_image": "faqs/whychoose1.png",
+      "file_name": "about/about.webp",
+      "filename2": "about/about2.png",
+      "side_image": "why-us/why-us.avif",
       "side_image_alt": "Technician at work",
       "items": [
         {

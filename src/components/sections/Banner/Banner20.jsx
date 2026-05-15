@@ -53,7 +53,7 @@ export default function Banner20({ content }) {
 
   const image =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
-    buildImageSrc(IMAGE_BASE, "hero-banner/banner20.png");
+    buildImageSrc(IMAGE_BASE, "hero-banner/banner.webp");
 
   const defaultCollageImage =
     buildImageSrc(IMAGE_BASE, banner.file_name2) ||

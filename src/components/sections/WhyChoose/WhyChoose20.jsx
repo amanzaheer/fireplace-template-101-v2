@@ -21,9 +21,9 @@ export default function WhyChoose20({ content }) {
   const heading = block.heading ?? "Why Choose Us";
   const description = block.description ?? "";
   const mainImagePath =
-    block.main_image ?? block.file_name_main ?? block.file_name ?? "why-us/whychoose1.png";
+    block.main_image ?? block.file_name_main ?? block.file_name ?? "why-us/why-us.avif";
   const collageImagePath =
-    block.collage_image ?? block.file_name2 ?? "why-us/whychoose2.png";
+    block.collage_image ?? block.file_name2 ?? "why-us/why-us.avif";
   const mainImageSrc = buildImageSrc(IMAGE_BASE, mainImagePath);
   const collageImageSrc = buildImageSrc(IMAGE_BASE, collageImagePath);
   const labels = features
