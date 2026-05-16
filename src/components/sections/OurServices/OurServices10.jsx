@@ -88,8 +88,8 @@ export default function OurServices10({ content }) {
       : "";
   return (
     <FullContainer id="our_services" className="bg-white py-12 md:py-16">
-      <Container className=" max-w-5xl!">
-        <div className="mb-8 flex items-center justify-between gap-4  text-black">
+      <Container className="w-full">
+        <div className="mb-8 flex items-center justify-between gap-4 text-black md:gap-6">
           {title ? (
             <h2 className={`${rubik.className} text-3xl md:text-[44px] font-bold tracking-tight`}>
               {title}
@@ -107,7 +107,7 @@ export default function OurServices10({ content }) {
             </a>
           ) : null}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10 ">
+        <div className="grid w-full grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {displayServices.map((service) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
