@@ -12,9 +12,7 @@ import { cn, sanitizeUrl } from "@/lib/utils";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
 import { Inter, Poppins } from "next/font/google";
-
 const SCROLL_OFFSET = 80;
-
 const inter = Inter({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
@@ -23,13 +21,8 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["400", "500", "600", "700"],
 });
-
 const TOP_BAR_BG = "bg-[#5484A6]";
 const NAV_BAR_BG = "bg-[#0C5B8F]";
-
-/** Shown above the number on the phone CTA; CMS `phone_cta_subtitle` overrides when set. */
-const DEFAULT_PHONE_CTA_MAIN_TEXT =
-  "Need Service Now? We Answer Calls 24/7.";
 
 function isDropdownItem(item) {
   return (
@@ -78,8 +71,7 @@ export default function Navbar10({ content }) {
         ? phoneCtaSubtitle.trim()
         : ""
   );
-  const phoneCtaMainText =
-    phoneCtaSubtitleFromCms || DEFAULT_PHONE_CTA_MAIN_TEXT;
+  const phoneCtaMainText = phoneCtaSubtitleFromCms;
 
   const phoneCtaImageFile =
     typeof phoneCtaImageSnake === "string"
@@ -281,10 +273,10 @@ export default function Navbar10({ content }) {
 
   const topBarRow = (
     <div className="flex w-full flex-row items-center justify-between gap-3 py-3 md:gap-6 md:py-5">
-      <div className="flex min-h-[48px] min-w-0 flex-1 items-center md:min-h-[56px] ml-0 md:ml-34">
+      <div className="flex min-h-[48px] min-w-0 flex-1 items-center md:min-h-[56px]">
         <Logo logo={logo} imagePath={imagePath} />
       </div>
-      <div className="flex shrink-0 items-center gap-2 sm:gap-3">
+      <div className="flex shrink-0 items-center gap-2 sm:gap-3 md:self-center lg:mr-10 xl:mr-12">
         {phoneCtaBlock ? (
           <div className="hidden min-w-0 sm:block sm:max-w-none">{phoneCtaBlock}</div>
         ) : null}
@@ -333,8 +325,9 @@ export default function Navbar10({ content }) {
   );
 
   const shellClass =
-    "sticky top-0 z-20 w-full max-w-none items-stretch shadow-md text-white";
-  const innerClass = "w-full max-w-none";
+    "fixed top-0 left-0 right-0 z-50 w-full max-w-none items-stretch shadow-md text-white";
+  /** Same width + horizontal padding as page sections (`Container` default + center). */
+  const innerClass = "mx-auto w-full max-w-[1270px] px-3 md:px-4";
 
   if (!mounted) {
     return (

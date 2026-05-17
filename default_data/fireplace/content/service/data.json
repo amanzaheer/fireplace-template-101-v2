@@ -28,7 +28,7 @@
   "banner": {
     "title": "#1 [service]",
     "tagline": "Top-Rated [service] – We Serve Your Area!",
-    "form_title": "Claim Fire Place Services Offer Today",
+    "form_title": "Claim [service] Services Offer Today",
     "form_description": "Offer ends in just a few hours!",
     "file_name": "services/fireplace-repair.webp",
     "childrenRef": "features"
@@ -108,8 +108,16 @@
     ]
   },
   "faqs": {
-    "title": "FAQs",
+    "title": "Do You Have Any Question Please?",
     "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
+    "right_intro": "Keep your home warm, safe, and efficient with our professional fireplace services. From routine inspections and chimney cleaning to repairs and maintenance, our experienced team ensures your fireplace operates smoothly all year round. We provide reliable support, clear guidance, and timely service so you can enjoy comfort and peace of mind in every season..",
+    "default_open_index": 0,
+    "stats": [
+      { "value": "450+", "label": "Happy Customer" },
+      { "value": "300+", "label": "Satisfied Clients" },
+      { "value": "200+", "label": "Team Members" },
+      { "value": "100+", "label": "Award Winning" }
+    ],
     "cta_label": "Ask a Question",
     "cta_href": "/#contact-us",
     "image": "footer/faqs-illustration.png",
@@ -148,7 +156,7 @@
   },
   "service_description": {
     "title": "[service] Services",
-    "cta_label": "GET A QUOTE",
+    "cta_label": "GET A QUOTEhhhhh",
     "file_name": "services/fireplace-repair.webp",
     "description": "## [service] Services\n\nEnsuring safety, comfort, ggggggg and efficiency, [service] is essential for maintaining the performance and longevity of your fireplace system. Over time, heat, moisture, and regular use can cause buildup, wear, or damage, leading to poor efficiency, smoke issues, or safety concerns.\n\nRegular [service] not only prevents costly repairs but also protects your home from potential fire hazards, harmful gases, and system breakdowns. By addressing issues early and keeping your fireplace in excellent condition, you enjoy reliable warmth, improved energy efficiency, and long-term peace of mind."
   },
@@ -175,7 +183,7 @@
     "image_alt": "Living room with fireplace — [company_name] [service] benefits",
     "file_name": "benefits/benefits.avif",
     "list": [
-      { "title": "Fire Prevention", "description": "Prevent fire hazards and CO issues." },
+      { "title": "Fire Preventionnnnn", "description": "Prevent fire hazards and CO issues." },
       { "title": "Improved Air Quality", "description": "Properly working fireplaces heat better." },
       { "title": "Enhanced Efficiency", "description": "Maintenance extends fireplace life." },
       { "title": "Extended Fireplace Lifespan", "description": "Remove soot and improve air quality." },

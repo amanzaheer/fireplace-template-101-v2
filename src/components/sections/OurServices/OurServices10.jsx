@@ -79,24 +79,35 @@ export default function OurServices10({ content }) {
 
   if (!displayServices.length) return null;
 
-  const title = ourServices?.title ?? "We Offers Best Plumbing Services";
+  const title = ourServices?.title ?? "";
 
+  const quotationLabel =
+    typeof ourServices?.call_for_details_label === "string" &&
+    ourServices.call_for_details_label.trim()
+      ? ourServices.call_for_details_label.trim()
+      : "";
   return (
     <FullContainer id="our_services" className="bg-white py-12 md:py-16">
-      <Container className=" max-w-5xl!">
-        <div className="mb-8 flex items-center justify-between gap-4  text-black">
-          <h2 className={`${rubik.className} text-3xl md:text-[44px] font-bold tracking-tight`}>
-            {title}
-          </h2>
-          <a
-            href={`tel:${phone}`}
-            className={`${archivo.className}  text-[12px] md:text-[14px] hidden md:inline-flex items-center gap-2 text-[#a52828] uppercase text-sm font-bold tracking-wide hover:text-[#a52828] transition-colors duration-200`}
-          >
-            Get A Quotation
-            <span aria-hidden="true">→</span>
-          </a>
+      <Container className="w-full">
+        <div className="mb-8 flex items-center justify-between gap-4 text-black md:gap-6">
+          {title ? (
+            <h2 className={`${rubik.className} text-3xl md:text-[44px] font-bold tracking-tight`}>
+              {title}
+            </h2>
+          ) : (
+            <span className="min-w-0 flex-1" aria-hidden />
+          )}
+          {phone && quotationLabel ? (
+            <a
+              href={`tel:${phone}`}
+              className={`${archivo.className}  text-[12px] md:text-[14px] hidden md:inline-flex items-center gap-2 text-[#a52828] uppercase text-sm font-bold tracking-wide hover:text-[#a52828] transition-colors duration-200`}
+            >
+              {quotationLabel}
+              <span aria-hidden="true">→</span>
+            </a>
+          ) : null}
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 gap-y-10 ">
+        <div className="grid w-full grid-cols-1 gap-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {displayServices.map((service) => {
             const imageSrc = service.image
               ? buildImageSrc(IMAGE_BASE, service.image)
@@ -110,7 +121,7 @@ export default function OurServices10({ content }) {
                   {imageSrc ? (
                     <Image
                       src={imageSrc}
-                      alt={service.title || "Service"}
+                      alt={service.title || ""}
                       fill
                       sizes="(max-width: 1024px) 50vw, 33vw"
                       className="object-cover"

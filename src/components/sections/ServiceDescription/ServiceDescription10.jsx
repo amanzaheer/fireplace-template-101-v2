@@ -10,29 +10,25 @@ import { IMAGE_BASE } from "@/lib/constants";
 
 const prose =
   "prose max-w-none text-[#171717] prose-headings:font-extrabold prose-headings:text-[#171717] prose-p:text-[#212020] prose-li:text-[#212020] prose-strong:text-[#212020] prose-a:text-[#212020] prose-h1:!text-3xl md:prose-h1:!text-4xl prose-h2:!text-2xl md:prose-h2:!text-3xl";
-
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
 }
-
-export default function ServiceDescription12({ content }) {
+export default function ServiceDescription10({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
-
+  const imageSrc = buildImageSrc(IMAGE_BASE, content?.service_description?.file_name);
   if (!content?.service_description?.description) return null;
 
-  const title = content?.service_description?.title ?? "Our Service";
+  const title = content?.service_description?.title ?? "";
 
-  const description =
-    content?.service_description?.description ||
-    "Professional, reliable service from experienced local technicians.";
+  const description = content?.service_description?.description ?? "";
 
-  const imageSrc = content?.service_description?.file_name
-    ? buildImageSrc(IMAGE_BASE, content?.service_description?.file_name)
-    : buildImageSrc(IMAGE_BASE, "hero/hero.webp");
-
+  const callUsLabel =
+    typeof content?.service_description?.call_us_label === "string"
+      ? content.service_description.call_us_label.trim()
+      : "";
   return (
     <FullContainer id="service_description" className="py-10 md:py-14 bg-white">
       <Container>
@@ -49,13 +45,15 @@ export default function ServiceDescription12({ content }) {
               />
               {phone ? (
                 <div className="flex flex-col sm:flex-row gap-3 pt-2">
-                  <a
-                    href={`tel:${phone}`}
-                    className="inline-flex max-w-full items-center justify-center gap-2 bg-gradient-to-r from-[#f20508] to-[#b12224] text-white uppercase tracking-wide font-bold px-7 py-3 text-sm hover:bg-[#111827] transition-colors duration-200"
-                  >
-                    Call Us Today
-                    <span aria-hidden="true">→</span>
-                  </a>
+                  {callUsLabel ? (
+                    <a
+                      href={`tel:${phone}`}
+                      className="inline-flex max-w-full items-center justify-center gap-2 bg-gradient-to-r from-[#f20508] to-[#b12224] text-white uppercase tracking-wide font-bold px-7 py-3 text-sm hover:bg-[#111827] transition-colors duration-200"
+                    >
+                      {callUsLabel}
+                      <span aria-hidden="true">→</span>
+                    </a>
+                  ) : null}
                   <a
                     href={`tel:${phone}`}
                     className="inline-flex max-w-full items-center justify-center gap-2  bg-black  text-white font-bold px-6 py-3 text-base hover:cursor-pointer transition-colors duration-200"
@@ -66,7 +64,6 @@ export default function ServiceDescription12({ content }) {
                 </div>
               ) : null}
             </div>
-
             <div className="relative w-full min-h-[260px] md:min-h-[340px]  overflow-hidden bg-gray-100 shadow-sm order-1 md:order-2">
               {imageSrc ? (
                 <Image
