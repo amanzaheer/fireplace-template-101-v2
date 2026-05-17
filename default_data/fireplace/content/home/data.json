@@ -196,12 +196,12 @@
         "heading": "It's Easy! Call Now",
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
-      },
-      "file_name": "hero-banner/banner20.png",
+      },      "file_name": "hero-banner/banner20.png",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
-      "file_name2": "hero-banner/overlayimg7.png",
+      "file_name2": "hero-banner/overlayimg7...l.png",
+      "file_name3": "hero-banner/overlayimg12.png",
       "left_collage_image": "hero-banner/left collage.png",
       "right_collage_image": "hero-banner/right collage.png",
       "bottom_collage_image": "hero-banner/bottom collage.png"
