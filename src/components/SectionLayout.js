@@ -78,7 +78,8 @@ const sectionComponents = {
 };
 const DEFAULT_THEME_COLOR = "#1A2956";
 export default function SectionLayout({ children, domainConfig, content }) {
-  const { sections = {}, order = [] } = domainConfig ?? {};
+const { sections = {}, order: rawOrder = [] } = domainConfig ?? {};
+const order = rawOrder.length > 0 ? rawOrder : Object.keys(sections);
 
   return (
     <>

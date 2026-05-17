@@ -197,7 +197,7 @@
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
       },
-      "file_name": "hero-banner/banner20.png",
+      "file_name": "hero-banner/banner.webp",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
@@ -348,7 +348,7 @@
       "sub_title": "Ask For A Quote Here"
     },
     "contact": {
-      "background_image": "Contactimg/contactus20.png"
+      "background_image": "about/about.webp"
     },
     "city_name": "[city_name]",
     "faqs": {

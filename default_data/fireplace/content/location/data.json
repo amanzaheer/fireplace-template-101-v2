@@ -49,11 +49,11 @@
     "working_hours": "[working_hours]"
   },
   "contact": {
-    "background_image": "Contactimg/contactus20.png"
+    "background_image": "about/about.webp"
   },
   "faqs": {
     "title": "FAQs",
-    "side_image": "faqs/whychoose1.png",
+    "side_image": "why-us/why-us.avif",
     "side_image_alt": "Technician at work",
     "items": [
       {

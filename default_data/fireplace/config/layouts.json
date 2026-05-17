@@ -152,11 +152,11 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar10",
+          "design": "Navbar25",
           "visible": true
         },
         "Banner": {
-          "design": "Banner10",
+          "design": "Banner25",
           "visible": true
         },
         "TVSizes": {
@@ -164,39 +164,39 @@
           "visible": false
         },
         "About": {
-          "design": "About10",
-          "visible": true
+          "design": "About24",
+          "visible": false
         },
         "Promotion": {
-          "design": "Promotion10",
+          "design": "Promotion25",
           "visible": true
         },
         "Testimonials": {
-          "design": "Testimonials10",
-          "visible": false
+          "design": "Testimonials25",
+          "visible": true
         },
         "Footer": {
-          "design": "Footer10",
+          "design": "Footer25",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter10",
+          "design": "BeforeAfter25",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices10",
+          "design": "OurServices25",
           "visible": true
         },
         "Gallery": {
-          "design": "Gallery10",
-          "visible": true
+          "design": "Gallery9",
+          "visible": false
         },
         "WhyChoose": {
-          "design": "WhyChoose10",
+          "design": "WhyChoose25",
           "visible": true
         },
         "Slogan": {
-          "design": "Slogan10",
+          "design": "Slogan24",
           "visible": true
         },
         "ServiceBenefits": {
@@ -204,15 +204,15 @@
           "visible": true
         },
         "Contact": {
-          "design": "Contact10",
+          "design": "Contact25",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs10",
+          "design": "FAQs25",
           "visible": true
         },
         "ServiceCities": {
-            "design": "ServiceCities10",
+          "design": "ServiceCities25",
           "visible": true
         },
         "CallUsButton": {
@@ -285,11 +285,11 @@
     "service": {
       "sections": {
         "Navbar": {
-          "design": "Navbar10",
+          "design": "Navbar25",
           "visible": true
         },
         "Banner": {
-          "design": "Banner10",
+          "design": "Banner25",
           "visible": true
         },
         "TVSizes": {
@@ -317,19 +317,19 @@
           "visible": true
         },
         "Contact": {
-          "design": "Contact10",
+          "design": "Contact25",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs10",
+          "design": "FAQs25",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities10",
+          "design": "ServiceCities25",
           "visible": true
         },
         "Footer": {
-          "design": "Footer10",
+          "design": "Footer25",
           "visible": true
         },
         "CallUsButton": {

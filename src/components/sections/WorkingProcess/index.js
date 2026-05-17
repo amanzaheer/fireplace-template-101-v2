@@ -18,5 +18,9 @@ export default function WorkingProcess({ variant, content }) {
   const Component = variants[name] ?? WorkingProcess21;
   return <Component content={content} />;
 }
-
-export { WorkingProcess12, WorkingProcess20, WorkingProcess21, variants };
+export {
+  WorkingProcess12,
+  WorkingProcess20,
+  WorkingProcess21,
+  variants,
+};
