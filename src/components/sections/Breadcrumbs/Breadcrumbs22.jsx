@@ -70,7 +70,7 @@ export default function Breadcrumbs19({ content }) {
                   ) : null}
                   {isLast ? (
                     <span
-                      className="text-[14px] font-semibold text-[#e31b23]  md:text-[15px]"
+                      className="text-[14px] font-semibold text-[#e55b20]  md:text-[15px]"
                       aria-current="page"
                     >
                       {text}

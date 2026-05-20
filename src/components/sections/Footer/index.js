@@ -14,10 +14,11 @@ import Footer11 from "./Footer11";
 import Footer12 from "./Footer12";
 import Footer13 from "./Footer13";
 import Footer10 from "./Footer10";
-import Footer16 from "./Footer16";  
+import Footer16 from "./Footer16";
 import Footer17 from "./Footer17";
 import Footer19 from "./Footer19";
 import Footer21 from "./Footer21";
+import Footer22 from "./Footer22";
 import Footer24 from "./Footer24";
 import Footer25 from "./Footer25";
 const variants = {
@@ -37,12 +38,10 @@ const variants = {
   Footer11,
   Footer12,
   Footer14,
-  Footer15,
-  Footer16,
-  Footer10,
   Footer13,
   Footer19,
   Footer21,
+  Footer22,
   Footer24,
   Footer25,
 };
@@ -53,5 +52,4 @@ export default function Footer({ variant, content }) {
   const Component = variants[name] ?? Footer21;
   return <Component content={content} />;
 }
-export { Footer1, Footer2, Footer3, Footer4, Footer5, Footer6, Footer7, Footer8, Footer9, Footer14, Footer15, Footer11, Footer12, Footer10, Footer13, Footer16, Footer17, Footer19, Footer21, Footer24, Footer25, variants };
-
+export { Footer1, Footer2, Footer3, Footer4, Footer5, Footer6, Footer7, Footer8, Footer9, Footer14, Footer15, Footer11, Footer12, Footer10, Footer13, Footer16, Footer17, Footer19, Footer21, Footer22, Footer24, Footer25, variants };

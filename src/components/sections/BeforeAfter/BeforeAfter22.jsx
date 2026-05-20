@@ -7,15 +7,28 @@ import React, {
   useCallback,
 } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
+import { Poppins } from "next/font/google";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+});
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
+}
+
+function telHref(phone) {
+  if (!phone || typeof phone !== "string") return "#";
+  const digits = phone.replace(/[^\d+]/g, "");
+  return digits ? `tel:${digits}` : "#";
 }
 
 function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrowSrc }) {
@@ -88,10 +101,10 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
       document.removeEventListener("touchend", handleTouchEnd);
     };
   }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
-  
+
   return (
     <div
-      className="relative w-full aspect-square overflow-hidden"
+      className="relative w-full aspect-[1.35/1] overflow-hidden rounded-[43px]"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
       ref={containerRef}
@@ -115,7 +128,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
         className="absolute inset-0 overflow-hidden"
         style={{ width: `${sliderPosition}%` }}
       >
-        <div className="relative w-full h-full">
+        <div className="relative w-full h-full ">
           <Image
             src={beforeImage}
             alt={beforeAlt}
@@ -137,7 +150,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border-[3px] border-white shadow-md flex items-center justify-center">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 bg-transparent  border-white shadow-md flex items-center justify-center">
           <div className="flex items-center gap-2">
             {arrowSrc ? (
               <>
@@ -157,11 +170,18 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
   );
 }
 
-export default function BeforeAfter1({ content }) {
+export default function BeforeAfter22({ content }) {
   const block = content?.before_after ?? {};
   const rawItems = Array.isArray(block.items) ? block.items : [];
   if (rawItems.length === 0) return null;
 
+  const phone =
+    content?.banner?.cta_phone ??
+    content?.contact_info?.phone ??
+    content?.navbar?.phone ??
+    "";
+  const phoneDisplay = typeof phone === "string" ? phone.trim() : "";
+  const callHref = telHref(phoneDisplay);
   const title = block.title ?? "Before And After Results";
   const imageBase = IMAGE_BASE;
   const arrowSrc = buildImageSrc(imageBase, block.arrow_icon ?? "icons/arrowhead.webp");
@@ -177,7 +197,7 @@ export default function BeforeAfter1({ content }) {
   return (
     <FullContainer id="before_after">
       <Container className="pb-16 pt-6">
-        <h2 className="text-4xl text-center pb-6 font-extrabold text-[#002B5B] mb-2">
+        <h2 className="text-4xl text-center pb-6 font-extrabold text-black mb-2">
           {title}
         </h2>
         <div className="hidden md:grid grid-cols-2 md:grid-cols-4 gap-5">
@@ -204,6 +224,26 @@ export default function BeforeAfter1({ content }) {
             />
           ))}
         </div>
+
+        {phoneDisplay ? (
+          <div className="mt-8 flex justify-center md:mt-10">
+            <Link
+              href={callHref}
+              className="inline-flex h-[73.33px] w-[258px] shrink-0 flex-col items-center justify-center rounded-[15px] bg-[#f0520e] pt-[2.72px] pr-[1.36px] pb-[2.72px] pl-[1.36px] text-center shadow-md transition hover:bg-black"
+            >
+              <p
+                className={`${poppins.className} text-[21px] font-medium leading-none text-white`}
+              >
+                CALL NOW:
+              </p>
+              <p
+                className={`${poppins.className} mt-2 text-[27px] font-bold leading-none text-white`}
+              >
+                {phoneDisplay}
+              </p>
+            </Link>
+          </div>
+        ) : null}
       </Container>
     </FullContainer>
   );

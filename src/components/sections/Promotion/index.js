@@ -23,6 +23,7 @@ import Promotion20 from "./Promotion20";
 import Promotion19 from "./Promotion19";
 import Promotion21 from "./Promotion21";
 import Promotion16 from "./Promotion16";
+import Promotion22 from "./Promotion22";
 import Promotion24 from "./Promotion24";
 import Promotion25 from "./Promotion25";
 const variants = {
@@ -39,7 +40,6 @@ const variants = {
   Promotion15,
   Promotion11,
   Promotion12,
-  Promotion10,
   Promotion13,
   Promotion16,
   Promotion17,
@@ -47,6 +47,7 @@ const variants = {
   Promotion20,
   Promotion19,
   Promotion21,
+  Promotion22,
   Promotion24,
   Promotion25,
 };
@@ -76,9 +77,8 @@ export {
   Promotion19,
   Promotion20,
   Promotion21,
+  Promotion22,
   Promotion24,
   Promotion25,
   variants,
 };
-
-

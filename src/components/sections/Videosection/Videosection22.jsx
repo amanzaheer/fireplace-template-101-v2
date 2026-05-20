@@ -1,6 +1,8 @@
 import React from "react";
 import FullContainer from "@/components/common/FullContainer";
 import { IMAGE_BASE } from "@/lib/constants";
+import VideosectionContact22 from "../Contact/VideosectionContact22";
+
 
 function buildVideoSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -39,7 +41,7 @@ function getVideoSection(content) {
   return content?.videosection ?? content?.video_section ?? {};
 }
 
-export default function Videosection13({ content }) {
+export default function Videosection22({ content }) {
   const section = getVideoSection(content);
   const rawVideo = section?.file_name2 || section?.file_name || "";
   const videoSrc = buildVideoSrc(IMAGE_BASE, rawVideo);
@@ -47,12 +49,12 @@ export default function Videosection13({ content }) {
   const embedUrl = isYouTube ? toYouTubeEmbedUrl(videoSrc) : "";
 
   return (
-    <FullContainer id="video_section" className="relative h-svh w-full overflow-hidden bg-[#4c2477] md:h-screen">
+    <FullContainer id="video_section" className="relative h-svh w-full overflow-hidden md:h-screen">
       {isYouTube && embedUrl ? (
         <iframe
           src={`${embedUrl}?autoplay=1&mute=1&loop=1&playlist=${embedUrl.split("/embed/")[1] ?? ""}&controls=0&rel=0&modestbranding=1`}
           title="Video"
-          className="h-full w-full"
+          className="h-full w-full min-h-[500px]"
           loading="lazy"
           allow="autoplay; encrypted-media; picture-in-picture"
           allowFullScreen
@@ -60,7 +62,7 @@ export default function Videosection13({ content }) {
       ) : videoSrc ? (
         <video
           src={videoSrc}
-          className="h-full w-full object-contain md:object-cover"
+          className="h-full w-full object-cover min-h-[500px]"
           autoPlay
           loop
           muted
@@ -68,6 +70,17 @@ export default function Videosection13({ content }) {
           preload="metadata"
         />
       ) : null}
+      
+        <div className="absolute top-0 left-0 w-full h-full z-10 grid grid-cols-1 md:grid-cols-2">
+          <div>
+
+          </div>
+          <div className=" p-4 rounded-lg">
+            <VideosectionContact22
+              content={content}
+            />
+          </div>
+        </div>
     </FullContainer>
   );
 }
