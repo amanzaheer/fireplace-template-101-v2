@@ -88,7 +88,7 @@ function BeforeAfterSlider({ beforeImage, afterImage, beforeAlt, afterAlt, arrow
       document.removeEventListener("touchend", handleTouchEnd);
     };
   }, [handleMouseMove, handleMouseUp, handleTouchMove, handleTouchEnd]);
-  
+
   return (
     <div
       className="relative w-full aspect-square overflow-hidden"

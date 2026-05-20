@@ -16,8 +16,6 @@ const MIME = {
   ".svg": "image/svg+xml",
   ".ico": "image/x-icon",
   ".avif": "image/avif",
-  ".mp4": "video/mp4",
-  ".webm": "video/webm",
 };
 
 // DEV ONLY — set USE_LOCAL_IMAGES=true in .env to serve images from disk

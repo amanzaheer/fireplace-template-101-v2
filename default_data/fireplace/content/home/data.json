@@ -128,10 +128,7 @@
     "why_choose": {
       "heading": "Why Choose Us",
       "cta_label": "GET A QUOTE",
-      "description": "Licensed technicians, clear pricing, and workmanship you can rely on in [city_name].",
       "file_name": "why-us/why-us.avif",
-      "main_image": "why-us/whyusoverlay.png",
-      "childrenRef": "features",
       "features": [
         { "icon": "FileText", "text": "Fire Place & Repair" },
         { "icon": "Clock", "text": "Same Day Service" },
@@ -199,12 +196,12 @@
         "heading": "It's Easy! Call Now",
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
-      },
-      "file_name": "hero-banner/banner.webp",
+      },      "file_name": "hero-banner/banner20.png",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
-      "file_name2": "hero-banner/overlayimg7.png",
+      "file_name2": "hero-banner/overlayimg7...l.png",
+      "file_name3": "hero-banner/overlayimg12.png",
       "left_collage_image": "hero-banner/left collage.png",
       "right_collage_image": "hero-banner/right collage.png",
       "bottom_collage_image": "hero-banner/bottom collage.png"
@@ -351,7 +348,7 @@
       "sub_title": "Ask For A Quote Here"
     },
     "contact": {
-      "background_image": "about/about.webp"
+      "background_image": "Contactimg/contactus20.png"
     },
     "city_name": "[city_name]",
     "faqs": {
@@ -408,7 +405,7 @@
         { "name": "Colorado", "image": "Servicecities/location6.png" },
         { "name": "Connecticut", "image": "Servicecities/location1.png" },
         { "name": "Delaware", "image": "Servicecities/location2.png" },
-        { "name": "District Of Columbia", "image": "Servicecities/location3.png" },
+        { "name": "District Of Columbia","image": "Servicecities/location3.png" },
         { "name": "Florida", "image": "Servicecities/location4.png" },
         { "name": "Georgia", "image": "Servicecities/location5.png" },
         { "name": "Hawaii", "image": "Servicecities/location6.png" },
@@ -456,28 +453,23 @@
     "features": [
       {
         "icon": "FileText",
-        "text": "Fire Place & Repair",
-        "description":"We specialize in fireplace cleaning, maintenance, and repairs. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients."
+        "text": "Fire Place & Repair"
       },
       {
         "icon": "Clock",
-        "text": "Same Day Service",
-        "description":"We offer same day service to our clients. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients."
+        "text": "Same Day Service"
       },
       {
         "icon": "Star",
-        "text": "5 Star Rated On Google",
-        "description":"We are a 5 star rated company on Google. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients."
+        "text": "5 Star Rated On Google"
       },
       {
         "icon": "Shield",
-        "text": "Licensed & Insured",
-        "description":"We are a licensed and insured company. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients."
+        "text": "Licensed & Insured"
       },
       {
         "icon": "MessageSquare",
-          "text": "10+ Years Of Experience",
-        "description":"We are a 10+ years of experience company. We are a team of experienced professionals who are dedicated to providing the best possible service to our clients."
+        "text": "10+ Years Of Experience"
       }
     ],
 
@@ -488,7 +480,7 @@
       "google_reviews_label": "Google Reviews",
       "file_name": "testimonials/wood-fireplace-repair.webp",
       "list": [
-        {      
+        {
           "name": "John D.",
           "text": "[company_name] did an amazing job! Professional, efficient, and great results. Highly recommend!",
           "rating": 5
@@ -528,14 +520,6 @@
       "phone": "[phone]"
 
     },
-    "cta2": {
-      "title": "Ready to Book Your Fireplace Service?",
-      "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service.",
-      "file_name": "cta/cta22.png",
-      "file_name2": "cta/cta22.2.png",
-      "button_text": "Get a Free Estimate",
-      "phone": "[phone]"
-    },
     "milestonesbanner": {
       "title": "Milestones",
       "description": "We are proud to have achieved these milestones in our journey.",
@@ -560,35 +544,6 @@
   "sub_title": "[industry] In [city_name]. Why Do You Need It?",
   "description": "A clean, well-maintained home isn’t just about appearance—it’s about comfort, safety, and healthy living. Clean air, proper airflow, and a well-functioning [industry] all play a key role in creating the perfect indoor environment. However, [industry] cleaning can be time-consuming and complicated, especially when handled without the right tools or expertise.\n\nThat’s where our experienced professionals step in.\n\nWe provide reliable [industry] cleaning services in Leander for both residential and commercial spaces. Our skilled team ensures deep cleaning, removing dust, soot, and harmful particles that affect air quality. With our services, you can enjoy a cleaner, fresher, and healthier space without any hassle."
 },
-"prfessional banner": {
-  "title": "Explore Our Professional [industry] Services & Solutions",
-  "description": "Electrical installations, upgrades, and maint­enance for food proce­ssors, schools, banks, and beyond. Electrical installations, upgrades, and maint­enance for food proce­ssors, schools, banks, and beyond.",
-  "file_name": "professionalBanner/professionalbanner22.png",
-  
-  "cta_label": "CALL NOW:",
-  "list": [
-    {
-      "title": "Expert Technicians",
-      "description": "Our trained and certified professionals ensure safe, reliable, and high-quality [industry] services for your home."
-    },
-    {
-      "title": "[industry] Services",
-      "description": "From cleaning and inspection to repair and maintenance, we provide end-to-end [industry] solutions."
-    },
-    {
-      "title": "Fast & Reliable",
-      "description": "Quick response times with dependable service to keep your home safe and your [industry] working efficiently."
-    },
-    {
-      "title": "Satisfaction Guaranteed",
-      "description": "We focus on quality work and customer happiness, delivering results you can trust every time."
-    }
-  ]
-},
-"videosection": {
-  "file_name2": "videosection/video13.mp4"
-},
-
     "work_portfolio": {
       "file_name": [
          "WorkPortfolio/gallery1.jpg",

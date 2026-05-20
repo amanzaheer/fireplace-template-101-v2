@@ -1,60 +1,60 @@
 # Dependencies
 node_modules/
- 
+
 # Next.js build output
 .next/
 out/
 build/
 default_data/
- 
+
 # Production artifacts
 dist/
- 
+
 # Local env files
 .env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
- 
+
 # Logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
 *.log
- 
+
 # Coverage
 coverage/
 .nyc_output/
- 
+
 # Cache/temp
 .cache/
 .turbo/
 tmp/
 temp/
- 
+
 # OS files
 .DS_Store
 Thumbs.db
- 
+
 # Editor/IDE
 .vscode/
 .idea/
 *.swp
 *.swo
- 
+
 # Keep generated local content out of git
 /default_data/fireplace/content/
 /domain_data/
- 
+
 # macOS archive metadata
 /__MACOSX/
- 
+
 # Local scripts & credentials (do not commit)
 /scripts/service-account.json
 /scripts/seed-datastore.mjs
 /scripts/sync-placeholders.mjs
- 
+
 # Keep generated local content out of git
 /default_data/fireplace/content/å

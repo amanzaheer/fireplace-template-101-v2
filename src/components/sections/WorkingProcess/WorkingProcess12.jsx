@@ -23,8 +23,18 @@ function normalizeImagePath(pathValue) {
   return pathValue.trim().replace(/\\/g, "/").replace(/^\/+/, "");
 }
 
+const DEFAULT_STEP_IMAGES = [
+  "workingprocess/message.png",
+  "workingprocess/person.png",
+  "workingprocess/verified.png",
+];
+
 export default function WorkingProcess12({ content }) {
-  const section = content?.working_process ?? content?.workingprocess ?? {};
+  const section =
+    content?.our_process ??
+    content?.working_process ??
+    content?.workingprocess ??
+    {};
   const data = {
     heading: section?.heading ?? section?.title,
     description: section?.description,
@@ -59,27 +69,26 @@ export default function WorkingProcess12({ content }) {
             <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2 lg:mt-12 lg:grid-cols-3 lg:gap-8">
               {steps?.map((step, index) => {
                 const imagePath = normalizeImagePath(
-                  step?.file_name ?? step?.image,
+                  step?.file_name ??
+                    step?.image ??
+                    DEFAULT_STEP_IMAGES[index],
                 );
-                const imageSrc = buildImageSrc(
-                  IMAGE_BASE,
-                  imagePath,
-                );
+                const imageSrc = buildImageSrc(IMAGE_BASE, imagePath);
                 return (
                   <div
                     key={`${step?.title ?? "step"}-${index}`}
                     className="mx-auto flex w-full max-w-[320px] flex-col items-center text-center text-white"
                   >
-                    <div className="relative h-[115px] w-[115px]">
+                    <div className="flex h-[115px] w-[115px] items-center justify-center">
                       {imageSrc ? (
                         <Image
                           src={imageSrc}
                           alt={step?.title || `Step ${index + 1}`}
-                          fill
+                          width={115}
+                          height={115}
                           loading="lazy"
                           unoptimized
-                          className="object-contain"
-                          sizes="400px"
+                          className="h-[115px] w-[115px] object-contain"
                         />
                       ) : (
                         <div className="h-full w-full rounded border-2 border-white/60" />

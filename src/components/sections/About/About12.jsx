@@ -54,7 +54,7 @@ export default function About12({ content }) {
     <FullContainer className="bg-white py-10 md:py-14 mt-0" id="about">
       
 
-      <Container className="max-w-6xl mx-auto">
+      <Container className=" mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-[1.04fr_1fr] gap-8 md:gap-10 lg:gap-24 items-start h-full">
           <div className="relative order-2 lg:order-1  mt-14">
                         <div className="relative h-[368px] w-full md:w-[552px] aspect-3/2 z-10">

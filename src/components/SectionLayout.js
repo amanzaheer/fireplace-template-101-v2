@@ -27,11 +27,8 @@ const ServiceDescription = dynamic(() => import("@/components/sections/ServiceDe
 const ServiceDescription1Section = dynamic(() => import("@/components/sections/ServiceDescription1"));
 const ServiceDescription2Section = dynamic(() => import("@/components/sections/ServiceDescription2"));
 const InformationSection = dynamic(() => import("@/components/sections/InformationSection"));
-const ProfessionalBanner = dynamic(() => import("@/components/sections/ProfessionalBanner"));
-
 const CallUsButton = dynamic(() => import("@/components/sections/CallUsButton"));
 const Cta = dynamic(() => import("@/components/sections/Cta"));
-const Cta2 = dynamic(() => import("@/components/sections/Cta2"));
 const MilestoneBanner = dynamic(() =>
   import("@/components/sections/MilestoneBanner"),
 );
@@ -42,7 +39,6 @@ const PrivacyPolicy = dynamic(() => import("@/components/sections/PrivacyPolicy"
 const TermsAndConditions = dynamic(
   () => import("@/components/sections/TermsAndConditions"),
 );
-
 const sectionComponents = {
   Navbar,
   Banner,
@@ -62,9 +58,7 @@ const sectionComponents = {
   BeforeAfter,
   Testimonials,
   Cta,
-  Cta2,
   ReviewandRating,
-  ProfessionalBanner,
   Footer,
   Header,
   ServiceDescription,
@@ -76,7 +70,6 @@ const sectionComponents = {
   MilestoneBanner,
   Videosection,
   workingprocess: WorkingProcess,
-  workingprocess2: WorkingProcess2,
   PrivacyPolicy,
   TermsAndConditions,
   CompanyProfile,
@@ -85,8 +78,7 @@ const sectionComponents = {
 };
 const DEFAULT_THEME_COLOR = "#1A2956";
 export default function SectionLayout({ children, domainConfig, content }) {
-const { sections = {}, order: rawOrder = [] } = domainConfig ?? {};
-const order = rawOrder.length > 0 ? rawOrder : Object.keys(sections);
+  const { sections = {}, order = [] } = domainConfig ?? {};
 
   return (
     <>

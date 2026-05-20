@@ -36,11 +36,11 @@ export default function ServiceBenefits12({ content }) {
 
   return (
     <FullContainer id="service_benefits" className="py-10 md:py-14 overflow-hidden bg-white">
-      <Container>
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1fr] gap-8 md:gap-10 lg:gap-14 items-center">
-            <div className="relative flex justify-center lg:justify-end order-2 lg:order-2">
-              <div className="relative h-[526px] rounded  w-full max-w-[540px] shrink-0 overflow-hidden bg-gray-100">
+      <Container className="px-4 sm:px-6">
+        <div className="mx-auto">
+          <div className="grid grid-cols-1 items-center gap-6 sm:gap-8 lg:grid-cols-[1fr_1fr] lg:gap-14">
+            <div className="relative order-2 flex w-full min-w-0 justify-center lg:order-2 lg:justify-end">
+              <div className="relative h-[280px] w-full max-w-[540px] shrink-0 overflow-hidden rounded bg-gray-100 sm:h-[360px] md:h-[440px] lg:h-[526px]">
                 {imageSrc ? (
                   <Image
                     title="Service Background"
@@ -57,15 +57,15 @@ export default function ServiceBenefits12({ content }) {
               </div>
             </div>
 
-            <div className={montserrat.className}>
-              <p className="mt-6 text-xl font-medium leading-tight text-[#4a4a4a] md:text-3xl">
+            <div className={`order-1 min-w-0 lg:order-1 ${montserrat.className}`}>
+              <p className="mt-2 text-lg font-medium leading-tight text-[#4a4a4a] sm:mt-4 sm:text-xl md:text-2xl lg:text-3xl">
                 {heading}
               </p>
-              <h3 className="mb-2 mt-6 h-[106px] w-[433px] text-[35px] font-bold leading-[0.95] text-black">
+              <h3 className="mb-3 mt-4 w-full max-w-[433px] text-2xl font-bold leading-[0.95] text-black sm:mb-4 sm:mt-6 sm:text-3xl md:text-[35px]">
                 {sectionTitle}
               </h3>
 
-              <div className="grid grid-cols-1 gap-x-2">
+              <div className="grid grid-cols-1 gap-y-2 sm:gap-y-2.5">
                 {list.map((benefit, index) => (
                   <div key={index} className="flex items-center gap-1">
                     <div className="h-7 w-7 shrink-0 whitespace-nowrap">
@@ -77,14 +77,14 @@ export default function ServiceBenefits12({ content }) {
                         className="h-7 w-7 object-contain"
                       />
                     </div>
-                    <span className="text-[16px] leading-snug text-[#222222] md:text-[18px]">
+                    <span className="text-sm leading-snug text-[#222222] sm:text-[16px] md:text-[18px]">
                       {typeof benefit === "object" ? benefit?.title : benefit}
                     </span>
                   </div>
                 ))}
               </div>
 
-              <div className="mt-7 flex flex-col gap-8 sm:flex-row">
+              <div className="mt-5 flex flex-col gap-4 sm:mt-7 sm:flex-row sm:gap-8">
                 {/* <a
                   href={`tel:${phone}`}
                   className="inline-flex h-[46px] min-w-[219px] items-center justify-center gap-2 bg-[#da4909] px-8 text-sm font-semibold uppercase tracking-wide text-white transition-colors duration-200 hover:bg-yellow-600"
@@ -95,10 +95,10 @@ export default function ServiceBenefits12({ content }) {
                 
                 <a
               href={phone ? `tel:${phone}` : "#"}
-              className="inline-flex h-auto min-h-[46px] w-[323px] shrink-0 items-center justify-center gap-2 rounded-full border-3 border-white bg-[#da4909] px-6 py-[11px] font-normal uppercase tracking-wide text-white shadow-lg transition-opacity hover:opacity-95"
+              className="inline-flex h-auto min-h-[46px] w-full max-w-[323px] shrink-0 flex-wrap items-center justify-center gap-x-2 gap-y-1 rounded-full border-3 border-white bg-[#da4909] px-4 py-[11px] font-normal uppercase tracking-wide text-white shadow-lg transition-opacity hover:opacity-95 sm:w-auto sm:px-6"
             >
-              <span className="text-[16px]">CALL NOW:</span>
-              <span className="text-[20px] font-bold">
+              <span className="text-sm sm:text-[16px]">CALL NOW:</span>
+              <span className="text-base font-bold sm:text-[20px]">
                 {phone || "(888)-249-0566"}
               </span>
             </a>

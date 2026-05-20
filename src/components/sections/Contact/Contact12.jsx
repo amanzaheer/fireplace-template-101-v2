@@ -5,6 +5,7 @@ import { CheckCircle, Loader } from "lucide-react";
 import toast from "react-hot-toast";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
+import Testimonials12 from "../Testimonials/Testimonials12";
 import { Poppins, Rubik } from "next/font/google";
 import {
   validateEmail,
@@ -34,7 +35,7 @@ const NameInput = memo(({ value, onChange, error }) => (
       name="name"
       value={value}
       onChange={onChange}
-      className={`w-full rounded border border-white/80 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
+      className={`w-full rounded-none border border-white/80 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/90 sm:px-4 sm:text-base md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
       placeholder="Your Full Name"
       required
       aria-invalid={!!error}
@@ -51,7 +52,7 @@ const EmailInput = memo(({ value, onChange, error }) => (
       name="email"
       value={value}
       onChange={onChange}
-      className={`w-full rounded border border-white/80 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
+      className={`w-full rounded-none border border-white/80 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/90 sm:px-4 sm:text-base md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white ${poppins.className}`}
       placeholder="Your Email ( abc@gmail.com)"
       required
       aria-invalid={!!error}
@@ -68,7 +69,7 @@ const PhoneInput = memo(({ value, onChange, error }) => (
       name="phone"
       value={value}
       onChange={onChange}
-      className={`w-full rounded border border-white/80 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
+      className={`w-full rounded-none border border-white bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/90 sm:px-4 sm:text-base md:text-lg ${error ? "border-red-300" : "border-white"} focus:border-white`}
       placeholder="(123) 456-7890"
       required
       aria-invalid={!!error}
@@ -85,7 +86,7 @@ const ZipcodeInput = memo(({ value, onChange, error }) => (
       name="zipcode"
       value={value}
       onChange={onChange}
-      className={`w-full rounded border border-white/80 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
+      className={`w-full rounded-none border border-white/80 bg-transparent px-3 py-2.5 text-sm text-white outline-none placeholder:text-white/90 sm:px-4 sm:text-base md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
       placeholder="ZIP CODE"
       required
       aria-invalid={!!error}
@@ -102,7 +103,7 @@ const MessageInput = memo(({ value, onChange, error }) => (
       value={value}
       onChange={onChange}
       rows={4}
-      className={`min-h-[40px] max-h-[80px] resize-none w-full rounded border border-white/80 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
+      className={`min-h-[72px] sm:min-h-[80px] max-h-[120px] resize-y w-full rounded-none border border-white/80 bg-transparent px-4 py-2.5 text-sm text-white outline-none placeholder:text-white sm:text-base md:text-lg ${error ? "border-red-300" : "border-white/80"} focus:border-white`}
       placeholder="Message"
       required
       aria-invalid={!!error}
@@ -232,7 +233,7 @@ export default function Contact12({ content }) {
       }
       toast.success(
         result.message ||
-          "Your request has been submitted successfully! We'll contact you shortly.",
+        "Your request has been submitted successfully! We'll contact you shortly.",
       );
       setFormSubmitted(true);
     } catch (err) {
@@ -267,98 +268,108 @@ export default function Contact12({ content }) {
   };
 
   return (
-    <FullContainer id="contact-us" className="pb-4 relative mt-9">
-      <Container className="relative z-10">
-        <div id="quote-form-section">
-          <div className="bg-[#da4909] gap-0 overflow-hidden mb-5 h-[560px] w-full max-w-[541px] rounded-xl shadow-lg">
-            <div className={`p-5 text-white md:p-6 lg:p-8 ${poppins.className}`}>
-              {formSubmitted ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-12">
-                  <div className="h-24 w-24 bg-green-100 rounded-full flex items-center justify-center mb-8">
-                    <CheckCircle className="h-12 w-12 text-green-600" />
-                  </div>
-                  <h4 className="mb-4 text-3xl font-bold text-white">
-                    Thank You!
-                  </h4>
-                  <p className="mb-6 max-w-md text-xl text-white">
-                    Your request has been submitted successfully. We&apos;ll
-                    contact you shortly with your personalized quote.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={closeThankYou}
-                    className="rounded-md bg-white py-3 px-6 font-medium text-[#fe4949] transition-colors duration-200 hover:bg-gray-100"
-                  >
-                    OK Thanks
-                  </button>
-                </div>
-              ) : (
-                <>
-                  <h2
-                    className={`${poppins.className} text-center text-2xl font-bold tracking-tight text-white md:text-[29px]`}
-                  >
-                    {title}
-                  </h2>
-                  <h3
-                    className={`${poppins.className} mb-4 text-center text-xl font-normal leading-tight text-white md:mb-5 md:text-[20px]`}
-                  >
-                    {subTitle}
-                  </h3>
-                  <form
-                    onSubmit={handleSubmit}
-                    className="space-y-1.5 md:space-y-1.5"
-                    noValidate
-                  >
-                    <div
-                      className={`${poppins.className} grid md:grid gap-2`}
+    <FullContainer id="contact-us" className="relative mt-6 pb-6 sm:mt-9 sm:pb-4">
+      <Container className="relative z-10 px-4 sm:px-6">
+        <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:gap-6 lg:gap-10">
+          <div
+            id="quote-form-section"
+            className="flex w-full justify-center md:justify-start"
+          >
+            <div className="mb-2 w-full max-w-[560px] gap-0 overflow-hidden rounded-xl bg-[#da4909] shadow-lg sm:mb-5 md:max-w-none md:min-h-[560px]">
+              <div
+                className={`flex min-h-full flex-col p-4 text-white sm:p-5 md:p-6 lg:p-8 ${poppins.className}`}
+              >
+                {formSubmitted ? (
+                  <div className="flex min-h-[320px] flex-col items-center justify-center px-2 py-10 text-center sm:min-h-[400px] sm:py-12 md:min-h-[480px]">
+                    <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 sm:mb-8 sm:h-24 sm:w-24">
+                      <CheckCircle className="h-10 w-10 text-green-600 sm:h-12 sm:w-12" />
+                    </div>
+                    <h4 className="mb-3 text-2xl font-bold text-white sm:mb-4 sm:text-3xl">
+                      Thank You!
+                    </h4>
+                    <p className="mb-6 max-w-md text-base text-white sm:text-lg md:text-xl">
+                      Your request has been submitted successfully. We&apos;ll
+                      contact you shortly with your personalized quote.
+                    </p>
+                    <button
+                      type="button"
+                      onClick={closeThankYou}
+                      className="rounded-md bg-white px-6 py-3 text-sm font-medium text-[#fe4949] transition-colors duration-200 hover:bg-gray-100 sm:text-base"
                     >
-                      <NameInput
-                        value={formData.name}
-                        onChange={handleChange}
-                        error={errors.name}
-                      />
-                      <EmailInput
-                        value={formData.email}
-                        onChange={handleChange}
-                        error={errors.email}
-                      />
-                      <PhoneInput
-                        value={formData.phone}
-                        onChange={handleChange}
-                        error={errors.phone}
-                      />
-                      <ZipcodeInput
-                        value={formData.zipcode}
-                        onChange={handleChange}
-                        error={errors.zipcode}
-                      />
-                    </div>
-                    <MessageInput
-                      value={formData.message}
-                      onChange={handleChange}
-                      error={errors.message}
-                    />
-                    <div className="pt-2">
-                      <button
-                        type="submit"
-                        disabled={isSubmitting}
-                        className={`${poppins.className} flex w-full items-center justify-center text-[20px] rounded-full bg-white border-2 border-white py-2.5 px-8 text-base font-normal text-[#e5170b] transition-all duration-300 hover:bg-black hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#fe4949] disabled:opacity-70`}
-                        aria-busy={isSubmitting}
+                      OK Thanks
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <h2
+                      className={`${poppins.className} text-center text-xl font-bold tracking-tight text-white sm:text-2xl md:text-[29px]`}
+                    >
+                      {title}
+                    </h2>
+                    <h3
+                      className={`${poppins.className} mb-3 text-center text-lg font-normal leading-tight text-white sm:mb-4 sm:text-xl md:mb-5 md:text-[20px]`}
+                    >
+                      {subTitle}
+                    </h3>
+                    <form
+                      onSubmit={handleSubmit}
+                      className="space-y-2 sm:space-y-2.5"
+                      noValidate
+                    >
+                      <div
+                        className={`${poppins.className} grid gap-2`}
                       >
-                        {isSubmitting ? (
-                          <>
-                            <Loader className="mr-3 h-5 w-5 animate-spin text-white" />
-                            Processing...
-                          </>
-                        ) : (
-                          "SUBMIT"
-                        )}
-                      </button>
-                    </div>
-                  </form>
-                </>
-              )}
+                        <NameInput
+                          value={formData.name}
+                          onChange={handleChange}
+                          error={errors.name}
+                        />
+                        <EmailInput
+                          value={formData.email}
+                          onChange={handleChange}
+                          error={errors.email}
+                        />
+                        <PhoneInput
+                          value={formData.phone}
+                          onChange={handleChange}
+                          error={errors.phone}
+                        />
+                        <ZipcodeInput
+                          value={formData.zipcode}
+                          onChange={handleChange}
+                          error={errors.zipcode}
+                        />
+                      </div>
+                      <MessageInput
+                        value={formData.message}
+                        onChange={handleChange}
+                        error={errors.message}
+                      />
+                      <div className="pt-1 sm:pt-2">
+                        <button
+                          type="submit"
+                          disabled={isSubmitting}
+                          className={`${poppins.className} flex w-full items-center justify-center rounded-full border-2 border-white bg-white px-6 py-2.5 text-base font-normal text-[#e5170b] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-[#fe4949] disabled:opacity-70 sm:px-8 sm:py-3 sm:text-[20px]`}
+                          aria-busy={isSubmitting}
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader className="mr-2 h-5 w-5 animate-spin text-[#e5170b] sm:mr-3" />
+                              Processing...
+                            </>
+                          ) : (
+                            "SUBMIT"
+                          )}
+                        </button>
+                      </div>
+                    </form>
+                  </>
+                )}
+              </div>
             </div>
+          </div>
+          <div className="min-w-0 w-full overflow-hidden">
+            <Testimonials12 content={content} embedded />
           </div>
         </div>
       </Container>

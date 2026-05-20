@@ -7,7 +7,6 @@ import BeforeAfter3 from "./BeforeAfter3";
 import BeforeAfter4 from "./BeforeAfter4";
 import BeforeAfter6 from "./BeforeAfter6";
 import BeforeAfter7 from "./BeforeAfter7";
-import BeforeAfter9 from "./BeforeAfter9";
 import BeforeAfter10 from "./BeforeAfter10";
 import BeforeAfter11 from "./BeforeAfter11";
 import BeforeAfter12 from "./BeforeAfter12";
@@ -19,9 +18,7 @@ import BeforeAfter17 from "./BeforeAfter17";
 import BeforeAfter19 from "./BeforeAfter19";
 import BeforeAfter20 from "./BeforeAfter20";
 import BeforeAfter21 from "./BeforeAfter21";
-import BeforeAfter22 from "./BeforeAfter22";
-import BeforeAfter24 from "./BeforeAfter24";
-import BeforeAfter25 from "./BeforeAfter25";
+import BeforeAfter9 from "./BeforeAfter9";
 const variants = {
   BeforeAfter1,
   BeforeAfter2,
@@ -40,9 +37,7 @@ const variants = {
   BeforeAfter20,
   BeforeAfter19,
   BeforeAfter21,
-  BeforeAfter22,
-  BeforeAfter24,
-  BeforeAfter25,
+  BeforeAfter9,
 };
 
 export default function BeforeAfter({ variant, content }) {
@@ -50,4 +45,25 @@ export default function BeforeAfter({ variant, content }) {
   const Component = variants[name] ?? BeforeAfter9;
   return <Component content={content} />;
 }
-export { BeforeAfter1, BeforeAfter2, BeforeAfter3, BeforeAfter4, BeforeAfter6,BeforeAfter10,BeforeAfter11,BeforeAfter12,BeforeAfter13,BeforeAfter14,BeforeAfter15,BeforeAfter16,BeforeAfter17,BeforeAfter25,BeforeAfter19,BeforeAfter20,BeforeAfter21,BeforeAfter22,BeforeAfter24, variants };
+export {
+  BeforeAfter1,
+  BeforeAfter2,
+  BeforeAfter3,
+  BeforeAfter4,
+  BeforeAfter6,
+  BeforeAfter7,
+  BeforeAfter11,
+  BeforeAfter14,
+  BeforeAfter15,
+  BeforeAfter12,
+  BeforeAfter10,
+  BeforeAfter13,
+  BeforeAfter16,
+  BeforeAfter17,
+  BeforeAfter19,
+  BeforeAfter20,
+  BeforeAfter21,
+  BeforeAfter9,
+  variants,
+};
+

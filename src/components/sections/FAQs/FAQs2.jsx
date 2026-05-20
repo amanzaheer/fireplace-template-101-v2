@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { ChevronDown } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
-import {Poppins, Inter, Rubik} from "next/font/google";
+import { Poppins, Inter, Rubik } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -40,7 +40,7 @@ export default function FAQs2({ content }) {
     <FullContainer className="py-8 md:py-14 bg-white" id="faqs">
       <Container className="px-4">
         <div className="text-center max-w-5xl mx-auto">
-        <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-ink tracking-tight mb-8 md:mb-10`}>
+          <h2 className={`${rubik.className} text-center text-3xl md:text-[44px] font-bold text-ink tracking-tight mb-8 md:mb-10`}>
             {faqTitle}
           </h2>
           <p className={`${rubik.className} mt-3 mb-8 md:mb-10 text-[14px] md:text-[16px] leading-relaxed text-[#000000] max-w-2xl mx-auto`}>
@@ -68,9 +68,8 @@ export default function FAQs2({ content }) {
                   id={`faq-content-${index}`}
                   role="region"
                   aria-labelledby={`faq-btn-${index}`}
-                  className={`overflow-hidden transition-all duration-500 ease-in-out ${
-                    activeIndex === index ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
-                  }`}
+                  className={`overflow-hidden transition-all duration-500 ease-in-out ${activeIndex === index ? "max-h-96 opacity-100 mt-2" : "max-h-0 opacity-0"
+                    }`}
                 >
                   <div className="bg-white px-6 py-4 border border-[#e5e7eb] rounded-2xl">
                     <p className={`${rubik.className} text-[14px] md:text-[16px] leading-relaxed text-[#000000] text-left`}>

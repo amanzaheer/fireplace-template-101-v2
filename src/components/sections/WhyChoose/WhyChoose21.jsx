@@ -48,7 +48,7 @@ export default function WhyChoose21({ content }) {
     .slice(0, 4);
 
   const mainImagePath =
-    block.main_image ?? block.file_name_main ?? block.file_name ?? "why-us/why-us.avif";
+    block.main_image ?? block.file_name_main ?? block.file_name ?? "why-us/whychoose1.png";
   const mainImageSrc = buildImageSrc(IMAGE_BASE, mainImagePath);
   const rawPhone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
   const phoneDisplay = rawPhone.trim() || "(888)-249-0566";

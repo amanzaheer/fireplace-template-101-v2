@@ -36,16 +36,16 @@ export function Cta13CallNowButton({
         href={href}
         className={
           linkClassName ??
-          "inline-flex h-[73.33px] w-[258px] shrink-0 flex-col items-center justify-center rounded-full bg-[#D90209] pt-[2.72px] pr-[1.36px] pb-[2.72px] pl-[1.36px] text-center shadow-md transition hover:bg-[#c2d52a]"
+          "inline-flex h-[73.33px] w-[258px] shrink-0 flex-col items-center justify-center rounded-[15px] bg-[#CDE02E] pt-[2.72px] pr-[1.36px] pb-[2.72px] pl-[1.36px] text-center shadow-md transition hover:bg-[#c2d52a]"
         }
       >
         <p
-          className={`${poppinsCta13.className} text-[21px] font-medium leading-none text-white`}
+          className={`${poppinsCta13.className} text-[21px] font-medium leading-none text-black`}
         >
           CALL NOW:
         </p>
         <p
-          className={`${poppinsCta13.className} mt-2 text-[27px] font-bold leading-none text-white`}
+          className={`${poppinsCta13.className} mt-2 text-[27px] font-bold leading-none text-black`}
         >
           {phoneDisplay}
         </p>
