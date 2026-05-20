@@ -59,7 +59,10 @@ export default function Banner12({ content }) {
     altImage: banner.altImage,
   };
 
-  const image = buildImageSrc(IMAGE_BASE, banner.file_name) || "";
+  const image =
+    buildImageSrc(IMAGE_BASE, banner.file_name) ||
+    buildImageSrc(IMAGE_BASE, "hero-banner/banner12.png");
+
 
   const contactLabel = banner.contact_label ?? "";
   
@@ -82,7 +85,7 @@ export default function Banner12({ content }) {
   return (
     <FullContainer
       id="banner"
-      className={`relative bg-transparent overflow-hidden w-full px-0 ${poppins.className}`}
+      className={`relative w-full overflow-hidden bg-transparent px-0 pt-[82px] md:pt-[84px] ${poppins.className}`}
     >
       <div className="w-full">
         <div className="relative grid w-full min-h-[480px] grid-cols-1 bg-neutral-900 lg:min-h-[560px]">
@@ -93,20 +96,21 @@ export default function Banner12({ content }) {
               alt={data?.altImage || data?.tagline || ""}
               fill
               priority
-              sizes="100vw"
+              sizes="100vw" 
               className="object-cover"
               style={{ objectPosition: "center" }}
             />
           ) : null}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t' from-black/80 via-black/50 to-transparent " />
+          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
+     
 
-          <div className="relative z-10 flex min-h-[420px] lg:min-h-full ">
-            <div className="relative z-10 mx-auto flex h-full w-full  flex-col items-center justify-center px-4 py-10 text-center md:ml-auto md:items-start md:py-14 md:pl-16 md:pr-8 lg:pl-20 lg:pr-6 md:text-left">
+          <div className="relative z-10 flex min-h-[420px] lg:min-h-full">
+            <div className="relative z-10 mx-auto flex h-full w-full max-w-[820px] flex-col items-center justify-center px-4 py-10 text-center md:py-14 md:px-8 lg:px-12">
               <div className="mb-3 flex  w-full items-center justify-center gap-2.5">
                 {phone ? (
                   <a
                     href={phoneHref}
-                    className="inline-flex items-center justify-center width-[292px] shadow-lg bg-[#da4909] rounded-full py-2 px-5 gap-2.5 border-3 h-[46px] border-white text-white hover:opacity-90"
+                    className="inline-flex h-auto min-h-[44px] w-full max-w-[292px] items-center justify-center gap-2 rounded-full border-3 border-white bg-[#da4909] px-4 py-2 shadow-lg text-white hover:opacity-90 sm:gap-2.5 sm:px-5"
                   >
                     {/* <span className="bg-linear-to-r from-[#f20508] to-[#b12224] rounded p-2 flex shrink-0 items-center justify-center mt-0.5">
                       <Phone className="w-3 h-4 text-white" strokeWidth={2.5} />
@@ -134,14 +138,14 @@ export default function Banner12({ content }) {
                 )}
               </div>
 
-             {data?.tagline && (
-              <p className=" w-full  text-center text-black  mx-auto max-w-[820px]  uppercase font-bold text-2xl leading-tight sm:text-3xl md:text-center md:text-4xl lg:text-4xl">
-                {data.tagline}
-              </p>
-             )}
+              {data?.tagline && (
+                <p className="w-full text-center text-black uppercase font-bold text-2xl leading-tight sm:text-3xl md:text-4xl lg:text-4xl">
+                  {data.tagline}
+                </p>
+              )}
 
               {data?.description && (
-                <p className="mt-3   text-center text-sm text-white md:text-left md:text-base">
+                <p className="mt-3 mx-auto w-full max-w-[640px] line-clamp-2 text-center text-sm font-medium leading-snug text-black sm:text-base">
                   {data.description}
                 </p>
               )}
@@ -149,20 +153,22 @@ export default function Banner12({ content }) {
           </div>
 
           <div
-            className={`relative z-10 w-full min-h-[400px]    flex items-center justify-center  md:px-8 md:lg: ${poppins.className}`}
+            className={`relative z-10 flex w-full min-h-0 items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:min-h-[400px] lg:py-10 ${poppins.className}`}
           >
-            <QuoteForm12
-              data={data}
-              form_head={form_head}
-              showArrowInButton={false}
-            />
+            <div className="w-full max-w-[733px]">
+              <QuoteForm12
+                data={data}
+                form_head={form_head}
+                showArrowInButton={false}
+              />
+            </div>
           </div>
           <div>
             
           </div>
           <div className="relative z-10 w-full flex items-center justify-center border-white/30 ">
             {features?.length > 0 && (
-              <ul className="my-5 z-50 max-w-2xl  flex flex-row flex-wrap gap-4">
+              <ul className="my-5 flex max-w-2xl flex-row flex-wrap gap-4">
                 {features.map((feature, idx) => {
                   const IconComponent =
                     feature?.icon && ICON_MAP[feature.icon]
@@ -171,7 +177,7 @@ export default function Banner12({ content }) {
                   return (
                     <li
                       key={idx}
-                      className="flex w-fit max-w-[260px]  items-start justify-start gap-2.5 text-left text-sm font-medium text-white md:max-w-none md:text-[17px]"
+                      className="flex w-fit max-w-[260px]  items-start justify-start gap-2.5 text-left text-sm font-medium  text-white md:max-w-none md:text-[17px]"
                     >
                       <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded">
                         <IconComponent

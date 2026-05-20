@@ -237,7 +237,7 @@ export default function Navbar10({ content }) {
     return (
       <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 border-t-4 border-t-[#da4909]  bg-white py-2 h-[82px] md:h-[84px]"
+      className="fixed top-0 left-0 right-0 z-50 w-full border-t-4 border-t-[#da4909] bg-white py-2 shadow-sm h-[82px] md:h-[84px]"
     >
       <Container>{headerContent}</Container>
        
@@ -380,7 +380,7 @@ export default function Navbar10({ content }) {
   return (
     <FullContainer
       id="navbar"
-      className="shadow-sm w-full sticky top-0 z-20 border-t-4 border-t-[#da4909]  bg-white py-2 h-[82px] md:h-[84px]"
+      className="fixed top-0 left-0 right-0 z-50 w-full border-t-4 border-t-[#da4909] bg-white py-2 shadow-sm h-[82px] md:h-[84px]"
     >
       <Container>{headerContent}</Container>
        

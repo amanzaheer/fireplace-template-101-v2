@@ -241,45 +241,59 @@ export default function QuoteForm12({
     }
   };
 
+  const inputClass = (hasError) =>
+    `w-full min-w-0 min-h-[42px] rounded-lg border bg-white pl-3 pr-3 text-sm outline-none placeholder:text-sm placeholder:text-black/70 sm:min-h-[38px] sm:text-base sm:placeholder:text-base ${
+      hasError ? "border-red-500" : "border-[#bdbdbd]"
+    } focus:border-[#da4909]`;
+
   return (
-    <div className="bg-white shadow-[0_0_10px_rgba(0,0,0,0.4)] relative font-barlow rounded-[15px] h-fit w-full max-w-[733px] mx-auto">
+    <div className="relative mx-auto h-fit w-full max-w-[733px] overflow-hidden rounded-xl bg-white font-barlow shadow-[0_0_10px_rgba(0,0,0,0.4)] sm:rounded-[15px]">
       {!formSubmitted && (
         <>
-        <div className="px-2 md:px-2.5 py-3">
-          <h3 className={`${poppins.className} text-3xl md:text-[30px] text-black leading-7 md:leading-[30px] px-2.5 font-bold text-center mb-2`}>
-            {form_head?.title}
-          </h3>
-          
-        </div>
-        <div>
-        <h4 className={`${inter.className} text-lg md:text-xl font-medium text-black pt-2 text-center text-ink`}>
-            {form_head?.sub_title}
-          </h4>
-        </div>
+          <div className="px-4 pb-1 pt-4 sm:px-5 sm:pt-5 md:px-6">
+            <h3
+              className={`${poppins.className} mb-1 px-1 text-center text-xl font-bold leading-tight text-black sm:text-2xl md:text-[30px] md:leading-[30px]`}
+            >
+              {form_head?.title}
+            </h3>
+          </div>
+          <div className="px-4 pb-2 sm:px-5 md:px-6">
+            <h4
+              className={`${inter.className} text-center text-base font-medium text-black sm:text-lg md:text-xl`}
+            >
+              {form_head?.sub_title}
+            </h4>
+          </div>
         </>
       )}
 
       {formSubmitted ? (
-        <div className="flex flex-col items-center justify-center text-center py-6  px-4 md:px-7 ">
-          <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
-            <CheckCircle className="h-8 w-8 text-green-600" />
+        <div className="flex flex-col items-center justify-center px-4 py-8 text-center sm:px-6 sm:py-10 md:px-7">
+          <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-green-100 sm:h-16 sm:w-16">
+            <CheckCircle className="h-7 w-7 text-green-600 sm:h-8 sm:w-8" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800 mb-2">Thank You!</h3>
-          <p className="text-gray-600 max-w-md mb-6">
-            Your request has been submitted successfully. We&apos;ll contact you shortly with your personalized quote.
+          <h3 className="mb-2 text-lg font-bold text-gray-800 sm:text-xl">
+            Thank You!
+          </h3>
+          <p className="mb-6 max-w-md text-sm text-gray-600 sm:text-base">
+            Your request has been submitted successfully. We&apos;ll contact you
+            shortly with your personalized quote.
           </p>
           <button
             type="button"
             onClick={closeThankYouPopup}
-            className="bg-[#da4909] hover:cursor-pointer text-white py-2 px-6 rounded-md font-medium transition-colors duration-200"
+            className="rounded-md bg-[#da4909] px-6 py-2.5 text-sm font-medium text-white transition-colors duration-200 hover:cursor-pointer hover:opacity-95 sm:text-base"
           >
             OK Thanks
           </button>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="space-y-2.5 text-black text-base md:text-lg px-2 md:px-2.5 py-2 md:py-3">
-          <div className="grid grid-cols-1 md:grid-cols-2 p-2 md:p-3 gap-2">
-            <div>
+        <form
+          onSubmit={handleSubmit}
+          className="min-w-0 space-y-3 px-3 py-3 text-black sm:space-y-3.5 sm:px-4 sm:py-4 md:px-5 md:py-4"
+        >
+          <div className="grid grid-cols-1 gap-2.5 sm:gap-3 md:grid-cols-2">
+            <div className="min-w-0">
               <label htmlFor="firstName" className="sr-only">First name</label>
               <input
                 type="text"
@@ -288,9 +302,7 @@ export default function QuoteForm12({
                 value={formData.firstName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-full h-[38px] pl-3 py-3 bg-white border rounded-lg md:rounded outline-none placeholder:text-black ${
-                  fieldErrors.firstName ? "border-red-500" : "border-[#bdbdbd]"
-                }`}
+                className={inputClass(fieldErrors.firstName)}
                 placeholder="First name"
                 required
                 aria-invalid={!!fieldErrors.firstName}
@@ -301,7 +313,7 @@ export default function QuoteForm12({
                 </div>
               )}
             </div>
-            <div>
+            <div className="min-w-0">
               <label htmlFor="lastName" className="sr-only">Last name</label>
               <input
                 type="text"
@@ -310,9 +322,7 @@ export default function QuoteForm12({
                 value={formData.lastName}
                 onChange={handleChange}
                 onFocus={handleFirstInteraction}
-                className={`w-[333px] h-[38px] pl-3 py-3 bg-white border rounded md:rounded outline-none placeholder:text-black ${
-                  fieldErrors.lastName ? "border-red-500" : "border-[#bdbdbd]"
-                }`}
+                className={inputClass(fieldErrors.lastName)}
                 placeholder="Last name"
                 required
                 aria-invalid={!!fieldErrors.lastName}
@@ -325,6 +335,7 @@ export default function QuoteForm12({
             </div>
           
 
+          <div className="min-w-0 md:col-span-2">
           <label htmlFor="phone" className="sr-only">Phone number</label>
           <input
             type="tel"
@@ -333,17 +344,17 @@ export default function QuoteForm12({
             value={formData.phone}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`w-full h-[38px] pl-3 py-3 bg-white border rounded md:rounded outline-none placeholder:text-black ${
-              fieldErrors.phone ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
+            className={inputClass(fieldErrors.phone)}
             placeholder="(123) 456-7890"
             required
             aria-invalid={!!fieldErrors.phone}
           />
           {fieldErrors.phone && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.phone}</div>
+            <div className="text-red-500 text-sm font-medium mt-1">{fieldErrors.phone}</div>
           )}
+          </div>
 
+          <div className="min-w-0 md:col-span-2">
           <label htmlFor="email" className="sr-only">Email</label>
           <input
             type="email"
@@ -352,18 +363,18 @@ export default function QuoteForm12({
             value={formData.email}
             onChange={handleChange}
             onFocus={handleFirstInteraction}
-            className={`w-[333px] h-[38px] pl-3 py-3 bg-white border rounded md:rounded outline-none placeholder:text-black ${
-              fieldErrors.email ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
+            className={inputClass(fieldErrors.email)}
             placeholder="your@email.com"
             required
             aria-invalid={!!fieldErrors.email}
           />
           {fieldErrors.email && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.email}</div>
+            <div className="text-red-500 text-sm font-medium mt-1">{fieldErrors.email}</div>
           )}
           </div>
+          </div>
 
+          <div className="min-w-0">
           <label htmlFor="message" className="sr-only">Message</label>
           <textarea
             id="message"
@@ -372,36 +383,39 @@ export default function QuoteForm12({
             onChange={handleChange}
             onFocus={handleFirstInteraction}
             rows={3}
-            className={`w-[680px]  ml-4 md:ml-4 pl-3 py-3 max-h-[60px] resize-none bg-white border rounded md:rounded outline-none placeholder:text-black ${
+            className={`w-full min-w-0 min-h-[72px] max-h-[100px] resize-none rounded-lg border bg-white py-2 pl-3 pr-3 text-sm outline-none placeholder:text-sm placeholder:text-black/70 sm:min-h-[64px] sm:max-h-[80px] sm:text-base sm:placeholder:text-base ${
               fieldErrors.message ? "border-red-500" : "border-[#bdbdbd]"
-            }`}
+            } focus:border-[#da4909]`}
             placeholder="Message"
             required
             aria-invalid={!!fieldErrors.message}
           />
           {fieldErrors.message && (
-            <div className="text-red-500 text-sm font-medium">{fieldErrors.message}</div>
+            <div className="text-red-500 text-sm font-medium mt-1">{fieldErrors.message}</div>
           )}
+          </div>
 
+          <div className="pt-0.5">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full h-[39px] bg-[#da4909] text-lg md:text-xl hover:cursor-pointer cursor-pointer rounded-full  py-3 px-6 text-white font-medium transition-colors duration-200 flex items-center justify-center gap-2"
+            className="group flex w-full min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-full bg-[#da4909] px-5 py-2.5 text-base font-medium text-white transition-colors duration-200 hover:opacity-95 disabled:opacity-70 sm:min-h-[42px] sm:px-6 sm:py-3 sm:text-lg md:text-xl"
           >
             {isSubmitting ? (
               <>
-                <Loader className="animate-spin mr-2 h-4 w-4" />
+                <Loader className="mr-2 h-4 w-4 animate-spin" />
                 Submitting...
               </>
             ) : (
-              <div className="text-xl md:text-[20px] font-normal">
+              <span className="inline-flex items-center gap-2 font-normal sm:text-[20px]">
                 SUBMIT
                 {showArrowInButton && (
                   <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                 )}
-              </div>
+              </span>
             )}
           </button>
+          </div>
         </form>
       )}
     </div>

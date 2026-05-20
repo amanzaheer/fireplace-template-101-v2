@@ -97,8 +97,8 @@
       "visible": false
     },
     "WorkingProcess": {
-      "design": "WorkingProcess21",
-      "visible": false
+      "design": "WorkingProcess12",
+      "visible": true
     },
     "WorkingProcess2": {
       "design": "WorkingProcess21",
@@ -224,8 +224,8 @@
           "visible": false
         },
         "WorkingProcess": {
-          "design": "WorkingProcess21",
-          "visible": false
+          "design": "WorkingProcess12",
+          "visible": true
         },
         "WorkingProcess2": {
           "design": "WorkingProcess21",

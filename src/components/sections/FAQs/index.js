@@ -7,10 +7,7 @@ import FAQs2 from "./FAQs2";
 import FAQs3 from "./FAQs3";
 import FAQs4 from "./FAQs4";
 import FAQs5 from "./FAQs5";
-<<<<<<< Updated upstream
 import FAQs6 from "./FAQs6";
-=======
->>>>>>> Stashed changes
 import FAQs7 from "./FAQs7";
 import FAQs8 from "./FAQs8";
 import FAQs9 from "./FAQs9";
