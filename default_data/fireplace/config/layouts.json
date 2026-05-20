@@ -192,7 +192,7 @@
           "visible": true
         },
         "WhyChoose": {
-          "design": "WhyChoose12",
+          "design": "WhyChoose26",
           "visible": true
         },
         "Slogan": {
@@ -208,11 +208,11 @@
           "visible": true
         },
         "FAQs": {
-            "design": "FAQs12",
+          "design": "FAQs26",
           "visible": true
         },
         "ServiceCities": {
-            "design": "ServiceCities12",
+          "design": "ServiceCities26",
           "visible": true
         },
         "CallUsButton": {
@@ -224,12 +224,12 @@
           "visible": false
         },
         "WorkingProcess": {
-          "design": "WorkingProcess12",
+          "design": "WorkingProcess26",
           "visible": true
         },
         "WorkingProcess2": {
           "design": "WorkingProcess21",
-          "visible": false
+          "visible": true
         },
         "calltoaction": {
           "design": "CallToAction11",
@@ -237,7 +237,7 @@
         },
         "Cta": {
           "design": "Cta21",
-          "visible": false
+          "visible": true
         },
         "WorkPortfolio": {
           "design": "WorkPortfolio12",
@@ -245,15 +245,15 @@
         },
         "MilestoneBanner": {
           "design": "MilestoneBanner19",
-          "visible": false
+          "visible": true
         },
         "Videosection": {
           "design": "Videosection19",
-          "visible": false
+          "visible": true
         },
         "InformationSection": {
           "design": "InformationSection19",
-          "visible": false
+          "visible": true
         }
       },
 
@@ -285,7 +285,7 @@
     "service": {
       "sections": {
         "Navbar": {
-          "design": "Navbar12",
+          "design": "Navbar26",
           "visible": true
         },
         "Banner": {
