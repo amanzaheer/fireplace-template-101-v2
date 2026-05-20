@@ -101,16 +101,12 @@
       "visible": false
     },
     "WorkingProcess2": {
-      "design": "WorkingProcess21",
+      "design": "WorkingProcess22",
       "visible": false
     },
     "calltoaction": {
       "design": "CallToAction11",
       "visible": false
-    },
-    "workingprocess2": {
-      "design": "WorkingProcess22",
-      "visible": true
     },
     "Cta2": {
       "design": "Cta22",
@@ -239,7 +235,7 @@
           "visible": false
         },
         "WorkingProcess": {
-          "design": "WorkingProcess21",
+          "design": "WorkingProcess22",
           "visible": false
         },
         "WorkingProcess2": {
