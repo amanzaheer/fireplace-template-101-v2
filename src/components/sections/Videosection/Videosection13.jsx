@@ -35,9 +35,13 @@ function toYouTubeEmbedUrl(url) {
   }
 }
 
+function getVideoSection(content) {
+  return content?.videosection ?? content?.video_section ?? {};
+}
+
 export default function Videosection13({ content }) {
-  const section = content?.videosection ?? {};
-  const rawVideo = section?.file_name || "";
+  const section = getVideoSection(content);
+  const rawVideo = section?.file_name2 || section?.file_name || "";
   const videoSrc = buildVideoSrc(IMAGE_BASE, rawVideo);
   const isYouTube = isYouTubeUrl(videoSrc);
   const embedUrl = isYouTube ? toYouTubeEmbedUrl(videoSrc) : "";

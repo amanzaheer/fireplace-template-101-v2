@@ -22,6 +22,7 @@ import Contact17 from "./Contact17";
 import Contact20 from "./Contact20";
 import Contact19 from "./Contact19";
 import Contact21 from "./Contact21";
+import Contact22 from "./Contact22";
 import Contact24 from "./Contact24";
 import Contact25 from "./Contact25";
 const variants = {
@@ -45,6 +46,7 @@ const variants = {
   Contact20,
   Contact19,
   Contact21,
+  Contact22,
   Contact24,
   Contact25,
 };
@@ -75,9 +77,8 @@ export {
   Contact19,
   Contact20,
   Contact21,
+  Contact22,
   Contact24,
   Contact25,
   variants,
 };
-
-

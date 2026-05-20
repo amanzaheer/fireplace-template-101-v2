@@ -46,7 +46,7 @@ export default function Breadcrumbs19({ content }) {
     () => buildBreadcrumbs(pathname ?? "", content),
     [pathname, content]
   );
-
+  
   if (breadcrumbs.length <= 1) return null;
 
   return (
