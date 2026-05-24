@@ -390,7 +390,8 @@
     },
     "form_head": {
       "title": "10% Off Total Price for Online Booking",
-      "sub_title": "Ask For A Quote Here"
+      "sub_title": "Ask For A Quote Here",
+      "image": "hero/hero.webp"
     },
     "contact": {
       "background_image": "Contactimg/contactus20.png"

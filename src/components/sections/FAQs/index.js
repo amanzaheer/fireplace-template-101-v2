@@ -24,6 +24,7 @@ import FAQs19 from "./FAQs19";
 import FAQs21 from "./FAQs21";
 import FAQs26 from "./FAQs26";
 import FAQs27 from "./FAQs27";
+import FAQs28 from "./FAQs28";
 const variants = {
   FAQs1,
   FAQs2,
@@ -47,6 +48,7 @@ const variants = {
   FAQs21,
   FAQs26,
   FAQs27,
+  FAQs28,
 };
 
 export default function FAQs({ variant, content }) {
@@ -77,5 +79,6 @@ export {
   FAQs21,
   FAQs26,
   FAQs27,
+  FAQs28,
   variants,
 };

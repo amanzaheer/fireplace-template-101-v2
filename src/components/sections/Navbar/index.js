@@ -21,6 +21,7 @@ import Navbar19 from './Navbar19';
 import Navbar21 from './Navbar21';
 import Navbar26 from './Navbar26';
 import Navbar27 from './Navbar27';
+import Navbar28 from './Navbar28';
 const variants = {
   Navbar1,
   Navbar2,
@@ -45,13 +46,14 @@ const variants = {
   Navbar21,
   Navbar26,
   Navbar27,
+  Navbar28,
 };
 export default function Navbar({ variant, content }) {
   const name = String(variant ?? "").trim() || "Navbar21";
   const Component = variants[name] ?? Navbar21;
   return <Component content={content} />;
 }
-export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, Navbar16, Navbar17, Navbar19, Navbar20, Navbar21, Navbar26, Navbar27, variants };
+export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, Navbar16, Navbar17, Navbar19, Navbar20, Navbar21, Navbar26, Navbar27, Navbar28, variants };
 
 
 
