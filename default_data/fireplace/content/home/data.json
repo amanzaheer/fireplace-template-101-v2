@@ -394,7 +394,7 @@
       "image": "hero/hero.webp"
     },
     "contact": {
-      "background_image": "Contactimg/contactus20.png"
+      "background_image": "about/about.webp"
     },
     "city_name": "[city_name]",
     "faqs": {
