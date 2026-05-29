@@ -25,6 +25,7 @@ import OurServices21 from "./OurServices21";
 import OurServices27 from "./OurServices27";
 import OurServices28 from "./OurServices28";
 import OurServices29 from "./OurServices29";
+import OurServices30 from "./OurServices30";
 const variants = {
   OurServices1,
   OurServices2,
@@ -49,6 +50,7 @@ const variants = {
   OurServices27,
   OurServices28,
   OurServices29,
+  OurServices30,
 };
 
 export default function OurServices({ variant, content }) {
@@ -57,5 +59,5 @@ export default function OurServices({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices19, OurServices20, OurServices21, OurServices27,OurServices28,OurServices29, variants };
+export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices19, OurServices20, OurServices21, OurServices27,OurServices28,OurServices29, OurServices30, variants };
 

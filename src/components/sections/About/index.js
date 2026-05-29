@@ -26,6 +26,7 @@ import About20 from "./About20";
 import About21 from "./About21";
 import About28 from "./About28";  
 import About29 from "./About29";
+import About30 from "./About30";
 const variants = {
   About1,
   About2,
@@ -49,6 +50,7 @@ const variants = {
   About21,
   About28,
   About29,
+  About30,
 };
 
 export default function About({ variant, content }) {
@@ -80,5 +82,6 @@ export {
   About21,
   About28,
   About29,
+  About30,
   variants,
 };
