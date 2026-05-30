@@ -22,6 +22,7 @@ import BeforeAfter26 from "./BeforeAfter26";
 import BeforeAfter27 from "./BeforeAfter27";
 import BeforeAfter28 from "./BeforeAfter28";
 import BeforeAfter29 from "./BeforeAfter29";
+import BeforeAfter31 from "./BeforeAfter31";
 const variants = {
   BeforeAfter1,
   BeforeAfter2,
@@ -44,14 +45,15 @@ const variants = {
   BeforeAfter27,
   BeforeAfter28,
   BeforeAfter29,
+  BeforeAfter31,
 };
 
 export default function BeforeAfter({ variant, content }) {
-    const name = variant ?? "BeforeAfter28";
+  const name = variant ?? "BeforeAfter28";
   const Component = variants[name] ?? BeforeAfter28;
   return <Component content={content} />;
 }
-export { BeforeAfter1, BeforeAfter2, BeforeAfter3, BeforeAfter4, BeforeAfter6,BeforeAfter10,BeforeAfter11,BeforeAfter12,BeforeAfter13,BeforeAfter14,BeforeAfter15,BeforeAfter16,BeforeAfter17,BeforeAfter19,BeforeAfter20,BeforeAfter21,BeforeAfter26,BeforeAfter27,BeforeAfter28,BeforeAfter29, variants };
+export { BeforeAfter1, BeforeAfter2, BeforeAfter3, BeforeAfter4, BeforeAfter6, BeforeAfter10, BeforeAfter11, BeforeAfter12, BeforeAfter13, BeforeAfter14, BeforeAfter15, BeforeAfter16, BeforeAfter17, BeforeAfter19, BeforeAfter20, BeforeAfter21, BeforeAfter26, BeforeAfter27, BeforeAfter28, BeforeAfter29, BeforeAfter31, variants };
 
 
 

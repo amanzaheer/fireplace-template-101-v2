@@ -26,6 +26,7 @@ import ServiceCities27 from "./ServiceCities27";
 import ServiceCities28 from "./ServiceCities28";
 import ServiceCities29 from "./ServiceCities29";
 import ServiceCities30 from "./ServiceCities30";
+import ServiceCities31 from "./ServiceCities31";
 const variants = {
   ServiceCities1,
   ServiceCities2,
@@ -52,6 +53,7 @@ const variants = {
   ServiceCities28,
   ServiceCities29,
   ServiceCities30,
+  ServiceCities31,
 };
 
 export default function ServiceCities({ variant, content }) {
@@ -59,5 +61,5 @@ export default function ServiceCities({ variant, content }) {
   const Component = variants[name] ?? ServiceCities21;
   return <Component content={content} />;
 }
-export { ServiceCities1, ServiceCities2, ServiceCities3, ServiceCities4, ServiceCities5, ServiceCities6, ServiceCities7, ServiceCities8, ServiceCities9, ServiceCities14, ServiceCities15, ServiceCities16, ServiceCities17, ServiceCities19, ServiceCities20, ServiceCities21, ServiceCities26, ServiceCities27, ServiceCities28,ServiceCities,ServiceCities30, variants };
+export { ServiceCities1, ServiceCities2, ServiceCities3, ServiceCities4, ServiceCities5, ServiceCities6, ServiceCities7, ServiceCities8, ServiceCities9, ServiceCities14, ServiceCities15, ServiceCities16, ServiceCities17, ServiceCities19, ServiceCities20, ServiceCities21, ServiceCities26, ServiceCities27, ServiceCities28,ServiceCities,ServiceCities30,ServiceCities31, variants };
 

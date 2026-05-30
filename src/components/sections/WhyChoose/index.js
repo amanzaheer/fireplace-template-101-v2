@@ -29,6 +29,7 @@ import WhyChoose27 from "./WhyChoose27";
 import WhyChoose28 from "./WhyChoose28";
 import WhyChoose29 from "./WhyChoose29";
 import WhyChoose30 from "./WhyChoose30";
+import WhyChoose31 from "./WhyChoose31";
 const variants = {
   WhyChoose1,
   WhyChoose2,
@@ -55,6 +56,7 @@ const variants = {
   WhyChoose28,
   WhyChoose29,
   WhyChoose30,
+  WhyChoose31,
 };
 
 export default function WhyChoose({ variant, content }) {
@@ -89,5 +91,6 @@ export {
   WhyChoose28,
   WhyChoose29,
   WhyChoose30,
+  WhyChoose31,
   variants,
 };

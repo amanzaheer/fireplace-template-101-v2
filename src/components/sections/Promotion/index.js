@@ -26,6 +26,7 @@ import Promotion16 from "./Promotion16";
 import Promotion27 from "./Promotion27";
 import Promotion29 from "./Promotion29";
 import Promotion30 from "./Promotion30";
+import Promotion31 from "./Promotion31";
 const variants = {
   Promotion1,
   Promotion2,
@@ -50,6 +51,7 @@ const variants = {
   Promotion27,
   Promotion29,
   Promotion30,
+  Promotion31,
 };
 
 export default function Promotion({ variant, content }) {
@@ -81,6 +83,7 @@ export {
   Promotion27,
   Promotion29,
   Promotion30,
+  Promotion31,
   variants,
 };
 

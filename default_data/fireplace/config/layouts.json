@@ -152,11 +152,11 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar30",
+          "design": "Navbar31",
           "visible": true
         },
         "Banner": {
-          "design": "Banner30",
+          "design": "Banner31",
           "visible": true
         },
         "TVSizes": {
@@ -164,27 +164,27 @@
           "visible": false
         },
         "About": {
-          "design": "About30",
+          "design": "About4",
           "visible": true
         },
         "Promotion": {
-          "design": "Promotion30",
+          "design": "Promotion31",
           "visible": true
         },
         "Testimonials": {
-          "design": "Testimonials30",
+          "design": "Testimonials31",
           "visible": true
         },
         "Footer": {
-          "design": "Footer30",
+          "design": "Footer31",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter29",
+          "design": "BeforeAfter31",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices30",
+          "design": "OurServices31",
           "visible": true
         },
         "Gallery": {
@@ -192,7 +192,7 @@
           "visible": true
         },
         "WhyChoose": {
-          "design": "WhyChoose30",
+          "design": "WhyChoose31",
           "visible": true
         },
         "Slogan": {
@@ -200,19 +200,19 @@
           "visible": true
         },
         "ServiceBenefits": {
-          "design": "ServiceBenefits30",
+          "design": "ServiceBenefits31",
           "visible": true
         },
         "Contact": {
-          "design": "Contact30",
+          "design": "Contact31",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs30",
+          "design": "FAQs31",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities30",
+          "design": "ServiceCities31",
           "visible": true
         },
         "CallUsButton": {

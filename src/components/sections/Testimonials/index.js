@@ -23,6 +23,7 @@ import Testimonials26 from "./Testimonials26";
 import Testimonials27 from "./Testimonials27";
 import Testimonials28 from "./Testimonials28";
 import Testimonials30 from "./Testimonials30";
+import Testimonials31 from "./Testimonials31";
 const variants = {
   Testimonials1,
   Testimonials2,
@@ -49,6 +50,7 @@ const variants = {
   Testimonials27,
   Testimonials28,
   Testimonials30,
+  Testimonials31,
 };
 
 export default function Testimonials({ variant, content }) {
@@ -82,6 +84,7 @@ export {
   Testimonials27,
   Testimonials28,
   Testimonials30,
+  Testimonials31,
   variants,
 };
 
