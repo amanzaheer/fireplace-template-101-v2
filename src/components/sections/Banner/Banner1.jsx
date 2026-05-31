@@ -39,7 +39,6 @@ function buildImageSrc(base, filePath) {
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
 }
-
 export default function Banner1({ content }) {
   const banner = content?.banner ?? {};
   const data = {
@@ -65,7 +64,6 @@ export default function Banner1({ content }) {
     content?.contact_info?.phone ??
     content?.navbar?.phone ??
     "";
-
   return (
     <FullContainer
       id="banner"

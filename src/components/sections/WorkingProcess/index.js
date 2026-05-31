@@ -6,11 +6,13 @@
 import WorkingProcess12 from "./WorkingProcess12";
 import WorkingProcess20 from "./WorkingProcess20";
 import WorkingProcess21 from "./WorkingProcess21";
+import WorkingProcess18 from "./WorkingProcess18";
 
 const variants = {
   WorkingProcess12,
   WorkingProcess20,
   WorkingProcess21,
+  WorkingProcess18,
 };
 
 export default function WorkingProcess({ variant, content }) {
@@ -19,4 +21,10 @@ export default function WorkingProcess({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { WorkingProcess12, WorkingProcess20, WorkingProcess21, variants };
+export {
+  WorkingProcess12,
+  WorkingProcess20,
+  WorkingProcess21,
+  WorkingProcess18,
+  variants,
+};

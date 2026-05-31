@@ -207,7 +207,7 @@ export default function Navbar1({ content }) {
       </div>
     </>
   );
-
+  
   if (!mounted) {
     return (
       <FullContainer className="shadow-sm w-full sticky top-0 z-20 bg-white py-2 h-[82px] md:h-[112px]">

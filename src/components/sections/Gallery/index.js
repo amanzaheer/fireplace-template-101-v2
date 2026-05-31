@@ -22,6 +22,8 @@ import Gallery17 from "./Gallery17";
 import Gallery20 from "./Gallery20";
 import Gallery19 from "./Gallery19";
 import Gallery21 from "./Gallery21";
+import Gallery18 from "./Gallery18";
+
 const variants = {
   Gallery1,
   Gallery2,
@@ -43,6 +45,7 @@ const variants = {
   Gallery20,
   Gallery19,
   Gallery21,
+  Gallery18,
 };
 export default function Gallery({ variant, content }) {
   const name = variant ?? "Gallery21";
@@ -50,4 +53,4 @@ export default function Gallery({ variant, content }) {
   return <Component content={content} />;
 }
 
-export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5, Gallery6, Gallery8, Gallery7, Gallery9, Gallery10, Gallery11, Gallery12, Gallery13, Gallery14, Gallery15, Gallery16, Gallery17, Gallery19, Gallery20, Gallery21, variants };
+export { Gallery1, Gallery2, Gallery3, Gallery4, Gallery5, Gallery6, Gallery8, Gallery7, Gallery9, Gallery10, Gallery11, Gallery12, Gallery13, Gallery14, Gallery15, Gallery16, Gallery17, Gallery19, Gallery20, Gallery21, Gallery18, variants };

@@ -15,10 +15,12 @@ import BeforeAfter14 from "./BeforeAfter14";
 import BeforeAfter15 from "./BeforeAfter15";
 import BeforeAfter16 from "./BeforeAfter16";
 import BeforeAfter17 from "./BeforeAfter17";
+import BeforeAfter18 from "./BeforeAfter18";
 import BeforeAfter19 from "./BeforeAfter19";
 import BeforeAfter20 from "./BeforeAfter20";
 import BeforeAfter21 from "./BeforeAfter21";
 import BeforeAfter9 from "./BeforeAfter9";
+
 const variants = {
   BeforeAfter1,
   BeforeAfter2,
@@ -34,6 +36,7 @@ const variants = {
   BeforeAfter13,
   BeforeAfter16,
   BeforeAfter17,
+  BeforeAfter18,
   BeforeAfter20,
   BeforeAfter19,
   BeforeAfter21,
@@ -60,10 +63,10 @@ export {
   BeforeAfter13,
   BeforeAfter16,
   BeforeAfter17,
+  BeforeAfter18,
   BeforeAfter19,
   BeforeAfter20,
   BeforeAfter21,
   BeforeAfter9,
   variants,
 };
-

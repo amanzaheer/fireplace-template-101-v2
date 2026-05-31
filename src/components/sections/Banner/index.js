@@ -20,6 +20,7 @@ import Banner14 from "./Banner14";
 import Banner15 from "./Banner15";
 import Banner16 from "./Banner16";
 import Banner17 from "./Banner17";
+import Banner18 from "./Banner18";
 import Banner19 from "./Banner19";
 import Banner20 from "./Banner20";
 import Banner21 from "./Banner21";
@@ -41,6 +42,7 @@ const variants = {
   Banner15,
   Banner16,
   Banner17,
+  Banner18,
   Banner19,
   Banner20,
   Banner21,
@@ -69,6 +71,7 @@ export {
   Banner15,
   Banner16,
   Banner17,
+  Banner18,
   Banner19,
   Banner20,
   Banner21,

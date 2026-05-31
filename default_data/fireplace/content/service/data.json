@@ -97,13 +97,22 @@
     "background_image": "Contactimg/contactus20.png"
   },
   "reviewandrating": {
-    "title": "Reviews and Ratings",
-    "description": "See what our customers are saying about us.",
-    "list": [
+    "items": [
       {
-        "name": "John Doe",
-        "rating": 5,
-        "comment": "Great service! The team was professional and did a great job."
+        "title": "4.9/5",
+        "subtitle": "150+ Reviews"
+      },
+      {
+        "title": "Which? Trusted",
+        "subtitle": "Verified Trader"
+      },
+      {
+        "title": "Fully Insured",
+        "subtitle": "Public Liability"
+      },
+      {
+        "title": "Local Experts",
+        "subtitle": "[city_name] Based"
       }
     ]
   },
