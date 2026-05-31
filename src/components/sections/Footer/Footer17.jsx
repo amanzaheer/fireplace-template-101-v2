@@ -74,8 +74,6 @@ export default function Footer17({ content }) {
 
   const router = useRouter();
   const pathname = usePathname() ?? "";
-
-  
   const scrollToSection = useCallback((element) => {
     if (!element) return;
     const top =
@@ -121,7 +119,6 @@ export default function Footer17({ content }) {
         !(item.link === "#" && (item.childrenRef || Array.isArray(item.services))),
     );
   }, [content?.navbar?.menu_items]);
-
   const [isServicesOpen, setIsServicesOpen] = useState(false);
   const servicesWrapRef = useRef(null);
 
@@ -134,7 +131,6 @@ export default function Footer17({ content }) {
     document.addEventListener("mousedown", onMouseDown);
     return () => document.removeEventListener("mousedown", onMouseDown);
   }, [isServicesOpen]);
-
   const footer = content?.footer ?? {};
   const contactInfo = content?.contact_info ?? {};
   const phone = contactInfo.phone ?? content?.navbar?.phone ?? "";
@@ -145,10 +141,8 @@ export default function Footer17({ content }) {
   const companies = [1, 2, 3, 4, 5].map((n) =>
     buildImageSrc(IMAGE_BASE, `footer/footer${n}.webp`),
   );
-
   const iconClass = "text-[16px] md:text-[20px]";
   const iconAccent = "text-[#ff0504]";
-
   return (
     <footer>
       <FullContainer
@@ -249,11 +243,10 @@ export default function Footer17({ content }) {
                     />
                     <span>Services</span>
                   </button>
-
                   {services.length > 0 ? (
                     <div
                       role="menu"
-                      aria-hidden={!isServicesOpen}
+                      aria-hidden={!isServicesOpen} 
                       className={[
                         "absolute bottom-full left-0 z-20",
                         "w-auto min-w-[300px] bg-white shadow-[0_0_10px_rgba(0,0,0,0.5)]",

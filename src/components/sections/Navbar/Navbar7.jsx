@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect, useCallback, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
@@ -36,7 +35,6 @@ function getChildHref(child) {
   const slug = sanitizeUrl(child?.title);
   return slug ? `/${slug}` : "#";
 }
-
 export default function Navbar7({ content }) {
   const { logo, phone, menu_items = [] } = content?.navbar ?? {};
   const imagePath = content?.navbar?.imagePath ?? IMAGE_BASE;
@@ -48,7 +46,6 @@ export default function Navbar7({ content }) {
   const [isOpen, setIsOpen] = useState(false);
   const [openDropdownRef, setOpenDropdownRef] = useState(null);
   const [mounted, setMounted] = useState(false);
-
   const pathname = usePathname() ?? "";
   const router = useRouter();
 
@@ -68,7 +65,6 @@ export default function Navbar7({ content }) {
       element.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
     window.scrollTo({ top, behavior: "smooth" });
   }, []);
-
   const handleNavigation = useCallback(
     (id) => {
       const element = document.getElementById(id);
@@ -84,7 +80,6 @@ export default function Navbar7({ content }) {
     },
     [router, scrollToSection],
   );
-
   const toggleMenu = useCallback(() => setIsOpen((prev) => !prev), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
 

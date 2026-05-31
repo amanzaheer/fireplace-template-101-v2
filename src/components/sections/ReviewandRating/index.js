@@ -2,11 +2,11 @@
  * ReviewandRating section: multiple designs, one export.
  */ 
 import ReviewandRating1 from "./ReviewandRating1";
+import ReviewandRating18 from "./ReviewandRating18";
 
 const variants = {
   ReviewandRating1,
-
-  
+  ReviewandRating18,
 };
 
 export default function ReviewandRating({ variant, content }) {
@@ -15,4 +15,4 @@ export default function ReviewandRating({ variant, content }) {
   return <Component content={content} />;
 }
       
-export { ReviewandRating1,variants };
+export { ReviewandRating1,ReviewandRating18,variants };

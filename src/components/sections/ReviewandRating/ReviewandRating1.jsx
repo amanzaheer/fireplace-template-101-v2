@@ -76,7 +76,6 @@ export default function ReviewandRating1({ content }) {
     window.addEventListener("resize", updateViewport);
     return () => window.removeEventListener("resize", updateViewport);
   }, []);
-
   useEffect(() => {
     const interval = setInterval(() => {
       setTimer((prev) => {
@@ -124,8 +123,6 @@ export default function ReviewandRating1({ content }) {
       };
     });
   }, [reviews]);
-
-  if (!title && !description && !reviews.length) return null;
 
   const total = logoSlides.length || 1;
   const getIndex = (offset) => (activeIndex + offset + total) % total;

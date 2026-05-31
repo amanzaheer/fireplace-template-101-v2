@@ -285,6 +285,21 @@ export async function getPageData(host, pageId, options = {}) {
     if (remote && Object.keys(remote).length > 0) content = remote;
   }
 
+  const reviewRatingFile = await dsRetrieveWithDefault(
+    template,
+    domainId,
+    'content--ReviewandRating--data.json',
+  );
+  if (reviewRatingFile?.reviewandrating) {
+    content = {
+      ...(content ?? {}),
+      reviewandrating: deepMerge(
+        content?.reviewandrating ?? {},
+        reviewRatingFile.reviewandrating,
+      ),
+    };
+  }
+
   const vars = { ...domainData, ...extraVars };
   content = resolveAllTags(content, vars);
 
