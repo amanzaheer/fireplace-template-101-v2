@@ -197,7 +197,7 @@ export default function Gallery21({ content }) {
                     "inline-flex min-h-[48px] max-w-full items-center justify-center gap-2 rounded-xl bg-[#F86503] px-6 py-3 text-sm font-bold uppercase tracking-wide text-white shadow-md shadow-orange-600/25 transition hover:bg-[#d9480c] focus-visible:ring-2 focus-visible:ring-[#F0520E] focus-visible:ring-offset-2",
                   )}
                 >
-                  Get a quote
+                  
                   <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
                 </button>
                 {phone ? (

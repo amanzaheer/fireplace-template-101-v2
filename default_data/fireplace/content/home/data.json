@@ -36,12 +36,20 @@
       "contact_heading": "Stay Tuned With Us",
       "value": "Our goal is to give you services that are fast, effective, and affordable, and that go above and beyond what you expect.",
       "file_name": "footer/footerbg.webp",
+      "map_file_name": "icons/maap.webp",
+      "map_address": "[street], [city_name], [state_name] [zip]",
       "badge_images": [
         "footer/footer1.webp",
         "footer/footer2.webp",
         "footer/footer3.webp",
         "footer/footer4.webp",
         "footer/footer5.webp"
+      ],
+      "social_links": [
+        { "type": "facebook", "label": "Facebook", "href": "https://www.facebook.com/" },
+        { "type": "twitter", "label": "Twitter", "href": "https://twitter.com/" },
+        { "type": "instagram", "label": "Instagram", "href": "https://www.instagram.com/" },
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/" }
       ],
       "legal_links": [
         { "label": "Privacy Policy", "href": "/privacy-policy" },
@@ -126,7 +134,8 @@
       ]
     },
     "why_choose": {
-      "heading": "Why Choose Us",
+      "heading": "Why Choose Us?",
+      "discription": "Professional fireplace installation and repair services tailored to your home. Safe, efficient heating solutions with expert craftsmanship and long-lasting results.",
       "cta_label": "GET A QUOTE",
       "file_name": "why-us/why-us.avif",
       "features": [
@@ -139,7 +148,7 @@
     },
     "slogan": {
       "title": "Certified Experts You Can Trust.",
-      "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
+      "description": "[industry] sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
     },
     "service_benefits": {
       "heading": "Committed to Excellence",
@@ -180,8 +189,7 @@
     "banner": {
       "title": "Trusted Experts in [industry] services  ",
       "imageTitle": "Trusted Experts in [industry] services",
-      "heading": "TRUSTED EXPERTS IN [industry] SERVICES ",
-      "description": " Professional  [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
+      "heading": "Trusted Experts In [industry] Services ",
       "tagline": "trusted professionals in [industry] installation, cleaning & repair",
       "need_help_label": "Need Help?",
       "cta_phone": "[phone]",
@@ -196,12 +204,13 @@
         "heading": "It's Easy! Call Now",
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
-      },      "file_name": "hero-banner/banner20.png",
+      },
+      "file_name": "hero-banner/banner.webp",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
-      "file_name2": "hero-banner/overlayimg7...l.png",
-      "file_name3": "hero-banner/overlayimg12.png",
+      "file_name2": "hero-banner/banner.webp",
+      "file_name3": "hero-banner/banner.webp",
       "left_collage_image": "hero-banner/left collage.png",
       "right_collage_image": "hero-banner/right collage.png",
       "bottom_collage_image": "hero-banner/bottom collage.png"
@@ -343,6 +352,11 @@
         "services/fireplace-repair.webp"
       ]
     },
+    "service_description2": {
+      "title": "Benefits of [industry] Services",
+      "cta_label": "GET A QUOTE",
+      "description": "## **Benefits of [industry] Services**  \r\n\r\n**Enhanced Safety**  \r\nOne of the primary benefits of professional [industry] service is improved safety. An unmaintained fireplace can lead to fire hazards, smoke issues, or even carbon monoxide leaks. Regular service reduces these risks significantly.  \r\n\r\n**Prevention of Damage**  \r\nFireplaces are exposed to constant heat, soot, and sometimes moisture. Professional [industry] service helps identify and repair vulnerable areas, preventing costly structural damage and keeping your system reliable.  \r\n\r\n**Improved Heating Efficiency**  \r\nWhether you're using a wood-burning or gas fireplace, professional service ensures your system runs at peak performance. This means better heat output, lower energy costs, and improved comfort.  \r\n\r\n**Extended Lifespan of Components**  \r\nRoutine inspections, maintenance, and repairs protect your investment by extending the lifespan of key parts such as liners, dampers, and vents. This reduces the need for expensive replacements.  \r\n\r\n**Better Indoor Air Quality**  \r\nWithout proper care, fireplaces can accumulate soot, ash, or debris, negatively impacting air quality. Regular service keeps airflow clean and healthy, ensuring a safer living environment for your family.  \r\n\r\n**Code Compliance & Property Value**  \r\nProfessional [industry] service helps your fireplace meet safety and building code requirements. A properly maintained fireplace not only boosts safety but also enhances your home's appeal and resale value.  \r\n"
+    },
     "form_head": {
       "title": "10% Off Total Price for Online Booking",
       "sub_title": "Ask For A Quote Here"
@@ -473,7 +487,35 @@
       }
     ],
 
+    "review_and_rating": {
+      "review_title": "A sparkling reputation among our residential and commercial customers across [city_name], delivering trusted [industry] inspections, repairs, cleaning, and maintenance with unmatched professionalism and care.",
+      "review_subtitle": "",
+      "reviews": [
+        {
+          "icon": "/ReviewRating/icon1.png",
+          "label": "Certified Technicians",
+          "flip": null
+        },
+        {
+          "icon": "/ReviewRating/icon2.png",
+          "label": "48+ Years Experience",
+          "flip": "y"
+        },
+        {
+          "icon": "/ReviewRating/icon3.png",
+          "label": "Fully Insured",
+          "flip": "y"
+        },
+        {
+          "icon": "/ReviewRating/icon4.png",
+          "label": "Award-Winning Service",
+          "flip": null
+        }
+      ]
+    },
+
     "testimonials": {
+      "average_rating": "5.0",
       "reviewCount": "150+",
       "heading": "Our Happy Clients",
       "client_label": "CLIENTS",
@@ -515,7 +557,7 @@
     "cta": {
       "title": "Ready to Book Your Fireplace Service?",
       "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service.",
-      "image": "Cta/CTA21.png",
+      "image": "faqs/WhyChoose1.png",
       "button_text": "Get a Free Estimate",
       "phone": "[phone]"
 
@@ -545,8 +587,12 @@
   "description": "A clean, well-maintained home isn’t just about appearance—it’s about comfort, safety, and healthy living. Clean air, proper airflow, and a well-functioning [industry] all play a key role in creating the perfect indoor environment. However, [industry] cleaning can be time-consuming and complicated, especially when handled without the right tools or expertise.\n\nThat’s where our experienced professionals step in.\n\nWe provide reliable [industry] cleaning services in Leander for both residential and commercial spaces. Our skilled team ensures deep cleaning, removing dust, soot, and harmful particles that affect air quality. With our services, you can enjoy a cleaner, fresher, and healthier space without any hassle."
 },
     "work_portfolio": {
+      "label": "Sweeping, Cleaning, Repair & Maintenance - [industry]",
+      "title": "All [industry] Installation And Repair Work",
+      "description": "A clean Fireplace is important for the safety and efficiency of your home. Regular maintenance helps prevent fire hazards, improves airflow, and extends the life of your fireplace or heating system. Our professional team provides thorough sweeping, inspection, and repair services you can trust.",
+      "cta_button": "Contact us",
       "file_name": [
-         "WorkPortfolio/gallery1.jpg",
+        "WorkPortfolio/gallery1.jpg",
         "WorkPortfolio/gallery2.jpg",
         "WorkPortfolio/gallery3.jpg",
         "WorkPortfolio/gallery4.jpg",

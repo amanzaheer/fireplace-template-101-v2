@@ -1,8 +1,5 @@
 "use client";
-/**
- * Promotion section: multiple designs, one export.
- * variant comes from domain config (SectionLayout).
- */
+
 import Promotion1 from "./Promotion1";
 import Promotion2 from "./Promotion2";
 import Promotion3 from "./Promotion3";
@@ -23,6 +20,7 @@ import Promotion20 from "./Promotion20";
 import Promotion19 from "./Promotion19";
 import Promotion21 from "./Promotion21";
 import Promotion16 from "./Promotion16";
+import Promotion23 from "./Promotion23";
 const variants = {
   Promotion1,
   Promotion2,
@@ -44,11 +42,12 @@ const variants = {
   Promotion20,
   Promotion19,
   Promotion21,
+  Promotion23,
 };
 
 export default function Promotion({ variant, content }) {
-    const name = String(variant ?? "").trim() || "Promotion21";
-  const Component = variants[name] ?? Promotion21;
+    const name = String(variant ?? "").trim() || "Promotion23";
+  const Component = variants[name] ?? Promotion23;
   return <Component content={content} />;
 }
 export {
@@ -72,6 +71,7 @@ export {
   Promotion19,
   Promotion20,
   Promotion21,
+  Promotion23,
   variants,
 };
 

@@ -24,6 +24,7 @@ import About17 from "./About17";
 import About19 from "./About19";
 import About20 from "./About20";
 import About21 from "./About21";
+import About23 from "./About23";
 
 const variants = {
   About1,
@@ -46,11 +47,12 @@ const variants = {
   About19,
   About20,
   About21,
+  About23,
 };
 
 export default function About({ variant, content }) {
-  const name = String(variant ?? "About21").trim();
-  const Component = variants[name] ?? About21;
+  const name = String(variant ?? "About23").trim();
+  const Component = variants[name] ?? About23;
   return <Component content={content} />;
 }
 
@@ -75,5 +77,6 @@ export {
   About19,
   About20,
   About21,
+  About23,
   variants,
 };

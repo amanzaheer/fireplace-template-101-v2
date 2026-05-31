@@ -1,29 +1,22 @@
 "use client";
 
 import Image from "next/image";
-import { Poppins } from "next/font/google";
+import Container from "@/components/common/Container";
 import FullContainer from "@/components/common/FullContainer";
-import {
-  Phone,
-  CheckCircle,
-  Clock,
-  Star,
-  Shield,
-  Award,
-  Trophy,
-  ThumbsUp,
-  FileText,
-  MessageSquare,
-} from "lucide-react";
+import { CheckCircle } from "lucide-react";
 import { IMAGE_BASE } from "@/lib/constants";
 import { resolveRefArray } from "@/lib/content-helpers";
-
-import QuoteForm12 from "./QuoteForm/QuoteForm12";
+import { cn } from "@/lib/utils";
+import { Poppins } from "next/font/google";
+import QuoteForm23 from "./QuoteForm/QuoteForm23";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
+  weight: ["400", "500", "600", "700", "800", "900"],
 });
+
+const BANNER_BLUE = "#0088CC";
+const BANNER_YELLOW = "#FFD700";
 
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
@@ -32,21 +25,7 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-const ICON_MAP = {
-  Clock,
-  Star,
-  Shield,
-  Award,
-  CheckCircle,
-  Trophy,
-  ThumbsUp,
-  Phone,
-  FileText,
-  MessageSquare,
-};
-
-/** Split hero + form — copy from `content.banner` (CMS). */
-export default function Banner12({ content }) {
+export default function Banner23({ content }) {
   const banner = content?.banner ?? {};
 
   const data = {
@@ -61,18 +40,25 @@ export default function Banner12({ content }) {
 
   const image =
     buildImageSrc(IMAGE_BASE, banner.file_name) ||
-    buildImageSrc(IMAGE_BASE, "hero-banner/banner12.png");
+    buildImageSrc(IMAGE_BASE, "hero/hero.webp");
 
-
-  const contactLabel = banner.contact_label ?? "";
-  
+  const overlayImage =
+    buildImageSrc(IMAGE_BASE, banner.file_name2) ||
+    buildImageSrc(IMAGE_BASE, banner.overlay_image) ||
+    image;
 
   const form_head = {
-    title: banner.form_title ?? "",
+    title: banner.form_title ?? "Get Your Free Quote",
     sub_title: banner.form_description ?? "",
   };
 
   const features = resolveRefArray(content, banner, "features");
+
+  const featuresHeading =
+    banner.features_heading ??
+    banner.trust_heading ??
+    banner.list_title ??
+    "";
 
   const phone =
     banner.cta_phone ??
@@ -80,122 +66,147 @@ export default function Banner12({ content }) {
     content?.navbar?.phone ??
     "";
 
-  const phoneHref = phone ? `tel:${phone}` : "#";
-
   return (
     <FullContainer
       id="banner"
-      className={`relative w-full overflow-hidden bg-transparent px-0 pt-[82px] md:pt-[84px] ${poppins.className}`}
+      className={`relative w-full overflow-hidden pt-[118px] ${poppins.className}`}
+      style={{
+        background: `linear-gradient(
+          170deg,
+          ${BANNER_BLUE} 0%,
+          ${BANNER_BLUE} 62%,
+          #000000 62%,
+          #000000 100%
+        )`,
+      }}
     >
-      <div className="w-full">
-        <div className="relative grid w-full min-h-[480px] grid-cols-1 bg-neutral-900 lg:min-h-[560px]">
-          {image ? (
-            <Image
-              src={image}
-              title={data?.imageTitle || data?.title || ""}
-              alt={data?.altImage || data?.tagline || ""}
-              fill
-              priority
-              sizes="100vw" 
-              className="object-cover"
-              style={{ objectPosition: "center" }}
-            />
-          ) : null}
-          <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent" />
-     
+      {/* White floating dot */}
+      <span
+        className="pointer-events-none absolute right-[8%] top-[42%] z-[1] hidden h-4 w-4 rounded-full bg-white lg:block"
+        aria-hidden
+      />
 
-          <div className="relative z-10 flex min-h-[420px] lg:min-h-full">
-            <div className="relative z-10 mx-auto flex h-full w-full max-w-[820px] flex-col items-center justify-center px-4 py-10 text-center md:py-14 md:px-8 lg:px-12">
-              <div className="mb-3 flex  w-full items-center justify-center gap-2.5">
-                {phone ? (
-                  <a
-                    href={phoneHref}
-                    className="inline-flex h-auto min-h-[44px] w-full max-w-[292px] items-center justify-center gap-2 rounded-full border-3 border-white bg-[#da4909] px-4 py-2 shadow-lg text-white hover:opacity-90 sm:gap-2.5 sm:px-5"
-                  >
-                    {/* <span className="bg-linear-to-r from-[#f20508] to-[#b12224] rounded p-2 flex shrink-0 items-center justify-center mt-0.5">
-                      <Phone className="w-3 h-4 text-white" strokeWidth={2.5} />
-                    </span> */}
-                    <div className="flex min-w-0 items-center gap-2 leading-none">
-                      <span className="font-norml uppercase tracking-wide text-[14px] md:text-[16px] text-white">
-                        {contactLabel || "Contact"}
-                      </span>
-                      <span className="text-[20px] font-bold text-white md:text-[22px]">
-                        {phone}
-                      </span>
-                    </div>
-                  </a>
-                ) : (
-                  <div className="inline-flex items-start gap-2.5 text-black">
-                    <span className="bg-[#da4909] rounded p-2 flex shrink-0 items-center justify-center mt-0.5">
-                      <Phone className="w-3 h-4 text-white" strokeWidth={2.5} />
-                    </span>
-                    <div className="flex min-w-0 flex-col items-center leading-none md:items-start">
-                      <span className="font-bold uppercase tracking-wide text-xs md:text-[16px] text-black">
-                        {contactLabel || "Contact"}
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </div>
+      <Container className="relative z-10 px-4 py-8 sm:px-6 sm:py-10 md:py-12 lg:py-14">
+        <div className="grid grid-cols-1 items-center gap-10 lg:grid-cols-2 lg:gap-10 xl:gap-16">
+          {/* LEFT CONTENT */}
+          <div className="order-2 min-w-0 lg:order-1">
+            <h1 className="text-3xl font-extrabold leading-[1.08] text-white sm:text-4xl md:text-[42px] lg:text-[52px]">
+              {data?.heading || data?.title}
+            </h1>
 
-              {data?.tagline && (
-                <p className="w-full text-center text-black uppercase font-bold text-2xl leading-tight sm:text-3xl md:text-4xl lg:text-4xl">
-                  {data.tagline}
-                </p>
-              )}
+            {data?.tagline ? (
+              <p className="mt-3 text-base font-medium leading-snug text-white/95 sm:text-lg md:text-xl">
+                {data.tagline}
+              </p>
+            ) : null}
 
-              {data?.description && (
-                <p className="mt-3 mx-auto w-full max-w-[640px] line-clamp-2 text-center text-sm font-medium leading-snug text-black sm:text-base">
-                  {data.description}
-                </p>
-              )}
-            </div>
-          </div>
+            {data?.description ? (
+              <p className="mt-3 max-w-[560px] text-sm leading-relaxed text-white/85 sm:text-base">
+                {data.description}
+              </p>
+            ) : null}
 
-          <div
-            className={`relative z-10 flex w-full min-h-0 items-center justify-center px-4 py-6 sm:px-6 sm:py-8 md:px-8 lg:min-h-[400px] lg:py-10 ${poppins.className}`}
-          >
-            <div className="w-full max-w-[733px]">
-              <QuoteForm12
+            {/* FORM */}
+            <div className="mt-4 w-full max-w-[500px]">
+              <QuoteForm23
                 data={data}
                 form_head={form_head}
+                phone={phone}
                 showArrowInButton={false}
               />
             </div>
           </div>
-          <div>
-            
-          </div>
-          <div className="relative z-10 w-full flex items-center justify-center border-white/30 ">
-            {features?.length > 0 && (
-              <ul className="my-5 flex max-w-2xl flex-row flex-wrap gap-4">
-                {features.map((feature, idx) => {
-                  const IconComponent =
-                    feature?.icon && ICON_MAP[feature.icon]
-                      ? ICON_MAP[feature.icon]
-                      : CheckCircle;
-                  return (
-                    <li
-                      key={idx}
-                      className="flex w-fit max-w-[260px]  items-start justify-start gap-2.5 text-left text-sm font-medium  text-white md:max-w-none md:text-[17px]"
-                    >
-                      <span className="inline-flex h-7 w-7 shrink-0 items-center justify-center rounded">
-                        <IconComponent
-                          className="h-5 w-5 text-[#da4909]"
-                          aria-hidden
-                        />
-                      </span>
-                      <span className="leading-snug text-left">
-                        {feature.text}
-                      </span>
-                    </li>
-                  );
-                })}
-              </ul>
-            )}
+
+          {/* RIGHT IMAGE */}
+          <div className="relative order-1 mx-auto w-full max-w-[340px] sm:max-w-[400px] lg:order-2 lg:mx-0 lg:ml-auto lg:max-w-[470px] xl:max-w-[520px]">
+            {/* MAIN OVAL IMAGE */}
+            <div className="relative aspect-[3/4] w-full overflow-hidden rounded-[999px] border-[6px] border-white shadow-[0_20px_50px_rgba(0,0,0,0.35)]">
+              {image ? (
+                <Image
+                  src={image}
+                  title={data?.imageTitle || data?.title || "Banner"}
+                  alt={data?.altImage || data?.tagline || "Banner"}
+                  fill
+                  priority
+                  className="object-cover object-center"
+                  sizes="(max-width: 768px) 340px, 520px"
+                />
+              ) : (
+                <div className="h-full w-full bg-neutral-800" />
+              )}
+            </div>
+
+            {/* BOTTOM LEFT SMALL CIRCLE */}
+            {overlayImage ? (
+              <div className="absolute -bottom-4 left-4 z-20 h-[100px] w-[100px] overflow-hidden rounded-full border-[4px] border-white shadow-xl sm:h-[120px] sm:w-[120px]">
+                <Image
+                  src={overlayImage}
+                  alt="Overlay"
+                  fill
+                  className="object-cover"
+                  sizes="120px"
+                />
+              </div>
+            ) : null}
+
+            {/* TOP RIGHT SECOND CIRCLE */}
+            {overlayImage ? (
+              <div className="absolute top-10 -right-6 z-20 h-[70px] w-[70px] overflow-hidden rounded-full border-[4px] border-white shadow-xl sm:h-[90px] sm:w-[90px]">
+                <Image
+                  src={overlayImage}
+                  alt="Decorative"
+                  fill
+                  className="object-cover"
+                  sizes="90px"
+                />
+              </div>
+            ) : null}
           </div>
         </div>
-      </div>
+
+        {/* FEATURES SECTION */}
+        {features?.length > 0 ? (
+          <div className="mt-12 border-t border-white/10 pt-8 md:mt-14 md:pt-10">
+            {featuresHeading ? (
+              <h2
+                className="text-center text-xl font-extrabold uppercase tracking-wide sm:text-2xl md:text-left md:text-3xl"
+                style={{ color: BANNER_YELLOW }}
+              >
+                {featuresHeading}
+              </h2>
+            ) : null}
+
+            <ul
+              className={cn(
+                "mt-5 grid grid-cols-1 gap-x-6 gap-y-3 sm:grid-cols-2 lg:grid-cols-3",
+                featuresHeading ? "" : "mt-0"
+              )}
+            >
+              {features.map((feature, idx) => {
+                const text =
+                  typeof feature === "object" ? feature?.text : feature;
+
+                if (!text) return null;
+
+                return (
+                  <li
+                    key={idx}
+                    className="flex items-center gap-2.5 text-sm font-medium text-white sm:text-base"
+                  >
+                    <CheckCircle
+                      className="h-5 w-5 shrink-0 text-white"
+                      strokeWidth={2.5}
+                      aria-hidden
+                    />
+
+                    <span className="leading-snug">{text}</span>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+        ) : null}
+      </Container>
     </FullContainer>
   );
 }

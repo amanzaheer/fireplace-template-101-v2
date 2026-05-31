@@ -191,6 +191,32 @@
       { "title": "Improved Comfort", "description": "Working fireplaces add value." }
     ]
   },
+  "review_and_rating": {
+    "review_title": "",
+    "review_subtitle": "",
+    "reviews": [
+      {
+        "icon": "/ReviewRating/icon1.png",
+        "label": "Certified Technicians",
+        "flip": null
+      },
+      {
+        "icon": "/ReviewRating/icon2.png",
+        "label": "48+ Years Experience",
+        "flip": "y"
+      },
+      {
+        "icon": "/ReviewRating/icon3.png",
+        "label": "Fully Insured",
+        "flip": "y"
+      },
+      {
+        "icon": "/ReviewRating/icon4.png",
+        "label": "Award-Winning Service",
+        "flip": null
+      }
+    ]
+  },
   "form_labels": {
     "default_title": "GET IN TOUCH WITH US",
     "placeholder_first_name": "First Name",

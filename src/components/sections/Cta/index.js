@@ -7,6 +7,7 @@ import Cta17 from "./cta17";
 import Cta19 from "./cta19";
 import Cta20 from "./Cta20";
 import Cta21 from "./Cta21";
+import Cta23 from "./Cta23";
 
 const variants = {
   Cta14,
@@ -18,12 +19,13 @@ const variants = {
   Cta20,
   Cta19,
   Cta21,
+  Cta23,
 };
 
 export default function Cta({ variant, content }) {
-  const name = variant ?? "Cta21";
-  const Component = variants[name] ?? Cta21;
+  const name = variant ?? "Cta23";
+  const Component = variants[name] ?? Cta23;
   return <Component content={content} />;
 }
 
-export { Cta12, Cta13, Cta14, Cta15, Cta16, Cta17, Cta19, Cta20, Cta21, variants };
+export { Cta12, Cta13, Cta14, Cta15, Cta16, Cta17, Cta19, Cta20, Cta21,Cta23, variants };
