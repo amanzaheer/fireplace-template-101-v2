@@ -15,7 +15,7 @@ const poppins = Poppins({
 function buildImageSrc(base, filePath) {
   if (!filePath || typeof filePath !== "string") return "";
   const basePath = (base ?? IMAGE_BASE).replace(/\/$/, "");
-  return `${basePath}/${filePath.replace(/^\//, "")}`;
+  return `${basePath}${filePath.replace(/^\//, "")}`;
 }
 
 const STEP_ICON_SVGS = [
@@ -46,10 +46,10 @@ export default function OurWorkingProcess21({ content }) {
       <Container>
         <div className="mx-auto max-w-[1010px] rounded-[34px] bg-[#0b2f5e] border px-5 py-10 sm:px-8 md:px-10 md:py-14">
           <div className="mx-auto max-w-[760px] text-center text-white">
-            <p className={`${poppins.className}   font-regular text-[24.07]`}>
+            <p className={`${poppins.className}font-regular text-[24.07]`}>
               {heading}
             </p>
-            <h2
+            <h2                               
               className={`${poppins.className} mt-2 text-[39.39px] font-medium leading-tight md:text-[39px]`}
             >
               {description}
@@ -64,7 +64,7 @@ export default function OurWorkingProcess21({ content }) {
               return (
                 <div
                   key={`step-${idx}`}
-                  className="rounded-[14px]  bg-[#F5F5F5]  px-5 py-4 md:min-h-[110px]"
+                  className="rounded-[14px] bg-[#F5F5F5]  px-5 py-4 md:min-h-[110px]"
                 >
                   <div className="mb-3 inline-flex h-[42px] w-[42px] items-center justify-center rounded-[8px] bg-[#ff7a00]">
                     {iconSrc ? (

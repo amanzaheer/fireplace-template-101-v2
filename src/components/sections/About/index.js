@@ -21,6 +21,7 @@ import About14 from "./About14";
 import About15 from "./About15";
 import About16 from "./About16";
 import About17 from "./About17";
+import About18 from "./About18";
 import About19 from "./About19";
 import About20 from "./About20";
 import About21 from "./About21";
@@ -46,6 +47,7 @@ const variants = {
   About15,
   About16,
   About17,
+  About18,
   About19,
   About20,
   About21,
@@ -79,6 +81,7 @@ export {
   About15,
   About16,
   About17,
+  About18,
   About19,
   About20,
   About21,

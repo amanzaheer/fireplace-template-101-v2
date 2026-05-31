@@ -19,6 +19,7 @@ import FAQs14 from "./FAQs14";
 import FAQs15 from "./FAQs15"
 import FAQs16 from "./FAQs16";
 import FAQs17 from "./FAQs17";
+import FAQs18 from "./FAQs18";
 import FAQs20 from "./FAQs20";
 import FAQs19 from "./FAQs19";
 import FAQs21 from "./FAQs21";
@@ -46,6 +47,7 @@ const variants = {
   FAQs15,
   FAQs16,
   FAQs17,
+  FAQs18,
   FAQs20,
   FAQs19,
   FAQs21,
@@ -81,6 +83,7 @@ export {
   FAQs16,
   FAQs17,
   FAQs19,
+  FAQs18,
   FAQs20,
   FAQs21,
   FAQs26,

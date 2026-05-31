@@ -15,6 +15,7 @@ import BeforeAfter14 from "./BeforeAfter14";
 import BeforeAfter15 from "./BeforeAfter15";
 import BeforeAfter16 from "./BeforeAfter16";
 import BeforeAfter17 from "./BeforeAfter17";
+import BeforeAfter18 from "./BeforeAfter18";
 import BeforeAfter19 from "./BeforeAfter19";
 import BeforeAfter20 from "./BeforeAfter20";
 import BeforeAfter21 from "./BeforeAfter21";
@@ -23,6 +24,7 @@ import BeforeAfter27 from "./BeforeAfter27";
 import BeforeAfter28 from "./BeforeAfter28";
 import BeforeAfter29 from "./BeforeAfter29";
 import BeforeAfter31 from "./BeforeAfter31";
+
 const variants = {
   BeforeAfter1,
   BeforeAfter2,
@@ -38,6 +40,7 @@ const variants = {
   BeforeAfter13,
   BeforeAfter16,
   BeforeAfter17,
+  BeforeAfter18,
   BeforeAfter20,
   BeforeAfter19,
   BeforeAfter21,

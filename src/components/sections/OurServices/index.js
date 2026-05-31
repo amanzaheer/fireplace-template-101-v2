@@ -19,6 +19,7 @@ import OurServices14 from "./OurServices14";
 import OurServices15 from "./OurServices15";
 import OurServices16 from "./OurServices16";
 import OurServices17 from "./OurServices17";
+import OurServices18 from "./OurServices18";
 import OurServices20 from "./OurServices20";
 import OurServices19 from "./OurServices19";
 import OurServices21 from "./OurServices21";
@@ -27,6 +28,7 @@ import OurServices28 from "./OurServices28";
 import OurServices29 from "./OurServices29";
 import OurServices30 from "./OurServices30";
 import OurServices31 from "./OurServices31";
+
 const variants = {
   OurServices1,
   OurServices2,
@@ -45,6 +47,7 @@ const variants = {
   OurServices15,
   OurServices16,
   OurServices17,
+  OurServices18,
   OurServices20,
   OurServices19,
   OurServices21,

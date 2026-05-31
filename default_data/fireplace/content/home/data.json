@@ -1,4 +1,4 @@
-  {
+{
     "meta_data": {
       "title": "[company_name] Near Me",
       "description": "Tagline text.",
@@ -130,11 +130,11 @@
     "workingprocess2": {
       "title": "Our Works",
       "images": [
-        "workingprocess2/process1.jpg",
-        "workingprocess2/process2.jpg",
-        "workingprocess2/process3.jpg",
-        "workingprocess2/process4.jpg",
-        "workingprocess2/process5.jpg"
+       "/workingprocess2/process1.jpg",
+    "/workingprocess2/process2.jpg",
+    "/workingprocess2/process3.jpg",
+    "/workingprocess2/process4.jpg",
+    "/workingprocess2/process5.jpg"
       ],
       "stats": [
         {
@@ -158,7 +158,9 @@
     "why_choose": {
       "heading": "Why Choose Us",
       "cta_label": "GET A QUOTE",
-      "file_name": "why-us/why-us.avif",
+      "description": "Licensed technicians, clear pricing, and workmanship you can rely on in [city_name].",
+      "main_image": "why-us/why-us.avif",
+      "childrenRef": "features",
       "features": [
         {
           "icon": "FileText",
@@ -226,7 +228,7 @@
       "title": "Trusted Experts in [industry] services  ",
       "imageTitle": "Trusted Experts in [industry] services",
       "heading": "TRUSTED EXPERTS IN [industry] SERVICES ",
-      "description": " Professional  [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
+      "description": "Professional [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
       "tagline": "trusted professionals in [industry] installation, cleaning & repair",
       "need_help_label": "Need Help?",
       "cta_phone": "[phone]",
@@ -241,8 +243,7 @@
         "heading": "It's Easy! Call Now",
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
-      },
-      "file_name": "hero-banner/banner.webp",
+      },      "file_name": "hero/hero.webp",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
@@ -422,9 +423,8 @@
       ],
       "cta_label": "Ask a Question",
       "cta_href": "/#contact-us",
-      "image": "footer/faqs-illustration.png",
-      "file_name": "faqs/faqs13.png",
-      "filename2": "faqs/faqs17.png",
+      "file_name": "Faqs/faqs13.png",
+      "filename2": "Faqs/faqs17.png",
       "side_image": "faqs/whychoose1.png",
       "side_image_alt": "Technician at work",
       "items": [
@@ -754,22 +754,67 @@
     },
     "work_portfolio": {
       "file_name": [
-        "WorkPortfolio/gallery1.jpg",
-        "WorkPortfolio/gallery2.jpg",
-        "WorkPortfolio/gallery3.jpg",
-        "WorkPortfolio/gallery4.jpg",
-        "WorkPortfolio/gallery5.jpg",
-        "WorkPortfolio/gallery6.jpg",
-        "WorkPortfolio/gallery7.jpg",
-        "WorkPortfolio/gallery8.jpg",
-        "WorkPortfolio/gallery9.jpg",
-        "WorkPortfolio/gallery10.jpg",
-        "WorkPortfolio/gallery11.jpg",
-        "WorkPortfolio/gallery12.jpg",
-        "WorkPortfolio/gallery13.jpg",
-        "WorkPortfolio/gallery14.jpg",
-        "WorkPortfolio/gallery15.jpg"
+         "WorkPortfolio/gallery1.jpg",
+         "WorkPortfolio/gallery2.jpg",
+         "WorkPortfolio/gallery3.jpg",
+         "WorkPortfolio/gallery4.jpg",
+         "WorkPortfolio/gallery5.jpg",
+         "WorkPortfolio/gallery6.jpg",
+         "WorkPortfolio/gallery7.jpg",
+         "WorkPortfolio/gallery8.jpg",
+         "WorkPortfolio/gallery9.jpg",
+         "WorkPortfolio/gallery10.jpg",
+         "WorkPortfolio/gallery11.jpg",
+         "WorkPortfolio/gallery12.jpg",
+         "WorkPortfolio/gallery13.jpg",
+         "WorkPortfolio/gallery14.jpg",
+         "WorkPortfolio/gallery15.jpg"
       ]
+    },
+    "workingprocess2": {
+      "title": "Our Works",
+      "images": [
+        "services/fireplace-repair.webp",
+        "services/fireplace-cleaning.webp",
+        "services/fireplace-maintenance.webp",
+        "services/gas-fireplace.webp",
+        "services/fireplace-inspection.webp"
+      ],
+      "stats": [
+        { "value": "261", "label": "Activate Project" },
+        { "value": "97", "label": "Customer Satisfaction" },
+        { "value": "48", "label": "Awards Winning" },
+        { "value": "125", "label": "Expert Team" }
+      ]
+    },
+    "reviewandrating": {
+      "items": [
+        {
+          "title": "4.9/5",
+          "subtitle": "150+ Reviews"
+        },
+        {
+          "title": "Which? Trusted",
+          "subtitle": "Verified Trader"
+        },
+        {
+          "title": "Fully Insured",
+          "subtitle": "Public Liability"
+        },
+        {
+          "title": "Local Experts",
+          "subtitle": "[city_name] Based"
+        }
+      ]
+    },
+    "service_description2": {
+      "title": "Why Choose Fireplace Cleaning?",
+      "sub_title": "SIMPLE BENEFITS, BIG RESULTS",
+      "description": "Regular, professional **Fireplace Cleaning** is the easiest way to keep your home **Safe** from fire hazards. It prevents expensive **Structural Damage** and makes your fireplace heat more **Efficiently**, saving you money. For clean, healthy **Air Quality**, compliance with codes, and maximum system **Lifespan**, regular care is essential for your family's comfort.",
+      "file_name": "services/fireplace-cleaning.webp",
+      "alt": "Fireplace cleaning service",
+      "cta_label": "CONTACT US NOW",
+      "childrenRef": "features"
     },
     "form_labels": {
       "default_title": "GET IN TOUCH WITH US",

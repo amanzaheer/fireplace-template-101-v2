@@ -28,20 +28,52 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${filePath.replace(/^\//, "")}`;
 }
 
+const DEFAULT_IMAGES = [
+  "services/fireplace-repair.webp",
+  "services/fireplace-cleaning.webp",
+  "services/fireplace-maintenance.webp",
+  "services/gas-fireplace.webp",
+  "services/fireplace-inspection.webp",
+];
+
+function resolveImagePaths(block) {
+  if (!block || typeof block !== "object") return [];
+
+  const fromImages = block.images;
+  if (Array.isArray(fromImages)) {
+    return fromImages
+      .map((item) => {
+        if (typeof item === "string" && item.trim()) return item.trim();
+        if (item && typeof item === "object") {
+          const path = item.file_name ?? item.image ?? item.src;
+          return typeof path === "string" ? path.trim() : "";
+        }
+        return "";
+      })
+      .filter(Boolean);
+  }
+  if (typeof fromImages === "string" && fromImages.trim()) {
+    return [fromImages.trim()];
+  }
+
+  const fileName = block.file_name;
+  if (Array.isArray(fileName)) {
+    return fileName.filter((x) => typeof x === "string" && x.trim());
+  }
+  if (typeof fileName === "string" && fileName.trim()) {
+    return [fileName.trim()];
+  }
+
+  return [];
+}
+
 export default function OurWorkingProcess21({ content }) {
   const data = content?.workingprocess2 ?? content?.our_process ?? {};
 
   const heading = data?.title ?? "Our Works";
 
-  const images = Array.isArray(data?.images)
-    ? data.images
-    : [
-        "workingprocess2/process1.jpg",
-        "workingprocess2/process2.jpg",
-        "workingprocess2/process3.jpg",
-        "workingprocess2/process4.jpg",
-        "workingprocess2/process5.jpg",
-      ];
+  const imagePaths = resolveImagePaths(data);
+  const images = imagePaths.length ? imagePaths : DEFAULT_IMAGES;
 
   const stats = Array.isArray(data?.stats)
     ? data.stats
