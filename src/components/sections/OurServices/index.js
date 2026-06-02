@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 /*
   OurServices section: multiple designs, one export.
  */
@@ -28,7 +29,8 @@ import OurServices28 from "./OurServices28";
 import OurServices29 from "./OurServices29";
 import OurServices30 from "./OurServices30";
 import OurServices31 from "./OurServices31";
-
+import OurServices32 from "./OurServices32";
+import OurServices33 from "./OurServices33";
 const variants = {
   OurServices1,
   OurServices2,
@@ -56,13 +58,56 @@ const variants = {
   OurServices29,
   OurServices30,
   OurServices31,
+  OurServices32,
+  OurServices33,
 };
 
 export default function OurServices({ variant, content }) {
-  const name = String(variant ?? "").trim() || "OurServices21";
-  const Component = variants[name] ?? OurServices21;
-  return <Component content={content} />;
+  const name = String(variant ?? "").trim() || "OurServices32";
+  let Component = variants[name] ?? OurServices32;
+
+  // Defensive: if the imported value is a module namespace (object) try its default
+  if (Component && typeof Component === "object" && Component.default) {
+    Component = Component.default;
+  }
+
+  if (!Component || (typeof Component !== "function" && typeof Component !== "object")) {
+    // Helpful console output for debugging invalid element type errors at runtime
+    // eslint-disable-next-line no-console
+    console.error(
+      "OurServices: invalid component for variant=",
+      name,
+      "resolved to:",
+      Component,
+    );
+    return null;
+  }
+
+  // Error boundary to catch render-time errors inside the chosen variant
+  class OurServicesErrorBoundary extends React.Component {
+    constructor(props) {
+      super(props);
+      this.state = { hasError: false };
+    }
+    static getDerivedStateFromError() {
+      return { hasError: true };
+    }
+    componentDidCatch(error, info) {
+      // eslint-disable-next-line no-console
+      console.error("OurServices render error for variant=", name, error, info);
+    }
+    render() {
+      if (this.state.hasError) return null;
+      return this.props.children;
+    }
+  }
+
+  return (
+    <OurServicesErrorBoundary>
+      <Component content={content} />
+    </OurServicesErrorBoundary>
+  );
 }
 
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices19, OurServices20, OurServices21, OurServices27,OurServices28,OurServices29, OurServices30, OurServices31, variants };
+export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices19, OurServices20, OurServices21, OurServices27, OurServices28, OurServices29, OurServices30, OurServices31, OurServices32, OurServices33, variants };
 

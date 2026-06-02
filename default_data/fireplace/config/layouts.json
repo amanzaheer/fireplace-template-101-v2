@@ -161,11 +161,11 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar31",
+          "design": "Navbar33",
           "visible": true
         },
         "Banner": {
-          "design": "Banner31",
+          "design": "Banner33",
           "visible": true
         },
         "TVSizes": {
@@ -173,27 +173,27 @@
           "visible": false
         },
         "About": {
-          "design": "About18",
+          "design": "About33",
           "visible": true
         },
         "Promotion": {
-          "design": "Promotion18",
+          "design": "Promotion30",
           "visible": true
         },
         "Testimonials": {
-          "design": "Testimonials18",
+          "design": "Testimonials12",
           "visible": true
         },
         "Footer": {
-          "design": "Footer18",
+          "design": "Footer33",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter18",
+          "design": "BeforeAfter33",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices18",
+          "design": "OurServices33",
           "visible": true
         },
         "Gallery": {
@@ -201,11 +201,11 @@
           "visible": true
         },
         "WhyChoose": {
-          "design": "WhyChoose18",
+          "design": "WhyChoose33",
           "visible": true
         },
         "Slogan": {
-          "design": "Slogan18",
+          "design": "Slogan33",
           "visible": true
         },
         "ServiceBenefits": {
@@ -213,15 +213,15 @@
           "visible": true
         },
         "Contact": {
-          "design": "Contact18",
+          "design": "Contact33",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs18",
+          "design": "FAQs33",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities18",
+          "design": "ServiceCities33",
           "visible": true
         },
         "CallUsButton": {
@@ -230,10 +230,10 @@
         },
         "ReviewandRating": {
           "design": "ReviewandRating18",
-          "visible": true
+          "visible": false
         },
         "WorkingProcess": {
-          "design": "WorkingProcess18",
+          "design": "WorkingProcess33",
           "visible": true
         },
         "WorkingProcess2": {
@@ -303,11 +303,11 @@
     "service": {
       "sections": {
         "Navbar": {
-          "design": "Navbar29",
+          "design": "Navbar33",
           "visible": true
         },
         "Banner": {
-          "design": "Banner29",
+          "design": "Banner33",
           "visible": true
         },
         "TVSizes": {
@@ -335,19 +335,19 @@
           "visible": true
         },
         "Contact": {
-          "design": "Contact29",
+          "design": "Contact33",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs29",
+          "design": "FAQs33",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities29",
+          "design": "ServiceCities33",
           "visible": true
         },
         "Footer": {
-            "design": "Footer29",
+            "design": "Footer33",
           "visible": true
         },
         "CallUsButton": {

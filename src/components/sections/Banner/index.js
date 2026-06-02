@@ -30,6 +30,8 @@ import Banner28 from "./Banner28";
 import Banner29 from "./Banner29";
 import Banner30 from "./Banner30";
 import Banner31 from "./Banner31";
+import Banner32 from "./Banner32";
+import Banner33 from "./Banner33";
 const variants = {
   Banner1,
   Banner2,
@@ -58,6 +60,8 @@ const variants = {
   Banner29,
   Banner30,
   Banner31,
+  Banner32,
+  Banner33,
 };
 
 export default function Banner({ variant, content }) {
@@ -93,6 +97,8 @@ export {
   Banner29,
   Banner30,
   Banner31,
+  Banner32,
+  Banner33,
   variants,
 };
 

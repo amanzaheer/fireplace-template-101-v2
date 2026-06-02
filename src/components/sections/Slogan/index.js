@@ -1,5 +1,5 @@
 "use client";
-/**
+/*
  * Slogan section: multiple designs, one export.
  */
 import Slogan1 from "./Slogan1";
@@ -22,7 +22,7 @@ import Slogan17 from "./Slogan17";
 import Slogan18 from "./Slogan18";
 import Slogan19 from "./Slogan19";
 import Slogan21 from "./Slogan21";
-
+import Slogan33 from "./Slogan33";
 const variants = {
   Slogan1,
   Slogan2,
@@ -44,11 +44,12 @@ const variants = {
   Slogan18,
   Slogan19,
   Slogan21,
+  Slogan33,
 };
 
 export default function Slogan({ variant, content }) {
-    const name = String(variant ?? "").trim() || "Slogan21";
+  const name = String(variant ?? "").trim() || "Slogan21";
   const Component = variants[name] ?? Slogan21;
   return <Component content={content} />;
 }
-export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9, Slogan15, Slogan11, Slogan12, Slogan14, Slogan10, Slogan13, Slogan17, Slogan18, Slogan19, Slogan21, variants };
+export { Slogan1, Slogan2, Slogan3, Slogan4, Slogan6, Slogan5, Slogan8, Slogan7, Slogan9, Slogan15, Slogan11, Slogan12, Slogan14, Slogan10, Slogan13, Slogan17, Slogan18, Slogan19, Slogan21, Slogan33, variants };
