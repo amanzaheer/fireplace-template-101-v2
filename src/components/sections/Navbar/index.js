@@ -28,6 +28,7 @@ import Navbar30 from './Navbar30';
 import Navbar31 from './Navbar31';
 import Navbar32 from './Navbar32';
 import Navbar33 from './Navbar33';
+import Navbar34 from './Navbar34';
 const variants = {
   Navbar1,
   Navbar2,
@@ -59,13 +60,14 @@ const variants = {
   Navbar31,
   Navbar32,
   Navbar33,
+  Navbar34,
 };
 export default function Navbar({ variant, content }) {
   const name = String(variant ?? "").trim() || "Navbar21";
   const Component = variants[name] ?? Navbar21;
   return <Component content={content} />;
 }
-export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, Navbar16, Navbar17, Navbar19, Navbar20, Navbar21, Navbar26, Navbar27, Navbar28,Navbar29, Navbar30, Navbar31,Navbar32,Navbar33, variants };
+export { Navbar1, Navbar2, Navbar3, Navbar4, Navbar5, Navbar6, Navbar7, Navbar8, Navbar9, Navbar14, Navbar15, Navbar11, Navbar12, Navbar10, Navbar13, Navbar16, Navbar17, Navbar19, Navbar20, Navbar21, Navbar26, Navbar27, Navbar28, Navbar29, Navbar30, Navbar31, Navbar32, Navbar33, Navbar34, variants };
 
 
 

@@ -161,11 +161,11 @@
     "home": {
       "sections": {
         "Navbar": {
-          "design": "Navbar33",
+          "design": "Navbar34",
           "visible": true
         },
         "Banner": {
-          "design": "Banner33",
+          "design": "Banner34",
           "visible": true
         },
         "TVSizes": {
@@ -173,7 +173,7 @@
           "visible": false
         },
         "About": {
-          "design": "About33",
+          "design": "About34",
           "visible": true
         },
         "Promotion": {
@@ -185,15 +185,15 @@
           "visible": true
         },
         "Footer": {
-          "design": "Footer33",
+          "design": "Footer34",
           "visible": true
         },
         "BeforeAfter": {
-          "design": "BeforeAfter33",
+          "design": "BeforeAfter34",
           "visible": true
         },
         "OurServices": {
-          "design": "OurServices33",
+          "design": "OurServices34",
           "visible": true
         },
         "Gallery": {
@@ -213,15 +213,15 @@
           "visible": true
         },
         "Contact": {
-          "design": "Contact33",
+          "design": "Contact34",
           "visible": true
         },
         "FAQs": {
-          "design": "FAQs33",
+          "design": "FAQs34",
           "visible": true
         },
         "ServiceCities": {
-          "design": "ServiceCities33",
+          "design": "ServiceCities34",
           "visible": true
         },
         "CallUsButton": {
@@ -249,7 +249,7 @@
           "visible": true
         },
         "Cta": {
-          "design": "Cta18",
+          "design": "Cta34",
           "visible": true
         },
         "WorkPortfolio": {

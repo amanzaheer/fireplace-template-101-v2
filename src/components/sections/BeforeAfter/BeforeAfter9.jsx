@@ -171,7 +171,7 @@ function BeforeAfterSlider({
         onMouseDown={handleMouseDown}
         onTouchStart={handleTouchStart}
       >
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border-[3px] border-white shadow-md flex items-center justify-center">
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-transparent border-[3px] border-white shadow-md flex items-center justify-center">
           <div className="flex items-center gap-2">
             {arrowSrc ? (
               <>

@@ -423,9 +423,9 @@
       ],
       "cta_label": "Ask a Question",
       "cta_href": "/#contact-us",
-      "file_name": "Faqs/faqs13.png",
-      "filename2": "Faqs/faqs17.png",
-      "side_image": "faqs/whychoose1.png",
+      "file_name": "about/about.webp",
+      "filename2": "benefits/benefits.avif",
+      "side_image": "about/about.webp",
       "side_image_alt": "Technician at work",
       "items": [
         {
