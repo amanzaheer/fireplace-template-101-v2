@@ -12,15 +12,27 @@
         "file_name": "logo/fireplace-logo.png"
       },
       "menu_items": [
-        { "title": "Home", "link": "/" },
-        { "title": "Locations", "link": "locations" },
+        {
+          "title": "Home",
+          "link": "/"
+        },
+        {
+          "title": "Locations",
+          "link": "locations"
+        },
         {
           "title": "Services",
           "link": "#",
           "childrenRef": "services"
         },
-        { "title": "FAQs", "link": "faqs" },
-        { "title": "Contact Us", "link": "contact-us" }
+        {
+          "title": "FAQs",
+          "link": "faqs"
+        },
+        {
+          "title": "Contact Us",
+          "link": "contact-us"
+        }
       ],
       "phone": "[phone]",
       "phone_cta_subtitle": "Need Service Now? We Answer Calls 24/7."
@@ -44,8 +56,14 @@
         "footer/footer5.webp"
       ],
       "legal_links": [
-        { "label": "Privacy Policy", "href": "/privacy-policy" },
-        { "label": "Terms and Conditions", "href": "/terms-and-conditions" }
+        {
+          "label": "Privacy Policy",
+          "href": "/privacy-policy"
+        },
+        {
+          "label": "Terms and Conditions",
+          "href": "/terms-and-conditions"
+        }
       ]
     },
     "services": [
@@ -101,11 +119,11 @@
         },
         {
           "title": "Expert Execution",
-          "description":"Our skilled team provides reliable fireplace cleaning and maintenance using safe methods and professional equipment."
+          "description": "Our skilled team provides reliable fireplace cleaning and maintenance using safe methods and professional equipment."
         },
         {
           "title": "Quality Assurance",
-          "description":  "We ensure your fireplace is clean, secure, and operating properly for improved safety, comfort, and long-lasting performance."
+          "description": "We ensure your fireplace is clean, secure, and operating properly for improved safety, comfort, and long-lasting performance."
         }
       ]
     },
@@ -119,10 +137,22 @@
     "/workingprocess2/process5.jpg"
       ],
       "stats": [
-        { "value": "61", "label": "Activate Project" },
-        { "value": "97", "label": "Customer Satisfaction" },
-        { "value": "48", "label": "Awards Winning" },
-        { "value": "56", "label": "Expert Team" }
+        {
+          "value": "61",
+          "label": "Activate Project"
+        },
+        {
+          "value": "97",
+          "label": "Customer Satisfaction"
+        },
+        {
+          "value": "48",
+          "label": "Awards Winning"
+        },
+        {
+          "value": "56",
+          "label": "Expert Team"
+        }
       ]
     },
     "why_choose": {
@@ -132,11 +162,26 @@
       "main_image": "why-us/why-us.avif",
       "childrenRef": "features",
       "features": [
-        { "icon": "FileText", "text": "Fire Place & Repair" },
-        { "icon": "Clock", "text": "Same Day Service" },
-        { "icon": "Star", "text": "5 Star Rated On Google" },
-        { "icon": "Shield", "text": "Licensed & Insured" },
-        { "icon": "MessageSquare", "text": "10+ Years Of Experience" }
+        {
+          "icon": "FileText",
+          "text": "Fire Place & Repair"
+        },
+        {
+          "icon": "Clock",
+          "text": "Same Day Service"
+        },
+        {
+          "icon": "Star",
+          "text": "5 Star Rated On Google"
+        },
+        {
+          "icon": "Shield",
+          "text": "Licensed & Insured"
+        },
+        {
+          "icon": "MessageSquare",
+          "text": "10+ Years Of Experience"
+        }
       ]
     },
     "slogan": {
@@ -346,10 +391,11 @@
     },
     "form_head": {
       "title": "10% Off Total Price for Online Booking",
-      "sub_title": "Ask For A Quote Here"
+      "sub_title": "Ask For A Quote Here",
+      "image": "hero/hero.webp"
     },
     "contact": {
-      "background_image": "Contactimg/contactus20.png"
+      "background_image": "about/about.webp"
     },
     "city_name": "[city_name]",
     "faqs": {
@@ -358,16 +404,28 @@
       "right_intro": "Keep your home warm, safe, and efficient with our professional fireplace services. From routine inspections and chimney cleaning to repairs and maintenance, our experienced team ensures your fireplace operates smoothly all year round. We provide reliable support, clear guidance, and timely service so you can enjoy comfort and peace of mind in every season..",
       "default_open_index": 0,
       "stats": [
-        { "value": "450+", "label": "Happy Customer" },
-        { "value": "300+", "label": "Satisfied Clients" },
-        { "value": "200+", "label": "Team Members" },
-        { "value": "100+", "label": "Award Winning" }
+        {
+          "value": "450+",
+          "label": "Happy Customer"
+        },
+        {
+          "value": "300+",
+          "label": "Satisfied Clients"
+        },
+        {
+          "value": "200+",
+          "label": "Team Members"
+        },
+        {
+          "value": "100+",
+          "label": "Award Winning"
+        }
       ],
       "cta_label": "Ask a Question",
       "cta_href": "/#contact-us",
-      "file_name": "Faqs/faqs13.png",
-      "filename2": "Faqs/faqs17.png",
-      "side_image": "faqs/whychoose1.png",
+      "file_name": "about/about.webp",
+      "filename2": "benefits/benefits.avif",
+      "side_image": "about/about.webp",
       "side_image_alt": "Technician at work",
       "items": [
         {
@@ -397,57 +455,210 @@
       "cta_label": "BOOK YOUR SERVICE",
       "cta_href": "/#contact-us",
       "list": [
-        { "name": "Alabama", "image": "Servicecities/location1.png" },
-        { "name": "Alaska", "image": "Servicecities/location2.png" },
-        { "name": "Arizona", "image": "Servicecities/location3.png" },
-        { "name": "Arkansas", "image": "Servicecities/location4.png" },
-        { "name": "California", "image": "Servicecities/location5.png" },
-        { "name": "Colorado", "image": "Servicecities/location6.png" },
-        { "name": "Connecticut", "image": "Servicecities/location1.png" },
-        { "name": "Delaware", "image": "Servicecities/location2.png" },
-        { "name": "District Of Columbia","image": "Servicecities/location3.png" },
-        { "name": "Florida", "image": "Servicecities/location4.png" },
-        { "name": "Georgia", "image": "Servicecities/location5.png" },
-        { "name": "Hawaii", "image": "Servicecities/location6.png" },
-        { "name": "Idaho", "image": "Servicecities/location1.png" },
-        { "name": "Illinois", "image": "Servicecities/location2.png" },
-        { "name": "Indiana", "image": "Servicecities/location3.png" },
-        { "name": "Iowa", "image": "Servicecities/location4.png" },
-        { "name": "Kansas", "image": "Servicecities/location5.png" },
-        { "name": "Kentucky", "image": "Servicecities/location6.png" },
-        { "name": "Louisiana", "image": "Servicecities/location1.png" },
-        { "name": "Maine", "image": "Servicecities/location2.png" },
-        { "name": "Maryland", "image": "Servicecities/location3.png" },
-        { "name": "Massachusetts", "image": "Servicecities/location4.png" },
-        { "name": "Michigan", "image": "Servicecities/location5.png" },
-        { "name": "Minnesota", "image": "Servicecities/location6.png" },
-        { "name": "Mississippi", "image": "Servicecities/location1.png" },
-        { "name": "Missouri", "image": "Servicecities/location2.png" },
-        { "name": "Montana", "image": "Servicecities/location3.png" },
-        { "name": "Nebraska", "image": "Servicecities/location4.png" },
-        { "name": "Nevada", "image": "Servicecities/location5.png" },
-        { "name": "New Hampshire", "image": "Servicecities/location6.png" },
-        { "name": "New Jersey", "image": "Servicecities/location1.png" },
-        { "name": "New Mexico", "image": "Servicecities/location2.png" },
-        { "name": "New York", "image": "Servicecities/location3.png" },
-        { "name": "North Carolina", "image": "Servicecities/location4.png" },
-        { "name": "North Dakota", "image": "Servicecities/location5.png" },
-        { "name": "Ohio", "image": "Servicecities/location6.png" },
-        { "name": "Oklahoma", "image": "Servicecities/location1.png" },
-        { "name": "Oregon", "image": "Servicecities/location2.png" },
-        { "name": "Pennsylvania", "image": "Servicecities/location3.png" },
-        { "name": "Rhode Island", "image": "Servicecities/location4.png" },
-        { "name": "South Carolina", "image": "Servicecities/location5.png" },
-        { "name": "South Dakota", "image": "Servicecities/location6.png" },
-        { "name": "Tennessee", "image": "Servicecities/location1.png" },
-        { "name": "Texas", "image": "Servicecities/location2.png" },
-        { "name": "Utah", "image": "Servicecities/location3.png" },
-        { "name": "Vermont", "image": "Servicecities/location4.png" },
-        { "name": "Virginia", "image": "Servicecities/location5.png" },
-        { "name": "Washington", "image": "Servicecities/location6.png" },
-        { "name": "West Virginia", "image": "Servicecities/location1.png" },
-        { "name": "Wisconsin", "image": "Servicecities/location2.png" },
-        { "name": "Wyoming", "image": "Servicecities/location3.png" }
+        {
+          "name": "Alabama",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Alaska",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Arizona",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Arkansas",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "California",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "Colorado",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "Connecticut",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Delaware",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "District Of Columbia",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Florida",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "Georgia",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "Hawaii",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "Idaho",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Illinois",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Indiana",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Iowa",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "Kansas",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "Kentucky",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "Louisiana",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Maine",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Maryland",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Massachusetts",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "Michigan",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "Minnesota",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "Mississippi",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Missouri",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Montana",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Nebraska",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "Nevada",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "New Hampshire",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "New Jersey",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "New Mexico",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "New York",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "North Carolina",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "North Dakota",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "Ohio",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "Oklahoma",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Oregon",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Pennsylvania",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Rhode Island",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "South Carolina",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "South Dakota",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "Tennessee",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Texas",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Utah",
+          "image": "Servicecities/city3.png"
+        },
+        {
+          "name": "Vermont",
+          "image": "Servicecities/city4.png"
+        },
+        {
+          "name": "Virginia",
+          "image": "Servicecities/city5.png"
+        },
+        {
+          "name": "Washington",
+          "image": "Servicecities/city6.png"
+        },
+        {
+          "name": "West Virginia",
+          "image": "Servicecities/city1.png"
+        },
+        {
+          "name": "Wisconsin",
+          "image": "Servicecities/city2.png"
+        },
+        {
+          "name": "Wyoming",
+          "image": "Servicecities/city3.png"
+        }
       ]
     },
     "features": [
@@ -472,7 +683,6 @@
         "text": "10+ Years Of Experience"
       }
     ],
-
     "testimonials": {
       "reviewCount": "150+",
       "heading": "Our Happy Clients",
@@ -518,32 +728,30 @@
       "image": "Cta/CTA21.png",
       "button_text": "Get a Free Estimate",
       "phone": "[phone]"
-
     },
     "milestonesbanner": {
       "title": "Milestones",
       "description": "We are proud to have achieved these milestones in our journey.",
       "file_name": "milestones/milestones.webp"
     },
-    
-"company_profile": {
-  "sub_title": "Your Same Day TV Mounting Los Angeles Company",
-  "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
-  "large_image": "Profiles/CompanyProfile2.jpg",
-  "large_image_alt": "Company Profile",
-  "small_image": "Profiles/CompanyProfile1.jpg",
-  "small_image_alt": "Company Profile Preview",
-  "button": {
-    "text": "Book Service Now",
-    "link": "#"
-  },
-  "childrenRef": "features"
-},
-"information_section": {
-  "title": "Trusted Mobile and Safe Service",
-  "sub_title": "[industry] In [city_name]. Why Do You Need It?",
-  "description": "A clean, well-maintained home isn’t just about appearance—it’s about comfort, safety, and healthy living. Clean air, proper airflow, and a well-functioning [industry] all play a key role in creating the perfect indoor environment. However, [industry] cleaning can be time-consuming and complicated, especially when handled without the right tools or expertise.\n\nThat’s where our experienced professionals step in.\n\nWe provide reliable [industry] cleaning services in Leander for both residential and commercial spaces. Our skilled team ensures deep cleaning, removing dust, soot, and harmful particles that affect air quality. With our services, you can enjoy a cleaner, fresher, and healthier space without any hassle."
-},
+    "company_profile": {
+      "sub_title": "Your Same Day TV Mounting Los Angeles Company",
+      "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
+      "large_image": "Profiles/CompanyProfile2.jpg",
+      "large_image_alt": "Company Profile",
+      "small_image": "Profiles/CompanyProfile1.jpg",
+      "small_image_alt": "Company Profile Preview",
+      "button": {
+        "text": "Book Service Now",
+        "link": "#"
+      },
+      "childrenRef": "features"
+    },
+    "information_section": {
+      "title": "Trusted Mobile and Safe Service",
+      "sub_title": "[industry] In [city_name]. Why Do You Need It?",
+      "description": "A clean, well-maintained home isn’t just about appearance—it’s about comfort, safety, and healthy living. Clean air, proper airflow, and a well-functioning [industry] all play a key role in creating the perfect indoor environment. However, [industry] cleaning can be time-consuming and complicated, especially when handled without the right tools or expertise.\n\nThat’s where our experienced professionals step in.\n\nWe provide reliable [industry] cleaning services in Leander for both residential and commercial spaces. Our skilled team ensures deep cleaning, removing dust, soot, and harmful particles that affect air quality. With our services, you can enjoy a cleaner, fresher, and healthier space without any hassle."
+    },
     "work_portfolio": {
       "file_name": [
          "WorkPortfolio/gallery1.jpg",

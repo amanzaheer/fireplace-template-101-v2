@@ -43,7 +43,20 @@ async function readLocalTemplateImage(template, relativePath) {
     );
     return buf;
   } catch {
-    return null;
+    // Try some common alternative folder-name variants to handle
+    // mismatches between JSON paths and the on-disk folder names
+    // (e.g. "Servicecities/..." vs "ServicesCities/..."). This is
+    // helpful for local/dev environments where the seeded JSON may
+    // reference a differently-cased or slightly-different folder name.
+    try {
+      const alt = relativePath.replace(/^Servicecities\//i, "ServicesCities/");
+      const buf2 = await readFile(
+        join(process.cwd(), "default_data", template, "images", alt),
+      );
+      return buf2;
+    } catch {
+      return null;
+    }
   }
 }
 

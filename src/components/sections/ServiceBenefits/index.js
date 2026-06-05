@@ -21,6 +21,8 @@ import ServiceBenefits17 from "./ServiceBenefits17";
 import ServiceBenefits20 from "./ServiceBenifits20";
 import ServiceBenefits19 from "./ServiceBenefits19";
 import ServiceBenefits21 from "./ServiceBenifits21";
+import ServiceBenefits30 from "./ServiceBenefits30";
+import ServiceBenefits31 from "./ServiceBenefits31";
 import ServiceBenefits18 from "./ServiceBenefits18";
 
 const variants = {
@@ -43,6 +45,8 @@ const variants = {
   ServiceBenefits20,
   ServiceBenefits19,
   ServiceBenefits21,
+  ServiceBenefits30,
+  ServiceBenefits31,
   ServiceBenefits18,
 };
 
@@ -72,6 +76,8 @@ export {
   ServiceBenefits19,
   ServiceBenefits20,
   ServiceBenefits21,
+  ServiceBenefits30,
+  ServiceBenefits31,
   ServiceBenefits18,
   variants,
 };

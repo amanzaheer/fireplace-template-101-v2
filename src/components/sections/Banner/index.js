@@ -24,6 +24,15 @@ import Banner18 from "./Banner18";
 import Banner19 from "./Banner19";
 import Banner20 from "./Banner20";
 import Banner21 from "./Banner21";
+import Banner26 from "./Banner26";
+import Banner27 from "./Banner27";
+import Banner28 from "./Banner28";
+import Banner29 from "./Banner29";
+import Banner30 from "./Banner30";
+import Banner31 from "./Banner31";
+import Banner32 from "./Banner32";
+import Banner33 from "./Banner33";
+import Banner34 from "./Banner34";
 const variants = {
   Banner1,
   Banner2,
@@ -46,6 +55,15 @@ const variants = {
   Banner19,
   Banner20,
   Banner21,
+  Banner26,
+  Banner27,
+  Banner28,
+  Banner29,
+  Banner30,
+  Banner31,
+  Banner32,
+  Banner33,
+  Banner34,
 };
 
 export default function Banner({ variant, content }) {
@@ -75,8 +93,17 @@ export {
   Banner19,
   Banner20,
   Banner21,
+  Banner26,
+  Banner27,
+  Banner28,
+  Banner29,
+  Banner30,
+  Banner31,
+  Banner32,
+  Banner33,
+  Banner34,
   variants,
 };
- 
+
 
 

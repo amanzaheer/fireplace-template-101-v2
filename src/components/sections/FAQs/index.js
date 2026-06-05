@@ -23,7 +23,15 @@ import FAQs18 from "./FAQs18";
 import FAQs20 from "./FAQs20";
 import FAQs19 from "./FAQs19";
 import FAQs21 from "./FAQs21";
-
+import FAQs26 from "./FAQs26";
+import FAQs27 from "./FAQs27";
+import FAQs28 from "./FAQs28";
+import FAQs29 from "./FAQs29";
+import FAQs30 from "./FAQs30";
+import FAQs31 from "./FAQs31";
+import FAQs32 from "./FAQs32";
+import FAQs33 from "./FAQs33";
+import FAQs34 from "./FAQs34";
 const variants = {
   FAQs1,
   FAQs2,
@@ -46,6 +54,15 @@ const variants = {
   FAQs20,
   FAQs19,
   FAQs21,
+  FAQs26,
+  FAQs27,
+  FAQs28,
+  FAQs29,
+  FAQs30,
+  FAQs31,
+  FAQs32,
+  FAQs33,
+  FAQs34,
 };
 
 export default function FAQs({ variant, content }) {
@@ -75,5 +92,14 @@ export {
   FAQs18,
   FAQs20,
   FAQs21,
+  FAQs26,
+  FAQs27,
+  FAQs28,
+  FAQs29,
+  FAQs30,
+  FAQs31,
+  FAQs32,
+  FAQs33,
+  FAQs34,
   variants,
 };

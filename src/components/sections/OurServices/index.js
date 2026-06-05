@@ -1,6 +1,7 @@
 "use client";
-/**
- * OurServices section: multiple designs, one export.
+import React from "react";
+/*
+  OurServices section: multiple designs, one export.
  */
 import OurServices1 from "./OurServices1";
 import OurServices2 from "./OurServices2";
@@ -20,10 +21,16 @@ import OurServices15 from "./OurServices15";
 import OurServices16 from "./OurServices16";
 import OurServices17 from "./OurServices17";
 import OurServices18 from "./OurServices18";
-import OurServices20 from "./OurServices20";
 import OurServices19 from "./OurServices19";
+import OurServices20 from "./OurServices20";
 import OurServices21 from "./OurServices21";
-
+import OurServices27 from "./OurServices27";
+import OurServices28 from "./OurServices28";
+import OurServices29 from "./OurServices29";
+import OurServices30 from "./OurServices30";
+import OurServices31 from "./OurServices31";
+import OurServices32 from "./OurServices32";
+import OurServices34 from "./OurServices34";
 const variants = {
   OurServices1,
   OurServices2,
@@ -43,15 +50,60 @@ const variants = {
   OurServices16,
   OurServices17,
   OurServices18,
-  OurServices20,
   OurServices19,
+  OurServices20,
   OurServices21,
+  OurServices27,
+  OurServices28,
+  OurServices29,
+  OurServices30,
+  OurServices31,
+  OurServices32,
+  OurServices34,
+  
 };
 
 export default function OurServices({ variant, content }) {
-  const name = String(variant ?? "").trim() || "OurServices21";
-  const Component = variants[name] ?? OurServices21;
+  const name = String(variant ?? "").trim() || "OurServices1";
+  const Component = variants[name] || OurServices1;
+  
+  // Validate that Component is actually a function
+  if (typeof Component !== 'function') {
+    console.error(`Invalid component: ${name}`);
+    return null;
+  }
+  
   return <Component content={content} />;
 }
 
-export { OurServices1, OurServices2, OurServices3, OurServices4, OurServices6, OurServices8, OurServices5, OurServices7, OurServices9, OurServices10, OurServices11, OurServices12, OurServices13, OurServices14, OurServices15, OurServices16, OurServices17, OurServices18, OurServices19, OurServices20, OurServices21, variants };
+export {
+  OurServices1,
+  OurServices2,
+  OurServices3,
+  OurServices4,
+  OurServices5,
+  OurServices6,
+  OurServices7,
+  OurServices8,
+  OurServices9,
+  OurServices10,
+  OurServices11,
+  OurServices12,
+  OurServices13,
+  OurServices14,
+  OurServices15,
+  OurServices16,
+  OurServices17,
+  OurServices18,
+  OurServices19,
+  OurServices20,
+  OurServices21,
+  OurServices27,
+  OurServices28,
+  OurServices29,
+  OurServices30,
+  OurServices31,
+  OurServices32,
+  OurServices34,
+  variants,
+};

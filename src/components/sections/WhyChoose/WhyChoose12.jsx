@@ -31,7 +31,7 @@ export default function WhyChoose12({ content }) {
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
 
   if (features.length === 0) return null;
-  
+
   return (
     <FullContainer
       id="whychooseus"
