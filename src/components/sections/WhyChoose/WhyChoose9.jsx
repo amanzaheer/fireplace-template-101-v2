@@ -180,7 +180,6 @@ export default function WhyChoose9({ content }) {
               alt={imageAlt}
             />
           </div>
-
           <div className="order-1 lg:order-2">
             {heading ? (
               <h2 className="text-left text-2xl font-bold uppercase leading-tight tracking-tight text-[#000000] sm:text-3xl md:text-4xl lg:text-[2.35rem] lg:leading-[1.12]">

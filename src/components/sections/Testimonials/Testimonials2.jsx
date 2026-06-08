@@ -19,7 +19,6 @@ const archivo = Archivo({
   weight: ["400", "500", "600", "700"],
 });
 
-
 export default function Testimonials2({ content }) {
   const logo = content?.navbar?.logo ?? {};
   const data = content?.testimonials ?? {};

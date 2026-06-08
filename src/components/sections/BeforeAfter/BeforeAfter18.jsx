@@ -192,7 +192,7 @@ export default function BeforeAfter18({ content }) {
   if (items.length === 0) return null;
 
   return (
-    <FullContainer id="before_after">
+    <FullContainer id="before_after border">
       <Container className="pb-16 pt-6">
         <h2 className="text-4xl text-center pb-6 font-extrabold text-black mb-2">
           {title}

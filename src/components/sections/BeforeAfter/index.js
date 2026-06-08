@@ -20,6 +20,7 @@ import BeforeAfter19 from "./BeforeAfter19";
 import BeforeAfter20 from "./BeforeAfter20";
 import BeforeAfter21 from "./BeforeAfter21";
 import BeforeAfter9 from "./BeforeAfter9";
+import BeforeAfter27 from "./BeforeAfter27";
 
 const variants = {
   BeforeAfter1,
@@ -41,6 +42,7 @@ const variants = {
   BeforeAfter19,
   BeforeAfter21,
   BeforeAfter9,
+  BeforeAfter27,
 };
 
 export default function BeforeAfter({ variant, content }) {
@@ -68,5 +70,6 @@ export {
   BeforeAfter20,
   BeforeAfter21,
   BeforeAfter9,
+  BeforeAfter27,
   variants,
 };

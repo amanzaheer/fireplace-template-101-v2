@@ -85,6 +85,10 @@
       "no_description_text": "No description provided.",
       "overflow_template": "{count} more services available – {link}",
       "call_for_details_label": "Get A Quotation",
+      "cta_label": "SCHEDULE A BOOKING",
+      "specialist_label": "Speak To A Chimney Specialist Today",
+      "chimney27": "icons/chimney27.png",
+      "chimney27_alt": "Service icon",
       "max_display": 9
     },
     "our_process": {
@@ -127,21 +131,34 @@
     },
     "why_choose": {
       "heading": "Why Choose Us",
-      "cta_label": "GET A QUOTE",
-      "description": "Licensed technicians, clear pricing, and workmanship you can rely on in [city_name].",
+      "title": "Chimney\nMaintenance By You\nAll In One Home Experts",
+      "description": "Licensed technicians, clear pricing, and workmanship you can rely on in [city_name]. Professional [industry] cleaning, inspection, and repair for homes and businesses across [city_name] and surrounding areas.",
       "main_image": "why-us/why-us.avif",
+      "file_name": "why-us/why-us.avif",
+      "image_alt": "Chimney maintenance",
+      "call_now_label": "CALL NOW:",
+      "shield_icon": "/st-icons/Temp12/shield.png",
+      "shield_icon_alt": "Check",
+      "cta_label": "GET A QUOTE",
       "childrenRef": "features",
       "features": [
-        { "icon": "FileText", "text": "Fire Place & Repair" },
-        { "icon": "Clock", "text": "Same Day Service" },
+        { "text": "Licensed & Insured" },
+        { "text": "Certified Technicians" },
+        { "text": "Same Day Service" },
+        { "text": "Family Owned" },
         { "icon": "Star", "text": "5 Star Rated On Google" },
-        { "icon": "Shield", "text": "Licensed & Insured" },
         { "icon": "MessageSquare", "text": "10+ Years Of Experience" }
       ]
     },
     "slogan": {
       "title": "Certified Experts You Can Trust.",
       "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
+    },
+    "information_section": {
+      "title": "Trusted [industry] Service in [city_name]",
+      "highlighted_text": "[industry]",
+      "sub_title": "Professional Fireplace Cleaning, Inspection & Repair",
+      "description": "At [company_name], we provide reliable [industry] services for homes and businesses in [city_name]. Regular cleaning and inspection help prevent fire hazards, improve efficiency, and keep your fireplace operating safely year-round."
     },
     "service_benefits": {
       "heading": "Committed to Excellence",
@@ -349,42 +366,40 @@
       "sub_title": "Ask For A Quote Here"
     },
     "contact": {
-      "background_image": "Contactimg/contactus20.png"
+      "background_image": "Contact/bgimage.jpg"
     },
     "city_name": "[city_name]",
     "faqs": {
-      "title": "Do You Have Any Question Please?",
-      "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
-      "right_intro": "Keep your home warm, safe, and efficient with our professional fireplace services. From routine inspections and chimney cleaning to repairs and maintenance, our experienced team ensures your fireplace operates smoothly all year round. We provide reliable support, clear guidance, and timely service so you can enjoy comfort and peace of mind in every season..",
-      "default_open_index": 0,
-      "stats": [
-        { "value": "450+", "label": "Happy Customer" },
-        { "value": "300+", "label": "Satisfied Clients" },
-        { "value": "200+", "label": "Team Members" },
-        { "value": "100+", "label": "Award Winning" }
-      ],
-      "cta_label": "Ask a Question",
-      "cta_href": "/#contact-us",
+      "title": "Frequently Asked Questions",
+      "side_heading": "Common questions about [industry] in [state_name]",
       "file_name": "Faqs/faqs13.png",
-      "filename2": "Faqs/faqs17.png",
-      "side_image": "faqs/whychoose1.png",
-      "side_image_alt": "Technician at work",
+      "image_alt": "Technicians working on a chimney",
+      "background_color": "#1B6FCE",
+      "default_open_index": 0,
       "items": [
         {
-          "question": "What is included in a fireplace inspection?",
-          "answer": "At [company_name], our inspections include a detailed examination of your fireplace’s structure, components, and ventilation system. We look for cracks, blockages, or wear to ensure your fireplace operates safely and efficiently."
+          "question": "How often should I have my chimney swept?",
+          "answer": "Most homes need a professional chimney sweep at least once per year. If you burn wood frequently, schedule cleaning more often to remove creosote buildup and reduce fire risk."
         },
         {
-          "question": "How often should I have my fireplace cleaned?",
-          "answer": "[company_name] recommends scheduling a professional cleaning and inspection at least once a year. Regular maintenance prevents soot buildup, enhances safety, and keeps your fireplace performing at its best."
+          "question": "What happens during a chimney inspection?",
+          "answer": "Our technician inspects the flue, firebox, damper, and exterior for cracks, blockages, and creosote. You receive a clear report and recommendations for any cleaning or repairs needed."
         },
         {
-          "question": "What are the signs that my fireplace needs repair?",
-          "answer": "If you notice cracks, smoke escaping indoors, strange smells, or reduced efficiency, it’s time to call [company_name]. Our experts will diagnose and repair the issue to restore your fireplace’s safety and performance."
+          "question": "How do I know if my chimney needs repair?",
+          "answer": "Signs include white staining, crumbling mortar, rust on the damper, water leaks, smoke backing into the room, or strong odors. Contact us for an inspection if you notice any of these issues."
         },
         {
-          "question": "Do you service gas and wood-burning fireplaces?",
-          "answer": "Yes! [company_name] provides expert service for both gas and wood-burning fireplaces — including cleaning, inspections, and repairs — ensuring reliable and safe operation all year round."
+          "question": "Why are gas flue inspections important?",
+          "answer": "Gas fireplaces can produce carbon monoxide if the flue is blocked or damaged. Regular inspection ensures safe venting, proper combustion, and compliance with local safety standards."
+        },
+        {
+          "question": "What are the most common chimney problems?",
+          "answer": "Creosote buildup, cracked liners, damaged caps, animal nests, and moisture damage are the most frequent issues we find during service calls in [city_name]."
+        },
+        {
+          "question": "Do you offer same-day appointments?",
+          "answer": "Same-day service is available in many areas of [city_name] when our schedule allows. Call [phone] and we will confirm the earliest appointment for your home."
         }
       ]
     },
@@ -526,19 +541,46 @@
       "file_name": "milestones/milestones.webp"
     },
     
-"company_profile": {
-  "sub_title": "Your Same Day TV Mounting Los Angeles Company",
-  "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
-  "large_image": "Profiles/CompanyProfile2.jpg",
-  "large_image_alt": "Company Profile",
-  "small_image": "Profiles/CompanyProfile1.jpg",
-  "small_image_alt": "Company Profile Preview",
-  "button": {
-    "text": "Book Service Now",
-    "link": "#"
-  },
-  "childrenRef": "features"
-},
+    "company_profile": {
+      "sub_title": "Your Same Day TV Mounting Los Angeles Company",
+      "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
+      "large_image": "Profiles/CompanyProfile2.jpg",
+      "large_image_alt": "Company Profile",
+      "small_image": "Profiles/CompanyProfile1.jpg",
+      "small_image_alt": "Company Profile Preview",
+      "background_image": "hero/hero.webp",
+      "background_image_alt": "Fireplace company profile background",
+      "call_now_label": "CALL NOW:",
+      "jobs_heading": "What Our Job Entails:",
+      "button": {
+        "text": "Book Service Now",
+        "link": "#"
+      },
+      "childrenRef": "features",
+      "highlights": [
+        {
+          "text": "Certified Technicians",
+          "icon": "company profile/4.png",
+          "icon_alt": "Certified Technicians",
+          "featured": true
+        },
+        {
+          "text": "48+ Years Experience",
+          "icon": "company profile/3.png",
+          "icon_alt": "48+ Years Experience"
+        },
+        {
+          "text": "Fully Insured",
+          "icon": "company profile/2.png",
+          "icon_alt": "Fully Insured"
+        },
+        {
+          "text": "Award-Winning Service",
+          "icon": "company profile/1.png",
+          "icon_alt": "Award-Winning Service"
+        }
+      ]
+    },
 "information_section": {
   "title": "Trusted Mobile and Safe Service",
   "sub_title": "[industry] In [city_name]. Why Do You Need It?",
@@ -608,6 +650,7 @@
       "cta_label": "CONTACT US NOW",
       "childrenRef": "features"
     },
+    
     "form_labels": {
       "default_title": "GET IN TOUCH WITH US",
       "placeholder_first_name": "First Name",
