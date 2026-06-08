@@ -16,7 +16,6 @@ function buildImageSrc(base, filePath) {
   const segment = filePath.replace(/^\//, "");
   return `${basePath}/${segment}`;
 }
-
 export default function About20({ content }) {
   const about = content?.about ?? {};
   const data = {
@@ -52,7 +51,6 @@ export default function About20({ content }) {
                 <div className="h-full w-full bg-gray-200" />
               )}
             </div>
-
             <div className="flex items-center bg-[#3f5fb4] px-6 py-10 sm:px-10 md:px-12 lg:px-10 xl:px-14">
               <div className="max-w-[560px]">
                 <h2 className={`text-3xl font-extrabold leading-tight text-white md:text-[42px] ${poppins.className}`}>

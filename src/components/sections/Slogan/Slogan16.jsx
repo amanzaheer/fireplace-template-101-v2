@@ -30,7 +30,6 @@ export default function Slogan16({ content }) {
               {description}
             </p>
           ) : null}
-
         </div>
       </Container>
     </FullContainer>

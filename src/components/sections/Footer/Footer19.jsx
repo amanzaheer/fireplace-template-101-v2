@@ -42,7 +42,6 @@ const SOCIAL_ICON_MAP = {
   instagram: Instagram,
   linkedin: Linkedin,
 };
-
 const DEFAULT_SOCIAL_LINKS = [
   { label: "Facebook", href: "https://www.facebook.com/", Icon: Facebook },
   { label: "Twitter", href: "https://twitter.com/", Icon: Twitter },

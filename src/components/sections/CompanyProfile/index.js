@@ -1,7 +1,9 @@
 import CompanyProfile16 from "./CompanyProfile16";
+import CompanyProfile27 from "./CompanyProfile27";
 
 const variants = {
   CompanyProfile16,
+  CompanyProfile27,
 };
 
 export default function CompanyProfile({ variant, content }) {
@@ -10,4 +12,4 @@ export default function CompanyProfile({ variant, content }) {
   return <Component content={content} />;
 }
 
-    export { CompanyProfile16, variants };
+    export { CompanyProfile16, CompanyProfile27, variants };

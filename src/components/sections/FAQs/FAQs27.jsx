@@ -33,7 +33,7 @@ function buildImageSrc(base, filePath) {
   return `${basePath}/${segment}`;
 }
 
-export default function FAQs8({ content }) {
+export default function FAQs27({ content }) {
   const [activeIndex, setActiveIndex] = useState(null);
   const faqsBlock = content?.faqs ?? {};
   const phone = content?.contact_info?.phone ?? content?.navbar?.phone ?? "";
@@ -47,42 +47,32 @@ export default function FAQs8({ content }) {
   );
   const phoneLink = phone ? `tel:${phone}` : "#";
   const phoneButtonClass =
-    "h-[54px] w-[220px] inline-flex flex-row items-center justify-center gap-2 rounded-full bg-[#ff0504] text-white shadow-lg transition-all hover:opacity-80";
+    "h-[54px] w-[220px] inline-flex flex-row items-center justify-center gap-2  bg-[#ff0504] text-white shadow-lg transition-all hover:opacity-80";
   const phoneTextClass = `${inter.className} text-sm md:text-[20px] lg:text-lg font-bold text-white mt-1 leading-none`;
 
   if (!Array.isArray(faqItems) || faqItems.length === 0) return null;
 
   return (
-    <FullContainer className="relative overflow-hidden bg-[#16243E] py-12 md:py-20" id="faqs">
-      {bgImageSrc ? (
-        <Image
-          src={bgImageSrc}
-          alt=""
-          fill
-          className="object-cover object-center"
-          sizes="100vw"
-          priority={false}
-        />
-      ) : null}
-      <div className="absolute inset-0 bg-[#102447]/80" aria-hidden />
+    <FullContainer className="relative overflow-hidden bg-[#001633] py-12 md:py-20" id="faqs">
+      
+      <div className="absolute inset-0 bg-[#001633]" aria-hidden />
 
       <Container className="relative z-10">
         <div className="w-full">
           <div className="mx-auto max-w-[760px]">
             <h2 className={cn(
               faqsHeadingFont.className,
-              "mb-10 text-left text-3xl font-bold text-white md:text-4xl"
+              "mb-10 text-left text-2xl   flex items-center font-bold text-white md:text-4xl"
             )}>
               {faqTitle}
             </h2>
-
             <div className="flex flex-col border-t border-white/20 text-left">
               {faqItems.map((faq, index) => {
                 const open = activeIndex === index;
                 const q = faq?.question ?? faq?.q ?? "";
                 const a = faq?.answer ?? faq?.a ?? "";
                 return (
-                  <div key={index} className="border-b border-white/20">
+                  <div key={index} className="border-b  border-white/20">
                     <button
                       type="button"
                       className="group flex w-full items-center justify-between gap-4 py-5 text-left focus:outline-none"

@@ -6,7 +6,7 @@ import { CheckCircle2, Phone } from "lucide-react";
 import FullContainer from "@/components/common/FullContainer";
 import Container from "@/components/common/Container";
 import { IMAGE_BASE } from "@/lib/constants";
-import {Poppins, Inter, Rubik} from "next/font/google";
+import { Poppins, Inter, Rubik } from "next/font/google";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -48,20 +48,27 @@ export default function ServiceBenefits2({ content }) {
   if (list.length === 0) return null;
 
   return (
-    <FullContainer id="service_benefits" className="py-10 md:py-14 overflow-hidden bg-white">
+    <FullContainer
+      id="service_benefits"
+      className="py-10 md:py-14 overflow-hidden bg-white"
+    >
       <Container>
         <div className="max-w-5xl mx-auto">
           <div className="text-center mb-8 md:mb-12">
-            <h2 className={`${rubik.className} text-3xl md:text-[44px] font-normal text-black tracking-tight`}>
+            <h2
+              className={`${rubik.className} text-3xl md:text-[44px] font-normal text-black tracking-tight`}
+            >
               {heading}
             </h2>
-            <p className={`${rubik.className} mt-4 text-[14px] md:text-[16px] leading-relaxed text-[#000000] max-w-4xl mx-auto`}>
+            <p
+              className={`${rubik.className} mt-4 text-[14px] md:text-[16px] leading-relaxed text-[#000000] max-w-4xl mx-auto`}
+            >
               {intro}
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 lg:gap-20 items-center">
-            <div className="relative w-full min-h-[280px] md:min-h-[380px] rounded-sm overflow-hidden bg-gray-100">
+            <div className="relative w-full min-h-[280px] md:min-h-[380px] rounded-[22px] overflow-hidden bg-gray-100">
               {imageSrc ? (
                 <Image
                   title="Service Background"
@@ -78,13 +85,21 @@ export default function ServiceBenefits2({ content }) {
             </div>
 
             <div>
-              <h3 className={`${poppins.className} text-3xl md:text-[44px] font-bold lg:pl-4 text-black leading-tight mb-5`}>
+              <h3
+                className={`${poppins.className} text-3xl md:text-[44px] font-bold lg:pl-4 text-black leading-tight mb-5`}
+              >
                 {sectionTitle}
               </h3>
               <div className="space-y-2.5">
                 {list.map((benefit, index) => (
                   <div key={index} className="flex items-start gap-2.5">
-                    <Image src="/st-icons/Temp2/shieldCheck.png" alt="Check" width={50} height={50} className="w-auto h-5 md:h-[26px] mt-[0px] text-[#cc2936] shrink-0" />
+                    <Image
+                      src="/st-icons/Temp2/shieldCheck.png"
+                      alt="Check"
+                      width={50}
+                      height={50}
+                      className="w-auto h-5 md:h-[26px] mt-[0px] text-[#cc2936] shrink-0"
+                    />
                     <span className="text-ink text-[17px] leading-snug">
                       {typeof benefit === "object" ? benefit?.title : benefit}
                     </span>
@@ -104,7 +119,19 @@ export default function ServiceBenefits2({ content }) {
                   href={`tel:${phone}`}
                   className={`${rubik.className} text-[16px] md:text-[19px] inline-flex items-center justify-center gap-2 w-fit rounded-full bg-[#d62828] text-white font-normal px-6 py-[9px] hover:bg-[#bf1f1f] transition-colors duration-200`}
                 >
-                  <Image src="/st-icons/Temp2/call1.png" alt="Phone" width={16} height={16} className="w-auto h-4 md:h-[21px]" />
+                  <svg
+                    width="21"
+                    height="21"
+                    viewBox="0 0 21 21"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M8.58003 0H2.89394e-05V1C-0.00653503 4.84967 1.10365 8.6186 3.19603 11.85C4.73807 14.2328 6.76725 16.262 9.15003 17.804C12.3814 19.8964 16.1504 21.0066 20 21H21V12.42L14.31 10.933L12.45 12.793C10.748 11.6994 9.30126 10.2523 8.20803 8.55L10.067 6.69L8.58003 0Z"
+                      fill="white"
+                    />
+                  </svg>
+
                   <span>{phone || "(888)-249-0566"}</span>
                 </a>
               </div>
@@ -112,6 +139,6 @@ export default function ServiceBenefits2({ content }) {
           </div>
         </div>
       </Container>
-    </FullContainer>
+\    </FullContainer>
   );
 }
