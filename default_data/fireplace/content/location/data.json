@@ -49,7 +49,8 @@
     "working_hours": "[working_hours]"
   },
   "contact": {
-    "background_image": "Contactimg/contactus20.png"
+      "file_name": "contact/contac26tpic.png",
+    "image_alt": "Call us today for professional industry service"
   },
   "faqs": {
     "title": "FAQs",

@@ -1,6 +1,7 @@
 /**
  * ServiceCities section: areas we serve list with map background.
  */
+
 import ServiceCities1 from "./ServiceCities1";
 import ServiceCities2 from "./ServiceCities2";
 import ServiceCities3 from "./ServiceCities3";
@@ -19,9 +20,10 @@ import ServiceCities15 from "./ServiceCities15";
 import ServiceCities16 from "./ServiceCities16";
 import ServiceCities17 from "./ServiceCities17";
 import ServiceCities18 from "./ServiceCities18";
-import ServiceCities20 from "./ServiceCities20";
 import ServiceCities19 from "./ServiceCities19";
+import ServiceCities20 from "./ServiceCities20";
 import ServiceCities21 from "./ServiceCities21";
+import ServiceCities26 from "./ServiceCities26";
 import ServiceCities27 from "./ServiceCitites27";
 
 const variants = {
@@ -42,16 +44,39 @@ const variants = {
   ServiceCities13,
   ServiceCities16,
   ServiceCities17,
-  ServiceCities18,
   ServiceCities20,
   ServiceCities19,
   ServiceCities21,
+  ServiceCities26,
+  ServiceCities18,
   ServiceCities27,
 };
 
 export default function ServiceCities({ variant, content }) {
-        const name = variant ?? "ServiceCities21";
-  const Component = variants[name] ?? ServiceCities21;
+  const name = String(variant ?? "").trim() || "ServiceCities26";
+  const Component = variants[name] ?? ServiceCities26;
   return <Component content={content} />;
 }
-export { ServiceCities1, ServiceCities2, ServiceCities3, ServiceCities4, ServiceCities5, ServiceCities6, ServiceCities7, ServiceCities8, ServiceCities9, ServiceCities14, ServiceCities15, ServiceCities16, ServiceCities17, ServiceCities18, ServiceCities19, ServiceCities20, ServiceCities21, ServiceCities27, variants };
+
+export {
+  ServiceCities1,
+  ServiceCities2,
+  ServiceCities3,
+  ServiceCities4,
+  ServiceCities5,
+  ServiceCities6,
+  ServiceCities7,
+  ServiceCities8,
+  ServiceCities9,
+  ServiceCities14,
+  ServiceCities15,
+  ServiceCities16,
+  ServiceCities17,
+  ServiceCities19,
+  ServiceCities20,
+  ServiceCities21,
+  ServiceCities26,
+  ServiceCities18,
+  ServiceCities27,
+  variants,
+};
