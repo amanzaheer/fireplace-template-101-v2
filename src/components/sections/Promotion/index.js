@@ -1,29 +1,27 @@
 "use client";
-/**
- * Promotion section: multiple designs, one export.
- * variant comes from domain config (SectionLayout).
- */
+
 import Promotion1 from "./Promotion1";
 import Promotion2 from "./Promotion2";
 import Promotion3 from "./Promotion3";
 import Promotion4 from "./Promotion4";
-import Promotion6 from "./Promotion6";
 import Promotion5 from "./Promotion5";
+import Promotion6 from "./Promotion6";
 import Promotion7 from "./Promotion7";
 import Promotion8 from "./Promotion8";
 import Promotion9 from "./Promotion9";
 import Promotion10 from "./Promotion10";
-import Promotion14 from "./Promotion14";
-import Promotion15 from "./Promotion15";
 import Promotion11 from "./Promotion11";
 import Promotion12 from "./Promotion12";
 import Promotion13 from "./Promotion13";
-import Promotion17 from "./Promotion17";
-import Promotion20 from "./Promotion20";
-import Promotion19 from "./Promotion19";
-import Promotion21 from "./Promotion21";
+import Promotion14 from "./Promotion14";
+import Promotion15 from "./Promotion15";
 import Promotion16 from "./Promotion16";
+import Promotion17 from "./Promotion17";
 import Promotion18 from "./Promotion18";
+import Promotion19 from "./Promotion19";
+import Promotion20 from "./Promotion20";
+import Promotion21 from "./Promotion21";
+import Promotion26 from "./Promotion26";
 import Promotion27 from "./Promotion27";
 
 const variants = {
@@ -47,15 +45,17 @@ const variants = {
   Promotion20,
   Promotion19,
   Promotion21,
+  Promotion26,
   Promotion18,
   Promotion27,
 };
 
 export default function Promotion({ variant, content }) {
-    const name = String(variant ?? "").trim() || "Promotion21";
-  const Component = variants[name] ?? Promotion21;
+  const name = String(variant ?? "").trim() || "Promotion26";
+  const Component = variants[name] ?? Promotion26;
   return <Component content={content} />;
 }
+
 export {
   Promotion1,
   Promotion2,
@@ -77,6 +77,7 @@ export {
   Promotion19,
   Promotion20,
   Promotion21,
+  Promotion26,
   Promotion18,
   Promotion27,
   variants,

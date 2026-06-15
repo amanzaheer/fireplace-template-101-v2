@@ -93,8 +93,14 @@
   ],
   "city_name": "[city_name]",
   "state_name": "[state_name]",
+  "form_head": {
+    "title": "10% Off Total Price for Online Booking",
+    "sub_title": "Ask For A Quote Here"
+  },
   "contact": {
-    "background_image": "Contactimg/contactus20.png"
+      "file_name": "contact/contac26tpic.png",
+      "image_alt": "Call us today for professional industry service",
+    "call_cta_label": "Call Us Today!"
   },
   "reviewandrating": {
     "items": [
@@ -204,11 +210,16 @@
     ]
   },
   "form_labels": {
-    "default_title": "GET IN TOUCH WITH US",
-    "placeholder_first_name": "First Name",
+    "default_title": "10% Off Total Price For Online Booking",
+    "default_sub_title": "Ask For A Quote Here",
+    "placeholder_name": "Your Full Name",
+    "placeholder_first_name": "Your Full Name",
     "placeholder_phone": "(123)-456-7890",
-    "placeholder_email": "your@email.com",
+    "placeholder_email": "Your Email ( abc@gmail.com )",
+    "placeholder_zipcode": "ZIP CODE",
     "placeholder_message": "Message",
+    "call_cta_label": "Call Us Today!",
+    "image_alt": "Contact us today",
     "submit_button": "SUBMIT",
     "submitting_label": "Sending…",
     "processing_label": "Processing...",
@@ -224,6 +235,8 @@
       "email_invalid": "Please enter a valid email address",
       "phone_required": "Phone number is required",
       "phone_invalid": "Phone number must be exactly 10 digits",
+      "zipcode_required": "Zipcode is required",
+      "zipcode_invalid": "Please enter a valid zipcode (12345 or 12345-6789)",
       "message_required": "Message is required",
       "message_invalid": "Message must be at least 10 characters long"
     }

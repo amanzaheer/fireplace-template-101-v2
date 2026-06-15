@@ -2,6 +2,7 @@
 /**
  * Contact section: quote form and contact form.
  */
+
 import Contact1 from "./Contact1";
 import Contact2 from "./Contact2";
 import Contact3 from "./Contact3";
@@ -19,10 +20,11 @@ import Contact14 from "./Contact14";
 import Contact15 from "./Contact15";
 import Contact16 from "./Contact16";
 import Contact17 from "./Contact17";
-import Contact20 from "./Contact20";
-import Contact19 from "./Contact19";
-import Contact21 from "./Contact21";
 import Contact18 from "./Contact18";
+import Contact19 from "./Contact19";
+import Contact20 from "./Contact20";
+import Contact21 from "./Contact21";
+import Contact26 from "./Contact26";
 import Contact27 from "./Contact27";
 
 const variants = {
@@ -46,15 +48,17 @@ const variants = {
   Contact20,
   Contact19,
   Contact21,
+  Contact26,
   Contact18,
   Contact27,
 };
 
 export default function Contact({ variant, content }) {
-  const name = variant ?? "Contact21";
-  const Component = variants[name] ?? Contact21;
+  const name = variant ?? "Contact23";
+  const Component = variants[name] ?? Contact23;
   return <Component content={content} />;
 }
+
 export {
   Contact1,
   Contact2,
@@ -76,6 +80,7 @@ export {
   Contact19,
   Contact20,
   Contact21,
+  Contact26,
   Contact18,
   Contact27,
   variants,

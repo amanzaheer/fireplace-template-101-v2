@@ -21,11 +21,12 @@ import WhyChoose14 from "./WhyChoose14";
 import WhyChoose15 from "./WhyChoose15";
 import WhyChoose16 from "./WhyChoose16";
 import WhyChoose17 from "./WhyChoose17";
+import WhyChoose18 from "./WhyChoose18";
 import WhyChoose19 from "./WhyChoose19";
 import WhyChoose20 from "./WhyChoose20";
 import WhyChoose21 from "./WhyChoose21";
 import WhyChoose22 from "./WhyChoose22";
-import WhyChoose18 from "./WhyChoose18";
+import WhyChoose26 from "./WhyChoose26";
 import WhyChoose27 from "./WhyChoose27";
 
 const variants = {
@@ -49,14 +50,15 @@ const variants = {
   WhyChoose19,
   WhyChoose20,
   WhyChoose21,
+  WhyChoose26,
   WhyChoose22,
   WhyChoose18,
   WhyChoose27,
 };
 
 export default function WhyChoose({ variant, content }) {
-  const name = String(variant ?? "WhyChoose21").trim();
-  const Component = variants[name] ?? WhyChoose21;
+  const name = String(variant ?? "WhyChoose26").trim();
+  const Component = variants[name] ?? WhyChoose26;
   return <Component content={content} />;
 }
 
@@ -81,6 +83,7 @@ export {
   WhyChoose19,
   WhyChoose20,
   WhyChoose21,
+  WhyChoose26,
   WhyChoose22,
   WhyChoose18,
   WhyChoose27,

@@ -2,7 +2,7 @@
 
 import { TextQuote } from "lucide-react";
 
-export default function QuoteButton({ phone }) {
+export default function QuoteButton({ phone, label = "" }) {
   const handleClick = () => {
     const el =
       document.getElementById("quote-form-section") ??
@@ -24,7 +24,7 @@ export default function QuoteButton({ phone }) {
     >
       <div className="flex items-center gap-2">
         <TextQuote className="h-5 w-5" />
-        <span>Get A Quote</span>
+        {label ? <span>{label}</span> : null}
       </div>
     </button>
   );

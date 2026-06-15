@@ -2,6 +2,7 @@
 /**
  * ServiceDescription2 section: multiple designs, one export.
  */
+
 import ServiceDescription1 from "./ServiceDescription1";
 import ServiceDescription2 from "./ServiceDescription2";
 import ServiceDescription3 from "./ServiceDescription3";
@@ -11,17 +12,18 @@ import ServiceDescription6 from "./ServiceDescription6";
 import ServiceDescription7 from "./ServiceDescription7";
 import ServiceDescription8 from "./ServiceDescription8";
 import ServiceDescription9 from "./ServiceDescription9";
-import ServiceDescription14 from "./ServiceDescription14";
-import ServiceDescription15 from "./ServiceDescription15";
+import ServiceDescription10 from "./ServiceDescription10";
 import ServiceDescription11 from "./ServiceDescription11";
 import ServiceDescription12 from "./ServiceDescription12";
-import ServiceDescription10 from "./ServiceDescription10";
 import ServiceDescription13 from "./ServiceDescription13";
+import ServiceDescription14 from "./ServiceDescription14";
+import ServiceDescription15 from "./ServiceDescription15";
 import ServiceDescription17 from "./ServiceDescription17";
-import ServiceDescription20 from "./ServiceDescription20";
-import ServiceDescription19 from "./ServiceDescription19";
-import ServiceDescription21 from "./ServiceDescription21";
 import ServiceDescription18 from "./ServiceDescription18";
+import ServiceDescription19 from "./ServiceDescription19";
+import ServiceDescription20 from "./ServiceDescription20";
+import ServiceDescription21 from "./ServiceDescription21";
+import ServiceDescription26 from "./ServiceDescription26";
 import ServiceDescription27 from "./ServiceDescription27";
 
 const variants = {
@@ -44,6 +46,7 @@ const variants = {
   ServiceDescription20,
   ServiceDescription19,
   ServiceDescription21,
+  ServiceDescription26,
   ServiceDescription18,
   ServiceDescription27,
 };
@@ -74,6 +77,7 @@ export {
   ServiceDescription20,
   ServiceDescription19,
   ServiceDescription21,
+  ServiceDescription26,
   ServiceDescription18,
   ServiceDescription27,
   variants,

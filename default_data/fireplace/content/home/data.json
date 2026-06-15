@@ -1,4 +1,4 @@
-{
+  {
     "meta_data": {
       "title": "[company_name] Near Me",
       "description": "Tagline text.",
@@ -36,12 +36,20 @@
       "contact_heading": "Stay Tuned With Us",
       "value": "Our goal is to give you services that are fast, effective, and affordable, and that go above and beyond what you expect.",
       "file_name": "footer/footerbg.webp",
+      "map_file_name": "icons/maap.webp",
+      "map_address": "[street], [city_name], [state_name] [zip]",
       "badge_images": [
         "footer/footer1.webp",
         "footer/footer2.webp",
         "footer/footer3.webp",
         "footer/footer4.webp",
         "footer/footer5.webp"
+      ],
+      "social_links": [
+        { "type": "facebook", "label": "Facebook", "href": "https://www.facebook.com/" },
+        { "type": "twitter", "label": "Twitter", "href": "https://twitter.com/" },
+        { "type": "instagram", "label": "Instagram", "href": "https://www.instagram.com/" },
+        { "type": "linkedin", "label": "LinkedIn", "href": "https://www.linkedin.com/" }
       ],
       "legal_links": [
         { "label": "Privacy Policy", "href": "/privacy-policy" },
@@ -85,14 +93,10 @@
       "no_description_text": "No description provided.",
       "overflow_template": "{count} more services available – {link}",
       "call_for_details_label": "Get A Quotation",
-      "cta_label": "SCHEDULE A BOOKING",
-      "specialist_label": "Speak To A Chimney Specialist Today",
-      "chimney27": "icons/chimney27.png",
-      "chimney27_alt": "Service icon",
       "max_display": 9
     },
     "our_process": {
-      "title": "Our Working Process",
+      "title": "[industry] Service Process",
       "description": "Simple and efficient steps to get your fireplace serviced by experts.",
       "side_image": "process/process20.png",
       "decoration_image": "process/processing2.png",
@@ -100,27 +104,31 @@
       "decoration_alt": "Fireplace process decoration",
       "list": [
         {
-          "title": "Free Consultation",
-          "description": "Get a quick fireplace inspection and consultation to identify cleaning, repair, or maintenance needs for safe and efficient performance."
+          "level": "Level 1",
+          "title": "Inspection",
+          "description": "Our technicians know every inch of your fireplace system and have years of training and hands-on experience in spotting problem areas and faulty components. We use specialized equipment to assist in all our fireplace inspections. When repair is necessary, we're ready to get work."
         },
         {
-          "title": "Expert Execution",
-          "description":"Our skilled team provides reliable fireplace cleaning and maintenance using safe methods and professional equipment."
+          "level": "Level 2",
+          "title": "Cleaning & Repair",
+          "highlighted": true,
+          "description": "We carefully clean soot, creosote, and debris from your fireplace and chimney, then complete any repairs needed to restore safe, efficient operation. Our team uses professional-grade tools and proven methods to protect your home while delivering lasting results."
         },
         {
-          "title": "Quality Assurance",
-          "description":  "We ensure your fireplace is clean, secure, and operating properly for improved safety, comfort, and long-lasting performance."
+          "level": "Level 3",
+          "title": "Final Safety Check",
+          "description": "Before we finish, we run a thorough final safety check—testing airflow, verifying structural integrity, and confirming everything meets safety standards. You receive clear guidance on maintenance and next steps so your fireplace stays reliable all season."
         }
       ]
     },
     "workingprocess2": {
       "title": "Our Works",
       "images": [
-       "/workingprocess2/process1.jpg",
-    "/workingprocess2/process2.jpg",
-    "/workingprocess2/process3.jpg",
-    "/workingprocess2/process4.jpg",
-    "/workingprocess2/process5.jpg"
+        "workingprocess2/process1.jpg",
+        "workingprocess2/process2.jpg",
+        "workingprocess2/process3.jpg",
+        "workingprocess2/process4.jpg",
+        "workingprocess2/process5.jpg"
       ],
       "stats": [
         { "value": "61", "label": "Activate Project" },
@@ -130,35 +138,21 @@
       ]
     },
     "why_choose": {
-      "heading": "Why Choose Us",
-      "title": "Chimney\nMaintenance By You\nAll In One Home Experts",
-      "description": "Licensed technicians, clear pricing, and workmanship you can rely on in [city_name]. Professional [industry] cleaning, inspection, and repair for homes and businesses across [city_name] and surrounding areas.",
-      "main_image": "why-us/why-us.avif",
-      "file_name": "why-us/why-us.avif",
-      "image_alt": "Chimney maintenance",
-      "call_now_label": "CALL NOW:",
-      "shield_icon": "/st-icons/Temp12/shield.png",
-      "shield_icon_alt": "Check",
+      "heading": "Why Choose Us?",
+      "discription": "Professional fireplace installation and repair services tailored to your home. Safe, efficient heating solutions with expert craftsmanship and long-lasting results.",
       "cta_label": "GET A QUOTE",
-      "childrenRef": "features",
+      "file_name": "why-us/whyus26.png",
       "features": [
-        { "text": "Licensed & Insured" },
-        { "text": "Certified Technicians" },
-        { "text": "Same Day Service" },
-        { "text": "Family Owned" },
+        { "icon": "FileText", "text": "Fire Place & Repair" },
+        { "icon": "Clock", "text": "Same Day Service" },
         { "icon": "Star", "text": "5 Star Rated On Google" },
+        { "icon": "Shield", "text": "Licensed & Insured" },
         { "icon": "MessageSquare", "text": "10+ Years Of Experience" }
       ]
     },
     "slogan": {
       "title": "Certified Experts You Can Trust.",
-      "description": "Chimney sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
-    },
-    "information_section": {
-      "title": "Trusted [industry] Service in [city_name]",
-      "highlighted_text": "[industry]",
-      "sub_title": "Professional Fireplace Cleaning, Inspection & Repair",
-      "description": "At [company_name], we provide reliable [industry] services for homes and businesses in [city_name]. Regular cleaning and inspection help prevent fire hazards, improve efficiency, and keep your fireplace operating safely year-round."
+      "description": "[industry] sweep or cleaning is essential for maintaining a safe and efficient fireplace system. Over time, soot, creosote, and debris accumulate in the chimney, creating fire hazards and reducing airflow."
     },
     "service_benefits": {
       "heading": "Committed to Excellence",
@@ -199,8 +193,7 @@
     "banner": {
       "title": "Trusted Experts in [industry] services  ",
       "imageTitle": "Trusted Experts in [industry] services",
-      "heading": "TRUSTED EXPERTS IN [industry] SERVICES ",
-      "description": "Professional [industry] cleaning, inspection, and repair for your home. Licensed technicians, same-day service where available, and clear pricing in [city_name].",
+      "heading": "Trusted Experts In [industry] Services ",
       "tagline": "trusted professionals in [industry] installation, cleaning & repair",
       "need_help_label": "Need Help?",
       "cta_phone": "[phone]",
@@ -215,12 +208,13 @@
         "heading": "It's Easy! Call Now",
         "phone_label": "CALL NOW:",
         "phone": "[phone]"
-      },      "file_name": "hero/hero.webp",
+      },
+      "file_name": "hero-banner/banner.webp",
       "alt": "Hero",
       "altImage": "Hero",
       "childrenRef": "features",
-      "file_name2": "hero-banner/overlayimg7...l.png",
-      "file_name3": "hero-banner/overlayimg12.png",
+      "file_name2": "hero-banner/banner.webp",
+      "file_name3": "hero-banner/banner.webp",
       "left_collage_image": "hero-banner/left collage.png",
       "right_collage_image": "hero-banner/right collage.png",
       "bottom_collage_image": "hero-banner/bottom collage.png"
@@ -264,6 +258,7 @@
       "heading": "About [company_name]",
       "description1": "At Fireplace Services, we bring over experience in professional fireplace cleaning, maintenance, and repairs across the nation. Our certified technicians are trained to the highest industry standards, ensuring your fireplace operates safely, efficiently, and beautifully.",
       "description2": "Certified & Experienced Professionals – Our team is fully licensed, insured, and trained to provide expert fireplace services. We specialize in fireplace cleaning, safety inspections, repairs, and upgrades, helping homeowners enjoy warmth, comfort, and peace of mind all year round.",
+
       "alt": "About [company_name]",
       "file_name": "about/about.webp"
     },
@@ -361,45 +356,62 @@
         "services/fireplace-repair.webp"
       ]
     },
+    "service_description": {
+      "title": "[industry] Services",
+      "cta_label": "GET A QUOTE",
+      "file_name": "services/fireplace-repair.webp",
+      "image_alt": "Professional [industry] service by [company_name]",
+      "description": "## [industry] Services\n\nEnsuring safety, comfort, and efficiency, professional [industry] service is essential for maintaining the performance and longevity of your fireplace system. Over time, heat, moisture, and regular use can cause buildup, wear, or damage, leading to poor efficiency, smoke issues, or safety concerns.\n\nRegular [industry] service not only prevents costly repairs but also protects your home from potential fire hazards, harmful gases, and system breakdowns. By addressing issues early and keeping your fireplace in excellent condition, you enjoy reliable warmth, improved energy efficiency, and long-term peace of mind."
+    },
+    "service_description2": {
+      "title": "Benefits of [industry] Services",
+      "cta_label": "GET A QUOTE",
+      "description": "## **Benefits of [industry] Services**  \r\n\r\n**Enhanced Safety**  \r\nOne of the primary benefits of professional [industry] service is improved safety. An unmaintained fireplace can lead to fire hazards, smoke issues, or even carbon monoxide leaks. Regular service reduces these risks significantly.  \r\n\r\n**Prevention of Damage**  \r\nFireplaces are exposed to constant heat, soot, and sometimes moisture. Professional [industry] service helps identify and repair vulnerable areas, preventing costly structural damage and keeping your system reliable.  \r\n\r\n**Improved Heating Efficiency**  \r\nWhether you're using a wood-burning or gas fireplace, professional service ensures your system runs at peak performance. This means better heat output, lower energy costs, and improved comfort.  \r\n\r\n**Extended Lifespan of Components**  \r\nRoutine inspections, maintenance, and repairs protect your investment by extending the lifespan of key parts such as liners, dampers, and vents. This reduces the need for expensive replacements.  \r\n\r\n**Better Indoor Air Quality**  \r\nWithout proper care, fireplaces can accumulate soot, ash, or debris, negatively impacting air quality. Regular service keeps airflow clean and healthy, ensuring a safer living environment for your family.  \r\n\r\n**Code Compliance & Property Value**  \r\nProfessional [industry] service helps your fireplace meet safety and building code requirements. A properly maintained fireplace not only boosts safety but also enhances your home's appeal and resale value.  \r\n"
+    },
     "form_head": {
       "title": "10% Off Total Price for Online Booking",
       "sub_title": "Ask For A Quote Here"
     },
     "contact": {
-      "background_image": "Contact/bgimage.jpg"
+      "file_name": "contact/contac26tpic.png",
+      "image_alt": "Call us today for professional [industry] service",
+      "call_cta_label": "Call Us Today!"
     },
     "city_name": "[city_name]",
     "faqs": {
-      "title": "Frequently Asked Questions",
-      "side_heading": "Common questions about [industry] in [state_name]",
-      "file_name": "Faqs/faqs13.png",
-      "image_alt": "Technicians working on a chimney",
-      "background_color": "#1B6FCE",
+      "title": "Do You Have Any Question Please?",
+      "description": "Have questions? We have answers. If you need more help, our team is always ready to assist.",
+      "right_intro": "Keep your home warm, safe, and efficient with our professional fireplace services. From routine inspections and chimney cleaning to repairs and maintenance, our experienced team ensures your fireplace operates smoothly all year round. We provide reliable support, clear guidance, and timely service so you can enjoy comfort and peace of mind in every season..",
       "default_open_index": 0,
+      "stats": [
+        { "value": "450+", "label": "Happy Customer" },
+        { "value": "300+", "label": "Satisfied Clients" },
+        { "value": "200+", "label": "Team Members" },
+        { "value": "100+", "label": "Award Winning" }
+      ],
+      "cta_label": "Ask a Question",
+      "cta_href": "/#contact-us",
+      "image": "footer/faqs-illustration.png",
+      "file_name": "faqs/faqs13.png",
+      "filename2": "faqs/faqs17.png",
+      "side_image": "faqs/whychoose1.png",
+      "side_image_alt": "Technician at work",
       "items": [
         {
-          "question": "How often should I have my chimney swept?",
-          "answer": "Most homes need a professional chimney sweep at least once per year. If you burn wood frequently, schedule cleaning more often to remove creosote buildup and reduce fire risk."
+          "question": "What is included in a fireplace inspection?",
+          "answer": "At [company_name], our inspections include a detailed examination of your fireplace’s structure, components, and ventilation system. We look for cracks, blockages, or wear to ensure your fireplace operates safely and efficiently."
         },
         {
-          "question": "What happens during a chimney inspection?",
-          "answer": "Our technician inspects the flue, firebox, damper, and exterior for cracks, blockages, and creosote. You receive a clear report and recommendations for any cleaning or repairs needed."
+          "question": "How often should I have my fireplace cleaned?",
+          "answer": "[company_name] recommends scheduling a professional cleaning and inspection at least once a year. Regular maintenance prevents soot buildup, enhances safety, and keeps your fireplace performing at its best."
         },
         {
-          "question": "How do I know if my chimney needs repair?",
-          "answer": "Signs include white staining, crumbling mortar, rust on the damper, water leaks, smoke backing into the room, or strong odors. Contact us for an inspection if you notice any of these issues."
+          "question": "What are the signs that my fireplace needs repair?",
+          "answer": "If you notice cracks, smoke escaping indoors, strange smells, or reduced efficiency, it’s time to call [company_name]. Our experts will diagnose and repair the issue to restore your fireplace’s safety and performance."
         },
         {
-          "question": "Why are gas flue inspections important?",
-          "answer": "Gas fireplaces can produce carbon monoxide if the flue is blocked or damaged. Regular inspection ensures safe venting, proper combustion, and compliance with local safety standards."
-        },
-        {
-          "question": "What are the most common chimney problems?",
-          "answer": "Creosote buildup, cracked liners, damaged caps, animal nests, and moisture damage are the most frequent issues we find during service calls in [city_name]."
-        },
-        {
-          "question": "Do you offer same-day appointments?",
-          "answer": "Same-day service is available in many areas of [city_name] when our schedule allows. Call [phone] and we will confirm the earliest appointment for your home."
+          "question": "Do you service gas and wood-burning fireplaces?",
+          "answer": "Yes! [company_name] provides expert service for both gas and wood-burning fireplaces — including cleaning, inspections, and repairs — ensuring reliable and safe operation all year round."
         }
       ]
     },
@@ -488,7 +500,35 @@
       }
     ],
 
+    "review_and_rating": {
+      "review_title": "A sparkling reputation among our residential and commercial customers across [city_name], delivering trusted [industry] inspections, repairs, cleaning, and maintenance with unmatched professionalism and care.",
+      "review_subtitle": "",
+      "reviews": [
+        {
+          "icon": "/ReviewRating/icon1.png",
+          "label": "Certified Technicians",
+          "flip": null
+        },
+        {
+          "icon": "/ReviewRating/icon2.png",
+          "label": "48+ Years Experience",
+          "flip": "y"
+        },
+        {
+          "icon": "/ReviewRating/icon3.png",
+          "label": "Fully Insured",
+          "flip": "y"
+        },
+        {
+          "icon": "/ReviewRating/icon4.png",
+          "label": "Award-Winning Service",
+          "flip": null
+        }
+      ]
+    },
+
     "testimonials": {
+      "average_rating": "5.0",
       "reviewCount": "150+",
       "heading": "Our Happy Clients",
       "client_label": "CLIENTS",
@@ -530,7 +570,7 @@
     "cta": {
       "title": "Ready to Book Your Fireplace Service?",
       "description": "Don't wait until small fireplace issues turn into costly repairs. Whether you need installation, repair, or maintenance, our experts are here to help. We make the process easy, reliable, and stress-free—from your first call to final service.",
-      "image": "Cta/CTA21.png",
+      "image": "faqs/WhyChoose1.png",
       "button_text": "Get a Free Estimate",
       "phone": "[phone]"
 
@@ -541,122 +581,58 @@
       "file_name": "milestones/milestones.webp"
     },
     
-    "company_profile": {
-      "sub_title": "Your Same Day TV Mounting Los Angeles Company",
-      "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
-      "large_image": "Profiles/CompanyProfile2.jpg",
-      "large_image_alt": "Company Profile",
-      "small_image": "Profiles/CompanyProfile1.jpg",
-      "small_image_alt": "Company Profile Preview",
-      "background_image": "hero/hero.webp",
-      "background_image_alt": "Fireplace company profile background",
-      "call_now_label": "CALL NOW:",
-      "jobs_heading": "What Our Job Entails:",
-      "button": {
-        "text": "Book Service Now",
-        "link": "#"
-      },
-      "childrenRef": "features",
-      "highlights": [
-        {
-          "text": "Certified Technicians",
-          "icon": "company profile/4.png",
-          "icon_alt": "Certified Technicians",
-          "featured": true
-        },
-        {
-          "text": "48+ Years Experience",
-          "icon": "company profile/3.png",
-          "icon_alt": "48+ Years Experience"
-        },
-        {
-          "text": "Fully Insured",
-          "icon": "company profile/2.png",
-          "icon_alt": "Fully Insured"
-        },
-        {
-          "text": "Award-Winning Service",
-          "icon": "company profile/1.png",
-          "icon_alt": "Award-Winning Service"
-        }
-      ]
-    },
+"company_profile": {
+  "sub_title": "Your Same Day TV Mounting Los Angeles Company",
+  "description": "We have the expertise to make your television installation safe, fast, and hassle-free. Our TV installation services in Los Angeles are delivered by highly trained technicians who ensure precision, punctuality, and professionalism. From mounting to demounting and remounting, we handle every step with care. Customer satisfaction is our top priority, and we take pride in delivering flawless results every time..",
+  "large_image": "Profiles/CompanyProfile2.jpg",
+  "large_image_alt": "Company Profile",
+  "small_image": "Profiles/CompanyProfile1.jpg",
+  "small_image_alt": "Company Profile Preview",
+  "button": {
+    "text": "Book Service Now",
+    "link": "#"
+  },
+  "childrenRef": "features"
+},
 "information_section": {
   "title": "Trusted Mobile and Safe Service",
   "sub_title": "[industry] In [city_name]. Why Do You Need It?",
   "description": "A clean, well-maintained home isn’t just about appearance—it’s about comfort, safety, and healthy living. Clean air, proper airflow, and a well-functioning [industry] all play a key role in creating the perfect indoor environment. However, [industry] cleaning can be time-consuming and complicated, especially when handled without the right tools or expertise.\n\nThat’s where our experienced professionals step in.\n\nWe provide reliable [industry] cleaning services in Leander for both residential and commercial spaces. Our skilled team ensures deep cleaning, removing dust, soot, and harmful particles that affect air quality. With our services, you can enjoy a cleaner, fresher, and healthier space without any hassle."
 },
     "work_portfolio": {
+      "label": "Sweeping, Cleaning, Repair & Maintenance - [industry]",
+      "title": "All [industry] Installation And Repair Work",
+      "description": "A clean Fireplace is important for the safety and efficiency of your home. Regular maintenance helps prevent fire hazards, improves airflow, and extends the life of your fireplace or heating system. Our professional team provides thorough sweeping, inspection, and repair services you can trust.",
+      "cta_button": "Contact us",
       "file_name": [
-         "WorkPortfolio/gallery1.jpg",
-         "WorkPortfolio/gallery2.jpg",
-         "WorkPortfolio/gallery3.jpg",
-         "WorkPortfolio/gallery4.jpg",
-         "WorkPortfolio/gallery5.jpg",
-         "WorkPortfolio/gallery6.jpg",
-         "WorkPortfolio/gallery7.jpg",
-         "WorkPortfolio/gallery8.jpg",
-         "WorkPortfolio/gallery9.jpg",
-         "WorkPortfolio/gallery10.jpg",
-         "WorkPortfolio/gallery11.jpg",
-         "WorkPortfolio/gallery12.jpg",
-         "WorkPortfolio/gallery13.jpg",
-         "WorkPortfolio/gallery14.jpg",
-         "WorkPortfolio/gallery15.jpg"
+        "WorkPortfolio/gallery1.jpg",
+        "WorkPortfolio/gallery2.jpg",
+        "WorkPortfolio/gallery3.jpg",
+        "WorkPortfolio/gallery4.jpg",
+        "WorkPortfolio/gallery5.jpg",
+        "WorkPortfolio/gallery6.jpg",
+        "WorkPortfolio/gallery7.jpg",
+        "WorkPortfolio/gallery8.jpg",
+        "WorkPortfolio/gallery9.jpg",
+        "WorkPortfolio/gallery10.jpg",
+        "WorkPortfolio/gallery11.jpg",
+        "WorkPortfolio/gallery12.jpg",
+        "WorkPortfolio/gallery13.jpg",
+        "WorkPortfolio/gallery14.jpg",
+        "WorkPortfolio/gallery15.jpg"
       ]
     },
-    "workingprocess2": {
-      "title": "Our Works",
-      "images": [
-        "services/fireplace-repair.webp",
-        "services/fireplace-cleaning.webp",
-        "services/fireplace-maintenance.webp",
-        "services/gas-fireplace.webp",
-        "services/fireplace-inspection.webp"
-      ],
-      "stats": [
-        { "value": "261", "label": "Activate Project" },
-        { "value": "97", "label": "Customer Satisfaction" },
-        { "value": "48", "label": "Awards Winning" },
-        { "value": "125", "label": "Expert Team" }
-      ]
-    },
-    "reviewandrating": {
-      "items": [
-        {
-          "title": "4.9/5",
-          "subtitle": "150+ Reviews"
-        },
-        {
-          "title": "Which? Trusted",
-          "subtitle": "Verified Trader"
-        },
-        {
-          "title": "Fully Insured",
-          "subtitle": "Public Liability"
-        },
-        {
-          "title": "Local Experts",
-          "subtitle": "[city_name] Based"
-        }
-      ]
-    },
-    "service_description2": {
-      "title": "Why Choose Fireplace Cleaning?",
-      "sub_title": "SIMPLE BENEFITS, BIG RESULTS",
-      "description": "Regular, professional **Fireplace Cleaning** is the easiest way to keep your home **Safe** from fire hazards. It prevents expensive **Structural Damage** and makes your fireplace heat more **Efficiently**, saving you money. For clean, healthy **Air Quality**, compliance with codes, and maximum system **Lifespan**, regular care is essential for your family's comfort.",
-      "file_name": "services/fireplace-cleaning.webp",
-      "alt": "Fireplace cleaning service",
-      "cta_label": "CONTACT US NOW",
-      "childrenRef": "features"
-    },
-    
     "form_labels": {
-      "default_title": "GET IN TOUCH WITH US",
-      "placeholder_first_name": "First Name",
+      "default_title": "10% Off Total Price For Online Booking",
+      "default_sub_title": "Ask For A Quote Here",
+      "placeholder_name": "Your Full Name",
+      "placeholder_first_name": "Your Full Name",
       "placeholder_phone": "(123)-456-7890",
-      "placeholder_email": "your@email.com",
+      "placeholder_email": "Your Email ( abc@gmail.com )",
+      "placeholder_zipcode": "ZIP CODE",
       "placeholder_message": "Message",
+      "call_cta_label": "Call Us Today!",
+      "image_alt": "Contact us today",
       "submit_button": "SUBMIT",
       "submitting_label": "Sending…",
       "processing_label": "Processing...",
@@ -672,6 +648,8 @@
         "email_invalid": "Please enter a valid email address",
         "phone_required": "Phone number is required",
         "phone_invalid": "Phone number must be exactly 10 digits",
+        "zipcode_required": "Zipcode is required",
+        "zipcode_invalid": "Please enter a valid zipcode (12345 or 12345-6789)",
         "message_required": "Message is required",
         "message_invalid": "Message must be at least 10 characters long"
       }
